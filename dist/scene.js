@@ -61,16 +61,6 @@ export class FlightScene {
     const vignette=g.createRadialGradient(w/2,h*.4,h*.15,w/2,h*.4,w*.72);vignette.addColorStop(0,'#03081600');vignette.addColorStop(1,'#03081655');g.fillStyle=vignette;g.fillRect(0,0,w,h);
   }
 }
-export function drawBrain(canvas,circuit,brain,time) {
-  const {ctx:g,w,h}=fit(canvas);g.clearRect(0,0,w,h);if(!brain)return;
-  // Positions are projected from the actual soma coordinates in the dataset.
-  const positions=circuit.neurons.map(n=>n.position),xs=positions.map(p=>p[0]),ys=positions.map(p=>p[1]);
-  const minX=Math.min(...xs),maxX=Math.max(...xs),minY=Math.min(...ys),maxY=Math.max(...ys);
-  const points=positions.map(p=>[30+(p[0]-minX)/(maxX-minX||1)*(w-60),18+(p[1]-minY)/(maxY-minY||1)*(h-35)]);
-  const glow=g.createRadialGradient(w/2,h/2,1,w/2,h/2,h*.65);glow.addColorStop(0,'#6fc4bb0e');glow.addColorStop(1,'#6fc4bb00');g.fillStyle=glow;g.fillRect(0,0,w,h);
-  for(let k=0;k<circuit.edges.length;k+=5){const [src,dst,,sign]=circuit.edges[k],a=points[src],b=points[dst];const active=Math.min(1,(Math.abs(brain.activity[src])+Math.abs(brain.activity[dst]))*.65);g.strokeStyle=sign>0?`rgba(147,210,205,${.025+active*.17})`:`rgba(241,162,98,${.025+active*.11})`;g.lineWidth=.6;g.beginPath();g.moveTo(...a);g.lineTo(...b);g.stroke();}
-  points.forEach(([x,y],i)=>{const a=Math.min(1,Math.abs(brain.activity[i])*1.4);g.fillStyle=circuit.neurons[i].nt==='acetylcholine'?`rgba(170,232,218,${.3+a*.7})`:`rgba(250,174,108,${.3+a*.7})`;g.beginPath();g.arc(x,y,1+a*1.7,0,Math.PI*2);g.fill();if(a>.6){g.fillStyle='#b5eadb12';g.beginPath();g.arc(x,y,4+a*3,0,Math.PI*2);g.fill();}});
-}
 export function drawChart(canvas,history) {
   const {ctx:g,w,h}=fit(canvas);g.clearRect(0,0,w,h);
   for(let y=15;y<h;y+=25){g.strokeStyle='#98aec014';g.setLineDash([2,5]);g.beginPath();g.moveTo(0,y);g.lineTo(w,y);g.stroke();}g.setLineDash([]);

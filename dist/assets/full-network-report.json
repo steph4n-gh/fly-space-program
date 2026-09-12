@@ -1,0 +1,22 @@
+{
+  "checks": "passed",
+  "neurons": 166700,
+  "edges": 25582938,
+  "synapticContacts": 124177617,
+  "activeAfter12Updates": 50986,
+  "meanGraphStepMs": 24.168428999999993,
+  "motorCommandFeedbackEffect": [
+    0.0040709476190144145,
+    0.003129157987684983,
+    -0.003561453117774026
+  ],
+  "pulseVerified": true,
+  "coupledSmokeFlight": {
+    "seed": 440001,
+    "scenario": 1,
+    "graphUpdates": 110,
+    "landed": true,
+    "reason": "Touchdown"
+  },
+  "scope": "Numerical integrity and one coupled smoke flight in Node. Not a browser benchmark or validation of landing reliability."
+}

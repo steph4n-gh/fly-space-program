@@ -1,0 +1,478 @@
+{
+  "version": 1,
+  "dataset": "MaleCNS v1.0",
+  "source": "https://male-cns.janelia.org/download/",
+  "license": "CC BY 4.0",
+  "neurons": 166700,
+  "edges": 25582938,
+  "synapticContacts": 124177617,
+  "sourceEdgeRows": 151856684,
+  "sourceSynapticContacts": 311833243,
+  "excludedEdgeRows": 126273746,
+  "exclusion": "Edges to objects without an assigned neuronal superclass, or explicitly annotated glia. No additional synapse-count threshold.",
+  "nodes": {
+    "ids": {
+      "file": "ids.bin.gz",
+      "bytes": 666800,
+      "compressedBytes": 238963,
+      "sha256": "cf85974495d6b4ab9e3cb6ac834498632fa4bf1b240d4537bbbfd810c4a54cf0"
+    },
+    "positions": {
+      "file": "somas.bin.gz",
+      "bytes": 2000400,
+      "compressedBytes": 1186916,
+      "sha256": "b4203d7d3383fc4681f7f17200f2eebde625a7a38920f8d7263e7ba036e6b939"
+    },
+    "positionValid": {
+      "file": "soma-valid.bin.gz",
+      "bytes": 166700,
+      "compressedBytes": 16339,
+      "sha256": "f580d473a590fcc51bcc889645a626d97b0d3adebf9f4b03f301f12b9746bc68"
+    },
+    "groups": {
+      "file": "groups.bin.gz",
+      "bytes": 166700,
+      "compressedBytes": 36705,
+      "sha256": "d273ab9f9f0667fc8a32f5bc637745dac1f496867280af1ab1db8f28859ee763"
+    },
+    "signs": {
+      "file": "signs.bin.gz",
+      "bytes": 166700,
+      "compressedBytes": 25146,
+      "sha256": "b5d704014cae342a271d2dcf9090e8442536e2ad59fd4e49703f0293910d6cda"
+    },
+    "channels": {
+      "file": "channels.bin.gz",
+      "bytes": 166700,
+      "compressedBytes": 12565,
+      "sha256": "867743932b9585b78d238fcb3ad14dea6d24839259bdab1d9bae5f7c61259369"
+    },
+    "incoming": {
+      "file": "incoming.bin.gz",
+      "bytes": 666800,
+      "compressedBytes": 319704,
+      "sha256": "3728454c9e0dcc687960d6497668e4b9b1522835d4480e642885646ee9ff0a37"
+    },
+    "outgoing": {
+      "file": "outgoing.bin.gz",
+      "bytes": 666800,
+      "compressedBytes": 320279,
+      "sha256": "bc43ead3ae568290925bc866e7163f14b5aa5c692fe19a42170a4d79c45063f7"
+    },
+    "rows": {
+      "file": "rows.bin.gz",
+      "bytes": 666804,
+      "compressedBytes": 373277,
+      "sha256": "13a30b13376d51df596d78b02c2f95645973ae624d1383419f001f1f36a08c8e"
+    },
+    "types": {
+      "file": "type-indices.bin.gz",
+      "bytes": 333400,
+      "compressedBytes": 235086,
+      "sha256": "780524fb98bfc4c7234d81833dc79e5431b656af2d75027058f1dcb815b7fb05"
+    },
+    "classes": {
+      "file": "class-indices.bin.gz",
+      "bytes": 166700,
+      "compressedBytes": 40210,
+      "sha256": "ce8851f1013af2ce3e240e7eeb0ed7fb49520eddac0c2f07a9010c57a579c906"
+    }
+  },
+  "parts": [
+    {
+      "start": 0,
+      "count": 1500000,
+      "pre": {
+        "file": "pre-00.bin.gz",
+        "bytes": 6000000,
+        "compressedBytes": 3912666,
+        "sha256": "10e4014ea84b8d967e9c3daf06e1f326008da4b607c2bcdc3e050126518cbb87"
+      },
+      "weight": {
+        "file": "weight-00.bin.gz",
+        "bytes": 3000000,
+        "compressedBytes": 137457,
+        "sha256": "a643ccd225fcc2d478e042803a5c88316d0b2ca8c4442a01dccf3ffa0069d525"
+      }
+    },
+    {
+      "start": 1500000,
+      "count": 1500000,
+      "pre": {
+        "file": "pre-01.bin.gz",
+        "bytes": 6000000,
+        "compressedBytes": 3989445,
+        "sha256": "9de24693913d7ae8de32535da6d982763e51d1ecc7f7a942f1c5f668f0b55514"
+      },
+      "weight": {
+        "file": "weight-01.bin.gz",
+        "bytes": 3000000,
+        "compressedBytes": 164353,
+        "sha256": "c7d5dd44f271243669da27233fa02b0139d46b65d2468735ac429e86dccce253"
+      }
+    },
+    {
+      "start": 3000000,
+      "count": 1500000,
+      "pre": {
+        "file": "pre-02.bin.gz",
+        "bytes": 6000000,
+        "compressedBytes": 4041893,
+        "sha256": "2f2d16779299616592cefb0d93cc7a22c28360e06bd9d8f866c5d4758e878200"
+      },
+      "weight": {
+        "file": "weight-02.bin.gz",
+        "bytes": 3000000,
+        "compressedBytes": 167631,
+        "sha256": "191cba31cdfe87bba772fa63fc9594b7fcf6e14a787970b65dd1e2583e119ecc"
+      }
+    },
+    {
+      "start": 4500000,
+      "count": 1500000,
+      "pre": {
+        "file": "pre-03.bin.gz",
+        "bytes": 6000000,
+        "compressedBytes": 4073970,
+        "sha256": "69a56dec48db91a27794eedd53c12805008d93c45c6a8b08d27b013f1dbe4fd7"
+      },
+      "weight": {
+        "file": "weight-03.bin.gz",
+        "bytes": 3000000,
+        "compressedBytes": 172783,
+        "sha256": "3f5e17be78893f6a17be1ebcdcb05bc1926042f3123c0f92e271831ba9a7c7b7"
+      }
+    },
+    {
+      "start": 6000000,
+      "count": 1500000,
+      "pre": {
+        "file": "pre-04.bin.gz",
+        "bytes": 6000000,
+        "compressedBytes": 4101118,
+        "sha256": "4ef6d83f28e3370013024159082991ca049967540794743d2c47ac8e2148d540"
+      },
+      "weight": {
+        "file": "weight-04.bin.gz",
+        "bytes": 3000000,
+        "compressedBytes": 183457,
+        "sha256": "0fe9a6545cea0ea91fc8fe6ec417c385106fd55279917fdcb5deafd17ecd8f34"
+      }
+    },
+    {
+      "start": 7500000,
+      "count": 1500000,
+      "pre": {
+        "file": "pre-05.bin.gz",
+        "bytes": 6000000,
+        "compressedBytes": 4113496,
+        "sha256": "93843a1236178e7cf9481d4824bd43a9a25584cb94e6631de99fc97f24734c36"
+      },
+      "weight": {
+        "file": "weight-05.bin.gz",
+        "bytes": 3000000,
+        "compressedBytes": 186935,
+        "sha256": "146393da5241d03c9aef66f9e550348d2cecc61d7de1c43bec753a20400fa1a0"
+      }
+    },
+    {
+      "start": 9000000,
+      "count": 1500000,
+      "pre": {
+        "file": "pre-06.bin.gz",
+        "bytes": 6000000,
+        "compressedBytes": 4118922,
+        "sha256": "ea5dcd3013869a1b26d0720163718f6788a91217f5ad004c953ab09975326f81"
+      },
+      "weight": {
+        "file": "weight-06.bin.gz",
+        "bytes": 3000000,
+        "compressedBytes": 185958,
+        "sha256": "d14315ab9ef9479b010b561ed87deb548748d5ed4be6674003f41b97dc26dc23"
+      }
+    },
+    {
+      "start": 10500000,
+      "count": 1500000,
+      "pre": {
+        "file": "pre-07.bin.gz",
+        "bytes": 6000000,
+        "compressedBytes": 4119393,
+        "sha256": "6a3ed6646a3588730680117d496efabea04e45bf0d0e0021455019c927e5365e"
+      },
+      "weight": {
+        "file": "weight-07.bin.gz",
+        "bytes": 3000000,
+        "compressedBytes": 185733,
+        "sha256": "fcc758470c82d5cc511e3def01d746c3ce3f9e01a6b7ceb61c506b1a1d5c0106"
+      }
+    },
+    {
+      "start": 12000000,
+      "count": 1500000,
+      "pre": {
+        "file": "pre-08.bin.gz",
+        "bytes": 6000000,
+        "compressedBytes": 4117580,
+        "sha256": "7685b33b12d96e467aa958f9c1e513eaf43d03c5190609c876f1e5ecae6599bb"
+      },
+      "weight": {
+        "file": "weight-08.bin.gz",
+        "bytes": 3000000,
+        "compressedBytes": 194265,
+        "sha256": "acb8f2a9a4d42a4314841b9710decd5e7584607e1700adbbb78ba928ca2fe637"
+      }
+    },
+    {
+      "start": 13500000,
+      "count": 1500000,
+      "pre": {
+        "file": "pre-09.bin.gz",
+        "bytes": 6000000,
+        "compressedBytes": 4114316,
+        "sha256": "4ce5fb55b417f3bd5bde493c92a45c46fd9db5eb00cac552532904df31914fbc"
+      },
+      "weight": {
+        "file": "weight-09.bin.gz",
+        "bytes": 3000000,
+        "compressedBytes": 208639,
+        "sha256": "6074bbf848504b1bfcff63c4219b62b2fd411f758ae15d8947babc9df98fc3be"
+      }
+    },
+    {
+      "start": 15000000,
+      "count": 1500000,
+      "pre": {
+        "file": "pre-10.bin.gz",
+        "bytes": 6000000,
+        "compressedBytes": 4112073,
+        "sha256": "24a035fdd84411d333fa6d13e42b5598a99a0fcb0c69733e94c26d306e3f4351"
+      },
+      "weight": {
+        "file": "weight-10.bin.gz",
+        "bytes": 3000000,
+        "compressedBytes": 232838,
+        "sha256": "cc4a6e5f9ddc2eae32c3a3c9736da9cd6d86f1adc72e6b2aad5aecc5417099a2"
+      }
+    },
+    {
+      "start": 16500000,
+      "count": 1500000,
+      "pre": {
+        "file": "pre-11.bin.gz",
+        "bytes": 6000000,
+        "compressedBytes": 4114185,
+        "sha256": "9a2855e91af2a6fd87d6c1b775c3e1d1bf627edc366266b7ee83af984311d2a6"
+      },
+      "weight": {
+        "file": "weight-11.bin.gz",
+        "bytes": 3000000,
+        "compressedBytes": 230178,
+        "sha256": "edc3875993d297c91be69573f9cb3cb7074821adc99a54132a93976fcf92de51"
+      }
+    },
+    {
+      "start": 18000000,
+      "count": 1500000,
+      "pre": {
+        "file": "pre-12.bin.gz",
+        "bytes": 6000000,
+        "compressedBytes": 4025133,
+        "sha256": "3d44add9f41e4c4e4342f273571502d483671bdc04f094e92f1d58a1fe01f4ed"
+      },
+      "weight": {
+        "file": "weight-12.bin.gz",
+        "bytes": 3000000,
+        "compressedBytes": 226133,
+        "sha256": "93f73bbf30b8dc5b0ece1f4add049faac26fd8da01973c21542f24a9b685d934"
+      }
+    },
+    {
+      "start": 19500000,
+      "count": 1500000,
+      "pre": {
+        "file": "pre-13.bin.gz",
+        "bytes": 6000000,
+        "compressedBytes": 3952079,
+        "sha256": "3f54cc3ca3470bff0699eb008cd638d0361400cc681e42126b6c0f6bc67af909"
+      },
+      "weight": {
+        "file": "weight-13.bin.gz",
+        "bytes": 3000000,
+        "compressedBytes": 188383,
+        "sha256": "57a895d9f8479a36e1ac1b67fb0994433d037d62d72b77f3064e89e837edaf29"
+      }
+    },
+    {
+      "start": 21000000,
+      "count": 1500000,
+      "pre": {
+        "file": "pre-14.bin.gz",
+        "bytes": 6000000,
+        "compressedBytes": 3956029,
+        "sha256": "91595ce6dde6e2e6a44a76cf43c49d2d0ca0cd02c6a929d1a9c87565233c320a"
+      },
+      "weight": {
+        "file": "weight-14.bin.gz",
+        "bytes": 3000000,
+        "compressedBytes": 211485,
+        "sha256": "40708ea6f5c0d30cdd1b7648a7238a32a662d890fadfdce2a50afef7cf3e6a05"
+      }
+    },
+    {
+      "start": 22500000,
+      "count": 1500000,
+      "pre": {
+        "file": "pre-15.bin.gz",
+        "bytes": 6000000,
+        "compressedBytes": 3653498,
+        "sha256": "478c4d4ed81cab2f7d2f1b67d22283ea2e7f00b16843aee97b078389a1ed759d"
+      },
+      "weight": {
+        "file": "weight-15.bin.gz",
+        "bytes": 3000000,
+        "compressedBytes": 218875,
+        "sha256": "4706411d439b55fcf5e667e15c470b62d53c9874db9709767ff94e321db0c320"
+      }
+    },
+    {
+      "start": 24000000,
+      "count": 1500000,
+      "pre": {
+        "file": "pre-16.bin.gz",
+        "bytes": 6000000,
+        "compressedBytes": 3669654,
+        "sha256": "c46ae26d31aee8c92e08144512663ede3e8cea2c54ee6056fae594d56b9e9f6e"
+      },
+      "weight": {
+        "file": "weight-16.bin.gz",
+        "bytes": 3000000,
+        "compressedBytes": 242955,
+        "sha256": "e40d9219627a8008a2f26403c7685f9f6b2492c2a4fa7730e2aee103f3a57e05"
+      }
+    },
+    {
+      "start": 25500000,
+      "count": 82938,
+      "pre": {
+        "file": "pre-17.bin.gz",
+        "bytes": 331752,
+        "compressedBytes": 206535,
+        "sha256": "c398ef9d07fa265bfec09543280c0639915ac335f06c3f40535a47a2fe24a303"
+      },
+      "weight": {
+        "file": "weight-17.bin.gz",
+        "bytes": 165876,
+        "compressedBytes": 14849,
+        "sha256": "f6ec78ede7e0caaffdfb2e201952706acdaadf546389646ad65004a7cf4c4ea2"
+      }
+    }
+  ],
+  "coreIndices": [
+    0,
+    6,
+    22,
+    29,
+    36,
+    46,
+    78,
+    117,
+    160,
+    173,
+    197,
+    202,
+    213,
+    226,
+    252,
+    259,
+    261,
+    274,
+    278,
+    332,
+    338,
+    349,
+    384,
+    404,
+    406,
+    506,
+    520,
+    538,
+    541,
+    543,
+    704,
+    725,
+    783,
+    794,
+    820,
+    898,
+    931,
+    993,
+    997,
+    1027,
+    1048,
+    1069,
+    1087,
+    1092,
+    1131,
+    1141,
+    1142,
+    1165,
+    1166,
+    1205,
+    1212,
+    1278,
+    1314,
+    1328,
+    1384,
+    1593,
+    1698,
+    1764,
+    1837,
+    1842,
+    1870,
+    2033,
+    2070,
+    2120,
+    2265,
+    2420,
+    2458,
+    2529,
+    2930,
+    3223,
+    3539,
+    3548,
+    3935,
+    4716,
+    4917,
+    6280,
+    20944,
+    63265,
+    116939,
+    122339,
+    122948,
+    123430,
+    125880,
+    126431,
+    128534,
+    130055,
+    130185,
+    130282,
+    130352,
+    130424,
+    130641,
+    131114,
+    131957,
+    132896,
+    133015,
+    142454
+  ],
+  "groupNames": [
+    "Left optic lobe",
+    "Right optic lobe",
+    "Central brain",
+    "Descending / ascending",
+    "Ventral nerve cord"
+  ],
+  "somaPositions": 139662,
+  "labels": "labels.json"
+}

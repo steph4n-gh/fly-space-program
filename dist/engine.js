@@ -34,9 +34,9 @@ export function prepareCircuit(data) {
   for (let dst=0;dst<n;dst++) for(let src=0;src<n;src++) if(data.matrix[dst][src]) connections.push([src,dst,data.matrix[dst][src],src%12]);
   return {...data,n,connections,enc:Float64Array.from(data.encoder.flat()),dec:Float64Array.from(data.decoder.flat())};
 }
-export function createBrain(circuit,weights) {
+export function createBrain(circuit,weights,feedback=null) {
   const c=circuit.n?circuit:prepareCircuit(circuit);
-  return {c,weights:Float64Array.from(weights),activity:new Float64Array(c.n),base:new Float64Array(c.n),next:new Float64Array(c.n),features:new Float64Array(8),action:[0,0,0],gains:Float64Array.from({length:12},(_,i)=>Math.exp(clamp(weights[27+i]??0,-1.1,1.1)))};
+  return {c,feedback,weights:Float64Array.from(weights),activity:new Float64Array(c.n),base:new Float64Array(c.n),next:new Float64Array(c.n),features:new Float64Array(8),action:[0,0,0],gains:Float64Array.from({length:12},(_,i)=>Math.exp(clamp(weights[27+i]??0,-1.1,1.1)))};
 }
 export function think(brain,obs) {
   const {c,weights:w,base,next,activity:a,features:f,gains}=brain,n=c.n;
@@ -45,7 +45,7 @@ export function think(brain,obs) {
     base[j]=Math.tanh(v); next[j]=.65*base[j];
   }
   for(let e=0;e<c.connections.length;e++) {const [src,dst,weight,group]=c.connections[e]; next[dst]+=weight*gains[group]*base[src];}
-  for(let j=0;j<n;j++) a[j]=Math.tanh(next[j]);
+  for(let j=0;j<n;j++) a[j]=Math.tanh(next[j]+.12*(brain.feedback?.[j]??0));
   for(let k=0;k<8;k++) {let v=0;for(let j=0;j<n;j++)v+=c.dec[k*n+j]*a[j];f[k]=v;}
   for(let k=0;k<3;k++) {let v=w[k*9+8];for(let i=0;i<8;i++)v+=w[k*9+i]*f[i];brain.action[k]=Math.tanh(v);}
   return brain.action;
@@ -55,7 +55,8 @@ export function advance(s,action) {
   const throttle=s.fuel>0?clamp((action[0]+1)*.5,0,1):0;
   const gimbal=clamp(action[1],-1,1)*.22,rcs=clamp(action[2],-1,1);
   s.throttle=throttle;s.gimbal=gimbal;s.rcs=rcs;
-  const c=SCENARIOS[s.scenario], wind=c.wind*(Math.sin(s.t*.71+s.phase)+.45*Math.sin(s.t*2.4));
+  const c=SCENARIOS[s.scenario], wind=c.wind*(Math.sin(s.t*.71+s.phase)+.45*Math.sin(s.t*2.4))+(s.gust??0);
+  s.gust=(s.gust??0)*Math.exp(-DT*.6);
   const accel=throttle*24/(.82+.18*s.fuel);
   s.vx+=(Math.sin(s.angle+gimbal)*accel+wind-.012*s.vx)*DT;
   s.vy+=(Math.cos(s.angle+gimbal)*accel-9.81-.006*s.vy)*DT;
@@ -76,14 +77,14 @@ export function advance(s,action) {
   } else if(s.t>=42) {s.done=true;s.reason='Approach timed out';s.reward-=22+Math.max(0,s.y-8)*2;}
   return s;
 }
-export function fly(circuit,weights,seed,scenario=0,record=false) {
-  const s=createFlight(seed,scenario), b=createBrain(circuit,weights);let a=[0,0,0];
+export function fly(circuit,weights,seed,scenario=0,record=false,feedback=null) {
+  const s=createFlight(seed,scenario), b=createBrain(circuit,weights,feedback);let a=[0,0,0];
   while(!s.done) {if(s.step%3===0)a=think(b,sensors(s));advance(s,a);if(record&&s.step%4===0)s.trail.push([s.x,s.y]);}
   return s;
 }
-export function evaluate(circuit,weights,seeds,scenario=0) {
+export function evaluate(circuit,weights,seeds,scenario=0,feedback=null) {
   let score=0,landings=0;const flights=[];
-  for(const seed of seeds) {const f=fly(circuit,weights,seed,scenario);score+=f.reward;landings+=Number(f.landed);flights.push({seed,score:f.reward,landed:f.landed,reason:f.reason,touchdown:f.touchdown});}
+  for(const seed of seeds) {const f=fly(circuit,weights,seed,scenario,false,feedback);score+=f.reward;landings+=Number(f.landed);flights.push({seed,score:f.reward,landed:f.landed,reason:f.reason,touchdown:f.touchdown});}
   return {score:score/seeds.length,landings,episodes:seeds.length,flights};
 }
 export function newWeights(seed=74) {const r=rng(seed);return Array.from({length:PARAMS},(_,i)=>i<9?r.normal()*.025:0);}
@@ -104,7 +105,7 @@ export class Trainer {
       const noise=Float64Array.from({length:PARAMS},(_,i)=>random.normal()*(this.scenario===0&&i>=9&&i<27?0:i>=27?.3:1));
       const plus=Float64Array.from(this.weights,(w,i)=>w+noise[i]*sigma);
       const minus=Float64Array.from(this.weights,(w,i)=>w-noise[i]*sigma);
-      const p=evaluate(this.c,plus,seeds,this.scenario),m=evaluate(this.c,minus,seeds,this.scenario);
+      const p=evaluate(this.c,plus,seeds,this.scenario,this.feedback),m=evaluate(this.c,minus,seeds,this.scenario,this.feedback);
       results.push({noise,p:p.score,m:m.score});
     }
     results.sort((a,b)=>Math.max(b.p,b.m)-Math.max(a.p,a.m));
@@ -117,7 +118,7 @@ export class Trainer {
       candidate[i]+=this.rate/(elite.length*std)*update;
       candidate[i]=clamp(candidate[i],i>=27?-1.1:-8,i>=27?1.1:8);
     }
-    const old=evaluate(this.c,this.weights,seeds,this.scenario),next=evaluate(this.c,candidate,seeds,this.scenario);
+    const old=evaluate(this.c,this.weights,seeds,this.scenario,this.feedback),next=evaluate(this.c,candidate,seeds,this.scenario,this.feedback);
     // Accept a reward improvement on identical initial conditions; never choose
     // a lucky flight against a differently seeded incumbent.
     const accepted=next.score>=old.score;

@@ -1,0 +1,84 @@
+{
+  "points": 3487943,
+  "locatedNeurons": 166579,
+  "missingNeurons": 121,
+  "sampling": "One in 128 measured synaptic endpoints by deterministic coordinate hash, plus a first measured endpoint per neuron and actual soma fallbacks. No synthetic geometry.",
+  "chunks": [
+    {
+      "file": "anatomy-00.bin.gz",
+      "points": 400000,
+      "sha256": "75f258a4bd5b6ab51992282d4eeda069269a7aa5631878a32021421978630857"
+    },
+    {
+      "file": "anatomy-01.bin.gz",
+      "points": 400000,
+      "sha256": "fdad01cf5d22567e693d2fd481eeb16e6eadad0e9deecebee44349a131303075"
+    },
+    {
+      "file": "anatomy-02.bin.gz",
+      "points": 400000,
+      "sha256": "62937302c19e2423a3e4fdf7179d568d46b09deaa04d5d3fd5ad9a54b1aa82a8"
+    },
+    {
+      "file": "anatomy-03.bin.gz",
+      "points": 400000,
+      "sha256": "1b59b41ef12e56ef8883fe826855ad9c965b43316e566e304b366da191d0d355"
+    },
+    {
+      "file": "anatomy-04.bin.gz",
+      "points": 400000,
+      "sha256": "e486d2c69dc112a9e0976864c81e1809a524b5fc2602a26151b0b1dbf49c9df5"
+    },
+    {
+      "file": "anatomy-05.bin.gz",
+      "points": 400000,
+      "sha256": "b33a32cdf26899f3c193ee4bcd2ff1c2fcfee976241184267a23ef366178fe95"
+    },
+    {
+      "file": "anatomy-06.bin.gz",
+      "points": 400000,
+      "sha256": "396a70a37ac4d99662ef1eb30dbefff7516f6bfad687e8ef2d1869cce53e0664"
+    },
+    {
+      "file": "anatomy-07.bin.gz",
+      "points": 400000,
+      "sha256": "e9288c2836b6aec65118efb07cc7908c352de0db4b4b6972bd012bc4669889b2"
+    },
+    {
+      "file": "anatomy-08.bin.gz",
+      "points": 287943,
+      "sha256": "b24644f8ece84bde6b1d3d4dc031567c37fbac9db1fa7501c7d32774cc644eaf"
+    }
+  ],
+  "centroids": "centroids.bin.gz",
+  "brainClipZ": 65000,
+  "bounds": {
+    "min": [
+      6413.578,
+      7032.672039829303,
+      11312.238571428572
+    ],
+    "max": [
+      89967.42200000002,
+      66430.07520000004,
+      129264.97479720322
+    ]
+  },
+  "brainBounds": {
+    "min": [
+      6868.0,
+      6216.0,
+      11528.560546875
+    ],
+    "max": [
+      89559.4375,
+      50901.0,
+      41792.4375
+    ]
+  },
+  "source": {
+    "url": "https://storage.googleapis.com/flyem-male-cns/v1.0/connectome-data/flat-connectome/syn-partners-male-cns-v1.0-minconf-0.5.feather",
+    "bytes": 6777179098,
+    "sha256": "959d8ef4173b35382a3e6acfaf5167c795b6d10b877572d146af04e1b487bc07"
+  }
+}
