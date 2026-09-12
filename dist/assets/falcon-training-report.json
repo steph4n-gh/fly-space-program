@@ -1,0 +1,160 @@
+{
+  "scenario": 7,
+  "trainingEpisodes": 23400,
+  "initialization": "dist/assets/falcon-graduate.json",
+  "inputs": 18,
+  "outputs": 10,
+  "parameters": 202,
+  "evaluation": {
+    "score": 77.6955536126982,
+    "landings": 11,
+    "episodes": 12,
+    "flights": [
+      {
+        "seed": 730001,
+        "score": 95.49983204008649,
+        "landed": true,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 3.9421523578428594,
+          "speed": 0.7758989300199826,
+          "lateral": 1.488081274017534,
+          "tilt": 0.045994278203358885
+        }
+      },
+      {
+        "seed": 730974,
+        "score": 91.80317153746795,
+        "landed": true,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 3.741473091613505,
+          "speed": 1.8674604984872847,
+          "lateral": 0.4009469275662919,
+          "tilt": 0.10268881436670677
+        }
+      },
+      {
+        "seed": 731947,
+        "score": 82.47159632716266,
+        "landed": true,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 3.704459886920225,
+          "speed": 1.4221636446357477,
+          "lateral": 2.5863908126299475,
+          "tilt": 0.09881122239957739
+        }
+      },
+      {
+        "seed": 732920,
+        "score": 80.70329749091536,
+        "landed": true,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 6.735913565162222,
+          "speed": 0.8881153114053691,
+          "lateral": 2.705024134454791,
+          "tilt": 0.055686632348231666
+        }
+      },
+      {
+        "seed": 733893,
+        "score": 86.12938340112929,
+        "landed": true,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 3.9102005313863675,
+          "speed": 1.1925450199715946,
+          "lateral": 2.0261621363235998,
+          "tilt": 0.07399603493033655
+        }
+      },
+      {
+        "seed": 734866,
+        "score": 92.98807868370923,
+        "landed": true,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 3.229011088848586,
+          "speed": 1.3350573713814518,
+          "lateral": 1.9916248614631995,
+          "tilt": 0.08433673389847833
+        }
+      },
+      {
+        "seed": 735839,
+        "score": 91.45331318135874,
+        "landed": true,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 6.024334913654297,
+          "speed": 0.8819685026645917,
+          "lateral": 2.591172777355913,
+          "tilt": 0.06206723172791487
+        }
+      },
+      {
+        "seed": 736812,
+        "score": 90.8022900202536,
+        "landed": true,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 6.425855012817598,
+          "speed": 0.5461604402381567,
+          "lateral": 2.1860290248735175,
+          "tilt": 0.08027737947183121
+        }
+      },
+      {
+        "seed": 737785,
+        "score": 89.71555248897167,
+        "landed": true,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 7.448022120052554,
+          "speed": 2.0101370485844825,
+          "lateral": 2.144692207043492,
+          "tilt": 0.14523398230393994
+        }
+      },
+      {
+        "seed": 738758,
+        "score": 89.72248974118587,
+        "landed": true,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 4.763943794324856,
+          "speed": 2.0382639839581937,
+          "lateral": 0.40894737317976715,
+          "tilt": 0.10083064784597154
+        }
+      },
+      {
+        "seed": 739731,
+        "score": 93.88870825223103,
+        "landed": true,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 3.433972669096717,
+          "speed": 0.6338879387967482,
+          "lateral": 1.7106410408141428,
+          "tilt": 0.038920605628643225
+        }
+      },
+      {
+        "seed": 740704,
+        "score": -52.83106981209339,
+        "landed": false,
+        "reason": "Lateral impact",
+        "touchdown": {
+          "error": 6.033343434147437,
+          "speed": 0.9886957108983363,
+          "lateral": 3.12174967104652,
+          "tilt": 0.0658798841422651
+        }
+      }
+    ]
+  },
+  "scope": "Twelve evaluation flights with seeds separate from training. Local 3D dynamics with fixed zero upstream feedback; live asynchronous full-connectome flights can differ."
+}

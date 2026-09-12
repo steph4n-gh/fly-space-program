@@ -1,6 +1,6 @@
 # Fly Space Program
 
-A fruit fly connectome drives a rocket trying to land on a moving ocean platform. The browser runs the complete retained neuronal graph, displays measured synaptic anatomy in WebGL, and animates an articulated fly operating the live flight controls. The static app has no application framework, paid API, or backend simulation.
+A fruit fly connectome drives a stylized 3D Falcon-inspired booster toward a moving recovery ship. A tiny Dragon-style crew pod, complete with antenna, houses an articulated fly with flight-linked expressions and live cockpit instruments. The browser runs the complete retained neuronal graph and displays measured synaptic anatomy. Three.js draws the vehicle and cockpit; no application framework, paid API, or backend simulation is needed.
 
 ## Run and explore
 
@@ -9,11 +9,13 @@ npm start
 # http://localhost:4173
 ```
 
-Ocean rendezvous starts with a trained motor checkpoint. Flight school teaches vertical descent; Bad idea adds harder conditions. Choose Fresh brain and Train the fly to start over, or My trainee to continue locally saved weights. Save brain exports the checkpoint. Closing the page stops training. Each browser keeps a separate trainee.
+The app starts on Atlantic return with a trained 3D checkpoint. Eight missions progress through landing school, two-axis ocean recovery, faster descent, rough seas, night conditions, a jammed fin, reduced center-engine thrust, and combined faults with a completely dead center engine. Night lighting and fog affect the spectator view; the pilot still receives engineered flight cues. Harder missions select specialist checkpoints trained for those faults. The enabled academy option advances after three consecutive safe landings; uncheck it to stay on a mission. You can choose Fresh brain or train the selected checkpoint further. Training and saved progress stay on this device; Save brain exports weights. The v3 storage key preserves earlier v1/v2 saved checkpoints separately.
 
-Drag the brain to orbit, scroll to zoom, and click a neuron to inspect its real body ID and cell annotation. Keyboard arrows rotate the focused atlas; plus/minus zoom. Switch between modeled activity and anatomical colors, reveal the whole central nervous system, spotlight the 96-cell motor interface, or expand the atlas. Pulse neuron injects excitation for eight graph updates. Throw a gust adds a decaying lateral force to the current flight. Human controls: W/S throttle, A/D attitude jets, Q/E gimbal; touch users have throttle and attitude controls.
+Chase, Wide, Deck and Pod cameras show the flight from different perspectives. Drag the flight scene to orbit or scroll to zoom. Fly’s view looks across the cockpit from the pilot’s head. The fly’s head turns, eyes, brows and antennae react to actual commands and flight conditions; touchdown earns a celebration. These are authored cosmetic reactions, not evidence of emotions or awareness. A small antenna Easter egg is available by clicking the crew pod antenna.
 
-The cockpit's six limbs articulate from the same throttle, gimbal and attitude commands applied to rocket physics. Its traces show those commands. It is procedural game geometry, not a prerecorded animation.
+Drag the anatomical atlas to orbit, scroll to zoom and click a neuron to inspect its ID and annotation. Keyboard arrows rotate the focused atlas; plus/minus zoom. Switch activity/anatomy, show the whole CNS, spotlight the motor interface, or expand the atlas. Pulse neuron injects eight graph updates of excitation. Throw a gust, Jam a fin, and Engine fault alter the live simulation.
+
+Human controls: W/S throttle; arrows or A/D for attitude control on two axes; Q/E yaw; IJKL gimbal; Z/C and U/O fins. On-screen controls include throttle, four attitude buttons, engine-bank selection and gaze. Touch controls provide the main flight inputs; full gimbal/fin/yaw controls use a keyboard.
 
 ## The data and anatomical coverage
 
@@ -29,17 +31,25 @@ The fast motor interface contains 96 real descending neurons, 3,199 connections 
 
 This is an experimental connectome-derived controller, not a biologically validated fly emulation. Activity is a calculated rate signal, not recorded biological firing. There is no language model in the control loop.
 
-Eight engineered telemetry channels encode relative position/velocity, a stopping-distance descent cue, attitude, angular velocity, altitude, fuel and deck velocity. The descent cue is a sensor feature, not an action-generating autopilot. Annotated sensory groups receive these proxy inputs; this does not model fly vision.
+Eighteen engineered telemetry channels encode relative position and velocity on two lateral axes, a stopping-distance descent cue, two tilt angles/rates, heading/rate, altitude, remembered fuel and engine health, and time since instrument checks. The descent cue is a sensor feature, not an action-generating autopilot. The first eight channels also drive annotated sensory groups in the whole network; the 96-cell motor activity includes all 18 channels. This does not model fly vision.
 
 A background worker propagates every retained edge with signed, count-weighted tanh rate dynamics. Incoming contact totals normalize recurrent input; previous activity contributes a decaying state term. Acetylcholine is excitatory; GABA/glutamate are inhibitory under a simplified transmitter rule. Other or unknown transmitter assignments default to excitatory. Receptor-specific signs, spikes and detailed cell physiology are not modeled.
 
-The whole graph targets one update per 160 ms of wall time, slowing down on less capable devices. The UI displays its observed cadence. The 96 motor neurons run at the faster controller cadence (every three 50 ms physics steps). Their current rates are inserted into the whole graph; the whole graph's candidate rates feed the next motor update with gain 0.12. Thus activity has a real route through the whole network back into rocket commands. Flight playback speed does not accelerate the full graph; this multirate system is intentionally asynchronous, so coupled live runs depend on device timing.
+The whole graph targets one update per 160 ms of wall time, slowing down on less capable devices. The UI displays its observed cadence. The 96 motor neurons update every three 50 ms physics steps. Their rates enter the whole graph; the whole graph’s candidate rates feed the next motor update with gain 0.12. Flight playback speed does not accelerate the full graph, so live coupled trajectories depend on device timing.
 
-The motor circuit uses a fixed random encoder, signed normalized biological edges, and task-agnostic pseudoinverse interface calibration to preserve sensor channels. Antithetic evolution strategies optimize **27 output coefficients and 12 multiplicative gain groups on existing motor connections**. Positive gains retain edge signs and topology. Each candidate is compared with the incumbent on identical initial conditions.
+The motor circuit uses a fixed 18-channel encoder and task-agnostic pseudoinverse calibration through the signed biological matrix. The original eight-channel encoder is preserved and ten columns are added; none of the 96 neurons or 3,199 edges is changed. The 2D output weights initialize the corresponding control channels on both lateral axes. Additional engine/gaze initialization is documented in `scripts/build_3d_interface.py`.
 
-Fast training rollouts use a frozen snapshot of the latest full-network feedback; they do not resimulate 25.6 million edges for every candidate. New live flights use the latest saved motor weights and dynamically coupled graph. Training rewards are measured batch rewards, not a held-out learning curve. This setup does not establish that fly topology improves learning compared with other networks.
+The ten outputs are throttle; gimbal X/Z; attitude jets X/Z and yaw; fin X/Z; engine-bank selection; and gaze. Each output has 18 coefficients and a bias: **190 output coefficients plus 12 multiplicative biological-edge gain groups = 202 trainable parameters**. The 12 positive gains preserve biological edge signs and topology. The full graph’s individual edge weights are not all optimized.
 
-Flight school learns thrust only; ocean training unlocks all outputs. Stylized 2D physics includes gravity, fuel-dependent mass, thrust, gimbal torque, attitude jets, drag, gusts and ship motion. A safe touchdown requires lateral error under 10 m, vertical speed under 3.4 m/s, relative lateral speed under 2.8 m/s, and tilt under 0.18 radians.
+Antithetic evolution strategies generate paired random weight perturbations, simulate candidate flights, estimate a reward-improving update from the better perturbations, and accept it only if it beats the incumbent on identical starting conditions. Engine-selector perturbations are eight times wider because small changes often cannot cross the discrete one/three-engine threshold. This is reward-based parameter search without backpropagation through the simulator.
+
+Training rewards penalize landing error, speed, attitude, fuel use, time and stale instrument readings; safe touchdowns earn a bonus. Fast candidate flights use a frozen snapshot of the latest whole-network feedback. They do not resimulate the full graph for every candidate. New live flights use the latest trained weights with dynamic whole-network coupling. The chart is training-batch reward, not a held-out learning curve.
+
+Throttle, gimbal, pedals, fins, selector and gaze have bounded travel rates. The selected control positions drive the physics; inverse kinematics attaches the rendered limbs to those positions. Individual leg joints and physical contact forces are not learned. Looking left samples a numerical fuel reading; looking right samples engine health; other flight cues remain available. There is no learned raw-pixel visual system.
+
+The 3D physics integrates translation and rotation with gravity, fuel-dependent mass, thrust, gimbal torque, attitude jets, aerodynamic fin torque, drag, crosswinds, ship motion and deck roll/pitch. A center engine and an opposing auxiliary pair form selectable one/three-engine banks; the other six nozzles are modeled visually but are not selectable during these descent lessons. The center-engine fault reduces its thrust to 48% in mission 07 and zero in mission 08. Grid fin 01 can jam at a fixed deflection. This is a game-scale approximation, not a flight-qualified SpaceX vehicle model. Touchdown requires radial deck error under 11 m, vertical speed under 3.6 m/s, relative lateral speed under 3 m/s and tilt under 0.2 radians.
+
+Nothing here demonstrates a shortcut to LLM development or an advantage of biological topology. Equal-budget comparisons with simpler and shuffled networks would be needed before making efficiency claims.
 
 ## Downloads and performance
 
@@ -47,26 +57,26 @@ The first visit fetches about 91 MB of compressed graph and anatomy; the motor p
 
 ## Reproduce data and training
 
-Python generators require numpy, pandas and pyarrow. The four original source files total about 7.9 GB and stay outside Git. URLs, exact byte sizes and SHA-256 hashes are pinned in `scripts/source-lock.json`. Download the listed files into `data/`; `scripts/fetch_connectome.py` fetches the original three graph/annotation files. Run `scripts/fetch_anatomy.py` to fetch the large synapse-position file before anatomy generation.
+Python generators require numpy, pandas and pyarrow. Four original source files total about 7.9 GB and stay outside Git. Exact URLs, sizes and SHA-256 hashes are pinned in `scripts/source-lock.json`. `scripts/fetch_connectome.py` downloads graph/annotation sources and `scripts/fetch_anatomy.py` downloads synaptic positions.
 
 ```sh
 .venv/bin/python scripts/build_circuit.py
 .venv/bin/python scripts/build_full_connectome.py
 .venv/bin/python scripts/build_anatomy.py
-node scripts/check.mjs
-node scripts/check-full-network.mjs
+.venv/bin/python scripts/build_3d_interface.py
+node scripts/train-falcon.mjs 80 1
+# Preserve graduate + report as falcon-ocean.json and falcon-ocean-report.json.
+node scripts/train-falcon.mjs 120 6 --resume
+# Preserve graduate + report as falcon-specialist.json and falcon-specialist-report.json.
+node scripts/train-falcon.mjs 100 7 --resume
+# Preserve graduate + report as falcon-expert.json and falcon-expert-report.json.
+node scripts/check-falcon.mjs
 ```
 
-The shipped starter flight-school checkpoint used 36,960 rollouts and the ocean checkpoint 137,760 cumulative rollouts. Their original motor-only evaluations each landed 20/20 separate evaluation flights versus 0/20 fresh. Reports remain in `dist/assets/flight-school-report.json` and `dist/assets/training-report.json`. **These results precede whole-network coupling and are not evidence for the expanded model's landing reliability.** The live counter records the flights actually observed in the app.
+The CLI writes `falcon-graduate.json` and `falcon-training-report.json`; the app loads the named ocean/specialist/expert copies. Resume restores weights and counters with a new RNG stream. Training is not bit-for-bit reproducible across algorithm revisions: the shipped ocean and engine-fault checkpoints used narrow selector mutations; the combined-fault run introduced wider selector exploration after an unsuccessful narrow-exploration branch. The stored attempt count follows each checkpoint’s retained training lineage.
 
-`full-network-report.json` records numerical graph integrity, a verified feedback effect on motor commands, an excitation injection check, and one coupled smoke flight. It is not a benchmark. The base checks cover deterministic motor-only replay, fuel exhaustion, unsafe touchdown rejection, a real training update, edge metadata and local asset references. Browser visual testing and optional feature-detected WebMCP tools were not runtime-tested.
+The 3D checkpoints have recorded lineages of **6,240 / 15,600 / 23,400 training rollouts**. Their evaluation results are **12/12 Atlantic, 11/12 reduced-engine, and 11/12 combined-fault landings**, respectively, on 12 fixed evaluation seeds separate from training. These evaluations hold whole-network feedback at zero. They do not validate asynchronous live behavior, unseen mission distributions or biological fidelity. Reports are linked inside the app. The live counter records actual observed flights.
 
-To retrain starter checkpoints with the original motor-only command-line harness:
+`falcon-integration-report.json` records actuator/gaze/fault checks and two numerical smoke flights coupled to all 25.6 million edges. Browser visual testing and optional feature-detected WebMCP tools were not runtime-tested. The old 2D engine and its training reports remain available for historical evidence; they are not the active 3D controller.
 
-```sh
-node scripts/train.mjs 220 0
-# Copy graduate.json to flight-school.json before moving on.
-node scripts/train.mjs 600 1 --resume
-```
-
-The harness overwrites `graduate.json` and `training-report.json`. Resume restores counters and weights with a new RNG stream; it is not bit-for-bit continuation. Motor-only flights are deterministic for a given seed and checkpoint; live asynchronous whole-network coupling has the timing dependency described above.
+The earlier 2D checkpoints used 36,960 / 137,760 rollouts and each landed 20/20 evaluation flights. Those weights are the transfer source, not evidence for the new model’s reliability.

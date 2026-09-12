@@ -4,3 +4,4 @@ data/
 *.log
 artifacts/
 __pycache__/
+node_modules/

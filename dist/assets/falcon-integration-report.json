@@ -1,0 +1,57 @@
+{
+  "checks": "passed",
+  "biologicalCircuitPreserved": true,
+  "inputs": 18,
+  "outputs": 10,
+  "trainableParameters": 202,
+  "checksPerformed": [
+    "deterministic replay",
+    "fuel exhaustion",
+    "auxiliary-engine acceleration",
+    "finite control travel",
+    "gaze samples distinct instruments",
+    "fin jam",
+    "real training batch",
+    "full-graph coupled flights"
+  ],
+  "coupledFlights": [
+    {
+      "scenario": 1,
+      "seed": 812045,
+      "landed": true,
+      "reason": "Touchdown",
+      "threeEngineSeconds": 0,
+      "maxFin": 0.059149358494525704,
+      "gazeTargets": [
+        "forward",
+        "engine"
+      ],
+      "touchdown": {
+        "error": 2.0420018993931657,
+        "speed": 2.547061179352751,
+        "lateral": 0.35730659989313446,
+        "tilt": 0.008551052837577419
+      }
+    },
+    {
+      "scenario": 7,
+      "seed": 812045,
+      "landed": true,
+      "reason": "Touchdown",
+      "threeEngineSeconds": 26.35,
+      "maxFin": 0.8659872519622818,
+      "gazeTargets": [
+        "forward",
+        "engine",
+        "fuel"
+      ],
+      "touchdown": {
+        "error": 2.3411664839994386,
+        "speed": 1.2351325971206362,
+        "lateral": 2.159483246279237,
+        "tilt": 0.09332054751281245
+      }
+    }
+  ],
+  "scope": "Two numerical smoke flights with full-network updates every 150 ms of simulated time. Not browser performance testing or a landing-reliability benchmark."
+}

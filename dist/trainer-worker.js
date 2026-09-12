@@ -1,4 +1,4 @@
-import {Trainer} from './engine.js';
+import {Trainer} from './engine3d.js';
 let trainer, running=false, pending=false;
 function train() {
   pending=false;
