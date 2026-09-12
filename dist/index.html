@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0c111b">
+  <meta name="description" content="A very small pilot. A very big rocket. Train a circuit built from real fruit fly wiring to land on an ocean platform.">
+  <title>Fly Space Program</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%230c111b'/%3E%3Ctext x='8' y='48' font-size='45'%3E🪰%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="masthead">
+    <a href="./" class="brand" aria-label="Fly Space Program home"><span class="brand-mark">F<span>SP</span><i>✦</i></span><span>FLY SPACE<br>PROGRAM</span></a>
+    <div class="mission-label"><span class="eyebrow">EXPERIMENT 001</span><span>Extremely small flight crew.</span></div>
+    <button class="quiet" id="about-button">Inside the experiment <span>↗</span></button>
+  </header>
+  <main>
+    <div class="intro"><div><div class="eyebrow orange">DROSOPHILA AEROSPACE DIVISION</div><h1>Let the fly cook.</h1></div><div class="intro-right"><span class="status-dot"></span><span id="system-status">Loading flight circuit</span><span class="version">EXPERIMENTAL / V.01</span></div></div>
+    <div class="workspace">
+      <section class="flight-panel" aria-label="Rocket flight simulation">
+        <div class="panel-top"><div class="live-tag"><span></span> FLIGHT FEED</div><span id="flight-number">FLIGHT 001</span><div class="view-label">ATLANTIC RECOVERY ZONE</div></div>
+        <div class="viewport">
+          <canvas id="flight-canvas" aria-label="Live rocket attempting to land on an ocean platform"></canvas>
+          <div class="flight-title"><span class="eyebrow" id="scenario-kicker">FLIGHT SCHOOL</span><h2 id="flight-instruction">Bring it home, little guy.</h2><p id="scenario-description">Vertical descent · calm air</p></div>
+          <div class="clock"><span>FLIGHT TIME</span><strong id="flight-clock">00:00.0</strong></div>
+          <div class="pilot-chip"><span class="fly-emoji">🪰</span><div><span>PILOT IN COMMAND</span><strong id="pilot-label">Fly / Flight-school graduate</strong></div></div>
+          <div class="result" id="result" hidden><span id="result-kicker"></span><strong id="result-title"></strong><p id="result-description"></p></div>
+          <div class="loading" id="loading"><span class="loader"></span><span id="loading-message">Connecting 96 neurons to a rocket…</span></div>
+          <div class="manual-controls" id="manual-controls" hidden><label>THRUST <input id="manual-throttle" type="range" min="0" max="100" value="40"></label><button data-key="a" aria-label="Rotate left">↶</button><button data-key="d" aria-label="Rotate right">↷</button><span>W / S thrust · A / D attitude · Q / E gimbal</span></div>
+          <div class="viewport-bottom"><button class="icon-button" id="pause-flight" aria-label="Pause flight">Ⅱ</button><div class="speed-control" aria-label="Playback speed"><button data-speed="1" class="selected">1×</button><button data-speed="4">4×</button><button data-speed="12">12×</button></div><span id="flight-outcomes">Waiting for first touchdown</span><button class="quiet" id="new-flight">New flight ↻</button></div>
+        </div>
+        <div class="telemetry"><div><span>ALTITUDE</span><strong id="altitude">—<small>m</small></strong><div class="meter"><i id="altitude-meter"></i></div></div><div><span>VERTICAL SPEED</span><strong id="vertical-speed">—<small>m/s</small></strong><div class="meter"><i id="speed-meter"></i></div></div><div><span>ATTITUDE</span><strong id="attitude">—<small>°</small></strong><div class="meter"><i id="attitude-meter"></i></div></div><div><span>PROPELLANT</span><strong id="fuel">—<small>%</small></strong><div class="meter"><i id="fuel-meter"></i></div></div></div>
+        <div class="mission-controls"><div class="select-field"><label for="scenario">MISSION</label><select id="scenario"><option value="0">01 / Flight school</option><option value="1">02 / Ocean rendezvous</option><option value="2">03 / Bad idea</option></select></div><div class="select-field"><label for="pilot">FLIGHT CREW</label><select id="pilot"><option value="graduate">Trained fly</option><option value="trainee">My trainee</option><option value="rookie">Fresh brain</option><option value="human">Me. How hard can it be?</option></select></div><button class="primary" id="train-button" disabled><span>✦</span> Train the fly</button></div>
+      </section>
+      <aside class="right-column">
+        <section class="brain-panel"><div class="section-heading"><h2>The pilot</h2><span class="tiny-badge">MALECNS v1.0</span></div><div class="brain-view"><canvas id="brain-canvas" aria-label="Activity of the 96 actual neurons used by the controller"></canvas><div class="brain-scale"><span>QUIET</span><i></i><span>ACTIVE</span></div></div><div class="brain-numbers"><div><strong>96</strong><span>recorded neurons</span></div><div><strong>3,199</strong><span>retained connections</span></div></div><p class="brain-note">A tiny circuit from real fly wiring.<br>A deeply unusual job assignment.</p><div class="output-controls"><div><span>MAIN ENGINE</span><div class="output-track"><i id="thrust-output"></i></div><strong id="thrust-value">0%</strong></div><div><span>GIMBAL</span><div class="output-track bipolar"><i id="gimbal-output"></i></div><strong id="gimbal-value">0°</strong></div><div><span>ATTITUDE JETS</span><div class="output-track bipolar"><i id="rcs-output"></i></div><strong id="rcs-value">0%</strong></div></div></section>
+        <section class="learning-panel"><div class="section-heading"><h2>Flight school</h2><span class="learning-status" id="learning-status">CHECKPOINT</span></div><div class="learning-headline"><strong id="training-count">0</strong><span>training attempts</span></div><canvas id="learning-chart" aria-label="Measured training reward by generation"></canvas><div class="chart-labels"><span>TRAINING REWARD</span><span id="generation">GEN 000</span></div><div class="training-message" id="training-message">Loading the pilot’s flight record.</div><div class="learning-footer"><span id="save-status">Weights saved on this device</span><button class="quiet" id="export-button" disabled>Save brain ↓</button></div></section>
+      </aside>
+    </div>
+    <footer><span><i class="orange">✦</i> FAILURE IS FLIGHT DATA.</span><span>96-neuron circuit · rate dynamics · reward-trained weights</span><a href="https://male-cns.janelia.org/" target="_blank" rel="noreferrer">Wiring by Janelia, Cambridge / MRC LMB & Google ↗</a></footer>
+    <p class="notice" id="notice" role="status" hidden></p>
+  </main>
+  <dialog id="about"><button id="close-about" aria-label="Close" class="close-dialog">×</button><span class="eyebrow orange">THE EXPERIMENT</span><h2>Small brain.<br>Ambitious career change.</h2><p>This pilot uses <strong>96 recorded descending neurons</strong> and their <strong>3,199 connections</strong> from the MaleCNS v1.0 fruit fly dataset. Those edges represent 85,785 measured synaptic contacts.</p><p>We extract a densely connected motor circuit around DNa02, DNg13, DNp09 and DNp01. Flight telemetry enters a simplified rate model. Neural activity becomes throttle, engine gimbal and attitude-jet commands.</p><h3>What actually learns?</h3><p>Reward-based evolution strategies adjust 27 output coefficients and 12 gain groups on existing circuit connections. Better batches update the checkpoint. There is no language model or scripted landing autopilot flying the rocket.</p><p>The initial lesson learns thrust in an upright descent. Ocean missions unlock all three controls. Training runs in a background worker on your device. Your trainee’s progress is saved locally; “Save brain” exports a checkpoint.</p><h3>What this can tell us</h3><p>This is a small connectome-derived controller with engineered sensor and motor interfaces, not a whole-fly emulation. The rate dynamics and reward rule are engineering choices. Successful landings demonstrate task learning in this model, not biological fidelity or an advantage over other networks.</p><p id="validation-summary">The flight-school checkpoint was trained locally. Its evaluation record is included below.</p><div class="source-links"><a href="assets/training-report.json" target="_blank">Training evidence ↗</a><a href="assets/circuit.json" target="_blank">Actual circuit ↗</a><a href="https://male-cns.janelia.org/download/" target="_blank" rel="noreferrer">Original data / CC BY 4.0 ↗</a></div></dialog>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
