@@ -17,6 +17,18 @@ Drag the anatomical atlas to orbit, scroll to zoom and click a neuron to inspect
 
 Human controls: W/S throttle; arrows or A/D for attitude control on two axes; Q/E yaw; IJKL gimbal; Z/C and U/O fins. On-screen controls include throttle, four attitude buttons, engine-bank selection and gaze. Touch controls provide the main flight inputs; full gimbal/fin/yaw controls use a keyboard.
 
+## Inspect a live control decision
+
+“What drives the controls” captures the exact 18-element sensor vector at each 150 ms motor decision, before physics advances. It records the ten requested commands, the weights and 96 feedback values used, and the upstream graph tick. The display distinguishes these sampled values from actual actuator positions now, and separates remembered instrument readings from the simulator's actual fuel and engine state at the sample. Pause & inspect stops flight and graph updates so a decision can be examined.
+
+Select any of the ten controls to see its three largest isolated input effects. The expandable table shows all 18 inputs, their raw physical readings, clipped encoded values, the selected command's changes, and what zero means for each channel. Each effect is the live raw command minus a replay with exactly one encoded input set to zero. Replays use the same `think` function, weights and frozen graph feedback in a separate scratch brain; they never modify the flight or worker. An additional replay removes current feedback. The baseline replay is compared against the actual command and its numerical difference is reported. Displayed values are rounded, with full precision in numeric tooltips and the read-only `get_control_decision` browser tool.
+
+These are model-level interventions, not physical world simulations, additive attributions or claims about intent. For example, setting the altitude channel to zero leaves the already encoded descent-error channel unchanged. Feedback removal does not undo earlier feedback's effects on the flight. The simulator does not receive pixels from the new wave/sky rendering, or infer control decisions from the cosmetic fly expressions.
+
+The crew camera uses an open rear-shell cutaway with a close view of the eyes, mouth and antennae. Fly's view faces the working sides of all three displays and follows the instrument-gaze sign convention. Camera framing adapts to panel width. The ocean, cloud and rocket-surface improvements only change rendering.
+
+Run `node scripts/check-decision.mjs` to verify replay equality, all single-input effects, isolation from live buffers, stale instrument memory, and all ten actuator mappings.
+
 ## The data and anatomical coverage
 
 MaleCNS v1.0 comes from HHMI Janelia FlyEM, the University of Cambridge, MRC Laboratory of Molecular Biology and Google Research: <https://male-cns.janelia.org/>. Data retains [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/); original application code is MIT licensed.
@@ -77,6 +89,6 @@ The CLI writes `falcon-graduate.json` and `falcon-training-report.json`; the app
 
 The 3D checkpoints have recorded lineages of **6,240 / 15,600 / 23,400 training rollouts**. Their evaluation results are **12/12 Atlantic, 11/12 reduced-engine, and 11/12 combined-fault landings**, respectively, on 12 fixed evaluation seeds separate from training. These evaluations hold whole-network feedback at zero. They do not validate asynchronous live behavior, unseen mission distributions or biological fidelity. Reports are linked inside the app. The live counter records actual observed flights.
 
-`falcon-integration-report.json` records actuator/gaze/fault checks and two numerical smoke flights coupled to all 25.6 million edges. Browser visual testing and optional feature-detected WebMCP tools were not runtime-tested. The old 2D engine and its training reports remain available for historical evidence; they are not the active 3D controller.
+`falcon-integration-report.json` records actuator/gaze/fault checks and two numerical smoke flights coupled to all 25.6 million edges. Browser checks covered the crew and instrument cameras, rendered ocean and atlas, decision selection and pause, the displayed command against `get_control_decision`, and narrow-screen layout. The remaining optional WebMCP actions are not all covered by these checks. The old 2D engine and its training reports remain available for historical evidence; they are not the active 3D controller.
 
 The earlier 2D checkpoints used 36,960 / 137,760 rollouts and each landed 20/20 evaluation flights. Those weights are the transfer source, not evidence for the new model’s reliability.

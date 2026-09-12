@@ -2,9 +2,10 @@ import {DT,SCENARIOS,clamp,createFlight,createBrain,prepareCircuit,think,sensors
 import {drawChart} from './scene.js';
 import {FlightScene3D as FlightScene,Cockpit3D as CockpitView} from './scene3d.js';
 import {ConnectomeView} from './connectome-view.js';
+import {captureDecision,DecisionView} from './decision.js';
 
 const $=id=>document.getElementById(id),STORE='fly-space-program-brain-v3';
-let scene,cockpit;
+let scene,cockpit,decisionView,decisionTrace=null,feedbackMeta={};
 let atlas,networkWorker,networkReady=false,selectedNeuron=-1,lastDrive=0,lastAtlasDraw=0,lastNetworkTick=0;
 let circuit,prepared,graduate,specialist,expert,trainee,worker,flight,brain,training=false,paused=false,speed=1,mode='graduate',scenario=1;
 let flightIndex=0,observed=0,landed=0,doneAt=null,lastTime=0,accumulator=0,uiTime=0,ready=false,currentAction=Array(10).fill(0),manualThrottle=.4;
@@ -17,7 +18,7 @@ function activeCheckpoint(){if(mode==='rookie')return{version:3,circuit:'malecns
 function updateLedger(c){if(!c)return;$('training-count').textContent=c.episodes.toLocaleString();$('generation').textContent=`GEN ${String(c.generation).padStart(3,'0')}`;drawChart($('learning-chart'),c.history??[]);}
 function resetFlight(seed=Math.floor(Math.random()*1e8)) {
   if(!ready)return;
-  flight=createFlight(seed,scenario);brain=createBrain(prepared,activeCheckpoint().weights);currentAction=[-1,0,0,0,0,0,0,0,-1,0];doneAt=null;accumulator=0;flightIndex++;
+  flight=createFlight(seed,scenario);brain=createBrain(prepared,activeCheckpoint().weights);currentAction=[-1,0,0,0,0,0,0,0,-1,0];decisionTrace=null;feedbackMeta={};doneAt=null;accumulator=0;flightIndex++;
   atlas?.updateActivity(new Float32Array(166700));sendDrive();if(training)worker.postMessage({type:'feedback',feedback:Array(96).fill(0)});
   $('result').hidden=true;$('flight-number').textContent=`FLIGHT ${String(flightIndex).padStart(3,'0')}`;
   $('manual-controls').hidden=mode!=='human';
@@ -25,6 +26,7 @@ function resetFlight(seed=Math.floor(Math.random()*1e8)) {
   $('scenario-kicker').textContent=SCENARIOS[scenario].name.toUpperCase();$('scenario-description').textContent=SCENARIOS[scenario].subtitle;
   $('flight-instruction').textContent=['Bring it home, little guy.','Catch a moving ship.','Mind the closing speed.','The ocean has opinions.','Trust your instruments.','One fin has other plans.','Pick your engines wisely.','Everything is absolutely nominal.'][scenario];
   if(!training)updateLedger(activeCheckpoint());
+  decisionView?.update(null,flight,mode,paused);
 }
 function setMode(value){if(!['graduate','rookie','trainee','human'].includes(value))throw new Error('Unknown pilot');mode=value;$('pilot').value=value;landingStreak=0;keys.clear();resetFlight();if(!training)updateMessage();}
 function setScenario(value){if(!Number.isInteger(value)||value<0||value>=SCENARIOS.length)throw new Error('Unknown mission');scenario=value;$('scenario').value=String(value);observed=0;landed=0;landingStreak=0;updateOutcomes();if(training)worker.postMessage({type:'scenario',scenario});resetFlight();updateMessage();}
@@ -78,11 +80,11 @@ function frame(time){
   const elapsed=lastTime?Math.min(.1,(time-lastTime)/1000):0;lastTime=time;
   if(ready){
     if(!paused){
-      if(!flight.done){accumulator+=elapsed*(mode==='human'?1:speed);let count=0;while(accumulator>=DT&&!flight.done&&count++<30){if(mode==='human')currentAction=manualAction();else if(flight.step%3===0)currentAction=think(brain,sensors(flight));advance(flight,currentAction);if(flight.step%4===0)flight.trail.push([flight.x,flight.y,flight.z]);accumulator-=DT;}if(flight.done)finishFlight(time);}
+      if(!flight.done){accumulator+=elapsed*(mode==='human'?1:speed);let count=0;while(accumulator>=DT&&!flight.done&&count++<30){if(mode==='human')currentAction=manualAction();else if(flight.step%3===0){const observations=sensors(flight);currentAction=think(brain,observations);decisionTrace=captureDecision(flight,brain,observations,currentAction,feedbackMeta);}advance(flight,currentAction);if(flight.step%4===0)flight.trail.push([flight.x,flight.y,flight.z]);accumulator-=DT;}if(flight.done)finishFlight(time);}
       else if(mode!=='human'&&time-doneAt>2800){if($('auto-advance').checked&&landingStreak>=3&&scenario<SCENARIOS.length-1){setScenario(scenario+1);notify('Three safe landings. Moving to the next mission.');}else resetFlight();}
     }
     scene.draw(flight,time);cockpit.draw(flight,time,mode);
-    if(time-uiTime>90){telemetry();cockpit.drawTrace($('control-trace'));if(mode!=='human')atlas?.updateMotor(brain.activity);uiTime=time;}
+    if(time-uiTime>90){telemetry();cockpit.drawTrace($('control-trace'));decisionView.update(decisionTrace,flight,mode,paused);if(mode!=='human')atlas?.updateMotor(brain.activity);uiTime=time;}
     if(time-lastDrive>160){sendDrive();lastDrive=time;}
   }
   if(atlas&&time-lastAtlasDraw>33){atlas.draw();lastAtlasDraw=time;}
@@ -106,7 +108,7 @@ window.addEventListener('resize',()=>{if(ready)updateLedger(training?trainee:act
 
 async function boot(){
   try {
-    scene=new FlightScene($('flight-canvas'));cockpit=new CockpitView($('cockpit-canvas'));
+    scene=new FlightScene($('flight-canvas'));cockpit=new CockpitView($('cockpit-canvas'));decisionView=new DecisionView($('decision-panel'));
     const load=async path=>{const r=await fetch(path);if(!r.ok)throw new Error(`Could not load ${path}`);return r.json();};
     [circuit,graduate,specialist,expert]=await Promise.all([load('assets/circuit-3d.json'),load('assets/falcon-ocean.json'),load('assets/falcon-specialist.json'),load('assets/falcon-expert.json')]);
     if(!validCheckpoint(graduate)||!validCheckpoint(specialist)||!validCheckpoint(expert))throw new Error('The shipped checkpoint is incompatible.');
@@ -148,6 +150,7 @@ $('manual-gaze').addEventListener('input',e=>manualGaze=Number(e.target.value));
 $('fault-engine').addEventListener('click',()=>{if(!ready||flight.done)return;flight.engineFailed=true;flight.engineHealth=.48;notify('Center engine thrust reduced. Auxiliary engines remain available.');});
 $('fault-fin').addEventListener('click',()=>{if(!ready||flight.done)return;flight.finFailed=true;notify('Grid fin 01 jammed. The other fins still respond.');});
 $('cockpit-view').addEventListener('click',()=>{if(!cockpit)return;cockpit.eyeView=!cockpit.eyeView;$('cockpit-view').textContent=cockpit.eyeView?'See the fly':'Fly’s view';});
+$('inspect-decision').addEventListener('click',()=>setPause(!paused));
 
 function showNeuron(neuron){
   selectedNeuron=neuron?.index??-1;$('neuron-inspector').hidden=!neuron;
@@ -169,7 +172,7 @@ function bootConnectome(){
     if(data.type==='progress')$('network-status').textContent=`Connecting all edges · ${Math.round(data.loaded/data.total*100)}%`;
     else if(data.type==='ready'){networkReady=true;$('network-dot').style.background='var(--mint)';$('network-status').textContent='All 25.6M connections in the loop';if(selectedNeuron>=0)$('pulse-neuron').disabled=false;sendDrive();if(!training)updateMessage();}
     else if(data.type==='activity'&&data.flightId===flightIndex&&!paused&&!flight.done){
-      brain.feedback=data.feedback;atlas?.updateActivity(data.values);
+      brain.feedback=data.feedback;feedbackMeta={tick:data.tick,receivedAt:performance.now()};atlas?.updateActivity(data.values);
       const now=performance.now(),hz=lastNetworkTick?1000/(now-lastNetworkTick):1000/Math.max(160,data.milliseconds+30);lastNetworkTick=now;
       $('network-rate').textContent=`${hz.toFixed(1)} Hz`;$('network-status').textContent=`${data.stats.active.toLocaleString()} cells above 0.01 rate`;
       if(training)worker.postMessage({type:'feedback',feedback:data.feedback});
@@ -193,6 +196,7 @@ function registerTools(){
   const context=document.modelContext;if(!context?.registerTool)return;
   const state=()=>({ready,scenario:SCENARIOS[scenario].name,pilot:mode,training,paused,generation:(training?trainee:activeCheckpoint())?.generation,trainingAttempts:(training?trainee:activeCheckpoint())?.episodes,observedFlights:observed,landings:landed,wholeConnectomeReady:networkReady,neurons:166700,edges:25582938});
   const tools=[
+    {name:'get_control_decision',description:'Read the exact latest motor-controller input sample, commands, and isolated replays shown in the decision inspector. No control changes.',inputSchema:{type:'object',properties:{},additionalProperties:false},annotations:{readOnlyHint:true},execute:()=>({pilot:mode,paused,decision:mode==='human'?null:decisionTrace})},
     {name:'get_flight_program',description:'Read the current mission, pilot, training status and observed landing counts.',inputSchema:{type:'object',properties:{},additionalProperties:false},annotations:{readOnlyHint:true},execute:()=>state()},
     {name:'configure_flight',description:'Select a mission and pilot, then start a new simulated flight using the same controls as the flight deck.',inputSchema:{type:'object',properties:{mission:{type:'integer',minimum:0,maximum:SCENARIOS.length-1},pilot:{type:'string',enum:['graduate','trainee','rookie','human']}},required:['mission','pilot'],additionalProperties:false},execute:input=>{if(!Number.isInteger(input?.mission)||input.mission<0||input.mission>=SCENARIOS.length||!['graduate','trainee','rookie','human'].includes(input?.pilot))throw new Error('Invalid mission or pilot');setScenario(input.mission);setMode(input.pilot);return state();}},
     {name:'set_fly_training',description:'Start or pause local reward training. Starting uses the selected pilot checkpoint and saves improvements on this device.',inputSchema:{type:'object',properties:{running:{type:'boolean'}},required:['running'],additionalProperties:false},execute:input=>{if(typeof input?.running!=='boolean')throw new Error('running must be boolean');input.running?startTraining():stopTraining();return state();}},

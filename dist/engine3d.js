@@ -14,21 +14,25 @@ export const SCENARIOS=[
 ];
 export function deck(s,t=s.t){const c=SCENARIOS[s.scenario],a=c.amplitude;return{x:a*Math.sin(t*.11+s.phase),z:a*.65*Math.cos(t*.09+s.phase),vx:a*.11*Math.cos(t*.11+s.phase),vz:-a*.65*.09*Math.sin(t*.09+s.phase),roll:s.scenario>=3?.028*Math.sin(t*.7+s.phase):0,pitch:s.scenario>=3?.022*Math.cos(t*.61+s.phase):0};}
 export function createFlight(seed=1,scenario=1){const r=rng(seed),c=SCENARIOS[scenario],s={seed,scenario,t:0,step:0,x:(r()-.5)*2*c.spread,z:(r()-.5)*2*c.spread,y:c.height+r()*25,vx:scenario?(r()-.5)*3:0,vz:scenario?(r()-.5)*3:0,vy:-8-r()*5-(scenario>=2?8:0),angle:scenario?(r()-.5)*.16:0,angleZ:scenario?(r()-.5)*.16:0,heading:scenario?(r()-.5)*.18:0,omega:0,omegaZ:0,omegaYaw:0,fuel:1,phase:r()*Math.PI*2,padX:0,padZ:0,padVx:0,padVz:0,throttle:0,gimbal:0,gimbalZ:0,rcs:0,rcsZ:0,yawJet:0,finX:0,finZ:0,finAngles:[0,0,0,0],engineBank:1,selector:0,gaze:0,engineHealth:1,finFailed:false,engineFailed:false,seenFuel:1,seenEngine:1,fuelAge:0,engineAge:0,reward:0,done:false,landed:false,reason:'',touchdown:null,trail:[]};const d=deck(s);s.padX=d.x;s.padZ=d.z;return s;}
-export function sensors(s){const p=deck(s),alt=Math.max(0,s.y-8),descent=-Math.min(s.scenario>=2?18:12,Math.sqrt(2*1.8*alt)+.5);return[(s.x-p.x)/55,(s.vx-p.vx)/10,(s.vy-descent)/12,Math.sin(s.angle)*2,s.omega,alt/160,s.seenFuel-.5,p.vx/5,(s.z-p.z)/55,(s.vz-p.vz)/10,Math.sin(s.angleZ)*2,s.omegaZ,p.vz/5,Math.sin(s.heading)*2,s.omegaYaw,s.seenEngine-1,s.fuelAge/12,s.engineAge/12].map(v=>clamp(v,-3,3));}
+export function descentCue(s){return -Math.min(s.scenario>=2?18:12,Math.sqrt(2*1.8*Math.max(0,s.y-8))+.5);}
+export function sensors(s){const p=deck(s),alt=Math.max(0,s.y-8),descent=descentCue(s);return[(s.x-p.x)/55,(s.vx-p.vx)/10,(s.vy-descent)/12,Math.sin(s.angle)*2,s.omega,alt/160,s.seenFuel-.5,p.vx/5,(s.z-p.z)/55,(s.vz-p.vz)/10,Math.sin(s.angleZ)*2,s.omegaZ,p.vz/5,Math.sin(s.heading)*2,s.omegaYaw,s.seenEngine-1,s.fuelAge/12,s.engineAge/12].map(v=>clamp(v,-3,3));}
 export function prepareCircuit(data){const connections=[];for(let dst=0;dst<96;dst++)for(let src=0;src<96;src++)if(data.matrix[dst][src])connections.push([src,dst,data.matrix[dst][src],src%12]);return{...data,n:96,connections,enc:Float64Array.from(data.encoder.flat()),dec:Float64Array.from(data.decoder.flat())};}
 export function newWeights(seed=74){const r=rng(seed),w=Array.from({length:PARAMS},()=>r.normal()*.012);w[8*19+18]=-1;return w;}
 export function createBrain(circuit,weights,feedback=null){const c=circuit.n?circuit:prepareCircuit(circuit);return{c,feedback,weights:Float64Array.from(weights),activity:new Float64Array(96),base:new Float64Array(96),next:new Float64Array(96),features:new Float64Array(INPUTS),action:new Float64Array(OUTPUTS),gains:Float64Array.from({length:12},(_,i)=>Math.exp(clamp(weights[190+i]??0,-1.1,1.1)))};}
 export function think(b,obs){const {c,base,next,activity:a,features:f,weights:w,gains}=b;for(let j=0;j<96;j++){let v=0;for(let k=0;k<INPUTS;k++)v+=c.enc[j*INPUTS+k]*obs[k];base[j]=Math.tanh(v);next[j]=.65*base[j];}for(let e=0;e<c.connections.length;e++){const[src,dst,weight,group]=c.connections[e];next[dst]+=weight*gains[group]*base[src];}for(let j=0;j<96;j++)a[j]=Math.tanh(next[j]+.12*(b.feedback?.[j]??0));for(let k=0;k<INPUTS;k++){let v=0;for(let j=0;j<96;j++)v+=c.dec[k*96+j]*a[j];f[k]=v;}for(let k=0;k<OUTPUTS;k++){let v=w[k*19+18];for(let j=0;j<INPUTS;j++)v+=w[k*19+j]*f[j];b.action[k]=Math.tanh(v);}return b.action;}
 const servo=(value,target,rate)=>value+clamp(target-value,-rate*DT,rate*DT);
+// Shared by the actuator model and the decision inspector, before fuel interlock.
+export function actionTargets(a){return [clamp((a[0]+1)*.5,0,1),clamp(a[1]??0,-1,1)*.22,clamp(a[2]??0,-1,1),clamp(a[3]??0,-1,1)*.22,clamp(a[4]??0,-1,1),clamp(a[5]??0,-1,1),clamp(a[6]??0,-1,1),clamp(a[7]??0,-1,1),(a[8]??-1)>.35?1:0,clamp(a[9]??0,-1,1)];}
 export function advance(s,a){if(s.done)return s;const c=SCENARIOS[s.scenario];
  // These bounded displacements are the controls' physical states. Limbs reach
  // them through inverse kinematics; actions cannot jump a lever instantaneously.
- s.throttle=s.fuel>0?servo(s.throttle,clamp((a[0]+1)*.5,0,1),3):0;
- s.gimbal=servo(s.gimbal,clamp(a[1]??0,-1,1)*.22,1.5);s.rcs=servo(s.rcs,clamp(a[2]??0,-1,1),7);
- s.gimbalZ=servo(s.gimbalZ,clamp(a[3]??0,-1,1)*.22,1.5);s.rcsZ=servo(s.rcsZ,clamp(a[4]??0,-1,1),7);s.yawJet=servo(s.yawJet,clamp(a[5]??0,-1,1),7);
- s.finX=servo(s.finX,clamp(a[6]??0,-1,1),3);s.finZ=servo(s.finZ,clamp(a[7]??0,-1,1),3);
- s.selector=servo(s.selector,(a[8]??-1)>.35?1:0,2.5);if(s.selector>.9)s.engineBank=3;else if(s.selector<.1)s.engineBank=1;
- s.gaze=servo(s.gaze,clamp(a[9]??0,-1,1),3);s.fuelAge+=DT;s.engineAge+=DT;
+ const targets=actionTargets(a);
+ s.throttle=s.fuel>0?servo(s.throttle,targets[0],3):0;
+ s.gimbal=servo(s.gimbal,targets[1],1.5);s.rcs=servo(s.rcs,targets[2],7);
+ s.gimbalZ=servo(s.gimbalZ,targets[3],1.5);s.rcsZ=servo(s.rcsZ,targets[4],7);s.yawJet=servo(s.yawJet,targets[5],7);
+ s.finX=servo(s.finX,targets[6],3);s.finZ=servo(s.finZ,targets[7],3);
+ s.selector=servo(s.selector,targets[8],2.5);if(s.selector>.9)s.engineBank=3;else if(s.selector<.1)s.engineBank=1;
+ s.gaze=servo(s.gaze,targets[9],3);s.fuelAge+=DT;s.engineAge+=DT;
  // Gaze samples numerical instrument readings. Outside flight cues stay available;
  // this is instrument-assisted control, not learned raw-pixel vision.
  if(s.gaze<-.25){s.seenFuel=s.fuel;s.fuelAge=0;}if(s.gaze>.25){s.seenEngine=s.engineHealth;s.engineAge=0;}
