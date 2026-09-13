@@ -4,7 +4,7 @@ import {loadFullNetwork} from './full-network-node.mjs';
 import {createFlight,fullSensors,advance,actionTargets} from '../dist/engine3d.js';
 import {captureDecision,SIGNALS,CONTROLS} from '../dist/decision.js';
 const net=loadFullNetwork(),weights=JSON.parse(fs.readFileSync('dist/assets/full-pilot.json')).weights;
-assert.equal(SIGNALS.length,19);assert.equal(CONTROLS.length,10);
+assert.equal(SIGNALS.length,46);assert.equal(CONTROLS.length,10);
 const s=createFlight(8723,1);let checked=0;
 for(let step=0;step<9;step++){
  const obs=fullSensors(s),before=net.snapshot(),trace=captureDecision(s,obs),commands=Array.from(net.decide(obs,weights));
@@ -22,4 +22,4 @@ assert.equal(trace.raw[6],81);assert.equal(trace.raw[15],100);assert.equal(trace
 const extreme=Array(10).fill(1),targets=actionTargets(extreme),actuated=createFlight(1,0);actuated.y=300;
 for(let i=0;i<10;i++)advance(actuated,extreme);
 for(let i=0;i<10;i++)assert.equal(actuated[CONTROLS[i][1]],targets[i]);
-console.log(`PASS: ${checked} complete-graph decisions × 19 exact isolated replays; live-state restoration, instrument memory and all actuator mappings.`);
+console.log(`PASS: ${checked} complete-graph decisions × 46 exact isolated replays; live-state restoration, instrument memory and all actuator mappings.`);

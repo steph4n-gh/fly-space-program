@@ -1,4 +1,4 @@
-import {compressedArray,isMotorClass} from './full-network.js?v=7.3';
+import {compressedArray,isMotorClass} from './full-network.js?v=8.4';
 const vertex=`#version 300 es
 precision highp float;
 in vec3 aPosition;in float aNeuron;
@@ -15,7 +15,7 @@ void main(){
  gl_Position=vec4(vec2(p.x/uAspect,p.y)*uZoom*2.65,p.z*.02,3.1-p.z);
  float power=clamp(activity*4.0,0.0,1.0);
  vColor=group<.5?vec3(.29,.76,.95):group<1.5?vec3(.35,.90,.82):group<2.5?vec3(.98,.60,.29):group<3.5?vec3(.99,.85,.61):vec3(.62,.54,.92);
- vAlpha=uAnatomy?.055:.009+power*.095;
+ vAlpha=uAnatomy?.055:.020+power*.16;
  gl_PointSize=uPixel*(uAnatomy?1.05:1.0+power*.35);
  if(uMotorOnly){vAlpha*=motor>0.0?5.0:.035;gl_PointSize*=motor>0.0?2.0:1.0;}
  if(uSelected>=0){if(id==uSelected){vAlpha=.95;vColor=vec3(1.0,.91,.70);gl_PointSize=uPixel*3.0;}else vAlpha*=.08;}

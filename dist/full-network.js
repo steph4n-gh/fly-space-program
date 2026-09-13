@@ -1,6 +1,8 @@
 // Every retained neuron and directed edge is evaluated on every recurrent pass.
 // Telemetry enters annotated sensory cells; only graph activity reaches readout.
-export const NETWORK_INPUTS=19,NETWORK_PASSES=2;
+import {NETWORK_INPUTS} from './signals.js?v=8.4';
+export {NETWORK_INPUTS};
+export const NETWORK_PASSES=2;
 export const isMotorClass=name=>['descending_neuron','cb_motor','vnc_motor'].includes(name);
 export async function compressedArray(url,Type){
   const response=await fetch(url);if(!response.ok)throw new Error(`Missing connectome asset: ${url}`);
@@ -35,8 +37,9 @@ export class FullNetwork{
       if(isMotorClass(label))motor.push(i);
       if(label.includes('sensory')){this.inputChannel[i]=sensory%NETWORK_INPUTS;this.inputPolarity[i]=(Math.floor(sensory/NETWORK_INPUTS)%2)?-1:1;sensory++;}
     }
-    this.motorIndices=Uint32Array.from(motor);this.sensoryCount=sensory;this.reset();
+    this.motorIndices=Uint32Array.from(motor);this.sensoryCount=sensory;this.activationGain=1;this.reset();
   }
+  setActivationGain(gain=1){if(!Number.isFinite(gain)||gain<1||gain>1.05)throw Error('Circuit gain must be between 1.00 and 1.05');this.activationGain=gain;}
   reset(){this.activity.fill(0);this.next.fill(0);this.signed.fill(0);this.iteration=0;this.pulse=null;this.lastPulseIndex=-1;}
   step(observations){
     const {n,pre,weight,rows,normalizer,signs,inputChannel,inputPolarity,activity:a,next:b,signed}=this;
@@ -44,7 +47,7 @@ export class FullNetwork{
     for(let i=0;i<n;i++){
       let v=0;for(let k=rows[i],end=rows[i+1];k<end;k++)v+=weight[k]*signed[pre[k]];
       const channel=inputChannel[i],drive=channel>=0?.7*Math.tanh((observations[channel]??0)*.15)*inputPolarity[i]:0;
-      b[i]=Math.tanh(a[i]*.05+v*normalizer[i]+drive);
+      b[i]=Math.tanh((a[i]*.05+v*normalizer[i]+drive)*this.activationGain);
     }
     this.lastPulseIndex=this.pulse?.index??-1;
     if(this.pulse){b[this.pulse.index]+=1.2;if(--this.pulse.steps<=0)this.pulse=null;}
@@ -57,8 +60,8 @@ export class FullNetwork{
     return commands;
   }
   stats(){let active=0;for(const rate of this.activity)if(Math.abs(rate)>.01)active++;return{active,iteration:this.iteration};}
-  snapshot(){return{activity:this.activity.slice(),signed:this.signed.slice(),lastPulseIndex:this.lastPulseIndex,iteration:this.iteration,pulse:this.pulse?{...this.pulse}:null};}
-  restore(snapshot){this.activity.set(snapshot.activity);this.signed.set(snapshot.signed);this.lastPulseIndex=snapshot.lastPulseIndex;this.iteration=snapshot.iteration;this.pulse=snapshot.pulse?{...snapshot.pulse}:null;}
+  snapshot(){return{activationGain:this.activationGain,activity:this.activity.slice(),signed:this.signed.slice(),lastPulseIndex:this.lastPulseIndex,iteration:this.iteration,pulse:this.pulse?{...this.pulse}:null};}
+  restore(snapshot){this.activationGain=snapshot.activationGain??1;this.activity.set(snapshot.activity);this.signed.set(snapshot.signed);this.lastPulseIndex=snapshot.lastPulseIndex;this.iteration=snapshot.iteration;this.pulse=snapshot.pulse?{...snapshot.pulse}:null;}
   traceControl(weights,control){
     if(!Number.isInteger(control)||control<0||control>=10)throw Error('Invalid traced control');
     const stride=this.motorIndices.length+1,bias=weights[control*stride+stride-1],rows=[];let sum=bias;
@@ -74,10 +77,10 @@ export class FullNetwork{
       }
       const leak=.05*this.signed[neuron.index]*this.signs[neuron.index];
       edges.sort((a,b)=>Math.abs(b.term)-Math.abs(a.term));neuron.edges=edges.slice(0,2);neuron.incomingCount=edges.length;
-      for(const edge of neuron.edges){let remaining=0;for(let e=this.rows[neuron.index];e<this.rows[neuron.index+1];e++)if(e!==edge.edge)remaining+=this.weight[e]*this.signed[this.pre[e]];let removedRate=Math.fround(Math.tanh(leak+remaining*this.normalizer[neuron.index]));if(neuron.index===this.lastPulseIndex)removedRate=Math.fround(removedRate+1.2);edge.commandDelta=withRate(neuron.index,removedRate)-command;}
+      for(const edge of neuron.edges){let remaining=0;for(let e=this.rows[neuron.index];e<this.rows[neuron.index+1];e++)if(e!==edge.edge)remaining+=this.weight[e]*this.signed[this.pre[e]];let removedRate=Math.fround(Math.tanh((leak+remaining*this.normalizer[neuron.index])*this.activationGain));if(neuron.index===this.lastPulseIndex)removedRate=Math.fround(removedRate+1.2);edge.commandDelta=withRate(neuron.index,removedRate)-command;}
       neuron.commandDelta=withRate(neuron.index,0)-command;
     }
-    return{control,bias,sum,command,neurons,other:sum-bias-neurons.reduce((v,n)=>v+n.contribution,0),totalOutputs:stride-1,pass:this.iteration};
+    return{control,bias,sum,command,activationGain:this.activationGain,neurons,other:sum-bias-neurons.reduce((v,n)=>v+n.contribution,0),totalOutputs:stride-1,pass:this.iteration};
   }
   explain(observations,weights,before,commands){
     const live=this.snapshot(),replay=obs=>{this.restore(before);return Array.from(this.decide(obs,weights));};

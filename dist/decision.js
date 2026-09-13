@@ -1,20 +1,7 @@
-import {orbitalGuidance,orbitalDeck} from './orbital.js?v=7.3';
-import {deck,descentCue,SCENARIOS} from './engine3d.js?v=7.3';
-
-export const SIGNALS=[
-  ['Body X position error','m','Centered on deck'],['Body X relative velocity','m/s','Moving with deck'],
-  ['Descent speed error','m/s','Matching descent cue'],['X tilt','°','Upright'],
-  ['X rotation rate','rad/s','No rotation'],['Radar altitude','m','At deck level'],
-  ['Remembered fuel','%','50% fuel'],['Deck body X velocity','m/s','Deck stationary on X'],
-  ['Body Z position error','m','Centered on deck'],['Body Z relative velocity','m/s','Moving with deck'],
-  ['Z tilt','°','Upright'],['Z rotation rate','rad/s','No rotation'],
-  ['Deck body Z velocity','m/s','Deck stationary on Z'],['Turn target error','°','At target heading'],
-  ['Yaw rate','rad/s','No rotation'],['Remembered engine health','%','100% engine health'],
-  ['Fuel reading age','s','Fresh reading'],['Engine reading age','s','Fresh reading'],['Style preference','on','Recovery only'],
-];
-export const ORBIT_SIGNALS=[
- ['Target altitude error','m','At target altitude'],['Tangential speed error','m/s','At guided tangential speed'],['Radial speed error','m/s','At guided radial speed'],['Pitch versus guidance','°','Aligned with attitude cue'],['Pitch rate','rad/s','No rotation'],['Sandbox altitude','m','At the surface'],['Remembered fuel','%','50% fuel'],['Engineered thrust cue','%','50% target throttle; encoded as log-odds / 3'],['Cross-track position','m','On the recovery plane'],['Cross-track velocity','m/s','Moving with the ship'],['Roll versus guidance','°','Aligned with roll cue'],['Roll rate','rad/s','No rotation'],['Local gravity','m/s²','Zero gravity'],['Yaw target error','°','At target heading'],['Yaw rate','rad/s','No rotation'],['Remembered engine health','%','100% engine health'],['Fuel reading age','s','Fresh reading'],['Engine reading age','s','Fresh reading'],['Mission phase cue','phase','Orbit: 0; ascent: −1; recovery: +1'],
-];
+import {SIGNALS,SENSOR_SCHEMA} from './signals.js?v=8.4';
+import {sensorSnapshot} from './engine3d.js?v=8.4';
+export {SIGNALS};
+export const ORBIT_SIGNALS=SIGNALS;
 export const CONTROLS=[
   ['Throttle','throttle','%'],['Gimbal X','gimbal','°'],['Attitude jets X','rcs','%'],
   ['Gimbal Z','gimbalZ','°'],['Attitude jets Z','rcsZ','%'],['Yaw jets','yawJet','%'],
@@ -22,16 +9,7 @@ export const CONTROLS=[
 ];
 
 // Snapshot physical context before the worker's complete-graph decision.
-export function captureDecision(s,observations) {
- if(s.orbital){const g=orbitalGuidance(s),p=orbitalDeck(s),d=180/Math.PI;return{orbital:true,time:s.t,step:s.step,seed:s.seed,observations:Array.from(observations),raw:[g.target-g.altitude,s.vx-g.tangentTarget,s.vy-g.radialTarget,g.angleError*d,s.omega,g.altitude,s.seenFuel*100,g.throttle*100,s.z-p.z,s.vz-p.vz,g.angleZError*d,s.omegaZ,g.gravity,(s.heading-s.styleStart-(s.styleEnabled&&s.orbitPhase===5?Math.PI*2:0))*d,s.omegaYaw,s.seenEngine*100,s.fuelAge,s.engineAge,observations[18]],situation:{landingRadius:SCENARIOS[s.scenario].landingRadius,x:s.x-p.x,z:s.z-p.z,vx:s.vx-p.vx,vz:s.vz-p.vz,vy:s.vy,cue:g.radialTarget,altitude:g.altitude,fuel:s.fuel,seenFuel:s.seenFuel,fuelAge:s.fuelAge,engine:s.engineHealth,seenEngine:s.seenEngine,engineAge:s.engineAge,finFailed:s.finFailed}};}
- const p=deck(s),cue=descentCue(s),degrees=180/Math.PI,c=Math.cos(s.heading),h=Math.sin(s.heading),rot=(x,z)=>[c*x-h*z,h*x+c*z];
- const [x,z]=rot(s.x-p.x,s.z-p.z),[vx,vz]=rot(s.vx-p.vx,s.vz-p.vz),[dx,dz]=rot(p.vx,p.vz);
- return {
-  time:s.t,step:s.step,seed:s.seed,observations:Array.from(observations),
-  raw:[x,vx,s.vy-cue,s.angle*degrees,s.omega,Math.max(0,s.y-8),s.seenFuel*100,dx,z,vz,s.angleZ*degrees,s.omegaZ,dz,(s.heading-s.styleStart-(s.styleEnabled?Math.PI*2:0))*degrees,s.omegaYaw,s.seenEngine*100,s.fuelAge,s.engineAge,s.styleEnabled?1:0],
-  situation:{landingRadius:SCENARIOS[s.scenario].landingRadius,x:s.x-p.x,z:s.z-p.z,vx:s.vx-p.vx,vz:s.vz-p.vz,vy:s.vy,cue,altitude:Math.max(0,s.y-8),fuel:s.fuel,seenFuel:s.seenFuel,fuelAge:s.fuelAge,engine:s.engineHealth,seenEngine:s.seenEngine,engineAge:s.engineAge,finFailed:s.finFailed},
- };
-}
+export function captureDecision(s,observations){const sample=sensorSnapshot(s);return{orbital:!!s.orbital,activationGain:s.activationGain??1,sensorSchema:SENSOR_SCHEMA,frame:sample.frame,time:s.t,step:s.step,seed:s.seed,observations:Array.from(observations),raw:sample.raw,situation:sample.situation};}
 
 const number=(v,digits=2)=>Number(v).toFixed(digits);
 const signed=(v,digits=2)=>(v>0?'+':'')+number(v,digits);
@@ -58,7 +36,7 @@ export class DecisionView {
     n['inspect-decision'].textContent=paused?'Resume flight':'Pause & inspect';
     if(!trace||mode==='human'){n['decision-stamp'].textContent=mode==='human'?'HUMAN CONTROL':'AWAITING SAMPLE';return;}
     n['radar-limit'].textContent=`Dashed circle = ${trace.situation.landingRadius} m position limit.`;
-    n['decision-stamp'].textContent=`${paused?'PAUSED · ':''}SAMPLE ${trace.step} · ${trace.time.toFixed(2)} s · ${(state.t-trace.time).toFixed(2)} s ago`;
+    n['decision-stamp'].textContent=`${paused?'PAUSED · ':''}SAMPLE ${trace.step} · ${trace.time.toFixed(2)} s · ${(state.t-trace.time).toFixed(2)} s ago · GAIN ${(trace.activationGain??1).toFixed(2)}×`;
     for(let k=0;k<10;k++) {
       const actual=state[CONTROLS[k][1]],target=trace.targets[k];
       this.requests[k].textContent=k===8?`${target?'3':'1'} engine${target?'s':''}`:displayControl(k,target);

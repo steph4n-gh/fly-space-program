@@ -1,5 +1,5 @@
-import {CONTROLS} from './decision.js?v=7.3';
-import {CONTROL_LIMBS,limbTargets} from './kinematics.js?v=7.3';
+import {CONTROLS} from './decision.js?v=8.4';
+import {CONTROL_LIMBS,limbTargets} from './kinematics.js?v=8.4';
 const signed=(v,d=4)=>(v>=0?'+':'')+v.toFixed(d);
 const escape=s=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
 export class WiringView{

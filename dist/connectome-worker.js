@@ -1,11 +1,11 @@
-import {loadNetwork} from './full-network.js?v=7.3';
+import {loadNetwork} from './full-network.js?v=8.4';
 let network,weights,flightId=-1,lastDecision,selectedControl=0;
 onmessage=async({data})=>{
  try{
   if(data.type==='start'){
    network=await loadNetwork('assets/connectome/',(loaded,total)=>postMessage({type:'progress',loaded,total}));
    postMessage({type:'ready',neurons:network.n,edges:network.manifest.edges,motors:network.motorIndices.length,sensory:network.sensoryCount});
-  }else if(data.type==='reset'&&network){network.reset();weights=Float64Array.from(data.weights);flightId=data.flightId;lastDecision=null;}
+  }else if(data.type==='reset'&&network){network.setActivationGain(data.activationGain??1);network.reset();weights=Float64Array.from(data.weights);flightId=data.flightId;lastDecision=null;}
   else if(data.type==='decide'&&network&&data.flightId===flightId){
    const before=network.snapshot(),started=performance.now(),commands=Array.from(network.decide(data.observations,weights));
    lastDecision={before,observations:data.observations,commands,step:data.step};

@@ -1,6 +1,6 @@
 # Fly Space Program
 
-A fruit fly connectome controls a stylized 3D booster returning to a moving ocean platform. The crew pod, expressive fly, cockpit instruments and ocean are drawn with Three.js. A separate worker runs the complete retained MaleCNS graph and supplies every automated control command.
+A fruit fly connectome controls a 3D booster through launch, orbit and recovery on a moving ocean platform. The Three.js scene includes an articulated fly, detailed crew pod, grid fins, landing legs, clustered engine bells, shock-lit exhaust, a working recovery vessel, procedural ocean and a curved planetary atmosphere. A separate worker runs the complete retained MaleCNS graph and supplies every automated control command.
 
 ## Run
 
@@ -11,7 +11,9 @@ npm start
 
 Flight starts after the complete graph loads. The default mission is a complete round trip: launch from a barge, reach a stable orbit, complete at least one revolution, deorbit, enter the atmosphere and land back on the barge. Auto pace runs orbit at 4× and the final approach at 1× for a roughly 2–3 minute viewing experience on a capable device. The 27 mission profiles also include short landing lessons, moving deck patterns, wind shear, fuel limits, delayed controls, spinning entries and combined faults. Center-engine, reduced-thrust, engine-out and orbital assignments use separate learned readouts. “Fly with flair” adds a turn target and enables a recovery-gated style bonus. Turn it off for a recovery-only assignment. The academy advances after three consecutive safe landings.
 
-Train the fly runs complete graph-driven candidate flights on this device. Each completed generation saves the trainee for its engine/mission family; Save brain exports the selected checkpoint. Storage uses `fly-space-program-brains-v5` and migrates a compatible earlier full-network trainee without deleting it. Training is deliberately slower than the earlier 96-cell implementation.
+Mission shows the flight, Cockpit expands the pilot and sensory feedback, and Flight lab contains training, anatomical exploration and exact decision inspection. Graphics quality is available in Flight options.
+
+Train the fly runs complete graph-driven candidate flights on this device. Each completed generation saves the trainee for its engine/mission family; Save brain exports the selected checkpoint. Storage uses `fly-space-program-brains-v6`. Earlier 19-input checkpoints remain in their previous storage namespace; they are not compatible with this 46-input model and are never silently loaded or overwritten. Training is deliberately slower than the earlier 96-cell implementation.
 
 Chase, Wide, Deck and Pod cameras show the flight; drag to orbit or scroll to zoom. Fly’s view looks through the cockpit from the pilot’s head. Expressions and radio jokes are cosmetic reactions, not evidence of feelings or intentions. Controls have bounded travel rates, and inverse kinematics places limbs on them; individual limb joints are not learned.
 
@@ -23,9 +25,9 @@ Human controls: W/S throttle; arrows or A/D attitude jets; Q/E yaw; IJKL gimbal;
 
 Every automated decision runs **two complete recurrent passes over 166,700 neurons and 25,582,938 directed connections**, then reads activity from **all 1,314 confirmed descending neurons and 815 annotated motor neurons**. There is no separate 96-cell pilot, motor-state override or frozen-feedback shortcut in the active flight/training path.
 
-Nineteen engineered numerical inputs drive 17,937 sensory-annotated neurons with a deterministic channel/polarity mapping. Inputs encode body-frame lateral errors and velocities, tilt/rates, a stopping-distance descent cue, altitude, instrument memory, unwrapped heading relative to the turn target, yaw rate and style preference. Body-frame cues let the landing task remain consistent as the vehicle turns. These are engineered features, not learned pixel vision. Looking left samples fuel; looking right samples engine health. Other cues remain available.
+Forty-six engineered numerical inputs drive 17,937 sensory-annotated neurons with a deterministic channel/polarity mapping. Every channel retains the same name, units and meaning across launch, orbit and landing. They include deck-relative position and speed, attitude and speed errors, explicit mission guidance, instrument memory, actual actuator positions, measured acceleration, deck tilt and previous requested commands. Landing X/Z use vehicle heading; orbital X/Z use the local tangent and cross-track frame, labeled in the inspector. Actuator and motion feedback comes from authoritative physics, before rendering interpolation. These are engineered features, not learned pixel vision. Looking left samples fuel; looking right samples engine health. Other cues remain available.
 
-For neuron i, each pass computes tanh(0.05 × previous rate + signed incoming signal × 0.55 / incoming contact count + sensory drive). Sensory drive is 0.7 × tanh(0.15 × input), with an assigned polarity. Synapse counts and transmitter-derived signs come from the retained graph. Acetylcholine is excitatory; GABA/glutamate are inhibitory under this simplified rule; unknown/other transmitters default to excitatory. No spikes, receptor-specific signs or detailed cell physiology are modeled.
+For neuron i, each pass computes tanh(gain × (0.05 × previous rate + signed incoming signal × 0.55 / incoming contact count + sensory drive)). Gain defaults to 1.00; the optional arousal experiment permits 1.02 or 1.05. Sensory drive is 0.7 × tanh(0.15 × input), with an assigned polarity. Synapse counts and transmitter-derived signs come from the retained graph. Acetylcholine is excitatory; GABA/glutamate are inhibitory under this simplified rule; unknown/other transmitters default to excitatory. No spikes, receptor-specific signs or detailed cell physiology are modeled.
 
 Each of ten commands is tanh of a learned weighted sum of the 2,129 output rates and a bias: **21,300 trainable output weights**. The graph’s individual anatomical synapse counts and signs remain fixed. All retained cells and edges are evaluated, including cells without displayed coordinates; connectivity determines which activity can eventually reach an output.
 
@@ -55,19 +57,29 @@ Oscillations do not accumulate net turns, and repeated turns never multiply the 
 
 ## Learning and evidence
 
-The landing readouts were initialized by ridge-fitting 2,400 independent synthetic telemetry/history samples through the full graph. Targets came from historical reward-trained landing policies, with a yaw-target demonstration rule. The historical 96-cell teacher is an **offline initialization source**; it is not called by the live controller or reward trainer. This is supervised transfer followed by full-graph reward search, not training from scratch or evidence that a biological fly learned to fly a rocket.
+The current readouts transfer the previous complete-graph pilots into the 46-channel schema. Initialization uses 4,500 synthetic landing states and 4,200 orbital states, followed by full-flight states visited by the new pilots. Ridge fitting uses all 2,129 output-cell activities, with extra weight on final approach. The pinned previous checkpoints are **offline teaching sources**; they are not called by the live controller or reward trainer. Their earlier initialization included historical compact controllers and explicit guidance demonstrations. This is supervised transfer followed by full-graph reward search, not training from scratch or evidence that a biological fly learned to fly a rocket.
 
-Reward training tests paired positive/negative changes to every output weight, combining a correlated gain change per control with small independent coefficient noise. Incumbent and both candidates fly the same starting conditions. A mixed course rotates through three profiles from the selected family; a single-mission course uses two starting seeds. More safe landings take priority; ties are resolved by mean shaped reward, including style only after recovery and landing. Rejected candidates leave the incumbent unchanged. The chart shows small training batches, not an independent learning curve.
+Reward training tests paired positive/negative changes to every output weight, combining a correlated gain change per control with small independent coefficient noise. Incumbent and both candidates fly the same starting conditions. A mixed course rotates through four flights from the selected family; a single-mission course uses three starting seeds. One flight per batch is nominal; the others use the selected variability level. More safe landings take priority; ties are resolved by mean shaped reward, including style only after recovery and landing. Rejected candidates leave the incumbent unchanged. The chart shows small training batches, not an independent learning curve.
 
-The shipped checkpoints receive additional complete-graph reward training and independent evaluation on all 27 profiles. The machine-readable `dist/assets/full-pilot-report.json` records exact checkpoint hashes, training counts, seeds, successes and every failure. Profile cards show those measured results. A small evaluation is not a reliability guarantee; the engine-out scenarios remain especially difficult.
+Training varies mass, thrust, servo response, wind, deck motion and measurement noise by default. Variations and noisy samples are deterministic for a given seed. The optional flight setting uses the same variation level; nominal flight remains the default. Physical variation changes what happens, while sensor noise changes what the pilot reads.
+
+The shipped checkpoints received 168 additional complete-graph reward-training flights and independent evaluation on all 27 profiles. The comparison evaluates the new and previous pilots on the same eight held-out seeds per profile: four nominal and four with varied conditions, for 216 flights per controller. Both use equivalent observation quantities and the same deterministic noise rule, encoded in their own schemas; their closed-loop trajectories differ. The current pilots landed **169/216**, compared with **166/216** for the previous pilots; this modest difference does not establish general superiority. They completed all 24 required orbits and landed 21 complete round trips. The machine-readable `dist/assets/full-pilot-report.json` records exact checkpoint hashes, training counts, seeds, successes and every failure. Profile cards show those measured results. A small evaluation is not a reliability guarantee; the engine-out scenarios remain especially difficult.
 
 The actual graph, readout and training interfaces are an experimental model, not a biologically validated emulation or a demonstrated advantage over simpler/shuffled networks. There is no language model in the control loop.
 
+## Simulated arousal
+
+Flight lab offers baseline (1.00×), elevated (1.02×) and higher (1.05×) circuit gain. This changes the input to every neuron’s tanh response, while retaining both complete graph passes. Training holds the chosen gain fixed, learns readout weights and saves the gain with the checkpoint. Selecting a saved pilot or another mission loads that checkpoint’s training gain. Changing gain starts a new flight and pauses any ongoing training.
+
+The operational experiment holds weights and starting conditions fixed across six profiles and two independent seeds, one nominal and one varied. Baseline and +2% gain each landed **9/12 flights**; +5% landed **7/12**. These 36 flights provide no demonstrated landing benefit from stimulation, and they do not test learning speed. Baseline remains the default. Every outcome and checkpoint hash is included in the main report.
+
+The idea is inspired by [octopamine-dependent modulation of visual processing during fly flight](https://pubmed.ncbi.nlm.nih.gov/23142045/) and [dopamine-mediated interactions in fly memory](https://www.nature.com/articles/s41586-024-07819-w). The implementation is a phenomenological global-gain experiment: it does not model chemical concentrations, receptors, cell-specific octopamine effects or dopamine-gated synaptic plasticity. Pheromone perception and its behavioral effects are not modeled.
+
 ## Exact decision inspection
 
-The inspector records all 19 numerical inputs immediately before the worker decision, physical context, ten commands and actuator targets. It separates sampled readings from current actuator positions and remembered instrument readings from simulator truth. Raw values are rounded visually, with full precision in tooltips and the read-only `get_control_decision` browser tool.
+The inspector records all 46 numerical inputs immediately before the worker decision, physical context, ten commands and actuator targets. It separates sampled readings from current actuator positions and remembered instrument readings from simulator truth. Raw values are rounded visually, with full precision in tooltips and the read-only `get_control_decision` browser tool.
 
-Pause & inspect replays the complete graph using the exact pre-decision recurrent state, weights and pulse state. Each replay sets just one encoded input to zero. The signed effect is actual command minus replay; these isolated interventions are not additive or physical-world counterfactuals. An additional replay resets graph history. A baseline replay is compared against the actual command and the error is displayed. Diagnostic replays restore all live state and do not advance flight. Live view displays exact commands and readings; input effects remain blank until calculated while paused.
+Pause & inspect replays the complete graph using the exact pre-decision recurrent state, weights, pulse state and activation gain. Each replay sets just one encoded input to zero. The signed effect is actual command minus replay; these isolated interventions are not additive or physical-world counterfactuals. An additional replay resets graph history. A baseline replay is compared against the actual command and the error is displayed. Diagnostic replays restore all live state and do not advance flight. Live view displays exact commands and readings; input effects remain blank until calculated while paused.
 
 The wiring view traces the strongest final-pass inputs into four output neurons with large contributions to the selected control. It shows real source IDs, measured contact counts, modeled signs, readout coefficients, the sum over all 2,129 output cells and the linked cockpit limb. Its edge-removal value is **removed command minus actual command** for one final graph pass with earlier state and other inputs fixed. These are not whole-flight ablations. Tests remove each displayed edge and independently run the complete pass to verify the result. Atlas lines connect measured neuron anchors; they are not reconstructed axon paths. Control-to-limb inverse kinematics is authored, shared by the inspector and renderer, and clearly distinguished from biological wiring.
 
@@ -88,29 +100,36 @@ The vehicle uses game-scale translation/rotation, thrust, gravity, fuel-dependen
 Source URLs, sizes and SHA-256 hashes are pinned in `scripts/source-lock.json`. Four original source files total approximately 7.9 GB and remain outside Git. Python data generators require numpy, pandas and pyarrow. Existing compressed graph/anatomy artifacts are sufficient to run the app or reproduce training.
 
 ```sh
-# Rebuild the original landing initialization only when intentionally replacing it:
-node scripts/calibrate-full.mjs
-.venv/bin/python scripts/fit-full.py
+# Rebuild the current 46-input initialization (replaces shipped checkpoints):
+node scripts/calibrate-v8.mjs landing
+python3 scripts/fit-v8.py landing
+node scripts/calibrate-v8.mjs orbital
+python3 scripts/fit-v8.py orbital
 
-# Orbital initialization and on-policy refinement:
-node scripts/calibrate-orbit.mjs
-.venv/bin/python scripts/fit-orbit.py
-node scripts/refine-orbit.mjs
-.venv/bin/python scripts/fit-orbit.py
+# Collect full-flight teaching states, then refit each family:
+node scripts/refine-v8.mjs landing 1
+python3 scripts/fit-v8.py landing
+node scripts/refine-v8.mjs orbital 1
+python3 scripts/fit-v8.py orbital
+node scripts/refine-v8.mjs landing 2
+python3 scripts/fit-v8.py landing
+node scripts/refine-v8.mjs orbital 2
+python3 scripts/fit-v8.py orbital
+# Round 1 preserves its original mixed student-readout schedule; round 2 uses each profile’s readout.
 
-# Further full-network training:
-node scripts/train-profiles.mjs center 6
-node scripts/train-profiles.mjs degraded 6
-node scripts/train-profiles.mjs out 6
-node scripts/train-profiles.mjs orbital 2
+# Shipped complete-graph reward-training schedule:
+node scripts/train-profiles.mjs center 4
+node scripts/train-profiles.mjs center 1
+node scripts/train-profiles.mjs degraded 4
+node scripts/train-profiles.mjs out 4
+node scripts/train-profiles.mjs orbital 1
 
-# Independent evaluation and validation:
-node scripts/evaluate-mission-family.mjs center
-node scripts/evaluate-mission-family.mjs degraded
-node scripts/evaluate-mission-family.mjs out
-node scripts/evaluate-mission-family.mjs orbital
+# Matched independent benchmark, report and validation:
+node scripts/benchmark-v8.mjs
+node scripts/check-feedback.mjs
+node scripts/evaluate-arousal.mjs
 node scripts/report-missions.mjs
 npm run check
 ```
 
-Landing calibration uses `/tmp/fly-full`; orbital calibration uses `/tmp/fly-orbit` for temporary matrices. `fit-orbit.py` appends trajectory samples when their files exist, so remove only those generated temporary matrices when intentionally rebuilding the initial synthetic fit. The fit writes the three full-controller checkpoints; rerunning it replaces their learned weights/counters. The earliest landing generations used 0.12 coefficient noise, later generations used 0.015, and the current trainer uses 0.06 correlated head gains plus 0.008 coefficient noise. The report records the lineage; rerunning all historical generations with the current trainer will not reproduce older weights. Exact reproduction requires those scales at the recorded generation boundary. Changing the model or calibration invalidates previous evaluations.
+Calibration and trajectory matrices live under `/tmp/fly-v8/{landing,orbital}`. Each fit appends all numbered trajectory files in that family; it replaces the checkpoint weights and resets reward-training counters. Save existing checkpoints before intentionally recalibrating. The current reward trainer uses 0.03 correlated head-gain perturbations plus 0.003 independent coefficient noise. The report records initialization, training history, weight hashes, evaluation conditions and every outcome. Changing weights, activation gain, input encoding or physics invalidates previous evaluation results. Historical scripts remain as provenance; use the v8 commands above for this controller.

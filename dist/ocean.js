@@ -5,7 +5,7 @@ export function oceanEnvironment(scene) {
   const uniforms = {
     clock: {value: 0}, night: {value: 0}, storm: {value: 0},
     deck: {value: new T.Vector2()}, booster: {value: new T.Vector2()}, wash: {value:0},
-    sunDirection: {value: new T.Vector3(-.55,.24,-.8).normalize()},
+    sunDirection: {value: new T.Vector3(-.61,.67,.44).normalize()},
   };
   const noise = `
     float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
@@ -17,15 +17,15 @@ export function oceanEnvironment(scene) {
     vertexShader:`varying vec3 direction;void main(){direction=position;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`,
     fragmentShader:`uniform float clock,night,storm;uniform vec3 sunDirection;varying vec3 direction;${noise}
     void main(){vec3 d=normalize(direction);float h=max(0.,d.y),sun=max(0.,dot(d,sunDirection));
-      vec3 horizon=mix(vec3(.46,.69,.73),vec3(.21,.30,.39),storm*.65);
-      vec3 zenith=mix(vec3(.075,.29,.42),vec3(.13,.20,.28),storm*.7);
+      vec3 horizon=mix(vec3(.54,.73,.83),vec3(.21,.30,.39),storm*.65);
+      vec3 zenith=mix(vec3(.065,.23,.39),vec3(.13,.20,.28),storm*.7);
       vec3 color=mix(horizon,zenith,pow(h,.45));
       color+=vec3(1.,.63,.27)*pow(sun,24.)*.24;
       color+=vec3(1.5,1.3,.95)*pow(sun,1400.);
       vec2 cloud=d.xz/max(.06,d.y)*1.5+vec2(clock*.002,0.);
       float clouds=smoothstep(.48-storm*.12,.72,fbm(cloud));
       clouds*=smoothstep(.01,.16,d.y);
-      color=mix(color,mix(vec3(.95,.94,.86),vec3(.36,.43,.49),storm),floor(clouds*4.)/4.*.82);
+      color=mix(color,mix(vec3(.95,.94,.86),vec3(.36,.43,.49),storm),clouds*.86);
       color=mix(color,color*vec3(.12,.18,.32)+vec3(.006,.01,.023),night);
       gl_FragColor=vec4(color,1.);
       #include <tonemapping_fragment>
@@ -35,7 +35,7 @@ export function oceanEnvironment(scene) {
   const sky=new T.Mesh(new T.SphereGeometry(5000,32,16),skyMaterial);sky.renderOrder=-10;scene.add(sky);
   const waterMaterial=new T.ShaderMaterial({uniforms,side:T.DoubleSide,
     vertexShader:`uniform float clock,storm;varying vec3 world;
-    void main(){vec3 p=position;float amp=.18+storm*.38;
+    void main(){vec3 p=position;float amp=.24+storm*.48;
       p.z+=amp*(sin(p.x*.024+clock*.8)+sin(p.y*.036+p.x*.012-clock*.65));
       world=(modelMatrix*vec4(p,1.)).xyz;gl_Position=projectionMatrix*viewMatrix*vec4(world,1.);}`,
     fragmentShader:`uniform float clock,night,storm,wash;uniform vec2 deck,booster;uniform vec3 sunDirection;varying vec3 world;${noise}
@@ -45,17 +45,17 @@ export function oceanEnvironment(scene) {
       slope+=(1.+storm)*vec2(.012*cos(p.x*.024+t*.8),.016*cos(p.y*.036+p.x*.012-t*.65));
       vec3 n=normalize(vec3(-slope.x*(2.+storm),1.,-slope.y*(2.+storm)));
       vec3 v=normalize(cameraPosition-world);float fresnel=pow(1.-max(0.,dot(n,v)),4.);
-      vec3 deep=vec3(.015,.19,.24),reflection=vec3(.19,.43,.46);
+      vec3 deep=vec3(.008,.105,.18),reflection=vec3(.28,.52,.67);
       vec3 color=mix(deep,reflection,fresnel*.87);
       float sparkle=pow(max(0.,dot(reflect(-sunDirection,n),v)),75.);
-      color+=vec3(1.,.76,.42)*sparkle*.36;
+      color+=vec3(1.,.76,.42)*sparkle*.72;
       float foam=smoothstep(.86,.98,fbm(p*.18+vec2(t*.12,0.)))*(.04+storm*.14);
       float crest=smoothstep(.68,.84,sin(a)*.5+sin(b)*.5)*.035;
       vec2 local=p-deck;float stern=smoothstep(38.,47.,local.y)*exp(-max(0.,local.y-46.)*.025);float wake=stern*exp(-pow((abs(local.x)-24.-max(0.,local.y-40.)*.17)/5.,2.));
       float radius=length(p-booster);float spray=wash*exp(-pow((radius-12.)/8.,2.))*(.5+.5*sin(radius*.65-t*5.));
       color+=(foam+crest+wake*.2+spray*.2)*vec3(.65,.89,.85);
       float dist=length(cameraPosition-world),haze=smoothstep(450.,4200.,dist);
-      color=mix(color,mix(vec3(.46,.69,.73),vec3(.21,.30,.39),storm*.65),haze);
+      color=mix(color,mix(vec3(.54,.73,.83),vec3(.21,.30,.39),storm*.65),haze);
       color=mix(color,color*vec3(.12,.18,.32)+vec3(.006,.01,.023),night);
       gl_FragColor=vec4(color,1.);
       #include <tonemapping_fragment>

@@ -5,7 +5,7 @@ export const PLANET_RADIUS=6000,PLANET_MU=9.81*PLANET_RADIUS**2;
 const TAU=Math.PI*2,wrap=a=>Math.atan2(Math.sin(a),Math.cos(a));
 export const ORBIT_PHASES=['Launch','Insertion','Orbit','Deorbit burn','Atmospheric entry','Barge landing'];
 export function orbitalStep(s){return s.y>258?.25:.05;}
-export function orbitalDeck(s,t=s.t){const a=s.orbitConfig.amplitude??0;return{x:s.landingTurn*TAU*PLANET_RADIUS+a*Math.sin(t*.11+s.phase),z:a*.65*Math.cos(t*.09+s.phase),vx:a*.11*Math.cos(t*.11+s.phase),vz:-a*.65*.09*Math.sin(t*.09+s.phase),roll:s.orbitPhase>=4?.018*Math.sin(t*.7+s.phase):0,pitch:s.orbitPhase>=4?.014*Math.cos(t*.61+s.phase):0};}
+export function orbitalDeck(s,t=s.t){const a=(s.orbitConfig.amplitude??0)*(s.variation?.deck??1);return{x:s.landingTurn*TAU*PLANET_RADIUS+a*Math.sin(t*.11+s.phase),z:a*.65*Math.cos(t*.09+s.phase),vx:a*.11*Math.cos(t*.11+s.phase),vz:-a*.65*.09*Math.sin(t*.09+s.phase),roll:s.orbitPhase>=4?.018*Math.sin(t*.7+s.phase):0,pitch:s.orbitPhase>=4?.014*Math.cos(t*.61+s.phase):0};}
 export function orbitalElements(s){
  const r=PLANET_RADIUS+s.y-8,h=r*s.vx,energy=(s.vx*s.vx+s.vy*s.vy)/2-PLANET_MU/r,a=-PLANET_MU/(2*energy),e=Math.sqrt(Math.max(0,1+2*energy*h*h/(PLANET_MU*PLANET_MU)));
  return{periapsis:a*(1-e)-PLANET_RADIUS,apoapsis:energy<0?a*(1+e)-PLANET_RADIUS:Infinity,eccentricity:e};
@@ -33,14 +33,14 @@ export function orbitalSensors(s){
  return[(g.target-g.altitude)/1000,(s.vx-g.tangentTarget)/100,(s.vy-g.radialTarget)/40,g.angleError,s.omega,g.altitude/1000,s.seenFuel-.5,Math.atanh(clamp(g.throttle*2-1,-.99999,.99999))/3,(s.z-p.z)/55,(s.vz-p.vz)/10,g.angleZError,s.omegaZ,g.gravity/10,(s.heading-s.styleStart-turnTarget)/Math.PI,s.omegaYaw,s.seenEngine-1,s.fuelAge/12,s.engineAge/12,s.orbitPhase<=1?-1:s.orbitPhase===2?0:1].map(v=>clamp(v,-3,3));
 }
 export function advanceOrbital(s,a){
- if(s.done)return s;const dt=orbitalStep(s),servo=(v,target,rate)=>v+clamp(target-v,-rate*dt,rate*dt);
+ if(s.done)return s;const dt=orbitalStep(s),servo=(v,target,rate)=>v+clamp(target-v,-rate*dt*(s.variation?.servo??1),rate*dt*(s.variation?.servo??1));
  s.throttle=s.fuel>0?servo(s.throttle,clamp((a[0]+1)/2,0,1),3):0;s.gimbal=servo(s.gimbal,clamp(a[1]??0,-1,1)*.22,1.5);s.gimbalZ=servo(s.gimbalZ,clamp(a[3]??0,-1,1)*.22,1.5);
  for(const [key,index,rate] of [['rcs',2,7],['rcsZ',4,7],['yawJet',5,7],['finX',6,3],['finZ',7,3],['gaze',9,3]])s[key]=servo(s[key],clamp(a[index]??0,-1,1),rate);
  s.selector=servo(s.selector,(a[8]??-1)>.35?1:0,2.5);if(s.selector>.9)s.engineBank=3;else if(s.selector<.1)s.engineBank=1;
  s.fuelAge+=dt;s.engineAge+=dt;if(s.gaze<-.25){s.seenFuel=s.fuel;s.fuelAge=0;}if(s.gaze>.25){s.seenEngine=s.engineHealth;s.engineAge=0;}
- const power=s.engineBank===3?s.engineHealth+1.6:s.engineHealth,alt=Math.max(0,s.y-8),r=PLANET_RADIUS+alt,accel=s.throttle*24*power/(.82+.18*s.fuel),speed=Math.hypot(s.vx,s.vy,s.vz),drag=alt<800?.0012*Math.exp(-alt/150)*speed:0;
+ const power=s.engineBank===3?s.engineHealth+1.6:s.engineHealth,alt=Math.max(0,s.y-8),r=PLANET_RADIUS+alt,accel=s.throttle*24*power*(s.variation?.thrust??1)/((.82+.18*s.fuel)*(s.variation?.mass??1)),speed=Math.hypot(s.vx,s.vy,s.vz),drag=alt<800?.0012*Math.exp(-alt/150)*speed:0;
  const pitch=s.angle+s.gimbal,roll=s.angleZ+s.gimbalZ,radialThrust=Math.cos(pitch)*Math.cos(roll)*accel,tangentThrust=Math.sin(pitch)*Math.cos(roll)*accel,crossThrust=Math.sin(roll)*accel;
- const wind=(s.orbitConfig.wind??0)*Math.exp(-alt/500),windX=wind*Math.sin(s.t*.71+s.phase)+(s.gust??0),windZ=wind*Math.cos(s.t*.61+s.phase)+(s.gustZ??0);
+ const wind=(s.orbitConfig.wind??0)*(s.variation?.wind??1)*Math.exp(-alt/500),windX=wind*Math.sin(s.t*.71+s.phase)+(s.gust??0),windZ=wind*Math.cos(s.t*.61+s.phase)+(s.gustZ??0);
  s.vy+=(s.vx*s.vx/r-PLANET_MU/r**2+radialThrust-drag*s.vy)*dt;s.vx+=(-s.vy*s.vx/r+tangentThrust-drag*s.vx+windX)*dt;s.vz+=(crossThrust-drag*s.vz+windZ)*dt;
  s.omega+=(-s.gimbal*s.throttle*3.4*power+s.rcs*3.5-1.8*s.omega)*dt;s.omegaZ+=(-s.gimbalZ*s.throttle*3.4*power+s.rcsZ*3.5-1.8*s.omegaZ)*dt;s.omegaYaw+=(s.yawJet*1.6-.8*s.omegaYaw)*dt;
  s.angle+=s.omega*dt;s.angleZ+=s.omegaZ*dt;s.heading+=s.omegaYaw*dt;s.x+=s.vx/r*PLANET_RADIUS*dt;s.y+=s.vy*dt;s.z+=s.vz*dt;s.fuel=Math.max(0,s.fuel-s.throttle*power*.012*dt);s.t+=dt;s.step++;s.gust=(s.gust??0)*Math.exp(-dt*.6);s.gustZ=(s.gustZ??0)*Math.exp(-dt*.6);
