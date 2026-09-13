@@ -13,7 +13,7 @@ export const SCENARIOS=[
  {name:'08 / Absolutely nominal',subtitle:'Storm · faults · very little margin',height:380,spread:60,amplitude:30,wind:2.2,night:true,failure:'both'},
 ];
 export function deck(s,t=s.t){const c=SCENARIOS[s.scenario],a=c.amplitude;return{x:a*Math.sin(t*.11+s.phase),z:a*.65*Math.cos(t*.09+s.phase),vx:a*.11*Math.cos(t*.11+s.phase),vz:-a*.65*.09*Math.sin(t*.09+s.phase),roll:s.scenario>=3?.028*Math.sin(t*.7+s.phase):0,pitch:s.scenario>=3?.022*Math.cos(t*.61+s.phase):0};}
-export function createFlight(seed=1,scenario=1){const r=rng(seed),c=SCENARIOS[scenario],s={seed,scenario,t:0,step:0,x:(r()-.5)*2*c.spread,z:(r()-.5)*2*c.spread,y:c.height+r()*25,vx:scenario?(r()-.5)*3:0,vz:scenario?(r()-.5)*3:0,vy:-8-r()*5-(scenario>=2?8:0),angle:scenario?(r()-.5)*.16:0,angleZ:scenario?(r()-.5)*.16:0,heading:scenario?(r()-.5)*.18:0,omega:0,omegaZ:0,omegaYaw:0,fuel:1,phase:r()*Math.PI*2,padX:0,padZ:0,padVx:0,padVz:0,throttle:0,gimbal:0,gimbalZ:0,rcs:0,rcsZ:0,yawJet:0,finX:0,finZ:0,finAngles:[0,0,0,0],engineBank:1,selector:0,gaze:0,engineHealth:1,finFailed:false,engineFailed:false,seenFuel:1,seenEngine:1,fuelAge:0,engineAge:0,reward:0,done:false,landed:false,reason:'',touchdown:null,trail:[]};const d=deck(s);s.padX=d.x;s.padZ=d.z;return s;}
+export function createFlight(seed=1,scenario=1){const r=rng(seed),c=SCENARIOS[scenario],s={seed,scenario,t:0,step:0,x:(r()-.5)*2*c.spread,z:(r()-.5)*2*c.spread,y:c.height+r()*25,vx:scenario?(r()-.5)*3:0,vz:scenario?(r()-.5)*3:0,vy:-8-r()*5-(scenario>=2?8:0),angle:scenario?(r()-.5)*.16:0,angleZ:scenario?(r()-.5)*.16:0,heading:scenario?(r()-.5)*.18:0,omega:0,omegaZ:0,omegaYaw:0,fuel:1,phase:r()*Math.PI*2,padX:0,padZ:0,padVx:0,padVz:0,throttle:0,gimbal:0,gimbalZ:0,rcs:0,rcsZ:0,yawJet:0,finX:0,finZ:0,finAngles:[0,0,0,0],engineBank:1,selector:0,gaze:0,engineHealth:1,finFailed:false,engineFailed:false,seenFuel:1,seenEngine:1,fuelAge:0,engineAge:0,reward:0,done:false,landed:false,reason:'',touchdown:null,trail:[],styleEnabled:true,styleStart:null,styleClean:true,styleTurn:false,recoveryHold:0,styleRecovered:false,styleBonus:0};s.styleStart=s.heading;const d=deck(s);s.padX=d.x;s.padZ=d.z;return s;}
 export function descentCue(s){return -Math.min(s.scenario>=2?18:12,Math.sqrt(2*1.8*Math.max(0,s.y-8))+.5);}
 export function sensors(s){const p=deck(s),alt=Math.max(0,s.y-8),descent=descentCue(s);return[(s.x-p.x)/55,(s.vx-p.vx)/10,(s.vy-descent)/12,Math.sin(s.angle)*2,s.omega,alt/160,s.seenFuel-.5,p.vx/5,(s.z-p.z)/55,(s.vz-p.vz)/10,Math.sin(s.angleZ)*2,s.omegaZ,p.vz/5,Math.sin(s.heading)*2,s.omegaYaw,s.seenEngine-1,s.fuelAge/12,s.engineAge/12].map(v=>clamp(v,-3,3));}
 export function prepareCircuit(data){const connections=[];for(let dst=0;dst<96;dst++)for(let src=0;src<96;src++)if(data.matrix[dst][src])connections.push([src,dst,data.matrix[dst][src],src%12]);return{...data,n:96,connections,enc:Float64Array.from(data.encoder.flat()),dec:Float64Array.from(data.decoder.flat())};}
@@ -45,8 +45,9 @@ export function advance(s,a){if(s.done)return s;const c=SCENARIOS[s.scenario];
  s.omega+=(-s.gimbal*s.throttle*3.4*power+s.rcs*2.5+finX*.6*air-.45*s.omega)*DT;s.omegaZ+=(-s.gimbalZ*s.throttle*3.4*power+s.rcsZ*2.5+finZ*.6*air-.45*s.omegaZ)*DT;s.omegaYaw+=(s.yawJet*1.6-.4*s.omegaYaw)*DT;
  s.angle+=s.omega*DT;s.angleZ+=s.omegaZ*DT;s.heading+=s.omegaYaw*DT;s.x+=s.vx*DT;s.z+=s.vz*DT;s.y+=s.vy*DT;s.fuel=Math.max(0,s.fuel-s.throttle*power*.016*DT);s.t+=DT;s.step++;
  const p=deck(s);s.padX=p.x;s.padZ=p.z;s.padVx=p.vx;s.padVz=p.vz;s.deckRoll=p.roll;s.deckPitch=p.pitch;
- const o=sensors(s);s.reward-=DT*(.12+.8*(o[0]**2+o[8]**2)+.25*(o[1]**2+o[9]**2)+2.5*o[2]**2+1.7*(o[3]**2+o[10]**2)+.18*(o[4]**2+o[11]**2)+.22*o[13]**2+.06*o[14]**2+.015*s.throttle*power+.012*(Math.min(2,s.fuelAge/10)+Math.min(2,s.engineAge/10)));
- if(s.y<=8){const error=Math.hypot(s.x-p.x,s.z-p.z),speed=Math.abs(s.vy),lateral=Math.hypot(s.vx-p.vx,s.vz-p.vz),tilt=Math.hypot(s.angle+p.roll,s.angleZ-p.pitch);s.landed=error<11&&speed<3.6&&lateral<3&&tilt<.2;s.done=true;s.touchdown={error,speed,lateral,tilt};s.reason=s.landed?'Touchdown':error>=11?'Missed the ship':tilt>=.2?'Attitude at impact':speed>=3.6?'Hard landing':'Lateral impact';s.reward+=s.landed?100+3*s.fuel:-30-Math.min(450,error*.5+speed*speed*1.2+lateral*lateral*.5+tilt*20);}
+ updateStyle(s);
+ const o=sensors(s);s.reward-=DT*(.12+.8*(o[0]**2+o[8]**2)+.25*(o[1]**2+o[9]**2)+2.5*o[2]**2+1.7*(o[3]**2+o[10]**2)+.18*(o[4]**2+o[11]**2)+(s.y<35?.12:.008)*o[14]**2+.015*s.throttle*power+.012*(Math.min(2,s.fuelAge/10)+Math.min(2,s.engineAge/10)));
+ if(s.y<=8){const error=Math.hypot(s.x-p.x,s.z-p.z),speed=Math.abs(s.vy),lateral=Math.hypot(s.vx-p.vx,s.vz-p.vz),tilt=Math.hypot(s.angle+p.roll,s.angleZ-p.pitch);s.landed=error<11&&speed<3.6&&lateral<3&&tilt<.2&&Math.abs(s.omegaYaw)<.3;s.done=true;s.touchdown={error,speed,lateral,tilt};s.reason=s.landed?'Touchdown':error>=11?'Missed the ship':tilt>=.2?'Attitude at impact':speed>=3.6?'Hard landing':lateral>=3?'Lateral impact':'Unsettled rotation';s.styleBonus=s.landed&&s.styleEnabled&&s.styleRecovered?25:0;s.reward+=s.landed?100+3*s.fuel+s.styleBonus:-30-Math.min(450,error*.5+speed*speed*1.2+lateral*lateral*.5+tilt*20);}
  else if(Math.abs(s.x)>300||Math.abs(s.z)>300||s.y>650||Math.hypot(s.angle,s.angleZ)>2.6){s.done=true;s.reason='Flight terminated';s.reward-=1000;}else if(s.t>=65){s.done=true;s.reason='Approach timed out';s.reward-=22+Math.max(0,s.y-8)*2;}
  return s;
 }
@@ -60,4 +61,22 @@ export class Trainer{
  for(let i=0;i<PARAMS;i++){let v=0;for(const row of elite)v+=(row.p-row.m)*row.noise[i];candidate[i]=clamp(candidate[i]+this.rate*v/(elite.length*std),i>=190?-1.1:-8,i>=190?1.1:8);}
  const old=evaluate(this.c,this.weights,seeds,this.scenario,this.feedback),next=evaluate(this.c,candidate,seeds,this.scenario,this.feedback),accepted=next.score>=old.score;if(accepted)this.weights=candidate;this.generation++;this.episodes+=(directions*2+2)*batch;const best=accepted?next:old,entry={generation:this.generation,episodes:this.episodes,score:best.score,landings:best.landings,batch,scenario:this.scenario};this.history.push(entry);if(this.history.length>400)this.history.shift();return{...entry,accepted};}
  checkpoint(){return{version:3,circuit:'malecns-96-falcon-3d-v1',weights:Array.from(this.weights),generation:this.generation,episodes:this.episodes,scenario:this.scenario,history:this.history};}
+}
+
+// Body-frame lateral cues let the same landing task be learned at any heading.
+export function fullSensors(s){
+ const o=sensors(s),p=deck(s),c=Math.cos(s.heading),h=Math.sin(s.heading);
+ const rotate=(x,z)=>[c*x-h*z,h*x+c*z];
+ [o[0],o[8]]=rotate((s.x-p.x)/55,(s.z-p.z)/55);
+ [o[1],o[9]]=rotate((s.vx-p.vx)/10,(s.vz-p.vz)/10);
+ [o[7],o[12]]=rotate(p.vx/5,p.vz/5);
+ o[13]=(s.heading-s.styleStart-(s.styleEnabled?2*Math.PI:0))/Math.PI;
+ o.push(s.styleEnabled?1:0);return o.map(v=>clamp(v,-3,3));
+}
+export function updateStyle(s){
+ const turn=Math.abs(s.heading-s.styleStart);
+ if(!s.styleTurn&&(s.y<30||Math.hypot(s.angle,s.angleZ)>.4||Math.abs(s.omegaYaw)>2.8))s.styleClean=false;
+ if(turn>=2*Math.PI-.2)s.styleTurn=true;
+ const p=deck(s),settled=s.styleTurn&&s.styleClean&&s.y>12&&Math.abs(s.omegaYaw)<.2&&Math.hypot(s.angle,s.angleZ)<.16&&Math.hypot(s.omega,s.omegaZ)<.2&&Math.hypot(s.vx-p.vx,s.vz-p.vz)<3;
+ s.recoveryHold=settled?s.recoveryHold+DT:0;if(s.recoveryHold>=.6)s.styleRecovered=true;
 }

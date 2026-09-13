@@ -1,0 +1,722 @@
+{
+  "controller": "malecns-full-rate-v1",
+  "generatedAt": "2026-09-13T00:50:15.887Z",
+  "neurons": 166700,
+  "edges": 25582938,
+  "synapticContacts": 124177617,
+  "sensoryCells": 17937,
+  "readoutCells": 2129,
+  "trainableReadoutWeights": 21300,
+  "graphPassesPerDecision": 2,
+  "physicsStepsPerDecision": 3,
+  "physicsStepSeconds": 0.05,
+  "graphIndividualWeightsTrained": false,
+  "trainingAlgorithm": "Paired random perturbations of all readout weights; complete graph rollouts; lexicographic landing count then mean shaped reward.",
+  "perturbationLineage": {
+    "fullPilot": "0.12 for generations 1–3; 0.015 for 4–5",
+    "fullSpecialist": "0.12 for generation 1; 0.015 for 2",
+    "fullExpert": "0.12 for generation 1; 0.015 for 2"
+  },
+  "checkpoints": [
+    {
+      "name": "full-pilot",
+      "initialization": {
+        "method": "independent synthetic telemetry and graph-history calibration",
+        "samples": 2400,
+        "seed": 187521,
+        "commandRMSE": [
+          0.06805474041782543,
+          0.07187296526288219,
+          0.07910615997377815,
+          0.10342390123912786,
+          0.11407013897522353,
+          0.010236021550295304,
+          0.005889720142539528,
+          0.006882109106722924,
+          0.0053959772566534855,
+          0.05036800940667009
+        ],
+        "teacher": "historical 96-cell landing policy; yaw-target demonstrations",
+        "sensoryCells": 17937
+      },
+      "generation": 5,
+      "completeGraphTrainingFlights": 30,
+      "history": [
+        {
+          "generation": 1,
+          "episodes": 6,
+          "scenario": 1,
+          "score": 124.49276301752967,
+          "landings": 2,
+          "styles": 2,
+          "batch": 2,
+          "accepted": false
+        },
+        {
+          "generation": 2,
+          "episodes": 12,
+          "scenario": 1,
+          "score": 124.53693375173444,
+          "landings": 2,
+          "styles": 2,
+          "batch": 2,
+          "accepted": false
+        },
+        {
+          "generation": 3,
+          "episodes": 18,
+          "scenario": 1,
+          "score": 124.46605146492888,
+          "landings": 2,
+          "styles": 2,
+          "batch": 2,
+          "accepted": false
+        },
+        {
+          "generation": 4,
+          "episodes": 24,
+          "scenario": 1,
+          "score": 124.96256804996801,
+          "landings": 2,
+          "styles": 2,
+          "batch": 2,
+          "accepted": true
+        },
+        {
+          "generation": 5,
+          "episodes": 30,
+          "scenario": 1,
+          "score": 125.06138495014233,
+          "landings": 2,
+          "styles": 2,
+          "batch": 2,
+          "accepted": true
+        }
+      ],
+      "weightSHA256": "45086fd4cb6dd21b430d7633b8e2f8ca8f69bd5a1f7cfdb6e6780a334f5180b1",
+      "evaluation": {
+        "landings": 16,
+        "episodes": 18,
+        "styles": 13,
+        "missions": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "styleEnabled": true
+      }
+    },
+    {
+      "name": "full-specialist",
+      "initialization": {
+        "method": "independent synthetic telemetry and graph-history calibration",
+        "samples": 2400,
+        "seed": 187521,
+        "commandRMSE": [
+          0.07616931640829092,
+          0.06740356030177755,
+          0.08301867663399581,
+          0.10373108759312763,
+          0.11510734501568333,
+          0.010236021550295304,
+          0.02423291295422684,
+          0.038306488424711696,
+          0.028073636624818304,
+          0.04906948388649628
+        ],
+        "teacher": "historical 96-cell landing policy; yaw-target demonstrations",
+        "sensoryCells": 17937
+      },
+      "generation": 2,
+      "completeGraphTrainingFlights": 12,
+      "history": [
+        {
+          "generation": 1,
+          "episodes": 6,
+          "scenario": 6,
+          "score": 27.03064240471358,
+          "landings": 1,
+          "styles": 1,
+          "batch": 2,
+          "accepted": true
+        },
+        {
+          "generation": 2,
+          "episodes": 12,
+          "scenario": 6,
+          "score": 29.35236696513892,
+          "landings": 1,
+          "styles": 1,
+          "batch": 2,
+          "accepted": true
+        }
+      ],
+      "weightSHA256": "55b9e65e13d7e0a2ef5f80f9e28bf46c52f679e416670a125030f1d5a4f36c65",
+      "evaluation": {
+        "landings": 1,
+        "episodes": 3,
+        "styles": 1,
+        "missions": [
+          6
+        ],
+        "styleEnabled": true
+      }
+    },
+    {
+      "name": "full-expert",
+      "initialization": {
+        "method": "independent synthetic telemetry and graph-history calibration",
+        "samples": 2400,
+        "seed": 187521,
+        "commandRMSE": [
+          0.07454798333011446,
+          0.06646707449275939,
+          0.08404791411041837,
+          0.11269765357272123,
+          0.11442271169654944,
+          0.010236021550295304,
+          0.03425784635973641,
+          0.044579436166137965,
+          0.0469927081858911,
+          0.07580624149517766
+        ],
+        "teacher": "historical 96-cell landing policy; yaw-target demonstrations",
+        "sensoryCells": 17937
+      },
+      "generation": 2,
+      "completeGraphTrainingFlights": 12,
+      "history": [
+        {
+          "generation": 1,
+          "episodes": 6,
+          "scenario": 7,
+          "score": -57.17471479336585,
+          "landings": 0,
+          "styles": 0,
+          "batch": 2,
+          "accepted": false
+        },
+        {
+          "generation": 2,
+          "episodes": 12,
+          "scenario": 7,
+          "score": -57.442298340457015,
+          "landings": 0,
+          "styles": 0,
+          "batch": 2,
+          "accepted": true
+        }
+      ],
+      "weightSHA256": "f3d1b866ed382426bed9a555af29850b2b3e08fb8ad7a3ddea7f06a77c55751c",
+      "evaluation": {
+        "landings": 0,
+        "episodes": 3,
+        "styles": 0,
+        "missions": [
+          7
+        ],
+        "styleEnabled": true
+      }
+    }
+  ],
+  "evaluation": {
+    "landings": 17,
+    "episodes": 24,
+    "styles": 14,
+    "styleEnabled": true,
+    "allEdgesPerPass": 25582938,
+    "passesPerDecision": 2,
+    "physicsStepsPerDecision": 3,
+    "seeds": [
+      92431,
+      93440,
+      94449,
+      92431,
+      93440,
+      94449,
+      92431,
+      93440,
+      94449,
+      92431,
+      93440,
+      94449,
+      92431,
+      93440,
+      94449,
+      92431,
+      93440,
+      94449,
+      92431,
+      93440,
+      94449,
+      92431,
+      93440,
+      94449
+    ],
+    "flights": [
+      {
+        "seed": 92431,
+        "scenario": 0,
+        "score": 101.2427971531951,
+        "landed": true,
+        "styleBonus": 0,
+        "styleRecovered": false,
+        "turnDegrees": 347.20441564703106,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 3.0837324519787415,
+          "speed": 2.9955308815800397,
+          "lateral": 0.7046519254462267,
+          "tilt": 0.01746534516354367
+        },
+        "time": 9.249999999999996
+      },
+      {
+        "seed": 93440,
+        "scenario": 0,
+        "score": 101.16150580318931,
+        "landed": true,
+        "styleBonus": 0,
+        "styleRecovered": false,
+        "turnDegrees": 347.43447176165034,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 2.3824413570608827,
+          "speed": 2.9555811716723777,
+          "lateral": 1.0736906956792134,
+          "tilt": 0.014895038641870202
+        },
+        "time": 9.299999999999997
+      },
+      {
+        "seed": 94449,
+        "scenario": 0,
+        "score": 101.24047858490634,
+        "landed": true,
+        "styleBonus": 0,
+        "styleRecovered": false,
+        "turnDegrees": 345.337911492572,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 2.4527176110826723,
+          "speed": 2.9393266200780963,
+          "lateral": 1.1237173806036602,
+          "tilt": 0.017212347993052688
+        },
+        "time": 8.899999999999991
+      },
+      {
+        "seed": 92431,
+        "scenario": 1,
+        "score": 124.87370866076947,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 358.2198204887052,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 2.8316660322959626,
+          "speed": 2.9474720398098477,
+          "lateral": 0.6761834433783656,
+          "tilt": 0.01179022813683157
+        },
+        "time": 14.850000000000076
+      },
+      {
+        "seed": 93440,
+        "scenario": 1,
+        "score": 123.8341042799452,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 358.20501674009245,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 5.780983203213578,
+          "speed": 2.963501084375392,
+          "lateral": 0.5471138312843358,
+          "tilt": 0.015846455429747653
+        },
+        "time": 14.850000000000076
+      },
+      {
+        "seed": 94449,
+        "scenario": 1,
+        "score": 124.36511271694465,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 358.0164082045165,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 5.262455908074799,
+          "speed": 3.1166133689889524,
+          "lateral": 1.0347571386805927,
+          "tilt": 0.018101127944034977
+        },
+        "time": 14.45000000000007
+      },
+      {
+        "seed": 92431,
+        "scenario": 2,
+        "score": 123.91635888550542,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 358.9368402997032,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 3.0641639208709837,
+          "speed": 3.0568344009538313,
+          "lateral": 1.475963779875897,
+          "tilt": 0.01591450729994821
+        },
+        "time": 16.900000000000105
+      },
+      {
+        "seed": 93440,
+        "scenario": 2,
+        "score": 121.8092649653937,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 358.90259960535343,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 5.050883750809293,
+          "speed": 3.0745276939294266,
+          "lateral": 1.3437567389412264,
+          "tilt": 0.01546267375501842
+        },
+        "time": 16.900000000000105
+      },
+      {
+        "seed": 94449,
+        "scenario": 2,
+        "score": 123.00845317116296,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 358.8983483481178,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 7.285793488428133,
+          "speed": 3.0881508709971217,
+          "lateral": 0.8254930465615709,
+          "tilt": 0.020081421496716455
+        },
+        "time": 16.6500000000001
+      },
+      {
+        "seed": 92431,
+        "scenario": 3,
+        "score": 123.79594118416337,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 358.40524167005043,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 4.778479741971704,
+          "speed": 2.9749586610703216,
+          "lateral": 2.2580640063771638,
+          "tilt": 0.025745866875919683
+        },
+        "time": 15.250000000000082
+      },
+      {
+        "seed": 93440,
+        "scenario": 3,
+        "score": 121.05415831594576,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 358.3803289249668,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 9.50592964859084,
+          "speed": 3.171355281122632,
+          "lateral": 1.2626841282695473,
+          "tilt": 0.04888760374939341
+        },
+        "time": 15.250000000000082
+      },
+      {
+        "seed": 94449,
+        "scenario": 3,
+        "score": 122.94879160119564,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 358.33649818503403,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 7.9946784225649346,
+          "speed": 3.026009805621804,
+          "lateral": 2.9633487532580336,
+          "tilt": 0.021850875790573866
+        },
+        "time": 15.000000000000078
+      },
+      {
+        "seed": 92431,
+        "scenario": 4,
+        "score": 123.0476469199963,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 359.05816087067893,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 4.190440763705369,
+          "speed": 2.9952503434193325,
+          "lateral": 2.638075436921762,
+          "tilt": 0.02607885630324857
+        },
+        "time": 17.450000000000113
+      },
+      {
+        "seed": 93440,
+        "scenario": 4,
+        "score": -57.72319534716296,
+        "landed": false,
+        "styleBonus": 0,
+        "styleRecovered": true,
+        "turnDegrees": 358.98183021173946,
+        "reason": "Lateral impact",
+        "touchdown": {
+          "error": 4.752560629101471,
+          "speed": 3.157387840202118,
+          "lateral": 3.100628921390701,
+          "tilt": 0.044496700727820485
+        },
+        "time": 17.400000000000112
+      },
+      {
+        "seed": 94449,
+        "scenario": 4,
+        "score": -55.8057590635384,
+        "landed": false,
+        "styleBonus": 0,
+        "styleRecovered": true,
+        "turnDegrees": 359.0222621985187,
+        "reason": "Missed the ship",
+        "touchdown": {
+          "error": 11.193423654456856,
+          "speed": 3.321997904383553,
+          "lateral": 1.0730481398382632,
+          "tilt": 0.046911613468946116
+        },
+        "time": 17.100000000000108
+      },
+      {
+        "seed": 92431,
+        "scenario": 5,
+        "score": 122.89898551559848,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 359.2591807216242,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 7.348775176415313,
+          "speed": 3.0551683850878444,
+          "lateral": 0.7362200519945982,
+          "tilt": 0.03174373172705763
+        },
+        "time": 19.100000000000136
+      },
+      {
+        "seed": 93440,
+        "scenario": 5,
+        "score": 120.14541973369376,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 359.1798176471517,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 2.4449425717670015,
+          "speed": 3.0912535603222158,
+          "lateral": 0.8526899102793815,
+          "tilt": 0.018561069966188525
+        },
+        "time": 19.000000000000135
+      },
+      {
+        "seed": 94449,
+        "scenario": 5,
+        "score": 122.09390247313856,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 359.22374155690136,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 9.48523250053602,
+          "speed": 3.5028043750595512,
+          "lateral": 2.6222824133876843,
+          "tilt": 0.051961351101606365
+        },
+        "time": 18.70000000000013
+      },
+      {
+        "seed": 92431,
+        "scenario": 6,
+        "score": 116.45041435037533,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 367.85379105931617,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 7.673787633569362,
+          "speed": 1.8531539282959173,
+          "lateral": 2.5605976465625067,
+          "tilt": 0.08185002655611417
+        },
+        "time": 24.40000000000021
+      },
+      {
+        "seed": 93440,
+        "scenario": 6,
+        "score": -55.60866107905567,
+        "landed": false,
+        "styleBonus": 0,
+        "styleRecovered": true,
+        "turnDegrees": 368.04156740987946,
+        "reason": "Missed the ship",
+        "touchdown": {
+          "error": 11.770280909994094,
+          "speed": 1.3713894530627062,
+          "lateral": 2.1440784905381167,
+          "tilt": 0.056271367500107146
+        },
+        "time": 25.10000000000022
+      },
+      {
+        "seed": 94449,
+        "scenario": 6,
+        "score": -61.254547383650205,
+        "landed": false,
+        "styleBonus": 0,
+        "styleRecovered": true,
+        "turnDegrees": 367.98465566171507,
+        "reason": "Lateral impact",
+        "touchdown": {
+          "error": 10.906327450070753,
+          "speed": 2.287786808137823,
+          "lateral": 3.8637532518023203,
+          "tilt": 0.04584348983075896
+        },
+        "time": 24.050000000000207
+      },
+      {
+        "seed": 92431,
+        "scenario": 7,
+        "score": -61.51700412383788,
+        "landed": false,
+        "styleBonus": 0,
+        "styleRecovered": true,
+        "turnDegrees": 361.4313795802677,
+        "reason": "Missed the ship",
+        "touchdown": {
+          "error": 17.45133576582306,
+          "speed": 1.1482661326746473,
+          "lateral": 4.377127828622081,
+          "tilt": 0.10505033398171085
+        },
+        "time": 25.05000000000022
+      },
+      {
+        "seed": 93440,
+        "scenario": 7,
+        "score": -62.44697841713892,
+        "landed": false,
+        "styleBonus": 0,
+        "styleRecovered": true,
+        "turnDegrees": 361.36698552360485,
+        "reason": "Missed the ship",
+        "touchdown": {
+          "error": 16.356826592495924,
+          "speed": 1.7600062639788674,
+          "lateral": 3.0729873744093488,
+          "tilt": 0.042341755183805584
+        },
+        "time": 25.350000000000225
+      },
+      {
+        "seed": 94449,
+        "scenario": 7,
+        "score": -59.453519693201585,
+        "landed": false,
+        "styleBonus": 0,
+        "styleRecovered": true,
+        "turnDegrees": 361.6503974463284,
+        "reason": "Missed the ship",
+        "touchdown": {
+          "error": 25.9455520504336,
+          "speed": 0.4863920577784992,
+          "lateral": 2.4227111732211632,
+          "tilt": 0.09533647628808531
+        },
+        "time": 26.050000000000235
+      }
+    ]
+  },
+  "recoveryOnly": [
+    {
+      "seed": 1000003,
+      "scenario": 0,
+      "score": 101.15309736232282,
+      "landed": true,
+      "styleBonus": 0,
+      "styleRecovered": false,
+      "turnDegrees": -0.43299256605170056,
+      "reason": "Touchdown",
+      "touchdown": {
+        "error": 2.163115344588805,
+        "speed": 2.795688681083653,
+        "lateral": 0.2754535526200837,
+        "tilt": 0.010661658616563681
+      },
+      "time": 10.100000000000009
+    },
+    {
+      "seed": 1000003,
+      "scenario": 1,
+      "score": 99.7795744169238,
+      "landed": true,
+      "styleBonus": 0,
+      "styleRecovered": false,
+      "turnDegrees": -0.4726863579276571,
+      "reason": "Touchdown",
+      "touchdown": {
+        "error": 1.8795928884443496,
+        "speed": 2.757038195083504,
+        "lateral": 0.7981932468981867,
+        "tilt": 0.0045578199303140405
+      },
+      "time": 15.700000000000088
+    }
+  ],
+  "checks": [
+    "Independent graph-row calculations and counts",
+    "Causal command effect from a sensory neuron outside historical 96",
+    "Exact complete-graph replay and restoration of live state",
+    "Recovery-gated, capped style reward; crash/low-turn/oscillation rejection",
+    "All ten actuator mappings and stale instrument memory",
+    "Browser full-network landing with recovered turn",
+    "Browser local training completed a generation and stopped"
+  ],
+  "limitations": [
+    "24 style-enabled flights on three seeds shared across eight scenarios are a finite simulator evaluation, not a reliability guarantee.",
+    "Night and engine-fault missions remain unreliable; all failures are included.",
+    "Supervised transfer from historical landing policies and a yaw-target demonstrator initialized the readouts; this is not learning from scratch.",
+    "Individual biological edge counts and signs are fixed; only the output readouts are optimized.",
+    "This is an engineered signed rate model, not a validated biological fly emulation."
+  ]
+}

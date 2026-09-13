@@ -1,15 +1,15 @@
-import {createBrain,think,deck,descentCue,actionTargets} from './engine3d.js';
+import {deck,descentCue} from './engine3d.js?v=5.1';
 
 export const SIGNALS=[
-  ['X position error','m','Centered on deck'],['X relative velocity','m/s','Moving with deck'],
+  ['Body X position error','m','Centered on deck'],['Body X relative velocity','m/s','Moving with deck'],
   ['Descent speed error','m/s','Matching descent cue'],['X tilt','°','Upright'],
   ['X rotation rate','rad/s','No rotation'],['Radar altitude','m','At deck level'],
-  ['Remembered fuel','%','50% fuel'],['Deck X velocity','m/s','Deck stationary on X'],
-  ['Z position error','m','Centered on deck'],['Z relative velocity','m/s','Moving with deck'],
+  ['Remembered fuel','%','50% fuel'],['Deck body X velocity','m/s','Deck stationary on X'],
+  ['Body Z position error','m','Centered on deck'],['Body Z relative velocity','m/s','Moving with deck'],
   ['Z tilt','°','Upright'],['Z rotation rate','rad/s','No rotation'],
-  ['Deck Z velocity','m/s','Deck stationary on Z'],['Heading','°','Zero heading'],
+  ['Deck body Z velocity','m/s','Deck stationary on Z'],['Turn target error','°','At target heading'],
   ['Yaw rate','rad/s','No rotation'],['Remembered engine health','%','100% engine health'],
-  ['Fuel reading age','s','Fresh reading'],['Engine reading age','s','Fresh reading'],
+  ['Fuel reading age','s','Fresh reading'],['Engine reading age','s','Fresh reading'],['Style preference','on','Recovery only'],
 ];
 export const CONTROLS=[
   ['Throttle','throttle','%'],['Gimbal X','gimbal','°'],['Attitude jets X','rcs','%'],
@@ -17,23 +17,15 @@ export const CONTROLS=[
   ['Fin X lever','finX','%'],['Fin Z lever','finZ','%'],['Engine selector','selector','%'],['Gaze','gaze','%'],
 ];
 
-// Called immediately after the live think(). Replays use private scratch state;
-// neither the live brain nor the graph worker receives these diagnostic inputs.
-export function captureDecision(s,brain,observations,action,network={}) {
-  const p=deck(s),cue=descentCue(s),degrees=180/Math.PI;
-  const obs=Array.from(observations),commands=Array.from(action);
-  const weights=Array.from(brain.weights),feedback=Array.from(brain.feedback??new Float64Array(96));
-  const probe=createBrain(brain.c,weights,feedback),baseline=Array.from(think(probe,obs));
-  const neutralCommands=obs.map((_,i)=>{const changed=[...obs];changed[i]=0;return Array.from(think(probe,changed));});
-  probe.feedback=null;const withoutFeedback=Array.from(think(probe,obs));
-  return {
-    time:s.t,step:s.step,seed:s.seed,observations:obs,commands,targets:actionTargets(commands),
-    weights,feedback,neutralCommands,withoutFeedback,
-    replayError:Math.max(...commands.map((a,i)=>Math.abs(a-baseline[i]))),
-    feedbackTick:network.tick??null,feedbackReceivedAt:network.receivedAt??null,
-    raw:[s.x-p.x,s.vx-p.vx,s.vy-cue,s.angle*degrees,s.omega,Math.max(0,s.y-8),s.seenFuel*100,p.vx,s.z-p.z,s.vz-p.vz,s.angleZ*degrees,s.omegaZ,p.vz,s.heading*degrees,s.omegaYaw,s.seenEngine*100,s.fuelAge,s.engineAge],
-    situation:{x:s.x-p.x,z:s.z-p.z,vx:s.vx-p.vx,vz:s.vz-p.vz,vy:s.vy,cue,altitude:Math.max(0,s.y-8),fuel:s.fuel,seenFuel:s.seenFuel,fuelAge:s.fuelAge,engine:s.engineHealth,seenEngine:s.seenEngine,engineAge:s.engineAge,finFailed:s.finFailed},
-  };
+// Snapshot physical context before the worker's complete-graph decision.
+export function captureDecision(s,observations) {
+ const p=deck(s),cue=descentCue(s),degrees=180/Math.PI,c=Math.cos(s.heading),h=Math.sin(s.heading),rot=(x,z)=>[c*x-h*z,h*x+c*z];
+ const [x,z]=rot(s.x-p.x,s.z-p.z),[vx,vz]=rot(s.vx-p.vx,s.vz-p.vz),[dx,dz]=rot(p.vx,p.vz);
+ return {
+  time:s.t,step:s.step,seed:s.seed,observations:Array.from(observations),
+  raw:[x,vx,s.vy-cue,s.angle*degrees,s.omega,Math.max(0,s.y-8),s.seenFuel*100,dx,z,vz,s.angleZ*degrees,s.omegaZ,dz,(s.heading-s.styleStart-(s.styleEnabled?Math.PI*2:0))*degrees,s.omegaYaw,s.seenEngine*100,s.fuelAge,s.engineAge,s.styleEnabled?1:0],
+  situation:{x:s.x-p.x,z:s.z-p.z,vx:s.vx-p.vx,vz:s.vz-p.vz,vy:s.vy,cue,altitude:Math.max(0,s.y-8),fuel:s.fuel,seenFuel:s.seenFuel,fuelAge:s.fuelAge,engine:s.engineHealth,seenEngine:s.seenEngine,engineAge:s.engineAge,finFailed:s.finFailed},
+ };
 }
 
 const number=(v,digits=2)=>Number(v).toFixed(digits);
@@ -73,22 +65,23 @@ export class DecisionView {
     if(this.last===trace){if(this.radarSize!==`${n['decision-radar'].clientWidth}x${n['decision-radar'].clientHeight}`)this.drawApproach(trace.situation);return;}this.last=trace;
     const s=trace.situation,k=this.selected;
     n['influence-control'].textContent=CONTROLS[k][0];
-    const ranked=trace.observations.map((_,i)=>({i,delta:trace.commands[k]-trace.neutralCommands[i][k]})).sort((a,b)=>Math.abs(b.delta)-Math.abs(a.delta));
-    n['influence-bars'].querySelectorAll('.influence-row').forEach((row,index)=>{const {i,delta}=ranked[index];row.querySelector('span').textContent=SIGNALS[i][0];row.querySelector('strong').textContent=signed(delta,6);row.title=`Zero input means: ${SIGNALS[i][2]}. Live command minus replay: ${delta}`;const bar=row.querySelector('i');bar.style.left=`${delta<0?50-Math.abs(delta)*25:50}%`;bar.style.width=`${Math.abs(delta)*25}%`;bar.dataset.sign=delta<0?'negative':'positive';});
+    const explained=!!trace.neutralCommands;
+    const ranked=trace.observations.map((_,i)=>({i,delta:explained?trace.commands[k]-trace.neutralCommands[i][k]:0})).sort((a,b)=>Math.abs(b.delta)-Math.abs(a.delta));
+    n['influence-bars'].querySelectorAll('.influence-row').forEach((row,index)=>{const {i,delta}=ranked[index];row.querySelector('span').textContent=explained?SIGNALS[i][0]:index===0?'Pause to calculate exact effects':'—';row.querySelector('strong').textContent=explained?signed(delta,6):'—';row.title=explained?`Zero input means: ${SIGNALS[i][2]}. Live command minus replay: ${delta}`:'Pause to calculate the full-network effect';const bar=row.querySelector('i');bar.style.left=`${delta<0?50-Math.abs(delta)*25:50}%`;bar.style.width=`${Math.abs(delta)*25}%`;bar.dataset.sign=delta<0?'negative':'positive';});
     n['decision-output-name'].textContent=CONTROLS[k][0];
     n['decision-output-value'].textContent=signed(trace.commands[k],6);
     n['decision-output-value'].title=String(trace.commands[k]);
-    n['decision-feedback'].textContent=trace.feedbackTick===null?'No graph feedback received for this flight':`Graph feedback tick ${trace.feedbackTick} · held fixed for every replay`;
-    n['decision-replay'].textContent=trace.replayError===0?'Replay matches live command exactly':`Replay difference ${trace.replayError.toExponential(2)}`;
+    n['decision-feedback'].textContent=`Full graph pass ${trace.iteration} · 166,700 neurons · 25,582,938 edges per pass · 2,129 output cells`;
+    n['decision-replay'].textContent=!explained?(paused?'Computing full-graph replays…':'Pause for full-graph replay'):trace.replayError===0?'Replay matches live command exactly':`Replay difference ${trace.replayError.toExponential(2)}`;
     n['descent-actual'].textContent=`${number(s.vy,2)} m/s`;n['descent-cue'].textContent=`${number(s.cue,2)} m/s`;
     n['descent-difference'].textContent=`${signed(s.vy-s.cue,2)} m/s error`;
     n['fuel-memory'].textContent=`${number(s.seenFuel*100,1)}% remembered · ${number(s.fuelAge,2)} s old`;
     n['fuel-truth'].textContent=`Actual at sample: ${number(s.fuel*100,1)}%`;
     n['engine-memory'].textContent=`${number(s.seenEngine*100,0)}% remembered · ${number(s.engineAge,2)} s old`;
     n['engine-truth'].textContent=`Actual at sample: ${number(s.engine*100,0)}%${s.finFailed?' · fin 01 jammed':''}`;
-    n['feedback-effect'].textContent=`${signed(trace.commands[k]-trace.withoutFeedback[k],6)} command change from current feedback versus zero feedback`;
+    n['feedback-effect'].textContent=explained?`${signed(trace.commands[k]-trace.withoutHistory[k],6)} command change versus a reset network state. Earlier flight history is not undone.`:'Exact effects require two full graph passes per replay. Live commands and samples above are recorded directly.';
     for(let i=0;i<SIGNALS.length;i++) {
-      const delta=trace.commands[k]-trace.neutralCommands[i][k];
+      const delta=explained?trace.commands[k]-trace.neutralCommands[i][k]:0;
       this.rawNodes[i].textContent=`${signed(trace.raw[i],2)} ${SIGNALS[i][1]}`;
       this.rawNodes[i].title=String(trace.raw[i]);
       this.encodedNodes[i].textContent=signed(trace.observations[i],6);
@@ -96,8 +89,8 @@ export class DecisionView {
       this.effects[i].style.left=`${delta<0?50-Math.abs(delta)*25:50}%`;
       this.effects[i].style.width=`${Math.abs(delta)*25}%`;
       this.effects[i].dataset.sign=delta<0?'negative':'positive';
-      this.deltas[i].textContent=signed(delta,6);
-      this.deltas[i].title=`Live ${trace.commands[k]} minus replay ${trace.neutralCommands[i][k]}`;
+      this.deltas[i].textContent=explained?signed(delta,6):'—';
+      this.deltas[i].title=explained?`Live ${trace.commands[k]} minus replay ${trace.neutralCommands[i][k]}`:'Pause to calculate';
     }
     this.drawApproach(s);
   }

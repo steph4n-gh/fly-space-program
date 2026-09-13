@@ -1,4 +1,4 @@
-import {compressedArray} from './full-network.js';
+import {compressedArray,isMotorClass} from './full-network.js?v=5.1';
 const vertex=`#version 300 es
 precision highp float;
 in vec3 aPosition;in float aNeuron;
@@ -51,13 +51,12 @@ export class ConnectomeView{
     const n=this.manifest.nodes;
     [this.groups,this.ids,this.types,this.classes,this.centroids]=await Promise.all([compressedArray(base+n.groups.file,Uint8Array),compressedArray(base+n.ids.file,Uint32Array),compressedArray(base+n.types.file,Uint16Array),compressedArray(base+n.classes.file,Uint8Array),compressedArray(base+this.meta.centroids,Float32Array)]);
     const groupPixels=new Uint8Array(512*326);groupPixels.set(this.groups);this.texture(1,this.gl.R8,this.gl.RED,this.gl.UNSIGNED_BYTE,groupPixels);this.gl.uniform1i(this.uniforms.uGroups,1);
-    const motorPixels=new Uint8Array(512*326);this.manifest.coreIndices.forEach(i=>motorPixels[i]=255);this.texture(2,this.gl.R8,this.gl.RED,this.gl.UNSIGNED_BYTE,motorPixels);this.gl.uniform1i(this.uniforms.uMotor,2);
-    this.coreSet=new Set(this.manifest.coreIndices);let done=0,next=0;
+    const motorPixels=new Uint8Array(512*326);this.motorIndices=Array.from(this.classes,(_,i)=>i).filter(i=>isMotorClass(this.labels.classes[this.classes[i]]));this.motorIndices.forEach(i=>motorPixels[i]=255);this.texture(2,this.gl.R8,this.gl.RED,this.gl.UNSIGNED_BYTE,motorPixels);this.gl.uniform1i(this.uniforms.uMotor,2);
+    this.coreSet=new Set(this.motorIndices);let done=0,next=0;
     const load=async()=>{while(next<this.meta.chunks.length){const chunk=this.meta.chunks[next++],array=await compressedArray(base+chunk.file,Float32Array);if(array.length!==chunk.points*4)throw new Error('Incomplete anatomical point block');const gl=this.gl,vao=gl.createVertexArray(),buffer=gl.createBuffer();gl.bindVertexArray(vao);gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.bufferData(gl.ARRAY_BUFFER,array,gl.STATIC_DRAW);const pos=gl.getAttribLocation(this.program,'aPosition'),id=gl.getAttribLocation(this.program,'aNeuron');gl.enableVertexAttribArray(pos);gl.vertexAttribPointer(pos,3,gl.FLOAT,false,16,0);gl.enableVertexAttribArray(id);gl.vertexAttribPointer(id,1,gl.FLOAT,false,16,12);this.parts.push({vao,count:chunk.points});done+=chunk.points;onProgress(done,this.meta.points);}};
     await Promise.all([load(),load(),load()]);return this.meta;
   }
   updateActivity(values){this.values.fill(0);this.values.set(values);this.pending=true;if(this.selected>=0)this.onSelect(this.neuron(this.selected));}
-  updateMotor(activity){if(!this.manifest)return;this.manifest.coreIndices.forEach((id,i)=>this.values[id]=activity[i]??0);this.pending=true;}
   resetView(){this.yaw=.02;this.pitch=-.06;this.zoom=1;this.select(-1);}
   select(id){this.selected=id;this.onSelect(id>=0?this.neuron(id):null);}
   neuron(id){return{index:id,id:this.ids[id],type:this.labels.types[this.types[id]],class:this.labels.classes[this.classes[id]],region:this.manifest.groupNames[this.groups[id]],activity:this.values[id],motor:this.coreSet.has(id)};}
