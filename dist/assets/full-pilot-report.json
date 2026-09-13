@@ -20,7 +20,7 @@
     },
     {
       "name": "Pitch guidance error",
-      "unit": "°",
+      "unit": "\u00b0",
       "neutral": "Aligned with attitude cue"
     },
     {
@@ -55,7 +55,7 @@
     },
     {
       "name": "Roll guidance error",
-      "unit": "°",
+      "unit": "\u00b0",
       "neutral": "Aligned with roll cue"
     },
     {
@@ -70,7 +70,7 @@
     },
     {
       "name": "Yaw target error",
-      "unit": "°",
+      "unit": "\u00b0",
       "neutral": "At target heading"
     },
     {
@@ -101,7 +101,7 @@
     {
       "name": "Mission phase",
       "unit": "phase",
-      "neutral": "Coast; ascent −1, recovery +1"
+      "neutral": "Coast; ascent \u22121, recovery +1"
     },
     {
       "name": "Altitude target error",
@@ -130,12 +130,12 @@
     },
     {
       "name": "Actual gimbal X",
-      "unit": "°",
+      "unit": "\u00b0",
       "neutral": "Gimbal centered"
     },
     {
       "name": "Actual gimbal Z",
-      "unit": "°",
+      "unit": "\u00b0",
       "neutral": "Gimbal centered"
     },
     {
@@ -165,13 +165,13 @@
     },
     {
       "name": "Measured fin 01 angle",
-      "unit": "°",
+      "unit": "\u00b0",
       "neutral": "Fin centered"
     },
     {
       "name": "Active engine bank",
       "unit": "engines",
-      "neutral": "Two engines; encoded 1 engine −1, 3 engines +1"
+      "neutral": "Two engines; encoded 1 engine \u22121, 3 engines +1"
     },
     {
       "name": "Actual engine selector",
@@ -185,27 +185,27 @@
     },
     {
       "name": "Measured X acceleration",
-      "unit": "m/s²",
+      "unit": "m/s\u00b2",
       "neutral": "No X acceleration"
     },
     {
       "name": "Measured vertical acceleration",
-      "unit": "m/s²",
+      "unit": "m/s\u00b2",
       "neutral": "No vertical acceleration"
     },
     {
       "name": "Measured Z acceleration",
-      "unit": "m/s²",
+      "unit": "m/s\u00b2",
       "neutral": "No Z acceleration"
     },
     {
       "name": "Deck roll",
-      "unit": "°",
+      "unit": "\u00b0",
       "neutral": "Level deck"
     },
     {
       "name": "Deck pitch",
-      "unit": "°",
+      "unit": "\u00b0",
       "neutral": "Level deck"
     },
     {
@@ -776,7 +776,7 @@
           0.0016715382350310159,
           0.005598803979603402,
           0.0018062656978407546,
-          0.000021624288036459726,
+          2.1624288036459726e-05,
           0.004342840363335936
         ],
         "teacher": "Previous complete-graph checkpoint, with explicit guidance retained",
@@ -903,15 +903,15 @@
         "baseline": "a46769fdf9189f47baa65ca5a0a210efc9ff0972",
         "commandRMSE": [
           0.0016057647808162892,
-          0.00005977378858675118,
+          5.977378858675118e-05,
           0.0715728183255958,
-          0.000017508910744018645,
+          1.7508910744018645e-05,
           0.0008582291860609951,
           0.0014709350193942627,
-          0.000014429695623272477,
-          0.0000348018247501197,
-          0.000047065228977592344,
-          0.000017317586337178138
+          1.4429695623272477e-05,
+          3.48018247501197e-05,
+          4.7065228977592344e-05,
+          1.7317586337178138e-05
         ],
         "teacher": "Previous complete-graph checkpoint, with explicit guidance retained",
         "sensoryCells": 17937
@@ -6376,7 +6376,7 @@
         "styleBonus": 0,
         "styleRecovered": false,
         "turnDegrees": 360.3231077126993,
-        "reason": "Orbit complete · barge touchdown",
+        "reason": "Orbit complete \u00b7 barge touchdown",
         "variation": {
           "level": 0,
           "mass": 1,
@@ -6449,7 +6449,7 @@
         "styleBonus": 0,
         "styleRecovered": false,
         "turnDegrees": 360.31930664654084,
-        "reason": "Orbit complete · barge touchdown",
+        "reason": "Orbit complete \u00b7 barge touchdown",
         "variation": {
           "level": 0,
           "mass": 1,
@@ -6522,7 +6522,7 @@
         "styleBonus": 0,
         "styleRecovered": false,
         "turnDegrees": 360.3176606208804,
-        "reason": "Orbit complete · barge touchdown",
+        "reason": "Orbit complete \u00b7 barge touchdown",
         "variation": {
           "level": 0,
           "mass": 1,
@@ -6595,7 +6595,7 @@
         "styleBonus": 0,
         "styleRecovered": false,
         "turnDegrees": 360.3140798965802,
-        "reason": "Orbit complete · barge touchdown",
+        "reason": "Orbit complete \u00b7 barge touchdown",
         "variation": {
           "level": 0,
           "mass": 1,
@@ -6668,7 +6668,7 @@
         "styleBonus": 0,
         "styleRecovered": false,
         "turnDegrees": 360.3809784670245,
-        "reason": "Orbit complete · barge touchdown",
+        "reason": "Orbit complete \u00b7 barge touchdown",
         "variation": {
           "level": 0.4,
           "mass": 0.9787585194538814,
@@ -6741,7 +6741,7 @@
         "styleBonus": 0,
         "styleRecovered": false,
         "turnDegrees": 360.37962573511004,
-        "reason": "Orbit complete · barge touchdown",
+        "reason": "Orbit complete \u00b7 barge touchdown",
         "variation": {
           "level": 0.4,
           "mass": 1.0289661592413388,
@@ -6814,7 +6814,7 @@
         "styleBonus": 0,
         "styleRecovered": false,
         "turnDegrees": 360.4589125499906,
-        "reason": "Orbit complete · barge touchdown",
+        "reason": "Orbit complete \u00b7 barge touchdown",
         "variation": {
           "level": 0.4,
           "mass": 0.9561387587276055,
@@ -6955,7 +6955,7 @@
         "styleBonus": 0,
         "styleRecovered": false,
         "turnDegrees": 360.2863399668468,
-        "reason": "Orbit complete · barge touchdown",
+        "reason": "Orbit complete \u00b7 barge touchdown",
         "variation": {
           "level": 0,
           "mass": 1,
@@ -7028,7 +7028,7 @@
         "styleBonus": 0,
         "styleRecovered": false,
         "turnDegrees": 360.3255985348797,
-        "reason": "Orbit complete · barge touchdown",
+        "reason": "Orbit complete \u00b7 barge touchdown",
         "variation": {
           "level": 0,
           "mass": 1,
@@ -7101,7 +7101,7 @@
         "styleBonus": 0,
         "styleRecovered": false,
         "turnDegrees": 360.27726748241787,
-        "reason": "Orbit complete · barge touchdown",
+        "reason": "Orbit complete \u00b7 barge touchdown",
         "variation": {
           "level": 0,
           "mass": 1,
@@ -7174,7 +7174,7 @@
         "styleBonus": 0,
         "styleRecovered": false,
         "turnDegrees": 360.3195074989313,
-        "reason": "Orbit complete · barge touchdown",
+        "reason": "Orbit complete \u00b7 barge touchdown",
         "variation": {
           "level": 0,
           "mass": 1,
@@ -7247,7 +7247,7 @@
         "styleBonus": 0,
         "styleRecovered": false,
         "turnDegrees": 360.407270481785,
-        "reason": "Orbit complete · barge touchdown",
+        "reason": "Orbit complete \u00b7 barge touchdown",
         "variation": {
           "level": 0.4,
           "mass": 0.9787585194538814,
@@ -7320,7 +7320,7 @@
         "styleBonus": 0,
         "styleRecovered": false,
         "turnDegrees": 360.38720709337264,
-        "reason": "Orbit complete · barge touchdown",
+        "reason": "Orbit complete \u00b7 barge touchdown",
         "variation": {
           "level": 0.4,
           "mass": 1.0289661592413388,
@@ -7393,7 +7393,7 @@
         "styleBonus": 0,
         "styleRecovered": false,
         "turnDegrees": 360.4279923345457,
-        "reason": "Orbit complete · barge touchdown",
+        "reason": "Orbit complete \u00b7 barge touchdown",
         "variation": {
           "level": 0.4,
           "mass": 0.9561387587276055,
@@ -7534,7 +7534,7 @@
         "styleBonus": 0,
         "styleRecovered": false,
         "turnDegrees": 360.57975710871864,
-        "reason": "Orbit complete · barge touchdown",
+        "reason": "Orbit complete \u00b7 barge touchdown",
         "variation": {
           "level": 0,
           "mass": 1,
@@ -7607,7 +7607,7 @@
         "styleBonus": 0,
         "styleRecovered": false,
         "turnDegrees": 360.4481753216289,
-        "reason": "Orbit complete · barge touchdown",
+        "reason": "Orbit complete \u00b7 barge touchdown",
         "variation": {
           "level": 0,
           "mass": 1,
@@ -7680,7 +7680,7 @@
         "styleBonus": 0,
         "styleRecovered": false,
         "turnDegrees": 360.43614435929413,
-        "reason": "Orbit complete · barge touchdown",
+        "reason": "Orbit complete \u00b7 barge touchdown",
         "variation": {
           "level": 0,
           "mass": 1,
@@ -7753,7 +7753,7 @@
         "styleBonus": 25,
         "styleRecovered": true,
         "turnDegrees": 360.5162221418604,
-        "reason": "Orbit complete · barge touchdown",
+        "reason": "Orbit complete \u00b7 barge touchdown",
         "variation": {
           "level": 0,
           "mass": 1,
@@ -7826,7 +7826,7 @@
         "styleBonus": 0,
         "styleRecovered": false,
         "turnDegrees": 360.47761166453813,
-        "reason": "Orbit complete · barge touchdown",
+        "reason": "Orbit complete \u00b7 barge touchdown",
         "variation": {
           "level": 0.4,
           "mass": 0.9787585194538814,
@@ -7899,7 +7899,7 @@
         "styleBonus": 0,
         "styleRecovered": false,
         "turnDegrees": 360.4945645239612,
-        "reason": "Orbit complete · barge touchdown",
+        "reason": "Orbit complete \u00b7 barge touchdown",
         "variation": {
           "level": 0.4,
           "mass": 1.0289661592413388,
@@ -7972,7 +7972,7 @@
         "styleBonus": 25,
         "styleRecovered": true,
         "turnDegrees": 360.6707142521361,
-        "reason": "Orbit complete · barge touchdown",
+        "reason": "Orbit complete \u00b7 barge touchdown",
         "variation": {
           "level": 0.4,
           "mass": 0.9561387587276055,
@@ -13517,7 +13517,7 @@
           "styleBonus": 0,
           "styleRecovered": false,
           "turnDegrees": 360.3012217688264,
-          "reason": "Orbit complete · barge touchdown",
+          "reason": "Orbit complete \u00b7 barge touchdown",
           "variation": {
             "level": 0,
             "mass": 1,
@@ -13590,7 +13590,7 @@
           "styleBonus": 0,
           "styleRecovered": false,
           "turnDegrees": 360.3012217688264,
-          "reason": "Orbit complete · barge touchdown",
+          "reason": "Orbit complete \u00b7 barge touchdown",
           "variation": {
             "level": 0,
             "mass": 1,
@@ -13663,7 +13663,7 @@
           "styleBonus": 0,
           "styleRecovered": false,
           "turnDegrees": 360.3012217688264,
-          "reason": "Orbit complete · barge touchdown",
+          "reason": "Orbit complete \u00b7 barge touchdown",
           "variation": {
             "level": 0,
             "mass": 1,
@@ -13736,7 +13736,7 @@
           "styleBonus": 0,
           "styleRecovered": false,
           "turnDegrees": 360.3012217688264,
-          "reason": "Orbit complete · barge touchdown",
+          "reason": "Orbit complete \u00b7 barge touchdown",
           "variation": {
             "level": 0,
             "mass": 1,
@@ -13809,7 +13809,7 @@
           "styleBonus": 0,
           "styleRecovered": false,
           "turnDegrees": 360.3603472511019,
-          "reason": "Orbit complete · barge touchdown",
+          "reason": "Orbit complete \u00b7 barge touchdown",
           "variation": {
             "level": 0.4,
             "mass": 0.9787585194538814,
@@ -13882,7 +13882,7 @@
           "styleBonus": 0,
           "styleRecovered": false,
           "turnDegrees": 360.38934141492274,
-          "reason": "Orbit complete · barge touchdown",
+          "reason": "Orbit complete \u00b7 barge touchdown",
           "variation": {
             "level": 0.4,
             "mass": 1.0289661592413388,
@@ -13955,7 +13955,7 @@
           "styleBonus": 0,
           "styleRecovered": false,
           "turnDegrees": 360.4487674130819,
-          "reason": "Orbit complete · barge touchdown",
+          "reason": "Orbit complete \u00b7 barge touchdown",
           "variation": {
             "level": 0.4,
             "mass": 0.9561387587276055,
@@ -14096,7 +14096,7 @@
           "styleBonus": 0,
           "styleRecovered": false,
           "turnDegrees": 360.29083315836783,
-          "reason": "Orbit complete · barge touchdown",
+          "reason": "Orbit complete \u00b7 barge touchdown",
           "variation": {
             "level": 0,
             "mass": 1,
@@ -14169,7 +14169,7 @@
           "styleBonus": 0,
           "styleRecovered": false,
           "turnDegrees": 360.2578550354046,
-          "reason": "Orbit complete · barge touchdown",
+          "reason": "Orbit complete \u00b7 barge touchdown",
           "variation": {
             "level": 0,
             "mass": 1,
@@ -14242,7 +14242,7 @@
           "styleBonus": 0,
           "styleRecovered": false,
           "turnDegrees": 360.3282532210934,
-          "reason": "Orbit complete · barge touchdown",
+          "reason": "Orbit complete \u00b7 barge touchdown",
           "variation": {
             "level": 0,
             "mass": 1,
@@ -14315,7 +14315,7 @@
           "styleBonus": 0,
           "styleRecovered": false,
           "turnDegrees": 360.3060509207944,
-          "reason": "Orbit complete · barge touchdown",
+          "reason": "Orbit complete \u00b7 barge touchdown",
           "variation": {
             "level": 0,
             "mass": 1,
@@ -14388,7 +14388,7 @@
           "styleBonus": 0,
           "styleRecovered": false,
           "turnDegrees": 360.3437560180321,
-          "reason": "Orbit complete · barge touchdown",
+          "reason": "Orbit complete \u00b7 barge touchdown",
           "variation": {
             "level": 0.4,
             "mass": 0.9787585194538814,
@@ -14461,7 +14461,7 @@
           "styleBonus": 0,
           "styleRecovered": false,
           "turnDegrees": 360.4096912981183,
-          "reason": "Orbit complete · barge touchdown",
+          "reason": "Orbit complete \u00b7 barge touchdown",
           "variation": {
             "level": 0.4,
             "mass": 1.0289661592413388,
@@ -14534,7 +14534,7 @@
           "styleBonus": 0,
           "styleRecovered": false,
           "turnDegrees": 360.47928600951525,
-          "reason": "Orbit complete · barge touchdown",
+          "reason": "Orbit complete \u00b7 barge touchdown",
           "variation": {
             "level": 0.4,
             "mass": 0.9561387587276055,
@@ -14675,7 +14675,7 @@
           "styleBonus": 0,
           "styleRecovered": false,
           "turnDegrees": 360.6108404192612,
-          "reason": "Orbit complete · barge touchdown",
+          "reason": "Orbit complete \u00b7 barge touchdown",
           "variation": {
             "level": 0,
             "mass": 1,
@@ -14748,7 +14748,7 @@
           "styleBonus": 0,
           "styleRecovered": false,
           "turnDegrees": 360.5837784203733,
-          "reason": "Orbit complete · barge touchdown",
+          "reason": "Orbit complete \u00b7 barge touchdown",
           "variation": {
             "level": 0,
             "mass": 1,
@@ -14821,7 +14821,7 @@
           "styleBonus": 0,
           "styleRecovered": false,
           "turnDegrees": 360.5278988037216,
-          "reason": "Orbit complete · barge touchdown",
+          "reason": "Orbit complete \u00b7 barge touchdown",
           "variation": {
             "level": 0,
             "mass": 1,
@@ -14894,7 +14894,7 @@
           "styleBonus": 0,
           "styleRecovered": false,
           "turnDegrees": 360.6102769137052,
-          "reason": "Orbit complete · barge touchdown",
+          "reason": "Orbit complete \u00b7 barge touchdown",
           "variation": {
             "level": 0,
             "mass": 1,
@@ -14967,7 +14967,7 @@
           "styleBonus": 0,
           "styleRecovered": false,
           "turnDegrees": 360.5792127839366,
-          "reason": "Orbit complete · barge touchdown",
+          "reason": "Orbit complete \u00b7 barge touchdown",
           "variation": {
             "level": 0.4,
             "mass": 0.9787585194538814,
@@ -15040,7 +15040,7 @@
           "styleBonus": 0,
           "styleRecovered": false,
           "turnDegrees": 360.6390470463518,
-          "reason": "Orbit complete · barge touchdown",
+          "reason": "Orbit complete \u00b7 barge touchdown",
           "variation": {
             "level": 0.4,
             "mass": 1.0289661592413388,
@@ -15113,7 +15113,7 @@
           "styleBonus": 25,
           "styleRecovered": true,
           "turnDegrees": 360.68931256541765,
-          "reason": "Orbit complete · barge touchdown",
+          "reason": "Orbit complete \u00b7 barge touchdown",
           "variation": {
             "level": 0.4,
             "mass": 0.9561387587276055,
@@ -15319,7 +15319,7 @@
             -0.0003015980602189966,
             0.009369442686083182,
             -0.011697488431339671,
-            -0.00007614232688796241,
+            -7.614232688796241e-05,
             0.0006706141808235835,
             0.002124015221745921,
             -0.0005137580505007872,
@@ -15328,28 +15328,28 @@
             -0.001184821050404572
           ],
           "acceleration": [
-            0.00004863257336823468,
-            -0.000044471989248014154,
-            7.605185569931755e-7,
-            -0.000038248635463755676,
-            0.000007207653488388796,
-            0.0000073867620455454405,
-            0.000001247198454457088,
-            -1.0135842205133416e-7,
-            1.3657726982696516e-7,
-            0.000011710389704572277
+            4.863257336823468e-05,
+            -4.4471989248014154e-05,
+            7.605185569931755e-07,
+            -3.8248635463755676e-05,
+            7.207653488388796e-06,
+            7.3867620455454405e-06,
+            1.247198454457088e-06,
+            -1.0135842205133416e-07,
+            1.3657726982696516e-07,
+            1.1710389704572277e-05
           ],
           "deckAttitude": [
-            -0.00003174463310076647,
-            -0.00003983836008724165,
-            0.00006741128768442128,
-            -0.000010255420957609729,
-            0.000004890324491425499,
-            -0.0000019826403304277693,
-            -0.0000010247787274320075,
-            -1.0224611686482366e-7,
-            3.3718948500016666e-7,
-            0.0000028199870207856748
+            -3.174463310076647e-05,
+            -3.983836008724165e-05,
+            6.741128768442128e-05,
+            -1.0255420957609729e-05,
+            4.890324491425499e-06,
+            -1.9826403304277693e-06,
+            -1.0247787274320075e-06,
+            -1.0224611686482366e-07,
+            3.3718948500016666e-07,
+            2.8199870207856748e-06
           ],
           "previousCommands": [
             0.00013478871196191677,
@@ -15360,7 +15360,7 @@
             -0.0009804109500564308,
             0.000375971070607925,
             0.0001539055028853195,
-            0.00005036016766413187,
+            5.036016766413187e-05,
             0.00011327725527712773
           ]
         }
@@ -15398,27 +15398,27 @@
           ],
           "acceleration": [
             0.001590236843397208,
-            -0.00006398931148743348,
+            -6.398931148743348e-05,
             0.00010321613931299489,
             -0.000866817878136833,
             0.0002740169235516954,
-            -0.00008845636072335678,
-            -0.000042371581941244574,
-            0.000016889676326958813,
-            0.00000807845451245015,
-            -0.000039226034082240346
+            -8.845636072335678e-05,
+            -4.2371581941244574e-05,
+            1.6889676326958813e-05,
+            8.07845451245015e-06,
+            -3.9226034082240346e-05
           ],
           "deckAttitude": [
             0.0018772756837619475,
             0.00036225436238135345,
             0.0001078323135647874,
-            -0.000055281474202140135,
+            -5.5281474202140135e-05,
             -0.00045751235773025534,
             -0.00011562107813973968,
-            0.00009820530805762506,
-            -0.0000063430615169224325,
+            9.820530805762506e-05,
+            -6.3430615169224325e-06,
             -0.00010139071838177749,
-            -0.000050841697825099175
+            -5.0841697825099175e-05
           ],
           "previousCommands": [
             0.0040079671104518155,
@@ -15462,7 +15462,7 @@
             -0.011959574914473364,
             -0.019396500466504096,
             -0.005043132995372845,
-            -0.000006418163016719269,
+            -6.418163016719269e-06,
             0.004694949020740316
           ],
           "acceleration": [
@@ -15471,22 +15471,22 @@
             0.00022689074000559195,
             -0.002785516778770314,
             0.00017854457805729917,
-            0.00001896948846509105,
-            -0.00003279869628169951,
-            -0.00001888218879475545,
-            4.13240190955122e-8,
-            0.00005863837994801724
+            1.896948846509105e-05,
+            -3.279869628169951e-05,
+            -1.888218879475545e-05,
+            4.13240190955122e-08,
+            5.863837994801724e-05
           ],
           "deckAttitude": [
             0.0037476959953646194,
             0.00039779389881994254,
-            -0.000017139263158161278,
+            -1.7139263158161278e-05,
             0.0010890425072160315,
             -0.0003815333962082501,
-            -0.00009424254445345934,
-            0.00008663727340207927,
-            0.000024401181074829026,
-            6.183584499996897e-8,
+            -9.424254445345934e-05,
+            8.663727340207927e-05,
+            2.4401181074829026e-05,
+            6.183584499996897e-08,
             -0.00027342757548218244
           ],
           "previousCommands": [
@@ -15498,8 +15498,8 @@
             0.011263344009078871,
             0.017650810923237392,
             0.0053058424442341545,
-            0.000002717617144432083,
-            0.000024140203020245332
+            2.717617144432083e-06,
+            2.4140203020245332e-05
           ]
         }
       },
@@ -15524,51 +15524,51 @@
         "effects": {
           "actuatorPosition": [
             -0.011941412914302396,
-            0.000027824198974207848,
+            2.7824198974207848e-05,
             0.019115351400568234,
-            -0.000023497370497341935,
+            -2.3497370497341935e-05,
             -0.00041454223443853754,
             -0.0008715608088189816,
-            -0.00004412449306932277,
-            -0.000026155740237559545,
-            0.000012649813100007457,
-            -0.0000109924897849778
+            -4.412449306932277e-05,
+            -2.6155740237559545e-05,
+            1.2649813100007457e-05,
+            -1.09924897849778e-05
           ],
           "acceleration": [
             -0.00014298642651988658,
-            -0.000007904434305115726,
+            -7.904434305115726e-06,
             0.000728812066628351,
-            1.0580491982374596e-7,
-            -0.0000316246850411879,
-            -9.656263908132574e-7,
-            -0.000007452375934927091,
-            -0.000005483524687375715,
-            5.699017130433859e-7,
-            2.45469488846517e-7
+            1.0580491982374596e-07,
+            -3.16246850411879e-05,
+            -9.656263908132574e-07,
+            -7.452375934927091e-06,
+            -5.483524687375715e-06,
+            5.699017130433859e-07,
+            2.45469488846517e-07
           ],
           "deckAttitude": [
-            0.0000025663901160877245,
-            9.557705522161841e-8,
+            2.5663901160877245e-06,
+            9.557705522161841e-08,
             -0.00013345759189064416,
-            -1.5714112996771668e-7,
-            0.000001195343934696537,
-            7.021832014782875e-7,
-            -3.25789406320498e-8,
-            -4.490643018550955e-8,
-            -1.8140424939971922e-8,
-            4.225168548366298e-8
+            -1.5714112996771668e-07,
+            1.195343934696537e-06,
+            7.021832014782875e-07,
+            -3.25789406320498e-08,
+            -4.490643018550955e-08,
+            -1.8140424939971922e-08,
+            4.225168548366298e-08
           ],
           "previousCommands": [
             -0.0008196095928094671,
-            0.000013860847513948865,
+            1.3860847513948865e-05,
             0.033588855660962466,
-            -0.00001861980508490943,
+            -1.861980508490943e-05,
             -0.0001036644335151082,
             0.0016664043635022578,
-            0.000019362358974293198,
-            0.0000013258642302255153,
-            0.000002151844252784585,
-            -0.000015388059130538867
+            1.9362358974293198e-05,
+            1.3258642302255153e-06,
+            2.151844252784585e-06,
+            -1.5388059130538867e-05
           ]
         }
       }
@@ -15964,7 +15964,7 @@
         "styleBonus": 0,
         "styleRecovered": false,
         "turnDegrees": 360.3214918676045,
-        "reason": "Orbit complete · barge touchdown",
+        "reason": "Orbit complete \u00b7 barge touchdown",
         "variation": {
           "level": 0,
           "mass": 1,
@@ -16037,7 +16037,7 @@
         "styleBonus": 0,
         "styleRecovered": false,
         "turnDegrees": 360.164308808804,
-        "reason": "Orbit complete · barge touchdown",
+        "reason": "Orbit complete \u00b7 barge touchdown",
         "variation": {
           "level": 0,
           "mass": 1,
@@ -16110,7 +16110,7 @@
         "styleBonus": 0,
         "styleRecovered": false,
         "turnDegrees": 360.11938082861855,
-        "reason": "Orbit complete · barge touchdown",
+        "reason": "Orbit complete \u00b7 barge touchdown",
         "variation": {
           "level": 0,
           "mass": 1,
@@ -16183,7 +16183,7 @@
         "styleBonus": 0,
         "styleRecovered": false,
         "turnDegrees": 360.5575294154543,
-        "reason": "Orbit complete · barge touchdown",
+        "reason": "Orbit complete \u00b7 barge touchdown",
         "variation": {
           "level": 0,
           "mass": 1,
@@ -16256,7 +16256,7 @@
         "styleBonus": 0,
         "styleRecovered": false,
         "turnDegrees": 360.38561885763414,
-        "reason": "Orbit complete · barge touchdown",
+        "reason": "Orbit complete \u00b7 barge touchdown",
         "variation": {
           "level": 0,
           "mass": 1,
@@ -16413,7 +16413,7 @@
         "styleBonus": 25,
         "styleRecovered": true,
         "turnDegrees": 360.4174130780028,
-        "reason": "Orbit complete · barge touchdown",
+        "reason": "Orbit complete \u00b7 barge touchdown",
         "variation": {
           "level": 0,
           "mass": 1,
@@ -16738,7 +16738,7 @@
         "styleBonus": 0,
         "styleRecovered": false,
         "turnDegrees": 359.6679713824773,
-        "reason": "Orbit complete · barge touchdown",
+        "reason": "Orbit complete \u00b7 barge touchdown",
         "variation": {
           "level": 0.4,
           "mass": 1.0154104868634632,
@@ -16811,7 +16811,7 @@
         "styleBonus": 0,
         "styleRecovered": false,
         "turnDegrees": 359.72973677953723,
-        "reason": "Orbit complete · barge touchdown",
+        "reason": "Orbit complete \u00b7 barge touchdown",
         "variation": {
           "level": 0.4,
           "mass": 1.0154104868634632,
@@ -16884,7 +16884,7 @@
         "styleBonus": 0,
         "styleRecovered": false,
         "turnDegrees": 359.5001977396144,
-        "reason": "Orbit complete · barge touchdown",
+        "reason": "Orbit complete \u00b7 barge touchdown",
         "variation": {
           "level": 0.4,
           "mass": 1.0154104868634632,
@@ -16957,7 +16957,7 @@
         "styleBonus": 0,
         "styleRecovered": false,
         "turnDegrees": 360.0989189635119,
-        "reason": "Orbit complete · barge touchdown",
+        "reason": "Orbit complete \u00b7 barge touchdown",
         "variation": {
           "level": 0.4,
           "mass": 1.0154104868634632,
@@ -17030,7 +17030,7 @@
         "styleBonus": 0,
         "styleRecovered": false,
         "turnDegrees": 359.9165707599444,
-        "reason": "Orbit complete · barge touchdown",
+        "reason": "Orbit complete \u00b7 barge touchdown",
         "variation": {
           "level": 0.4,
           "mass": 1.0154104868634632,
@@ -17223,5 +17223,7 @@
     "Readouts were initialized from demonstrations before reward training.",
     "Individual biological synapse counts and signs stay fixed; output readout weights learn.",
     "A simplified signed-rate model is not a validated biological fly emulation."
-  ]
+  ],
+  "status": "Historical V8 instrument-trained evaluation; not embodied validation and predates V9 orbital cadence/coast changes",
+  "implementationRevision": "ca4fcaed774e78c1b71d65b6dd91738b0c4d9e15"
 }

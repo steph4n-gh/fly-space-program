@@ -1,0 +1,1353 @@
+{
+  "schema": "orbital-control-regression-v1",
+  "controller": "malecns-full-rate-v2",
+  "scope": "Instrument-trained reference only; embodied fly has not learned orbital flight",
+  "changes": [
+    "Stable orbital coast no longer changes thrust direction for tiny corrections",
+    "Two 250 ms physics steps per aloft decision, instead of three; direct neural commands retained"
+  ],
+  "regression": {
+    "episodes": 12,
+    "orbits": 12,
+    "landings": 12,
+    "flights": [
+      {
+        "steps": 2,
+        "matched": false,
+        "seed": 961119,
+        "scenario": 24,
+        "activationGain": 1,
+        "score": 433.36620791672135,
+        "landed": true,
+        "styleBonus": 0,
+        "styleRecovered": false,
+        "turnDegrees": 359.97870808608656,
+        "reason": "Orbit complete \u00b7 barge touchdown",
+        "variation": {
+          "level": 0.4,
+          "mass": 1.064355167189862,
+          "thrust": 1.0069182178886704,
+          "servo": 1.0180769918420496,
+          "wind": 0.9158270868956724,
+          "deck": 1.014386364344405,
+          "noise": 0.004
+        },
+        "touchdown": {
+          "error": 1.7064740451905942,
+          "speed": 3.3270994955232185,
+          "lateral": 0.6982412649980673,
+          "tilt": 0.0275979574927291
+        },
+        "time": 432.3000000000042,
+        "orbitComplete": true,
+        "orbits": 1.7014001804114587,
+        "maxAltitude": 1000.9761512269947,
+        "milestones": [
+          {
+            "name": "Launch",
+            "time": 0.7500000000000001,
+            "altitude": 4.232549095829615
+          },
+          {
+            "name": "Space",
+            "time": 22.29999999999998,
+            "altitude": 803.3708512657852
+          },
+          {
+            "name": "Stable orbit",
+            "time": 54.54999999999998,
+            "altitude": 996.2406303093239
+          },
+          {
+            "name": "One full orbit",
+            "time": 247.54999999999998,
+            "altitude": 999.6726497088696
+          },
+          {
+            "name": "Deorbit",
+            "time": 382.54999999999995,
+            "altitude": 903.9742631555263
+          },
+          {
+            "name": "Atmospheric entry",
+            "time": 396.54999999999995,
+            "altitude": 793.3469526469929
+          },
+          {
+            "name": "Final approach",
+            "time": 411.79999999999995,
+            "altitude": 299.65378036102743
+          },
+          {
+            "name": "Barge touchdown",
+            "time": 432.3000000000042,
+            "altitude": -0.0028652452568538322
+          }
+        ],
+        "coast": {
+          "samples": 636,
+          "rcsRMS": 0.01161826699576983,
+          "meanCommandChange": 0.01708870309460336,
+          "pitchRateRMS": 0.013008869806239559,
+          "pitchErrorRMS": 0.03764697265981197,
+          "pitchRangeDegrees": 1.5778971393750572
+        }
+      },
+      {
+        "steps": 2,
+        "matched": false,
+        "seed": 961119,
+        "scenario": 24,
+        "activationGain": 1,
+        "score": 433.738057616968,
+        "landed": true,
+        "styleBonus": 0,
+        "styleRecovered": false,
+        "turnDegrees": 360.31112410706356,
+        "reason": "Orbit complete \u00b7 barge touchdown",
+        "variation": {
+          "level": 0,
+          "mass": 1,
+          "thrust": 1,
+          "servo": 1,
+          "wind": 1,
+          "deck": 1,
+          "noise": 0
+        },
+        "touchdown": {
+          "error": 1.7560589790336867,
+          "speed": 1.8055846669574462,
+          "lateral": 0.24159478343172988,
+          "tilt": 0.03662320689346558
+        },
+        "time": 435.0000000000049,
+        "orbitComplete": true,
+        "orbits": 1.7020242749225183,
+        "maxAltitude": 1001.0372117217134,
+        "milestones": [
+          {
+            "name": "Launch",
+            "time": 0.7500000000000001,
+            "altitude": 4.571690649573778
+          },
+          {
+            "name": "Space",
+            "time": 21.799999999999983,
+            "altitude": 800.8158605328157
+          },
+          {
+            "name": "Stable orbit",
+            "time": 54.04999999999998,
+            "altitude": 996.1841536675793
+          },
+          {
+            "name": "One full orbit",
+            "time": 247.04999999999998,
+            "altitude": 999.8273755621855
+          },
+          {
+            "name": "Deorbit",
+            "time": 382.04999999999995,
+            "altitude": 902.6298315368921
+          },
+          {
+            "name": "Atmospheric entry",
+            "time": 396.04999999999995,
+            "altitude": 793.2501437263365
+          },
+          {
+            "name": "Final approach",
+            "time": 411.79999999999995,
+            "altitude": 292.4144974564312
+          },
+          {
+            "name": "Barge touchdown",
+            "time": 435.0000000000049,
+            "altitude": -0.0377402722410034
+          }
+        ],
+        "coast": {
+          "samples": 635,
+          "rcsRMS": 0.0028421712609986607,
+          "meanCommandChange": 0.0005329805064964963,
+          "pitchRateRMS": 0.003099257170546514,
+          "pitchErrorRMS": 0.03755298644745111,
+          "pitchRangeDegrees": 1.2266194629434255
+        }
+      },
+      {
+        "steps": 2,
+        "matched": false,
+        "seed": 981257,
+        "scenario": 24,
+        "activationGain": 1,
+        "score": 433.7381553647548,
+        "landed": true,
+        "styleBonus": 0,
+        "styleRecovered": false,
+        "turnDegrees": 360.31575779275465,
+        "reason": "Orbit complete \u00b7 barge touchdown",
+        "variation": {
+          "level": 0,
+          "mass": 1,
+          "thrust": 1,
+          "servo": 1,
+          "wind": 1,
+          "deck": 1,
+          "noise": 0
+        },
+        "touchdown": {
+          "error": 1.6287320200294046,
+          "speed": 1.8116053790015645,
+          "lateral": 0.26805571577744686,
+          "tilt": 0.015844718736194863
+        },
+        "time": 435.0000000000049,
+        "orbitComplete": true,
+        "orbits": 1.7020242749225183,
+        "maxAltitude": 1001.0372117217134,
+        "milestones": [
+          {
+            "name": "Launch",
+            "time": 0.7500000000000001,
+            "altitude": 4.571690649573778
+          },
+          {
+            "name": "Space",
+            "time": 21.799999999999983,
+            "altitude": 800.8158605328157
+          },
+          {
+            "name": "Stable orbit",
+            "time": 54.04999999999998,
+            "altitude": 996.1841536675793
+          },
+          {
+            "name": "One full orbit",
+            "time": 247.04999999999998,
+            "altitude": 999.8273755621855
+          },
+          {
+            "name": "Deorbit",
+            "time": 382.04999999999995,
+            "altitude": 902.6298315368921
+          },
+          {
+            "name": "Atmospheric entry",
+            "time": 396.04999999999995,
+            "altitude": 793.2501437263365
+          },
+          {
+            "name": "Final approach",
+            "time": 411.79999999999995,
+            "altitude": 292.34920235733546
+          },
+          {
+            "name": "Barge touchdown",
+            "time": 435.0000000000049,
+            "altitude": -0.033100971462398654
+          }
+        ],
+        "coast": {
+          "samples": 635,
+          "rcsRMS": 0.0028421712609986607,
+          "meanCommandChange": 0.0005329805064964963,
+          "pitchRateRMS": 0.003099257170546514,
+          "pitchErrorRMS": 0.03755298644745111,
+          "pitchRangeDegrees": 1.2266194629434255
+        }
+      },
+      {
+        "steps": 2,
+        "matched": false,
+        "seed": 981257,
+        "scenario": 24,
+        "activationGain": 1,
+        "score": 433.9514363868084,
+        "landed": true,
+        "styleBonus": 0,
+        "styleRecovered": false,
+        "turnDegrees": 360.48140398005893,
+        "reason": "Orbit complete \u00b7 barge touchdown",
+        "variation": {
+          "level": 0.4,
+          "mass": 1.0047547313949812,
+          "thrust": 1.0296413592617442,
+          "servo": 1.007607072572977,
+          "wind": 1.0901365153302227,
+          "deck": 0.9893414273927166,
+          "noise": 0.004
+        },
+        "touchdown": {
+          "error": 1.8165181584779773,
+          "speed": 1.0837775608935096,
+          "lateral": 0.20148530618558289,
+          "tilt": 0.011353521918636499
+        },
+        "time": 436.70000000000533,
+        "orbitComplete": true,
+        "orbits": 1.7023407565374042,
+        "maxAltitude": 1001.0825670542845,
+        "milestones": [
+          {
+            "name": "Launch",
+            "time": 0.7500000000000001,
+            "altitude": 4.745243908732704
+          },
+          {
+            "name": "Space",
+            "time": 21.69999999999998,
+            "altitude": 802.396890374211
+          },
+          {
+            "name": "Stable orbit",
+            "time": 53.69999999999998,
+            "altitude": 996.1094442541818
+          },
+          {
+            "name": "One full orbit",
+            "time": 246.7,
+            "altitude": 999.8519569505503
+          },
+          {
+            "name": "Deorbit",
+            "time": 381.7,
+            "altitude": 901.5392053597544
+          },
+          {
+            "name": "Atmospheric entry",
+            "time": 395.7,
+            "altitude": 797.3519908502293
+          },
+          {
+            "name": "Final approach",
+            "time": 411.7,
+            "altitude": 292.31245419194755
+          },
+          {
+            "name": "Barge touchdown",
+            "time": 436.70000000000533,
+            "altitude": -0.014041773555328874
+          }
+        ],
+        "coast": {
+          "samples": 635,
+          "rcsRMS": 0.011833200860731176,
+          "meanCommandChange": 0.016537494963459742,
+          "pitchRateRMS": 0.013214019918416663,
+          "pitchErrorRMS": 0.038022616308405074,
+          "pitchRangeDegrees": 1.7916848348650405
+        }
+      },
+      {
+        "steps": 2,
+        "matched": false,
+        "seed": 961119,
+        "scenario": 25,
+        "activationGain": 1,
+        "score": 383.71295565288005,
+        "landed": true,
+        "styleBonus": 0,
+        "styleRecovered": false,
+        "turnDegrees": 360.3726614477124,
+        "reason": "Orbit complete \u00b7 barge touchdown",
+        "variation": {
+          "level": 0,
+          "mass": 1,
+          "thrust": 1,
+          "servo": 1,
+          "wind": 1,
+          "deck": 1,
+          "noise": 0
+        },
+        "touchdown": {
+          "error": 0.5213148072523738,
+          "speed": 1.790792053540316,
+          "lateral": 0.9307476654650887,
+          "tilt": 0.059317976922835615
+        },
+        "time": 434.85000000000485,
+        "orbitComplete": true,
+        "orbits": 1.7099053293948714,
+        "maxAltitude": 1001.1368431051781,
+        "milestones": [
+          {
+            "name": "Launch",
+            "time": 0.7500000000000001,
+            "altitude": 4.571655300881687
+          },
+          {
+            "name": "Space",
+            "time": 22.049999999999983,
+            "altitude": 805.8321921915501
+          },
+          {
+            "name": "Stable orbit",
+            "time": 52.54999999999998,
+            "altitude": 995.398729080875
+          },
+          {
+            "name": "One full orbit",
+            "time": 245.54999999999998,
+            "altitude": 999.0703001138382
+          },
+          {
+            "name": "Deorbit",
+            "time": 382.04999999999995,
+            "altitude": 901.0388636201219
+          },
+          {
+            "name": "Atmospheric entry",
+            "time": 395.79999999999995,
+            "altitude": 798.278347010926
+          },
+          {
+            "name": "Final approach",
+            "time": 411.54999999999995,
+            "altitude": 297.6484730779498
+          },
+          {
+            "name": "Barge touchdown",
+            "time": 434.85000000000485,
+            "altitude": -0.0639765707104143
+          }
+        ],
+        "coast": {
+          "samples": 638,
+          "rcsRMS": 0.0028776010327754655,
+          "meanCommandChange": 0.0005474932384171345,
+          "pitchRateRMS": 0.0031988896640413687,
+          "pitchErrorRMS": 0.03582710044716447,
+          "pitchRangeDegrees": 2.5523636373075367
+        }
+      },
+      {
+        "steps": 2,
+        "matched": false,
+        "seed": 961119,
+        "scenario": 25,
+        "activationGain": 1,
+        "score": 386.3165840267709,
+        "landed": true,
+        "styleBonus": 0,
+        "styleRecovered": false,
+        "turnDegrees": 359.9347418848586,
+        "reason": "Orbit complete \u00b7 barge touchdown",
+        "variation": {
+          "level": 0.4,
+          "mass": 1.064355167189862,
+          "thrust": 1.0069182178886704,
+          "servo": 1.0180769918420496,
+          "wind": 0.9158270868956724,
+          "deck": 1.014386364344405,
+          "noise": 0.004
+        },
+        "touchdown": {
+          "error": 1.4588122789601667,
+          "speed": 3.317783864869863,
+          "lateral": 0.576910323623173,
+          "tilt": 0.019010486553212993
+        },
+        "time": 432.60000000000423,
+        "orbitComplete": true,
+        "orbits": 1.7087757230664657,
+        "maxAltitude": 1001.7471808865699,
+        "milestones": [
+          {
+            "name": "Launch",
+            "time": 0.7500000000000001,
+            "altitude": 4.232514033292572
+          },
+          {
+            "name": "Space",
+            "time": 22.29999999999998,
+            "altitude": 802.2592388295823
+          },
+          {
+            "name": "Stable orbit",
+            "time": 53.04999999999998,
+            "altitude": 995.4441681300949
+          },
+          {
+            "name": "One full orbit",
+            "time": 246.29999999999998,
+            "altitude": 998.9595613580171
+          },
+          {
+            "name": "Deorbit",
+            "time": 382.79999999999995,
+            "altitude": 905.6482820117892
+          },
+          {
+            "name": "Atmospheric entry",
+            "time": 396.79999999999995,
+            "altitude": 797.5287057978633
+          },
+          {
+            "name": "Final approach",
+            "time": 412.29999999999995,
+            "altitude": 296.0077033447215
+          },
+          {
+            "name": "Barge touchdown",
+            "time": 432.60000000000423,
+            "altitude": -0.05094067994427842
+          }
+        ],
+        "coast": {
+          "samples": 639,
+          "rcsRMS": 0.011668171760677443,
+          "meanCommandChange": 0.017134413971639985,
+          "pitchRateRMS": 0.013082527107593995,
+          "pitchErrorRMS": 0.036534165985833304,
+          "pitchRangeDegrees": 2.9782873200325906
+        }
+      },
+      {
+        "steps": 2,
+        "matched": false,
+        "seed": 981257,
+        "scenario": 25,
+        "activationGain": 1,
+        "score": 403.22606339439426,
+        "landed": true,
+        "styleBonus": 0,
+        "styleRecovered": false,
+        "turnDegrees": 360.3206566384431,
+        "reason": "Orbit complete \u00b7 barge touchdown",
+        "variation": {
+          "level": 0,
+          "mass": 1,
+          "thrust": 1,
+          "servo": 1,
+          "wind": 1,
+          "deck": 1,
+          "noise": 0
+        },
+        "touchdown": {
+          "error": 3.0374627577692643,
+          "speed": 1.8250960299414771,
+          "lateral": 0.6269306083200475,
+          "tilt": 0.05025899782389605
+        },
+        "time": 434.75000000000495,
+        "orbitComplete": true,
+        "orbits": 1.7107772084263697,
+        "maxAltitude": 1001.7545273758957,
+        "milestones": [
+          {
+            "name": "Launch",
+            "time": 0.7500000000000001,
+            "altitude": 4.571699209099378
+          },
+          {
+            "name": "Space",
+            "time": 21.799999999999983,
+            "altitude": 801.8524519692559
+          },
+          {
+            "name": "Stable orbit",
+            "time": 52.29999999999998,
+            "altitude": 995.292783694913
+          },
+          {
+            "name": "One full orbit",
+            "time": 245.29999999999998,
+            "altitude": 999.0293031466477
+          },
+          {
+            "name": "Deorbit",
+            "time": 381.79999999999995,
+            "altitude": 895.239088453635
+          },
+          {
+            "name": "Atmospheric entry",
+            "time": 395.54999999999995,
+            "altitude": 797.4427673078453
+          },
+          {
+            "name": "Final approach",
+            "time": 411.29999999999995,
+            "altitude": 296.0223675629213
+          },
+          {
+            "name": "Barge touchdown",
+            "time": 434.75000000000495,
+            "altitude": -0.027781801730997202
+          }
+        ],
+        "coast": {
+          "samples": 639,
+          "rcsRMS": 0.0028545597259964635,
+          "meanCommandChange": 0.0005472162247392186,
+          "pitchRateRMS": 0.003164103305628532,
+          "pitchErrorRMS": 0.03861830491672546,
+          "pitchRangeDegrees": 1.7418744405837918
+        }
+      },
+      {
+        "steps": 2,
+        "matched": false,
+        "seed": 981257,
+        "scenario": 25,
+        "activationGain": 1,
+        "score": 394.6761187279926,
+        "landed": true,
+        "styleBonus": 0,
+        "styleRecovered": false,
+        "turnDegrees": 360.5376039741691,
+        "reason": "Orbit complete \u00b7 barge touchdown",
+        "variation": {
+          "level": 0.4,
+          "mass": 1.0047547313949812,
+          "thrust": 1.0296413592617442,
+          "servo": 1.007607072572977,
+          "wind": 1.0901365153302227,
+          "deck": 0.9893414273927166,
+          "noise": 0.004
+        },
+        "touchdown": {
+          "error": 2.9297752626602995,
+          "speed": 1.0757118099120528,
+          "lateral": 0.4037969782241939,
+          "tilt": 0.053310525336336276
+        },
+        "time": 436.2000000000054,
+        "orbitComplete": true,
+        "orbits": 1.7121947870980767,
+        "maxAltitude": 1000.6130499460471,
+        "milestones": [
+          {
+            "name": "Launch",
+            "time": 0.7500000000000001,
+            "altitude": 4.745254625271059
+          },
+          {
+            "name": "Space",
+            "time": 21.69999999999998,
+            "altitude": 803.4153512885516
+          },
+          {
+            "name": "Stable orbit",
+            "time": 51.94999999999998,
+            "altitude": 995.1582312787181
+          },
+          {
+            "name": "One full orbit",
+            "time": 244.7,
+            "altitude": 998.878900502641
+          },
+          {
+            "name": "Deorbit",
+            "time": 381.45,
+            "altitude": 896.257128873538
+          },
+          {
+            "name": "Atmospheric entry",
+            "time": 395.2,
+            "altitude": 793.6202223880371
+          },
+          {
+            "name": "Final approach",
+            "time": 410.95,
+            "altitude": 296.11100858035104
+          },
+          {
+            "name": "Barge touchdown",
+            "time": 436.2000000000054,
+            "altitude": -0.042061796809716334
+          }
+        ],
+        "coast": {
+          "samples": 639,
+          "rcsRMS": 0.011227522955728183,
+          "meanCommandChange": 0.016259909525126674,
+          "pitchRateRMS": 0.012598296690938048,
+          "pitchErrorRMS": 0.03932859056190578,
+          "pitchRangeDegrees": 2.371352438020948
+        }
+      },
+      {
+        "steps": 2,
+        "matched": false,
+        "seed": 961119,
+        "scenario": 26,
+        "activationGain": 1,
+        "score": 421.00781938270757,
+        "landed": true,
+        "styleBonus": 0,
+        "styleRecovered": false,
+        "turnDegrees": 359.6658448487693,
+        "reason": "Orbit complete \u00b7 barge touchdown",
+        "variation": {
+          "level": 0.4,
+          "mass": 1.064355167189862,
+          "thrust": 1.0069182178886704,
+          "servo": 1.0180769918420496,
+          "wind": 0.9158270868956724,
+          "deck": 1.014386364344405,
+          "noise": 0.004
+        },
+        "touchdown": {
+          "error": 3.0894762642217066,
+          "speed": 3.308242866044302,
+          "lateral": 0.7976045745513223,
+          "tilt": 0.024057818685801854
+        },
+        "time": 459.15000000000407,
+        "orbitComplete": true,
+        "orbits": 1.740664436232478,
+        "maxAltitude": 1397.5832033912654,
+        "milestones": [
+          {
+            "name": "Launch",
+            "time": 0.7500000000000001,
+            "altitude": 4.232119353070658
+          },
+          {
+            "name": "Space",
+            "time": 21.54999999999998,
+            "altitude": 809.9369653672237
+          },
+          {
+            "name": "Stable orbit",
+            "time": 53.54999999999998,
+            "altitude": 1384.9920490773527
+          },
+          {
+            "name": "One full orbit",
+            "time": 257.54999999999995,
+            "altitude": 1388.6202981904994
+          },
+          {
+            "name": "Deorbit",
+            "time": 407.54999999999995,
+            "altitude": 1124.2413430542572
+          },
+          {
+            "name": "Atmospheric entry",
+            "time": 424.04999999999995,
+            "altitude": 794.2902837784255
+          },
+          {
+            "name": "Final approach",
+            "time": 439.29999999999995,
+            "altitude": 299.93086577669726
+          },
+          {
+            "name": "Barge touchdown",
+            "time": 459.15000000000407,
+            "altitude": -0.13125972146916798
+          }
+        ],
+        "coast": {
+          "samples": 688,
+          "rcsRMS": 0.011688994864694196,
+          "meanCommandChange": 0.01717957737606072,
+          "pitchRateRMS": 0.01312856622568029,
+          "pitchErrorRMS": 0.03180221756407382,
+          "pitchRangeDegrees": 3.052892364313442
+        }
+      },
+      {
+        "steps": 2,
+        "matched": false,
+        "seed": 961119,
+        "scenario": 26,
+        "activationGain": 1,
+        "score": 424.32443113916065,
+        "landed": true,
+        "styleBonus": 0,
+        "styleRecovered": false,
+        "turnDegrees": 360.1977755015995,
+        "reason": "Orbit complete \u00b7 barge touchdown",
+        "variation": {
+          "level": 0,
+          "mass": 1,
+          "thrust": 1,
+          "servo": 1,
+          "wind": 1,
+          "deck": 1,
+          "noise": 0
+        },
+        "touchdown": {
+          "error": 4.620244540871964,
+          "speed": 1.8638062931083141,
+          "lateral": 0.6251704348358572,
+          "tilt": 0.061507434393873225
+        },
+        "time": 462.2500000000048,
+        "orbitComplete": true,
+        "orbits": 1.7402470436808244,
+        "maxAltitude": 1397.938003928901,
+        "milestones": [
+          {
+            "name": "Launch",
+            "time": 0.7500000000000001,
+            "altitude": 4.571242987725471
+          },
+          {
+            "name": "Space",
+            "time": 21.09999999999998,
+            "altitude": 809.4115929094437
+          },
+          {
+            "name": "Stable orbit",
+            "time": 53.09999999999998,
+            "altitude": 1384.9277380310102
+          },
+          {
+            "name": "One full orbit",
+            "time": 257.34999999999997,
+            "altitude": 1388.9316903515767
+          },
+          {
+            "name": "Deorbit",
+            "time": 407.34999999999997,
+            "altitude": 1128.3903755827157
+          },
+          {
+            "name": "Atmospheric entry",
+            "time": 423.84999999999997,
+            "altitude": 797.9816497865877
+          },
+          {
+            "name": "Final approach",
+            "time": 439.59999999999997,
+            "altitude": 296.94209072462087
+          },
+          {
+            "name": "Barge touchdown",
+            "time": 462.2500000000048,
+            "altitude": -0.005404897075037773
+          }
+        ],
+        "coast": {
+          "samples": 688,
+          "rcsRMS": 0.002973680957465521,
+          "meanCommandChange": 0.0005424710493917136,
+          "pitchRateRMS": 0.003300806727952802,
+          "pitchErrorRMS": 0.031395636927297084,
+          "pitchRangeDegrees": 2.514908126557987
+        }
+      },
+      {
+        "steps": 2,
+        "matched": false,
+        "seed": 981257,
+        "scenario": 26,
+        "activationGain": 1,
+        "score": 398.18008215231634,
+        "landed": true,
+        "styleBonus": 0,
+        "styleRecovered": false,
+        "turnDegrees": 360.3110798688737,
+        "reason": "Orbit complete \u00b7 barge touchdown",
+        "variation": {
+          "level": 0,
+          "mass": 1,
+          "thrust": 1,
+          "servo": 1,
+          "wind": 1,
+          "deck": 1,
+          "noise": 0
+        },
+        "touchdown": {
+          "error": 0.8123625618888414,
+          "speed": 1.825853950149742,
+          "lateral": 0.2528714970007483,
+          "tilt": 0.037717748148986964
+        },
+        "time": 462.1500000000048,
+        "orbitComplete": true,
+        "orbits": 1.7404854127454945,
+        "maxAltitude": 1397.7403746975763,
+        "milestones": [
+          {
+            "name": "Launch",
+            "time": 0.7500000000000001,
+            "altitude": 4.571285088975877
+          },
+          {
+            "name": "Space",
+            "time": 20.84999999999998,
+            "altitude": 800.5310704235235
+          },
+          {
+            "name": "Stable orbit",
+            "time": 53.09999999999998,
+            "altitude": 1384.9186255659795
+          },
+          {
+            "name": "One full orbit",
+            "time": 257.34999999999997,
+            "altitude": 1389.1744155588324
+          },
+          {
+            "name": "Deorbit",
+            "time": 407.09999999999997,
+            "altitude": 1124.7333620000707
+          },
+          {
+            "name": "Atmospheric entry",
+            "time": 423.59999999999997,
+            "altitude": 795.9894892529993
+          },
+          {
+            "name": "Final approach",
+            "time": 439.34999999999997,
+            "altitude": 296.02096505787216
+          },
+          {
+            "name": "Barge touchdown",
+            "time": 462.1500000000048,
+            "altitude": -0.07072638436588186
+          }
+        ],
+        "coast": {
+          "samples": 688,
+          "rcsRMS": 0.0029724183811587787,
+          "meanCommandChange": 0.0005427293805094508,
+          "pitchRateRMS": 0.0032845021893330804,
+          "pitchErrorRMS": 0.030425908798278604,
+          "pitchRangeDegrees": 2.4691872591762922
+        }
+      },
+      {
+        "steps": 2,
+        "matched": false,
+        "seed": 981257,
+        "scenario": 26,
+        "activationGain": 1,
+        "score": 402.14055134372035,
+        "landed": true,
+        "styleBonus": 0,
+        "styleRecovered": false,
+        "turnDegrees": 360.5113432310517,
+        "reason": "Orbit complete \u00b7 barge touchdown",
+        "variation": {
+          "level": 0.4,
+          "mass": 1.0047547313949812,
+          "thrust": 1.0296413592617442,
+          "servo": 1.007607072572977,
+          "wind": 1.0901365153302227,
+          "deck": 0.9893414273927166,
+          "noise": 0.004
+        },
+        "touchdown": {
+          "error": 0.5728781282796166,
+          "speed": 1.130394296198444,
+          "lateral": 0.24000639392095266,
+          "tilt": 0.00726465178005557
+        },
+        "time": 463.55000000000524,
+        "orbitComplete": true,
+        "orbits": 1.7403694231347253,
+        "maxAltitude": 1397.7096700433244,
+        "milestones": [
+          {
+            "name": "Launch",
+            "time": 0.7500000000000001,
+            "altitude": 4.744835253103563
+          },
+          {
+            "name": "Space",
+            "time": 20.749999999999982,
+            "altitude": 803.8635992805424
+          },
+          {
+            "name": "Stable orbit",
+            "time": 52.749999999999986,
+            "altitude": 1384.618866457931
+          },
+          {
+            "name": "One full orbit",
+            "time": 256.75,
+            "altitude": 1388.739577495847
+          },
+          {
+            "name": "Deorbit",
+            "time": 406.5,
+            "altitude": 1120.527163083916
+          },
+          {
+            "name": "Atmospheric entry",
+            "time": 423.25,
+            "altitude": 792.5758677902036
+          },
+          {
+            "name": "Final approach",
+            "time": 439,
+            "altitude": 296.5223977429677
+          },
+          {
+            "name": "Barge touchdown",
+            "time": 463.55000000000524,
+            "altitude": -0.019812557947697762
+          }
+        ],
+        "coast": {
+          "samples": 687,
+          "rcsRMS": 0.0112917596965439,
+          "meanCommandChange": 0.01633076576788693,
+          "pitchRateRMS": 0.012735521157496736,
+          "pitchErrorRMS": 0.03130782406304736,
+          "pitchRangeDegrees": 2.947281217221917
+        }
+      }
+    ]
+  },
+  "matchedBefore": [
+    {
+      "steps": 3,
+      "seed": 941101,
+      "scenario": 24,
+      "activationGain": 1,
+      "score": 432.11840120695524,
+      "landed": true,
+      "styleBonus": 0,
+      "styleRecovered": false,
+      "turnDegrees": 360.3231077126993,
+      "reason": "Orbit complete \u00b7 barge touchdown",
+      "variation": {
+        "level": 0,
+        "mass": 1,
+        "thrust": 1,
+        "servo": 1,
+        "wind": 1,
+        "deck": 1,
+        "noise": 0
+      },
+      "touchdown": {
+        "error": 1.790228463772468,
+        "speed": 1.780905763548771,
+        "lateral": 0.23750887860120534,
+        "tilt": 0.014874048035648287
+      },
+      "time": 440.4500000000048,
+      "orbitComplete": true,
+      "orbits": 1.7012322495985754,
+      "maxAltitude": 1065.9098816950498,
+      "milestones": [
+        {
+          "name": "Launch",
+          "time": 0.7500000000000001,
+          "altitude": 4.571690649573778
+        },
+        {
+          "name": "Space",
+          "time": 21.799999999999983,
+          "altitude": 800.8204604631012
+        },
+        {
+          "name": "Stable orbit",
+          "time": 54.04999999999998,
+          "altitude": 996.1311481512513
+        },
+        {
+          "name": "One full orbit",
+          "time": 249.79999999999998,
+          "altitude": 1003.9119210150943
+        },
+        {
+          "name": "Deorbit",
+          "time": 386.54999999999995,
+          "altitude": 1034.116177619656
+        },
+        {
+          "name": "Atmospheric entry",
+          "time": 402.04999999999995,
+          "altitude": 794.7055808590088
+        },
+        {
+          "name": "Final approach",
+          "time": 417.54999999999995,
+          "altitude": 297.0497689614854
+        },
+        {
+          "name": "Barge touchdown",
+          "time": 440.4500000000048,
+          "altitude": -0.07314608766027941
+        }
+      ],
+      "coast": {
+        "samples": 430,
+        "rcsRMS": 0.711646802012464,
+        "meanCommandChange": 1.0734991183132327,
+        "pitchRateRMS": 1.099169575866537,
+        "pitchErrorRMS": 1.048632759117973,
+        "pitchRangeDegrees": 873.9934430176014
+      }
+    },
+    {
+      "steps": 3,
+      "seed": 941101,
+      "scenario": 26,
+      "activationGain": 1,
+      "score": 425.31450201332626,
+      "landed": true,
+      "styleBonus": 0,
+      "styleRecovered": false,
+      "turnDegrees": 360.57975710871864,
+      "reason": "Orbit complete \u00b7 barge touchdown",
+      "variation": {
+        "level": 0,
+        "mass": 1,
+        "thrust": 1,
+        "servo": 1,
+        "wind": 1,
+        "deck": 1,
+        "noise": 0
+      },
+      "touchdown": {
+        "error": 1.8529273209004036,
+        "speed": 1.8155069355809408,
+        "lateral": 0.16495952566493266,
+        "tilt": 0.025908319755158293
+      },
+      "time": 488.40000000000555,
+      "orbitComplete": true,
+      "orbits": 1.7398367643588857,
+      "maxAltitude": 1444.2918829419368,
+      "milestones": [
+        {
+          "name": "Launch",
+          "time": 0.7500000000000001,
+          "altitude": 4.571271168110508
+        },
+        {
+          "name": "Space",
+          "time": 21.09999999999998,
+          "altitude": 809.572549364843
+        },
+        {
+          "name": "Stable orbit",
+          "time": 53.09999999999998,
+          "altitude": 1384.9124325072598
+        },
+        {
+          "name": "One full orbit",
+          "time": 266.84999999999997,
+          "altitude": 1414.8808893266737
+        },
+        {
+          "name": "Deorbit",
+          "time": 424.59999999999997,
+          "altitude": 1414.3521270371182
+        },
+        {
+          "name": "Atmospheric entry",
+          "time": 446.59999999999997,
+          "altitude": 795.151426183866
+        },
+        {
+          "name": "Final approach",
+          "time": 462.09999999999997,
+          "altitude": 297.0008512598084
+        },
+        {
+          "name": "Barge touchdown",
+          "time": 488.40000000000555,
+          "altitude": -0.0512335610096013
+        }
+      ],
+      "coast": {
+        "samples": 482,
+        "rcsRMS": 0.6640737892612515,
+        "meanCommandChange": 0.9638340620522775,
+        "pitchRateRMS": 1.0429622053778378,
+        "pitchErrorRMS": 1.0006667750266567,
+        "pitchRangeDegrees": 1062.5465089333168
+      }
+    }
+  ],
+  "matchedAfter": [
+    {
+      "steps": 2,
+      "matched": true,
+      "seed": 941101,
+      "scenario": 24,
+      "activationGain": 1,
+      "score": 433.7380053166587,
+      "landed": true,
+      "styleBonus": 0,
+      "styleRecovered": false,
+      "turnDegrees": 360.30796730171295,
+      "reason": "Orbit complete \u00b7 barge touchdown",
+      "variation": {
+        "level": 0,
+        "mass": 1,
+        "thrust": 1,
+        "servo": 1,
+        "wind": 1,
+        "deck": 1,
+        "noise": 0
+      },
+      "touchdown": {
+        "error": 1.716012931929811,
+        "speed": 1.8078270204393854,
+        "lateral": 0.2083558332243591,
+        "tilt": 0.024909208816632333
+      },
+      "time": 435.0000000000049,
+      "orbitComplete": true,
+      "orbits": 1.7020242749225183,
+      "maxAltitude": 1001.0372117217134,
+      "milestones": [
+        {
+          "name": "Launch",
+          "time": 0.7500000000000001,
+          "altitude": 4.571690649573778
+        },
+        {
+          "name": "Space",
+          "time": 21.799999999999983,
+          "altitude": 800.8158605328157
+        },
+        {
+          "name": "Stable orbit",
+          "time": 54.04999999999998,
+          "altitude": 996.1841536675793
+        },
+        {
+          "name": "One full orbit",
+          "time": 247.04999999999998,
+          "altitude": 999.8273755621855
+        },
+        {
+          "name": "Deorbit",
+          "time": 382.04999999999995,
+          "altitude": 902.6298315368921
+        },
+        {
+          "name": "Atmospheric entry",
+          "time": 396.04999999999995,
+          "altitude": 793.2501437263365
+        },
+        {
+          "name": "Final approach",
+          "time": 411.79999999999995,
+          "altitude": 292.3915540403437
+        },
+        {
+          "name": "Barge touchdown",
+          "time": 435.0000000000049,
+          "altitude": -0.03577890469433598
+        }
+      ],
+      "coast": {
+        "samples": 635,
+        "rcsRMS": 0.0028421712609986607,
+        "meanCommandChange": 0.0005329805064964963,
+        "pitchRateRMS": 0.003099257170546514,
+        "pitchErrorRMS": 0.03755298644745111,
+        "pitchRangeDegrees": 1.2266194629434255
+      }
+    },
+    {
+      "steps": 2,
+      "matched": true,
+      "seed": 941101,
+      "scenario": 26,
+      "activationGain": 1,
+      "score": 379.3841307914284,
+      "landed": true,
+      "styleBonus": 0,
+      "styleRecovered": false,
+      "turnDegrees": 360.2107878684886,
+      "reason": "Orbit complete \u00b7 barge touchdown",
+      "variation": {
+        "level": 0,
+        "mass": 1,
+        "thrust": 1,
+        "servo": 1,
+        "wind": 1,
+        "deck": 1,
+        "noise": 0
+      },
+      "touchdown": {
+        "error": 4.663376588217817,
+        "speed": 1.8405494851966175,
+        "lateral": 0.16975875903363363,
+        "tilt": 0.03857509387536342
+      },
+      "time": 461.85000000000474,
+      "orbitComplete": true,
+      "orbits": 1.7397489512771396,
+      "maxAltitude": 1397.71801693782,
+      "milestones": [
+        {
+          "name": "Launch",
+          "time": 0.7500000000000001,
+          "altitude": 4.571271168110508
+        },
+        {
+          "name": "Space",
+          "time": 21.09999999999998,
+          "altitude": 809.4856925670723
+        },
+        {
+          "name": "Stable orbit",
+          "time": 53.09999999999998,
+          "altitude": 1384.966012325458
+        },
+        {
+          "name": "One full orbit",
+          "time": 257.09999999999997,
+          "altitude": 1388.87096265686
+        },
+        {
+          "name": "Deorbit",
+          "time": 406.84999999999997,
+          "altitude": 1122.5285848226647
+        },
+        {
+          "name": "Atmospheric entry",
+          "time": 423.34999999999997,
+          "altitude": 799.7900368309914
+        },
+        {
+          "name": "Final approach",
+          "time": 439.09999999999997,
+          "altitude": 298.74820990590666
+        },
+        {
+          "name": "Barge touchdown",
+          "time": 461.85000000000474,
+          "altitude": -0.04700453749894251
+        }
+      ],
+      "coast": {
+        "samples": 687,
+        "rcsRMS": 0.003073792613235112,
+        "meanCommandChange": 0.00055811461115276,
+        "pitchRateRMS": 0.003410258770592947,
+        "pitchErrorRMS": 0.03367013871216414,
+        "pitchRangeDegrees": 2.5763540838128733
+      }
+    }
+  ],
+  "limitations": [
+    "Small finite simulator sample; not a flight reliability guarantee",
+    "Body rotation and RCS measurements cover coast after the first 10 seconds of stable orbit",
+    "Nominal missions share identical launch dynamics; varied flights perturb physical parameters and sensor readings"
+  ],
+  "implementation": "Shared decisionSteps helper, sampled once before each decision interval",
+  "commandChangeReductions": [
+    {
+      "scenario": 24,
+      "seed": 941101,
+      "before": 1.0734991183132327,
+      "after": 0.0005329805064964963,
+      "reduction": 0.9995035109974436
+    },
+    {
+      "scenario": 26,
+      "seed": 941101,
+      "before": 0.9638340620522775,
+      "after": 0.00055811461115276,
+      "reduction": 0.9994209432586721
+    }
+  ],
+  "weightSHA256": "379ee5bd13e5a52279b5c189d5932766072e12494cad5afdc36a756c7174c35e"
+}

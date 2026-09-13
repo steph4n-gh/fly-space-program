@@ -1,0 +1,16 @@
+import fs from 'node:fs';
+import crypto from 'node:crypto';
+import {loadFullNetwork} from './full-network-node.mjs';
+import {freshEmbodied} from '../dist/full-controller.js';
+import {collectLesson,lessonLoss,fitLesson} from '../dist/visual-lesson.js';
+const net=loadFullNetwork(),checkpoint=freshEmbodied();
+const train=await collectLesson(net,Array.from({length:160},(_,i)=>192123+i*178));console.log('Visual training samples',train.length);
+const validation=await collectLesson(net,Array.from({length:32},(_,i)=>413255+i*179));
+const candidate=fitLesson(checkpoint.weights,train),accepted=lessonLoss(candidate,validation)<lessonLoss(checkpoint.weights,validation),weights=accepted?candidate:checkpoint.weights;
+const test=await collectLesson(net,Array.from({length:48},(_,i)=>742325+i*173));
+const covered=await collectLesson(net,test.map(s=>s.seed),{covered:true});
+fs.mkdirSync('/tmp/fly-v9',{recursive:true});fs.writeFileSync('/tmp/fly-v9/lesson-features.json',JSON.stringify({train,validation,test,covered},(_,v)=>ArrayBuffer.isView(v)?Array.from(v):v));
+const before=lessonLoss(checkpoint.weights,test),after=lessonLoss(weights,test),coveredLoss=lessonLoss(weights,covered);
+const report={schema:'perception-evaluation-v1',controller:checkpoint.circuit,sensorSchema:checkpoint.sensorSchema,lesson:'Gaze orientation toward a luminous monitor marker; labels derived from retinal image',accepted,trainSamples:train.length,validationSamples:validation.length,testSamples:test.length,trainingSeeds:train.map(s=>s.seed),validationSeeds:validation.map(s=>s.seed),testSeeds:test.map(s=>s.seed),beforeMSE:before,afterMSE:after,coveredEyeMSE:coveredLoss,regularization:.1,weightSHA256:crypto.createHash('sha256').update(Buffer.from(Float64Array.from(weights).buffer)).digest('hex'),untrainedFlightReliability:true,limitations:['Visual orientation is not learned landing or orbital flight.','This finite static-image lesson does not establish biological fidelity or generalization to moving flight scenes.','No flight teacher or telemetry readout initializes the embodied controller.']};
+checkpoint.weights=weights;checkpoint.generation=1;checkpoint.episodes=train.length+validation.length;checkpoint.initialization='Image-based gaze curriculum; no flight demonstrations';checkpoint.history=[{generation:1,episodes:train.length+validation.length,score:-after,lesson:'visual orientation',loss:after,batch:train.length,scenario:0}];
+fs.writeFileSync('dist/assets/embodied-starter.json',JSON.stringify(checkpoint));fs.writeFileSync('dist/assets/perception-report.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report));

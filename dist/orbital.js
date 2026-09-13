@@ -1,4 +1,4 @@
-import {clamp,rng} from './engine.js';
+import {clamp,rng} from './engine.js?v=9.2';
 // A deliberately small Newtonian world compresses the orbital period. Surface
 // gravity is 9.81 m/s²; these distances are sandbox meters, not an Earth model.
 export const PLANET_RADIUS=6000,PLANET_MU=9.81*PLANET_RADIUS**2;
@@ -23,8 +23,10 @@ export function orbitalGuidance(s){
  else {const glideHeight=Math.max(0,remaining*.32);radialTarget=clamp((glideHeight-altitude)*.16,-32,10);tangentTarget=clamp(remaining*.11,-20,Math.min(circular,Math.sqrt(2*5*Math.max(0,remaining))));if(altitude<160||remaining<120){radialTarget=-Math.min(16,Math.sqrt(2*.55*altitude)+.2);tangentTarget=p.vx+clamp(remaining*.15,-12,18);}}
  const speed=Math.hypot(s.vx,s.vy,s.vz),drag=altitude<800?.0012*Math.exp(-altitude/150)*speed:0;
  let radialAccel=gravity-s.vx*s.vx/r+.65*(radialTarget-s.vy)+drag*s.vy,tangentAccel=.42*(tangentTarget-s.vx)+s.vy*s.vx/r+drag*s.vx;
- if(s.orbitPhase===2&&Math.abs(altitude-target)<40&&Math.abs(s.vy)<2&&Math.abs(s.vx-circular)<1){radialAccel=0;tangentAccel=0;}
- const crossAccel=-.08*(s.z-p.z)-.7*(s.vz-p.vz),magnitude=Math.hypot(radialAccel,tangentAccel,crossAccel),targetAngle=magnitude>.15?Math.atan2(tangentAccel,radialAccel):Math.PI/2,targetAngleZ=Math.atan2(crossAccel,Math.max(3,Math.hypot(radialAccel,tangentAccel))),angleError=wrap(s.angle-targetAngle),angleZError=s.angleZ-targetAngleZ;
+ // In a certified stable orbit, coast. Tiny position corrections must not keep
+ // switching the thrust direction between radial and tangential attitudes.
+ if(s.orbitPhase===2){radialAccel=0;tangentAccel=0;}
+ const crossAccel=s.orbitPhase===2?0:-.08*(s.z-p.z)-.7*(s.vz-p.vz),magnitude=Math.hypot(radialAccel,tangentAccel,crossAccel),targetAngle=magnitude>.15?Math.atan2(tangentAccel,radialAccel):Math.PI/2,targetAngleZ=Math.atan2(crossAccel,Math.max(3,Math.hypot(radialAccel,tangentAccel))),angleError=wrap(s.angle-targetAngle),angleZError=s.angleZ-targetAngleZ;
  const power=s.engineBank===3?s.engineHealth+1.6:s.engineHealth,alignment=Math.max(0,Math.cos(angleError)*Math.cos(angleZError)),throttle=clamp(magnitude*(.82+.18*s.fuel)/(24*Math.max(.1,power))*alignment**2,0,1);
  return{altitude,target,circular,remaining,radialTarget,tangentTarget,radialAccel,tangentAccel,magnitude,targetAngle,targetAngleZ,angleError,angleZError,throttle,gravity,drag};
 }

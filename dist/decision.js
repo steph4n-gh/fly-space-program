@@ -1,5 +1,6 @@
-import {SIGNALS,SENSOR_SCHEMA} from './signals.js?v=8.4';
-import {sensorSnapshot} from './engine3d.js?v=8.4';
+import {PERCEPTION_SIGNALS,EMBODIED_SCHEMA} from './sensory-inputs.js?v=9.2';
+import {SIGNALS,SENSOR_SCHEMA} from './signals.js?v=9.2';
+import {sensorSnapshot} from './engine3d.js?v=9.2';
 export {SIGNALS};
 export const ORBIT_SIGNALS=SIGNALS;
 export const CONTROLS=[
@@ -9,7 +10,7 @@ export const CONTROLS=[
 ];
 
 // Snapshot physical context before the worker's complete-graph decision.
-export function captureDecision(s,observations){const sample=sensorSnapshot(s);return{orbital:!!s.orbital,activationGain:s.activationGain??1,sensorSchema:SENSOR_SCHEMA,frame:sample.frame,time:s.t,step:s.step,seed:s.seed,observations:Array.from(observations),raw:sample.raw,situation:sample.situation};}
+export function captureDecision(s,observations,packet=null){const sample=sensorSnapshot(s);return{orbital:!!s.orbital,activationGain:s.activationGain??1,sensorSchema:packet?EMBODIED_SCHEMA:SENSOR_SCHEMA,signals:packet?PERCEPTION_SIGNALS:SIGNALS,display:packet?.display,perception:packet?{covered:packet.covered,odor:packet.odor}:null,frame:sample.frame,time:s.t,step:s.step,seed:s.seed,observations:Array.from(observations),raw:packet?.raw??sample.raw,situation:sample.situation};}
 
 const number=(v,digits=2)=>Number(v).toFixed(digits);
 const signed=(v,digits=2)=>(v>0?'+':'')+number(v,digits);
@@ -47,11 +48,12 @@ export class DecisionView {
       this.bars[k].style.width=`${Math.max(0,Math.min(1,position))*100}%`;this.markers[k].style.left=`${Math.max(0,Math.min(1,actualPosition))*100}%`;
     }
     if(this.last===trace){if(this.radarSize!==`${n['decision-radar'].clientWidth}x${n['decision-radar'].clientHeight}`)this.drawApproach(trace.situation);return;}this.last=trace;
-    const s=trace.situation,k=this.selected,signals=trace.orbital?ORBIT_SIGNALS:SIGNALS;
+    const s=trace.situation,k=this.selected,signals=trace.signals??SIGNALS,values=trace.display??trace.observations;
+    for(let i=0;i<this.signals.children.length;i++)this.signals.children[i].hidden=i>=signals.length;
     for(let i=0;i<signals.length;i++){this.signals.children[i].children[0].textContent=signals[i][0];this.signals.children[i].children[4].textContent=signals[i][2];}
     n['influence-control'].textContent=CONTROLS[k][0];
     const explained=!!trace.neutralCommands;
-    const ranked=trace.observations.map((_,i)=>({i,delta:explained?trace.commands[k]-trace.neutralCommands[i][k]:0})).sort((a,b)=>Math.abs(b.delta)-Math.abs(a.delta));
+    const ranked=values.map((_,i)=>({i,delta:explained?trace.commands[k]-trace.neutralCommands[i][k]:0})).sort((a,b)=>Math.abs(b.delta)-Math.abs(a.delta));
     n['influence-bars'].querySelectorAll('.influence-row').forEach((row,index)=>{const {i,delta}=ranked[index];row.querySelector('span').textContent=explained?signals[i][0]:index===0?'Pause to calculate exact effects':'—';row.querySelector('strong').textContent=explained?signed(delta,6):'—';row.title=explained?`Zero input means: ${signals[i][2]}. Live command minus replay: ${delta}`:'Pause to calculate the full-network effect';const bar=row.querySelector('i');bar.style.left=`${delta<0?50-Math.abs(delta)*25:50}%`;bar.style.width=`${Math.abs(delta)*25}%`;bar.dataset.sign=delta<0?'negative':'positive';});
     n['decision-output-name'].textContent=CONTROLS[k][0];
     n['decision-output-value'].textContent=signed(trace.commands[k],6);
@@ -69,8 +71,8 @@ export class DecisionView {
       const delta=explained?trace.commands[k]-trace.neutralCommands[i][k]:0;
       this.rawNodes[i].textContent=`${signed(trace.raw[i],2)} ${signals[i][1]}`;
       this.rawNodes[i].title=String(trace.raw[i]);
-      this.encodedNodes[i].textContent=signed(trace.observations[i],6);
-      this.encodedNodes[i].title=String(trace.observations[i]);
+      this.encodedNodes[i].textContent=signed(values[i],6);
+      this.encodedNodes[i].title=String(values[i]);
       this.effects[i].style.left=`${delta<0?50-Math.abs(delta)*25:50}%`;
       this.effects[i].style.width=`${Math.abs(delta)*25}%`;
       this.effects[i].dataset.sign=delta<0?'negative':'positive';

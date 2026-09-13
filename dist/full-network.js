@@ -1,7 +1,8 @@
 // Every retained neuron and directed edge is evaluated on every recurrent pass.
-// Telemetry enters annotated sensory cells; only graph activity reaches readout.
-import {NETWORK_INPUTS} from './signals.js?v=8.4';
+// Sensory observations enter annotated sensory cells; only graph activity reaches readout.
+import {NETWORK_INPUTS} from './signals.js?v=9.2';
 export {NETWORK_INPUTS};
+import {SENSORY_GROUPS,EMBODIED_INPUTS} from './sensory-inputs.js?v=9.2';
 export const NETWORK_PASSES=2;
 export const isMotorClass=name=>['descending_neuron','cb_motor','vnc_motor'].includes(name);
 export async function compressedArray(url,Type){
@@ -23,21 +24,27 @@ export async function loadNetwork(base,onProgress=()=>{}){
   const download=async()=>{while(next<manifest.parts.length){const part=manifest.parts[next++];const [p,w]=await Promise.all([compressedArray(base+part.pre.file,Uint32Array),compressedArray(base+part.weight.file,Uint16Array)]);if(p.length!==part.count||w.length!==part.count)throw new Error('Incomplete graph block');pre.set(p,part.start);weight.set(w,part.start);completed+=part.count;onProgress(completed,manifest.edges);}};
   await Promise.all([download(),download(),download()]);
   if(rows.length!==n+1||rows[n]!==manifest.edges)throw new Error('Invalid complete graph index');
-  return new FullNetwork({manifest,pre,weight,rows,incoming,signs,channels,groups,classes,labels});
+  const [receptorChannels,receptorPolarity]=await Promise.all([compressedArray(base+'receptor-channels.bin.gz',Int16Array),compressedArray(base+'receptor-polarity.bin.gz',Int8Array)]);
+  return new FullNetwork({manifest,pre,weight,rows,incoming,signs,channels,groups,classes,labels,receptorChannels,receptorPolarity});
 }
 export class FullNetwork{
   constructor(data){
     Object.assign(this,data);this.n=data.manifest.neurons;
     this.activity=new Float32Array(this.n);this.next=new Float32Array(this.n);this.signed=new Float32Array(this.n);
     this.normalizer=Float32Array.from(data.incoming,v=>v>0?.55/v:0);
-    this.inputChannel=new Int8Array(this.n).fill(-1);this.inputPolarity=new Int8Array(this.n);
+    this.inputChannel=new Int16Array(this.n).fill(-1);this.inputPolarity=new Int8Array(this.n);
     const motor=[];let sensory=0;
     for(let i=0;i<this.n;i++){
       const label=data.labels.classes[data.classes[i]];
       if(isMotorClass(label))motor.push(i);
       if(label.includes('sensory')){this.inputChannel[i]=sensory%NETWORK_INPUTS;this.inputPolarity[i]=(Math.floor(sensory/NETWORK_INPUTS)%2)?-1:1;sensory++;}
     }
-    this.motorIndices=Uint32Array.from(motor);this.sensoryCount=sensory;this.activationGain=1;this.reset();
+    this.motorIndices=Uint32Array.from(motor);this.sensoryCount=sensory;this.activationGain=1;this.inputMode='telemetry';this.telemetryChannels=this.inputChannel.slice();this.telemetryPolarity=this.inputPolarity.slice();this.reset();
+  }
+  setInputMode(mode='telemetry'){
+    if(!['telemetry','embodied'].includes(mode))throw Error('Unknown sensory mode');
+    if(mode==='embodied'&&(this.receptorChannels?.length!==this.n||this.receptorPolarity?.length!==this.n))throw Error('Missing anatomical sensory map');
+    this.inputMode=mode;this.inputChannel.set(mode==='embodied'?this.receptorChannels:this.telemetryChannels);this.inputPolarity.set(mode==='embodied'?this.receptorPolarity:this.telemetryPolarity);
   }
   setActivationGain(gain=1){if(!Number.isFinite(gain)||gain<1||gain>1.05)throw Error('Circuit gain must be between 1.00 and 1.05');this.activationGain=gain;}
   reset(){this.activity.fill(0);this.next.fill(0);this.signed.fill(0);this.iteration=0;this.pulse=null;this.lastPulseIndex=-1;}
@@ -60,8 +67,8 @@ export class FullNetwork{
     return commands;
   }
   stats(){let active=0;for(const rate of this.activity)if(Math.abs(rate)>.01)active++;return{active,iteration:this.iteration};}
-  snapshot(){return{activationGain:this.activationGain,activity:this.activity.slice(),signed:this.signed.slice(),lastPulseIndex:this.lastPulseIndex,iteration:this.iteration,pulse:this.pulse?{...this.pulse}:null};}
-  restore(snapshot){this.activationGain=snapshot.activationGain??1;this.activity.set(snapshot.activity);this.signed.set(snapshot.signed);this.lastPulseIndex=snapshot.lastPulseIndex;this.iteration=snapshot.iteration;this.pulse=snapshot.pulse?{...snapshot.pulse}:null;}
+  snapshot(){return{inputMode:this.inputMode,activationGain:this.activationGain,activity:this.activity.slice(),signed:this.signed.slice(),lastPulseIndex:this.lastPulseIndex,iteration:this.iteration,pulse:this.pulse?{...this.pulse}:null};}
+  restore(snapshot){if(this.inputMode!==(snapshot.inputMode??'telemetry'))this.setInputMode(snapshot.inputMode??'telemetry');this.activationGain=snapshot.activationGain??1;this.activity.set(snapshot.activity);this.signed.set(snapshot.signed);this.lastPulseIndex=snapshot.lastPulseIndex;this.iteration=snapshot.iteration;this.pulse=snapshot.pulse?{...snapshot.pulse}:null;}
   traceControl(weights,control){
     if(!Number.isInteger(control)||control<0||control>=10)throw Error('Invalid traced control');
     const stride=this.motorIndices.length+1,bias=weights[control*stride+stride-1],rows=[];let sum=bias;
@@ -85,7 +92,7 @@ export class FullNetwork{
   explain(observations,weights,before,commands){
     const live=this.snapshot(),replay=obs=>{this.restore(before);return Array.from(this.decide(obs,weights));};
     try{
-      const baseline=replay(observations),neutralCommands=observations.map((_,i)=>{const changed=[...observations];changed[i]=0;return replay(changed);});
+      const baseline=replay(observations),groups=this.inputMode==='embodied'?SENSORY_GROUPS:observations.map((_,i)=>[i]),neutralCommands=groups.map(indices=>{const changed=[...observations];for(const i of indices)changed[i]=0;return replay(changed);});
       this.reset();const withoutHistory=Array.from(this.decide(observations,weights));
       return{neutralCommands,withoutHistory,replayError:Math.max(...commands.map((v,i)=>Math.abs(v-baseline[i])))};
     }finally{this.restore(live);}

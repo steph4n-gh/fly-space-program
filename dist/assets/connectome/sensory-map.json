@@ -1,0 +1,74 @@
+{
+  "schema": "retina-body-1558-v1",
+  "retina": {
+    "width": 32,
+    "height": 24,
+    "eyes": {
+      "L": {
+        "neurons": 2345,
+        "directColumnEvidence": 2273,
+        "borrowedNearestColumn": 72,
+        "distinctPixels": 472,
+        "hexProjectionBounds": [
+          -5.0,
+          23.0,
+          1.451177703638789,
+          33.77499074759311
+        ]
+      },
+      "R": {
+        "neurons": 3746,
+        "directColumnEvidence": 3622,
+        "borrowedNearestColumn": 124,
+        "distinctPixels": 522,
+        "hexProjectionBounds": [
+          -5.0,
+          23.5,
+          0.8660254037844386,
+          33.77499074759311
+        ]
+      }
+    },
+    "channels": 1536,
+    "mapping": "Synapse-weighted assigned optic-column coordinates, projected to each eye; nearest measured same-eye photoreceptor endpoint when direct column evidence is missing. Image axes and camera calibration are model choices."
+  },
+  "bodyChannels": 22,
+  "directlyDrivenNeurons": 10710,
+  "modalityCounts": {
+    "photoreceptors": 6091,
+    "mechanosensory_proprioceptive": 1357,
+    "mechanosensory": 589,
+    "olfactory": 115,
+    "mechanosensory_tactile": 2558
+  },
+  "source": "MaleCNS v1.0 body annotations and measured directed connections",
+  "sourceSHA256": "2177e246113e4cfbf1e7772ec37c6da1955ff22e8063d0b1f833101f99a9a3b2",
+  "unmappedNeurons": 155990,
+  "limitations": [
+    "Photoreceptor grayscale encoding does not model colour/UV receptor spectra.",
+    "Within-class body response directions and control associations are authored, not measured tuning curves.",
+    "Normalized odor exposure models receptor stimulation, not molecular concentration or pharmacology.",
+    "Unknown sensory modalities receive no invented direct signal; every retained neuron and edge still participates.",
+    "The inherited rate model defaults histamine and unknown transmitters to an excitatory sign; receptor-specific physiology is not implemented."
+  ],
+  "olfaction": {
+    "ethylAcetate": {
+      "target": "ORN_DM1 / Or42b",
+      "source": "https://pubmed.ncbi.nlm.nih.gov/28670618/"
+    },
+    "geosmin": {
+      "target": "ORN_DA2 / Or56a",
+      "source": "https://www.nature.com/articles/srep21841"
+    }
+  },
+  "routingFiles": {
+    "receptor-channels": {
+      "sha256": "8cb23ab7c6d7d61f3689bd55a332389fd05c7cd080038f0060c9b205011547ec",
+      "elementType": "int16"
+    },
+    "receptor-polarity": {
+      "sha256": "ad6c98003c75bf75fce2ba8422cc729224800e82f35e48da0ea1c0330e165626",
+      "elementType": "int8"
+    }
+  }
+}

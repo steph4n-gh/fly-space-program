@@ -1,4 +1,4 @@
-import * as T from './vendor/three.module.js';
+import * as T from './vendor/three.module.js?v=9.2';
 
 // Decorative water and sky. These uniforms never enter the flight model or sensors.
 export function oceanEnvironment(scene) {

@@ -1,9 +1,9 @@
 // Stylized six-degree-of-freedom booster recovery. Not a flight-qualified Falcon model.
-import {clamp,rng} from './engine.js';
-import {createOrbitalFlight,advanceOrbital,orbitalSensors,orbitalDeck,orbitalStep,orbitalGuidance} from './orbital.js?v=8.4';
+import {clamp,rng} from './engine.js?v=9.2';
+import {createOrbitalFlight,advanceOrbital,orbitalSensors,orbitalDeck,orbitalStep,orbitalGuidance} from './orbital.js?v=9.2';
 export {clamp,rng};
 export const DT=.05,INPUTS=18,OUTPUTS=10,PARAMS=202;
-import {SCENARIOS} from './missions.js?v=8.4';
+import {SCENARIOS} from './missions.js?v=9.2';
 export {SCENARIOS};
 export function deck(s,t=s.t){if(s.orbital)return orbitalDeck(s,t);
  const c=SCENARIOS[s.scenario],a=c.amplitude,rx=c.deckRateX??.11,rz=c.deckRateZ??.09;
@@ -12,6 +12,7 @@ export function deck(s,t=s.t){if(s.orbital)return orbitalDeck(s,t);
  if(c.deckPattern==='turn'){const theta=t*.09+t*t*.0015+s.phase,rate=.09+t*.003;x=a*Math.sin(theta);z=a*.65*Math.cos(theta);vx=a*rate*Math.cos(theta);vz=-a*.65*rate*Math.sin(theta);}
  const scale=s.variation?.deck??1;return{x:x*scale,z:z*scale,vx:vx*scale,vz:vz*scale,roll:c.rolling?.028*Math.sin(t*.7+s.phase):0,pitch:c.rolling?.022*Math.cos(t*.61+s.phase):0};
 }
+export const decisionSteps=s=>s.orbital&&s.y>258?2:3;
 export const physicsStep=s=>s.orbital?orbitalStep(s):DT;
 function createNominalFlight(seed=1,scenario=1){if(SCENARIOS[scenario].orbital)return createOrbitalFlight(seed,scenario,SCENARIOS[scenario]);const r=rng(seed),c=SCENARIOS[scenario],s={seed,scenario,t:0,step:0,x:(r()-.5)*2*c.spread,z:(r()-.5)*2*c.spread,y:c.height+r()*25,vx:scenario?(r()-.5)*3:0,vz:scenario?(r()-.5)*3:0,vy:-c.entrySpeed-r()*5,angle:scenario?(r()-.5)*.16:0,angleZ:scenario?(r()-.5)*.16:0,heading:scenario?(r()-.5)*.18:0,omega:0,omegaZ:0,omegaYaw:0,fuel:1,phase:r()*Math.PI*2,padX:0,padZ:0,padVx:0,padVz:0,throttle:0,gimbal:0,gimbalZ:0,rcs:0,rcsZ:0,yawJet:0,finX:0,finZ:0,finAngles:[0,0,0,0],engineBank:1,selector:0,gaze:0,engineHealth:1,finFailed:false,engineFailed:false,seenFuel:1,seenEngine:1,fuelAge:0,engineAge:0,reward:0,done:false,landed:false,reason:'',touchdown:null,trail:[],styleEnabled:true,styleStart:null,styleClean:true,styleTurn:false,recoveryHold:0,styleRecovered:false,styleBonus:0};s.vx+=c.entryVX??0;s.vz+=c.entryVZ??0;s.heading+=c.entryHeading??0;s.omegaYaw=c.entryYaw??0;s.fuel=c.fuel??1;s.seenFuel=s.fuel;s.styleStart=s.heading;s.night=c.night;s.storm=c.storm;const d=deck(s);s.padX=d.x;s.padZ=d.z;return s;}
 export function createFlight(seed=1,scenario=1,variability=0){

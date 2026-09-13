@@ -1,5 +1,5 @@
-import {CONTROLS} from './decision.js?v=8.4';
-import {CONTROL_LIMBS,limbTargets} from './kinematics.js?v=8.4';
+import {CONTROLS} from './decision.js?v=9.2';
+import {CONTROL_LIMBS,limbTargets} from './kinematics.js?v=9.2';
 const signed=(v,d=4)=>(v>=0?'+':'')+v.toFixed(d);
 const escape=s=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
 export class WiringView{
@@ -19,7 +19,7 @@ export class WiringView{
   const data=trace?.motorTrace,body=this.root.querySelector('#wiring-content');body.hidden=!data||mode==='human';this.root.querySelector('#wiring-empty').hidden=!!data&&mode!=='human';
   if(!data||mode==='human')return;
   const k=data.control,limb=CONTROL_LIMBS[k],actual=state[CONTROLS[k][1]],targets=limbTargets(state),points=limb.limbs.map(i=>targets[i]);
-  this.root.querySelector('#linkage-live').textContent=k===9?`Head yaw ${(-state.gaze*.65*180/Math.PI).toFixed(1)}° · ${Math.abs(state.gaze)>.25?'instrument glance':'forward view'}`:`${limb.name} · ${limb.role} · ${k===8?state.engineBank+' engines':actual.toFixed(3)+' actual control position'}`;
+  this.root.querySelector('#linkage-live').textContent=k===9?`Head yaw ${(state.gaze*.52*180/Math.PI).toFixed(1)}° · ${Math.abs(state.gaze)>.25?'instrument glance':'forward view'}`:`${limb.name} · ${limb.role} · ${k===8?state.engineBank+' engines':actual.toFixed(3)+' actual control position'}`;
   this.root.querySelector('#linkage-pose').textContent=points.length?`Contact target${points.length>1?'s':''} in cockpit coordinates: ${points.map(p=>p.map(v=>v.toFixed(2)).join(', ')).join(' / ')}`:'Head turns with the gaze servo.';
   if(this.last===data)return;this.last=data;
   const name=index=>atlas?.ids?String(atlas.ids[index]):`index ${index}`;
