@@ -1,0 +1,1898 @@
+{
+  "schema": "odor-circuit-diagnostic-v1",
+  "scope": "Isolated 30-Hz receptor-unit drive; this is not an odor-dose experiment or an in-vivo replication. All other external sources are silent.",
+  "neurons": 166700,
+  "edges": 25582938,
+  "runs": [
+    {
+      "source": "lif-pn-diagnostic.json",
+      "sha256": "7a893cad3cd229d82bd7b7589091d0011bdd0f9f714aac439cb7b19397f26552",
+      "stimulusMode": "isolated receptor units; not odor profiles",
+      "parameters": {
+        "dtMs": 0.1,
+        "restMv": -52,
+        "thresholdMv": -45,
+        "membraneMs": 20,
+        "synapseMs": 5,
+        "refractoryMs": 2.2,
+        "delayMs": 1.8,
+        "synapticWeightMv": 0.275,
+        "maxSourceHz": 30.0
+      },
+      "trialDurationSeconds": 0.5,
+      "projectionNeuronIndices": {
+        "DM1": {
+          "L": [
+            189
+          ],
+          "R": [
+            159
+          ]
+        },
+        "DM6": {
+          "L": [
+            4786,
+            6721,
+            7322
+          ],
+          "R": [
+            4624,
+            7680,
+            9052,
+            130257
+          ]
+        }
+      },
+      "trials": [
+        {
+          "name": "no external drive",
+          "side": "bilateral",
+          "seed": 370019,
+          "spikes": 0,
+          "activeNeurons": 0,
+          "motorPoolHz": {
+            "wm": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "fl": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "ml": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "hl": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "DM6": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "maximumSourceHz": 0.0
+        },
+        {
+          "name": "no external drive",
+          "side": "bilateral",
+          "seed": 377938,
+          "spikes": 0,
+          "activeNeurons": 0,
+          "motorPoolHz": {
+            "wm": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "fl": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "ml": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "hl": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "DM6": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "maximumSourceHz": 0.0
+        },
+        {
+          "name": "no external drive",
+          "side": "bilateral",
+          "seed": 385857,
+          "spikes": 0,
+          "activeNeurons": 0,
+          "motorPoolHz": {
+            "wm": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "fl": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "ml": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "hl": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "DM6": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "maximumSourceHz": 0.0
+        },
+        {
+          "name": "Or42b",
+          "side": "left",
+          "seed": 370019,
+          "spikes": 572893,
+          "activeNeurons": 17209,
+          "motorPoolHz": {
+            "wm": {
+              "L": 44.666666666666664,
+              "R": 41.76470588235294
+            },
+            "fl": {
+              "L": 3.7941176470588234,
+              "R": 2.537313432835821
+            },
+            "ml": {
+              "L": 7.172413793103448,
+              "R": 6.137931034482759
+            },
+            "hl": {
+              "L": 3.9696969696969697,
+              "R": 4.15625
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 296.0,
+              "R": 296.0
+            },
+            "DM6": {
+              "L": 144.0,
+              "R": 158.0
+            }
+          },
+          "maximumSourceHz": 30.0
+        },
+        {
+          "name": "Or42b",
+          "side": "left",
+          "seed": 377938,
+          "spikes": 566997,
+          "activeNeurons": 17195,
+          "motorPoolHz": {
+            "wm": {
+              "L": 44.90909090909091,
+              "R": 42.411764705882355
+            },
+            "fl": {
+              "L": 4.029411764705882,
+              "R": 2.537313432835821
+            },
+            "ml": {
+              "L": 6.827586206896552,
+              "R": 6.344827586206897
+            },
+            "hl": {
+              "L": 4.363636363636363,
+              "R": 5.34375
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 300.0,
+              "R": 292.0
+            },
+            "DM6": {
+              "L": 143.33333333333334,
+              "R": 158.5
+            }
+          },
+          "maximumSourceHz": 30.0
+        },
+        {
+          "name": "Or42b",
+          "side": "left",
+          "seed": 385857,
+          "spikes": 572209,
+          "activeNeurons": 17387,
+          "motorPoolHz": {
+            "wm": {
+              "L": 44.72727272727273,
+              "R": 41.705882352941174
+            },
+            "fl": {
+              "L": 3.5,
+              "R": 2.656716417910448
+            },
+            "ml": {
+              "L": 6.482758620689655,
+              "R": 6.103448275862069
+            },
+            "hl": {
+              "L": 4.121212121212121,
+              "R": 3.96875
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 296.0,
+              "R": 294.0
+            },
+            "DM6": {
+              "L": 142.66666666666666,
+              "R": 157.0
+            }
+          },
+          "maximumSourceHz": 30.0
+        },
+        {
+          "name": "Or42b",
+          "side": "right",
+          "seed": 370019,
+          "spikes": 569971,
+          "activeNeurons": 17392,
+          "motorPoolHz": {
+            "wm": {
+              "L": 44.60606060606061,
+              "R": 41.588235294117645
+            },
+            "fl": {
+              "L": 4.352941176470588,
+              "R": 2.5970149253731343
+            },
+            "ml": {
+              "L": 7.103448275862069,
+              "R": 7.344827586206897
+            },
+            "hl": {
+              "L": 4.03030303030303,
+              "R": 4.96875
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 294.0,
+              "R": 294.0
+            },
+            "DM6": {
+              "L": 142.0,
+              "R": 155.0
+            }
+          },
+          "maximumSourceHz": 30.0
+        },
+        {
+          "name": "Or42b",
+          "side": "right",
+          "seed": 377938,
+          "spikes": 571615,
+          "activeNeurons": 17451,
+          "motorPoolHz": {
+            "wm": {
+              "L": 43.39393939393939,
+              "R": 40.05882352941177
+            },
+            "fl": {
+              "L": 3.5294117647058822,
+              "R": 2.388059701492537
+            },
+            "ml": {
+              "L": 7.344827586206897,
+              "R": 6.172413793103448
+            },
+            "hl": {
+              "L": 4.03030303030303,
+              "R": 4.5625
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 300.0,
+              "R": 300.0
+            },
+            "DM6": {
+              "L": 144.0,
+              "R": 158.5
+            }
+          },
+          "maximumSourceHz": 30.0
+        },
+        {
+          "name": "Or42b",
+          "side": "right",
+          "seed": 385857,
+          "spikes": 570061,
+          "activeNeurons": 17168,
+          "motorPoolHz": {
+            "wm": {
+              "L": 43.45454545454545,
+              "R": 41.294117647058826
+            },
+            "fl": {
+              "L": 3.4411764705882355,
+              "R": 2.388059701492537
+            },
+            "ml": {
+              "L": 7.758620689655173,
+              "R": 5.689655172413793
+            },
+            "hl": {
+              "L": 4.0,
+              "R": 4.09375
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 298.0,
+              "R": 298.0
+            },
+            "DM6": {
+              "L": 141.33333333333334,
+              "R": 156.5
+            }
+          },
+          "maximumSourceHz": 30.0
+        },
+        {
+          "name": "Or42b",
+          "side": "bilateral",
+          "seed": 370019,
+          "spikes": 572839,
+          "activeNeurons": 17150,
+          "motorPoolHz": {
+            "wm": {
+              "L": 42.666666666666664,
+              "R": 39.0
+            },
+            "fl": {
+              "L": 4.029411764705882,
+              "R": 2.537313432835821
+            },
+            "ml": {
+              "L": 6.793103448275862,
+              "R": 7.068965517241379
+            },
+            "hl": {
+              "L": 4.303030303030303,
+              "R": 4.75
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 300.0,
+              "R": 306.0
+            },
+            "DM6": {
+              "L": 145.33333333333334,
+              "R": 158.0
+            }
+          },
+          "maximumSourceHz": 30.0
+        },
+        {
+          "name": "Or42b",
+          "side": "bilateral",
+          "seed": 377938,
+          "spikes": 575266,
+          "activeNeurons": 17184,
+          "motorPoolHz": {
+            "wm": {
+              "L": 45.21212121212121,
+              "R": 41.76470588235294
+            },
+            "fl": {
+              "L": 3.823529411764706,
+              "R": 2.417910447761194
+            },
+            "ml": {
+              "L": 7.689655172413793,
+              "R": 6.413793103448276
+            },
+            "hl": {
+              "L": 4.606060606060606,
+              "R": 4.15625
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 308.0,
+              "R": 304.0
+            },
+            "DM6": {
+              "L": 146.0,
+              "R": 157.5
+            }
+          },
+          "maximumSourceHz": 30.0
+        },
+        {
+          "name": "Or42b",
+          "side": "bilateral",
+          "seed": 385857,
+          "spikes": 573410,
+          "activeNeurons": 17261,
+          "motorPoolHz": {
+            "wm": {
+              "L": 43.15151515151515,
+              "R": 40.1764705882353
+            },
+            "fl": {
+              "L": 4.088235294117647,
+              "R": 2.388059701492537
+            },
+            "ml": {
+              "L": 6.862068965517241,
+              "R": 6.655172413793103
+            },
+            "hl": {
+              "L": 4.484848484848484,
+              "R": 4.5625
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 302.0,
+              "R": 302.0
+            },
+            "DM6": {
+              "L": 142.0,
+              "R": 158.0
+            }
+          },
+          "maximumSourceHz": 30.0
+        },
+        {
+          "name": "Or67a",
+          "side": "left",
+          "seed": 370019,
+          "spikes": 551016,
+          "activeNeurons": 17191,
+          "motorPoolHz": {
+            "wm": {
+              "L": 44.06060606060606,
+              "R": 40.411764705882355
+            },
+            "fl": {
+              "L": 4.0,
+              "R": 2.4776119402985075
+            },
+            "ml": {
+              "L": 5.448275862068965,
+              "R": 6.551724137931035
+            },
+            "hl": {
+              "L": 5.151515151515151,
+              "R": 4.21875
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 274.0,
+              "R": 272.0
+            },
+            "DM6": {
+              "L": 160.0,
+              "R": 163.0
+            }
+          },
+          "maximumSourceHz": 30.0
+        },
+        {
+          "name": "Or67a",
+          "side": "left",
+          "seed": 377938,
+          "spikes": 543963,
+          "activeNeurons": 16987,
+          "motorPoolHz": {
+            "wm": {
+              "L": 43.75757575757576,
+              "R": 40.8235294117647
+            },
+            "fl": {
+              "L": 4.029411764705882,
+              "R": 2.8656716417910446
+            },
+            "ml": {
+              "L": 7.0344827586206895,
+              "R": 5.827586206896552
+            },
+            "hl": {
+              "L": 4.363636363636363,
+              "R": 4.75
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 270.0,
+              "R": 268.0
+            },
+            "DM6": {
+              "L": 156.66666666666666,
+              "R": 161.0
+            }
+          },
+          "maximumSourceHz": 30.0
+        },
+        {
+          "name": "Or67a",
+          "side": "left",
+          "seed": 385857,
+          "spikes": 555705,
+          "activeNeurons": 17317,
+          "motorPoolHz": {
+            "wm": {
+              "L": 42.484848484848484,
+              "R": 39.588235294117645
+            },
+            "fl": {
+              "L": 3.6470588235294117,
+              "R": 2.417910447761194
+            },
+            "ml": {
+              "L": 7.275862068965517,
+              "R": 6.655172413793103
+            },
+            "hl": {
+              "L": 4.303030303030303,
+              "R": 4.9375
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 272.0,
+              "R": 274.0
+            },
+            "DM6": {
+              "L": 159.33333333333334,
+              "R": 165.5
+            }
+          },
+          "maximumSourceHz": 30.0
+        },
+        {
+          "name": "Or67a",
+          "side": "right",
+          "seed": 370019,
+          "spikes": 556823,
+          "activeNeurons": 17449,
+          "motorPoolHz": {
+            "wm": {
+              "L": 44.121212121212125,
+              "R": 40.705882352941174
+            },
+            "fl": {
+              "L": 3.7058823529411766,
+              "R": 2.8358208955223883
+            },
+            "ml": {
+              "L": 5.931034482758621,
+              "R": 7.0344827586206895
+            },
+            "hl": {
+              "L": 3.9696969696969697,
+              "R": 4.15625
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 274.0,
+              "R": 278.0
+            },
+            "DM6": {
+              "L": 160.66666666666666,
+              "R": 173.0
+            }
+          },
+          "maximumSourceHz": 30.0
+        },
+        {
+          "name": "Or67a",
+          "side": "right",
+          "seed": 377938,
+          "spikes": 557799,
+          "activeNeurons": 17455,
+          "motorPoolHz": {
+            "wm": {
+              "L": 43.21212121212121,
+              "R": 40.23529411764706
+            },
+            "fl": {
+              "L": 3.8529411764705883,
+              "R": 2.8955223880597014
+            },
+            "ml": {
+              "L": 6.103448275862069,
+              "R": 6.724137931034483
+            },
+            "hl": {
+              "L": 4.7272727272727275,
+              "R": 4.40625
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 272.0,
+              "R": 284.0
+            },
+            "DM6": {
+              "L": 162.0,
+              "R": 176.0
+            }
+          },
+          "maximumSourceHz": 30.0
+        },
+        {
+          "name": "Or67a",
+          "side": "right",
+          "seed": 385857,
+          "spikes": 555303,
+          "activeNeurons": 17333,
+          "motorPoolHz": {
+            "wm": {
+              "L": 43.09090909090909,
+              "R": 40.05882352941177
+            },
+            "fl": {
+              "L": 3.7058823529411766,
+              "R": 2.388059701492537
+            },
+            "ml": {
+              "L": 6.655172413793103,
+              "R": 6.517241379310345
+            },
+            "hl": {
+              "L": 4.545454545454546,
+              "R": 4.15625
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 274.0,
+              "R": 278.0
+            },
+            "DM6": {
+              "L": 160.66666666666666,
+              "R": 171.5
+            }
+          },
+          "maximumSourceHz": 30.0
+        },
+        {
+          "name": "Or67a",
+          "side": "bilateral",
+          "seed": 370019,
+          "spikes": 563184,
+          "activeNeurons": 17488,
+          "motorPoolHz": {
+            "wm": {
+              "L": 43.696969696969695,
+              "R": 40.294117647058826
+            },
+            "fl": {
+              "L": 3.8823529411764706,
+              "R": 2.7761194029850746
+            },
+            "ml": {
+              "L": 6.827586206896552,
+              "R": 6.137931034482759
+            },
+            "hl": {
+              "L": 4.121212121212121,
+              "R": 4.40625
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 274.0,
+              "R": 276.0
+            },
+            "DM6": {
+              "L": 179.33333333333334,
+              "R": 183.5
+            }
+          },
+          "maximumSourceHz": 30.0
+        },
+        {
+          "name": "Or67a",
+          "side": "bilateral",
+          "seed": 377938,
+          "spikes": 559055,
+          "activeNeurons": 17420,
+          "motorPoolHz": {
+            "wm": {
+              "L": 42.303030303030305,
+              "R": 40.1764705882353
+            },
+            "fl": {
+              "L": 3.676470588235294,
+              "R": 2.626865671641791
+            },
+            "ml": {
+              "L": 6.551724137931035,
+              "R": 6.379310344827586
+            },
+            "hl": {
+              "L": 4.484848484848484,
+              "R": 4.15625
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 282.0,
+              "R": 278.0
+            },
+            "DM6": {
+              "L": 173.33333333333334,
+              "R": 182.0
+            }
+          },
+          "maximumSourceHz": 30.0
+        },
+        {
+          "name": "Or67a",
+          "side": "bilateral",
+          "seed": 385857,
+          "spikes": 563380,
+          "activeNeurons": 17410,
+          "motorPoolHz": {
+            "wm": {
+              "L": 43.39393939393939,
+              "R": 40.35294117647059
+            },
+            "fl": {
+              "L": 3.8529411764705883,
+              "R": 2.7761194029850746
+            },
+            "ml": {
+              "L": 7.103448275862069,
+              "R": 6.931034482758621
+            },
+            "hl": {
+              "L": 4.484848484848484,
+              "R": 4.28125
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 276.0,
+              "R": 284.0
+            },
+            "DM6": {
+              "L": 174.66666666666666,
+              "R": 182.5
+            }
+          },
+          "maximumSourceHz": 30.0
+        }
+      ]
+    },
+    {
+      "source": "lif-pn-weight-0055.json",
+      "sha256": "bfb40a9bb6596abfab6d69d26efd73ef668fc5958ee468b0056aca2a45d03a08",
+      "stimulusMode": "isolated receptor units; not odor profiles",
+      "parameters": {
+        "dtMs": 0.1,
+        "restMv": -52,
+        "thresholdMv": -45,
+        "membraneMs": 20,
+        "synapseMs": 5,
+        "refractoryMs": 2.2,
+        "delayMs": 1.8,
+        "synapticWeightMv": 0.055,
+        "maxSourceHz": 30.0
+      },
+      "trialDurationSeconds": 0.5,
+      "projectionNeuronIndices": {
+        "DM1": {
+          "L": [
+            189
+          ],
+          "R": [
+            159
+          ]
+        },
+        "DM6": {
+          "L": [
+            4786,
+            6721,
+            7322
+          ],
+          "R": [
+            4624,
+            7680,
+            9052,
+            130257
+          ]
+        }
+      },
+      "trials": [
+        {
+          "name": "no external drive",
+          "side": "bilateral",
+          "seed": 370019,
+          "spikes": 0,
+          "activeNeurons": 0,
+          "motorPoolHz": {
+            "wm": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "fl": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "ml": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "hl": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "DM6": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "maximumSourceHz": 0.0
+        },
+        {
+          "name": "no external drive",
+          "side": "bilateral",
+          "seed": 377938,
+          "spikes": 0,
+          "activeNeurons": 0,
+          "motorPoolHz": {
+            "wm": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "fl": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "ml": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "hl": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "DM6": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "maximumSourceHz": 0.0
+        },
+        {
+          "name": "Or42b",
+          "side": "left",
+          "seed": 370019,
+          "spikes": 25532,
+          "activeNeurons": 943,
+          "motorPoolHz": {
+            "wm": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "fl": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "ml": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "hl": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 146.0,
+              "R": 128.0
+            },
+            "DM6": {
+              "L": 8.0,
+              "R": 24.0
+            }
+          },
+          "maximumSourceHz": 30.0
+        },
+        {
+          "name": "Or42b",
+          "side": "left",
+          "seed": 377938,
+          "spikes": 25329,
+          "activeNeurons": 942,
+          "motorPoolHz": {
+            "wm": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "fl": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "ml": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "hl": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 144.0,
+              "R": 126.0
+            },
+            "DM6": {
+              "L": 8.0,
+              "R": 24.5
+            }
+          },
+          "maximumSourceHz": 30.0
+        },
+        {
+          "name": "Or42b",
+          "side": "right",
+          "seed": 370019,
+          "spikes": 25271,
+          "activeNeurons": 958,
+          "motorPoolHz": {
+            "wm": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "fl": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "ml": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "hl": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 140.0,
+              "R": 148.0
+            },
+            "DM6": {
+              "L": 8.0,
+              "R": 25.5
+            }
+          },
+          "maximumSourceHz": 30.0
+        },
+        {
+          "name": "Or42b",
+          "side": "right",
+          "seed": 377938,
+          "spikes": 27305,
+          "activeNeurons": 959,
+          "motorPoolHz": {
+            "wm": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "fl": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "ml": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "hl": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 148.0,
+              "R": 152.0
+            },
+            "DM6": {
+              "L": 10.0,
+              "R": 25.5
+            }
+          },
+          "maximumSourceHz": 30.0
+        },
+        {
+          "name": "Or42b",
+          "side": "bilateral",
+          "seed": 370019,
+          "spikes": 28300,
+          "activeNeurons": 987,
+          "motorPoolHz": {
+            "wm": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "fl": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "ml": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "hl": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 168.0,
+              "R": 160.0
+            },
+            "DM6": {
+              "L": 7.333333333333333,
+              "R": 26.5
+            }
+          },
+          "maximumSourceHz": 30.0
+        },
+        {
+          "name": "Or42b",
+          "side": "bilateral",
+          "seed": 377938,
+          "spikes": 26854,
+          "activeNeurons": 994,
+          "motorPoolHz": {
+            "wm": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "fl": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "ml": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "hl": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 158.0,
+              "R": 158.0
+            },
+            "DM6": {
+              "L": 8.0,
+              "R": 26.0
+            }
+          },
+          "maximumSourceHz": 30.0
+        },
+        {
+          "name": "Or67a",
+          "side": "left",
+          "seed": 370019,
+          "spikes": 352,
+          "activeNeurons": 25,
+          "motorPoolHz": {
+            "wm": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "fl": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "ml": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "hl": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "DM6": {
+              "L": 8.0,
+              "R": 0.0
+            }
+          },
+          "maximumSourceHz": 30.0
+        },
+        {
+          "name": "Or67a",
+          "side": "left",
+          "seed": 377938,
+          "spikes": 335,
+          "activeNeurons": 25,
+          "motorPoolHz": {
+            "wm": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "fl": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "ml": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "hl": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "DM6": {
+              "L": 4.0,
+              "R": 0.0
+            }
+          },
+          "maximumSourceHz": 30.0
+        },
+        {
+          "name": "Or67a",
+          "side": "right",
+          "seed": 370019,
+          "spikes": 508,
+          "activeNeurons": 36,
+          "motorPoolHz": {
+            "wm": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "fl": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "ml": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "hl": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "DM6": {
+              "L": 8.666666666666666,
+              "R": 17.0
+            }
+          },
+          "maximumSourceHz": 30.0
+        },
+        {
+          "name": "Or67a",
+          "side": "right",
+          "seed": 377938,
+          "spikes": 489,
+          "activeNeurons": 36,
+          "motorPoolHz": {
+            "wm": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "fl": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "ml": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "hl": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "DM6": {
+              "L": 6.666666666666667,
+              "R": 17.0
+            }
+          },
+          "maximumSourceHz": 30.0
+        },
+        {
+          "name": "Or67a",
+          "side": "bilateral",
+          "seed": 370019,
+          "spikes": 928,
+          "activeNeurons": 59,
+          "motorPoolHz": {
+            "wm": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "fl": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "ml": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "hl": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "DM6": {
+              "L": 38.666666666666664,
+              "R": 34.0
+            }
+          },
+          "maximumSourceHz": 30.0
+        },
+        {
+          "name": "Or67a",
+          "side": "bilateral",
+          "seed": 377938,
+          "spikes": 897,
+          "activeNeurons": 59,
+          "motorPoolHz": {
+            "wm": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "fl": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "ml": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "hl": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "DM6": {
+              "L": 37.333333333333336,
+              "R": 33.0
+            }
+          },
+          "maximumSourceHz": 30.0
+        }
+      ]
+    },
+    {
+      "source": "lif-pn-weight-00275.json",
+      "sha256": "1e3be9fbf80ad42b9b26f12340aa3205d8b59b69637cd1a24e5d4d8a27dd1beb",
+      "stimulusMode": "isolated receptor units; not odor profiles",
+      "parameters": {
+        "dtMs": 0.1,
+        "restMv": -52,
+        "thresholdMv": -45,
+        "membraneMs": 20,
+        "synapseMs": 5,
+        "refractoryMs": 2.2,
+        "delayMs": 1.8,
+        "synapticWeightMv": 0.0275,
+        "maxSourceHz": 30.0
+      },
+      "trialDurationSeconds": 0.5,
+      "projectionNeuronIndices": {
+        "DM1": {
+          "L": [
+            189
+          ],
+          "R": [
+            159
+          ]
+        },
+        "DM6": {
+          "L": [
+            4786,
+            6721,
+            7322
+          ],
+          "R": [
+            4624,
+            7680,
+            9052,
+            130257
+          ]
+        }
+      },
+      "trials": [
+        {
+          "name": "no external drive",
+          "side": "bilateral",
+          "seed": 370019,
+          "spikes": 0,
+          "activeNeurons": 0,
+          "motorPoolHz": {
+            "wm": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "fl": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "ml": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "hl": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "DM6": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "maximumSourceHz": 0.0
+        },
+        {
+          "name": "no external drive",
+          "side": "bilateral",
+          "seed": 377938,
+          "spikes": 0,
+          "activeNeurons": 0,
+          "motorPoolHz": {
+            "wm": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "fl": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "ml": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "hl": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "DM6": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "maximumSourceHz": 0.0
+        },
+        {
+          "name": "Or42b",
+          "side": "left",
+          "seed": 370019,
+          "spikes": 528,
+          "activeNeurons": 37,
+          "motorPoolHz": {
+            "wm": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "fl": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "ml": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "hl": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 40.0,
+              "R": 18.0
+            },
+            "DM6": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "maximumSourceHz": 30.0
+        },
+        {
+          "name": "Or42b",
+          "side": "left",
+          "seed": 377938,
+          "spikes": 553,
+          "activeNeurons": 37,
+          "motorPoolHz": {
+            "wm": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "fl": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "ml": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "hl": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 44.0,
+              "R": 20.0
+            },
+            "DM6": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "maximumSourceHz": 30.0
+        },
+        {
+          "name": "Or42b",
+          "side": "right",
+          "seed": 370019,
+          "spikes": 657,
+          "activeNeurons": 41,
+          "motorPoolHz": {
+            "wm": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "fl": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "ml": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "hl": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 44.0,
+              "R": 58.0
+            },
+            "DM6": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "maximumSourceHz": 30.0
+        },
+        {
+          "name": "Or42b",
+          "side": "right",
+          "seed": 377938,
+          "spikes": 652,
+          "activeNeurons": 41,
+          "motorPoolHz": {
+            "wm": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "fl": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "ml": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "hl": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 44.0,
+              "R": 60.0
+            },
+            "DM6": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "maximumSourceHz": 30.0
+        },
+        {
+          "name": "Or42b",
+          "side": "bilateral",
+          "seed": 370019,
+          "spikes": 1186,
+          "activeNeurons": 77,
+          "motorPoolHz": {
+            "wm": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "fl": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "ml": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "hl": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 76.0,
+              "R": 76.0
+            },
+            "DM6": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "maximumSourceHz": 30.0
+        },
+        {
+          "name": "Or42b",
+          "side": "bilateral",
+          "seed": 377938,
+          "spikes": 1205,
+          "activeNeurons": 77,
+          "motorPoolHz": {
+            "wm": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "fl": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "ml": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "hl": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 76.0,
+              "R": 76.0
+            },
+            "DM6": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "maximumSourceHz": 30.0
+        },
+        {
+          "name": "Or67a",
+          "side": "left",
+          "seed": 370019,
+          "spikes": 340,
+          "activeNeurons": 22,
+          "motorPoolHz": {
+            "wm": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "fl": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "ml": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "hl": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "DM6": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "maximumSourceHz": 30.0
+        },
+        {
+          "name": "Or67a",
+          "side": "left",
+          "seed": 377938,
+          "spikes": 329,
+          "activeNeurons": 22,
+          "motorPoolHz": {
+            "wm": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "fl": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "ml": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "hl": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "DM6": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "maximumSourceHz": 30.0
+        },
+        {
+          "name": "Or67a",
+          "side": "right",
+          "seed": 370019,
+          "spikes": 461,
+          "activeNeurons": 29,
+          "motorPoolHz": {
+            "wm": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "fl": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "ml": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "hl": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "DM6": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "maximumSourceHz": 30.0
+        },
+        {
+          "name": "Or67a",
+          "side": "right",
+          "seed": 377938,
+          "spikes": 445,
+          "activeNeurons": 29,
+          "motorPoolHz": {
+            "wm": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "fl": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "ml": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "hl": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "DM6": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "maximumSourceHz": 30.0
+        },
+        {
+          "name": "Or67a",
+          "side": "bilateral",
+          "seed": 370019,
+          "spikes": 810,
+          "activeNeurons": 58,
+          "motorPoolHz": {
+            "wm": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "fl": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "ml": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "hl": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "DM6": {
+              "L": 3.3333333333333335,
+              "R": 2.0
+            }
+          },
+          "maximumSourceHz": 30.0
+        },
+        {
+          "name": "Or67a",
+          "side": "bilateral",
+          "seed": 377938,
+          "spikes": 783,
+          "activeNeurons": 55,
+          "motorPoolHz": {
+            "wm": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "fl": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "ml": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "hl": {
+              "L": 0.0,
+              "R": 0.0
+            }
+          },
+          "projectionNeuronPoolHz": {
+            "DM1": {
+              "L": 0.0,
+              "R": 0.0
+            },
+            "DM6": {
+              "L": 4.666666666666667,
+              "R": 1.0
+            }
+          },
+          "maximumSourceHz": 30.0
+        }
+      ]
+    }
+  ]
+}

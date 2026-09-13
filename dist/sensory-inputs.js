@@ -1,5 +1,5 @@
 // The embodied pilot receives light at the eyes and sensations from its body.
-// World coordinates, mission guidance, velocity and fuel values are not inputs.
+// Visible instrument readings are rendered into eye pixels. Numerical flight-state arrays and mission guidance are not input channels.
 export const RETINA_WIDTH=32,RETINA_HEIGHT=24,EYE_PIXELS=RETINA_WIDTH*RETINA_HEIGHT;
 export const BODY_SIGNALS=[
  ['Left foreleg · throttle position','%','Lever centered'],

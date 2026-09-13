@@ -1,0 +1,530 @@
+{
+  "schema": "odor-experiment-results-v1",
+  "status": "Experimental one-axis proxy; no successful full flight or living-fly validation established.",
+  "sourceSHA256": {
+    "odor-atlas.json": "d5ffed114671352ddbb62ed7abbfcd723c929e8783a8796ed2c783f256998007",
+    "odor-screen.json": "7886151f5728ec349b92ddde0fc9a47e97fea7e283ce5f457ceca8754d578d95",
+    "lif-acid-replication.json": "526ff0988b4a45d2015c4dd3a7c37931433cfe0166e0797ea0efdfe3a10d75e0",
+    "lif-expanded-panel.json": "d4c5f219d4f3e787a89f7985425fdcb801bcbc0e41f33048501afb74eaf4d500",
+    "odor-steering-linalool.json": "c7830656002071a8e8e56a60ded7b0450e1040e63a5fe133dda11cb99ded6322"
+  },
+  "atlas": {
+    "odorants": 689,
+    "units": 49,
+    "directORN": 2141,
+    "inputCounts": {
+      "left": 855,
+      "right": 1286,
+      "unknownSide": 397
+    },
+    "rateScreenOdorants": 153,
+    "license": "CC BY-SA 4.0",
+    "attribution": "DoOR.data contributors; M\u00fcnch and Galizia, DoOR 2.0 (2016), doi:10.1038/srep21841"
+  },
+  "spikingPanel": [
+    {
+      "odor": "acetic acid",
+      "pairedSeeds": [
+        370019,
+        377938,
+        385857,
+        393776
+      ],
+      "leftMinusRightEffectHz": [
+        -1.8137254901960702,
+        -0.4040404040404084,
+        -1.6488413547237002,
+        -0.9046345811051637
+      ],
+      "meanHz": -1.1928104575163356,
+      "sampleStandardDeviationHz": 0.6579521740524898,
+      "sourceFile": "lif-acid-replication.json"
+    },
+    {
+      "odor": "propanoic acid",
+      "pairedSeeds": [
+        370019,
+        377938,
+        385857,
+        393776
+      ],
+      "leftMinusRightEffectHz": [
+        0.8437314319667308,
+        0.5570409982174667,
+        0.7486631016042864,
+        -0.9655377302436179
+      ],
+      "meanHz": 0.2959744503862165,
+      "sampleStandardDeviationHz": 0.8494181243819791,
+      "sourceFile": "lif-acid-replication.json"
+    },
+    {
+      "odor": "putrescine",
+      "pairedSeeds": [
+        370019,
+        377938,
+        385857
+      ],
+      "leftMinusRightEffectHz": [
+        -0.09506833036245155,
+        -0.18865121806298646,
+        -0.4783125371360697
+      ],
+      "meanHz": -0.25401069518716923,
+      "sampleStandardDeviationHz": 0.19980722320237793,
+      "sourceFile": "lif-expanded-panel.json"
+    },
+    {
+      "odor": "geranyl acetate",
+      "pairedSeeds": [
+        370019,
+        377938,
+        385857
+      ],
+      "leftMinusRightEffectHz": [
+        0.15894236482471769,
+        -1.7483660130719016,
+        -0.43226381461675345
+      ],
+      "meanHz": -0.6738958209546458,
+      "sampleStandardDeviationHz": 0.9763430913177061,
+      "sourceFile": "lif-expanded-panel.json"
+    },
+    {
+      "odor": "linalool",
+      "pairedSeeds": [
+        370019,
+        377938,
+        385857
+      ],
+      "leftMinusRightEffectHz": [
+        0.606060606060602,
+        0.18865121806297935,
+        0.9387997623291753
+      ],
+      "meanHz": 0.5778371954842522,
+      "sampleStandardDeviationHz": 0.3758698315834807,
+      "sourceFile": "lif-expanded-panel.json"
+    },
+    {
+      "odor": "2,3-butanedione",
+      "pairedSeeds": [
+        370019,
+        377938,
+        385857
+      ],
+      "leftMinusRightEffectHz": [
+        -0.08318478906713977,
+        -0.34907902554960657,
+        -0.5912061794414711
+      ],
+      "meanHz": -0.3411566646860725,
+      "sampleStandardDeviationHz": 0.25410333748439085,
+      "sourceFile": "lif-expanded-panel.json"
+    },
+    {
+      "odor": "benzaldehyde",
+      "pairedSeeds": [
+        370019,
+        377938,
+        385857
+      ],
+      "leftMinusRightEffectHz": [
+        -0.23767082590612176,
+        -0.36096256684492545,
+        -1.2433155080213893
+      ],
+      "meanHz": -0.6139829669241456,
+      "sampleStandardDeviationHz": 0.548493207623272,
+      "sourceFile": "lif-expanded-panel.json"
+    },
+    {
+      "odor": "1-hexanol",
+      "pairedSeeds": [
+        370019,
+        377938,
+        385857
+      ],
+      "leftMinusRightEffectHz": [
+        0.8838383838383805,
+        -0.09506833036243734,
+        0.26737967914438343
+      ],
+      "meanHz": 0.35204991087344223,
+      "sampleStandardDeviationHz": 0.4949155229760427,
+      "sourceFile": "lif-expanded-panel.json"
+    },
+    {
+      "odor": "1-octen-3-ol",
+      "pairedSeeds": [
+        370019,
+        377938,
+        385857
+      ],
+      "leftMinusRightEffectHz": [
+        -0.22281639928699093,
+        0.20202020202020066,
+        -0.509506833036248
+      ],
+      "meanHz": -0.17676767676767943,
+      "sampleStandardDeviationHz": 0.3579916815210943,
+      "sourceFile": "lif-expanded-panel.json"
+    },
+    {
+      "odor": "ethyl propionate",
+      "pairedSeeds": [
+        370019,
+        377938,
+        385857
+      ],
+      "leftMinusRightEffectHz": [
+        0.3862150920974514,
+        0.5926916221033949,
+        -1.3755199049316644
+      ],
+      "meanHz": -0.13220439691027272,
+      "sampleStandardDeviationHz": 1.081680742514025,
+      "sourceFile": "lif-expanded-panel.json"
+    }
+  ],
+  "steering": {
+    "odor": {
+      "key": "CDOSHBSSFJOMGT-UHFFFAOYSA-N",
+      "name": "linalool",
+      "cas": "78-70-6",
+      "measuredUnits": 29,
+      "coverage": 0.5918367346938775
+    },
+    "neurons": 166700,
+    "edges": 25582938,
+    "selection": {
+      "criterion": "mean training squared error plus terminal squared error",
+      "candidates": [
+        {
+          "gain": -6.0,
+          "meanScore": 799.9167861982189
+        },
+        {
+          "gain": 0.0,
+          "meanScore": 698.7380973176064
+        },
+        {
+          "gain": 6.0,
+          "meanScore": 2376.1485136697274
+        }
+      ],
+      "gain": 0.0
+    },
+    "decoder": {
+      "description": "(mean left wing motor rate - mean right rate - fixed zero) / 4 Hz",
+      "zeroHz": 3.5268122400475357,
+      "fullScaleHz": 4.0,
+      "filterSeconds": 0.45,
+      "calibrationMethod": "endpoints",
+      "calibrations": [
+        {
+          "seed": 20913003,
+          "exposure": [
+            1.0,
+            0.0
+          ],
+          "wingDifferenceHz": 3.6263368983957207
+        },
+        {
+          "seed": 20921017,
+          "exposure": [
+            1.0,
+            0.0
+          ],
+          "wingDifferenceHz": 3.26760249554367
+        },
+        {
+          "seed": 20931033,
+          "exposure": [
+            1.0,
+            0.0
+          ],
+          "wingDifferenceHz": 3.3221925133689894
+        },
+        {
+          "seed": 20913003,
+          "exposure": [
+            0.0,
+            1.0
+          ],
+          "wingDifferenceHz": 4.110962566844918
+        },
+        {
+          "seed": 20921017,
+          "exposure": [
+            0.0,
+            1.0
+          ],
+          "wingDifferenceHz": 4.3293226381461665
+        },
+        {
+          "seed": 20931033,
+          "exposure": [
+            0.0,
+            1.0
+          ],
+          "wingDifferenceHz": 2.50445632798575
+        }
+      ]
+    },
+    "apparatus": {
+      "deliveryDelaySeconds": 0.2,
+      "deliveryTimeConstantSeconds": 0.25,
+      "yawRateLimitRadiansPerSecond": 0.6,
+      "yawRateTimeConstantSeconds": 0.3,
+      "exposureSum": 1,
+      "visualHalfFieldDegrees": 60
+    },
+    "testSummary": {
+      "contingent": {
+        "trials": 4,
+        "centered": 0,
+        "meanAbsoluteErrorDegrees": 20.02323400432527,
+        "meanAbsoluteFinalErrorDegrees": 23.381124684959822
+      },
+      "balanced": {
+        "trials": 4,
+        "centered": 0,
+        "meanAbsoluteErrorDegrees": 20.02323400432527,
+        "meanAbsoluteFinalErrorDegrees": 23.381124684959822
+      },
+      "reversed": {
+        "trials": 4,
+        "centered": 0,
+        "meanAbsoluteErrorDegrees": 20.02323400432527,
+        "meanAbsoluteFinalErrorDegrees": 23.381124684959822
+      }
+    },
+    "limitations": [
+      "The optimized component is the external image-to-odor encoder; the fly model does not learn.",
+      "Motor-pool firing is an assumed yaw proxy; wing movement and yaw gain are not biologically validated.",
+      "Normalized odor exposure, source rates and delivery dynamics are assumptions, not physical doses.",
+      "Only olfactory source neurons receive external drive in this assay; the image is read by the apparatus encoder.",
+      "This constrained one-axis plant is not any of the 27 flight missions.",
+      "Shiu et al. neural parameters are transferred to MaleCNS without experimental validation."
+    ]
+  },
+  "trials": [
+    {
+      "split": "train",
+      "mode": "contingent",
+      "gain": -6.0,
+      "seed": 21200011,
+      "initialDegrees": -20,
+      "finalErrorDegrees": -15.665814487533934,
+      "meanAbsoluteErrorDegrees": 18.286534103150384,
+      "rmsErrorDegrees": 18.36212101648392,
+      "centered": false,
+      "score": 582.5852317818285
+    },
+    {
+      "split": "train",
+      "mode": "contingent",
+      "gain": -6.0,
+      "seed": 21208017,
+      "initialDegrees": 20,
+      "finalErrorDegrees": 23.400944642801367,
+      "meanAbsoluteErrorDegrees": 21.565180434226704,
+      "rmsErrorDegrees": 21.671274315073294,
+      "centered": false,
+      "score": 1017.2483406146094
+    },
+    {
+      "split": "train",
+      "mode": "contingent",
+      "gain": 0.0,
+      "seed": 21200011,
+      "initialDegrees": -20,
+      "finalErrorDegrees": -5.500047937363635,
+      "meanAbsoluteErrorDegrees": 10.002911671700904,
+      "rmsErrorDegrees": 11.267194174277384,
+      "centered": false,
+      "score": 157.20019187416818
+    },
+    {
+      "split": "train",
+      "mode": "contingent",
+      "gain": 0.0,
+      "seed": 21208017,
+      "initialDegrees": 20,
+      "finalErrorDegrees": 26.95900285864209,
+      "meanAbsoluteErrorDegrees": 22.591177266786058,
+      "rmsErrorDegrees": 22.660277306969835,
+      "centered": false,
+      "score": 1240.2760027610445
+    },
+    {
+      "split": "train",
+      "mode": "contingent",
+      "gain": 6.0,
+      "seed": 21200011,
+      "initialDegrees": -20,
+      "finalErrorDegrees": -17.332779437176992,
+      "meanAbsoluteErrorDegrees": 19.389609885807637,
+      "rmsErrorDegrees": 19.41302465380357,
+      "centered": false,
+      "score": 677.2907692270107
+    },
+    {
+      "split": "train",
+      "mode": "contingent",
+      "gain": 6.0,
+      "seed": 21208017,
+      "initialDegrees": 20,
+      "finalErrorDegrees": 54.585176484108196,
+      "meanAbsoluteErrorDegrees": 30.53065294254483,
+      "rmsErrorDegrees": 33.09780606492228,
+      "centered": false,
+      "score": 4075.0062581124444
+    },
+    {
+      "split": "test",
+      "mode": "contingent",
+      "gain": 0.0,
+      "seed": 22200013,
+      "initialDegrees": -25,
+      "finalErrorDegrees": -22.021181776036414,
+      "meanAbsoluteErrorDegrees": 21.27148276300521,
+      "rmsErrorDegrees": 21.37562288960446,
+      "centered": false,
+      "score": 941.8497007318205
+    },
+    {
+      "split": "test",
+      "mode": "contingent",
+      "gain": 0.0,
+      "seed": 22208019,
+      "initialDegrees": 25,
+      "finalErrorDegrees": 52.81917875626664,
+      "meanAbsoluteErrorDegrees": 39.157872677145896,
+      "rmsErrorDegrees": 40.132554839521724,
+      "centered": false,
+      "score": 4400.487602433667
+    },
+    {
+      "split": "test",
+      "mode": "contingent",
+      "gain": 0.0,
+      "seed": 22216021,
+      "initialDegrees": -15,
+      "finalErrorDegrees": -11.611390512711948,
+      "meanAbsoluteErrorDegrees": 12.889811793505787,
+      "rmsErrorDegrees": 13.012545729638566,
+      "centered": false,
+      "score": 304.1507360046319
+    },
+    {
+      "split": "test",
+      "mode": "contingent",
+      "gain": 0.0,
+      "seed": 22224027,
+      "initialDegrees": 15,
+      "finalErrorDegrees": 7.072747694824282,
+      "meanAbsoluteErrorDegrees": 6.77376878364418,
+      "rmsErrorDegrees": 7.858960239777833,
+      "centered": false,
+      "score": 111.78701600505104
+    },
+    {
+      "split": "test",
+      "mode": "balanced",
+      "gain": 0.0,
+      "seed": 22200013,
+      "initialDegrees": -25,
+      "finalErrorDegrees": -22.021181776036414,
+      "meanAbsoluteErrorDegrees": 21.27148276300521,
+      "rmsErrorDegrees": 21.37562288960446,
+      "centered": false,
+      "score": 941.8497007318205
+    },
+    {
+      "split": "test",
+      "mode": "balanced",
+      "gain": 0.0,
+      "seed": 22208019,
+      "initialDegrees": 25,
+      "finalErrorDegrees": 52.81917875626664,
+      "meanAbsoluteErrorDegrees": 39.157872677145896,
+      "rmsErrorDegrees": 40.132554839521724,
+      "centered": false,
+      "score": 4400.487602433667
+    },
+    {
+      "split": "test",
+      "mode": "balanced",
+      "gain": 0.0,
+      "seed": 22216021,
+      "initialDegrees": -15,
+      "finalErrorDegrees": -11.611390512711948,
+      "meanAbsoluteErrorDegrees": 12.889811793505787,
+      "rmsErrorDegrees": 13.012545729638566,
+      "centered": false,
+      "score": 304.1507360046319
+    },
+    {
+      "split": "test",
+      "mode": "balanced",
+      "gain": 0.0,
+      "seed": 22224027,
+      "initialDegrees": 15,
+      "finalErrorDegrees": 7.072747694824282,
+      "meanAbsoluteErrorDegrees": 6.77376878364418,
+      "rmsErrorDegrees": 7.858960239777833,
+      "centered": false,
+      "score": 111.78701600505104
+    },
+    {
+      "split": "test",
+      "mode": "reversed",
+      "gain": 0.0,
+      "seed": 22200013,
+      "initialDegrees": -25,
+      "finalErrorDegrees": -22.021181776036414,
+      "meanAbsoluteErrorDegrees": 21.27148276300521,
+      "rmsErrorDegrees": 21.37562288960446,
+      "centered": false,
+      "score": 941.8497007318205
+    },
+    {
+      "split": "test",
+      "mode": "reversed",
+      "gain": 0.0,
+      "seed": 22208019,
+      "initialDegrees": 25,
+      "finalErrorDegrees": 52.81917875626664,
+      "meanAbsoluteErrorDegrees": 39.157872677145896,
+      "rmsErrorDegrees": 40.132554839521724,
+      "centered": false,
+      "score": 4400.487602433667
+    },
+    {
+      "split": "test",
+      "mode": "reversed",
+      "gain": 0.0,
+      "seed": 22216021,
+      "initialDegrees": -15,
+      "finalErrorDegrees": -11.611390512711948,
+      "meanAbsoluteErrorDegrees": 12.889811793505787,
+      "rmsErrorDegrees": 13.012545729638566,
+      "centered": false,
+      "score": 304.1507360046319
+    },
+    {
+      "split": "test",
+      "mode": "reversed",
+      "gain": 0.0,
+      "seed": 22224027,
+      "initialDegrees": 15,
+      "finalErrorDegrees": 7.072747694824282,
+      "meanAbsoluteErrorDegrees": 6.77376878364418,
+      "rmsErrorDegrees": 7.858960239777833,
+      "centered": false,
+      "score": 111.78701600505104
+    }
+  ]
+}

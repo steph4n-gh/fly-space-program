@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import {gunzipSync} from 'node:zlib';
 import {loadFullNetwork} from './full-network-node.mjs';
 import {createFlight,advance,decisionSteps} from '../dist/engine3d.js';
-import {sampleEmbodied,bodySignals,renderCamera} from '../dist/perception.js';
+import {sampleEmbodied,bodySignals,renderCamera,renderRetinas} from '../dist/perception.js';
 import {freshEmbodied,validCheckpoint} from '../dist/full-controller.js';
 import {EYE_PIXELS,EMBODIED_INPUTS} from '../dist/sensory-inputs.js';
 const n=loadFullNetwork();n.setInputMode('embodied');const checkpoint=freshEmbodied();assert(validCheckpoint(checkpoint));
@@ -11,8 +11,15 @@ const s=createFlight(13823,0),packet=sampleEmbodied(s);assert.equal(packet.obser
 assert.equal(sampleEmbodied(s),packet,'A displayed sample must be the exact decision sample');
 const dark={...s,perception:null,odor:null,eyesCovered:true},darkPacket=sampleEmbodied(dark);assert(darkPacket.observations.slice(0,1536).every(v=>v===0));
 const hidden={...dark,x:152,y:501,z:-130,vx:80,vy:-77,vz:40,angle:1,heading:2,seenFuel:.1,seenEngine:0,padX:900,padZ:800,perception:null,odor:null};assert.deepEqual(sampleEmbodied(hidden).observations,darkPacket.observations,'Hidden navigation and instrument memory cannot leak through covered eyes');
+const speedChange=sampleEmbodied({...s,vy:s.vy+10,perception:null,odor:null});assert.notDeepEqual(speedChange.observations.slice(0,1536),packet.observations.slice(0,1536),'The visible vertical-speed indicator must change its light');assert.deepEqual(speedChange.observations.slice(1536),packet.observations.slice(1536),'A changed indicated speed must not add a numerical body channel');
+const lightsOff=sampleEmbodied({...s,instrumentLights:false,perception:null,odor:null}),offSpeed=sampleEmbodied({...s,instrumentLights:false,vy:s.vy+10,perception:null,odor:null});assert.deepEqual(lightsOff.observations,offSpeed.observations,'With indicators disabled, changing velocity alone cannot create a hidden speed input');
 n.reset();const a=n.decide(darkPacket.observations,checkpoint.weights);n.reset();assert.deepEqual(n.decide(hidden.perception.observations,checkpoint.weights),a);
 const turned=sampleEmbodied({...s,gaze:.9,perception:null,odor:null});assert.notDeepEqual(turned.observations.slice(0,1536),packet.observations.slice(0,1536));
+const returned=sampleEmbodied({...s,gaze:0,perception:null,odor:null});assert.deepEqual(returned.observations.slice(0,1536),packet.observations.slice(0,1536),'Changing gaze and returning must not leave stale optical geometry');
+const flat=value=>Array.from({length:3},()=>({width:64,height:48,data:new Uint8ClampedArray(64*48*4).fill(value)}));
+const blackScreens=renderRetinas(s,flat(0)),whiteScreens=renderRetinas(s,flat(254)),midScreens=renderRetinas(s,flat(127));
+let partial=0;for(let eye=0;eye<2;eye++)for(let j=0;j<EYE_PIXELS*4;j++)if(j%4!==3){assert(Math.abs(midScreens[eye].data[j]-(blackScreens[eye].data[j]+whiteScreens[eye].data[j])/2)<=1,'Retinal area integration must preserve the brightness of a linear light mixture');if(whiteScreens[eye].data[j]>12&&whiteScreens[eye].data[j]<254)partial++;}
+assert(partial>0,'Partially covered retinal pixels must integrate monitor and background light');
 const daylight=renderCamera(s),night=renderCamera({...s,night:true});assert.notDeepEqual(daylight.data,night.data);
 assert.equal(bodySignals({...s,motionSample:[0,-9.81,0]})[13],0,'Freefall is not sensed as an upward body force');assert.equal(bodySignals({...s,motionSample:[0,9.81,0]})[13],2);
 assert.equal(bodySignals({...s,omega:.7})[10],.7);
