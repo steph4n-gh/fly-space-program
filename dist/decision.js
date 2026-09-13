@@ -1,4 +1,5 @@
-import {deck,descentCue} from './engine3d.js?v=5.1';
+import {orbitalGuidance,orbitalDeck} from './orbital.js?v=7.3';
+import {deck,descentCue,SCENARIOS} from './engine3d.js?v=7.3';
 
 export const SIGNALS=[
   ['Body X position error','m','Centered on deck'],['Body X relative velocity','m/s','Moving with deck'],
@@ -11,6 +12,9 @@ export const SIGNALS=[
   ['Yaw rate','rad/s','No rotation'],['Remembered engine health','%','100% engine health'],
   ['Fuel reading age','s','Fresh reading'],['Engine reading age','s','Fresh reading'],['Style preference','on','Recovery only'],
 ];
+export const ORBIT_SIGNALS=[
+ ['Target altitude error','m','At target altitude'],['Tangential speed error','m/s','At guided tangential speed'],['Radial speed error','m/s','At guided radial speed'],['Pitch versus guidance','°','Aligned with attitude cue'],['Pitch rate','rad/s','No rotation'],['Sandbox altitude','m','At the surface'],['Remembered fuel','%','50% fuel'],['Engineered thrust cue','%','50% target throttle; encoded as log-odds / 3'],['Cross-track position','m','On the recovery plane'],['Cross-track velocity','m/s','Moving with the ship'],['Roll versus guidance','°','Aligned with roll cue'],['Roll rate','rad/s','No rotation'],['Local gravity','m/s²','Zero gravity'],['Yaw target error','°','At target heading'],['Yaw rate','rad/s','No rotation'],['Remembered engine health','%','100% engine health'],['Fuel reading age','s','Fresh reading'],['Engine reading age','s','Fresh reading'],['Mission phase cue','phase','Orbit: 0; ascent: −1; recovery: +1'],
+];
 export const CONTROLS=[
   ['Throttle','throttle','%'],['Gimbal X','gimbal','°'],['Attitude jets X','rcs','%'],
   ['Gimbal Z','gimbalZ','°'],['Attitude jets Z','rcsZ','%'],['Yaw jets','yawJet','%'],
@@ -19,12 +23,13 @@ export const CONTROLS=[
 
 // Snapshot physical context before the worker's complete-graph decision.
 export function captureDecision(s,observations) {
+ if(s.orbital){const g=orbitalGuidance(s),p=orbitalDeck(s),d=180/Math.PI;return{orbital:true,time:s.t,step:s.step,seed:s.seed,observations:Array.from(observations),raw:[g.target-g.altitude,s.vx-g.tangentTarget,s.vy-g.radialTarget,g.angleError*d,s.omega,g.altitude,s.seenFuel*100,g.throttle*100,s.z-p.z,s.vz-p.vz,g.angleZError*d,s.omegaZ,g.gravity,(s.heading-s.styleStart-(s.styleEnabled&&s.orbitPhase===5?Math.PI*2:0))*d,s.omegaYaw,s.seenEngine*100,s.fuelAge,s.engineAge,observations[18]],situation:{landingRadius:SCENARIOS[s.scenario].landingRadius,x:s.x-p.x,z:s.z-p.z,vx:s.vx-p.vx,vz:s.vz-p.vz,vy:s.vy,cue:g.radialTarget,altitude:g.altitude,fuel:s.fuel,seenFuel:s.seenFuel,fuelAge:s.fuelAge,engine:s.engineHealth,seenEngine:s.seenEngine,engineAge:s.engineAge,finFailed:s.finFailed}};}
  const p=deck(s),cue=descentCue(s),degrees=180/Math.PI,c=Math.cos(s.heading),h=Math.sin(s.heading),rot=(x,z)=>[c*x-h*z,h*x+c*z];
  const [x,z]=rot(s.x-p.x,s.z-p.z),[vx,vz]=rot(s.vx-p.vx,s.vz-p.vz),[dx,dz]=rot(p.vx,p.vz);
  return {
   time:s.t,step:s.step,seed:s.seed,observations:Array.from(observations),
   raw:[x,vx,s.vy-cue,s.angle*degrees,s.omega,Math.max(0,s.y-8),s.seenFuel*100,dx,z,vz,s.angleZ*degrees,s.omegaZ,dz,(s.heading-s.styleStart-(s.styleEnabled?Math.PI*2:0))*degrees,s.omegaYaw,s.seenEngine*100,s.fuelAge,s.engineAge,s.styleEnabled?1:0],
-  situation:{x:s.x-p.x,z:s.z-p.z,vx:s.vx-p.vx,vz:s.vz-p.vz,vy:s.vy,cue,altitude:Math.max(0,s.y-8),fuel:s.fuel,seenFuel:s.seenFuel,fuelAge:s.fuelAge,engine:s.engineHealth,seenEngine:s.seenEngine,engineAge:s.engineAge,finFailed:s.finFailed},
+  situation:{landingRadius:SCENARIOS[s.scenario].landingRadius,x:s.x-p.x,z:s.z-p.z,vx:s.vx-p.vx,vz:s.vz-p.vz,vy:s.vy,cue,altitude:Math.max(0,s.y-8),fuel:s.fuel,seenFuel:s.seenFuel,fuelAge:s.fuelAge,engine:s.engineHealth,seenEngine:s.seenEngine,engineAge:s.engineAge,finFailed:s.finFailed},
  };
 }
 
@@ -52,6 +57,7 @@ export class DecisionView {
     n['decision-empty'].textContent=mode==='human'?'You have the controls. Select a fly pilot to inspect its decisions.':'Waiting for the first control decision…';
     n['inspect-decision'].textContent=paused?'Resume flight':'Pause & inspect';
     if(!trace||mode==='human'){n['decision-stamp'].textContent=mode==='human'?'HUMAN CONTROL':'AWAITING SAMPLE';return;}
+    n['radar-limit'].textContent=`Dashed circle = ${trace.situation.landingRadius} m position limit.`;
     n['decision-stamp'].textContent=`${paused?'PAUSED · ':''}SAMPLE ${trace.step} · ${trace.time.toFixed(2)} s · ${(state.t-trace.time).toFixed(2)} s ago`;
     for(let k=0;k<10;k++) {
       const actual=state[CONTROLS[k][1]],target=trace.targets[k];
@@ -63,11 +69,12 @@ export class DecisionView {
       this.bars[k].style.width=`${Math.max(0,Math.min(1,position))*100}%`;this.markers[k].style.left=`${Math.max(0,Math.min(1,actualPosition))*100}%`;
     }
     if(this.last===trace){if(this.radarSize!==`${n['decision-radar'].clientWidth}x${n['decision-radar'].clientHeight}`)this.drawApproach(trace.situation);return;}this.last=trace;
-    const s=trace.situation,k=this.selected;
+    const s=trace.situation,k=this.selected,signals=trace.orbital?ORBIT_SIGNALS:SIGNALS;
+    for(let i=0;i<signals.length;i++){this.signals.children[i].children[0].textContent=signals[i][0];this.signals.children[i].children[4].textContent=signals[i][2];}
     n['influence-control'].textContent=CONTROLS[k][0];
     const explained=!!trace.neutralCommands;
     const ranked=trace.observations.map((_,i)=>({i,delta:explained?trace.commands[k]-trace.neutralCommands[i][k]:0})).sort((a,b)=>Math.abs(b.delta)-Math.abs(a.delta));
-    n['influence-bars'].querySelectorAll('.influence-row').forEach((row,index)=>{const {i,delta}=ranked[index];row.querySelector('span').textContent=explained?SIGNALS[i][0]:index===0?'Pause to calculate exact effects':'—';row.querySelector('strong').textContent=explained?signed(delta,6):'—';row.title=explained?`Zero input means: ${SIGNALS[i][2]}. Live command minus replay: ${delta}`:'Pause to calculate the full-network effect';const bar=row.querySelector('i');bar.style.left=`${delta<0?50-Math.abs(delta)*25:50}%`;bar.style.width=`${Math.abs(delta)*25}%`;bar.dataset.sign=delta<0?'negative':'positive';});
+    n['influence-bars'].querySelectorAll('.influence-row').forEach((row,index)=>{const {i,delta}=ranked[index];row.querySelector('span').textContent=explained?signals[i][0]:index===0?'Pause to calculate exact effects':'—';row.querySelector('strong').textContent=explained?signed(delta,6):'—';row.title=explained?`Zero input means: ${signals[i][2]}. Live command minus replay: ${delta}`:'Pause to calculate the full-network effect';const bar=row.querySelector('i');bar.style.left=`${delta<0?50-Math.abs(delta)*25:50}%`;bar.style.width=`${Math.abs(delta)*25}%`;bar.dataset.sign=delta<0?'negative':'positive';});
     n['decision-output-name'].textContent=CONTROLS[k][0];
     n['decision-output-value'].textContent=signed(trace.commands[k],6);
     n['decision-output-value'].title=String(trace.commands[k]);
@@ -80,9 +87,9 @@ export class DecisionView {
     n['engine-memory'].textContent=`${number(s.seenEngine*100,0)}% remembered · ${number(s.engineAge,2)} s old`;
     n['engine-truth'].textContent=`Actual at sample: ${number(s.engine*100,0)}%${s.finFailed?' · fin 01 jammed':''}`;
     n['feedback-effect'].textContent=explained?`${signed(trace.commands[k]-trace.withoutHistory[k],6)} command change versus a reset network state. Earlier flight history is not undone.`:'Exact effects require two full graph passes per replay. Live commands and samples above are recorded directly.';
-    for(let i=0;i<SIGNALS.length;i++) {
+    for(let i=0;i<signals.length;i++) {
       const delta=explained?trace.commands[k]-trace.neutralCommands[i][k]:0;
-      this.rawNodes[i].textContent=`${signed(trace.raw[i],2)} ${SIGNALS[i][1]}`;
+      this.rawNodes[i].textContent=`${signed(trace.raw[i],2)} ${signals[i][1]}`;
       this.rawNodes[i].title=String(trace.raw[i]);
       this.encodedNodes[i].textContent=signed(trace.observations[i],6);
       this.encodedNodes[i].title=String(trace.observations[i]);
@@ -101,7 +108,7 @@ export class DecisionView {
     const radius=Math.min(w/2-35,h/2-30),range=Math.max(20,Math.ceil(Math.max(Math.abs(s.x),Math.abs(s.z),Math.abs(s.x+s.vx*2),Math.abs(s.z+s.vz*2))/10)*10),scale=radius/range,cx=w/2,cy=h/2;
     g.strokeStyle='#263d4b';g.lineWidth=1;for(let i=1;i<=4;i++){g.beginPath();g.arc(cx,cy,radius*i/4,0,Math.PI*2);g.stroke();}
     g.beginPath();g.moveTo(cx-radius,cy);g.lineTo(cx+radius,cy);g.moveTo(cx,cy-radius);g.lineTo(cx,cy+radius);g.stroke();
-    g.strokeStyle='#a2dfc166';g.setLineDash([4,5]);g.beginPath();g.arc(cx,cy,11*scale,0,Math.PI*2);g.stroke();g.setLineDash([]);
+    g.strokeStyle='#a2dfc166';g.setLineDash([4,5]);g.beginPath();g.arc(cx,cy,s.landingRadius*scale,0,Math.PI*2);g.stroke();g.setLineDash([]);
     const x=cx+s.x*scale,y=cy+s.z*scale,dx=s.vx*scale*2,dy=s.vz*scale*2;
     g.strokeStyle='#fab675';g.lineWidth=2;g.beginPath();g.moveTo(x,y);g.lineTo(x+dx,y+dy);g.stroke();
     if(Math.hypot(dx,dy)>3){const a=Math.atan2(dy,dx);g.beginPath();g.moveTo(x+dx-6*Math.cos(a-.5),y+dy-6*Math.sin(a-.5));g.lineTo(x+dx,y+dy);g.lineTo(x+dx-6*Math.cos(a+.5),y+dy-6*Math.sin(a+.5));g.stroke();}

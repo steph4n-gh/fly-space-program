@@ -1,4 +1,4 @@
-import {compressedArray,isMotorClass} from './full-network.js?v=5.1';
+import {compressedArray,isMotorClass} from './full-network.js?v=7.3';
 const vertex=`#version 300 es
 precision highp float;
 in vec3 aPosition;in float aNeuron;
@@ -29,7 +29,7 @@ void main(){vec2 p=gl_PointCoord*2.0-1.0;float r=dot(p,p);if(r>1.0||vAlpha<=0.0)
 function shader(gl,type,source){const s=gl.createShader(type);gl.shaderSource(s,source);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw new Error(gl.getShaderInfoLog(s));return s;}
 export class ConnectomeView{
   constructor(canvas,onSelect=()=>{}){
-    this.canvas=canvas;this.onSelect=onSelect;this.parts=[];this.yaw=.02;this.pitch=-.06;this.zoom=1;this.anatomy=false;this.motorOnly=false;this.fullCNS=false;this.selected=-1;this.values=new Float32Array(512*326);this.pending=null;
+    this.canvas=canvas;this.revision=0;this.traceEdges=[];this.overlay=document.createElement('canvas');this.overlay.className='brain-edge-overlay';this.overlay.setAttribute('aria-hidden','true');canvas.after(this.overlay);this.onSelect=onSelect;this.parts=[];this.yaw=.02;this.pitch=-.06;this.zoom=1;this.anatomy=false;this.motorOnly=false;this.fullCNS=false;this.selected=-1;this.values=new Float32Array(512*326);this.pending=null;
     const gl=this.gl=canvas.getContext('webgl2',{antialias:false,alpha:false,powerPreference:'high-performance'});if(!gl)throw new Error('This brain view needs WebGL 2. Try a current desktop browser.');
     const program=this.program=gl.createProgram();gl.attachShader(program,shader(gl,gl.VERTEX_SHADER,vertex));gl.attachShader(program,shader(gl,gl.FRAGMENT_SHADER,fragment));gl.linkProgram(program);if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw new Error(gl.getProgramInfoLog(program));
     this.uniforms={};for(const name of ['uCenter','uScale','uAspect','uZoom','uYaw','uPitch','uClip','uPixel','uActivity','uGroups','uMotor','uAnatomy','uMotorOnly','uSelected'])this.uniforms[name]=gl.getUniformLocation(program,name);
@@ -56,7 +56,8 @@ export class ConnectomeView{
     const load=async()=>{while(next<this.meta.chunks.length){const chunk=this.meta.chunks[next++],array=await compressedArray(base+chunk.file,Float32Array);if(array.length!==chunk.points*4)throw new Error('Incomplete anatomical point block');const gl=this.gl,vao=gl.createVertexArray(),buffer=gl.createBuffer();gl.bindVertexArray(vao);gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.bufferData(gl.ARRAY_BUFFER,array,gl.STATIC_DRAW);const pos=gl.getAttribLocation(this.program,'aPosition'),id=gl.getAttribLocation(this.program,'aNeuron');gl.enableVertexAttribArray(pos);gl.vertexAttribPointer(pos,3,gl.FLOAT,false,16,0);gl.enableVertexAttribArray(id);gl.vertexAttribPointer(id,1,gl.FLOAT,false,16,12);this.parts.push({vao,count:chunk.points});done+=chunk.points;onProgress(done,this.meta.points);}};
     await Promise.all([load(),load(),load()]);return this.meta;
   }
-  updateActivity(values){this.values.fill(0);this.values.set(values);this.pending=true;if(this.selected>=0)this.onSelect(this.neuron(this.selected));}
+  setTraceEdges(edges){this.traceEdges=edges;this.revision++;}
+  updateActivity(values){this.revision++;this.values.fill(0);this.values.set(values);this.pending=true;if(this.selected>=0)this.onSelect(this.neuron(this.selected));}
   resetView(){this.yaw=.02;this.pitch=-.06;this.zoom=1;this.select(-1);}
   select(id){this.selected=id;this.onSelect(id>=0?this.neuron(id):null);}
   neuron(id){return{index:id,id:this.ids[id],type:this.labels.types[this.types[id]],class:this.labels.classes[this.classes[id]],region:this.manifest.groupNames[this.groups[id]],activity:this.values[id],motor:this.coreSet.has(id)};}
@@ -65,9 +66,17 @@ export class ConnectomeView{
     for(let id=0;id<this.ids.length;id++){const ix=id*3;if(this.centroids[ix]===0&&this.centroids[ix+1]===0&&this.centroids[ix+2]===0)continue;if(!this.fullCNS&&this.centroids[ix+2]>this.meta.brainClipZ)continue;if(this.motorOnly&&!this.coreSet.has(id))continue;const px=(this.centroids[ix]-center[0])/scale,py=-(this.centroids[ix+2]-center[2])/scale,pz=(this.centroids[ix+1]-center[1])/scale,rx=cy*px+sy*pz,rz=-sy*px+cy*pz,ry=cp*py-sp*rz,zz=sp*py+cp*rz,f=this.zoom*2.65/(3.1-zz),sx=w/2+rx*f*h/2,syy=h/2-ry*f*h/2,d=(sx-x)**2+(syy-y)**2;if(d<distance){best=id;distance=d;}}
     this.select(best);
   }
-  draw(){const gl=this.gl,w=this.canvas.clientWidth,h=this.canvas.clientHeight;if(!w||!h)return;const pixel=Math.min(devicePixelRatio||1,2);if(this.canvas.width!==Math.round(w*pixel)||this.canvas.height!==Math.round(h*pixel)){this.canvas.width=Math.round(w*pixel);this.canvas.height=Math.round(h*pixel);}gl.viewport(0,0,this.canvas.width,this.canvas.height);gl.clearColor(.027,.047,.073,1);gl.clear(gl.COLOR_BUFFER_BIT);if(!this.meta)return;
+  drawEdges(w,h,pixel){
+    const c=this.overlay;c.width=Math.round(w*pixel);c.height=Math.round(h*pixel);const g=c.getContext('2d');g.scale(pixel,pixel);
+    const {center,scale}=this.dimensions(),cy=Math.cos(this.yaw),sy=Math.sin(this.yaw),cp=Math.cos(this.pitch),sp=Math.sin(this.pitch);
+    const project=id=>{const i=id*3,x=this.centroids[i],y=this.centroids[i+1],z=this.centroids[i+2];if((!x&&!y&&!z)||(!this.fullCNS&&z>this.meta.brainClipZ))return null;const px=(x-center[0])/scale,py=-(z-center[2])/scale,pz=(y-center[1])/scale,rx=cy*px+sy*pz,rz=-sy*px+cy*pz,ry=cp*py-sp*rz,zz=sp*py+cp*rz,f=this.zoom*2.65/(3.1-zz);return[w/2+rx*f*h/2,h/2-ry*f*h/2];};
+    let visible=0;
+    for(const edge of this.traceEdges){const a=project(edge.pre),b=project(edge.post);if(!a||!b)continue;visible++;const color=edge.term>=0?'#9af4d1':'#ffb077';g.strokeStyle=color;g.fillStyle=color;g.globalAlpha=.85;g.lineWidth=1.6;g.beginPath();g.moveTo(...a);g.lineTo(...b);g.stroke();const angle=Math.atan2(b[1]-a[1],b[0]-a[0]);g.beginPath();g.moveTo(...b);g.lineTo(b[0]-7*Math.cos(angle-.4),b[1]-7*Math.sin(angle-.4));g.lineTo(b[0]-7*Math.cos(angle+.4),b[1]-7*Math.sin(angle+.4));g.fill();for(const v of [a,b]){g.beginPath();g.arc(...v,3,0,Math.PI*2);g.fill();}}
+    if(this.traceEdges.length){g.globalAlpha=1;g.fillStyle='#0b1821db';g.fillRect(10,10,w-20,28);g.fillStyle='#d2eae0';g.font='10px monospace';g.fillText(`${visible} traced links · straight anchor connections`,18,28);}
+  }
+  draw(){const gl=this.gl,w=this.canvas.clientWidth,h=this.canvas.clientHeight;if(!w||!h)return;const pixel=Math.min(devicePixelRatio||1,1.5),key=[w,h,pixel,this.yaw,this.pitch,this.zoom,this.anatomy,this.motorOnly,this.fullCNS,this.selected,this.parts.length,this.revision].join('/');if(key===this.drawKey)return;this.drawKey=key;if(this.canvas.width!==Math.round(w*pixel)||this.canvas.height!==Math.round(h*pixel)){this.canvas.width=Math.round(w*pixel);this.canvas.height=Math.round(h*pixel);}gl.viewport(0,0,this.canvas.width,this.canvas.height);gl.clearColor(.027,.047,.073,1);gl.clear(gl.COLOR_BUFFER_BIT);if(!this.meta)return;
     gl.useProgram(this.program);if(this.pending){gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,this.activityTexture);gl.texSubImage2D(gl.TEXTURE_2D,0,0,0,512,326,gl.RED,gl.FLOAT,this.values);this.pending=false;}
     const u=this.uniforms,{center,scale}=this.dimensions();gl.uniform3fv(u.uCenter,center);gl.uniform1f(u.uScale,scale);gl.uniform1f(u.uAspect,w/h);gl.uniform1f(u.uZoom,this.zoom);gl.uniform1f(u.uYaw,this.yaw);gl.uniform1f(u.uPitch,this.pitch);gl.uniform1f(u.uClip,this.fullCNS?1e9:this.meta.brainClipZ);gl.uniform1f(u.uPixel,pixel);gl.uniform1i(u.uAnatomy,this.anatomy);gl.uniform1i(u.uMotorOnly,this.motorOnly);gl.uniform1i(u.uSelected,this.selected);
-    for(const part of this.parts){gl.bindVertexArray(part.vao);gl.drawArrays(gl.POINTS,0,part.count);}
+    for(const part of this.parts){gl.bindVertexArray(part.vao);gl.drawArrays(gl.POINTS,0,part.count);}this.drawEdges(w,h,pixel);
   }
 }

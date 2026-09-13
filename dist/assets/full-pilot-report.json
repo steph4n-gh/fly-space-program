@@ -1,25 +1,216 @@
 {
   "controller": "malecns-full-rate-v1",
-  "generatedAt": "2026-09-13T00:50:15.887Z",
+  "generatedAt": "2026-09-13T02:25:46.211Z",
   "neurons": 166700,
   "edges": 25582938,
   "synapticContacts": 124177617,
   "sensoryCells": 17937,
   "readoutCells": 2129,
-  "trainableReadoutWeights": 21300,
+  "trainableWeightsPerReadout": 21300,
   "graphPassesPerDecision": 2,
   "physicsStepsPerDecision": 3,
-  "physicsStepSeconds": 0.05,
-  "graphIndividualWeightsTrained": false,
-  "trainingAlgorithm": "Paired random perturbations of all readout weights; complete graph rollouts; lexicographic landing count then mean shaped reward.",
-  "perturbationLineage": {
-    "fullPilot": "0.12 for generations 1–3; 0.015 for 4–5",
-    "fullSpecialist": "0.12 for generation 1; 0.015 for 2",
-    "fullExpert": "0.12 for generation 1; 0.015 for 2"
+  "physicsStepSeconds": {
+    "landing": 0.05,
+    "orbitalAbove250m": 0.25
   },
+  "graphIndividualWeightsTrained": false,
+  "missionProfiles": [
+    {
+      "index": 0,
+      "title": "Landing school",
+      "group": "Flight school",
+      "family": "center",
+      "orbital": false
+    },
+    {
+      "index": 1,
+      "title": "Atlantic return",
+      "group": "Flight school",
+      "family": "center",
+      "orbital": false
+    },
+    {
+      "index": 2,
+      "title": "Fast approach",
+      "group": "Flight school",
+      "family": "center",
+      "orbital": false
+    },
+    {
+      "index": 3,
+      "title": "Rough seas",
+      "group": "Flight school",
+      "family": "center",
+      "orbital": false
+    },
+    {
+      "index": 4,
+      "title": "Night shift",
+      "group": "Flight school",
+      "family": "center",
+      "orbital": false
+    },
+    {
+      "index": 5,
+      "title": "Fin trouble",
+      "group": "Flight school",
+      "family": "center",
+      "orbital": false
+    },
+    {
+      "index": 6,
+      "title": "Engine trouble",
+      "group": "Flight school",
+      "family": "degraded",
+      "orbital": false
+    },
+    {
+      "index": 7,
+      "title": "Absolutely nominal",
+      "group": "Flight school",
+      "family": "out",
+      "orbital": false
+    },
+    {
+      "index": 8,
+      "title": "Precision barge",
+      "group": "Deck work",
+      "family": "center",
+      "orbital": false
+    },
+    {
+      "index": 9,
+      "title": "Fast ferry",
+      "group": "Deck work",
+      "family": "center",
+      "orbital": false
+    },
+    {
+      "index": 10,
+      "title": "Figure-eight deck",
+      "group": "Deck work",
+      "family": "center",
+      "orbital": false
+    },
+    {
+      "index": 11,
+      "title": "Turning vessel",
+      "group": "Deck work",
+      "family": "center",
+      "orbital": false
+    },
+    {
+      "index": 12,
+      "title": "Wind wall",
+      "group": "Recovery lab",
+      "family": "center",
+      "orbital": false
+    },
+    {
+      "index": 13,
+      "title": "Wind shear",
+      "group": "Recovery lab",
+      "family": "center",
+      "orbital": false
+    },
+    {
+      "index": 14,
+      "title": "Fuel reserve",
+      "group": "Recovery lab",
+      "family": "center",
+      "orbital": false
+    },
+    {
+      "index": 15,
+      "title": "Slow hands",
+      "group": "Recovery lab",
+      "family": "center",
+      "orbital": false
+    },
+    {
+      "index": 16,
+      "title": "Sideways entry",
+      "group": "Entry profiles",
+      "family": "center",
+      "orbital": false
+    },
+    {
+      "index": 17,
+      "title": "Spinning entry",
+      "group": "Entry profiles",
+      "family": "center",
+      "orbital": false
+    },
+    {
+      "index": 18,
+      "title": "High return",
+      "group": "Entry profiles",
+      "family": "center",
+      "orbital": false
+    },
+    {
+      "index": 19,
+      "title": "Tight storm",
+      "group": "Entry profiles",
+      "family": "center",
+      "orbital": false
+    },
+    {
+      "index": 20,
+      "title": "Early engine fade",
+      "group": "Fault combinations",
+      "family": "degraded",
+      "orbital": false
+    },
+    {
+      "index": 21,
+      "title": "Late engine fade",
+      "group": "Fault combinations",
+      "family": "degraded",
+      "orbital": false
+    },
+    {
+      "index": 22,
+      "title": "Blackout rendezvous",
+      "group": "Fault combinations",
+      "family": "out",
+      "orbital": false
+    },
+    {
+      "index": 23,
+      "title": "Last-call recovery",
+      "group": "Fault combinations",
+      "family": "out",
+      "orbital": false
+    },
+    {
+      "index": 24,
+      "title": "The complete round trip",
+      "group": "Orbital program",
+      "family": "orbital",
+      "orbital": true
+    },
+    {
+      "index": 25,
+      "title": "Ocean to orbit",
+      "group": "Orbital program",
+      "family": "orbital",
+      "orbital": true
+    },
+    {
+      "index": 26,
+      "title": "Higher orbit",
+      "group": "Orbital program",
+      "family": "orbital",
+      "orbital": true
+    }
+  ],
+  "trainingAlgorithm": "Paired complete-graph reward search. Incumbent and two candidates share starting conditions. Maximize safe landings, then mean shaped reward. Mixed courses use three profiles per batch; single profiles use two seeds.",
+  "perturbationLineage": "Original v5: pilot 0.12 generations 1–3 then 0.015; specialists 0.12 generation 1 then 0.015. Expanded curriculum: 0.015 for six generations per landing family; engine-out generations 9–14 and orbital generations 1–2 use 0.06 correlated head gain plus 0.008 coefficient noise.",
   "checkpoints": [
     {
       "name": "full-pilot",
+      "family": "center",
       "initialization": {
         "method": "independent synthetic telemetry and graph-history calibration",
         "samples": 2400,
@@ -39,8 +230,28 @@
         "teacher": "historical 96-cell landing policy; yaw-target demonstrations",
         "sensoryCells": 17937
       },
-      "generation": 5,
-      "completeGraphTrainingFlights": 30,
+      "generation": 11,
+      "completeGraphTrainingFlights": 84,
+      "curriculum": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
       "history": [
         {
           "generation": 1,
@@ -91,26 +302,129 @@
           "styles": 2,
           "batch": 2,
           "accepted": true
+        },
+        {
+          "generation": 6,
+          "episodes": 39,
+          "scenario": 1,
+          "score": 120.18826811428083,
+          "landings": 3,
+          "styles": 3,
+          "batch": 3,
+          "profiles": [
+            17,
+            18,
+            19
+          ],
+          "accepted": true
+        },
+        {
+          "generation": 7,
+          "episodes": 48,
+          "scenario": 1,
+          "score": 116.73898530974469,
+          "landings": 3,
+          "styles": 2,
+          "batch": 3,
+          "profiles": [
+            0,
+            1,
+            2
+          ],
+          "accepted": true
+        },
+        {
+          "generation": 8,
+          "episodes": 57,
+          "scenario": 1,
+          "score": 123.38913791798485,
+          "landings": 3,
+          "styles": 3,
+          "batch": 3,
+          "profiles": [
+            3,
+            4,
+            5
+          ],
+          "accepted": true
+        },
+        {
+          "generation": 9,
+          "episodes": 66,
+          "scenario": 1,
+          "score": 123.84164363034888,
+          "landings": 3,
+          "styles": 3,
+          "batch": 3,
+          "profiles": [
+            8,
+            9,
+            10
+          ],
+          "accepted": true
+        },
+        {
+          "generation": 10,
+          "episodes": 75,
+          "scenario": 1,
+          "score": 60.31601761493686,
+          "landings": 2,
+          "styles": 2,
+          "batch": 3,
+          "profiles": [
+            11,
+            12,
+            13
+          ],
+          "accepted": true
+        },
+        {
+          "generation": 11,
+          "episodes": 84,
+          "scenario": 1,
+          "score": 123.18097905555224,
+          "landings": 3,
+          "styles": 3,
+          "batch": 3,
+          "profiles": [
+            14,
+            15,
+            16
+          ],
+          "accepted": false
         }
       ],
-      "weightSHA256": "45086fd4cb6dd21b430d7633b8e2f8ca8f69bd5a1f7cfdb6e6780a334f5180b1",
+      "weightSHA256": "0d2ab0de59df261665184dd6dd61f5e5336c9fb00fff9e67a46adc4c057b588c",
       "evaluation": {
-        "landings": 16,
-        "episodes": 18,
-        "styles": 13,
+        "landings": 32,
+        "episodes": 36,
+        "styles": 30,
         "missions": [
           0,
           1,
           2,
           3,
           4,
-          5
+          5,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19
         ],
         "styleEnabled": true
       }
     },
     {
       "name": "full-specialist",
+      "family": "degraded",
       "initialization": {
         "method": "independent synthetic telemetry and graph-history calibration",
         "samples": 2400,
@@ -130,8 +444,13 @@
         "teacher": "historical 96-cell landing policy; yaw-target demonstrations",
         "sensoryCells": 17937
       },
-      "generation": 2,
-      "completeGraphTrainingFlights": 12,
+      "generation": 8,
+      "completeGraphTrainingFlights": 66,
+      "curriculum": [
+        6,
+        20,
+        21
+      ],
       "history": [
         {
           "generation": 1,
@@ -152,21 +471,114 @@
           "styles": 1,
           "batch": 2,
           "accepted": true
+        },
+        {
+          "generation": 3,
+          "episodes": 21,
+          "scenario": 6,
+          "score": 56.278474102833655,
+          "landings": 2,
+          "styles": 2,
+          "batch": 3,
+          "profiles": [
+            6,
+            20,
+            21
+          ],
+          "accepted": false
+        },
+        {
+          "generation": 4,
+          "episodes": 30,
+          "scenario": 6,
+          "score": 58.44865437553418,
+          "landings": 2,
+          "styles": 2,
+          "batch": 3,
+          "profiles": [
+            6,
+            20,
+            21
+          ],
+          "accepted": false
+        },
+        {
+          "generation": 5,
+          "episodes": 39,
+          "scenario": 6,
+          "score": 59.547342441507936,
+          "landings": 2,
+          "styles": 2,
+          "batch": 3,
+          "profiles": [
+            6,
+            20,
+            21
+          ],
+          "accepted": true
+        },
+        {
+          "generation": 6,
+          "episodes": 48,
+          "scenario": 6,
+          "score": 56.210609152941906,
+          "landings": 2,
+          "styles": 2,
+          "batch": 3,
+          "profiles": [
+            6,
+            20,
+            21
+          ],
+          "accepted": true
+        },
+        {
+          "generation": 7,
+          "episodes": 57,
+          "scenario": 6,
+          "score": 55.04220893097687,
+          "landings": 2,
+          "styles": 2,
+          "batch": 3,
+          "profiles": [
+            6,
+            20,
+            21
+          ],
+          "accepted": true
+        },
+        {
+          "generation": 8,
+          "episodes": 66,
+          "scenario": 6,
+          "score": 58.16619172503934,
+          "landings": 2,
+          "styles": 2,
+          "batch": 3,
+          "profiles": [
+            6,
+            20,
+            21
+          ],
+          "accepted": true
         }
       ],
-      "weightSHA256": "55b9e65e13d7e0a2ef5f80f9e28bf46c52f679e416670a125030f1d5a4f36c65",
+      "weightSHA256": "777ad4ca75d1e0f927897e84e582da1dc5d7ff4ddde62d3f32f6db99afbdffb4",
       "evaluation": {
-        "landings": 1,
-        "episodes": 3,
-        "styles": 1,
+        "landings": 3,
+        "episodes": 6,
+        "styles": 3,
         "missions": [
-          6
+          6,
+          20,
+          21
         ],
         "styleEnabled": true
       }
     },
     {
       "name": "full-expert",
+      "family": "out",
       "initialization": {
         "method": "independent synthetic telemetry and graph-history calibration",
         "samples": 2400,
@@ -186,8 +598,13 @@
         "teacher": "historical 96-cell landing policy; yaw-target demonstrations",
         "sensoryCells": 17937
       },
-      "generation": 2,
-      "completeGraphTrainingFlights": 12,
+      "generation": 14,
+      "completeGraphTrainingFlights": 120,
+      "curriculum": [
+        7,
+        22,
+        23
+      ],
       "history": [
         {
           "generation": 1,
@@ -208,515 +625,1525 @@
           "styles": 0,
           "batch": 2,
           "accepted": true
+        },
+        {
+          "generation": 3,
+          "episodes": 21,
+          "scenario": 7,
+          "score": -54.02429319122598,
+          "landings": 0,
+          "styles": 0,
+          "batch": 3,
+          "profiles": [
+            7,
+            22,
+            23
+          ],
+          "accepted": true
+        },
+        {
+          "generation": 4,
+          "episodes": 30,
+          "scenario": 7,
+          "score": -57.17678468627951,
+          "landings": 0,
+          "styles": 0,
+          "batch": 3,
+          "profiles": [
+            7,
+            22,
+            23
+          ],
+          "accepted": true
+        },
+        {
+          "generation": 5,
+          "episodes": 39,
+          "scenario": 7,
+          "score": -56.957262210215696,
+          "landings": 0,
+          "styles": 0,
+          "batch": 3,
+          "profiles": [
+            7,
+            22,
+            23
+          ],
+          "accepted": true
+        },
+        {
+          "generation": 6,
+          "episodes": 48,
+          "scenario": 7,
+          "score": -54.86042207160076,
+          "landings": 0,
+          "styles": 0,
+          "batch": 3,
+          "profiles": [
+            7,
+            22,
+            23
+          ],
+          "accepted": true
+        },
+        {
+          "generation": 7,
+          "episodes": 57,
+          "scenario": 7,
+          "score": -56.53431186373174,
+          "landings": 0,
+          "styles": 0,
+          "batch": 3,
+          "profiles": [
+            7,
+            22,
+            23
+          ],
+          "accepted": true
+        },
+        {
+          "generation": 8,
+          "episodes": 66,
+          "scenario": 7,
+          "score": -54.23591297703171,
+          "landings": 0,
+          "styles": 0,
+          "batch": 3,
+          "profiles": [
+            7,
+            22,
+            23
+          ],
+          "accepted": true
+        },
+        {
+          "generation": 9,
+          "episodes": 75,
+          "scenario": 7,
+          "score": 2.3153721912385428,
+          "landings": 1,
+          "styles": 1,
+          "batch": 3,
+          "profiles": [
+            7,
+            22,
+            23
+          ],
+          "perturbation": "head gain 0.06 + coefficient noise 0.008",
+          "accepted": true
+        },
+        {
+          "generation": 10,
+          "episodes": 84,
+          "scenario": 7,
+          "score": -54.504342814951855,
+          "landings": 0,
+          "styles": 0,
+          "batch": 3,
+          "profiles": [
+            7,
+            22,
+            23
+          ],
+          "perturbation": "head gain 0.06 + coefficient noise 0.008",
+          "accepted": true
+        },
+        {
+          "generation": 11,
+          "episodes": 93,
+          "scenario": 7,
+          "score": -54.43509861554265,
+          "landings": 0,
+          "styles": 0,
+          "batch": 3,
+          "profiles": [
+            7,
+            22,
+            23
+          ],
+          "perturbation": "head gain 0.06 + coefficient noise 0.008",
+          "accepted": true
+        },
+        {
+          "generation": 12,
+          "episodes": 102,
+          "scenario": 7,
+          "score": 6.922900908730007,
+          "landings": 1,
+          "styles": 1,
+          "batch": 3,
+          "profiles": [
+            7,
+            22,
+            23
+          ],
+          "perturbation": "head gain 0.06 + coefficient noise 0.008",
+          "accepted": false
+        },
+        {
+          "generation": 13,
+          "episodes": 111,
+          "scenario": 7,
+          "score": -56.94082691936834,
+          "landings": 0,
+          "styles": 0,
+          "batch": 3,
+          "profiles": [
+            7,
+            22,
+            23
+          ],
+          "perturbation": "head gain 0.06 + coefficient noise 0.008",
+          "accepted": true
+        },
+        {
+          "generation": 14,
+          "episodes": 120,
+          "scenario": 7,
+          "score": -55.53711546604088,
+          "landings": 0,
+          "styles": 0,
+          "batch": 3,
+          "profiles": [
+            7,
+            22,
+            23
+          ],
+          "perturbation": "head gain 0.06 + coefficient noise 0.008",
+          "accepted": true
         }
       ],
-      "weightSHA256": "f3d1b866ed382426bed9a555af29850b2b3e08fb8ad7a3ddea7f06a77c55751c",
+      "weightSHA256": "783f96aadaa8d06c873d0041d32934d5f324f08c0c664025663b5f37c0b18718",
       "evaluation": {
         "landings": 0,
-        "episodes": 3,
+        "episodes": 6,
         "styles": 0,
         "missions": [
-          7
+          7,
+          22,
+          23
+        ],
+        "styleEnabled": true
+      }
+    },
+    {
+      "name": "full-orbital",
+      "family": "orbital",
+      "initialization": {
+        "method": "Full-graph synthetic sensory/history calibration plus on-policy trajectory guidance tracking demonstrations",
+        "samples": 5461,
+        "seed": 850194,
+        "commandRMSE": [
+          0.004645822980806142,
+          0,
+          0.013138969251904008,
+          0,
+          0.002072236776564783,
+          0.005364919622529597,
+          0,
+          0,
+          0.00006300847448392117,
+          0.00001624629614726465
+        ],
+        "teacher": "Attitude-error stabilization and engineered acceleration cue; orbital mission guidance remains explicit",
+        "sensoryCells": 17937
+      },
+      "generation": 2,
+      "completeGraphTrainingFlights": 18,
+      "curriculum": [
+        24,
+        25,
+        26
+      ],
+      "history": [
+        {
+          "generation": 1,
+          "episodes": 9,
+          "scenario": 24,
+          "score": 427.3082391896848,
+          "landings": 3,
+          "styles": 0,
+          "batch": 3,
+          "profiles": [
+            24,
+            25,
+            26
+          ],
+          "perturbation": "head gain 0.06 + coefficient noise 0.008",
+          "accepted": true
+        },
+        {
+          "generation": 2,
+          "episodes": 18,
+          "scenario": 24,
+          "score": 427.7813862209961,
+          "landings": 3,
+          "styles": 0,
+          "batch": 3,
+          "profiles": [
+            24,
+            25,
+            26
+          ],
+          "perturbation": "head gain 0.06 + coefficient noise 0.008",
+          "accepted": true
+        }
+      ],
+      "weightSHA256": "3c1ba66bd3306b22f7c78d12a702cba344d756168910b048d6d1911ed74f02e3",
+      "evaluation": {
+        "landings": 6,
+        "episodes": 6,
+        "styles": 0,
+        "missions": [
+          24,
+          25,
+          26
         ],
         "styleEnabled": true
       }
     }
   ],
+  "completeGraphTrainingFlights": 288,
   "evaluation": {
-    "landings": 17,
-    "episodes": 24,
-    "styles": 14,
-    "styleEnabled": true,
-    "allEdgesPerPass": 25582938,
-    "passesPerDecision": 2,
-    "physicsStepsPerDecision": 3,
+    "landings": 41,
+    "episodes": 54,
+    "styles": 33,
     "seeds": [
-      92431,
-      93440,
-      94449,
-      92431,
-      93440,
-      94449,
-      92431,
-      93440,
-      94449,
-      92431,
-      93440,
-      94449,
-      92431,
-      93440,
-      94449,
-      92431,
-      93440,
-      94449,
-      92431,
-      93440,
-      94449,
-      92431,
-      93440,
-      94449
+      531107,
+      535226
     ],
+    "styleEnabled": true,
     "flights": [
       {
-        "seed": 92431,
+        "seed": 531107,
         "scenario": 0,
-        "score": 101.2427971531951,
+        "score": 101.22444372528274,
         "landed": true,
         "styleBonus": 0,
         "styleRecovered": false,
-        "turnDegrees": 347.20441564703106,
+        "turnDegrees": 354.46649515781775,
         "reason": "Touchdown",
         "touchdown": {
-          "error": 3.0837324519787415,
-          "speed": 2.9955308815800397,
-          "lateral": 0.7046519254462267,
-          "tilt": 0.01746534516354367
+          "error": 2.1455069497459727,
+          "speed": 2.779167687450137,
+          "lateral": 0.5491744413375482,
+          "tilt": 0.009713207170613088
         },
-        "time": 9.249999999999996
+        "time": 9.5
       },
       {
-        "seed": 93440,
+        "seed": 535226,
         "scenario": 0,
-        "score": 101.16150580318931,
+        "score": 101.14918737654631,
         "landed": true,
         "styleBonus": 0,
         "styleRecovered": false,
-        "turnDegrees": 347.43447176165034,
+        "turnDegrees": 356.7297680843205,
         "reason": "Touchdown",
         "touchdown": {
-          "error": 2.3824413570608827,
-          "speed": 2.9555811716723777,
-          "lateral": 1.0736906956792134,
-          "tilt": 0.014895038641870202
+          "error": 2.332550831486804,
+          "speed": 2.809354186599684,
+          "lateral": 0.4889657907060005,
+          "tilt": 0.009434910884376832
         },
-        "time": 9.299999999999997
+        "time": 10.050000000000008
       },
       {
-        "seed": 94449,
-        "scenario": 0,
-        "score": 101.24047858490634,
-        "landed": true,
-        "styleBonus": 0,
-        "styleRecovered": false,
-        "turnDegrees": 345.337911492572,
-        "reason": "Touchdown",
-        "touchdown": {
-          "error": 2.4527176110826723,
-          "speed": 2.9393266200780963,
-          "lateral": 1.1237173806036602,
-          "tilt": 0.017212347993052688
-        },
-        "time": 8.899999999999991
-      },
-      {
-        "seed": 92431,
+        "seed": 531107,
         "scenario": 1,
-        "score": 124.87370866076947,
+        "score": 124.73144698321867,
         "landed": true,
         "styleBonus": 25,
         "styleRecovered": true,
-        "turnDegrees": 358.2198204887052,
+        "turnDegrees": 364.63535428814254,
         "reason": "Touchdown",
         "touchdown": {
-          "error": 2.8316660322959626,
-          "speed": 2.9474720398098477,
-          "lateral": 0.6761834433783656,
-          "tilt": 0.01179022813683157
+          "error": 5.148243244122147,
+          "speed": 2.9450413991125375,
+          "lateral": 0.5846765621531409,
+          "tilt": 0.011763595407458222
         },
-        "time": 14.850000000000076
+        "time": 15.10000000000008
       },
       {
-        "seed": 93440,
+        "seed": 535226,
         "scenario": 1,
-        "score": 123.8341042799452,
+        "score": 124.63767424939957,
         "landed": true,
         "styleBonus": 25,
         "styleRecovered": true,
-        "turnDegrees": 358.20501674009245,
+        "turnDegrees": 364.83543828556975,
         "reason": "Touchdown",
         "touchdown": {
-          "error": 5.780983203213578,
-          "speed": 2.963501084375392,
-          "lateral": 0.5471138312843358,
-          "tilt": 0.015846455429747653
+          "error": 1.2694888148874464,
+          "speed": 2.859733050168929,
+          "lateral": 0.6008256427322046,
+          "tilt": 0.004546081791551842
         },
-        "time": 14.850000000000076
+        "time": 15.650000000000087
       },
       {
-        "seed": 94449,
-        "scenario": 1,
-        "score": 124.36511271694465,
-        "landed": true,
-        "styleBonus": 25,
-        "styleRecovered": true,
-        "turnDegrees": 358.0164082045165,
-        "reason": "Touchdown",
-        "touchdown": {
-          "error": 5.262455908074799,
-          "speed": 3.1166133689889524,
-          "lateral": 1.0347571386805927,
-          "tilt": 0.018101127944034977
-        },
-        "time": 14.45000000000007
-      },
-      {
-        "seed": 92431,
+        "seed": 531107,
         "scenario": 2,
-        "score": 123.91635888550542,
+        "score": 123.72781020832575,
         "landed": true,
         "styleBonus": 25,
         "styleRecovered": true,
-        "turnDegrees": 358.9368402997032,
+        "turnDegrees": 365.25974492680774,
         "reason": "Touchdown",
         "touchdown": {
-          "error": 3.0641639208709837,
-          "speed": 3.0568344009538313,
-          "lateral": 1.475963779875897,
-          "tilt": 0.01591450729994821
-        },
-        "time": 16.900000000000105
-      },
-      {
-        "seed": 93440,
-        "scenario": 2,
-        "score": 121.8092649653937,
-        "landed": true,
-        "styleBonus": 25,
-        "styleRecovered": true,
-        "turnDegrees": 358.90259960535343,
-        "reason": "Touchdown",
-        "touchdown": {
-          "error": 5.050883750809293,
-          "speed": 3.0745276939294266,
-          "lateral": 1.3437567389412264,
-          "tilt": 0.01546267375501842
-        },
-        "time": 16.900000000000105
-      },
-      {
-        "seed": 94449,
-        "scenario": 2,
-        "score": 123.00845317116296,
-        "landed": true,
-        "styleBonus": 25,
-        "styleRecovered": true,
-        "turnDegrees": 358.8983483481178,
-        "reason": "Touchdown",
-        "touchdown": {
-          "error": 7.285793488428133,
-          "speed": 3.0881508709971217,
-          "lateral": 0.8254930465615709,
-          "tilt": 0.020081421496716455
-        },
-        "time": 16.6500000000001
-      },
-      {
-        "seed": 92431,
-        "scenario": 3,
-        "score": 123.79594118416337,
-        "landed": true,
-        "styleBonus": 25,
-        "styleRecovered": true,
-        "turnDegrees": 358.40524167005043,
-        "reason": "Touchdown",
-        "touchdown": {
-          "error": 4.778479741971704,
-          "speed": 2.9749586610703216,
-          "lateral": 2.2580640063771638,
-          "tilt": 0.025745866875919683
-        },
-        "time": 15.250000000000082
-      },
-      {
-        "seed": 93440,
-        "scenario": 3,
-        "score": 121.05415831594576,
-        "landed": true,
-        "styleBonus": 25,
-        "styleRecovered": true,
-        "turnDegrees": 358.3803289249668,
-        "reason": "Touchdown",
-        "touchdown": {
-          "error": 9.50592964859084,
-          "speed": 3.171355281122632,
-          "lateral": 1.2626841282695473,
-          "tilt": 0.04888760374939341
-        },
-        "time": 15.250000000000082
-      },
-      {
-        "seed": 94449,
-        "scenario": 3,
-        "score": 122.94879160119564,
-        "landed": true,
-        "styleBonus": 25,
-        "styleRecovered": true,
-        "turnDegrees": 358.33649818503403,
-        "reason": "Touchdown",
-        "touchdown": {
-          "error": 7.9946784225649346,
-          "speed": 3.026009805621804,
-          "lateral": 2.9633487532580336,
-          "tilt": 0.021850875790573866
-        },
-        "time": 15.000000000000078
-      },
-      {
-        "seed": 92431,
-        "scenario": 4,
-        "score": 123.0476469199963,
-        "landed": true,
-        "styleBonus": 25,
-        "styleRecovered": true,
-        "turnDegrees": 359.05816087067893,
-        "reason": "Touchdown",
-        "touchdown": {
-          "error": 4.190440763705369,
-          "speed": 2.9952503434193325,
-          "lateral": 2.638075436921762,
-          "tilt": 0.02607885630324857
-        },
-        "time": 17.450000000000113
-      },
-      {
-        "seed": 93440,
-        "scenario": 4,
-        "score": -57.72319534716296,
-        "landed": false,
-        "styleBonus": 0,
-        "styleRecovered": true,
-        "turnDegrees": 358.98183021173946,
-        "reason": "Lateral impact",
-        "touchdown": {
-          "error": 4.752560629101471,
-          "speed": 3.157387840202118,
-          "lateral": 3.100628921390701,
-          "tilt": 0.044496700727820485
-        },
-        "time": 17.400000000000112
-      },
-      {
-        "seed": 94449,
-        "scenario": 4,
-        "score": -55.8057590635384,
-        "landed": false,
-        "styleBonus": 0,
-        "styleRecovered": true,
-        "turnDegrees": 359.0222621985187,
-        "reason": "Missed the ship",
-        "touchdown": {
-          "error": 11.193423654456856,
-          "speed": 3.321997904383553,
-          "lateral": 1.0730481398382632,
-          "tilt": 0.046911613468946116
+          "error": 5.404199878379741,
+          "speed": 3.0054772624771253,
+          "lateral": 1.2744622495162432,
+          "tilt": 0.00886497496878386
         },
         "time": 17.100000000000108
       },
       {
-        "seed": 92431,
-        "scenario": 5,
-        "score": 122.89898551559848,
+        "seed": 535226,
+        "scenario": 2,
+        "score": 123.65322642208825,
         "landed": true,
         "styleBonus": 25,
         "styleRecovered": true,
-        "turnDegrees": 359.2591807216242,
+        "turnDegrees": 365.3256075851993,
         "reason": "Touchdown",
         "touchdown": {
-          "error": 7.348775176415313,
-          "speed": 3.0551683850878444,
-          "lateral": 0.7362200519945982,
-          "tilt": 0.03174373172705763
+          "error": 1.525855951523571,
+          "speed": 2.920667071505928,
+          "lateral": 1.205520126060054,
+          "tilt": 0.012401269346774817
         },
-        "time": 19.100000000000136
+        "time": 17.500000000000114
       },
       {
-        "seed": 93440,
-        "scenario": 5,
-        "score": 120.14541973369376,
+        "seed": 531107,
+        "scenario": 3,
+        "score": 123.41184661479178,
         "landed": true,
         "styleBonus": 25,
         "styleRecovered": true,
-        "turnDegrees": 359.1798176471517,
+        "turnDegrees": 364.7961848782327,
         "reason": "Touchdown",
         "touchdown": {
-          "error": 2.4449425717670015,
-          "speed": 3.0912535603222158,
-          "lateral": 0.8526899102793815,
-          "tilt": 0.018561069966188525
+          "error": 9.594981502377374,
+          "speed": 3.0093466920312353,
+          "lateral": 0.9460054597968531,
+          "tilt": 0.0407344738183391
         },
-        "time": 19.000000000000135
+        "time": 15.450000000000085
       },
       {
-        "seed": 94449,
-        "scenario": 5,
-        "score": 122.09390247313856,
+        "seed": 535226,
+        "scenario": 3,
+        "score": 123.57524001681767,
         "landed": true,
         "styleBonus": 25,
         "styleRecovered": true,
-        "turnDegrees": 359.22374155690136,
+        "turnDegrees": 364.88767186092014,
         "reason": "Touchdown",
         "touchdown": {
-          "error": 9.48523250053602,
-          "speed": 3.5028043750595512,
-          "lateral": 2.6222824133876843,
-          "tilt": 0.051961351101606365
+          "error": 3.476748821373501,
+          "speed": 2.8247732411966004,
+          "lateral": 2.2761588351737556,
+          "tilt": 0.03987010771463335
         },
-        "time": 18.70000000000013
+        "time": 15.85000000000009
       },
       {
-        "seed": 92431,
-        "scenario": 6,
-        "score": 116.45041435037533,
-        "landed": true,
-        "styleBonus": 25,
-        "styleRecovered": true,
-        "turnDegrees": 367.85379105931617,
-        "reason": "Touchdown",
-        "touchdown": {
-          "error": 7.673787633569362,
-          "speed": 1.8531539282959173,
-          "lateral": 2.5605976465625067,
-          "tilt": 0.08185002655611417
-        },
-        "time": 24.40000000000021
-      },
-      {
-        "seed": 93440,
-        "scenario": 6,
-        "score": -55.60866107905567,
+        "seed": 531107,
+        "scenario": 4,
+        "score": -56.193877368569865,
         "landed": false,
         "styleBonus": 0,
         "styleRecovered": true,
-        "turnDegrees": 368.04156740987946,
-        "reason": "Missed the ship",
-        "touchdown": {
-          "error": 11.770280909994094,
-          "speed": 1.3713894530627062,
-          "lateral": 2.1440784905381167,
-          "tilt": 0.056271367500107146
-        },
-        "time": 25.10000000000022
-      },
-      {
-        "seed": 94449,
-        "scenario": 6,
-        "score": -61.254547383650205,
-        "landed": false,
-        "styleBonus": 0,
-        "styleRecovered": true,
-        "turnDegrees": 367.98465566171507,
+        "turnDegrees": 365.3472427295405,
         "reason": "Lateral impact",
         "touchdown": {
-          "error": 10.906327450070753,
-          "speed": 2.287786808137823,
-          "lateral": 3.8637532518023203,
-          "tilt": 0.04584348983075896
+          "error": 5.83914223772785,
+          "speed": 3.2381727544850825,
+          "lateral": 3.0961446411561,
+          "tilt": 0.04332526352995358
         },
-        "time": 24.050000000000207
+        "time": 17.550000000000114
       },
       {
-        "seed": 92431,
-        "scenario": 7,
-        "score": -61.51700412383788,
+        "seed": 535226,
+        "scenario": 4,
+        "score": 122.84343896809114,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 365.4228656047387,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 2.8796524368195056,
+          "speed": 2.7436312047127087,
+          "lateral": 1.9448576162285607,
+          "tilt": 0.02371777583669513
+        },
+        "time": 18.100000000000122
+      },
+      {
+        "seed": 531107,
+        "scenario": 5,
+        "score": 122.42863717274153,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 365.51974702393284,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 4.123804361889925,
+          "speed": 3.0033388491114428,
+          "lateral": 1.1749820168848866,
+          "tilt": 0.017410215153343112
+        },
+        "time": 19.200000000000138
+      },
+      {
+        "seed": 535226,
+        "scenario": 5,
+        "score": 122.67709149628239,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 365.5860377571182,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 5.960849606588315,
+          "speed": 3.0284916697035262,
+          "lateral": 0.8672840195696006,
+          "tilt": 0.027656259636482956
+        },
+        "time": 19.700000000000145
+      },
+      {
+        "seed": 531107,
+        "scenario": 6,
+        "score": -54.04614521898515,
         "landed": false,
         "styleBonus": 0,
         "styleRecovered": true,
-        "turnDegrees": 361.4313795802677,
+        "turnDegrees": 374.5803774317673,
         "reason": "Missed the ship",
         "touchdown": {
-          "error": 17.45133576582306,
-          "speed": 1.1482661326746473,
-          "lateral": 4.377127828622081,
-          "tilt": 0.10505033398171085
+          "error": 13.876641365651617,
+          "speed": 1.7317828513480775,
+          "lateral": 1.8442849522841644,
+          "tilt": 0.03972726601718466
         },
         "time": 25.05000000000022
       },
       {
-        "seed": 93440,
-        "scenario": 7,
-        "score": -62.44697841713892,
+        "seed": 535226,
+        "scenario": 6,
+        "score": -56.365247409744256,
         "landed": false,
         "styleBonus": 0,
         "styleRecovered": true,
-        "turnDegrees": 361.36698552360485,
+        "turnDegrees": 374.4380690581499,
+        "reason": "Lateral impact",
+        "touchdown": {
+          "error": 5.781382720356839,
+          "speed": 1.618972294939701,
+          "lateral": 3.884219480060598,
+          "tilt": 0.07066108958428564
+        },
+        "time": 25.150000000000222
+      },
+      {
+        "seed": 531107,
+        "scenario": 7,
+        "score": -58.94491961901797,
+        "landed": false,
+        "styleBonus": 0,
+        "styleRecovered": true,
+        "turnDegrees": 351.57284837298454,
         "reason": "Missed the ship",
         "touchdown": {
-          "error": 16.356826592495924,
-          "speed": 1.7600062639788674,
-          "lateral": 3.0729873744093488,
-          "tilt": 0.042341755183805584
+          "error": 17.263747503646808,
+          "speed": 1.8158039062756837,
+          "lateral": 3.1411376733563947,
+          "tilt": 0.08721036018059439
+        },
+        "time": 25.70000000000023
+      },
+      {
+        "seed": 535226,
+        "scenario": 7,
+        "score": -60.91429171749718,
+        "landed": false,
+        "styleBonus": 0,
+        "styleRecovered": true,
+        "turnDegrees": 351.64219752502277,
+        "reason": "Missed the ship",
+        "touchdown": {
+          "error": 17.162692009199397,
+          "speed": 0.5561830045296148,
+          "lateral": 4.654096613636472,
+          "tilt": 0.08965685819741266
+        },
+        "time": 26.200000000000237
+      },
+      {
+        "seed": 531107,
+        "scenario": 8,
+        "score": 125.11142600542908,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 363.1081136095601,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 4.849467826276476,
+          "speed": 2.8761042630775173,
+          "lateral": 1.0104594930795308,
+          "tilt": 0.014612876174524106
+        },
+        "time": 13.05000000000005
+      },
+      {
+        "seed": 535226,
+        "scenario": 8,
+        "score": 124.97703339858923,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 363.4232392749876,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 1.8753934453910295,
+          "speed": 2.9261263198471346,
+          "lateral": 0.2276308173037018,
+          "tilt": 0.0064228238234011565
+        },
+        "time": 13.400000000000055
+      },
+      {
+        "seed": 531107,
+        "scenario": 9,
+        "score": 124.37565337933876,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 364.22373402133707,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 8.638328733137996,
+          "speed": 2.6978933790141566,
+          "lateral": 1.2272059445619712,
+          "tilt": 0.022441374321154978
+        },
+        "time": 14.45000000000007
+      },
+      {
+        "seed": 535226,
+        "scenario": 9,
+        "score": 124.24559869931878,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 364.42150294138014,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 4.677033131605929,
+          "speed": 3.0116156109211514,
+          "lateral": 1.0204617686891218,
+          "tilt": 0.01701246227117788
+        },
+        "time": 14.700000000000074
+      },
+      {
+        "seed": 531107,
+        "scenario": 10,
+        "score": 124.09019136384374,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 364.74802782680865,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 9.462161611887698,
+          "speed": 3.0424927205539936,
+          "lateral": 1.1227899581303946,
+          "tilt": 0.03793386447355384
+        },
+        "time": 15.450000000000085
+      },
+      {
+        "seed": 535226,
+        "scenario": 10,
+        "score": 124.2933380433967,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 364.8821213943321,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 2.488794465284646,
+          "speed": 2.8914309743456292,
+          "lateral": 1.9531319725982188,
+          "tilt": 0.03864763611672764
+        },
+        "time": 15.85000000000009
+      },
+      {
+        "seed": 531107,
+        "scenario": 11,
+        "score": 123.6177073986028,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 365.06426791165507,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 8.229991369536723,
+          "speed": 2.8922372764734585,
+          "lateral": 1.3205224797132151,
+          "tilt": 0.04549277985949415
+        },
+        "time": 16.300000000000097
+      },
+      {
+        "seed": 535226,
+        "scenario": 11,
+        "score": 123.79820625947858,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 365.1380252391275,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 2.066552111955501,
+          "speed": 2.7289771620462235,
+          "lateral": 1.852749393907273,
+          "tilt": 0.03250455964498468
+        },
+        "time": 16.700000000000102
+      },
+      {
+        "seed": 531107,
+        "scenario": 12,
+        "score": 124.08932224705853,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 364.44460621182463,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 8.668627618376938,
+          "speed": 2.9098252989619247,
+          "lateral": 1.1569956442858405,
+          "tilt": 0.025487504000172006
+        },
+        "time": 14.900000000000077
+      },
+      {
+        "seed": 535226,
+        "scenario": 12,
+        "score": 124.03590079292854,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 364.56643217452137,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 2.5255032913255593,
+          "speed": 2.908692873820173,
+          "lateral": 2.0232894071474954,
+          "tilt": 0.03779291640407142
+        },
+        "time": 15.250000000000082
+      },
+      {
+        "seed": 531107,
+        "scenario": 13,
+        "score": -65.11003618906476,
+        "landed": false,
+        "styleBonus": 0,
+        "styleRecovered": false,
+        "turnDegrees": 365.0154347349123,
+        "reason": "Missed the ship",
+        "touchdown": {
+          "error": 11.94506001617714,
+          "speed": 3.362792074820225,
+          "lateral": 4.150241959613839,
+          "tilt": 0.05743924145168963
+        },
+        "time": 16.250000000000096
+      },
+      {
+        "seed": 535226,
+        "scenario": 13,
+        "score": -61.150475684769624,
+        "landed": false,
+        "styleBonus": 0,
+        "styleRecovered": true,
+        "turnDegrees": 365.0780240135781,
+        "reason": "Missed the ship",
+        "touchdown": {
+          "error": 18.64753741156741,
+          "speed": 3.100844184729911,
+          "lateral": 2.1119632491165494,
+          "tilt": 0.08595886403483376
+        },
+        "time": 16.6000000000001
+      },
+      {
+        "seed": 531107,
+        "scenario": 14,
+        "score": -49.916215857475684,
+        "landed": false,
+        "styleBonus": 0,
+        "styleRecovered": true,
+        "turnDegrees": 364.5832627444699,
+        "reason": "Missed the ship",
+        "touchdown": {
+          "error": 15.078875195047157,
+          "speed": 2.514920694911033,
+          "lateral": 1.3260300693051381,
+          "tilt": 0.031149268429002494
+        },
+        "time": 15.250000000000082
+      },
+      {
+        "seed": 535226,
+        "scenario": 14,
+        "score": 122.29321915707031,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 364.7584150742634,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 10.032192516446425,
+          "speed": 2.4805659365919106,
+          "lateral": 1.312738349017301,
+          "tilt": 0.03705924248924111
+        },
+        "time": 15.750000000000089
+      },
+      {
+        "seed": 531107,
+        "scenario": 15,
+        "score": 124.52813757200725,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 364.51956498795505,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 6.720752458884788,
+          "speed": 2.876601374431441,
+          "lateral": 0.7503322462025265,
+          "tilt": 0.031218427094342097
+        },
+        "time": 14.950000000000077
+      },
+      {
+        "seed": 535226,
+        "scenario": 15,
+        "score": 124.45215429466751,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 364.6465918639354,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 1.8353583312924135,
+          "speed": 2.767325555118288,
+          "lateral": 0.9536844525336224,
+          "tilt": 0.03194106987006792
+        },
+        "time": 15.300000000000082
+      },
+      {
+        "seed": 531107,
+        "scenario": 16,
+        "score": 122.92926210848243,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 364.97765352106927,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 6.219723646386856,
+          "speed": 2.864599203760901,
+          "lateral": 1.0966126796681919,
+          "tilt": 0.04187239247750162
+        },
+        "time": 15.950000000000092
+      },
+      {
+        "seed": 535226,
+        "scenario": 16,
+        "score": 122.53694175520518,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 365.0397615395505,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 1.258884686600316,
+          "speed": 2.8844088597927247,
+          "lateral": 1.0176502734359893,
+          "tilt": 0.03878769297223006
+        },
+        "time": 16.350000000000097
+      },
+      {
+        "seed": 531107,
+        "scenario": 17,
+        "score": 123.66205037043983,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 365.51329895942195,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 4.027599958594497,
+          "speed": 2.9838256748544216,
+          "lateral": 1.2781058301652082,
+          "tilt": 0.030093144957905934
+        },
+        "time": 18.150000000000123
+      },
+      {
+        "seed": 535226,
+        "scenario": 17,
+        "score": 123.54688071598896,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 365.494097663166,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 1.0181411001689367,
+          "speed": 2.8546349407421587,
+          "lateral": 0.6298886171985661,
+          "tilt": 0.0015733646969438822
+        },
+        "time": 18.60000000000013
+      },
+      {
+        "seed": 531107,
+        "scenario": 18,
+        "score": 119.37571605262414,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 365.7954683994377,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 5.024307119282841,
+          "speed": 2.809757614620113,
+          "lateral": 1.4265112379221399,
+          "tilt": 0.03880926696183095
+        },
+        "time": 28.800000000000274
+      },
+      {
+        "seed": 535226,
+        "scenario": 18,
+        "score": 118.3130590509542,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 365.66954758680873,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 5.572146232390485,
+          "speed": 3.1710572494039777,
+          "lateral": 1.2962606350535573,
+          "tilt": 0.021017066577500482
+        },
+        "time": 28.900000000000276
+      },
+      {
+        "seed": 531107,
+        "scenario": 19,
+        "score": 122.1126839001341,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 365.5547602611246,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 1.778152064505812,
+          "speed": 2.9405162913669347,
+          "lateral": 1.1061463168534484,
+          "tilt": 0.01401879941150259
+        },
+        "time": 19.700000000000145
+      },
+      {
+        "seed": 535226,
+        "scenario": 19,
+        "score": 122.38094038800332,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 365.6250877479403,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 4.258306093270633,
+          "speed": 2.9977095822371616,
+          "lateral": 2.1394350905706303,
+          "tilt": 0.033018407384303804
+        },
+        "time": 20.250000000000153
+      },
+      {
+        "seed": 531107,
+        "scenario": 20,
+        "score": 119.59242182275933,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 374.54686965506784,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 10.450050023163998,
+          "speed": 1.5894573289920788,
+          "lateral": 1.5801148983419036,
+          "tilt": 0.03238898765762555
+        },
+        "time": 23.700000000000202
+      },
+      {
+        "seed": 535226,
+        "scenario": 20,
+        "score": 119.46953910605023,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 374.4582801528313,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 7.506425579715651,
+          "speed": 1.8320203721265085,
+          "lateral": 1.1092120108209855,
+          "tilt": 0.0871126460064399
+        },
+        "time": 23.750000000000203
+      },
+      {
+        "seed": 531107,
+        "scenario": 21,
+        "score": -50.68487062882791,
+        "landed": false,
+        "styleBonus": 0,
+        "styleRecovered": true,
+        "turnDegrees": 374.5710032991128,
+        "reason": "Missed the ship",
+        "touchdown": {
+          "error": 12.093837982777728,
+          "speed": 0.5450852231334621,
+          "lateral": 1.5819099277268955,
+          "tilt": 0.051208276670001884
         },
         "time": 25.350000000000225
       },
       {
-        "seed": 94449,
-        "scenario": 7,
-        "score": -59.453519693201585,
+        "seed": 535226,
+        "scenario": 21,
+        "score": 115.68620938444693,
+        "landed": true,
+        "styleBonus": 25,
+        "styleRecovered": true,
+        "turnDegrees": 374.4685596678042,
+        "reason": "Touchdown",
+        "touchdown": {
+          "error": 6.926433221218996,
+          "speed": 1.0045588613676906,
+          "lateral": 2.831194768552036,
+          "tilt": 0.07455662933181517
+        },
+        "time": 25.200000000000223
+      },
+      {
+        "seed": 531107,
+        "scenario": 22,
+        "score": -47.744231912463256,
         "landed": false,
         "styleBonus": 0,
         "styleRecovered": true,
-        "turnDegrees": 361.6503974463284,
+        "turnDegrees": 351.58691623718977,
         "reason": "Missed the ship",
         "touchdown": {
-          "error": 25.9455520504336,
-          "speed": 0.4863920577784992,
-          "lateral": 2.4227111732211632,
-          "tilt": 0.09533647628808531
+          "error": 15.245327574279196,
+          "speed": 1.3774615080314594,
+          "lateral": 0.9255110023276841,
+          "tilt": 0.05250309597565014
         },
-        "time": 26.050000000000235
+        "time": 23.700000000000202
+      },
+      {
+        "seed": 535226,
+        "scenario": 22,
+        "score": -53.58482063359436,
+        "landed": false,
+        "styleBonus": 0,
+        "styleRecovered": true,
+        "turnDegrees": 351.91346684515213,
+        "reason": "Missed the ship",
+        "touchdown": {
+          "error": 23.00008304449481,
+          "speed": 0.0066172684350541385,
+          "lateral": 0.76581912886148,
+          "tilt": 0.05779021066457753
+        },
+        "time": 40.44999999999984
+      },
+      {
+        "seed": 531107,
+        "scenario": 23,
+        "score": -54.80871389679734,
+        "landed": false,
+        "styleBonus": 0,
+        "styleRecovered": true,
+        "turnDegrees": 351.6455594685849,
+        "reason": "Missed the ship",
+        "touchdown": {
+          "error": 25.26379362846604,
+          "speed": 1.2657077681547244,
+          "lateral": 1.3937419441483212,
+          "tilt": 0.03899286748365291
+        },
+        "time": 24.95000000000022
+      },
+      {
+        "seed": 535226,
+        "scenario": 23,
+        "score": -60.89179315597622,
+        "landed": false,
+        "styleBonus": 0,
+        "styleRecovered": true,
+        "turnDegrees": 351.89117603801964,
+        "reason": "Missed the ship",
+        "touchdown": {
+          "error": 32.90084068140463,
+          "speed": 0.006292708210430221,
+          "lateral": 1.860650591587296,
+          "tilt": 0.11840428837398044
+        },
+        "time": 30.350000000000296
+      },
+      {
+        "seed": 531107,
+        "scenario": 24,
+        "score": 432.8795077519249,
+        "landed": true,
+        "styleBonus": 0,
+        "styleRecovered": false,
+        "turnDegrees": 360.3012217688264,
+        "reason": "Orbit complete · barge touchdown",
+        "touchdown": {
+          "error": 0.8686325295867595,
+          "speed": 1.7127978425391732,
+          "lateral": 0.29900570342093485,
+          "tilt": 0.031156151376939206
+        },
+        "time": 440.3500000000048,
+        "orbitComplete": true,
+        "orbits": 1.700997758905768,
+        "maxAltitude": 1043.0002091521746,
+        "milestones": [
+          {
+            "name": "Launch",
+            "time": 0.7500000000000001,
+            "altitude": 4.574068801254107
+          },
+          {
+            "name": "Space",
+            "time": 21.799999999999983,
+            "altitude": 801.0911523555209
+          },
+          {
+            "name": "Stable orbit",
+            "time": 54.29999999999998,
+            "altitude": 996.2043248712569
+          },
+          {
+            "name": "One full orbit",
+            "time": 250.29999999999998,
+            "altitude": 1004.0588639950593
+          },
+          {
+            "name": "Deorbit",
+            "time": 387.04999999999995,
+            "altitude": 1003.3638346640802
+          },
+          {
+            "name": "Atmospheric entry",
+            "time": 401.79999999999995,
+            "altitude": 795.0516692772392
+          },
+          {
+            "name": "Final approach",
+            "time": 417.29999999999995,
+            "altitude": 299.1417868615789
+          },
+          {
+            "name": "Barge touchdown",
+            "time": 440.3500000000048,
+            "altitude": -0.009231493308264227
+          }
+        ]
+      },
+      {
+        "seed": 535226,
+        "scenario": 24,
+        "score": 432.8795077519249,
+        "landed": true,
+        "styleBonus": 0,
+        "styleRecovered": false,
+        "turnDegrees": 360.3012217688264,
+        "reason": "Orbit complete · barge touchdown",
+        "touchdown": {
+          "error": 0.8686325295867595,
+          "speed": 1.7127978425391732,
+          "lateral": 0.29900570342093485,
+          "tilt": 0.025342116438737322
+        },
+        "time": 440.3500000000048,
+        "orbitComplete": true,
+        "orbits": 1.700997758905768,
+        "maxAltitude": 1043.0002091521746,
+        "milestones": [
+          {
+            "name": "Launch",
+            "time": 0.7500000000000001,
+            "altitude": 4.574068801254107
+          },
+          {
+            "name": "Space",
+            "time": 21.799999999999983,
+            "altitude": 801.0911523555209
+          },
+          {
+            "name": "Stable orbit",
+            "time": 54.29999999999998,
+            "altitude": 996.2043248712569
+          },
+          {
+            "name": "One full orbit",
+            "time": 250.29999999999998,
+            "altitude": 1004.0588639950593
+          },
+          {
+            "name": "Deorbit",
+            "time": 387.04999999999995,
+            "altitude": 1003.3638346640802
+          },
+          {
+            "name": "Atmospheric entry",
+            "time": 401.79999999999995,
+            "altitude": 795.0516692772392
+          },
+          {
+            "name": "Final approach",
+            "time": 417.29999999999995,
+            "altitude": 299.1417868615789
+          },
+          {
+            "name": "Barge touchdown",
+            "time": 440.3500000000048,
+            "altitude": -0.009231493308264227
+          }
+        ]
+      },
+      {
+        "seed": 531107,
+        "scenario": 25,
+        "score": 425.752061585662,
+        "landed": true,
+        "styleBonus": 0,
+        "styleRecovered": false,
+        "turnDegrees": 360.2705022897219,
+        "reason": "Orbit complete · barge touchdown",
+        "touchdown": {
+          "error": 0.9871529700823661,
+          "speed": 1.664496861272745,
+          "lateral": 0.3568642423280265,
+          "tilt": 0.03258512917243707
+        },
+        "time": 442.40000000000487,
+        "orbitComplete": true,
+        "orbits": 1.7088270684154379,
+        "maxAltitude": 1052.5747685879358,
+        "milestones": [
+          {
+            "name": "Launch",
+            "time": 0.7500000000000001,
+            "altitude": 4.5740275443104785
+          },
+          {
+            "name": "Space",
+            "time": 21.799999999999983,
+            "altitude": 801.103633466292
+          },
+          {
+            "name": "Stable orbit",
+            "time": 52.79999999999998,
+            "altitude": 995.477016799964
+          },
+          {
+            "name": "One full orbit",
+            "time": 249.54999999999998,
+            "altitude": 1024.6150129249604
+          },
+          {
+            "name": "Deorbit",
+            "time": 388.54999999999995,
+            "altitude": 1021.8388356989917
+          },
+          {
+            "name": "Atmospheric entry",
+            "time": 403.54999999999995,
+            "altitude": 796.7340045601778
+          },
+          {
+            "name": "Final approach",
+            "time": 419.29999999999995,
+            "altitude": 292.4893468760051
+          },
+          {
+            "name": "Barge touchdown",
+            "time": 442.40000000000487,
+            "altitude": -0.056502338013296516
+          }
+        ]
+      },
+      {
+        "seed": 535226,
+        "scenario": 25,
+        "score": 426.7768476827166,
+        "landed": true,
+        "styleBonus": 0,
+        "styleRecovered": false,
+        "turnDegrees": 360.2961977458624,
+        "reason": "Orbit complete · barge touchdown",
+        "touchdown": {
+          "error": 0.1663672141926198,
+          "speed": 1.6763893505849645,
+          "lateral": 0.47896714623205267,
+          "tilt": 0.021723947846220178
+        },
+        "time": 442.6000000000049,
+        "orbitComplete": true,
+        "orbits": 1.7090479079824215,
+        "maxAltitude": 1047.9949095586344,
+        "milestones": [
+          {
+            "name": "Launch",
+            "time": 0.7500000000000001,
+            "altitude": 4.574028585947719
+          },
+          {
+            "name": "Space",
+            "time": 21.799999999999983,
+            "altitude": 801.1106928155167
+          },
+          {
+            "name": "Stable orbit",
+            "time": 52.54999999999998,
+            "altitude": 995.3817187441363
+          },
+          {
+            "name": "One full orbit",
+            "time": 249.04999999999998,
+            "altitude": 1039.2175238852933
+          },
+          {
+            "name": "Deorbit",
+            "time": 388.29999999999995,
+            "altitude": 1007.5093083616422
+          },
+          {
+            "name": "Atmospheric entry",
+            "time": 403.54999999999995,
+            "altitude": 795.5163661081687
+          },
+          {
+            "name": "Final approach",
+            "time": 419.29999999999995,
+            "altitude": 295.3797074526536
+          },
+          {
+            "name": "Barge touchdown",
+            "time": 442.6000000000049,
+            "altitude": -0.05205202404412912
+          }
+        ]
+      },
+      {
+        "seed": 531107,
+        "scenario": 26,
+        "score": 424.66986486165274,
+        "landed": true,
+        "styleBonus": 0,
+        "styleRecovered": false,
+        "turnDegrees": 360.58269821993514,
+        "reason": "Orbit complete · barge touchdown",
+        "touchdown": {
+          "error": 1.5176400381998676,
+          "speed": 1.665782064097447,
+          "lateral": 0.48854164756420754,
+          "tilt": 0.035400278083115605
+        },
+        "time": 487.2500000000055,
+        "orbitComplete": true,
+        "orbits": 1.7399328156785543,
+        "maxAltitude": 1443.7073917711414,
+        "milestones": [
+          {
+            "name": "Launch",
+            "time": 0.7500000000000001,
+            "altitude": 4.573728080636801
+          },
+          {
+            "name": "Space",
+            "time": 20.84999999999998,
+            "altitude": 800.6101316797248
+          },
+          {
+            "name": "Stable orbit",
+            "time": 53.09999999999998,
+            "altitude": 1384.6949703111318
+          },
+          {
+            "name": "One full orbit",
+            "time": 266.59999999999997,
+            "altitude": 1427.4283417798856
+          },
+          {
+            "name": "Deorbit",
+            "time": 423.84999999999997,
+            "altitude": 1411.1546194046055
+          },
+          {
+            "name": "Atmospheric entry",
+            "time": 445.59999999999997,
+            "altitude": 799.6259708971226
+          },
+          {
+            "name": "Final approach",
+            "time": 461.34999999999997,
+            "altitude": 293.6251038157097
+          },
+          {
+            "name": "Barge touchdown",
+            "time": 487.2500000000055,
+            "altitude": -0.08045985364120245
+          }
+        ]
+      },
+      {
+        "seed": 535226,
+        "scenario": 26,
+        "score": 425.3358399677162,
+        "landed": true,
+        "styleBonus": 0,
+        "styleRecovered": false,
+        "turnDegrees": 360.5180406013635,
+        "reason": "Orbit complete · barge touchdown",
+        "touchdown": {
+          "error": 1.6356061910283934,
+          "speed": 1.6967299956528539,
+          "lateral": 0.3231477871475293,
+          "tilt": 0.04342549741188578
+        },
+        "time": 484.50000000000523,
+        "orbitComplete": true,
+        "orbits": 1.7401792148521773,
+        "maxAltitude": 1443.9610652881852,
+        "milestones": [
+          {
+            "name": "Launch",
+            "time": 0.7500000000000001,
+            "altitude": 4.573725569639661
+          },
+          {
+            "name": "Space",
+            "time": 20.84999999999998,
+            "altitude": 800.6091510394248
+          },
+          {
+            "name": "Stable orbit",
+            "time": 53.09999999999998,
+            "altitude": 1384.6920249884115
+          },
+          {
+            "name": "One full orbit",
+            "time": 266.34999999999997,
+            "altitude": 1422.6922368329429
+          },
+          {
+            "name": "Deorbit",
+            "time": 424.09999999999997,
+            "altitude": 1409.3042559391238
+          },
+          {
+            "name": "Atmospheric entry",
+            "time": 444.34999999999997,
+            "altitude": 795.4320932320434
+          },
+          {
+            "name": "Final approach",
+            "time": 459.84999999999997,
+            "altitude": 297.5750261253494
+          },
+          {
+            "name": "Barge touchdown",
+            "time": 484.50000000000523,
+            "altitude": -0.034979481982480465
+          }
+        ]
       }
     ]
   },
-  "recoveryOnly": [
-    {
-      "seed": 1000003,
-      "scenario": 0,
-      "score": 101.15309736232282,
-      "landed": true,
-      "styleBonus": 0,
-      "styleRecovered": false,
-      "turnDegrees": -0.43299256605170056,
-      "reason": "Touchdown",
-      "touchdown": {
-        "error": 2.163115344588805,
-        "speed": 2.795688681083653,
-        "lateral": 0.2754535526200837,
-        "tilt": 0.010661658616563681
-      },
-      "time": 10.100000000000009
-    },
-    {
-      "seed": 1000003,
-      "scenario": 1,
-      "score": 99.7795744169238,
-      "landed": true,
-      "styleBonus": 0,
-      "styleRecovered": false,
-      "turnDegrees": -0.4726863579276571,
-      "reason": "Touchdown",
-      "touchdown": {
-        "error": 1.8795928884443496,
-        "speed": 2.757038195083504,
-        "lateral": 0.7981932468981867,
-        "tilt": 0.0045578199303140405
-      },
-      "time": 15.700000000000088
-    }
-  ],
+  "orbitalEvaluation": {
+    "episodes": 6,
+    "completeRoundTrips": 6,
+    "completedRevolutions": 6
+  },
+  "orbitalModel": {
+    "radiusMeters": 6000,
+    "gravitationalParameter": 353160000,
+    "atmosphereBoundaryMeters": 800,
+    "explicitMissionGuidance": true,
+    "learnedMissionPlanner": false,
+    "actionOverride": false,
+    "successRequires": [
+      "launch",
+      "stable orbit",
+      "at least one full revolution",
+      "deorbit",
+      "atmospheric entry",
+      "safe barge touchdown"
+    ]
+  },
   "checks": [
-    "Independent graph-row calculations and counts",
-    "Causal command effect from a sensory neuron outside historical 96",
-    "Exact complete-graph replay and restoration of live state",
-    "Recovery-gated, capped style reward; crash/low-turn/oscillation rejection",
-    "All ten actuator mappings and stale instrument memory",
-    "Browser full-network landing with recovered turn",
-    "Browser local training completed a generation and stopped"
+    "All retained graph edges participate in every pass",
+    "Original eight missions retain identical dynamics",
+    "Analytic velocities for moving deck profiles",
+    "32 displayed edge removals verified with independent full passes",
+    "Exact paused full-network replay and restoration",
+    "Render interpolation does not modify physical state",
+    "Orbital energy conservation and orbital-element checks",
+    "Premature landing rejected; mission milestones ordered",
+    "Browser complete round trip and exact command replay",
+    "Mobile layout without page overflow"
   ],
   "limitations": [
-    "24 style-enabled flights on three seeds shared across eight scenarios are a finite simulator evaluation, not a reliability guarantee.",
-    "Night and engine-fault missions remain unreliable; all failures are included.",
-    "Supervised transfer from historical landing policies and a yaw-target demonstrator initialized the readouts; this is not learning from scratch.",
-    "Individual biological edge counts and signs are fixed; only the output readouts are optimized.",
-    "This is an engineered signed rate model, not a validated biological fly emulation."
+    "Two held-out seeds per profile form a small simulator evaluation, not a reliability guarantee. All failures are included.",
+    "Engine-out landing profiles remain unreliable.",
+    "The world and vehicle are stylized; orbital distances and periods are compressed.",
+    "Orbital trajectory/attitude/thrust cues are engineered from simulator state. The neural readout tracks that guidance; this is not a learned orbital planner.",
+    "Readouts were initialized from demonstrations before full-network reward training.",
+    "Individual biological synapse counts and signs are fixed; output readout weights learn.",
+    "A simplified signed-rate network is not a validated biological fly emulation."
   ]
 }
