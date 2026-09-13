@@ -1,14 +1,15 @@
-import {collectLesson,lessonLoss,fitLesson} from './visual-lesson.js?v=9.3';
-import {sampleEmbodied} from './perception.js?v=9.3';
-import {EMBODIED_CONTROLLER,EMBODIED_SCHEMA,EMBODIED_INPUTS} from './sensory-inputs.js?v=9.3';
-import {createFlight,fullSensors,advance,rng,decisionSteps} from './engine3d.js?v=9.3';
+import {collectLesson,lessonLoss,fitLesson} from './visual-lesson.js?v=9.4';
+import {sampleEmbodied} from './perception.js?v=9.4';
+import {FLIGHT_PANEL} from './flight-instruments.js?v=9.4';
+import {EMBODIED_CONTROLLER,EMBODIED_SCHEMA,EMBODIED_INPUTS} from './sensory-inputs.js?v=9.4';
+import {createFlight,fullSensors,advance,rng,decisionSteps} from './engine3d.js?v=9.4';
 export const CONTROLLER_ID='malecns-full-rate-v2',READOUT_SIZE=21300;
-export function validCheckpoint(c){return c?.version===5&&((c.circuit===CONTROLLER_ID&&c.sensorSchema==='flight-senses-46-v1')||(c.circuit===EMBODIED_CONTROLLER&&c.sensorSchema===EMBODIED_SCHEMA))&&c.weights?.length===READOUT_SIZE&&c.weights.every(Number.isFinite)&&(c.activationGain===undefined||(Number.isFinite(c.activationGain)&&c.activationGain>=1&&c.activationGain<=1.05))&&Number.isFinite(c.generation)&&Number.isFinite(c.episodes);}
+export function validCheckpoint(c){return c?.version===5&&((c.circuit===CONTROLLER_ID&&c.sensorSchema==='flight-senses-46-v1')||(c.circuit===EMBODIED_CONTROLLER&&c.sensorSchema===EMBODIED_SCHEMA))&&(c.sensoryPresentation===undefined||(c.circuit===EMBODIED_CONTROLLER&&['landing-light-indicators-v1',FLIGHT_PANEL].includes(c.sensoryPresentation)))&&c.weights?.length===READOUT_SIZE&&c.weights.every(Number.isFinite)&&(c.activationGain===undefined||(Number.isFinite(c.activationGain)&&c.activationGain>=1&&c.activationGain<=1.05))&&Number.isFinite(c.generation)&&Number.isFinite(c.episodes);}
 export const isEmbodied=c=>c?.circuit===EMBODIED_CONTROLLER;
 export function freshEmbodied(){const c=freshCheckpoint(),r=rng(7449);return{...c,circuit:EMBODIED_CONTROLLER,sensorSchema:EMBODIED_SCHEMA,inputs:EMBODIED_INPUTS,weights:c.weights.map((_,i)=>(i+1)%2130===0?(Math.floor(i/2130)===8?-1:0):r.normal()*10),initialization:'Independent random readout; no flight demonstrations',scenario:0};}
 export function freshCheckpoint(){const r=rng(74);return{version:5,circuit:CONTROLLER_ID,sensorSchema:'flight-senses-46-v1',inputs:46,activationGain:1,weights:Array.from({length:READOUT_SIZE},(_,i)=>i===9*2130-1?-1:r.normal()*.02),generation:0,episodes:0,history:[],scenario:1};}
-export function* rollout(network,weights,seed,scenario,style=true,variability=0,activationGain=1,inputMode='telemetry',autoOdor=true,eyesCovered=false,instrumentLights=true){
- network.setInputMode(inputMode);const s=createFlight(seed,scenario,variability);s.styleEnabled=style;s.autoOdor=autoOdor;s.eyesCovered=eyesCovered;s.instrumentLights=instrumentLights;s.activationGain=activationGain;network.setActivationGain(activationGain);network.reset();
+export function* rollout(network,weights,seed,scenario,style=true,variability=0,activationGain=1,inputMode='telemetry',autoOdor=true,eyesCovered=false,instrumentLights=true,sensoryPresentation){
+ network.setInputMode(inputMode);const s=createFlight(seed,scenario,variability);s.styleEnabled=style;s.autoOdor=autoOdor;s.eyesCovered=eyesCovered;s.instrumentLights=instrumentLights;s.sensoryPresentation=sensoryPresentation;s.activationGain=activationGain;network.setActivationGain(activationGain);network.reset();
  while(!s.done){const action=network.decide(inputMode==='embodied'?sampleEmbodied(s).observations:fullSensors(s),weights);for(let j=0,steps=decisionSteps(s);j<steps&&!s.done;j++)advance(s,action);yield s;}
  return s;
 }
@@ -18,7 +19,7 @@ export class FullTrainer{
  constructor(network,checkpoint){this.network=network;this.data={...checkpoint,weights:[...checkpoint.weights],history:[...checkpoint.history]};this.scenario=checkpoint.scenario??1;this.style=true;this.variability=.4;this.profiles=[this.scenario];this.running=true;this.random=rng(19403+checkpoint.generation*7919);}
  async evaluate(weights,cases,onProgress,pause){
   const flights=[];
-  for(const {seed,scenario,variability=0} of cases){let last;for(const s of rollout(this.network,weights,seed,scenario,this.style,variability,this.data.activationGain??1,isEmbodied(this.data)?'embodied':'telemetry',this.data.autoOdor!==false,!!this.data.eyesCovered,this.data.instrumentLights!==false)){if(!this.running)return null;last=s;onProgress?.({completed:this.data.episodes,flightTime:s.t,scenario});await pause();}this.data.episodes++;flights.push(flightResult(last));}
+  for(const {seed,scenario,variability=0} of cases){let last;for(const s of rollout(this.network,weights,seed,scenario,this.style,variability,this.data.activationGain??1,isEmbodied(this.data)?'embodied':'telemetry',this.data.autoOdor!==false,!!this.data.eyesCovered,this.data.instrumentLights!==false,this.data.sensoryPresentation)){if(!this.running)return null;last=s;onProgress?.({completed:this.data.episodes,flightTime:s.t,scenario});await pause();}this.data.episodes++;flights.push(flightResult(last));}
   return{score:flights.reduce((v,s)=>v+s.score,0)/flights.length,landings:flights.filter(s=>s.landed).length,styles:flights.filter(s=>s.styleBonus>0).length,flights};
  }
  async generation(onProgress,pause=()=>new Promise(r=>setTimeout(r,0))){

@@ -1,5 +1,9 @@
 # Learning the first landing
 
+This page records the earlier stationary-deck checkpoint. The current
+[mission-suite checkpoint](suite-training.md) adds steering and stabilization
+and has separate tests across four missions.
+
 The frozen generation-9 checkpoint made **6 safe landings in 24 unseen starts**:
 5/12 under nominal conditions and 1/12 with variability 0.4. The earlier
 visual-orientation checkpoint made 0/24 on the same starts with the updated
@@ -73,11 +77,12 @@ Half of the final starts use variability 0.4, which varies the relevant mass,
 thrust and actuator parameters. The embodied sensor renderer does not add
 independent observation noise.
 
-The [landing report](../dist/assets/landing-report.json) records the frozen
+The [archived landing report](assets/first-landing-report.json) records the frozen
 checkpoint hash, every test seed, each outcome, sensory controls and the scope
-of the result. The [checkpoint](../dist/assets/embodied-starter.json) is the
-same one used by the app's **Perceiving fly** option. **My trainee** preserves
-the user's separate local checkpoint.
+of the result. The [archived checkpoint](assets/first-landing-checkpoint.json)
+is the earlier model tested here. The app's **Perceiving fly** option now uses
+the separately tested mission-suite checkpoint. **My trainee** preserves the
+user's separate local checkpoint.
 
 ## Reproduction
 

@@ -1,4 +1,4 @@
-import * as T from './vendor/three.module.js?v=9.3';
+import * as T from './vendor/three.module.js?v=9.4';
 
 // Authored mesh assets. Geometry is shared or instanced where parts repeat.
 export const palette={ivory:'#e5e9e4',titanium:'#374b58',dark:'#102332',copper:'#996746',amber:'#f3a358',ruby:'#b62622',glass:'#16394c'};

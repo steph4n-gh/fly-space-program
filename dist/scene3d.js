@@ -1,10 +1,10 @@
-import {paintImage} from './perception.js?v=9.3';
-import * as T from './vendor/three.module.js?v=9.3';
-import {OrbitalWorld} from './orbital-world.js?v=9.3';
-import {PLANET_RADIUS,orbitalGuidance} from './orbital.js?v=9.3';
-import {CONTROL_LIMBS,limbTargets} from './kinematics.js?v=9.3';
-import {oceanEnvironment,deckTexture,boosterTexture} from './ocean.js?v=9.3';
-import {M,material,mesh,ellipsoid,createRocket,createBarge,createFly,createCockpit,moveRod} from './models3d.js?v=9.3';
+import {paintImage} from './perception.js?v=9.4';
+import * as T from './vendor/three.module.js?v=9.4';
+import {OrbitalWorld} from './orbital-world.js?v=9.4';
+import {PLANET_RADIUS,orbitalGuidance} from './orbital.js?v=9.4';
+import {CONTROL_LIMBS,limbTargets} from './kinematics.js?v=9.4';
+import {oceanEnvironment,deckTexture,boosterTexture} from './ocean.js?v=9.4';
+import {M,material,mesh,ellipsoid,createRocket,createBarge,createFly,createCockpit,moveRod} from './models3d.js?v=9.4';
 
 function environment(renderer,cockpit){
  const scene=new T.Scene();scene.background=new T.Color(cockpit?'#647f93':'#89b4cc');
@@ -89,7 +89,8 @@ export class Cockpit3D{
   this.camera.updateProjectionMatrix();this.renderer.render(this.scene,this.camera);
   if(this.lastSeed!==s.seed){this.history=[];this.lastSeed=s.seed;this.lastStep=-1;}if(s.step!==this.lastStep){this.history.push([s.t,s.throttle,s.gimbal/.22,s.rcs]);if(this.history.length>180)this.history.shift();this.lastStep=s.step;}
  }
- updateScreens(s){for(let i=0;i<3;i++){const {canvas,texture}=this.screens[i],g=canvas.getContext('2d');texture.rotation=s.perception?Math.PI:this.eyeView?Math.PI:0;if(s.perception){paintImage(canvas,s.perception.screens[i]);texture.needsUpdate=true;continue;}if(canvas.width!==768){canvas.width=768;canvas.height=448;}g.setTransform(2,0,0,2,0,0);g.fillStyle='#051b28';g.fillRect(0,0,384,224);g.font='22px monospace';g.fillStyle='#95cbd8';g.textAlign='center';g.fillText(['PROPELLANT','FLIGHT / RADAR','ENGINE BANK'][i],192,32);
+ // GPU texture storage has fixed dimensions. Release it when the display changes size.
+ updateScreens(s){for(let i=0;i<3;i++){const {canvas,texture}=this.screens[i],g=canvas.getContext('2d'),image=s.perception?.screens[i],width=image?.width??768,height=image?.height??448;if(canvas.width!==width||canvas.height!==height){texture.dispose();canvas.width=width;canvas.height=height;}texture.rotation=s.perception?Math.PI:this.eyeView?Math.PI:0;if(image){paintImage(canvas,image);texture.needsUpdate=true;continue;}g.setTransform(2,0,0,2,0,0);g.fillStyle='#051b28';g.fillRect(0,0,384,224);g.font='22px monospace';g.fillStyle='#95cbd8';g.textAlign='center';g.fillText(['PROPELLANT','FLIGHT / RADAR','ENGINE BANK'][i],192,32);
  if(i===0){g.font='68px monospace';g.fillStyle=s.fuel<.3?'#ff955e':'#c4ede3';g.fillText(`${Math.round(s.fuel*100)}%`,192,126);g.fillStyle='#294354';g.fillRect(34,158,316,17);g.fillStyle='#9fe0c7';g.fillRect(34,158,316*s.fuel,17);g.font='20px monospace';g.fillStyle='#8cabbc';g.fillText(`THRUST ${Math.round(s.throttle*100)}%`,192,210);}
  else if(i===1){g.save();g.beginPath();g.rect(25,46,334,124);g.clip();g.translate(192,105);g.rotate(-s.angle);g.fillStyle='#386781';g.fillRect(-240,-160,480,160+(s.angleZ??0)*120);g.fillStyle='#946a43';g.fillRect(-240,(s.angleZ??0)*120,480,160);g.strokeStyle='#f6edc5';g.lineWidth=4;g.beginPath();g.moveTo(-35,0);g.lineTo(35,0);g.stroke();g.restore();g.font='26px monospace';g.fillStyle='#d9e4e5';g.fillText(`${Math.max(0,s.y-8).toFixed(0)} m  ${s.vy.toFixed(1)} m/s`,192,210);}
  else{for(let j=0;j<9;j++){const a=(j-1)*Math.PI/4,x=192+(j?Math.cos(a)*67:0),y=116+(j?Math.sin(a)*55:0),on=!s.done&&s.throttle>.01&&((j===0&&s.engineHealth!==0)||(s.engineBank===3&&(j===1||j===5)));g.fillStyle=j===0&&s.engineFailed?'#e36247':on?'#ffd599':'#294556';g.beginPath();g.arc(x,y,15,0,Math.PI*2);g.fill();}g.font='21px monospace';g.fillStyle='#d2e4e8';g.fillText(s.engineFailed?'CENTER THRUST FAULT':`${s.engineBank===3?'THREE':'ONE'} ENGINE SELECTED`,192,210);}texture.needsUpdate=true;}}

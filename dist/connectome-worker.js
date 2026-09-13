@@ -1,4 +1,4 @@
-import {loadNetwork} from './full-network.js?v=9.3';
+import {loadNetwork} from './full-network.js?v=9.4';
 let network,weights,flightId=-1,lastDecision,selectedControl=0;
 onmessage=async({data})=>{
  try{

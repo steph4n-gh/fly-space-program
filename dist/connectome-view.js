@@ -1,4 +1,4 @@
-import {compressedArray,isMotorClass} from './full-network.js?v=9.3';
+import {compressedArray,isMotorClass} from './full-network.js?v=9.4';
 const vertex=`#version 300 es
 precision highp float;
 in vec3 aPosition;in float aNeuron;

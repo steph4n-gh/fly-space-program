@@ -1,5 +1,6 @@
-import {RETINA_WIDTH as W,RETINA_HEIGHT as H,EYE_PIXELS,EMBODIED_INPUTS} from './sensory-inputs.js?v=9.3';
-import {PLANET_RADIUS as R,PLANET_MU as MU} from './orbital.js?v=9.3';
+import {RETINA_WIDTH as W,RETINA_HEIGHT as H,EYE_PIXELS,EMBODIED_INPUTS} from './sensory-inputs.js?v=9.4';
+import {PLANET_RADIUS as R,PLANET_MU as MU} from './orbital.js?v=9.4';
+import {FLIGHT_PANEL,instrumentMeasurements,paintFlightInstruments} from './flight-instruments.js?v=9.4';
 const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
 const dot=(a,b)=>a[0]*b[0]+a[1]*b[1]+a[2]*b[2],add=(a,b)=>a.map((v,i)=>v+b[i]),mul=(a,k)=>a.map(v=>v*k),norm=a=>mul(a,1/Math.hypot(...a));
 // Same YXZ vehicle rotation as the visible rocket, with a fixed downward camera.
@@ -37,7 +38,12 @@ export function renderScreens(s){
   let c=[5,20,28];if(k===0){if(x>17&&x<46&&y>7&&y<41)c=y>40-clamp(s.fuel)*32?[160,221,187]:[31,56,64];}
   else for(let j=0;j<9;j++){const a=(j-1)*Math.PI/4,cx=32+(j?Math.cos(a)*20:0),cy=24+(j?Math.sin(a)*17:0);if(Math.hypot(x-cx,y-cy)<4)c=j===0&&s.engineFailed?[230,72,43]:s.throttle>.01&&((j===0&&s.engineHealth>0)||(s.engineBank===3&&(j===1||j===5)))?[255,220,160]:[40,63,71];}
   pixel(screens[k],x,y,c);
- }return screens;
+ }
+ if(s.sensoryPresentation===FLIGHT_PANEL){
+  screens[0]=renderCamera(s);
+  paintFlightInstruments(screens[1],s.instrumentLights===false?null:instrumentMeasurements(s).encoded);
+ }
+ return screens;
 }
 // Each retinal pixel integrates a 4×4 grid of rays through its angular area.
 // Cache only the optical geometry; every call reads the current screen pixels.
@@ -76,7 +82,7 @@ export function bodySignals(s){
  return[s.throttle*2-1,s.gimbal/.22,s.gimbalZ/.22,s.rcs,s.rcsZ,s.yawJet,s.finX,s.finZ,s.selector*2-1,s.gaze,s.omega,s.omegaZ,s.omegaYaw,loads[1],loads[0],loads[2],s.done?clamp(Math.abs(m[1])/30):0,clamp(s.throttle*((s.engineHealth??1)+(s.engineBank===3?1.6:0))/2.6),0,0,0,0].map(v=>clamp(v,-3,3));
 }
 export function sampleEmbodied(s){
- if(s.perception?.step===s.step&&s.perception.covered===!!s.eyesCovered&&s.perception.instrumentLights===(s.instrumentLights!==false))return s.perception;
+ if(s.perception?.step===s.step&&s.perception.covered===!!s.eyesCovered&&s.perception.instrumentLights===(s.instrumentLights!==false)&&s.perception.sensoryPresentation===s.sensoryPresentation)return s.perception;
  const screens=renderScreens(s),eyes=renderRetinas(s,screens),observations=new Float64Array(EMBODIED_INPUTS),means=[];
  for(let k=0;k<2;k++){let sum=0;for(let j=0;j<EYE_PIXELS;j++){const d=eyes[k].data,i=j*4,v=(.2126*d[i]+.7152*d[i+1]+.0722*d[i+2])/255;observations[k*EYE_PIXELS+j]=v*3;sum+=v;}means.push(sum/EYE_PIXELS);}
  const body=bodySignals(s),old=s.perception,dt=old?Math.max(0,s.t-old.time):0,odor=s.odor??={acetate:0,geosmin:0,lastRelease:-10,events:[]};
@@ -87,6 +93,6 @@ export function sampleEmbodied(s){
  if(trigger){odor[trigger[0]]=Math.min(1,odor[trigger[0]]+.7);odor.lastRelease=s.t;odor.events.push({time:s.t,odor:trigger[0],reason:trigger[1]});odor.events=odor.events.slice(-8);}
  body[18]=body[19]=odor.acetate;body[20]=body[21]=odor.geosmin;observations.set(body,EYE_PIXELS*2);
  const display=[...means.map(v=>v*3),...body];
- s.perception={step:s.step,time:s.t,covered:!!s.eyesCovered,instrumentLights:s.instrumentLights!==false,observations:Array.from(observations),raw:[...means.map(v=>v*100),...body.map((v,i)=>i===0||i===8?(v+1)*50:i<10?v*100:v)],display,eyes,screens,retinalChange:change,odor:{acetate:odor.acetate,geosmin:odor.geosmin,events:odor.events.map(e=>({...e}))}};return s.perception;
+ s.perception={step:s.step,time:s.t,covered:!!s.eyesCovered,instrumentLights:s.instrumentLights!==false,sensoryPresentation:s.sensoryPresentation,observations:Array.from(observations),raw:[...means.map(v=>v*100),...body.map((v,i)=>i===0||i===8?(v+1)*50:i<10?v*100:v)],display,eyes,screens,retinalChange:change,odor:{acetate:odor.acetate,geosmin:odor.geosmin,events:odor.events.map(e=>({...e}))}};return s.perception;
 }
 export function paintImage(canvas,im){if(!im)return;canvas.width=im.width;canvas.height=im.height;canvas.getContext('2d').putImageData(new ImageData(new Uint8ClampedArray(im.data),im.width,im.height),0,0);}

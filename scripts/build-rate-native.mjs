@@ -1,0 +1,13 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import crypto from 'node:crypto';
+import {spawnSync} from 'node:child_process';
+const folder='artifacts/native-rate',source='scripts/rate-native.cpp';
+const include=path.resolve(path.dirname(process.execPath),'../include/node');
+if(!fs.existsSync(path.join(include,'node_api.h')))throw Error('Node API headers are required beside the Node installation');
+fs.mkdirSync(folder,{recursive:true});
+const flags=['-std=c++17','-O3','-ffp-contract=off','-fno-fast-math','-I'+include,...(process.platform==='darwin'?['-bundle','-undefined','dynamic_lookup']:['-shared','-fPIC']),source,'-o',folder+'/rate-native.node'];
+const result=spawnSync('c++',flags,{stdio:'inherit'});if(result.status!==0)throw Error('Native rate build failed');
+const hash=file=>crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+fs.writeFileSync(folder+'/build.json',JSON.stringify({node:process.version,platform:process.platform,architecture:process.arch,flags,sourceSHA256:hash(source),binarySHA256:hash(folder+'/rate-native.node')},null,2));
+console.log('Built complete-graph rate backend in '+folder);

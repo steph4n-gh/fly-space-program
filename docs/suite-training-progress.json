@@ -1,0 +1,736 @@
+{
+  "scope": "Training and model-selection snapshot and one matched calibration probe; not final mission validation",
+  "calibrationProbe": [
+    {
+      "seed": 714133,
+      "landed": false,
+      "reason": "Hard landing",
+      "touchdown": {
+        "error": 2.1926074489771676,
+        "speed": 29.861985386818628,
+        "lateral": 0,
+        "tilt": 0
+      },
+      "time": 4.99999999999999
+    },
+    {
+      "seed": 714133,
+      "landed": true,
+      "reason": "Touchdown",
+      "touchdown": {
+        "error": 2.1926074489771676,
+        "speed": 1.3614402425010916,
+        "lateral": 0,
+        "tilt": 0
+      },
+      "time": 25.950000000000234
+    }
+  ],
+  "training": {
+    "vertical": {
+      "generation": 10,
+      "episodes": 270,
+      "history": [
+        {
+          "generation": 1,
+          "episodes": 27,
+          "landings": 3,
+          "batch": 3,
+          "score": 93.38832588040782,
+          "fitness": null
+        },
+        {
+          "generation": 2,
+          "episodes": 54,
+          "landings": 3,
+          "batch": 3,
+          "score": 92.34708794284688,
+          "fitness": null
+        },
+        {
+          "generation": 3,
+          "episodes": 81,
+          "landings": 3,
+          "batch": 3,
+          "score": 96.91402406524014,
+          "fitness": null
+        },
+        {
+          "generation": 4,
+          "episodes": 108,
+          "landings": 3,
+          "batch": 3,
+          "score": 97.86509875114173,
+          "fitness": null
+        },
+        {
+          "generation": 5,
+          "episodes": 135,
+          "landings": 3,
+          "batch": 3,
+          "score": 97.13213253487497,
+          "fitness": null
+        },
+        {
+          "generation": 6,
+          "episodes": 162,
+          "landings": 3,
+          "batch": 3,
+          "score": 97.87051600949955,
+          "fitness": null
+        },
+        {
+          "generation": 7,
+          "episodes": 189,
+          "landings": 3,
+          "batch": 3,
+          "score": 97.58046206898888,
+          "fitness": null
+        },
+        {
+          "generation": 8,
+          "episodes": 216,
+          "landings": 3,
+          "batch": 3,
+          "score": 98.75393615466862,
+          "fitness": null
+        },
+        {
+          "generation": 9,
+          "episodes": 243,
+          "landings": 3,
+          "batch": 3,
+          "score": 98.96579787868403,
+          "fitness": null
+        },
+        {
+          "generation": 10,
+          "episodes": 270,
+          "landings": 3,
+          "batch": 3,
+          "score": 98.9655229480818,
+          "fitness": null
+        }
+      ]
+    },
+    "vertical-robust": {
+      "generation": 10,
+      "episodes": 450,
+      "history": [
+        {
+          "generation": 1,
+          "episodes": 45,
+          "landings": 4,
+          "batch": 5,
+          "score": 65.29958879085379,
+          "fitness": 59.55911288032585
+        },
+        {
+          "generation": 2,
+          "episodes": 90,
+          "landings": 5,
+          "batch": 5,
+          "score": 97.39965792695462,
+          "fitness": 86.0101305356304
+        },
+        {
+          "generation": 3,
+          "episodes": 135,
+          "landings": 5,
+          "batch": 5,
+          "score": 96.94316183175533,
+          "fitness": 83.01201850297998
+        },
+        {
+          "generation": 4,
+          "episodes": 180,
+          "landings": 4,
+          "batch": 5,
+          "score": 65.24384863079936,
+          "fitness": 57.70243170584668
+        },
+        {
+          "generation": 5,
+          "episodes": 225,
+          "landings": 3,
+          "batch": 5,
+          "score": 26.153232511671284,
+          "fitness": 22.88388688524838
+        },
+        {
+          "generation": 6,
+          "episodes": 270,
+          "landings": 5,
+          "batch": 5,
+          "score": 94.27115064388113,
+          "fitness": 92.60329215942288
+        },
+        {
+          "generation": 7,
+          "episodes": 315,
+          "landings": 3,
+          "batch": 5,
+          "score": 28.596133455868102,
+          "fitness": 20.291788524027965
+        },
+        {
+          "generation": 8,
+          "episodes": 360,
+          "landings": 4,
+          "batch": 5,
+          "score": 61.57131835742986,
+          "fitness": 54.34043973194032
+        },
+        {
+          "generation": 9,
+          "episodes": 405,
+          "landings": 5,
+          "batch": 5,
+          "score": 96.83857306148028,
+          "fitness": 85.34644564238367
+        },
+        {
+          "generation": 10,
+          "episodes": 450,
+          "landings": 5,
+          "batch": 5,
+          "score": 94.26888766101071,
+          "fitness": 88.4544410137164
+        }
+      ]
+    },
+    "attitude": {
+      "generation": 10,
+      "episodes": 720,
+      "history": [
+        {
+          "generation": 1,
+          "episodes": 72,
+          "landings": 1,
+          "batch": 3,
+          "score": -83.82933912824394,
+          "fitness": -88.25151122951284
+        },
+        {
+          "generation": 2,
+          "episodes": 144,
+          "landings": 1,
+          "batch": 3,
+          "score": -106.09897432540043,
+          "fitness": -114.17621440287547
+        },
+        {
+          "generation": 3,
+          "episodes": 216,
+          "landings": 2,
+          "batch": 3,
+          "score": 41.637087235053556,
+          "fitness": 24.249551397485828
+        },
+        {
+          "generation": 4,
+          "episodes": 288,
+          "landings": 1,
+          "batch": 3,
+          "score": -25.66790850670959,
+          "fitness": -32.285372590972784
+        },
+        {
+          "generation": 5,
+          "episodes": 360,
+          "landings": 1,
+          "batch": 3,
+          "score": -21.741970634246783,
+          "fitness": -25.701030638573297
+        },
+        {
+          "generation": 6,
+          "episodes": 432,
+          "landings": 1,
+          "batch": 3,
+          "score": -10.097315770156165,
+          "fitness": -17.072511931530403
+        },
+        {
+          "generation": 7,
+          "episodes": 504,
+          "landings": 1,
+          "batch": 3,
+          "score": -16.01509676339344,
+          "fitness": -19.776531797648797
+        },
+        {
+          "generation": 8,
+          "episodes": 576,
+          "landings": 1,
+          "batch": 3,
+          "score": -36.0586798628834,
+          "fitness": -38.096964595166696
+        },
+        {
+          "generation": 9,
+          "episodes": 648,
+          "landings": 1,
+          "batch": 3,
+          "score": -7.898758147895421,
+          "fitness": -10.760273708679518
+        },
+        {
+          "generation": 10,
+          "episodes": 720,
+          "landings": 3,
+          "batch": 3,
+          "score": 90.61410575385416,
+          "fitness": 77.50867875941437
+        }
+      ]
+    },
+    "ground-general": {
+      "generation": 8,
+      "episodes": 576,
+      "history": [
+        {
+          "generation": 1,
+          "episodes": 72,
+          "landings": 4,
+          "batch": 6,
+          "score": 28.081151606859066,
+          "fitness": 10.852305510794995
+        },
+        {
+          "generation": 2,
+          "episodes": 144,
+          "landings": 2,
+          "batch": 6,
+          "score": -15.845087900934521,
+          "fitness": -18.465478980582947
+        },
+        {
+          "generation": 3,
+          "episodes": 216,
+          "landings": 4,
+          "batch": 6,
+          "score": 42.088124663777016,
+          "fitness": 29.73434445599419
+        },
+        {
+          "generation": 4,
+          "episodes": 288,
+          "landings": 2,
+          "batch": 6,
+          "score": -32.031262386487654,
+          "fitness": -40.78319737144006
+        },
+        {
+          "generation": 5,
+          "episodes": 360,
+          "landings": 2,
+          "batch": 6,
+          "score": -16.27487395172503,
+          "fitness": -19.004598808334357
+        },
+        {
+          "generation": 6,
+          "episodes": 432,
+          "landings": 4,
+          "batch": 6,
+          "score": 39.522527437180756,
+          "fitness": 27.568733749957595
+        },
+        {
+          "generation": 7,
+          "episodes": 504,
+          "landings": 1,
+          "batch": 6,
+          "score": -42.89905798033946,
+          "fitness": -43.86051428076683
+        },
+        {
+          "generation": 8,
+          "episodes": 576,
+          "landings": 2,
+          "batch": 6,
+          "score": -35.27475637657775,
+          "fitness": -42.080157768722216
+        }
+      ]
+    },
+    "attitude-correlated": {
+      "generation": 8,
+      "episodes": 768,
+      "history": [
+        {
+          "generation": 1,
+          "episodes": 96,
+          "landings": 5,
+          "batch": 8,
+          "score": 28.593383962584205,
+          "fitness": 19.047698740933058
+        },
+        {
+          "generation": 2,
+          "episodes": 192,
+          "landings": 8,
+          "batch": 8,
+          "score": 91.17050142945303,
+          "fitness": 78.9421875692833
+        },
+        {
+          "generation": 3,
+          "episodes": 288,
+          "landings": 8,
+          "batch": 8,
+          "score": 93.72977288001019,
+          "fitness": 78.18231983984458
+        },
+        {
+          "generation": 4,
+          "episodes": 384,
+          "landings": 7,
+          "batch": 8,
+          "score": 73.73456070231414,
+          "fitness": 59.57901622955529
+        },
+        {
+          "generation": 5,
+          "episodes": 480,
+          "landings": 6,
+          "batch": 8,
+          "score": 37.55979943241137,
+          "fitness": 29.001653218425453
+        },
+        {
+          "generation": 6,
+          "episodes": 576,
+          "landings": 7,
+          "batch": 8,
+          "score": 72.56560014416337,
+          "fitness": 62.72188878322336
+        },
+        {
+          "generation": 7,
+          "episodes": 672,
+          "landings": 7,
+          "batch": 8,
+          "score": 67.25118556965938,
+          "fitness": 56.76022142286509
+        },
+        {
+          "generation": 8,
+          "episodes": 768,
+          "landings": 5,
+          "batch": 8,
+          "score": 26.10083313384223,
+          "fitness": 20.520880307928653
+        }
+      ]
+    }
+  },
+  "selections": {
+    "vertical-selection": {
+      "purpose": "Model selection; not final unseen checkpoint validation",
+      "parameters": [
+        -0.4437334378426775,
+        -0.2029384323711646,
+        -0.41582656495888165,
+        -0.022523914058939942,
+        -0.07370295184665818,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        -1
+      ],
+      "weightSHA256": "9cb2203dd9bc4502e14bab226f64f35d8aa5597ad218d79539e341cb2b6c0e49",
+      "cases": [
+        {
+          "scenario": 0,
+          "seed": 61073003,
+          "variability": 0
+        },
+        {
+          "scenario": 0,
+          "seed": 61177732,
+          "variability": 0.4
+        },
+        {
+          "scenario": 0,
+          "seed": 61282461,
+          "variability": 0
+        },
+        {
+          "scenario": 0,
+          "seed": 61387190,
+          "variability": 0.4
+        },
+        {
+          "scenario": 0,
+          "seed": 61491919,
+          "variability": 0
+        },
+        {
+          "scenario": 0,
+          "seed": 61596648,
+          "variability": 0.4
+        },
+        {
+          "scenario": 0,
+          "seed": 61701377,
+          "variability": 0
+        },
+        {
+          "scenario": 0,
+          "seed": 61806106,
+          "variability": 0.4
+        },
+        {
+          "scenario": 0,
+          "seed": 61910835,
+          "variability": 0
+        },
+        {
+          "scenario": 0,
+          "seed": 62015564,
+          "variability": 0.4
+        },
+        {
+          "scenario": 0,
+          "seed": 62120293,
+          "variability": 0
+        },
+        {
+          "scenario": 0,
+          "seed": 62225022,
+          "variability": 0.4
+        }
+      ],
+      "conditions": {
+        "normal": {
+          "landings": 8,
+          "episodes": 12
+        },
+        "covered": {
+          "landings": 0,
+          "episodes": 12
+        }
+      }
+    },
+    "vertical-robust": {
+      "purpose": "Model selection; not final unseen checkpoint validation",
+      "parameters": [
+        -0.5215942812258434,
+        -0.271463836416508,
+        -0.5313289231270949,
+        -0.0005820435170649403,
+        -0.1662250107826712,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        -1
+      ],
+      "weightSHA256": "2c8a4cb22683e97af97aa9bbda31de9494809eb687d4cc61411cffa44db1d1b4",
+      "cases": [
+        {
+          "scenario": 0,
+          "seed": 61073003,
+          "variability": 0
+        },
+        {
+          "scenario": 0,
+          "seed": 61177732,
+          "variability": 0.4
+        },
+        {
+          "scenario": 0,
+          "seed": 61282461,
+          "variability": 0
+        },
+        {
+          "scenario": 0,
+          "seed": 61387190,
+          "variability": 0.4
+        },
+        {
+          "scenario": 0,
+          "seed": 61491919,
+          "variability": 0
+        },
+        {
+          "scenario": 0,
+          "seed": 61596648,
+          "variability": 0.4
+        },
+        {
+          "scenario": 0,
+          "seed": 61701377,
+          "variability": 0
+        },
+        {
+          "scenario": 0,
+          "seed": 61806106,
+          "variability": 0.4
+        },
+        {
+          "scenario": 0,
+          "seed": 61910835,
+          "variability": 0
+        },
+        {
+          "scenario": 0,
+          "seed": 62015564,
+          "variability": 0.4
+        },
+        {
+          "scenario": 0,
+          "seed": 62120293,
+          "variability": 0
+        },
+        {
+          "scenario": 0,
+          "seed": 62225022,
+          "variability": 0.4
+        }
+      ],
+      "conditions": {
+        "normal": {
+          "landings": 9,
+          "episodes": 12
+        },
+        "covered": {
+          "landings": 0,
+          "episodes": 12
+        }
+      }
+    },
+    "attitude-g2-selection": {
+      "purpose": "Model selection; not final unseen checkpoint validation",
+      "parameters": [
+        -0.5215942812258434,
+        -0.271463836416508,
+        -0.5313289231270949,
+        -0.0005820435170649403,
+        -0.1662250107826712,
+        -0.32763335044844877,
+        -0.8918299496027291,
+        -4.131271214545986,
+        -0.8508303785942669,
+        -1.9228879543232276,
+        -0.5808872461199706,
+        0,
+        -1
+      ],
+      "weightSHA256": "5c01d3c5a48a435d6d226ea1f8b5b1a2372c48b1e2248479595281ee1cfc4cf5",
+      "cases": [
+        {
+          "scenario": 0,
+          "seed": 61073003,
+          "variability": 0
+        },
+        {
+          "scenario": 1,
+          "seed": 61177732,
+          "variability": 0.4
+        },
+        {
+          "scenario": 9,
+          "seed": 61282461,
+          "variability": 0
+        },
+        {
+          "scenario": 17,
+          "seed": 61387190,
+          "variability": 0.4
+        },
+        {
+          "scenario": 0,
+          "seed": 61491919,
+          "variability": 0
+        },
+        {
+          "scenario": 1,
+          "seed": 61596648,
+          "variability": 0.4
+        },
+        {
+          "scenario": 9,
+          "seed": 61701377,
+          "variability": 0
+        },
+        {
+          "scenario": 17,
+          "seed": 61806106,
+          "variability": 0.4
+        },
+        {
+          "scenario": 0,
+          "seed": 61910835,
+          "variability": 0
+        },
+        {
+          "scenario": 1,
+          "seed": 62015564,
+          "variability": 0.4
+        },
+        {
+          "scenario": 9,
+          "seed": 62120293,
+          "variability": 0
+        },
+        {
+          "scenario": 17,
+          "seed": 62225022,
+          "variability": 0.4
+        },
+        {
+          "scenario": 0,
+          "seed": 62329751,
+          "variability": 0
+        },
+        {
+          "scenario": 1,
+          "seed": 62434480,
+          "variability": 0.4
+        },
+        {
+          "scenario": 9,
+          "seed": 62539209,
+          "variability": 0
+        },
+        {
+          "scenario": 17,
+          "seed": 62643938,
+          "variability": 0.4
+        }
+      ],
+      "conditions": {
+        "normal": {
+          "landings": 12,
+          "episodes": 16
+        },
+        "covered": {
+          "landings": 0,
+          "episodes": 16
+        }
+      }
+    }
+  },
+  "sourceSHA256": {
+    "artifacts/suite-training/vertical/static-probe.json": "340051b0b6166113ba683be112b3ef7438f85249d827253fe17b41c43a6c68f9",
+    "artifacts/suite-training/dynamic-initial-probe.json": "c8224c2e9bac3e7eee38455bb078acfb8b2ddc4a6ecc255b91d64b3eadf5679f",
+    "artifacts/suite-training/vertical/state.json": "62f8713989480a310bd8a9eb40e52697384717caae2581401836309bb62c924d",
+    "artifacts/suite-training/vertical-robust/state.json": "d779d3ae63259ebc08f9856c4fb06fd4a7924d85516045a4e6159a9ed3abb4ec",
+    "artifacts/suite-training/attitude/state.json": "377a84c27a4af15d72527d94ed8fcbba2d3c507146a693ef8fbcedb9ebcd8596",
+    "artifacts/suite-training/ground-general/state.json": "30604ea2d6aa81892e2ab9d99a98a194a997b088af135e8263db3bbb6bfb55fe",
+    "artifacts/suite-training/attitude-correlated/state.json": "d013b329c7f45bcabe57711e84903659e93f4dd7d74c52ee04f681898b292723",
+    "artifacts/suite-training/vertical-selection/selection.json": "a5d3762bc77bde08dbb6242930b25fc67d5d006a79bde5a316a1b6327f52beaf",
+    "artifacts/suite-training/vertical-robust/selection.json": "f344913eedb0d5eb0061aaea3093775764451347337ae151e203d2dc9e1266c9",
+    "artifacts/suite-training/attitude-g2-selection/selection.json": "932384015c78f82e70967bb6f0b3236e7710b818029bb44e2976566780929e15"
+  }
+}

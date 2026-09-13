@@ -1,0 +1,720 @@
+{
+  "schema": "additional-odor-results-v1",
+  "complete": true,
+  "reportSHA256": "5ea257964bd2d35e352f61afcc3b1af42e1ce55fea62a574da64a97d2dcdb38a",
+  "provenanceSHA256": "625d39eae9b1f1f73d6121f11442ca1c061c4c8edf0008e46ca25b3001a897ba",
+  "summaryScriptSHA256": "05895a625268ba73b1df0d9c9217d7dd86c9815170dc2e1e6b52345d97d91320",
+  "neurons": 166700,
+  "edges": 25582938,
+  "trialCount": 48,
+  "analyzedSeeds": [
+    401695,
+    409614,
+    417533,
+    425452,
+    433371,
+    441290,
+    449209,
+    457128
+  ],
+  "wallSeconds": 296.5381802949123,
+  "packages": {
+    "brian2": "2.10.1",
+    "numpy": "2.4.6",
+    "pandas": "3.0.3",
+    "Cython": "3.1.3",
+    "matplotlib": "3.10.8"
+  },
+  "baselineWingDifferenceHz": {
+    "n": 8,
+    "values": [
+      4.803921568627452,
+      3.7240047534165157,
+      3.0763517528223403,
+      3.521984551396315,
+      2.6099227569815824,
+      3.5308972073678007,
+      4.445929887106352,
+      3.8829471182412334
+    ],
+    "mean": 3.699494949494949,
+    "sampleSD": 0.7016906978538773,
+    "nominal95CI": [
+      3.112866845475131,
+      4.286123053514767
+    ]
+  },
+  "baselineWingPoolHz": {
+    "L": {
+      "n": 8,
+      "values": [
+        51.66666666666667,
+        48.282828282828284,
+        51.26262626262626,
+        48.08080808080808,
+        48.73737373737374,
+        50.05050505050505,
+        51.16161616161616,
+        50.35353535353536
+      ],
+      "mean": 49.94949494949495,
+      "sampleSD": 1.416973046276188,
+      "nominal95CI": [
+        48.76487583721867,
+        51.13411406177123
+      ]
+    },
+    "R": {
+      "n": 8,
+      "values": [
+        46.86274509803922,
+        44.55882352941177,
+        48.18627450980392,
+        44.55882352941177,
+        46.127450980392155,
+        46.51960784313725,
+        46.71568627450981,
+        46.47058823529412
+      ],
+      "mean": 46.25,
+      "sampleSD": 1.207003418679915,
+      "nominal95CI": [
+        45.24091988933123,
+        47.25908011066877
+      ]
+    }
+  },
+  "results": [
+    {
+      "name": "limonene",
+      "key": "XMGQYMWWDOXHJM-UHFFFAOYSA-N",
+      "cas": "138-86-3",
+      "measuredUnits": 23,
+      "coverage": 0.46938775510204084,
+      "chemicalClass": "cyclic monoterpene",
+      "conditions": {
+        "left": {
+          "wingDifferenceHz": {
+            "n": 8,
+            "values": [
+              2.7985739750445617,
+              3.7863933452168794,
+              3.69726678550208,
+              2.754010695187162,
+              2.7896613190730903,
+              3.0897207367795616,
+              4.162210338680929,
+              3.683897801544859
+            ],
+            "mean": 3.3452168746286404,
+            "sampleSD": 0.5507167234675177,
+            "nominal95CI": [
+              2.884806171839143,
+              3.8056275774181376
+            ]
+          },
+          "pairedChangeFromAirHz": {
+            "n": 8,
+            "values": [
+              -2.00534759358289,
+              0.06238859180036371,
+              0.6209150326797399,
+              -0.7679738562091529,
+              0.17973856209150796,
+              -0.44117647058823906,
+              -0.2837195484254238,
+              -0.1990493166963745
+            ],
+            "mean": -0.3542780748663086,
+            "sampleSD": 0.7877261159271373,
+            "nominal95CI": [
+              -1.0128335884089177,
+              0.3042774386763004
+            ]
+          },
+          "wingPoolHz": {
+            "L": {
+              "n": 8,
+              "values": [
+                48.484848484848484,
+                50.40404040404041,
+                50.70707070707071,
+                48.63636363636364,
+                48.18181818181819,
+                48.38383838383839,
+                49.84848484848485,
+                48.58585858585859
+              ],
+              "mean": 49.15404040404041,
+              "sampleSD": 1.0024057525254342,
+              "nominal95CI": [
+                48.31600822282285,
+                49.992072585257965
+              ]
+            },
+            "R": {
+              "n": 8,
+              "values": [
+                45.68627450980392,
+                46.61764705882353,
+                47.00980392156863,
+                45.88235294117648,
+                45.3921568627451,
+                45.294117647058826,
+                45.68627450980392,
+                44.90196078431373
+              ],
+              "mean": 45.80882352941177,
+              "sampleSD": 0.6962066398675952,
+              "nominal95CI": [
+                45.2267802126047,
+                46.390866846218834
+              ]
+            }
+          },
+          "DM1ProjectionHz": {
+            "L": {
+              "n": 8,
+              "values": [
+                296.6666666666667,
+                295.0,
+                300.0,
+                295.0,
+                301.6666666666667,
+                298.33333333333337,
+                298.33333333333337,
+                298.33333333333337
+              ],
+              "mean": 297.9166666666667,
+              "sampleSD": 2.3145502494313845,
+              "nominal95CI": [
+                295.98165423364554,
+                299.85167909968783
+              ]
+            },
+            "R": {
+              "n": 8,
+              "values": [
+                296.6666666666667,
+                298.33333333333337,
+                298.33333333333337,
+                298.33333333333337,
+                296.6666666666667,
+                296.6666666666667,
+                298.33333333333337,
+                296.6666666666667
+              ],
+              "mean": 297.5,
+              "sampleSD": 0.8908708063747581,
+              "nominal95CI": [
+                296.7552133672733,
+                298.2447866327267
+              ]
+            }
+          },
+          "DM6ProjectionHz": {
+            "L": {
+              "n": 8,
+              "values": [
+                157.22222222222223,
+                153.33333333333334,
+                153.88888888888889,
+                154.44444444444446,
+                155.0,
+                153.88888888888889,
+                157.22222222222223,
+                156.66666666666669
+              ],
+              "mean": 155.20833333333334,
+              "sampleSD": 1.5974378736405066,
+              "nominal95CI": [
+                153.8728418497362,
+                156.54382481693048
+              ]
+            },
+            "R": {
+              "n": 8,
+              "values": [
+                167.5,
+                167.5,
+                166.25,
+                168.75,
+                166.66666666666669,
+                165.83333333333334,
+                167.5,
+                166.66666666666669
+              ],
+              "mean": 167.08333333333334,
+              "sampleSD": 0.9182886083655619,
+              "nominal95CI": [
+                166.31562484451328,
+                167.8510418221534
+              ]
+            }
+          }
+        },
+        "right": {
+          "wingDifferenceHz": {
+            "n": 8,
+            "values": [
+              3.7314319667260847,
+              3.040701128936419,
+              4.337492572786687,
+              2.116755793226389,
+              3.0496137849078977,
+              3.521984551396315,
+              2.7198455139631648,
+              2.969399881164591
+            ],
+            "mean": 3.1859031491384435,
+            "sampleSD": 0.6743810358814819,
+            "nominal95CI": [
+              2.6221064938941154,
+              3.7496998043827716
+            ]
+          },
+          "pairedChangeFromAirHz": {
+            "n": 8,
+            "values": [
+              -1.072489601901367,
+              -0.6833036244800965,
+              1.2611408199643463,
+              -1.405228758169926,
+              0.4396910279263153,
+              -0.008912655971485606,
+              -1.7260843731431876,
+              -0.9135472370766422
+            ],
+            "mean": -0.5135918003565054,
+            "sampleSD": 1.0056563580844444,
+            "nominal95CI": [
+              -1.3543415558298286,
+              0.32715795511681767
+            ]
+          },
+          "wingPoolHz": {
+            "L": {
+              "n": 8,
+              "values": [
+                48.535353535353536,
+                50.05050505050505,
+                47.474747474747474,
+                46.969696969696976,
+                48.686868686868685,
+                49.74747474747475,
+                49.141414141414145,
+                49.292929292929294
+              ],
+              "mean": 48.73737373737374,
+              "sampleSD": 1.0676260498178296,
+              "nominal95CI": [
+                47.84481602309544,
+                49.629931451652034
+              ]
+            },
+            "R": {
+              "n": 8,
+              "values": [
+                44.80392156862745,
+                47.00980392156863,
+                43.13725490196079,
+                44.85294117647059,
+                45.63725490196079,
+                46.22549019607843,
+                46.42156862745098,
+                46.3235294117647
+              ],
+              "mean": 45.5514705882353,
+              "sampleSD": 1.2430810324039319,
+              "nominal95CI": [
+                44.512228837685576,
+                46.59071233878502
+              ]
+            }
+          },
+          "DM1ProjectionHz": {
+            "L": {
+              "n": 8,
+              "values": [
+                300.0,
+                300.0,
+                303.33333333333337,
+                303.33333333333337,
+                298.33333333333337,
+                298.33333333333337,
+                298.33333333333337,
+                296.6666666666667
+              ],
+              "mean": 299.7916666666667,
+              "sampleSD": 2.4295632895188777,
+              "nominal95CI": [
+                297.76050092585564,
+                301.82283240747773
+              ]
+            },
+            "R": {
+              "n": 8,
+              "values": [
+                298.33333333333337,
+                293.33333333333337,
+                300.0,
+                298.33333333333337,
+                298.33333333333337,
+                300.0,
+                300.0,
+                298.33333333333337
+              ],
+              "mean": 298.33333333333337,
+              "sampleSD": 2.182178902359911,
+              "nominal95CI": [
+                296.50898611590736,
+                300.1576805507594
+              ]
+            }
+          },
+          "DM6ProjectionHz": {
+            "L": {
+              "n": 8,
+              "values": [
+                153.33333333333334,
+                153.88888888888889,
+                155.55555555555554,
+                154.44444444444446,
+                156.11111111111111,
+                155.0,
+                156.11111111111111,
+                156.11111111111111
+              ],
+              "mean": 155.06944444444446,
+              "sampleSD": 1.0885608511385059,
+              "nominal95CI": [
+                154.1593847982689,
+                155.97950409062003
+              ]
+            },
+            "R": {
+              "n": 8,
+              "values": [
+                165.41666666666669,
+                164.58333333333334,
+                167.08333333333334,
+                165.83333333333334,
+                166.25,
+                165.83333333333334,
+                167.08333333333334,
+                165.41666666666669
+              ],
+              "mean": 165.9375,
+              "sampleSD": 0.8553635632857071,
+              "nominal95CI": [
+                165.22239816537027,
+                166.65260183462973
+              ]
+            }
+          }
+        },
+        "bilateral": {
+          "wingDifferenceHz": {
+            "n": 8,
+            "values": [
+              3.0005941770647624,
+              3.3764111705288187,
+              3.8963161021984547,
+              4.02703505644682,
+              2.026143790849673,
+              3.1090314913844352,
+              3.7462863933452155,
+              3.937908496732021
+            ],
+            "mean": 3.389965834818775,
+            "sampleSD": 0.67402649135279,
+            "nominal95CI": [
+              2.826465586218134,
+              3.9534660834194164
+            ]
+          },
+          "pairedChangeFromAirHz": {
+            "n": 8,
+            "values": [
+              -1.8033273915626893,
+              -0.34759358288769704,
+              0.8199643493761144,
+              0.5050505050505052,
+              -0.5837789661319093,
+              -0.4218657159833654,
+              -0.6996434937611369,
+              0.05496137849078764
+            ],
+            "mean": -0.30952911467617383,
+            "sampleSD": 0.8057873416173181,
+            "nominal95CI": [
+              -0.9831841907686504,
+              0.3641259614163027
+            ]
+          },
+          "wingPoolHz": {
+            "L": {
+              "n": 8,
+              "values": [
+                48.686868686868685,
+                49.7979797979798,
+                49.141414141414145,
+                50.25252525252525,
+                50.55555555555556,
+                49.04040404040404,
+                49.04040404040404,
+                48.888888888888886
+              ],
+              "mean": 49.42550505050505,
+              "sampleSD": 0.6877050654380605,
+              "nominal95CI": [
+                48.850569227789094,
+                50.00044087322101
+              ]
+            },
+            "R": {
+              "n": 8,
+              "values": [
+                45.68627450980392,
+                46.42156862745098,
+                45.24509803921569,
+                46.22549019607843,
+                48.529411764705884,
+                45.931372549019606,
+                45.294117647058826,
+                44.950980392156865
+              ],
+              "mean": 46.03553921568628,
+              "sampleSD": 1.1268228368327171,
+              "nominal95CI": [
+                45.09349174896175,
+                46.9775866824108
+              ]
+            }
+          },
+          "DM1ProjectionHz": {
+            "L": {
+              "n": 8,
+              "values": [
+                301.6666666666667,
+                296.6666666666667,
+                301.6666666666667,
+                298.33333333333337,
+                305.0,
+                296.6666666666667,
+                300.0,
+                300.0
+              ],
+              "mean": 300.0,
+              "sampleSD": 2.817180849095049,
+              "nominal95CI": [
+                297.6447778697364,
+                302.3552221302636
+              ]
+            },
+            "R": {
+              "n": 8,
+              "values": [
+                300.0,
+                296.6666666666667,
+                298.33333333333337,
+                300.0,
+                300.0,
+                300.0,
+                300.0,
+                301.6666666666667
+              ],
+              "mean": 299.58333333333337,
+              "sampleSD": 1.477342100713191,
+              "nominal95CI": [
+                298.34824442852005,
+                300.8184222381467
+              ]
+            }
+          },
+          "DM6ProjectionHz": {
+            "L": {
+              "n": 8,
+              "values": [
+                156.66666666666669,
+                153.88888888888889,
+                155.0,
+                153.33333333333334,
+                153.88888888888889,
+                155.0,
+                156.66666666666669,
+                156.11111111111111
+              ],
+              "mean": 155.06944444444446,
+              "sampleSD": 1.3092231497082298,
+              "nominal95CI": [
+                153.97490650001794,
+                156.16398238887098
+              ]
+            },
+            "R": {
+              "n": 8,
+              "values": [
+                166.66666666666669,
+                165.83333333333334,
+                166.25,
+                166.66666666666669,
+                166.25,
+                167.91666666666669,
+                166.25,
+                165.41666666666669
+              ],
+              "mean": 166.40625,
+              "sampleSD": 0.7365695637359898,
+              "nominal95CI": [
+                165.790462434375,
+                167.022037565625
+              ]
+            }
+          }
+        }
+      },
+      "leftVersusRightExposureContrastHz": {
+        "n": 8,
+        "values": [
+          -0.932857991681523,
+          0.7456922162804602,
+          -0.6402257872846064,
+          0.6372549019607732,
+          -0.25995246583480736,
+          -0.43226381461675345,
+          1.4423648247177638,
+          0.7144979203802677
+        ],
+        "mean": 0.15931372549019684,
+        "sampleSD": 0.835341481374748,
+        "nominal95CI": [
+          -0.5390492297645144,
+          0.8576766807449081
+        ],
+        "sameSignCount": 4,
+        "twoSidedExactSignflipP": 0.59375,
+        "holmAdjustedSignflipP": 0.59375
+      },
+      "passesExploratoryReplicationGate": false
+    }
+  ],
+  "replicationCandidates": [],
+  "flavonoidAudit": {
+    "sourceLockSHA256": "d515ff4f52669ac60847cf4a0d9ecb22390c9fe3cc69c9e2b5d40ab9e8e2aa23",
+    "candidates": [
+      {
+        "requested": "quercetin",
+        "atlasMatches": [
+          {
+            "name": "quercetin",
+            "key": "REFJWTPEDVJJIY-UHFFFAOYSA-N",
+            "cas": "117-39-5",
+            "measuredUnits": 1
+          }
+        ],
+        "reason": "Only one mapped measured unit and no validated airborne response profile."
+      },
+      {
+        "requested": "rutin",
+        "atlasMatches": [],
+        "reason": "No matching compound in this pinned atlas; no receptor drive invented."
+      },
+      {
+        "requested": "kaempferol",
+        "atlasMatches": [],
+        "reason": "No matching compound in this pinned atlas; no receptor drive invented."
+      },
+      {
+        "requested": "luteolin",
+        "atlasMatches": [],
+        "reason": "No matching compound in this pinned atlas; no receptor drive invented."
+      },
+      {
+        "requested": "apigenin",
+        "atlasMatches": [],
+        "reason": "No matching compound in this pinned atlas; no receptor drive invented."
+      },
+      {
+        "requested": "naringenin",
+        "atlasMatches": [],
+        "reason": "No matching compound in this pinned atlas; no receptor drive invented."
+      },
+      {
+        "requested": "naringin",
+        "atlasMatches": [],
+        "reason": "No matching compound in this pinned atlas; no receptor drive invented."
+      },
+      {
+        "requested": "catechin",
+        "atlasMatches": [],
+        "reason": "No matching compound in this pinned atlas; no receptor drive invented."
+      },
+      {
+        "requested": "epicatechin",
+        "atlasMatches": [],
+        "reason": "No matching compound in this pinned atlas; no receptor drive invented."
+      },
+      {
+        "requested": "epigallocatechin gallate",
+        "atlasMatches": [],
+        "reason": "No matching compound in this pinned atlas; no receptor drive invented."
+      }
+    ],
+    "quercetinSourceRow": {
+      "rowIndex": "632",
+      "Class": "aromatics",
+      "Name": "quercetin",
+      "InChIKey": "REFJWTPEDVJJIY-UHFFFAOYSA-N",
+      "CID": "5280343",
+      "CAS": "117-39-5",
+      "Goldman.2005.WT": "NA",
+      "Dweck.2015.WT": "2",
+      "Marshall.2010.WT": "NA",
+      "Bruyne.1999.WT": "NA"
+    },
+    "quercetinDataset": {
+      "rowIndex": "9",
+      "dataset": "Dweck.2015.WT",
+      "study": "Dweck et al.  2015a",
+      "other.dataset.in.this.study": "",
+      "other.dataset.in.this.study.2": "",
+      "SFR.reported": "no",
+      "SFR.substracted": "yes",
+      "technique": "electrophysiology",
+      "data.type": "spikes",
+      "control": "",
+      "solvents": "",
+      "solvents.subtracted": "yes",
+      "concentration": "10^-2 -  (vol/vol)",
+      "comment": "",
+      "link": "http://www.sciencedirect.com/science/article/pii/S0960982214015565",
+      "DOI": "10.1016/j.cub.2014.11.062"
+    },
+    "quercetinMappedUnits": [
+      {
+        "unit": "Or71a",
+        "glomerulus": "VC2",
+        "baseline": 0.0304873278033626,
+        "response": 0.0876962910950132,
+        "delta": 0.0572089632916506
+      }
+    ],
+    "quercetinInterpretation": "The raw Or71a value is 2 spikes/s in one dataset. An entry and normalized consensus delta do not demonstrate significant detection, delivery feasibility or steering authority. It was not simulated."
+  },
+  "limitations": [
+    "Paired simulation seeds are not independent flies, dose measurements or a biological validation.",
+    "The t intervals are nominal, exploratory and assume approximately normal independent seed contrasts; exact sign-flip tests additionally assume sign exchangeability under their null.",
+    "Clean-air, left, right and bilateral conditions are matched by seed; missing receptor values retain spontaneous rate.",
+    "Fixed baseline imbalance and high PN firing under transferred LIF parameters remain unresolved. Wing motor rates are not measured wing mechanics.",
+    "A cue-side contrast is needed for controllability, but it is not sufficient for steering or landing."
+  ],
+  "independentConfirmation": {
+    "initialReportSHA256": "992f3160389bb8686bce06c4bd79175a4f2025b0692ac834e3e4d0dc3834ae7b",
+    "repeatedTrialsExactlyReproduced": 16,
+    "independentTrialsAnalyzed": 32,
+    "matchesInitialEffectDirection": true,
+    "passesPredefinedGate": false,
+    "criterion": "Same direction as discovery, absolute mean >=1 Hz, at least 7/8 same-sign seed contrasts, and nominal paired Student-t 95% interval excluding zero."
+  }
+}

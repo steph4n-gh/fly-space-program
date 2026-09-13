@@ -1,0 +1,198 @@
+# Learning the full mission suite
+
+The current work extends the first visual landing lesson toward all 27
+missions. The packaged checkpoint landed **28/32 unseen starts across four
+ground missions**, versus **0/32 with covered eyes** and **0/32 with the
+indicators disabled**. These results do not establish mastery of the full
+suite or transfer to a living fly.
+
+## Presented information
+
+The experimental cockpit uses 12 brightness indicators: measured clearance,
+vertical speed, two deck-relative offsets, two deck-relative drift speeds,
+pitch, roll, tangential speed, angular travel, destination altitude and fuel.
+Destination altitude is a mission instruction. These indicators contain no
+recommended throttle, attitude, descent target, or expert action. A camera
+and engine display remain available on the other monitors.
+
+The indicators pass through the same physical screen geometry and two
+32 × 24 modeled eyes, with 4 × 4 area integration per retinal pixel. The
+network receives 1,536 light channels and the existing 22 body/odor channels.
+Covering the eyes hides the panel measurements. Disabling the indicators
+removes their velocity information. Each of the 12 indicators has a tested
+optical path to the retina.
+
+All **166,700 neurons and 25,582,938 directed connections** participate in
+both recurrent updates of every decision. The flight physics, decision
+intervals, termination rules and success criteria are unchanged. There is
+no preflight neural warmup that skips vehicle time.
+
+## Sensory calibration
+
+The static bench presents 2,048 independently randomized indicator patterns
+and records 4,096 complete-network output samples. A changing-body bench
+adds 6,912 samples from 384 contexts. In those contexts the independent
+indicator pattern stays fixed while physical control positions, angular
+motion and loads change. These are calibration presentations, not successful
+flight trials. Random physical actions generate body feedback; an expert
+controller supplies no actions or targets.
+
+Regression fits the 12 actually presented, quantized brightness values and
+16 body measurements from the 2,129 descending/motor activities. All samples
+from one context remain in the same training or validation partition.
+The validation partition selects regularization and is not a final test.
+Source-data hashes are retained in the fitted sensory basis.
+
+A later collection adds 3,778 samples from 24 complete flights on Landing
+School, Atlantic Return, Fast Ferry and Spinning Entry. Those flights use a
+previously learned controller; their targets are the displayed light values
+and body feedback, without expert actions. The original calibration remains
+preserved. A separate fit combines all 14,786 samples, holding complete
+flight contexts together when selecting regularization. On the four held-out
+flight contexts, excluding their first eight decisions, the deck-offset
+decoding RMSE fell from 0.177/0.185 to 0.113/0.113 encoded units. This is a
+calibration development comparison, not independent flight validation.
+
+Static calibration alone was misleading: changing body feedback during
+flight produced very large decoding transients and three failed probes.
+Adding changing-body and startup examples corrected that failure in the
+subsequent probe. The cold network remains part of every flight test. A
+worker-dispatch error during data collection was caught through sample
+counts; the affected static data were regenerated and the corrected dynamic
+collection was checked for mode, count and buffer length before fitting.
+
+![One matched probe before and after changing-body calibration](assets/suite-calibration-probe.png)
+
+This illustrative probe holds the control parameters and initial state fixed.
+It demonstrates the calibration failure and correction on one start, rather
+than estimating the reliability of a trained controller. The current
+[training snapshot](suite-training-progress.json) retains its source hashes.
+
+The fitted coordinates are folded into the ordinary 21,300-coefficient
+output readout. The runtime decoder reads neural activity; it does not
+receive the calibration labels, numerical instrument measurements, or an
+additional navigation array. Some coefficients are large because visual
+activity is weak in this normalized rate model. These unitless coefficients
+are not biological muscle gains or chemical doses.
+
+## Flight learning and current evidence
+
+Reward-based search first adjusts the vertical-control directions, then
+releases symmetric lateral directions and attitude damping. The network
+weights within the anatomical graph remain fixed. This is learning in the
+external decoder, not demonstrated learning inside an animal.
+
+An early vertical candidate completed **8/12 new selection starts**, versus
+**0/12 with the eyes covered**, using matched seeds and alternating nominal
+and variability-0.4 conditions. This is a model-selection result, not the
+final unseen test of a released checkpoint. The exact parameters and weight
+hash are recorded in
+`artifacts/suite-training/vertical-selection/selection.json`.
+
+The next vertical branch changes training seeds and includes variability
+0.4. Its search fitness adds a touchdown-margin term to the original flight
+reward: for successful landings, it subtracts three times the sum of squared
+vertical and lateral touchdown speeds. The original reward and actual
+success result remain recorded separately. The success thresholds are not
+relaxed. The first attitude branch starts from the same selected vertical
+candidate and trains on Landing School, Atlantic Return and Fast Ferry.
+
+After 450 complete training flights, the revised vertical branch landed
+**9/12 of the same selection starts**, versus **0/12 with covered eyes**.
+Two visible-eye flights still exceeded the original touchdown-speed limit,
+and one timed out. Reusing the selection set makes this a development
+comparison, not a final unseen result. The attitude branch reached 3/3
+landings in its last training batch, but its separate six-start pitch-gain
+check landed only 1/6. A combined ground branch then ran 576 training flights,
+ending with 2/6 landings in its final batch. A separate yaw-gain sweep
+demonstrated that its positive yaw feedback aggravated the spinning-entry
+mission. The selected negative-gain candidate stopped that failure but did
+not establish reliable landings by itself.
+
+The correlated attitude branch uses the complete-flight sensory calibration
+and searches correlated parameter changes so that steering and damping can
+adjust together. It includes Spinning Entry and changing seeds with nominal
+and variability-0.4 conditions. Generations two and three each landed 8/8
+training cases. The branch completed 768 training flights in eight generations;
+the released candidate remains frozen at generation two. That candidate had
+a separate 16-start model-selection comparison with matched covered-eye controls.
+It landed 12/16 with visible inputs and 0/16 with covered eyes: 4/4 on
+Landing School, 2/4 on Atlantic Return, 3/4 on Fast Ferry and 3/4 on Spinning
+Entry. That set used nominal physics for Landing School and Fast Ferry,
+and variability 0.4 for the other two missions. Its four failures were two
+hard landings, a timeout and a missed ship.
+
+A subsequent 32-start test uses separate seeds and balances nominal and
+variability-0.4 conditions within each of the four missions. It ran the
+same frozen generation-two weights through the JavaScript backend, with
+matched eyes-covered and indicators-disabled conditions. All 96 complete
+trajectories finished under the original mission criteria.
+
+| Mission | Visible inputs | Covered eyes | Indicators disabled |
+| --- | ---: | ---: | ---: |
+| Landing School | 7/8 | 0/8 | 0/8 |
+| Atlantic Return | 7/8 | 0/8 | 0/8 |
+| Fast Ferry | 7/8 | 0/8 | 0/8 |
+| Spinning Entry | 7/8 | 0/8 | 0/8 |
+
+The visible-input condition landed 16/16 nominal flights and 12/16 varied
+flights. Its four failures were three timeouts and a missed ship. Eight
+starts per mission provide limited evidence; the result is an experimental
+flight capability, not a reliability certification. The frozen weight hash
+is `5c01d3c5a48a435d6d226ea1f8b5b1a2372c48b1e2248479595281ee1cfc4cf5`.
+The [packaged report](../dist/assets/landing-report.json) retains every
+failure, paired condition, physical variation and source hash.
+
+Checkpoint loading and the shared browser trainer now preserve the selected
+sensory-panel version. Existing two-light checkpoints retain their original
+presentation. The browser shows the twelve-field legend only for the new
+panel, and checkpoint validation rejects unsupported panel names.
+Browser inspection verified the twelve-cell display, illuminated retinal
+images and black retinas with the eyes covered. It also exposed and fixed
+a stale 3D cockpit texture: changing from the reference dashboard to the
+sensory image now releases the old GPU allocation before resizing. The
+pod's monitors then display the same images used by the sensory model.
+
+The other missions, including the full orbital trips, remain unverified
+with this experimental controller. A one-start survey of the remaining
+ground profiles is a development probe, not an additional reliability test.
+Across all 24 ground profiles, that survey landed 11/24 nominal starts.
+All six engine-failure profiles failed. Stronger winds, a turning vessel,
+low fuel and the high-speed return also exposed failures. The exact cases
+and outcomes are retained in `artifacts/suite-training/ground-suite-scout/scout.json`.
+
+## Optional native calculation
+
+The optional Node backend evaluates the same CSR rows and edges in the same
+order, with Float32 state, double accumulation, and the same activation.
+It performs no pruning or approximation. The browser implementation stays
+in JavaScript. A 100-decision comparison across five mission contexts,
+including the supported gain change and a neural pulse, found exactly zero
+activity and command differences. The measured speedup was approximately
+1.46× on the development machine. The build record retains compiler flags,
+Node version, source hash and binary hash.
+
+Final flight results must also run through the browser's JavaScript backend;
+the native check alone does not establish flight reliability.
+
+## Reproduction
+
+Run the collections sequentially when recreating the calibration files:
+
+```sh
+node scripts/collect-suite-senses.mjs
+SUITE_CALIBRATION_CONTEXTS=384 SUITE_CALIBRATION_PARTS=3 node scripts/collect-suite-senses.mjs --dynamic
+artifacts/lif-runtime/bin/python scripts/fit-suite-senses.py --dynamic
+node scripts/check-perception.mjs
+SUITE_POPULATION=9 SUITE_BATCH=3 SUITE_GENERATIONS=10 node scripts/train-suite.mjs
+node scripts/build-rate-native.mjs
+node scripts/check-native-rate.mjs
+artifacts/lif-runtime/bin/python scripts/report-suite-training.py
+```
+
+Training resumes the state in its named experiment directory. Use a new
+`SUITE_BLOCK` for an independent experiment. `--evaluate` records all requested
+matched conditions and writes a completion flag only after every flight
+finishes. Artifacts retain failed trials as well as successes. The separate
+[chemical panel](additional-odor-tests.md) did not identify a compound that
+qualified for a steering follow-up.

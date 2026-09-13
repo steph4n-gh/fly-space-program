@@ -2,12 +2,13 @@
 
 The goal is to find a sensory interface that could be implemented around a living fly and support safe simulated landings, eventually across all 27 missions. A successful numerical policy is useful evidence about that policy. Transfer to a living fly requires independently measured stimulus and movement responses.
 
-A subsequent [landing curriculum](landing-training.md) has produced safe
-simulated touchdowns using visible altitude and vertical-speed indicators and
-an externally learned throttle decoder. Its separate frozen-checkpoint report
-records the successes and failures. That first landing result does not validate
-chemical steering or transfer to a living fly; the odor experiments below
-remain negative or inconclusive for those questions.
+A subsequent [mission curriculum](suite-training.md) has produced 28/32 safe
+simulated touchdowns across four missions using twelve visible measurements
+and an externally learned throttle, steering and stabilization decoder.
+Matched covered-eye and disabled-indicator controls each landed 0/32. Its
+separate frozen-checkpoint report records every failure. These visual-control
+results do not validate chemical steering or transfer to a living fly; the
+odor experiments below remain negative or inconclusive for those questions.
 
 The proposed loop is:
 
@@ -127,6 +128,10 @@ All three searches are now complete: **18 training and 36 test-condition trials*
 
 The later runs have separate [acetic-acid results](odor-experiment-endpoints-results.json) and [linalool results](odor-experiment-linalool-results.json), with every outcome retained. Their trajectory plots are [acetic acid](assets/odor-steering-endpoints.png) and [linalool](assets/odor-steering-linalool.png). The historical 27-mission baseline was 0/54 safe landings; these one-axis odor searches did not improve or replace that flight controller. The later visual landing curriculum is evaluated separately.
 
+A further [eight-compound chemistry panel](additional-odor-tests.md) completed **148 full-graph trials**, including an independent limonene replication. Its initial effect did not replicate on eight new seeds: the mean directional contrast was +0.159 Hz, with nominal 95% interval −0.539 to +0.858 Hz. No compound qualified for a steering follow-up. Clean-air imbalance and the unresolved PN calibration limits remain explicit in that report; these results do not establish physical chemical control.
+
+The [68-trial calibration follow-up](odor-calibration-followup.md) found that lowering the global connection weight reduced projection-neuron firing but eliminated recorded motor output. Linalool retained a modeled olfactory response without a motor response. Circuit calibration therefore remains an unresolved limit on interpreting the chemical screen.
+
 ## Circuit calibration diagnostic
 
 A separate diagnostic stimulated only the annotated Or42b/DM1 or Or67a/DM6 receptor unit at 30 Hz, with all other external sources silent. It used 0.2 seconds of pre-stimulus simulation and a 0.5-second pulse. This isolates a neural pathway; it is neither a chemical dose nor a reproduction of the published physiological experiment. All graph neurons and connections remain present.
@@ -156,6 +161,8 @@ artifacts/lif-runtime/bin/python scripts/summarize-odor-training.py --steering o
 ```
 
 ## Progression toward the full mission suite
+
+The longer-term chemical search can extend beyond known odorants to combinations and computationally proposed compounds that alter responses to the presented visual, mechanical or other stimuli. This is a research direction to retain, not a claim that such candidates have been generated or validated. The current simulator accepts receptor-response profiles; it has no molecule-to-receptor predictor. Novel candidates and mixture interactions would therefore need a separate activity model and evidence for their delivery and measured effects before being interpreted through the connectome.
 
 1. **Calibrate a measurable response.** Establish repeatable stimulus-to-movement effects in a simple task, with clean-air, visual-only and appropriately randomized stimulus controls. Fit the model to those observations and test on separate animals and sessions.
 2. **Close one control loop.** Begin with one measured steering response or a constrained descent task, using a fixed movement-to-control mapping. Compare synchronized odor cues with matched cues whose timing or meaning has been shuffled.
