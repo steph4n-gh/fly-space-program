@@ -17,7 +17,7 @@ npm ci
 npm start
 ```
 
-Repository access is required while the project is private. Open
+Open
 [localhost:4173](http://localhost:4173) in a desktop browser with WebGL 2.
 `npm start` runs Python's HTTP server over the committed `dist/` directory;
 there is no application build step. Wait for the complete graph to load before

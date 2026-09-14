@@ -6,7 +6,7 @@ Fly Space Program is an ongoing computational-neuroscience and control experimen
 
 The ambition is to push fly training as far as we can in simulation, document what works and what fails, and make the next physical experiment concrete. The rockets and radio jokes are playful. The anatomical data, complete-network calculations, recorded experiments and unanswered questions are real parts of the project.
 
-[Hosted simulator — restricted access](https://fly-space-program.sarrington493484.chatgpt.site/) · [Run it locally](#run-it-locally) · [Read the docs](docs/README.md) · [Full status — September 14](docs/status-2026-09-14.md) · [Explore the science](docs/science-and-hypotheses.md) · [See the Fly Cube](docs/harness-concept.md)
+[Fly the simulator](https://fly.steph4n.dev/) · [Run it locally](#run-it-locally) · [Read the docs](docs/README.md) · [Full status — September 14](docs/status-2026-09-14.md) · [Explore the science](docs/science-and-hypotheses.md) · [See the Fly Cube](docs/harness-concept.md)
 
 ![Actual mission-control screen, with the booster over its landing deck and the animated fly at the controls](docs/assets/screenshots/mission-control.jpg)
 
@@ -63,7 +63,7 @@ npm ci
 npm start
 ```
 
-Open [localhost:4173](http://localhost:4173). Repository access is required while this project is private. The tracked graph assets ship with the app; the first browser load is about 91 MB. Use a desktop browser with WebGL 2 and allow the complete graph to load. Python 3 runs the local server; Node 24 is used for project checks. There is no build step for the authored static app.
+Open [localhost:4173](http://localhost:4173). The tracked graph assets ship with the app; the first browser load is about 91 MB. Use a desktop browser with WebGL 2 and allow the complete graph to load. Python 3 runs the local server; Node 24 is used for project checks. There is no build step for the authored static app.
 
 **Mission** watches the flight. **Cockpit** shows the fly and exact sampled eye images. **Flight lab** contains training, anatomy and decision inspection. Ordinary flights do not update the controller; use **Train the fly** for local training. [Reproduction and data setup](docs/reproducibility.md).
 
@@ -81,6 +81,6 @@ We take inspiration from [Omarchy's doctrine](https://omarchy.org/doctrine/): se
 
 ## License and credit
 
-Project code and documentation use the [No Theo License v1.0](LICENSE), an MIT-derived, person-excluding license. This is **source-available, not open source**. The repository stays private until the maintainer explicitly decides it is ready to become public.
+Project code and documentation use the [No Theo License v1.0](LICENSE), an MIT-derived, person-excluding license. This is **source-available, not open source**.
 
 The MaleCNS-derived anatomical data retains **CC BY 4.0**, and bundled third-party code retains its own licenses. Credit goes to the researchers and institutions behind [MaleCNS v1.0](https://male-cns.janelia.org/) and the cited experimental work. See [third-party notices and license provenance](THIRD_PARTY_NOTICES.md).

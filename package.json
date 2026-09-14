@@ -10,13 +10,13 @@
   "dependencies": {
     "three": "^0.186.0"
   },
-  "description": "Full-connectome fly training, reproducible simulations, and a proposed physical Fly Cube research interface.",
+  "description": "A fruit-fly connectome in a rocket simulator. Explore neural control, reproducible experiments and the proposed Fly Cube.",
   "license": "SEE LICENSE IN LICENSE",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/steph4n-gh/fly-space-program.git"
   },
-  "homepage": "https://fly-space-program.sarrington493484.chatgpt.site/",
+  "homepage": "https://fly.steph4n.dev/",
   "bugs": {
     "url": "https://github.com/steph4n-gh/fly-space-program/issues"
   }

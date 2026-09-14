@@ -3,12 +3,20 @@
 The repository is ready for public review as an **experimental, source-available
 research project**, within the scope checked below. No blocking issue was found
 after correcting the restricted-demo label and the third-party source notice.
-Repository and hosted-site access remain private; this review did not publish
-either one.
+The initial review took place while the repository and hosted site were private.
+The maintainer subsequently approved making both public on September 14.
+
+The project's canonical home is [fly.steph4n.dev](https://fly.steph4n.dev/),
+with source and contribution guidance in the
+[GitHub repository](https://github.com/steph4n-gh/fly-space-program).
+Cloudflare DNS and Sites both confirm the custom domain, with active HTTPS.
+Launch preparation updates current links, access wording, page metadata and
+repository metadata while preserving the existing visual identity and license.
 
 The reviewed application and history were commit
-`8b0633786286cae5ec9a481a0bdd17a9da8acab6`. The readiness changes are documentation
-only; they do not alter application assets, model weights or frozen evidence.
+`8b0633786286cae5ec9a481a0bdd17a9da8acab6`. The initial readiness changes were
+documentation only. The later launch changes add metadata and project links;
+they do not alter simulator logic, model weights or frozen scientific evidence.
 
 | Check | Observed result |
 | --- | --- |
@@ -27,8 +35,9 @@ checks on Ubuntu with Node 24.
 
 ## Corrections made
 
-- The README identifies the hosted simulator as restricted access and offers
-  the local-running instructions alongside it.
+- Before publication, the README identified the hosted simulator as restricted
+  access and offered local-running instructions. Launch preparation replaces
+  that label with the canonical public address.
 - [Third-party notices](../THIRD_PARTY_NOTICES.md) and the
   [visual source-package notice](visual-export-context/README.md#third-party-source-attribution)
   credit the deposited source files, identify their license and archive members,

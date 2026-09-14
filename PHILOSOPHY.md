@@ -26,4 +26,4 @@ Choose the simplest implementation that satisfies a demonstrated need. Measure i
 
 The fly's expressions and command-center jokes are deliberately theatrical. The graph calculations and reports are inspectable. The Fly Cube is speculative hardware, and learning in a simplified model does not establish learning in a living animal. We can keep the ambition large without quietly moving those boundaries.
 
-The repository remains private during development. Changing its visibility is a separate maintainer decision after the project is ready; documentation polish alone does not establish scientific completion.
+Public availability invites scrutiny and contributions. It does not establish scientific completion; the claims still have to earn their evidence.
