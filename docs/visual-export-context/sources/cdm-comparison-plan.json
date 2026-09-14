@@ -1,0 +1,59 @@
+{
+  "createdAt": "2026-09-14T07:38:21.837063+00:00",
+  "scope": "Descriptive measured CDM/control comparison in eight complete named-condition/polarity pairs; no fitted model or dose-response inference. Fixed windows frozen before reading the new CDM response values. Control traces previously used as development data.",
+  "sourceSHA256": "9dfb702cc933efbd02730e6f99ae0f6307e4c4bcf74ddb77c9680b5ddeefb70b",
+  "manifestSHA256": "abac9f19a2e105479362d89a80ec7cbf94f63b1f2443964e43e1dc38fe74eca8",
+  "pairs": [
+    {
+      "cell": "L1",
+      "condition": "highLum",
+      "controlFile": "L1_highLum.mat",
+      "cdmFile": "L1_CDM_highLum.mat"
+    },
+    {
+      "cell": "L1",
+      "condition": "lowLum",
+      "controlFile": "L1_lowLum.mat",
+      "cdmFile": "L1_CDM_lowLum.mat"
+    },
+    {
+      "cell": "L2",
+      "condition": "highLum",
+      "controlFile": "L2_highLum.mat",
+      "cdmFile": "L2_CDM_highLum.mat"
+    },
+    {
+      "cell": "L2",
+      "condition": "lowLum",
+      "controlFile": "L2_lowLum.mat",
+      "cdmFile": "L2_CDM_lowLum.mat"
+    }
+  ],
+  "windowsSeconds": {
+    "early": [
+      0,
+      0.05
+    ],
+    "late": [
+      0.05,
+      0.25
+    ],
+    "recovery": [
+      0.25,
+      0.5
+    ],
+    "whole": [
+      0,
+      0.5
+    ]
+  },
+  "observation": "Stored rows 0=dark, 1=bright; t holds trailing 1/120-second bin endpoints. Exact time-overlap integration over predeclared windows; all 63 bins retained.",
+  "interpretationLimits": [
+    "Chemical treatment is chlordimeform (CDM), an octopamine agonist applied to the brain bath in the source experiment; this is not airborne odor delivery or a demonstrated steering command.",
+    "Pairs match cell type and compact filename condition. Compact-label-to-physical-radiance mapping and animal pairing are not verified.",
+    "Control exports contain population means only. Individual CDM arrays are retained and checked against their means; trace counts are not assumed to be independent animals. No confidence interval or significance test.",
+    "Fixed early/late/recovery windows are descriptive and differ from the source paper's data-dependent phase analysis.",
+    "ASAP2f fluorescence is positive for hyperpolarization. No voltage calibration, offset, rescaling, dose, model parameter or initial-state fit is made.",
+    "Neither biological connectome steering nor flight performance is tested by this comparison."
+  ]
+}

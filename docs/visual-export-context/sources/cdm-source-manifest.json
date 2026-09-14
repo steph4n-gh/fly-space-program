@@ -1,0 +1,231 @@
+{
+  "scope": "Schema-only extraction; response values have not been inspected",
+  "archiveFile": "artifacts/odor-interface/visual-response-benchmark/data/computational-model.zip",
+  "archiveSHA256": "c35ea6c7b167250befd968a6c9068f78dc692b19ed308bd464c0166bcf6a7108",
+  "data": [
+    {
+      "file": "L1_highLum.mat",
+      "archiveMember": "computational-model/data/L1_highLum.mat",
+      "bytes": 1464,
+      "sha256": "bbc8c90dbc57fba0c4d2afdebe29797e06360448a9dfb0b9018cd32583da6746",
+      "schema": [
+        {
+          "name": "meanResp",
+          "shape": [
+            2,
+            63
+          ],
+          "dtype": "double"
+        },
+        {
+          "name": "t",
+          "shape": [
+            1,
+            63
+          ],
+          "dtype": "double"
+        }
+      ]
+    },
+    {
+      "file": "L1_CDM_highLum.mat",
+      "archiveMember": "computational-model/data/L1_CDM_highLum.mat",
+      "bytes": 55790,
+      "sha256": "4425910a67db801af030652ff1d7d6428edbc6da90539869f375d25ffba7eac0",
+      "schema": [
+        {
+          "name": "indivResp",
+          "shape": [
+            1,
+            2
+          ],
+          "dtype": "cell"
+        },
+        {
+          "name": "meanResp",
+          "shape": [
+            2,
+            63
+          ],
+          "dtype": "double"
+        },
+        {
+          "name": "t",
+          "shape": [
+            1,
+            63
+          ],
+          "dtype": "double"
+        }
+      ]
+    },
+    {
+      "file": "L1_lowLum.mat",
+      "archiveMember": "computational-model/data/L1_lowLum.mat",
+      "bytes": 1468,
+      "sha256": "8b539a2b34c39e8fec11e6576f3f7badd1fc80815e93319093a4cf41ea03d33a",
+      "schema": [
+        {
+          "name": "meanResp",
+          "shape": [
+            2,
+            63
+          ],
+          "dtype": "double"
+        },
+        {
+          "name": "t",
+          "shape": [
+            1,
+            63
+          ],
+          "dtype": "double"
+        }
+      ]
+    },
+    {
+      "file": "L1_CDM_lowLum.mat",
+      "archiveMember": "computational-model/data/L1_CDM_lowLum.mat",
+      "bytes": 33593,
+      "sha256": "0608ea5df61490290f2143993a307d4edd7fa5a234089aedc8c6cec250af0e04",
+      "schema": [
+        {
+          "name": "indivResp",
+          "shape": [
+            1,
+            2
+          ],
+          "dtype": "cell"
+        },
+        {
+          "name": "meanResp",
+          "shape": [
+            2,
+            63
+          ],
+          "dtype": "double"
+        },
+        {
+          "name": "t",
+          "shape": [
+            1,
+            63
+          ],
+          "dtype": "double"
+        }
+      ]
+    },
+    {
+      "file": "L2_highLum.mat",
+      "archiveMember": "computational-model/data/L2_highLum.mat",
+      "bytes": 1463,
+      "sha256": "1c9266f5c387a217013f8715a49f6351f78e9a9de9894a5ac2892b2a06cf6e36",
+      "schema": [
+        {
+          "name": "meanResp",
+          "shape": [
+            2,
+            63
+          ],
+          "dtype": "double"
+        },
+        {
+          "name": "t",
+          "shape": [
+            1,
+            63
+          ],
+          "dtype": "double"
+        }
+      ]
+    },
+    {
+      "file": "L2_CDM_highLum.mat",
+      "archiveMember": "computational-model/data/L2_CDM_highLum.mat",
+      "bytes": 100252,
+      "sha256": "e19bd5d5e40863d509c72fb3d7348d96e9469f0d1ab6256897d4ef2b5366e5dc",
+      "schema": [
+        {
+          "name": "indivResp",
+          "shape": [
+            1,
+            2
+          ],
+          "dtype": "cell"
+        },
+        {
+          "name": "meanResp",
+          "shape": [
+            2,
+            63
+          ],
+          "dtype": "double"
+        },
+        {
+          "name": "t",
+          "shape": [
+            1,
+            63
+          ],
+          "dtype": "double"
+        }
+      ]
+    },
+    {
+      "file": "L2_lowLum.mat",
+      "archiveMember": "computational-model/data/L2_lowLum.mat",
+      "bytes": 1459,
+      "sha256": "49c0e5587618f9d11e0dea12a218b6eecd511e563d8d42ad986e9c410c6d012c",
+      "schema": [
+        {
+          "name": "meanResp",
+          "shape": [
+            2,
+            63
+          ],
+          "dtype": "double"
+        },
+        {
+          "name": "t",
+          "shape": [
+            1,
+            63
+          ],
+          "dtype": "double"
+        }
+      ]
+    },
+    {
+      "file": "L2_CDM_lowLum.mat",
+      "archiveMember": "computational-model/data/L2_CDM_lowLum.mat",
+      "bytes": 89722,
+      "sha256": "0a835999723058712b6a311ec9ec52dca36333313dfb3ced9493bde89c4d6e3e",
+      "schema": [
+        {
+          "name": "indivResp",
+          "shape": [
+            1,
+            2
+          ],
+          "dtype": "cell"
+        },
+        {
+          "name": "meanResp",
+          "shape": [
+            2,
+            63
+          ],
+          "dtype": "double"
+        },
+        {
+          "name": "t",
+          "shape": [
+            1,
+            63
+          ],
+          "dtype": "double"
+        }
+      ]
+    }
+  ]
+}

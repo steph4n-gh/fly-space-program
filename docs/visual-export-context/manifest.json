@@ -1,0 +1,3610 @@
+{
+  "schema": "visual-export-context-manifest-v1",
+  "status": "eight-export-metadata-manifest-complete; original-record-context-unresolved",
+  "scope": "Existing source and metadata only. No new response arrays, fits, simulations, author contact, or repository edits.",
+  "sourceCommit": "7fa5829e37d566e02beaaa87efd6a0f1de4e48c0",
+  "sourceCatalog": [
+    {
+      "sourceId": "export-inventory",
+      "originalPath": "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/odor-interface/cdm-response-comparison/source-manifest.json",
+      "snapshotPath": "sources/cdm-source-manifest.json",
+      "sha256": "abac9f19a2e105479362d89a80ec7cbf94f63b1f2443964e43e1dc38fe74eca8",
+      "hashVerifiedThisTask": true
+    },
+    {
+      "sourceId": "comparison-plan",
+      "originalPath": "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/odor-interface/cdm-response-comparison/plan.json",
+      "snapshotPath": "sources/cdm-comparison-plan.json",
+      "sha256": "29bd0120a29b756dcd0f886d8ed28b6b3fc09ca0e16fbc9565c2c0fba9cbc013",
+      "hashVerifiedThisTask": true
+    },
+    {
+      "sourceId": "context-review",
+      "originalPath": "/tmp/visual-context-identifiability-review/evidence.json",
+      "snapshotPath": "sources/context-identifiability-evidence.json",
+      "sha256": "c265adf024688da20363c996b5f1776df8d78ded39da9aa8c8cb7588e5e3692d",
+      "hashVerifiedThisTask": true
+    },
+    {
+      "sourceId": "generic-exporter",
+      "originalPath": "/tmp/visual-calibration-sources/shortFlashProcessed_saveMean.m",
+      "snapshotPath": "sources/shortFlashProcessed_saveMean.m",
+      "sha256": "e5c9daf537b4a3f20c7708e3b1c6ccac66b37f3e1cba943a1ffa4c6c6c447cb7",
+      "hashVerifiedThisTask": true,
+      "path": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/shortFlashProcessed_saveMean.m",
+      "url": "https://github.com/ClandininLab/L1L2-recurrent-feedback/blob/7fa5829e37d566e02beaaa87efd6a0f1de4e48c0/imaging-analysis/HHY_stimulusSpecificAnalysisScripts/shortFlashProcessed_saveMean.m",
+      "gitBlobSHA1": "1faaf2b042ae4165128f76561d03ea0fbf116ef1",
+      "matchesCachedCommit": true,
+      "sourceCommit": "7fa5829e37d566e02beaaa87efd6a0f1de4e48c0"
+    },
+    {
+      "sourceId": "generic-stimulus",
+      "originalPath": "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/odor-interface/visual-response-benchmark/data/fullfield_LDflash20ms_Gray500ms.txt",
+      "snapshotPath": "sources/fullfield_LDflash20ms_Gray500ms.txt",
+      "sha256": "174fefaab83106b7a7b37d97d99c768be069ad1d62b17646cf3bcabbfd61e682",
+      "hashVerifiedThisTask": true,
+      "path": "stimulus/fullfield_LDflash20ms_Gray500ms.txt",
+      "url": "https://github.com/ClandininLab/L1L2-recurrent-feedback/blob/7fa5829e37d566e02beaaa87efd6a0f1de4e48c0/stimulus/fullfield_LDflash20ms_Gray500ms.txt",
+      "gitBlobSHA1": "d29db5c7d935cfd21e467ca0afabfda20801eb60",
+      "matchesCachedCommit": true,
+      "sourceCommit": "7fa5829e37d566e02beaaa87efd6a0f1de4e48c0"
+    },
+    {
+      "sourceId": "raw-model-source",
+      "originalPath": "/Users/sarrington/Documents/ChatGPT/connectome/scripts/visual_recurrent.py",
+      "snapshotPath": "sources/visual_recurrent.py",
+      "sha256": "0ab9c0a244190efd62360009bd78b9eacfed15855ab49fc13ac8771f713d39b2",
+      "hashVerifiedThisTask": true
+    }
+  ],
+  "authorNotebook": {
+    "path": "computational-model/CDM_results.ipynb",
+    "url": "https://github.com/ClandininLab/L1L2-recurrent-feedback/blob/7fa5829e37d566e02beaaa87efd6a0f1de4e48c0/computational-model/CDM_results.ipynb",
+    "sha256": "c088e92100b3fb2a3a8d90d7ba4ff18547cb6af6b194dcc2cd496d6e14d1028a",
+    "gitBlobSHA1": "6cfe6593310651b47cb340795bb39ad19af47024",
+    "matchesCachedCommit": true
+  },
+  "archiveIdentity": {
+    "file": "artifacts/odor-interface/visual-response-benchmark/data/computational-model.zip",
+    "sha256": "c35ea6c7b167250befd968a6c9068f78dc692b19ed308bd464c0166bcf6a7108",
+    "status": "recorded-in-frozen-existing-inventory",
+    "rehashThisTask": false,
+    "evidence": [
+      {
+        "sourceId": "export-inventory",
+        "jsonPointer": "/archiveFile"
+      },
+      {
+        "sourceId": "export-inventory",
+        "jsonPointer": "/archiveSHA256"
+      }
+    ]
+  },
+  "responseFilesRehashedThisTask": false,
+  "newResponseArraysRead": 0,
+  "exports": [
+    {
+      "exportId": "L1_highLum",
+      "fields": {
+        "compactFilename": {
+          "value": "L1_highLum.mat",
+          "status": "verified-existing-metadata",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/0/file"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/compactFilenamePairingCells/0"
+            }
+          ]
+        },
+        "archiveMember": {
+          "value": "computational-model/data/L1_highLum.mat",
+          "status": "verified-existing-metadata",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/0/archiveMember"
+            }
+          ]
+        },
+        "bytes": {
+          "value": 1464,
+          "status": "recorded-source-identity",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/0/bytes"
+            }
+          ],
+          "qualification": "Recorded in the frozen prior inventory; response file bytes were not reread this task."
+        },
+        "sha256": {
+          "value": "bbc8c90dbc57fba0c4d2afdebe29797e06360448a9dfb0b9018cd32583da6746",
+          "status": "recorded-source-identity",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/0/sha256"
+            }
+          ],
+          "qualification": "The inventory hash is verified this task; this response file digest is a prior recorded digest, not a new response-file hash."
+        },
+        "schema": {
+          "value": [
+            {
+              "name": "meanResp",
+              "shape": [
+                2,
+                63
+              ],
+              "dtype": "double"
+            },
+            {
+              "name": "t",
+              "shape": [
+                1,
+                63
+              ],
+              "dtype": "double"
+            }
+          ],
+          "status": "verified-existing-metadata",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/0/schema"
+            }
+          ],
+          "qualification": "Stored variable names, types, and dimensions only; no response values or new ROI counts inspected."
+        },
+        "cellType": {
+          "value": "L1",
+          "status": "documented-compact-label",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/pairs/0/cell"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/compactFilenamePairingCells/0"
+            }
+          ]
+        },
+        "conditionLabel": {
+          "value": "highLum",
+          "status": "documented-compact-label",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/pairs/0/condition"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/compactFilenamePairingCells/0"
+            }
+          ],
+          "qualification": "A compact highLum/lowLum label; no physical luminance, radiance, or ratio is assigned."
+        },
+        "treatmentLabel": {
+          "value": "control",
+          "status": "documented-compact-label",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/pairs/0/controlFile"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/compactFilenamePairingCells/0"
+            }
+          ],
+          "qualification": "CDM is chlordimeform in the source experiment; label does not supply dose or acquisition-specific exposure history."
+        },
+        "treatmentMeaning": {
+          "value": "control comparator for the named CDM condition",
+          "status": "documented-existing-analysis",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/interpretationLimits/0"
+            },
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/pairs/0/controlFile"
+            }
+          ],
+          "qualification": "No per-record dose, exposure time, animal matching, or airborne odor inference."
+        },
+        "documentedComparisonFile": {
+          "value": "L1_CDM_highLum.mat",
+          "status": "documented-file-comparison",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/pairs/0/cdmFile"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/compactFilenamePairingCells/0"
+            }
+          ],
+          "qualification": "Comparison by cell type and compact condition only; animal/recording pairing remains unresolved."
+        },
+        "sampleCount": {
+          "value": 63,
+          "status": "verified-existing-metadata",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/0/schema"
+            }
+          ]
+        },
+        "storedPolarityRowsZeroBased": {
+          "value": {
+            "0": "dark",
+            "1": "bright"
+          },
+          "status": "documented-existing-analysis",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/observation"
+            }
+          ]
+        },
+        "observationBinWidthSeconds": {
+          "value": {
+            "numerator": 1,
+            "denominator": 120
+          },
+          "status": "documented-existing-analysis",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/observation"
+            }
+          ],
+          "qualification": "Observation sampling metadata from the prior comparison; not acquisition-specific flash timing."
+        },
+        "timeCoordinateConvention": {
+          "value": "t contains trailing bin endpoints; all 63 bins retained",
+          "status": "documented-existing-analysis",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/observation"
+            }
+          ],
+          "qualification": "No original stimulus clock, realized sequence, baseline state, or adaptation history is thereby recovered."
+        },
+        "originalProcessedFilename": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No exact compact-export-to-original-processed-file join was found in the bounded review.",
+          "neededRecordCategory": "export-lineage"
+        },
+        "exportRenameRecord": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "The exporter preserves its input filename, but no executed export/rename inventory joins that input to this compact file.",
+          "neededRecordCategory": "export-lineage"
+        },
+        "selectedROIIdentifiers": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "A generic iResp/roiDataMat selection algorithm does not identify the ROIs used for this compact export.",
+          "neededRecordCategory": "recording-selection"
+        },
+        "selectedTimeSeriesIdentifiers": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No executed recording/time-series selection table is joined to this compact export.",
+          "neededRecordCategory": "recording-selection"
+        },
+        "animalIdentifiers": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "Individual response columns or counts do not establish animal identities.",
+          "neededRecordCategory": "recording-selection"
+        },
+        "animalTreatmentPairing": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "Documented compact-file comparisons do not establish matched animals before/after treatment.",
+          "neededRecordCategory": "recording-selection"
+        },
+        "stimulusRunLog": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No acquisition-specific stimulus run log is joined to this compact export.",
+          "neededRecordCategory": "stimulus-history"
+        },
+        "stimulusPrehistory": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "An isolated zero-initialized model flash and a generic gray duration do not establish the recording prehistory.",
+          "neededRecordCategory": "stimulus-history"
+        },
+        "actualStimulusTiming": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No source-backed join establishes the acquisition-specific onsets, durations, epoch sequence, or clock alignment for this compact export.",
+          "neededRecordCategory": "stimulus-history"
+        },
+        "PWMSetting": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "Intermediate 200/20 PWM selection filenames are not an exact mapping to this compact export.",
+          "neededRecordCategory": "optical-calibration"
+        },
+        "opticalFilterSetting": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No acquisition-specific optical filter setting is joined to this compact export.",
+          "neededRecordCategory": "optical-calibration"
+        },
+        "backgroundRadiance": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "Neither a compact condition label nor general apparatus radiance establishes calibrated background radiance for this export.",
+          "neededRecordCategory": "optical-calibration"
+        },
+        "flashRadiances": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No calibrated bright/dark flash radiances are joined to this compact export.",
+          "neededRecordCategory": "optical-calibration"
+        },
+        "radianceCalibrationIdentifier": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No calibration record identifier is joined to the acquisition underlying this compact export.",
+          "neededRecordCategory": "optical-calibration"
+        }
+      }
+    },
+    {
+      "exportId": "L1_CDM_highLum",
+      "fields": {
+        "compactFilename": {
+          "value": "L1_CDM_highLum.mat",
+          "status": "verified-existing-metadata",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/1/file"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/compactFilenamePairingCells/0"
+            }
+          ]
+        },
+        "archiveMember": {
+          "value": "computational-model/data/L1_CDM_highLum.mat",
+          "status": "verified-existing-metadata",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/1/archiveMember"
+            }
+          ]
+        },
+        "bytes": {
+          "value": 55790,
+          "status": "recorded-source-identity",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/1/bytes"
+            }
+          ],
+          "qualification": "Recorded in the frozen prior inventory; response file bytes were not reread this task."
+        },
+        "sha256": {
+          "value": "4425910a67db801af030652ff1d7d6428edbc6da90539869f375d25ffba7eac0",
+          "status": "recorded-source-identity",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/1/sha256"
+            }
+          ],
+          "qualification": "The inventory hash is verified this task; this response file digest is a prior recorded digest, not a new response-file hash."
+        },
+        "schema": {
+          "value": [
+            {
+              "name": "indivResp",
+              "shape": [
+                1,
+                2
+              ],
+              "dtype": "cell"
+            },
+            {
+              "name": "meanResp",
+              "shape": [
+                2,
+                63
+              ],
+              "dtype": "double"
+            },
+            {
+              "name": "t",
+              "shape": [
+                1,
+                63
+              ],
+              "dtype": "double"
+            }
+          ],
+          "status": "verified-existing-metadata",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/1/schema"
+            }
+          ],
+          "qualification": "Stored variable names, types, and dimensions only; no response values or new ROI counts inspected."
+        },
+        "cellType": {
+          "value": "L1",
+          "status": "documented-compact-label",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/pairs/0/cell"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/compactFilenamePairingCells/0"
+            }
+          ]
+        },
+        "conditionLabel": {
+          "value": "highLum",
+          "status": "documented-compact-label",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/pairs/0/condition"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/compactFilenamePairingCells/0"
+            }
+          ],
+          "qualification": "A compact highLum/lowLum label; no physical luminance, radiance, or ratio is assigned."
+        },
+        "treatmentLabel": {
+          "value": "CDM",
+          "status": "documented-compact-label",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/pairs/0/cdmFile"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/compactFilenamePairingCells/0"
+            }
+          ],
+          "qualification": "CDM is chlordimeform in the source experiment; label does not supply dose or acquisition-specific exposure history."
+        },
+        "treatmentMeaning": {
+          "value": "chlordimeform (octopamine agonist), source brain-bath treatment",
+          "status": "documented-existing-analysis",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/interpretationLimits/0"
+            },
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/pairs/0/cdmFile"
+            }
+          ],
+          "qualification": "No per-record dose, exposure time, animal matching, or airborne odor inference."
+        },
+        "documentedComparisonFile": {
+          "value": "L1_highLum.mat",
+          "status": "documented-file-comparison",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/pairs/0/controlFile"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/compactFilenamePairingCells/0"
+            }
+          ],
+          "qualification": "Comparison by cell type and compact condition only; animal/recording pairing remains unresolved."
+        },
+        "sampleCount": {
+          "value": 63,
+          "status": "verified-existing-metadata",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/1/schema"
+            }
+          ]
+        },
+        "storedPolarityRowsZeroBased": {
+          "value": {
+            "0": "dark",
+            "1": "bright"
+          },
+          "status": "documented-existing-analysis",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/observation"
+            }
+          ]
+        },
+        "observationBinWidthSeconds": {
+          "value": {
+            "numerator": 1,
+            "denominator": 120
+          },
+          "status": "documented-existing-analysis",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/observation"
+            }
+          ],
+          "qualification": "Observation sampling metadata from the prior comparison; not acquisition-specific flash timing."
+        },
+        "timeCoordinateConvention": {
+          "value": "t contains trailing bin endpoints; all 63 bins retained",
+          "status": "documented-existing-analysis",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/observation"
+            }
+          ],
+          "qualification": "No original stimulus clock, realized sequence, baseline state, or adaptation history is thereby recovered."
+        },
+        "originalProcessedFilename": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No exact compact-export-to-original-processed-file join was found in the bounded review.",
+          "neededRecordCategory": "export-lineage"
+        },
+        "exportRenameRecord": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "The exporter preserves its input filename, but no executed export/rename inventory joins that input to this compact file.",
+          "neededRecordCategory": "export-lineage"
+        },
+        "selectedROIIdentifiers": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "A generic iResp/roiDataMat selection algorithm does not identify the ROIs used for this compact export.",
+          "neededRecordCategory": "recording-selection"
+        },
+        "selectedTimeSeriesIdentifiers": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No executed recording/time-series selection table is joined to this compact export.",
+          "neededRecordCategory": "recording-selection"
+        },
+        "animalIdentifiers": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "Individual response columns or counts do not establish animal identities.",
+          "neededRecordCategory": "recording-selection"
+        },
+        "animalTreatmentPairing": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "Documented compact-file comparisons do not establish matched animals before/after treatment.",
+          "neededRecordCategory": "recording-selection"
+        },
+        "stimulusRunLog": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No acquisition-specific stimulus run log is joined to this compact export.",
+          "neededRecordCategory": "stimulus-history"
+        },
+        "stimulusPrehistory": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "An isolated zero-initialized model flash and a generic gray duration do not establish the recording prehistory.",
+          "neededRecordCategory": "stimulus-history"
+        },
+        "actualStimulusTiming": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No source-backed join establishes the acquisition-specific onsets, durations, epoch sequence, or clock alignment for this compact export.",
+          "neededRecordCategory": "stimulus-history"
+        },
+        "PWMSetting": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "Intermediate 200/20 PWM selection filenames are not an exact mapping to this compact export.",
+          "neededRecordCategory": "optical-calibration"
+        },
+        "opticalFilterSetting": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No acquisition-specific optical filter setting is joined to this compact export.",
+          "neededRecordCategory": "optical-calibration"
+        },
+        "backgroundRadiance": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "Neither a compact condition label nor general apparatus radiance establishes calibrated background radiance for this export.",
+          "neededRecordCategory": "optical-calibration"
+        },
+        "flashRadiances": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No calibrated bright/dark flash radiances are joined to this compact export.",
+          "neededRecordCategory": "optical-calibration"
+        },
+        "radianceCalibrationIdentifier": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No calibration record identifier is joined to the acquisition underlying this compact export.",
+          "neededRecordCategory": "optical-calibration"
+        }
+      }
+    },
+    {
+      "exportId": "L1_lowLum",
+      "fields": {
+        "compactFilename": {
+          "value": "L1_lowLum.mat",
+          "status": "verified-existing-metadata",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/2/file"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/compactFilenamePairingCells/0"
+            }
+          ]
+        },
+        "archiveMember": {
+          "value": "computational-model/data/L1_lowLum.mat",
+          "status": "verified-existing-metadata",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/2/archiveMember"
+            }
+          ]
+        },
+        "bytes": {
+          "value": 1468,
+          "status": "recorded-source-identity",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/2/bytes"
+            }
+          ],
+          "qualification": "Recorded in the frozen prior inventory; response file bytes were not reread this task."
+        },
+        "sha256": {
+          "value": "8b539a2b34c39e8fec11e6576f3f7badd1fc80815e93319093a4cf41ea03d33a",
+          "status": "recorded-source-identity",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/2/sha256"
+            }
+          ],
+          "qualification": "The inventory hash is verified this task; this response file digest is a prior recorded digest, not a new response-file hash."
+        },
+        "schema": {
+          "value": [
+            {
+              "name": "meanResp",
+              "shape": [
+                2,
+                63
+              ],
+              "dtype": "double"
+            },
+            {
+              "name": "t",
+              "shape": [
+                1,
+                63
+              ],
+              "dtype": "double"
+            }
+          ],
+          "status": "verified-existing-metadata",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/2/schema"
+            }
+          ],
+          "qualification": "Stored variable names, types, and dimensions only; no response values or new ROI counts inspected."
+        },
+        "cellType": {
+          "value": "L1",
+          "status": "documented-compact-label",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/pairs/1/cell"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/compactFilenamePairingCells/0"
+            }
+          ]
+        },
+        "conditionLabel": {
+          "value": "lowLum",
+          "status": "documented-compact-label",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/pairs/1/condition"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/compactFilenamePairingCells/0"
+            }
+          ],
+          "qualification": "A compact highLum/lowLum label; no physical luminance, radiance, or ratio is assigned."
+        },
+        "treatmentLabel": {
+          "value": "control",
+          "status": "documented-compact-label",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/pairs/1/controlFile"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/compactFilenamePairingCells/0"
+            }
+          ],
+          "qualification": "CDM is chlordimeform in the source experiment; label does not supply dose or acquisition-specific exposure history."
+        },
+        "treatmentMeaning": {
+          "value": "control comparator for the named CDM condition",
+          "status": "documented-existing-analysis",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/interpretationLimits/0"
+            },
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/pairs/1/controlFile"
+            }
+          ],
+          "qualification": "No per-record dose, exposure time, animal matching, or airborne odor inference."
+        },
+        "documentedComparisonFile": {
+          "value": "L1_CDM_lowLum.mat",
+          "status": "documented-file-comparison",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/pairs/1/cdmFile"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/compactFilenamePairingCells/0"
+            }
+          ],
+          "qualification": "Comparison by cell type and compact condition only; animal/recording pairing remains unresolved."
+        },
+        "sampleCount": {
+          "value": 63,
+          "status": "verified-existing-metadata",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/2/schema"
+            }
+          ]
+        },
+        "storedPolarityRowsZeroBased": {
+          "value": {
+            "0": "dark",
+            "1": "bright"
+          },
+          "status": "documented-existing-analysis",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/observation"
+            }
+          ]
+        },
+        "observationBinWidthSeconds": {
+          "value": {
+            "numerator": 1,
+            "denominator": 120
+          },
+          "status": "documented-existing-analysis",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/observation"
+            }
+          ],
+          "qualification": "Observation sampling metadata from the prior comparison; not acquisition-specific flash timing."
+        },
+        "timeCoordinateConvention": {
+          "value": "t contains trailing bin endpoints; all 63 bins retained",
+          "status": "documented-existing-analysis",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/observation"
+            }
+          ],
+          "qualification": "No original stimulus clock, realized sequence, baseline state, or adaptation history is thereby recovered."
+        },
+        "originalProcessedFilename": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No exact compact-export-to-original-processed-file join was found in the bounded review.",
+          "neededRecordCategory": "export-lineage"
+        },
+        "exportRenameRecord": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "The exporter preserves its input filename, but no executed export/rename inventory joins that input to this compact file.",
+          "neededRecordCategory": "export-lineage"
+        },
+        "selectedROIIdentifiers": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "A generic iResp/roiDataMat selection algorithm does not identify the ROIs used for this compact export.",
+          "neededRecordCategory": "recording-selection"
+        },
+        "selectedTimeSeriesIdentifiers": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No executed recording/time-series selection table is joined to this compact export.",
+          "neededRecordCategory": "recording-selection"
+        },
+        "animalIdentifiers": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "Individual response columns or counts do not establish animal identities.",
+          "neededRecordCategory": "recording-selection"
+        },
+        "animalTreatmentPairing": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "Documented compact-file comparisons do not establish matched animals before/after treatment.",
+          "neededRecordCategory": "recording-selection"
+        },
+        "stimulusRunLog": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No acquisition-specific stimulus run log is joined to this compact export.",
+          "neededRecordCategory": "stimulus-history"
+        },
+        "stimulusPrehistory": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "An isolated zero-initialized model flash and a generic gray duration do not establish the recording prehistory.",
+          "neededRecordCategory": "stimulus-history"
+        },
+        "actualStimulusTiming": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No source-backed join establishes the acquisition-specific onsets, durations, epoch sequence, or clock alignment for this compact export.",
+          "neededRecordCategory": "stimulus-history"
+        },
+        "PWMSetting": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "Intermediate 200/20 PWM selection filenames are not an exact mapping to this compact export.",
+          "neededRecordCategory": "optical-calibration"
+        },
+        "opticalFilterSetting": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No acquisition-specific optical filter setting is joined to this compact export.",
+          "neededRecordCategory": "optical-calibration"
+        },
+        "backgroundRadiance": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "Neither a compact condition label nor general apparatus radiance establishes calibrated background radiance for this export.",
+          "neededRecordCategory": "optical-calibration"
+        },
+        "flashRadiances": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No calibrated bright/dark flash radiances are joined to this compact export.",
+          "neededRecordCategory": "optical-calibration"
+        },
+        "radianceCalibrationIdentifier": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No calibration record identifier is joined to the acquisition underlying this compact export.",
+          "neededRecordCategory": "optical-calibration"
+        }
+      }
+    },
+    {
+      "exportId": "L1_CDM_lowLum",
+      "fields": {
+        "compactFilename": {
+          "value": "L1_CDM_lowLum.mat",
+          "status": "verified-existing-metadata",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/3/file"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/compactFilenamePairingCells/0"
+            }
+          ]
+        },
+        "archiveMember": {
+          "value": "computational-model/data/L1_CDM_lowLum.mat",
+          "status": "verified-existing-metadata",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/3/archiveMember"
+            }
+          ]
+        },
+        "bytes": {
+          "value": 33593,
+          "status": "recorded-source-identity",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/3/bytes"
+            }
+          ],
+          "qualification": "Recorded in the frozen prior inventory; response file bytes were not reread this task."
+        },
+        "sha256": {
+          "value": "0608ea5df61490290f2143993a307d4edd7fa5a234089aedc8c6cec250af0e04",
+          "status": "recorded-source-identity",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/3/sha256"
+            }
+          ],
+          "qualification": "The inventory hash is verified this task; this response file digest is a prior recorded digest, not a new response-file hash."
+        },
+        "schema": {
+          "value": [
+            {
+              "name": "indivResp",
+              "shape": [
+                1,
+                2
+              ],
+              "dtype": "cell"
+            },
+            {
+              "name": "meanResp",
+              "shape": [
+                2,
+                63
+              ],
+              "dtype": "double"
+            },
+            {
+              "name": "t",
+              "shape": [
+                1,
+                63
+              ],
+              "dtype": "double"
+            }
+          ],
+          "status": "verified-existing-metadata",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/3/schema"
+            }
+          ],
+          "qualification": "Stored variable names, types, and dimensions only; no response values or new ROI counts inspected."
+        },
+        "cellType": {
+          "value": "L1",
+          "status": "documented-compact-label",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/pairs/1/cell"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/compactFilenamePairingCells/0"
+            }
+          ]
+        },
+        "conditionLabel": {
+          "value": "lowLum",
+          "status": "documented-compact-label",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/pairs/1/condition"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/compactFilenamePairingCells/0"
+            }
+          ],
+          "qualification": "A compact highLum/lowLum label; no physical luminance, radiance, or ratio is assigned."
+        },
+        "treatmentLabel": {
+          "value": "CDM",
+          "status": "documented-compact-label",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/pairs/1/cdmFile"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/compactFilenamePairingCells/0"
+            }
+          ],
+          "qualification": "CDM is chlordimeform in the source experiment; label does not supply dose or acquisition-specific exposure history."
+        },
+        "treatmentMeaning": {
+          "value": "chlordimeform (octopamine agonist), source brain-bath treatment",
+          "status": "documented-existing-analysis",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/interpretationLimits/0"
+            },
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/pairs/1/cdmFile"
+            }
+          ],
+          "qualification": "No per-record dose, exposure time, animal matching, or airborne odor inference."
+        },
+        "documentedComparisonFile": {
+          "value": "L1_lowLum.mat",
+          "status": "documented-file-comparison",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/pairs/1/controlFile"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/compactFilenamePairingCells/0"
+            }
+          ],
+          "qualification": "Comparison by cell type and compact condition only; animal/recording pairing remains unresolved."
+        },
+        "sampleCount": {
+          "value": 63,
+          "status": "verified-existing-metadata",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/3/schema"
+            }
+          ]
+        },
+        "storedPolarityRowsZeroBased": {
+          "value": {
+            "0": "dark",
+            "1": "bright"
+          },
+          "status": "documented-existing-analysis",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/observation"
+            }
+          ]
+        },
+        "observationBinWidthSeconds": {
+          "value": {
+            "numerator": 1,
+            "denominator": 120
+          },
+          "status": "documented-existing-analysis",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/observation"
+            }
+          ],
+          "qualification": "Observation sampling metadata from the prior comparison; not acquisition-specific flash timing."
+        },
+        "timeCoordinateConvention": {
+          "value": "t contains trailing bin endpoints; all 63 bins retained",
+          "status": "documented-existing-analysis",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/observation"
+            }
+          ],
+          "qualification": "No original stimulus clock, realized sequence, baseline state, or adaptation history is thereby recovered."
+        },
+        "originalProcessedFilename": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No exact compact-export-to-original-processed-file join was found in the bounded review.",
+          "neededRecordCategory": "export-lineage"
+        },
+        "exportRenameRecord": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "The exporter preserves its input filename, but no executed export/rename inventory joins that input to this compact file.",
+          "neededRecordCategory": "export-lineage"
+        },
+        "selectedROIIdentifiers": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "A generic iResp/roiDataMat selection algorithm does not identify the ROIs used for this compact export.",
+          "neededRecordCategory": "recording-selection"
+        },
+        "selectedTimeSeriesIdentifiers": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No executed recording/time-series selection table is joined to this compact export.",
+          "neededRecordCategory": "recording-selection"
+        },
+        "animalIdentifiers": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "Individual response columns or counts do not establish animal identities.",
+          "neededRecordCategory": "recording-selection"
+        },
+        "animalTreatmentPairing": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "Documented compact-file comparisons do not establish matched animals before/after treatment.",
+          "neededRecordCategory": "recording-selection"
+        },
+        "stimulusRunLog": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No acquisition-specific stimulus run log is joined to this compact export.",
+          "neededRecordCategory": "stimulus-history"
+        },
+        "stimulusPrehistory": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "An isolated zero-initialized model flash and a generic gray duration do not establish the recording prehistory.",
+          "neededRecordCategory": "stimulus-history"
+        },
+        "actualStimulusTiming": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No source-backed join establishes the acquisition-specific onsets, durations, epoch sequence, or clock alignment for this compact export.",
+          "neededRecordCategory": "stimulus-history"
+        },
+        "PWMSetting": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "Intermediate 200/20 PWM selection filenames are not an exact mapping to this compact export.",
+          "neededRecordCategory": "optical-calibration"
+        },
+        "opticalFilterSetting": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No acquisition-specific optical filter setting is joined to this compact export.",
+          "neededRecordCategory": "optical-calibration"
+        },
+        "backgroundRadiance": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "Neither a compact condition label nor general apparatus radiance establishes calibrated background radiance for this export.",
+          "neededRecordCategory": "optical-calibration"
+        },
+        "flashRadiances": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No calibrated bright/dark flash radiances are joined to this compact export.",
+          "neededRecordCategory": "optical-calibration"
+        },
+        "radianceCalibrationIdentifier": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No calibration record identifier is joined to the acquisition underlying this compact export.",
+          "neededRecordCategory": "optical-calibration"
+        }
+      }
+    },
+    {
+      "exportId": "L2_highLum",
+      "fields": {
+        "compactFilename": {
+          "value": "L2_highLum.mat",
+          "status": "verified-existing-metadata",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/4/file"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/compactFilenamePairingCells/1"
+            }
+          ]
+        },
+        "archiveMember": {
+          "value": "computational-model/data/L2_highLum.mat",
+          "status": "verified-existing-metadata",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/4/archiveMember"
+            }
+          ]
+        },
+        "bytes": {
+          "value": 1463,
+          "status": "recorded-source-identity",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/4/bytes"
+            }
+          ],
+          "qualification": "Recorded in the frozen prior inventory; response file bytes were not reread this task."
+        },
+        "sha256": {
+          "value": "1c9266f5c387a217013f8715a49f6351f78e9a9de9894a5ac2892b2a06cf6e36",
+          "status": "recorded-source-identity",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/4/sha256"
+            }
+          ],
+          "qualification": "The inventory hash is verified this task; this response file digest is a prior recorded digest, not a new response-file hash."
+        },
+        "schema": {
+          "value": [
+            {
+              "name": "meanResp",
+              "shape": [
+                2,
+                63
+              ],
+              "dtype": "double"
+            },
+            {
+              "name": "t",
+              "shape": [
+                1,
+                63
+              ],
+              "dtype": "double"
+            }
+          ],
+          "status": "verified-existing-metadata",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/4/schema"
+            }
+          ],
+          "qualification": "Stored variable names, types, and dimensions only; no response values or new ROI counts inspected."
+        },
+        "cellType": {
+          "value": "L2",
+          "status": "documented-compact-label",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/pairs/2/cell"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/compactFilenamePairingCells/1"
+            }
+          ]
+        },
+        "conditionLabel": {
+          "value": "highLum",
+          "status": "documented-compact-label",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/pairs/2/condition"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/compactFilenamePairingCells/1"
+            }
+          ],
+          "qualification": "A compact highLum/lowLum label; no physical luminance, radiance, or ratio is assigned."
+        },
+        "treatmentLabel": {
+          "value": "control",
+          "status": "documented-compact-label",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/pairs/2/controlFile"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/compactFilenamePairingCells/1"
+            }
+          ],
+          "qualification": "CDM is chlordimeform in the source experiment; label does not supply dose or acquisition-specific exposure history."
+        },
+        "treatmentMeaning": {
+          "value": "control comparator for the named CDM condition",
+          "status": "documented-existing-analysis",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/interpretationLimits/0"
+            },
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/pairs/2/controlFile"
+            }
+          ],
+          "qualification": "No per-record dose, exposure time, animal matching, or airborne odor inference."
+        },
+        "documentedComparisonFile": {
+          "value": "L2_CDM_highLum.mat",
+          "status": "documented-file-comparison",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/pairs/2/cdmFile"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/compactFilenamePairingCells/1"
+            }
+          ],
+          "qualification": "Comparison by cell type and compact condition only; animal/recording pairing remains unresolved."
+        },
+        "sampleCount": {
+          "value": 63,
+          "status": "verified-existing-metadata",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/4/schema"
+            }
+          ]
+        },
+        "storedPolarityRowsZeroBased": {
+          "value": {
+            "0": "dark",
+            "1": "bright"
+          },
+          "status": "documented-existing-analysis",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/observation"
+            }
+          ]
+        },
+        "observationBinWidthSeconds": {
+          "value": {
+            "numerator": 1,
+            "denominator": 120
+          },
+          "status": "documented-existing-analysis",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/observation"
+            }
+          ],
+          "qualification": "Observation sampling metadata from the prior comparison; not acquisition-specific flash timing."
+        },
+        "timeCoordinateConvention": {
+          "value": "t contains trailing bin endpoints; all 63 bins retained",
+          "status": "documented-existing-analysis",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/observation"
+            }
+          ],
+          "qualification": "No original stimulus clock, realized sequence, baseline state, or adaptation history is thereby recovered."
+        },
+        "originalProcessedFilename": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No exact compact-export-to-original-processed-file join was found in the bounded review.",
+          "neededRecordCategory": "export-lineage"
+        },
+        "exportRenameRecord": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "The exporter preserves its input filename, but no executed export/rename inventory joins that input to this compact file.",
+          "neededRecordCategory": "export-lineage"
+        },
+        "selectedROIIdentifiers": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "A generic iResp/roiDataMat selection algorithm does not identify the ROIs used for this compact export.",
+          "neededRecordCategory": "recording-selection"
+        },
+        "selectedTimeSeriesIdentifiers": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No executed recording/time-series selection table is joined to this compact export.",
+          "neededRecordCategory": "recording-selection"
+        },
+        "animalIdentifiers": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "Individual response columns or counts do not establish animal identities.",
+          "neededRecordCategory": "recording-selection"
+        },
+        "animalTreatmentPairing": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "Documented compact-file comparisons do not establish matched animals before/after treatment.",
+          "neededRecordCategory": "recording-selection"
+        },
+        "stimulusRunLog": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No acquisition-specific stimulus run log is joined to this compact export.",
+          "neededRecordCategory": "stimulus-history"
+        },
+        "stimulusPrehistory": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "An isolated zero-initialized model flash and a generic gray duration do not establish the recording prehistory.",
+          "neededRecordCategory": "stimulus-history"
+        },
+        "actualStimulusTiming": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No source-backed join establishes the acquisition-specific onsets, durations, epoch sequence, or clock alignment for this compact export.",
+          "neededRecordCategory": "stimulus-history"
+        },
+        "PWMSetting": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "Intermediate 200/20 PWM selection filenames are not an exact mapping to this compact export.",
+          "neededRecordCategory": "optical-calibration"
+        },
+        "opticalFilterSetting": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No acquisition-specific optical filter setting is joined to this compact export.",
+          "neededRecordCategory": "optical-calibration"
+        },
+        "backgroundRadiance": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "Neither a compact condition label nor general apparatus radiance establishes calibrated background radiance for this export.",
+          "neededRecordCategory": "optical-calibration"
+        },
+        "flashRadiances": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No calibrated bright/dark flash radiances are joined to this compact export.",
+          "neededRecordCategory": "optical-calibration"
+        },
+        "radianceCalibrationIdentifier": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No calibration record identifier is joined to the acquisition underlying this compact export.",
+          "neededRecordCategory": "optical-calibration"
+        }
+      }
+    },
+    {
+      "exportId": "L2_CDM_highLum",
+      "fields": {
+        "compactFilename": {
+          "value": "L2_CDM_highLum.mat",
+          "status": "verified-existing-metadata",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/5/file"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/compactFilenamePairingCells/1"
+            }
+          ]
+        },
+        "archiveMember": {
+          "value": "computational-model/data/L2_CDM_highLum.mat",
+          "status": "verified-existing-metadata",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/5/archiveMember"
+            }
+          ]
+        },
+        "bytes": {
+          "value": 100252,
+          "status": "recorded-source-identity",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/5/bytes"
+            }
+          ],
+          "qualification": "Recorded in the frozen prior inventory; response file bytes were not reread this task."
+        },
+        "sha256": {
+          "value": "e19bd5d5e40863d509c72fb3d7348d96e9469f0d1ab6256897d4ef2b5366e5dc",
+          "status": "recorded-source-identity",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/5/sha256"
+            }
+          ],
+          "qualification": "The inventory hash is verified this task; this response file digest is a prior recorded digest, not a new response-file hash."
+        },
+        "schema": {
+          "value": [
+            {
+              "name": "indivResp",
+              "shape": [
+                1,
+                2
+              ],
+              "dtype": "cell"
+            },
+            {
+              "name": "meanResp",
+              "shape": [
+                2,
+                63
+              ],
+              "dtype": "double"
+            },
+            {
+              "name": "t",
+              "shape": [
+                1,
+                63
+              ],
+              "dtype": "double"
+            }
+          ],
+          "status": "verified-existing-metadata",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/5/schema"
+            }
+          ],
+          "qualification": "Stored variable names, types, and dimensions only; no response values or new ROI counts inspected."
+        },
+        "cellType": {
+          "value": "L2",
+          "status": "documented-compact-label",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/pairs/2/cell"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/compactFilenamePairingCells/1"
+            }
+          ]
+        },
+        "conditionLabel": {
+          "value": "highLum",
+          "status": "documented-compact-label",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/pairs/2/condition"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/compactFilenamePairingCells/1"
+            }
+          ],
+          "qualification": "A compact highLum/lowLum label; no physical luminance, radiance, or ratio is assigned."
+        },
+        "treatmentLabel": {
+          "value": "CDM",
+          "status": "documented-compact-label",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/pairs/2/cdmFile"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/compactFilenamePairingCells/1"
+            }
+          ],
+          "qualification": "CDM is chlordimeform in the source experiment; label does not supply dose or acquisition-specific exposure history."
+        },
+        "treatmentMeaning": {
+          "value": "chlordimeform (octopamine agonist), source brain-bath treatment",
+          "status": "documented-existing-analysis",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/interpretationLimits/0"
+            },
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/pairs/2/cdmFile"
+            }
+          ],
+          "qualification": "No per-record dose, exposure time, animal matching, or airborne odor inference."
+        },
+        "documentedComparisonFile": {
+          "value": "L2_highLum.mat",
+          "status": "documented-file-comparison",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/pairs/2/controlFile"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/compactFilenamePairingCells/1"
+            }
+          ],
+          "qualification": "Comparison by cell type and compact condition only; animal/recording pairing remains unresolved."
+        },
+        "sampleCount": {
+          "value": 63,
+          "status": "verified-existing-metadata",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/5/schema"
+            }
+          ]
+        },
+        "storedPolarityRowsZeroBased": {
+          "value": {
+            "0": "dark",
+            "1": "bright"
+          },
+          "status": "documented-existing-analysis",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/observation"
+            }
+          ]
+        },
+        "observationBinWidthSeconds": {
+          "value": {
+            "numerator": 1,
+            "denominator": 120
+          },
+          "status": "documented-existing-analysis",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/observation"
+            }
+          ],
+          "qualification": "Observation sampling metadata from the prior comparison; not acquisition-specific flash timing."
+        },
+        "timeCoordinateConvention": {
+          "value": "t contains trailing bin endpoints; all 63 bins retained",
+          "status": "documented-existing-analysis",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/observation"
+            }
+          ],
+          "qualification": "No original stimulus clock, realized sequence, baseline state, or adaptation history is thereby recovered."
+        },
+        "originalProcessedFilename": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No exact compact-export-to-original-processed-file join was found in the bounded review.",
+          "neededRecordCategory": "export-lineage"
+        },
+        "exportRenameRecord": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "The exporter preserves its input filename, but no executed export/rename inventory joins that input to this compact file.",
+          "neededRecordCategory": "export-lineage"
+        },
+        "selectedROIIdentifiers": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "A generic iResp/roiDataMat selection algorithm does not identify the ROIs used for this compact export.",
+          "neededRecordCategory": "recording-selection"
+        },
+        "selectedTimeSeriesIdentifiers": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No executed recording/time-series selection table is joined to this compact export.",
+          "neededRecordCategory": "recording-selection"
+        },
+        "animalIdentifiers": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "Individual response columns or counts do not establish animal identities.",
+          "neededRecordCategory": "recording-selection"
+        },
+        "animalTreatmentPairing": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "Documented compact-file comparisons do not establish matched animals before/after treatment.",
+          "neededRecordCategory": "recording-selection"
+        },
+        "stimulusRunLog": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No acquisition-specific stimulus run log is joined to this compact export.",
+          "neededRecordCategory": "stimulus-history"
+        },
+        "stimulusPrehistory": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "An isolated zero-initialized model flash and a generic gray duration do not establish the recording prehistory.",
+          "neededRecordCategory": "stimulus-history"
+        },
+        "actualStimulusTiming": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No source-backed join establishes the acquisition-specific onsets, durations, epoch sequence, or clock alignment for this compact export.",
+          "neededRecordCategory": "stimulus-history"
+        },
+        "PWMSetting": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "Intermediate 200/20 PWM selection filenames are not an exact mapping to this compact export.",
+          "neededRecordCategory": "optical-calibration"
+        },
+        "opticalFilterSetting": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No acquisition-specific optical filter setting is joined to this compact export.",
+          "neededRecordCategory": "optical-calibration"
+        },
+        "backgroundRadiance": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "Neither a compact condition label nor general apparatus radiance establishes calibrated background radiance for this export.",
+          "neededRecordCategory": "optical-calibration"
+        },
+        "flashRadiances": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No calibrated bright/dark flash radiances are joined to this compact export.",
+          "neededRecordCategory": "optical-calibration"
+        },
+        "radianceCalibrationIdentifier": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No calibration record identifier is joined to the acquisition underlying this compact export.",
+          "neededRecordCategory": "optical-calibration"
+        }
+      }
+    },
+    {
+      "exportId": "L2_lowLum",
+      "fields": {
+        "compactFilename": {
+          "value": "L2_lowLum.mat",
+          "status": "verified-existing-metadata",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/6/file"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/compactFilenamePairingCells/1"
+            }
+          ]
+        },
+        "archiveMember": {
+          "value": "computational-model/data/L2_lowLum.mat",
+          "status": "verified-existing-metadata",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/6/archiveMember"
+            }
+          ]
+        },
+        "bytes": {
+          "value": 1459,
+          "status": "recorded-source-identity",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/6/bytes"
+            }
+          ],
+          "qualification": "Recorded in the frozen prior inventory; response file bytes were not reread this task."
+        },
+        "sha256": {
+          "value": "49c0e5587618f9d11e0dea12a218b6eecd511e563d8d42ad986e9c410c6d012c",
+          "status": "recorded-source-identity",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/6/sha256"
+            }
+          ],
+          "qualification": "The inventory hash is verified this task; this response file digest is a prior recorded digest, not a new response-file hash."
+        },
+        "schema": {
+          "value": [
+            {
+              "name": "meanResp",
+              "shape": [
+                2,
+                63
+              ],
+              "dtype": "double"
+            },
+            {
+              "name": "t",
+              "shape": [
+                1,
+                63
+              ],
+              "dtype": "double"
+            }
+          ],
+          "status": "verified-existing-metadata",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/6/schema"
+            }
+          ],
+          "qualification": "Stored variable names, types, and dimensions only; no response values or new ROI counts inspected."
+        },
+        "cellType": {
+          "value": "L2",
+          "status": "documented-compact-label",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/pairs/3/cell"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/compactFilenamePairingCells/1"
+            }
+          ]
+        },
+        "conditionLabel": {
+          "value": "lowLum",
+          "status": "documented-compact-label",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/pairs/3/condition"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/compactFilenamePairingCells/1"
+            }
+          ],
+          "qualification": "A compact highLum/lowLum label; no physical luminance, radiance, or ratio is assigned."
+        },
+        "treatmentLabel": {
+          "value": "control",
+          "status": "documented-compact-label",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/pairs/3/controlFile"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/compactFilenamePairingCells/1"
+            }
+          ],
+          "qualification": "CDM is chlordimeform in the source experiment; label does not supply dose or acquisition-specific exposure history."
+        },
+        "treatmentMeaning": {
+          "value": "control comparator for the named CDM condition",
+          "status": "documented-existing-analysis",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/interpretationLimits/0"
+            },
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/pairs/3/controlFile"
+            }
+          ],
+          "qualification": "No per-record dose, exposure time, animal matching, or airborne odor inference."
+        },
+        "documentedComparisonFile": {
+          "value": "L2_CDM_lowLum.mat",
+          "status": "documented-file-comparison",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/pairs/3/cdmFile"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/compactFilenamePairingCells/1"
+            }
+          ],
+          "qualification": "Comparison by cell type and compact condition only; animal/recording pairing remains unresolved."
+        },
+        "sampleCount": {
+          "value": 63,
+          "status": "verified-existing-metadata",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/6/schema"
+            }
+          ]
+        },
+        "storedPolarityRowsZeroBased": {
+          "value": {
+            "0": "dark",
+            "1": "bright"
+          },
+          "status": "documented-existing-analysis",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/observation"
+            }
+          ]
+        },
+        "observationBinWidthSeconds": {
+          "value": {
+            "numerator": 1,
+            "denominator": 120
+          },
+          "status": "documented-existing-analysis",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/observation"
+            }
+          ],
+          "qualification": "Observation sampling metadata from the prior comparison; not acquisition-specific flash timing."
+        },
+        "timeCoordinateConvention": {
+          "value": "t contains trailing bin endpoints; all 63 bins retained",
+          "status": "documented-existing-analysis",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/observation"
+            }
+          ],
+          "qualification": "No original stimulus clock, realized sequence, baseline state, or adaptation history is thereby recovered."
+        },
+        "originalProcessedFilename": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No exact compact-export-to-original-processed-file join was found in the bounded review.",
+          "neededRecordCategory": "export-lineage"
+        },
+        "exportRenameRecord": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "The exporter preserves its input filename, but no executed export/rename inventory joins that input to this compact file.",
+          "neededRecordCategory": "export-lineage"
+        },
+        "selectedROIIdentifiers": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "A generic iResp/roiDataMat selection algorithm does not identify the ROIs used for this compact export.",
+          "neededRecordCategory": "recording-selection"
+        },
+        "selectedTimeSeriesIdentifiers": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No executed recording/time-series selection table is joined to this compact export.",
+          "neededRecordCategory": "recording-selection"
+        },
+        "animalIdentifiers": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "Individual response columns or counts do not establish animal identities.",
+          "neededRecordCategory": "recording-selection"
+        },
+        "animalTreatmentPairing": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "Documented compact-file comparisons do not establish matched animals before/after treatment.",
+          "neededRecordCategory": "recording-selection"
+        },
+        "stimulusRunLog": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No acquisition-specific stimulus run log is joined to this compact export.",
+          "neededRecordCategory": "stimulus-history"
+        },
+        "stimulusPrehistory": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "An isolated zero-initialized model flash and a generic gray duration do not establish the recording prehistory.",
+          "neededRecordCategory": "stimulus-history"
+        },
+        "actualStimulusTiming": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No source-backed join establishes the acquisition-specific onsets, durations, epoch sequence, or clock alignment for this compact export.",
+          "neededRecordCategory": "stimulus-history"
+        },
+        "PWMSetting": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "Intermediate 200/20 PWM selection filenames are not an exact mapping to this compact export.",
+          "neededRecordCategory": "optical-calibration"
+        },
+        "opticalFilterSetting": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No acquisition-specific optical filter setting is joined to this compact export.",
+          "neededRecordCategory": "optical-calibration"
+        },
+        "backgroundRadiance": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "Neither a compact condition label nor general apparatus radiance establishes calibrated background radiance for this export.",
+          "neededRecordCategory": "optical-calibration"
+        },
+        "flashRadiances": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No calibrated bright/dark flash radiances are joined to this compact export.",
+          "neededRecordCategory": "optical-calibration"
+        },
+        "radianceCalibrationIdentifier": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No calibration record identifier is joined to the acquisition underlying this compact export.",
+          "neededRecordCategory": "optical-calibration"
+        }
+      }
+    },
+    {
+      "exportId": "L2_CDM_lowLum",
+      "fields": {
+        "compactFilename": {
+          "value": "L2_CDM_lowLum.mat",
+          "status": "verified-existing-metadata",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/7/file"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/compactFilenamePairingCells/1"
+            }
+          ]
+        },
+        "archiveMember": {
+          "value": "computational-model/data/L2_CDM_lowLum.mat",
+          "status": "verified-existing-metadata",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/7/archiveMember"
+            }
+          ]
+        },
+        "bytes": {
+          "value": 89722,
+          "status": "recorded-source-identity",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/7/bytes"
+            }
+          ],
+          "qualification": "Recorded in the frozen prior inventory; response file bytes were not reread this task."
+        },
+        "sha256": {
+          "value": "0a835999723058712b6a311ec9ec52dca36333313dfb3ced9493bde89c4d6e3e",
+          "status": "recorded-source-identity",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/7/sha256"
+            }
+          ],
+          "qualification": "The inventory hash is verified this task; this response file digest is a prior recorded digest, not a new response-file hash."
+        },
+        "schema": {
+          "value": [
+            {
+              "name": "indivResp",
+              "shape": [
+                1,
+                2
+              ],
+              "dtype": "cell"
+            },
+            {
+              "name": "meanResp",
+              "shape": [
+                2,
+                63
+              ],
+              "dtype": "double"
+            },
+            {
+              "name": "t",
+              "shape": [
+                1,
+                63
+              ],
+              "dtype": "double"
+            }
+          ],
+          "status": "verified-existing-metadata",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/7/schema"
+            }
+          ],
+          "qualification": "Stored variable names, types, and dimensions only; no response values or new ROI counts inspected."
+        },
+        "cellType": {
+          "value": "L2",
+          "status": "documented-compact-label",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/pairs/3/cell"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/compactFilenamePairingCells/1"
+            }
+          ]
+        },
+        "conditionLabel": {
+          "value": "lowLum",
+          "status": "documented-compact-label",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/pairs/3/condition"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/compactFilenamePairingCells/1"
+            }
+          ],
+          "qualification": "A compact highLum/lowLum label; no physical luminance, radiance, or ratio is assigned."
+        },
+        "treatmentLabel": {
+          "value": "CDM",
+          "status": "documented-compact-label",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/pairs/3/cdmFile"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/compactFilenamePairingCells/1"
+            }
+          ],
+          "qualification": "CDM is chlordimeform in the source experiment; label does not supply dose or acquisition-specific exposure history."
+        },
+        "treatmentMeaning": {
+          "value": "chlordimeform (octopamine agonist), source brain-bath treatment",
+          "status": "documented-existing-analysis",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/interpretationLimits/0"
+            },
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/pairs/3/cdmFile"
+            }
+          ],
+          "qualification": "No per-record dose, exposure time, animal matching, or airborne odor inference."
+        },
+        "documentedComparisonFile": {
+          "value": "L2_lowLum.mat",
+          "status": "documented-file-comparison",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/pairs/3/controlFile"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/compactFilenamePairingCells/1"
+            }
+          ],
+          "qualification": "Comparison by cell type and compact condition only; animal/recording pairing remains unresolved."
+        },
+        "sampleCount": {
+          "value": 63,
+          "status": "verified-existing-metadata",
+          "evidence": [
+            {
+              "sourceId": "export-inventory",
+              "jsonPointer": "/data/7/schema"
+            }
+          ]
+        },
+        "storedPolarityRowsZeroBased": {
+          "value": {
+            "0": "dark",
+            "1": "bright"
+          },
+          "status": "documented-existing-analysis",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/observation"
+            }
+          ]
+        },
+        "observationBinWidthSeconds": {
+          "value": {
+            "numerator": 1,
+            "denominator": 120
+          },
+          "status": "documented-existing-analysis",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/observation"
+            }
+          ],
+          "qualification": "Observation sampling metadata from the prior comparison; not acquisition-specific flash timing."
+        },
+        "timeCoordinateConvention": {
+          "value": "t contains trailing bin endpoints; all 63 bins retained",
+          "status": "documented-existing-analysis",
+          "evidence": [
+            {
+              "sourceId": "comparison-plan",
+              "jsonPointer": "/observation"
+            }
+          ],
+          "qualification": "No original stimulus clock, realized sequence, baseline state, or adaptation history is thereby recovered."
+        },
+        "originalProcessedFilename": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No exact compact-export-to-original-processed-file join was found in the bounded review.",
+          "neededRecordCategory": "export-lineage"
+        },
+        "exportRenameRecord": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "The exporter preserves its input filename, but no executed export/rename inventory joins that input to this compact file.",
+          "neededRecordCategory": "export-lineage"
+        },
+        "selectedROIIdentifiers": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "A generic iResp/roiDataMat selection algorithm does not identify the ROIs used for this compact export.",
+          "neededRecordCategory": "recording-selection"
+        },
+        "selectedTimeSeriesIdentifiers": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No executed recording/time-series selection table is joined to this compact export.",
+          "neededRecordCategory": "recording-selection"
+        },
+        "animalIdentifiers": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "Individual response columns or counts do not establish animal identities.",
+          "neededRecordCategory": "recording-selection"
+        },
+        "animalTreatmentPairing": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "Documented compact-file comparisons do not establish matched animals before/after treatment.",
+          "neededRecordCategory": "recording-selection"
+        },
+        "stimulusRunLog": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No acquisition-specific stimulus run log is joined to this compact export.",
+          "neededRecordCategory": "stimulus-history"
+        },
+        "stimulusPrehistory": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "An isolated zero-initialized model flash and a generic gray duration do not establish the recording prehistory.",
+          "neededRecordCategory": "stimulus-history"
+        },
+        "actualStimulusTiming": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No source-backed join establishes the acquisition-specific onsets, durations, epoch sequence, or clock alignment for this compact export.",
+          "neededRecordCategory": "stimulus-history"
+        },
+        "PWMSetting": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "Intermediate 200/20 PWM selection filenames are not an exact mapping to this compact export.",
+          "neededRecordCategory": "optical-calibration"
+        },
+        "opticalFilterSetting": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No acquisition-specific optical filter setting is joined to this compact export.",
+          "neededRecordCategory": "optical-calibration"
+        },
+        "backgroundRadiance": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "Neither a compact condition label nor general apparatus radiance establishes calibrated background radiance for this export.",
+          "neededRecordCategory": "optical-calibration"
+        },
+        "flashRadiances": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No calibrated bright/dark flash radiances are joined to this compact export.",
+          "neededRecordCategory": "optical-calibration"
+        },
+        "radianceCalibrationIdentifier": {
+          "value": null,
+          "status": "unresolved",
+          "evidence": [
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/exactCompactFilenamePhysicalContextJoinFound"
+            },
+            {
+              "sourceId": "context-review",
+              "jsonPointer": "/boundedConclusion"
+            }
+          ],
+          "qualification": "No calibration record identifier is joined to the acquisition underlying this compact export.",
+          "neededRecordCategory": "optical-calibration"
+        }
+      }
+    }
+  ],
+  "genericReferencesNotJoinedToExports": [
+    {
+      "kind": "stimulus-definition",
+      "linkedToAnyExactCompactExport": false,
+      "sourceId": "generic-stimulus",
+      "definition": {
+        "stimulusClass": "FullFieldFlashOntoGray",
+        "flashDurationSeconds": [
+          0.02,
+          0.02
+        ],
+        "flashContrastSourceValues": [
+          0,
+          1
+        ],
+        "grayDurationSeconds": 0.5,
+        "grayContrastSourceValue": 0.5,
+        "repeatRNGSeedSourceValue": 0
+      },
+      "evidence": [
+        {
+          "sourceId": "generic-stimulus",
+          "linesOneBasedInclusive": [
+            1,
+            8
+          ]
+        }
+      ],
+      "qualification": "Verified source definition only; not evidence that this exact configuration or realized sequence generated any particular compact export. Contrast entries are source-file values, not calibrated radiances."
+    },
+    {
+      "kind": "generic-export-script",
+      "linkedToAnyExactCompactExport": false,
+      "sourceId": "generic-exporter",
+      "documentedAlgorithm": "Select pairedEpochs [1 2]; take roiDataMat(iResp,2); export selected rats means and individual arrays with t from the first selected ROI; preserve input fileName.",
+      "evidence": [
+        {
+          "sourceId": "generic-exporter",
+          "linesOneBasedInclusive": [
+            14,
+            15
+          ]
+        },
+        {
+          "sourceId": "generic-exporter",
+          "linesOneBasedInclusive": [
+            25,
+            31
+          ]
+        },
+        {
+          "sourceId": "generic-exporter",
+          "linesOneBasedInclusive": [
+            35,
+            56
+          ]
+        }
+      ],
+      "qualification": "No compact renaming table or executed file/ROI selection inventory is supplied by this algorithm. Its filename preservation does not resolve the original processed filename."
+    }
+  ],
+  "originalRecordsNeeded": [
+    {
+      "id": "export-lineage",
+      "records": "Original export/rename or deposition mapping, linking each compact filename and SHA-256 to the exact processed filename and version.",
+      "minimumEvidence": "Exact mapping row or executed export record, source location, file hash, and export identity."
+    },
+    {
+      "id": "recording-selection",
+      "records": "Processed-file metadata and executed selection records: iResp, roiDataMat indices, ROI IDs, time-series/recording IDs, animal IDs, and any before/after treatment matching.",
+      "minimumEvidence": "Selections joined through the export-lineage record, with stable identifiers and record hashes."
+    },
+    {
+      "id": "stimulus-history",
+      "records": "Per-recording stimulus run logs and acquisition clocks: actual epochs/onsets/durations, realized ordering or seed plus generator version, prefix/adaptation history, and alignment to recorded t.",
+      "minimumEvidence": "A log-to-recording-to-export join, preserved stimulus prefix and timing, source location, and record hashes."
+    },
+    {
+      "id": "optical-calibration",
+      "records": "Per-recording PWM/filter/hardware settings and the corresponding calibration table for background and bright/dark flash spectral radiance.",
+      "minimumEvidence": "A setting/session/calibration join through recording/export identity, units and wavelength/band, measurement uncertainty when documented, and calibration record hashes."
+    }
+  ],
+  "completionRule": "Resolve an individual field only with an exact source-backed chain from compact export identity to original recording and the relevant record, preserving the source pointer and record hash. Never infer an export join from 200/20 PWM intermediate selection names, a compact label ratio, or general apparatus radiance.",
+  "boundedMissingJoinConclusion": "No exact join found in the specified archived source members and cached MATLAB files; not a claim of global absence.",
+  "rawModelImplication": {
+    "note": "raw-model-scaling.md",
+    "sourceId": "raw-model-source",
+    "conclusion": "For admissible positive scaling of the complete input and initial state, the raw dynamical response and fixed bin-integral observation are positively homogeneous. Condition-specific positive amplitude scaling shared before/after treatment cannot by itself reverse the treatment-change sign between otherwise identical high/low conditions.",
+    "limitations": "Exact mathematical model, not bitwise floating-point equality. Scaled inputs must satisfy the code domain and both paths must pass validity checks. Excludes unscaled/arbitrary prehistory, condition-dependent parameters or observation operators, and periodic natural-response normalization."
+  }
+}

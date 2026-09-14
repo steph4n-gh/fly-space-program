@@ -555,7 +555,7 @@ is the only cause of the regression.
 
 ### All-ground joint lesson
 
-The launched `ground-joint-all` lesson starts again from intact released G5 and includes
+The completed `ground-joint-all` lesson started again from intact released G5 and included
 **all 24 ground missions in every generation**. Six generations of 12
 candidates each evaluate 48 cases: one nominal and one variability-0.4 start
 per mission, for **3,456 full flights**. The same 17 existing directions,
@@ -567,13 +567,31 @@ each complete 24-mission cycle. The old alternating-index rule would assign
 the same condition to both occurrences of a mission in an even-length cycle.
 All other lesson schedules remain unchanged. Training seed and mission
 rotation rules are retained, so prior training cases can recur; neither
-rejected selection cohort is reused. Every loaded neural-data file and the
-tested runtime are hash-locked in the plan.
+rejected selection cohort was reused. The plan pins every loaded neural-data
+file and twelve runtime modules. Three transitive imports were not preserved
+in that historical snapshot; the [completion audit](ground-all-training.md)
+retains this limitation. The subsequent selection has a new, complete
+71-file runtime snapshot, which does not retroactively fill that evidence gap.
 
-The plan fixes the final generation-six candidate for subsequent fresh
-all-ground selection with the release and both sensory controls. Only a
-passing selection can proceed to a further unseen JavaScript final cohort.
-The larger training budget does not itself qualify a release.
+The completed audit verifies all 72 proposals, all 3,456 flight records and
+the exact final 21,300 decoded weights. The predeclared final generation-six
+candidate landed **34/48 training cases**: 18/24 nominal and 16/24 varied.
+Its 14 failures are four hard landings, five lateral impacts and five missed
+ships. Generation-five’s 36/48 result does not replace the final candidate;
+generation counts use different cases and do not measure matched improvement.
+
+The [fresh all-ground comparison](ground-all-selection-plan.json) freezes
+96 new starts, with two nominal and two varied starts per mission. Candidate
+normal, covered-eye and disabled-indicator conditions plus the intact release
+require **384 full flights**. All five gates must pass: more normal-input
+landings overall than the release, no reduction in its original-four or
+released-ten landing counts, and more landings than each sensory control.
+This new seed and numeric protocol were frozen before selection, separately
+from the earlier training plan. Only a passing selection can proceed to a
+further unseen JavaScript final cohort. The comparison launched on
+2026-09-14 after the completed training audit and independent launch checks.
+Full results and every final training failure appear in the
+[completed training report](ground-all-training.md).
 
 ## Orbital ascent experiments
 

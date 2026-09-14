@@ -469,6 +469,24 @@ for block, report_key, dimensions, active in [
     development[report_key] = {
         'scope':'Verified frozen training plan; plan existence does not establish live job status, and partial outcomes are not qualification evidence.',
         'plan':plan}
+all_ground_plan_path = folder/'ground-all-g6-selection/plan.json'
+if all_ground_plan_path.exists():
+    all_ground_plan = json.loads(all_ground_plan_path.read_text())
+    assert hashlib.sha256(all_ground_plan_path.read_bytes()).hexdigest() == 'a63a2643f8c6cc74aab64e2797942d5a2bc4a337445ae52c668b3304b669610f'
+    assert all_ground_plan['status'] == 'FROZEN_BEFORE_SELECTION' and all_ground_plan['expectedFlights'] == 384
+    pinned = dict(all_ground_plan['evidenceSHA256'])
+    pinned.update({str(Path(all_ground_plan['runtimeDirectory'])/name):expected
+                   for name,expected in all_ground_plan['runtimeSHA256'].items()})
+    pinned.update({model['file']:model['sha256'] for model in all_ground_plan['models'].values()})
+    pinned[all_ground_plan['launcherFile']] = all_ground_plan['launcherSHA256']
+    for name, expected in pinned.items():
+        path = root/name
+        assert hashlib.sha256(path.read_bytes()).hexdigest() == expected, name
+        sources.append(path)
+    sources.append(all_ground_plan_path)
+    development['groundJointAllSelectionPlan'] = {
+        'scope':'Frozen final-GEN6 development comparison after completed training audit. Plan existence does not establish running or completed selection; fresh JavaScript final testing remains required.',
+        'plan':all_ground_plan}
 progress_plan_path = folder/'orbital-progress-comparison/plan.json'
 if progress_plan_path.exists():
     progress_plan = json.loads(progress_plan_path.read_text())

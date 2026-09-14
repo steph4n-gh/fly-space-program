@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "checks": [
+    "All six source snapshot hashes match recorded identities; frozen comparison metadata hashes agree with the prior context review.",
+    "Every export field has resolving JSON evidence pointers; all 14 unresolved context fields remain null for each of eight exports.",
+    "Four comparison pairs are reciprocal and agree on cell type and compact condition; this check makes no animal-pairing claim.",
+    "JSON and CSV contain exactly eight unique compact exports and eight distinct recorded response-file hashes.",
+    "Construction read metadata/source snapshots only; no .mat file or response archive was opened and no model code was executed."
+  ],
+  "exportCount": 8,
+  "unresolvedContextFieldCountPerExport": 14,
+  "manifestSHA256": "32146d3535a765bfb1e9b968c667c36bcf5ecd21453855115aa22446891e83c1",
+  "csvSHA256": "f5ff37213c1e84966d3186d0d14c61304a820873b9078ed47f82b395fd730e97",
+  "builderSHA256": "a488d8fe160f2c5113f2f49f5894de7d327d6f5adaa4126eb7b3684381fb18ee",
+  "newResponseArraysRead": 0,
+  "responseFilesRehashedThisTask": 0,
+  "fits": 0,
+  "simulations": 0,
+  "repositoryEdits": 0
+}

@@ -1,0 +1,340 @@
+[
+  {
+    "scenario": 4,
+    "title": "Night shift",
+    "seed": 859356,
+    "variability": 0,
+    "reason": "Lateral impact",
+    "time": 40.59999999999983,
+    "touchdown": {
+      "error": 8.642345358993161,
+      "speed": 2.0709980685243368,
+      "lateral": 3.126089988538264,
+      "tilt": 0.11927798172032486
+    },
+    "recordedConstraintViolations": [
+      {
+        "name": "lateral speed",
+        "actual": 3.126089988538264,
+        "requiredStrictlyBelow": 3
+      }
+    ],
+    "yawRateUnstored": true
+  },
+  {
+    "scenario": 4,
+    "title": "Night shift",
+    "seed": 1108740,
+    "variability": 0.4,
+    "reason": "Missed the ship",
+    "time": 36.10000000000009,
+    "touchdown": {
+      "error": 15.96152091032049,
+      "speed": 2.753532213365168,
+      "lateral": 3.633148535137925,
+      "tilt": 0.07905707281141212
+    },
+    "recordedConstraintViolations": [
+      {
+        "name": "position",
+        "actual": 15.96152091032049,
+        "requiredStrictlyBelow": 11
+      },
+      {
+        "name": "lateral speed",
+        "actual": 3.633148535137925,
+        "requiredStrictlyBelow": 3
+      }
+    ],
+    "yawRateUnstored": true
+  },
+  {
+    "scenario": 5,
+    "title": "Fin trouble",
+    "seed": 869747,
+    "variability": 0.4,
+    "reason": "Lateral impact",
+    "time": 40.899999999999814,
+    "touchdown": {
+      "error": 4.4575543748371,
+      "speed": 2.293633843918468,
+      "lateral": 3.8170124928625513,
+      "tilt": 0.04287615506527556
+    },
+    "recordedConstraintViolations": [
+      {
+        "name": "lateral speed",
+        "actual": 3.8170124928625513,
+        "requiredStrictlyBelow": 3
+      }
+    ],
+    "yawRateUnstored": true
+  },
+  {
+    "scenario": 6,
+    "title": "Engine trouble",
+    "seed": 880138,
+    "variability": 0.4,
+    "reason": "Missed the ship",
+    "time": 36.80000000000005,
+    "touchdown": {
+      "error": 13.929968576873462,
+      "speed": 3.2986143306113624,
+      "lateral": 3.8451724550825457,
+      "tilt": 0.10065994000767539
+    },
+    "recordedConstraintViolations": [
+      {
+        "name": "position",
+        "actual": 13.929968576873462,
+        "requiredStrictlyBelow": 11
+      },
+      {
+        "name": "lateral speed",
+        "actual": 3.8451724550825457,
+        "requiredStrictlyBelow": 3
+      }
+    ],
+    "yawRateUnstored": true
+  },
+  {
+    "scenario": 7,
+    "title": "Absolutely nominal",
+    "seed": 641145,
+    "variability": 0,
+    "reason": "Hard landing",
+    "time": 38.54999999999995,
+    "touchdown": {
+      "error": 10.227523612034043,
+      "speed": 4.010114529295524,
+      "lateral": 3.4980811922181423,
+      "tilt": 0.14757833700235615
+    },
+    "recordedConstraintViolations": [
+      {
+        "name": "vertical speed",
+        "actual": 4.010114529295524,
+        "requiredStrictlyBelow": 3.6
+      },
+      {
+        "name": "lateral speed",
+        "actual": 3.4980811922181423,
+        "requiredStrictlyBelow": 3
+      }
+    ],
+    "yawRateUnstored": true
+  },
+  {
+    "scenario": 7,
+    "title": "Absolutely nominal",
+    "seed": 890529,
+    "variability": 0.4,
+    "reason": "Hard landing",
+    "time": 37.350000000000016,
+    "touchdown": {
+      "error": 7.50638382682503,
+      "speed": 4.189265543001754,
+      "lateral": 4.5737079316424145,
+      "tilt": 0.19190492449709828
+    },
+    "recordedConstraintViolations": [
+      {
+        "name": "vertical speed",
+        "actual": 4.189265543001754,
+        "requiredStrictlyBelow": 3.6
+      },
+      {
+        "name": "lateral speed",
+        "actual": 4.5737079316424145,
+        "requiredStrictlyBelow": 3
+      }
+    ],
+    "yawRateUnstored": true
+  },
+  {
+    "scenario": 11,
+    "title": "Turning vessel",
+    "seed": 682709,
+    "variability": 0,
+    "reason": "Lateral impact",
+    "time": 38.749999999999936,
+    "touchdown": {
+      "error": 7.1119255643048565,
+      "speed": 2.1129363278830096,
+      "lateral": 3.488240374220469,
+      "tilt": 0.09937651559370295
+    },
+    "recordedConstraintViolations": [
+      {
+        "name": "lateral speed",
+        "actual": 3.488240374220469,
+        "requiredStrictlyBelow": 3
+      }
+    ],
+    "yawRateUnstored": true
+  },
+  {
+    "scenario": 11,
+    "title": "Turning vessel",
+    "seed": 932093,
+    "variability": 0.4,
+    "reason": "Lateral impact",
+    "time": 35.55000000000012,
+    "touchdown": {
+      "error": 8.124907938694784,
+      "speed": 2.2472151389950854,
+      "lateral": 3.4231275081602903,
+      "tilt": 0.056501416354918815
+    },
+    "recordedConstraintViolations": [
+      {
+        "name": "lateral speed",
+        "actual": 3.4231275081602903,
+        "requiredStrictlyBelow": 3
+      }
+    ],
+    "yawRateUnstored": true
+  },
+  {
+    "scenario": 13,
+    "title": "Wind shear",
+    "seed": 703491,
+    "variability": 0,
+    "reason": "Missed the ship",
+    "time": 36.60000000000006,
+    "touchdown": {
+      "error": 61.59863454606433,
+      "speed": 2.054333734866766,
+      "lateral": 1.0472143423305031,
+      "tilt": 0.19609067567875757
+    },
+    "recordedConstraintViolations": [
+      {
+        "name": "position",
+        "actual": 61.59863454606433,
+        "requiredStrictlyBelow": 11
+      }
+    ],
+    "yawRateUnstored": true
+  },
+  {
+    "scenario": 13,
+    "title": "Wind shear",
+    "seed": 952875,
+    "variability": 0.4,
+    "reason": "Missed the ship",
+    "time": 40.14999999999986,
+    "touchdown": {
+      "error": 53.057514536013656,
+      "speed": 1.9822779416448444,
+      "lateral": 2.46754585097266,
+      "tilt": 0.22201740065693987
+    },
+    "recordedConstraintViolations": [
+      {
+        "name": "position",
+        "actual": 53.057514536013656,
+        "requiredStrictlyBelow": 11
+      },
+      {
+        "name": "tilt",
+        "actual": 0.22201740065693987,
+        "requiredStrictlyBelow": 0.2
+      }
+    ],
+    "yawRateUnstored": true
+  },
+  {
+    "scenario": 16,
+    "title": "Sideways entry",
+    "seed": 984048,
+    "variability": 0.4,
+    "reason": "Lateral impact",
+    "time": 38.29999999999996,
+    "touchdown": {
+      "error": 6.865952370390281,
+      "speed": 1.9540779822991028,
+      "lateral": 3.137994095106484,
+      "tilt": 0.06152037275442878
+    },
+    "recordedConstraintViolations": [
+      {
+        "name": "lateral speed",
+        "actual": 3.137994095106484,
+        "requiredStrictlyBelow": 3
+      }
+    ],
+    "yawRateUnstored": true
+  },
+  {
+    "scenario": 19,
+    "title": "Tight storm",
+    "seed": 765837,
+    "variability": 0,
+    "reason": "Missed the ship",
+    "time": 42.8999999999997,
+    "touchdown": {
+      "error": 9.793298160761594,
+      "speed": 2.4503824918283685,
+      "lateral": 2.344769221862239,
+      "tilt": 0.19622835620185147
+    },
+    "recordedConstraintViolations": [
+      {
+        "name": "position",
+        "actual": 9.793298160761594,
+        "requiredStrictlyBelow": 8
+      }
+    ],
+    "yawRateUnstored": true
+  },
+  {
+    "scenario": 22,
+    "title": "Blackout rendezvous",
+    "seed": 797010,
+    "variability": 0,
+    "reason": "Hard landing",
+    "time": 35.00000000000015,
+    "touchdown": {
+      "error": 9.097045895650274,
+      "speed": 3.6625461764817433,
+      "lateral": 2.0786855458575766,
+      "tilt": 0.10488576710011396
+    },
+    "recordedConstraintViolations": [
+      {
+        "name": "vertical speed",
+        "actual": 3.6625461764817433,
+        "requiredStrictlyBelow": 3.6
+      }
+    ],
+    "yawRateUnstored": true
+  },
+  {
+    "scenario": 22,
+    "title": "Blackout rendezvous",
+    "seed": 1046394,
+    "variability": 0.4,
+    "reason": "Hard landing",
+    "time": 36.300000000000075,
+    "touchdown": {
+      "error": 5.313338314805104,
+      "speed": 3.6442811586514936,
+      "lateral": 3.7641818692429667,
+      "tilt": 0.05011737928596653
+    },
+    "recordedConstraintViolations": [
+      {
+        "name": "vertical speed",
+        "actual": 3.6442811586514936,
+        "requiredStrictlyBelow": 3.6
+      },
+      {
+        "name": "lateral speed",
+        "actual": 3.7641818692429667,
+        "requiredStrictlyBelow": 3
+      }
+    ],
+    "yawRateUnstored": true
+  }
+]

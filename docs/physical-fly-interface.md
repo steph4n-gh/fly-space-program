@@ -2,13 +2,15 @@
 
 The goal is to find a sensory interface that could be implemented around a living fly and support safe simulated landings, eventually across all 27 missions. A successful numerical policy is useful evidence about that policy. Transfer to a living fly requires independently measured stimulus and movement responses.
 
-A subsequent [mission curriculum](suite-training.md) has produced 28/32 safe
-simulated touchdowns across four missions using twelve visible measurements
-and an externally learned throttle, steering and stabilization decoder.
-Matched covered-eye and disabled-indicator controls each landed 0/32. Its
-separate frozen-checkpoint report records every failure. These visual-control
-results do not validate chemical steering or transfer to a living fly; the
-odor experiments below remain negative or inconclusive for those questions.
+The current [mission curriculum](suite-training.md) checkpoint produced
+**60/80 safe simulated touchdowns across ten missions**, compared with 54/80
+for its predecessor on the same starts. It uses twelve visible measurements
+and an externally learned throttle, attitude and gimbal decoder. Matched
+covered-eye and disabled-indicator controls each landed 0/80. The
+[frozen-checkpoint report](../dist/assets/landing-report.json) records all
+20 failures. These results do not establish the remaining 17 missions,
+chemical steering or transfer to a living fly; the odor experiments below
+remain negative or inconclusive for those questions.
 
 The proposed loop is:
 
