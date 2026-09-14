@@ -386,3 +386,67 @@ validated visual response and receptor-dependent modulation, anchored to
 the same behavioral endpoint. Adding a global excitation knob cannot supply
 that missing physiology. The first real experiment remains the controlled
 food-odor × visual-motion comparison above.
+
+### Extend the anatomical candidates to the inputs of motion detectors
+
+Restricting the anatomical search to direct T4/T5 contacts misses a relevant
+experimental route. Strother and colleagues found behavioral-state changes
+in T4 and its Mi1, Tm3, Mi4 and Mi9 inputs. Octopaminergic input increased
+Mi4 excitability, and octopamine neurons supported sustained responses to
+fast visual motion in walking flies. These results motivate measuring the
+input populations as well as T4; they do not establish odor-driven flight
+control. [Strother et al., PNAS](https://www.janelia.org/publication/behavioral-state-modulates-visual-motion-pathway-drosophila)
+
+A separate experiment found that octopamine-receptor activation shifted
+T4/T5 temporal tuning toward higher frequencies, with the shift explained
+by faster input dynamics. A useful assay must therefore measure response
+timing and frequency tuning, alongside response magnitude.
+[Arenz et al., Current Biology](https://pubmed.ncbi.nlm.nih.gov/28343964/)
+
+The [expanded inventory](visual-modulation-targets.json) adds exactly named
+Mi1, Tm3, Mi4, Mi9 and L5 populations. It checks all 166,700 retained cells,
+25,582,938 directed edges and 124,177,617 synaptic contacts against the
+packed graph and original annotations. All nine original amine/target
+comparisons remain identical to the earlier inventory.
+
+| Target population | Annotated cells | Cells reached by octopamine-labelled sources | Directed edges | Synaptic contacts |
+| --- | ---: | ---: | ---: | ---: |
+| Mi1 | 1,773 | 358 | 384 | 425 |
+| Tm3 | 2,054 | 1,007 | 1,273 | 1,556 |
+| Mi4 | 1,772 | 205 | 216 | 242 |
+| Mi9 | 1,775 | 128 | 131 | 140 |
+| L5 | 1,787 | 281 | 295 | 315 |
+
+Each of the first four populations receives contacts from the same 14
+octopamine-labelled cells: four OA-AL2i2, four OA-AL2i3, two OA-AL2i4 and
+four OA-ASM1. The four OA-AL2i3 cells account for 149 of the 242 contacts
+into Mi4 and 1,270 of the 1,556 into Tm3. They are also the only annotated
+octopamine sources contacting L5 in this inventory.
+
+| OA-AL2i3 body ID | Contacts into Mi4 | Contacts into Tm3 | Contacts into L5 |
+| --- | ---: | ---: | ---: |
+| 10825 | 46 | 381 | 87 |
+| 10226 | 37 | 264 | 84 |
+| 10658 | 35 | 262 | 74 |
+| 10687 | 31 | 363 | 70 |
+
+The previous four-cell recruitment assay observed OA-AL2i2, so it does not
+answer how these additional candidates respond to odor. The expanded
+inventory is anatomical evidence only: larger contact counts do not show
+greater modulation, receptor expression, release, or a suitable chemical
+exposure. Nor do these labels identify the exact physiological cells in
+the cited experiments.
+
+The next visual assay should first establish a repeatable clean-air
+response to both directions of motion at slow and fast temporal
+frequencies, using matched luminance and contrast. Then compare that same
+stimulus with food odor, measuring Mi4/T4 response timing and the behavioral
+stabilization response. Include static and no-motion controls and retain
+the matched airflow, replay and independent-animal controls described
+above. The software model also needs a validated visual response before
+using these candidates to test a receptor-dependent mechanism; its silent
+T4/T5 odor-only trials supply no evidence about visual modulation.
+
+```sh
+artifacts/lif-runtime/bin/python scripts/map-neuromodulator-targets.py --motion-inputs --output docs/visual-modulation-targets.json
+```

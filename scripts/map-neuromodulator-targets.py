@@ -5,6 +5,7 @@ receptor expression, an effective dose, or evidence of a behavioral effect.
 """
 from pathlib import Path
 from collections import Counter
+import argparse
 import gzip
 import hashlib
 import json
@@ -13,6 +14,12 @@ import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = ROOT / 'dist/assets/connectome'
+parser = argparse.ArgumentParser()
+parser.add_argument('--motion-inputs', action='store_true', help='Also inventory named ON-motion inputs implicated by published physiology')
+parser.add_argument('--output', type=Path, default=ROOT/'docs/neuromodulator-targets.json')
+args = parser.parse_args()
+if args.motion_inputs and args.output.resolve() == (ROOT/'docs/neuromodulator-targets.json').resolve():
+    parser.error('Use a separate output for the expanded inventory')
 manifest = json.loads((BASE / 'manifest.json').read_text())
 labels = json.loads((BASE / 'labels.json').read_text())
 sha = lambda b: hashlib.sha256(b).hexdigest()
@@ -50,6 +57,8 @@ target_types = {
     'T5': ['T5a', 'T5b', 'T5c', 'T5d'],
     'Kenyon cells': sorted({t for t in types if t.startswith('KC')}),
 }
+if args.motion_inputs:
+    target_types.update({name: [name] for name in ['Mi1', 'Tm3', 'Mi4', 'Mi9', 'L5']})
 targets = {name: np.isin(types, names) for name, names in target_types.items()}
 amines = ['octopamine', 'dopamine', 'serotonin']
 source_masks = {name: transmitters == name for name in amines}
@@ -91,6 +100,7 @@ report = {'schema': 'neuromodulator-target-inventory-v1', 'dataset': manifest['d
           'checkedGraph': {'neurons': len(ids), 'edges': position, 'synapticContacts': total_contacts},
           'transmitterCounts': dict(Counter(map(str, transmitters))),
           'targets': {name: {'types': names, 'cells': int(targets[name].sum())} for name, names in target_types.items()},
+          'motionInputsIncluded': args.motion_inputs,
           'unclearMotionTypesExcluded': {name: int((types == name).sum()) for name in ['T4_unclear', 'T5a_unclear']},
           'hxLabelMatches': [name for name in labels['types'] if 'hx' in name.lower()],
           'connections': connections,
@@ -99,7 +109,7 @@ report = {'schema': 'neuromodulator-target-inventory-v1', 'dataset': manifest['d
                           'Extrasynaptic signaling, co-transmission, release kinetics and plasticity are not established by these counts.',
                           'No Hx homology is inferred when a matching cell-type label is absent.',
                           'Ranked contact counts identify anatomical candidates for follow-up, not intervention efficacy or physical dose.']}
-output = ROOT / 'docs/neuromodulator-targets.json'
+output = args.output
 output.write_text(json.dumps(report, indent=2)+'\n')
 print(json.dumps({'output': str(output), 'checkedGraph': report['checkedGraph'],
                   'targets': report['targets'], 'connections': [{k: v for k, v in c.items() if k != 'sources'} for c in connections]}))

@@ -1,0 +1,3209 @@
+{
+  "schema": "neuromodulator-target-inventory-v1",
+  "dataset": "MaleCNS v1.0",
+  "source": "https://male-cns.janelia.org/download/",
+  "license": "CC BY 4.0",
+  "sourceSHA256": {
+    "dist/assets/connectome/manifest.json": "253b367de59eb676c9b28b3fb137aadf7b67b42280cd7f6cf6dd5de5d6d133e0",
+    "dist/assets/connectome/labels.json": "d88130d683e2f22183bbdc9e3276f903c6b4b4db190a80be71ca981b3f5dbbe8",
+    "scripts/map-neuromodulator-targets.py": "783a723d876d010e46c51e49e707c36128c781617646415d3ec19656ef7779f8",
+    "dist/assets/connectome/ids.bin.gz": "cf85974495d6b4ab9e3cb6ac834498632fa4bf1b240d4537bbbfd810c4a54cf0",
+    "dist/assets/connectome/type-indices.bin.gz": "780524fb98bfc4c7234d81833dc79e5431b656af2d75027058f1dcb815b7fb05",
+    "dist/assets/connectome/rows.bin.gz": "13a30b13376d51df596d78b02c2f95645973ae624d1383419f001f1f36a08c8e",
+    "data/body-annotations-male-cns-v1.0-minconf-0.5.feather": "2177e246113e4cfbf1e7772ec37c6da1955ff22e8063d0b1f833101f99a9a3b2",
+    "data/body-neurotransmitters-male-cns-v1.0.feather": "95c9289220663abeb3409f3ad9e5a7f8a53f8093f5139d15502cd08da8879621",
+    "dist/assets/connectome/pre-00.bin.gz": "10e4014ea84b8d967e9c3daf06e1f326008da4b607c2bcdc3e050126518cbb87",
+    "dist/assets/connectome/weight-00.bin.gz": "a643ccd225fcc2d478e042803a5c88316d0b2ca8c4442a01dccf3ffa0069d525",
+    "dist/assets/connectome/pre-01.bin.gz": "9de24693913d7ae8de32535da6d982763e51d1ecc7f7a942f1c5f668f0b55514",
+    "dist/assets/connectome/weight-01.bin.gz": "c7d5dd44f271243669da27233fa02b0139d46b65d2468735ac429e86dccce253",
+    "dist/assets/connectome/pre-02.bin.gz": "2f2d16779299616592cefb0d93cc7a22c28360e06bd9d8f866c5d4758e878200",
+    "dist/assets/connectome/weight-02.bin.gz": "191cba31cdfe87bba772fa63fc9594b7fcf6e14a787970b65dd1e2583e119ecc",
+    "dist/assets/connectome/pre-03.bin.gz": "69a56dec48db91a27794eedd53c12805008d93c45c6a8b08d27b013f1dbe4fd7",
+    "dist/assets/connectome/weight-03.bin.gz": "3f5e17be78893f6a17be1ebcdcb05bc1926042f3123c0f92e271831ba9a7c7b7",
+    "dist/assets/connectome/pre-04.bin.gz": "4ef6d83f28e3370013024159082991ca049967540794743d2c47ac8e2148d540",
+    "dist/assets/connectome/weight-04.bin.gz": "0fe9a6545cea0ea91fc8fe6ec417c385106fd55279917fdcb5deafd17ecd8f34",
+    "dist/assets/connectome/pre-05.bin.gz": "93843a1236178e7cf9481d4824bd43a9a25584cb94e6631de99fc97f24734c36",
+    "dist/assets/connectome/weight-05.bin.gz": "146393da5241d03c9aef66f9e550348d2cecc61d7de1c43bec753a20400fa1a0",
+    "dist/assets/connectome/pre-06.bin.gz": "ea5dcd3013869a1b26d0720163718f6788a91217f5ad004c953ab09975326f81",
+    "dist/assets/connectome/weight-06.bin.gz": "d14315ab9ef9479b010b561ed87deb548748d5ed4be6674003f41b97dc26dc23",
+    "dist/assets/connectome/pre-07.bin.gz": "6a3ed6646a3588730680117d496efabea04e45bf0d0e0021455019c927e5365e",
+    "dist/assets/connectome/weight-07.bin.gz": "fcc758470c82d5cc511e3def01d746c3ce3f9e01a6b7ceb61c506b1a1d5c0106",
+    "dist/assets/connectome/pre-08.bin.gz": "7685b33b12d96e467aa958f9c1e513eaf43d03c5190609c876f1e5ecae6599bb",
+    "dist/assets/connectome/weight-08.bin.gz": "acb8f2a9a4d42a4314841b9710decd5e7584607e1700adbbb78ba928ca2fe637",
+    "dist/assets/connectome/pre-09.bin.gz": "4ce5fb55b417f3bd5bde493c92a45c46fd9db5eb00cac552532904df31914fbc",
+    "dist/assets/connectome/weight-09.bin.gz": "6074bbf848504b1bfcff63c4219b62b2fd411f758ae15d8947babc9df98fc3be",
+    "dist/assets/connectome/pre-10.bin.gz": "24a035fdd84411d333fa6d13e42b5598a99a0fcb0c69733e94c26d306e3f4351",
+    "dist/assets/connectome/weight-10.bin.gz": "cc4a6e5f9ddc2eae32c3a3c9736da9cd6d86f1adc72e6b2aad5aecc5417099a2",
+    "dist/assets/connectome/pre-11.bin.gz": "9a2855e91af2a6fd87d6c1b775c3e1d1bf627edc366266b7ee83af984311d2a6",
+    "dist/assets/connectome/weight-11.bin.gz": "edc3875993d297c91be69573f9cb3cb7074821adc99a54132a93976fcf92de51",
+    "dist/assets/connectome/pre-12.bin.gz": "3d44add9f41e4c4e4342f273571502d483671bdc04f094e92f1d58a1fe01f4ed",
+    "dist/assets/connectome/weight-12.bin.gz": "93f73bbf30b8dc5b0ece1f4add049faac26fd8da01973c21542f24a9b685d934",
+    "dist/assets/connectome/pre-13.bin.gz": "3f54cc3ca3470bff0699eb008cd638d0361400cc681e42126b6c0f6bc67af909",
+    "dist/assets/connectome/weight-13.bin.gz": "57a895d9f8479a36e1ac1b67fb0994433d037d62d72b77f3064e89e837edaf29",
+    "dist/assets/connectome/pre-14.bin.gz": "91595ce6dde6e2e6a44a76cf43c49d2d0ca0cd02c6a929d1a9c87565233c320a",
+    "dist/assets/connectome/weight-14.bin.gz": "40708ea6f5c0d30cdd1b7648a7238a32a662d890fadfdce2a50afef7cf3e6a05",
+    "dist/assets/connectome/pre-15.bin.gz": "478c4d4ed81cab2f7d2f1b67d22283ea2e7f00b16843aee97b078389a1ed759d",
+    "dist/assets/connectome/weight-15.bin.gz": "4706411d439b55fcf5e667e15c470b62d53c9874db9709767ff94e321db0c320",
+    "dist/assets/connectome/pre-16.bin.gz": "c46ae26d31aee8c92e08144512663ede3e8cea2c54ee6056fae594d56b9e9f6e",
+    "dist/assets/connectome/weight-16.bin.gz": "e40d9219627a8008a2f26403c7685f9f6b2492c2a4fa7730e2aee103f3a57e05",
+    "dist/assets/connectome/pre-17.bin.gz": "c398ef9d07fa265bfec09543280c0639915ac335f06c3f40535a47a2fe24a303",
+    "dist/assets/connectome/weight-17.bin.gz": "f6ec78ede7e0caaffdfb2e201952706acdaadf546389646ad65004a7cf4c4ea2"
+  },
+  "checkedGraph": {
+    "neurons": 166700,
+    "edges": 25582938,
+    "synapticContacts": 124177617
+  },
+  "transmitterCounts": {
+    "acetylcholine": 103720,
+    "gaba": 22069,
+    "unclear": 2999,
+    "glutamate": 29302,
+    "octopamine": 101,
+    "serotonin": 48,
+    "dopamine": 392,
+    "histamine": 7891,
+    "unknown": 178
+  },
+  "targets": {
+    "T4": {
+      "types": [
+        "T4a",
+        "T4b",
+        "T4c",
+        "T4d"
+      ],
+      "cells": 6861
+    },
+    "T5": {
+      "types": [
+        "T5a",
+        "T5b",
+        "T5c",
+        "T5d"
+      ],
+      "cells": 6719
+    },
+    "Kenyon cells": {
+      "types": [
+        "KC",
+        "KCa'b'-ap1",
+        "KCa'b'-ap2",
+        "KCa'b'-m",
+        "KCab-c",
+        "KCab-m",
+        "KCab-p",
+        "KCab-s",
+        "KCg",
+        "KCg-d",
+        "KCg-m",
+        "KCg-s1",
+        "KCg-s2",
+        "KCg-s3",
+        "KCg-s4"
+      ],
+      "cells": 4064
+    },
+    "Mi1": {
+      "types": [
+        "Mi1"
+      ],
+      "cells": 1773
+    },
+    "Tm3": {
+      "types": [
+        "Tm3"
+      ],
+      "cells": 2054
+    },
+    "Mi4": {
+      "types": [
+        "Mi4"
+      ],
+      "cells": 1772
+    },
+    "Mi9": {
+      "types": [
+        "Mi9"
+      ],
+      "cells": 1775
+    },
+    "L5": {
+      "types": [
+        "L5"
+      ],
+      "cells": 1787
+    }
+  },
+  "motionInputsIncluded": true,
+  "unclearMotionTypesExcluded": {
+    "T4_unclear": 4,
+    "T5a_unclear": 1
+  },
+  "hxLabelMatches": [],
+  "connections": [
+    {
+      "sourceTransmitterLabel": "octopamine",
+      "targetPool": "T4",
+      "sourceCellsWithContacts": 4,
+      "targetCellsReached": 208,
+      "directedEdges": 208,
+      "synapticContacts": 219,
+      "sources": [
+        {
+          "index": 248,
+          "bodyId": 10269,
+          "type": "OA-AL2i2",
+          "contacts": 63
+        },
+        {
+          "index": 244,
+          "bodyId": 10265,
+          "type": "OA-AL2i2",
+          "contacts": 53
+        },
+        {
+          "index": 297,
+          "bodyId": 10322,
+          "type": "OA-AL2i2",
+          "contacts": 53
+        },
+        {
+          "index": 185,
+          "bodyId": 10204,
+          "type": "OA-AL2i2",
+          "contacts": 50
+        }
+      ]
+    },
+    {
+      "sourceTransmitterLabel": "octopamine",
+      "targetPool": "T5",
+      "sourceCellsWithContacts": 4,
+      "targetCellsReached": 102,
+      "directedEdges": 102,
+      "synapticContacts": 107,
+      "sources": [
+        {
+          "index": 248,
+          "bodyId": 10269,
+          "type": "OA-AL2i2",
+          "contacts": 34
+        },
+        {
+          "index": 297,
+          "bodyId": 10322,
+          "type": "OA-AL2i2",
+          "contacts": 26
+        },
+        {
+          "index": 185,
+          "bodyId": 10204,
+          "type": "OA-AL2i2",
+          "contacts": 24
+        },
+        {
+          "index": 244,
+          "bodyId": 10265,
+          "type": "OA-AL2i2",
+          "contacts": 23
+        }
+      ]
+    },
+    {
+      "sourceTransmitterLabel": "octopamine",
+      "targetPool": "Kenyon cells",
+      "sourceCellsWithContacts": 20,
+      "targetCellsReached": 2074,
+      "directedEdges": 2980,
+      "synapticContacts": 4436,
+      "sources": [
+        {
+          "index": 168,
+          "bodyId": 10187,
+          "type": "OA-VPM3",
+          "contacts": 1344
+        },
+        {
+          "index": 124101,
+          "bodyId": 287884,
+          "type": "OA-VPM3",
+          "contacts": 798
+        },
+        {
+          "index": 106,
+          "bodyId": 10120,
+          "type": "OA-VPM4",
+          "contacts": 569
+        },
+        {
+          "index": 1794,
+          "bodyId": 11921,
+          "type": "OA-VPM4",
+          "contacts": 452
+        },
+        {
+          "index": 1971,
+          "bodyId": 12109,
+          "type": "OA-VUMa2",
+          "contacts": 434
+        },
+        {
+          "index": 1500,
+          "bodyId": 11608,
+          "type": "OA-VUMa2",
+          "contacts": 336
+        },
+        {
+          "index": 86,
+          "bodyId": 10100,
+          "type": "LoVCLo3",
+          "contacts": 143
+        },
+        {
+          "index": 517,
+          "bodyId": 10555,
+          "type": "OA-VUMa3",
+          "contacts": 107
+        },
+        {
+          "index": 67,
+          "bodyId": 10080,
+          "type": "OA-VUMa3",
+          "contacts": 82
+        },
+        {
+          "index": 396,
+          "bodyId": 10432,
+          "type": "LoVCLo3",
+          "contacts": 56
+        },
+        {
+          "index": 152,
+          "bodyId": 10168,
+          "type": "OA-VUMa6",
+          "contacts": 40
+        },
+        {
+          "index": 158,
+          "bodyId": 10175,
+          "type": "OA-VUMa6",
+          "contacts": 23
+        },
+        {
+          "index": 166,
+          "bodyId": 10185,
+          "type": "OA-VUMa8",
+          "contacts": 11
+        },
+        {
+          "index": 1494,
+          "bodyId": 11602,
+          "type": "OA-ASM1",
+          "contacts": 11
+        },
+        {
+          "index": 124075,
+          "bodyId": 286259,
+          "type": "OA-ASM1",
+          "contacts": 11
+        },
+        {
+          "index": 2513,
+          "bodyId": 12688,
+          "type": "OA-ASM1",
+          "contacts": 8
+        },
+        {
+          "index": 1173,
+          "bodyId": 11264,
+          "type": "OA-ASM1",
+          "contacts": 5
+        },
+        {
+          "index": 4502,
+          "bodyId": 14871,
+          "type": "EL",
+          "contacts": 3
+        },
+        {
+          "index": 17775,
+          "bodyId": 29713,
+          "type": "EL",
+          "contacts": 2
+        },
+        {
+          "index": 4213,
+          "bodyId": 14552,
+          "type": "EL",
+          "contacts": 1
+        }
+      ]
+    },
+    {
+      "sourceTransmitterLabel": "octopamine",
+      "targetPool": "Mi1",
+      "sourceCellsWithContacts": 14,
+      "targetCellsReached": 358,
+      "directedEdges": 384,
+      "synapticContacts": 425,
+      "sources": [
+        {
+          "index": 764,
+          "bodyId": 10825,
+          "type": "OA-AL2i3",
+          "contacts": 90
+        },
+        {
+          "index": 206,
+          "bodyId": 10226,
+          "type": "OA-AL2i3",
+          "contacts": 86
+        },
+        {
+          "index": 639,
+          "bodyId": 10687,
+          "type": "OA-AL2i3",
+          "contacts": 76
+        },
+        {
+          "index": 611,
+          "bodyId": 10658,
+          "type": "OA-AL2i3",
+          "contacts": 72
+        },
+        {
+          "index": 185,
+          "bodyId": 10204,
+          "type": "OA-AL2i2",
+          "contacts": 29
+        },
+        {
+          "index": 248,
+          "bodyId": 10269,
+          "type": "OA-AL2i2",
+          "contacts": 18
+        },
+        {
+          "index": 244,
+          "bodyId": 10265,
+          "type": "OA-AL2i2",
+          "contacts": 16
+        },
+        {
+          "index": 297,
+          "bodyId": 10322,
+          "type": "OA-AL2i2",
+          "contacts": 13
+        },
+        {
+          "index": 1494,
+          "bodyId": 11602,
+          "type": "OA-ASM1",
+          "contacts": 8
+        },
+        {
+          "index": 606,
+          "bodyId": 10652,
+          "type": "OA-AL2i4",
+          "contacts": 5
+        },
+        {
+          "index": 124075,
+          "bodyId": 286259,
+          "type": "OA-ASM1",
+          "contacts": 5
+        },
+        {
+          "index": 1173,
+          "bodyId": 11264,
+          "type": "OA-ASM1",
+          "contacts": 4
+        },
+        {
+          "index": 629,
+          "bodyId": 10677,
+          "type": "OA-AL2i4",
+          "contacts": 2
+        },
+        {
+          "index": 2513,
+          "bodyId": 12688,
+          "type": "OA-ASM1",
+          "contacts": 1
+        }
+      ]
+    },
+    {
+      "sourceTransmitterLabel": "octopamine",
+      "targetPool": "Tm3",
+      "sourceCellsWithContacts": 14,
+      "targetCellsReached": 1007,
+      "directedEdges": 1273,
+      "synapticContacts": 1556,
+      "sources": [
+        {
+          "index": 764,
+          "bodyId": 10825,
+          "type": "OA-AL2i3",
+          "contacts": 381
+        },
+        {
+          "index": 639,
+          "bodyId": 10687,
+          "type": "OA-AL2i3",
+          "contacts": 363
+        },
+        {
+          "index": 206,
+          "bodyId": 10226,
+          "type": "OA-AL2i3",
+          "contacts": 264
+        },
+        {
+          "index": 611,
+          "bodyId": 10658,
+          "type": "OA-AL2i3",
+          "contacts": 262
+        },
+        {
+          "index": 248,
+          "bodyId": 10269,
+          "type": "OA-AL2i2",
+          "contacts": 75
+        },
+        {
+          "index": 244,
+          "bodyId": 10265,
+          "type": "OA-AL2i2",
+          "contacts": 68
+        },
+        {
+          "index": 297,
+          "bodyId": 10322,
+          "type": "OA-AL2i2",
+          "contacts": 59
+        },
+        {
+          "index": 185,
+          "bodyId": 10204,
+          "type": "OA-AL2i2",
+          "contacts": 51
+        },
+        {
+          "index": 606,
+          "bodyId": 10652,
+          "type": "OA-AL2i4",
+          "contacts": 11
+        },
+        {
+          "index": 629,
+          "bodyId": 10677,
+          "type": "OA-AL2i4",
+          "contacts": 9
+        },
+        {
+          "index": 1494,
+          "bodyId": 11602,
+          "type": "OA-ASM1",
+          "contacts": 7
+        },
+        {
+          "index": 2513,
+          "bodyId": 12688,
+          "type": "OA-ASM1",
+          "contacts": 4
+        },
+        {
+          "index": 1173,
+          "bodyId": 11264,
+          "type": "OA-ASM1",
+          "contacts": 1
+        },
+        {
+          "index": 124075,
+          "bodyId": 286259,
+          "type": "OA-ASM1",
+          "contacts": 1
+        }
+      ]
+    },
+    {
+      "sourceTransmitterLabel": "octopamine",
+      "targetPool": "Mi4",
+      "sourceCellsWithContacts": 14,
+      "targetCellsReached": 205,
+      "directedEdges": 216,
+      "synapticContacts": 242,
+      "sources": [
+        {
+          "index": 764,
+          "bodyId": 10825,
+          "type": "OA-AL2i3",
+          "contacts": 46
+        },
+        {
+          "index": 206,
+          "bodyId": 10226,
+          "type": "OA-AL2i3",
+          "contacts": 37
+        },
+        {
+          "index": 611,
+          "bodyId": 10658,
+          "type": "OA-AL2i3",
+          "contacts": 35
+        },
+        {
+          "index": 639,
+          "bodyId": 10687,
+          "type": "OA-AL2i3",
+          "contacts": 31
+        },
+        {
+          "index": 248,
+          "bodyId": 10269,
+          "type": "OA-AL2i2",
+          "contacts": 17
+        },
+        {
+          "index": 124075,
+          "bodyId": 286259,
+          "type": "OA-ASM1",
+          "contacts": 12
+        },
+        {
+          "index": 244,
+          "bodyId": 10265,
+          "type": "OA-AL2i2",
+          "contacts": 10
+        },
+        {
+          "index": 1173,
+          "bodyId": 11264,
+          "type": "OA-ASM1",
+          "contacts": 10
+        },
+        {
+          "index": 1494,
+          "bodyId": 11602,
+          "type": "OA-ASM1",
+          "contacts": 9
+        },
+        {
+          "index": 185,
+          "bodyId": 10204,
+          "type": "OA-AL2i2",
+          "contacts": 8
+        },
+        {
+          "index": 297,
+          "bodyId": 10322,
+          "type": "OA-AL2i2",
+          "contacts": 8
+        },
+        {
+          "index": 629,
+          "bodyId": 10677,
+          "type": "OA-AL2i4",
+          "contacts": 8
+        },
+        {
+          "index": 606,
+          "bodyId": 10652,
+          "type": "OA-AL2i4",
+          "contacts": 6
+        },
+        {
+          "index": 2513,
+          "bodyId": 12688,
+          "type": "OA-ASM1",
+          "contacts": 5
+        }
+      ]
+    },
+    {
+      "sourceTransmitterLabel": "octopamine",
+      "targetPool": "Mi9",
+      "sourceCellsWithContacts": 14,
+      "targetCellsReached": 128,
+      "directedEdges": 131,
+      "synapticContacts": 140,
+      "sources": [
+        {
+          "index": 606,
+          "bodyId": 10652,
+          "type": "OA-AL2i4",
+          "contacts": 18
+        },
+        {
+          "index": 206,
+          "bodyId": 10226,
+          "type": "OA-AL2i3",
+          "contacts": 15
+        },
+        {
+          "index": 629,
+          "bodyId": 10677,
+          "type": "OA-AL2i4",
+          "contacts": 14
+        },
+        {
+          "index": 639,
+          "bodyId": 10687,
+          "type": "OA-AL2i3",
+          "contacts": 14
+        },
+        {
+          "index": 244,
+          "bodyId": 10265,
+          "type": "OA-AL2i2",
+          "contacts": 12
+        },
+        {
+          "index": 297,
+          "bodyId": 10322,
+          "type": "OA-AL2i2",
+          "contacts": 11
+        },
+        {
+          "index": 764,
+          "bodyId": 10825,
+          "type": "OA-AL2i3",
+          "contacts": 11
+        },
+        {
+          "index": 248,
+          "bodyId": 10269,
+          "type": "OA-AL2i2",
+          "contacts": 10
+        },
+        {
+          "index": 185,
+          "bodyId": 10204,
+          "type": "OA-AL2i2",
+          "contacts": 8
+        },
+        {
+          "index": 611,
+          "bodyId": 10658,
+          "type": "OA-AL2i3",
+          "contacts": 8
+        },
+        {
+          "index": 1173,
+          "bodyId": 11264,
+          "type": "OA-ASM1",
+          "contacts": 6
+        },
+        {
+          "index": 1494,
+          "bodyId": 11602,
+          "type": "OA-ASM1",
+          "contacts": 5
+        },
+        {
+          "index": 2513,
+          "bodyId": 12688,
+          "type": "OA-ASM1",
+          "contacts": 4
+        },
+        {
+          "index": 124075,
+          "bodyId": 286259,
+          "type": "OA-ASM1",
+          "contacts": 4
+        }
+      ]
+    },
+    {
+      "sourceTransmitterLabel": "octopamine",
+      "targetPool": "L5",
+      "sourceCellsWithContacts": 4,
+      "targetCellsReached": 281,
+      "directedEdges": 295,
+      "synapticContacts": 315,
+      "sources": [
+        {
+          "index": 764,
+          "bodyId": 10825,
+          "type": "OA-AL2i3",
+          "contacts": 87
+        },
+        {
+          "index": 206,
+          "bodyId": 10226,
+          "type": "OA-AL2i3",
+          "contacts": 84
+        },
+        {
+          "index": 611,
+          "bodyId": 10658,
+          "type": "OA-AL2i3",
+          "contacts": 74
+        },
+        {
+          "index": 639,
+          "bodyId": 10687,
+          "type": "OA-AL2i3",
+          "contacts": 70
+        }
+      ]
+    },
+    {
+      "sourceTransmitterLabel": "dopamine",
+      "targetPool": "T4",
+      "sourceCellsWithContacts": 4,
+      "targetCellsReached": 414,
+      "directedEdges": 424,
+      "synapticContacts": 452,
+      "sources": [
+        {
+          "index": 1123,
+          "bodyId": 11214,
+          "type": "LoVC22",
+          "contacts": 155
+        },
+        {
+          "index": 998,
+          "bodyId": 11079,
+          "type": "LoVC22",
+          "contacts": 126
+        },
+        {
+          "index": 4658,
+          "bodyId": 15042,
+          "type": "LoVC22",
+          "contacts": 113
+        },
+        {
+          "index": 593,
+          "bodyId": 10639,
+          "type": "LoVC22",
+          "contacts": 58
+        }
+      ]
+    },
+    {
+      "sourceTransmitterLabel": "dopamine",
+      "targetPool": "T5",
+      "sourceCellsWithContacts": 4,
+      "targetCellsReached": 196,
+      "directedEdges": 200,
+      "synapticContacts": 206,
+      "sources": [
+        {
+          "index": 4658,
+          "bodyId": 15042,
+          "type": "LoVC22",
+          "contacts": 78
+        },
+        {
+          "index": 998,
+          "bodyId": 11079,
+          "type": "LoVC22",
+          "contacts": 57
+        },
+        {
+          "index": 1123,
+          "bodyId": 11214,
+          "type": "LoVC22",
+          "contacts": 55
+        },
+        {
+          "index": 593,
+          "bodyId": 10639,
+          "type": "LoVC22",
+          "contacts": 16
+        }
+      ]
+    },
+    {
+      "sourceTransmitterLabel": "dopamine",
+      "targetPool": "Kenyon cells",
+      "sourceCellsWithContacts": 347,
+      "targetCellsReached": 4063,
+      "directedEdges": 133216,
+      "synapticContacts": 257945,
+      "sources": [
+        {
+          "index": 1618,
+          "bodyId": 11734,
+          "type": "DPM",
+          "contacts": 17400
+        },
+        {
+          "index": 2403,
+          "bodyId": 12569,
+          "type": "DPM",
+          "contacts": 15395
+        },
+        {
+          "index": 3888,
+          "bodyId": 14182,
+          "type": "PPL103",
+          "contacts": 10591
+        },
+        {
+          "index": 1636,
+          "bodyId": 11752,
+          "type": "PPL103",
+          "contacts": 9947
+        },
+        {
+          "index": 1235,
+          "bodyId": 11327,
+          "type": "PPL101",
+          "contacts": 5949
+        },
+        {
+          "index": 1774,
+          "bodyId": 11900,
+          "type": "PPL101",
+          "contacts": 5533
+        },
+        {
+          "index": 126047,
+          "bodyId": 512326,
+          "type": "PPL105",
+          "contacts": 4241
+        },
+        {
+          "index": 3926,
+          "bodyId": 14225,
+          "type": "PPL105",
+          "contacts": 3906
+        },
+        {
+          "index": 134017,
+          "bodyId": 529516,
+          "type": "PPL106",
+          "contacts": 3182
+        },
+        {
+          "index": 134015,
+          "bodyId": 529512,
+          "type": "PPL106",
+          "contacts": 3105
+        },
+        {
+          "index": 130707,
+          "bodyId": 520403,
+          "type": "PAM10",
+          "contacts": 1498
+        },
+        {
+          "index": 139587,
+          "bodyId": 544359,
+          "type": "PAM10",
+          "contacts": 1455
+        },
+        {
+          "index": 139546,
+          "bodyId": 544257,
+          "type": "PAM10",
+          "contacts": 1397
+        },
+        {
+          "index": 140537,
+          "bodyId": 547260,
+          "type": "PAM10",
+          "contacts": 1343
+        },
+        {
+          "index": 119083,
+          "bodyId": 200973,
+          "type": "PAM10",
+          "contacts": 1310
+        },
+        {
+          "index": 49836,
+          "bodyId": 66934,
+          "type": "PAM10",
+          "contacts": 1294
+        },
+        {
+          "index": 23857,
+          "bodyId": 36624,
+          "type": "PAM10",
+          "contacts": 1284
+        },
+        {
+          "index": 16636,
+          "bodyId": 28434,
+          "type": "PAM10",
+          "contacts": 1267
+        },
+        {
+          "index": 20526,
+          "bodyId": 32865,
+          "type": "PAM10",
+          "contacts": 1237
+        },
+        {
+          "index": 113024,
+          "bodyId": 170450,
+          "type": "PAM10",
+          "contacts": 1218
+        },
+        {
+          "index": 17636,
+          "bodyId": 29565,
+          "type": "PAM10",
+          "contacts": 1177
+        },
+        {
+          "index": 44857,
+          "bodyId": 60930,
+          "type": "PAM10",
+          "contacts": 1158
+        },
+        {
+          "index": 10110,
+          "bodyId": 21145,
+          "type": "PPL104",
+          "contacts": 1147
+        },
+        {
+          "index": 114966,
+          "bodyId": 178945,
+          "type": "PAM10",
+          "contacts": 1105
+        },
+        {
+          "index": 33953,
+          "bodyId": 48113,
+          "type": "PAM10",
+          "contacts": 1080
+        },
+        {
+          "index": 44317,
+          "bodyId": 60273,
+          "type": "PAM07",
+          "contacts": 1074
+        },
+        {
+          "index": 103242,
+          "bodyId": 143120,
+          "type": "PAM10",
+          "contacts": 1059
+        },
+        {
+          "index": 127568,
+          "bodyId": 515048,
+          "type": "PPL104",
+          "contacts": 1051
+        },
+        {
+          "index": 52091,
+          "bodyId": 69722,
+          "type": "PAM08",
+          "contacts": 996
+        },
+        {
+          "index": 48975,
+          "bodyId": 65886,
+          "type": "PAM08",
+          "contacts": 974
+        },
+        {
+          "index": 26502,
+          "bodyId": 39617,
+          "type": "PAM07",
+          "contacts": 972
+        },
+        {
+          "index": 33160,
+          "bodyId": 47196,
+          "type": "PAM07",
+          "contacts": 936
+        },
+        {
+          "index": 65141,
+          "bodyId": 86066,
+          "type": "PAM07",
+          "contacts": 929
+        },
+        {
+          "index": 48712,
+          "bodyId": 65559,
+          "type": "PAM07",
+          "contacts": 924
+        },
+        {
+          "index": 100443,
+          "bodyId": 137595,
+          "type": "PAM07",
+          "contacts": 908
+        },
+        {
+          "index": 74073,
+          "bodyId": 97990,
+          "type": "PAM06",
+          "contacts": 901
+        },
+        {
+          "index": 97081,
+          "bodyId": 131607,
+          "type": "PAM07",
+          "contacts": 897
+        },
+        {
+          "index": 107865,
+          "bodyId": 153771,
+          "type": "PAM07",
+          "contacts": 895
+        },
+        {
+          "index": 96953,
+          "bodyId": 131419,
+          "type": "PAM06",
+          "contacts": 885
+        },
+        {
+          "index": 40055,
+          "bodyId": 55210,
+          "type": "PAM08",
+          "contacts": 882
+        },
+        {
+          "index": 130852,
+          "bodyId": 520616,
+          "type": "PAM11",
+          "contacts": 872
+        },
+        {
+          "index": 368,
+          "bodyId": 10399,
+          "type": "PPL202",
+          "contacts": 871
+        },
+        {
+          "index": 106817,
+          "bodyId": 151133,
+          "type": "PAM06",
+          "contacts": 867
+        },
+        {
+          "index": 105358,
+          "bodyId": 147591,
+          "type": "PAM06",
+          "contacts": 865
+        },
+        {
+          "index": 71308,
+          "bodyId": 94250,
+          "type": "PAM05",
+          "contacts": 853
+        },
+        {
+          "index": 68774,
+          "bodyId": 90902,
+          "type": "PAM08",
+          "contacts": 849
+        },
+        {
+          "index": 79464,
+          "bodyId": 105362,
+          "type": "PAM05",
+          "contacts": 848
+        },
+        {
+          "index": 74473,
+          "bodyId": 98554,
+          "type": "PAM07",
+          "contacts": 847
+        },
+        {
+          "index": 132956,
+          "bodyId": 525787,
+          "type": "PAM05",
+          "contacts": 847
+        },
+        {
+          "index": 118290,
+          "bodyId": 196030,
+          "type": "PAM06",
+          "contacts": 846
+        },
+        {
+          "index": 65206,
+          "bodyId": 86156,
+          "type": "PAM08",
+          "contacts": 840
+        },
+        {
+          "index": 121880,
+          "bodyId": 224205,
+          "type": "PAM09",
+          "contacts": 837
+        },
+        {
+          "index": 121077,
+          "bodyId": 215931,
+          "type": "PAM11",
+          "contacts": 831
+        },
+        {
+          "index": 102942,
+          "bodyId": 142528,
+          "type": "PAM09",
+          "contacts": 820
+        },
+        {
+          "index": 65418,
+          "bodyId": 86431,
+          "type": "PAM07",
+          "contacts": 814
+        },
+        {
+          "index": 99710,
+          "bodyId": 136215,
+          "type": "PAM06",
+          "contacts": 812
+        },
+        {
+          "index": 117565,
+          "bodyId": 192245,
+          "type": "PAM05",
+          "contacts": 811
+        },
+        {
+          "index": 119647,
+          "bodyId": 204930,
+          "type": "PAM11",
+          "contacts": 811
+        },
+        {
+          "index": 65982,
+          "bodyId": 87177,
+          "type": "PAM08",
+          "contacts": 809
+        },
+        {
+          "index": 34753,
+          "bodyId": 49043,
+          "type": "PAM07",
+          "contacts": 803
+        },
+        {
+          "index": 133720,
+          "bodyId": 528100,
+          "type": "PAM09",
+          "contacts": 798
+        },
+        {
+          "index": 72978,
+          "bodyId": 96497,
+          "type": "PAM07",
+          "contacts": 791
+        },
+        {
+          "index": 101842,
+          "bodyId": 140271,
+          "type": "PAM06",
+          "contacts": 790
+        },
+        {
+          "index": 56117,
+          "bodyId": 74743,
+          "type": "PAM08",
+          "contacts": 787
+        },
+        {
+          "index": 54417,
+          "bodyId": 72601,
+          "type": "PAM06",
+          "contacts": 781
+        },
+        {
+          "index": 69838,
+          "bodyId": 92324,
+          "type": "PAM06",
+          "contacts": 781
+        },
+        {
+          "index": 84976,
+          "bodyId": 113067,
+          "type": "PAM01",
+          "contacts": 775
+        },
+        {
+          "index": 90223,
+          "bodyId": 120768,
+          "type": "PAM07",
+          "contacts": 770
+        },
+        {
+          "index": 56207,
+          "bodyId": 74856,
+          "type": "PAM01",
+          "contacts": 769
+        },
+        {
+          "index": 143762,
+          "bodyId": 577933,
+          "type": "PAM06",
+          "contacts": 768
+        },
+        {
+          "index": 71807,
+          "bodyId": 94922,
+          "type": "PAM05",
+          "contacts": 767
+        },
+        {
+          "index": 89566,
+          "bodyId": 119763,
+          "type": "PAM11",
+          "contacts": 765
+        },
+        {
+          "index": 135882,
+          "bodyId": 533294,
+          "type": "PAM01",
+          "contacts": 757
+        },
+        {
+          "index": 24929,
+          "bodyId": 37845,
+          "type": "PAM04",
+          "contacts": 747
+        },
+        {
+          "index": 98982,
+          "bodyId": 134869,
+          "type": "PAM06",
+          "contacts": 741
+        },
+        {
+          "index": 103128,
+          "bodyId": 142898,
+          "type": "PAM06",
+          "contacts": 739
+        },
+        {
+          "index": 110149,
+          "bodyId": 160277,
+          "type": "PAM06",
+          "contacts": 738
+        },
+        {
+          "index": 86107,
+          "bodyId": 114661,
+          "type": "PAM11",
+          "contacts": 737
+        },
+        {
+          "index": 104512,
+          "bodyId": 145749,
+          "type": "PAM11",
+          "contacts": 736
+        },
+        {
+          "index": 110425,
+          "bodyId": 161153,
+          "type": "PAM08",
+          "contacts": 735
+        },
+        {
+          "index": 93070,
+          "bodyId": 125080,
+          "type": "PAM04",
+          "contacts": 727
+        },
+        {
+          "index": 88239,
+          "bodyId": 117782,
+          "type": "PAM08",
+          "contacts": 713
+        },
+        {
+          "index": 125735,
+          "bodyId": 506819,
+          "type": "PAM01",
+          "contacts": 708
+        },
+        {
+          "index": 98929,
+          "bodyId": 134769,
+          "type": "PAM06",
+          "contacts": 705
+        },
+        {
+          "index": 98663,
+          "bodyId": 134265,
+          "type": "PAM06",
+          "contacts": 704
+        },
+        {
+          "index": 164082,
+          "bodyId": 920537,
+          "type": "PAM09",
+          "contacts": 702
+        },
+        {
+          "index": 48680,
+          "bodyId": 65524,
+          "type": "PAM08",
+          "contacts": 700
+        },
+        {
+          "index": 114052,
+          "bodyId": 174672,
+          "type": "PAM08",
+          "contacts": 700
+        },
+        {
+          "index": 117263,
+          "bodyId": 190635,
+          "type": "PAM05",
+          "contacts": 699
+        },
+        {
+          "index": 68610,
+          "bodyId": 90678,
+          "type": "PAM08",
+          "contacts": 698
+        },
+        {
+          "index": 80830,
+          "bodyId": 107285,
+          "type": "PAM08",
+          "contacts": 692
+        },
+        {
+          "index": 121347,
+          "bodyId": 218583,
+          "type": "PAM04",
+          "contacts": 691
+        },
+        {
+          "index": 60916,
+          "bodyId": 80744,
+          "type": "PAM01",
+          "contacts": 690
+        },
+        {
+          "index": 107913,
+          "bodyId": 153931,
+          "type": "PAM01",
+          "contacts": 685
+        },
+        {
+          "index": 78988,
+          "bodyId": 104713,
+          "type": "PAM08",
+          "contacts": 680
+        },
+        {
+          "index": 120628,
+          "bodyId": 212160,
+          "type": "PAM08",
+          "contacts": 679
+        },
+        {
+          "index": 57087,
+          "bodyId": 75922,
+          "type": "PAM08",
+          "contacts": 677
+        },
+        {
+          "index": 100329,
+          "bodyId": 137373,
+          "type": "PAM06",
+          "contacts": 677
+        },
+        {
+          "index": 46896,
+          "bodyId": 63391,
+          "type": "PAM01",
+          "contacts": 676
+        },
+        {
+          "index": 124499,
+          "bodyId": 319321,
+          "type": "PAM11",
+          "contacts": 674
+        },
+        {
+          "index": 77914,
+          "bodyId": 103255,
+          "type": "PAM08",
+          "contacts": 670
+        },
+        {
+          "index": 104899,
+          "bodyId": 146603,
+          "type": "PAM01",
+          "contacts": 669
+        },
+        {
+          "index": 109498,
+          "bodyId": 158372,
+          "type": "PAM08",
+          "contacts": 669
+        },
+        {
+          "index": 122067,
+          "bodyId": 226708,
+          "type": "PAM08",
+          "contacts": 668
+        },
+        {
+          "index": 131969,
+          "bodyId": 523791,
+          "type": "PAM04",
+          "contacts": 663
+        },
+        {
+          "index": 122341,
+          "bodyId": 230802,
+          "type": "PAM05",
+          "contacts": 662
+        },
+        {
+          "index": 99674,
+          "bodyId": 136144,
+          "type": "PAM08",
+          "contacts": 658
+        },
+        {
+          "index": 74265,
+          "bodyId": 98265,
+          "type": "PAM06",
+          "contacts": 656
+        },
+        {
+          "index": 114235,
+          "bodyId": 175459,
+          "type": "PAM08",
+          "contacts": 653
+        },
+        {
+          "index": 107195,
+          "bodyId": 152056,
+          "type": "PAM06",
+          "contacts": 649
+        },
+        {
+          "index": 105177,
+          "bodyId": 147184,
+          "type": "PAM08",
+          "contacts": 645
+        },
+        {
+          "index": 72259,
+          "bodyId": 95523,
+          "type": "PAM08",
+          "contacts": 643
+        },
+        {
+          "index": 75728,
+          "bodyId": 100258,
+          "type": "PAM01",
+          "contacts": 637
+        },
+        {
+          "index": 104654,
+          "bodyId": 146058,
+          "type": "PAM08",
+          "contacts": 637
+        },
+        {
+          "index": 93961,
+          "bodyId": 126501,
+          "type": "PAM06",
+          "contacts": 635
+        },
+        {
+          "index": 112732,
+          "bodyId": 169278,
+          "type": "PAM01",
+          "contacts": 634
+        },
+        {
+          "index": 3050,
+          "bodyId": 13259,
+          "type": "PPL202",
+          "contacts": 631
+        },
+        {
+          "index": 119997,
+          "bodyId": 207463,
+          "type": "PAM06",
+          "contacts": 629
+        },
+        {
+          "index": 102491,
+          "bodyId": 141615,
+          "type": "PAM01",
+          "contacts": 628
+        },
+        {
+          "index": 114348,
+          "bodyId": 175964,
+          "type": "PAM08",
+          "contacts": 626
+        },
+        {
+          "index": 115277,
+          "bodyId": 180403,
+          "type": "PAM09",
+          "contacts": 620
+        },
+        {
+          "index": 122949,
+          "bodyId": 242429,
+          "type": "PAM08",
+          "contacts": 620
+        },
+        {
+          "index": 114098,
+          "bodyId": 174862,
+          "type": "PAM08",
+          "contacts": 618
+        },
+        {
+          "index": 77669,
+          "bodyId": 102936,
+          "type": "PAM08",
+          "contacts": 616
+        },
+        {
+          "index": 100299,
+          "bodyId": 137321,
+          "type": "PAM04",
+          "contacts": 615
+        },
+        {
+          "index": 110692,
+          "bodyId": 162050,
+          "type": "PAM08",
+          "contacts": 614
+        },
+        {
+          "index": 68748,
+          "bodyId": 90867,
+          "type": "PAM01",
+          "contacts": 613
+        },
+        {
+          "index": 43210,
+          "bodyId": 58941,
+          "type": "PAM08",
+          "contacts": 611
+        },
+        {
+          "index": 107183,
+          "bodyId": 152019,
+          "type": "PAM08",
+          "contacts": 611
+        },
+        {
+          "index": 129396,
+          "bodyId": 518137,
+          "type": "PAM06",
+          "contacts": 610
+        },
+        {
+          "index": 82636,
+          "bodyId": 109793,
+          "type": "PAM04",
+          "contacts": 605
+        },
+        {
+          "index": 97931,
+          "bodyId": 133019,
+          "type": "PAM08",
+          "contacts": 605
+        },
+        {
+          "index": 102946,
+          "bodyId": 142538,
+          "type": "PAM08",
+          "contacts": 602
+        },
+        {
+          "index": 129353,
+          "bodyId": 518072,
+          "type": "PAM09",
+          "contacts": 602
+        },
+        {
+          "index": 106394,
+          "bodyId": 150034,
+          "type": "PAM09",
+          "contacts": 598
+        },
+        {
+          "index": 116158,
+          "bodyId": 184778,
+          "type": "PAM08",
+          "contacts": 594
+        },
+        {
+          "index": 109072,
+          "bodyId": 157134,
+          "type": "PAM08",
+          "contacts": 591
+        },
+        {
+          "index": 99612,
+          "bodyId": 136024,
+          "type": "PAM06",
+          "contacts": 585
+        },
+        {
+          "index": 81652,
+          "bodyId": 108429,
+          "type": "PAM04",
+          "contacts": 582
+        },
+        {
+          "index": 66960,
+          "bodyId": 88477,
+          "type": "PAM01",
+          "contacts": 579
+        },
+        {
+          "index": 109114,
+          "bodyId": 157257,
+          "type": "PAM12",
+          "contacts": 576
+        },
+        {
+          "index": 57456,
+          "bodyId": 76362,
+          "type": "PAM08",
+          "contacts": 574
+        },
+        {
+          "index": 139315,
+          "bodyId": 543677,
+          "type": "PAM01",
+          "contacts": 574
+        },
+        {
+          "index": 45217,
+          "bodyId": 61360,
+          "type": "PAM12",
+          "contacts": 573
+        },
+        {
+          "index": 132104,
+          "bodyId": 524069,
+          "type": "PAM08",
+          "contacts": 572
+        },
+        {
+          "index": 89405,
+          "bodyId": 119499,
+          "type": "PAM08",
+          "contacts": 570
+        },
+        {
+          "index": 104234,
+          "bodyId": 145148,
+          "type": "PAM01",
+          "contacts": 565
+        },
+        {
+          "index": 121901,
+          "bodyId": 224500,
+          "type": "PAM11",
+          "contacts": 561
+        },
+        {
+          "index": 124697,
+          "bodyId": 341512,
+          "type": "PAM04",
+          "contacts": 561
+        },
+        {
+          "index": 131892,
+          "bodyId": 523638,
+          "type": "PAM01",
+          "contacts": 561
+        },
+        {
+          "index": 46349,
+          "bodyId": 62731,
+          "type": "PAM01",
+          "contacts": 560
+        },
+        {
+          "index": 105465,
+          "bodyId": 147857,
+          "type": "PAM11",
+          "contacts": 560
+        },
+        {
+          "index": 95764,
+          "bodyId": 129430,
+          "type": "PAM08",
+          "contacts": 556
+        },
+        {
+          "index": 99367,
+          "bodyId": 135578,
+          "type": "PAM08",
+          "contacts": 555
+        },
+        {
+          "index": 82515,
+          "bodyId": 109624,
+          "type": "PAM08",
+          "contacts": 554
+        },
+        {
+          "index": 111303,
+          "bodyId": 164086,
+          "type": "PAM01",
+          "contacts": 546
+        },
+        {
+          "index": 130695,
+          "bodyId": 520384,
+          "type": "PAM12",
+          "contacts": 546
+        },
+        {
+          "index": 142180,
+          "bodyId": 553201,
+          "type": "PAM09",
+          "contacts": 546
+        },
+        {
+          "index": 89884,
+          "bodyId": 120259,
+          "type": "PAM04",
+          "contacts": 545
+        },
+        {
+          "index": 103836,
+          "bodyId": 144315,
+          "type": "PAM01",
+          "contacts": 542
+        },
+        {
+          "index": 120799,
+          "bodyId": 213743,
+          "type": "PAM05",
+          "contacts": 542
+        },
+        {
+          "index": 94204,
+          "bodyId": 126900,
+          "type": "PAM12",
+          "contacts": 538
+        },
+        {
+          "index": 121181,
+          "bodyId": 217007,
+          "type": "PAM06",
+          "contacts": 538
+        },
+        {
+          "index": 38393,
+          "bodyId": 53285,
+          "type": "PAM01",
+          "contacts": 535
+        },
+        {
+          "index": 104211,
+          "bodyId": 145094,
+          "type": "PAM01",
+          "contacts": 534
+        },
+        {
+          "index": 107317,
+          "bodyId": 152385,
+          "type": "PAM08",
+          "contacts": 533
+        },
+        {
+          "index": 63410,
+          "bodyId": 83852,
+          "type": "PAM06",
+          "contacts": 530
+        },
+        {
+          "index": 100975,
+          "bodyId": 138585,
+          "type": "PAM12",
+          "contacts": 530
+        },
+        {
+          "index": 131858,
+          "bodyId": 523553,
+          "type": "PAM05",
+          "contacts": 529
+        },
+        {
+          "index": 101001,
+          "bodyId": 138629,
+          "type": "PAM01",
+          "contacts": 527
+        },
+        {
+          "index": 100417,
+          "bodyId": 137539,
+          "type": "PAM11",
+          "contacts": 526
+        },
+        {
+          "index": 74847,
+          "bodyId": 99089,
+          "type": "PAM01",
+          "contacts": 524
+        },
+        {
+          "index": 122052,
+          "bodyId": 226452,
+          "type": "PAM05",
+          "contacts": 522
+        },
+        {
+          "index": 69496,
+          "bodyId": 91875,
+          "type": "PAM12",
+          "contacts": 521
+        },
+        {
+          "index": 123302,
+          "bodyId": 252045,
+          "type": "PAM01",
+          "contacts": 518
+        },
+        {
+          "index": 107336,
+          "bodyId": 152428,
+          "type": "PAM12",
+          "contacts": 516
+        },
+        {
+          "index": 85783,
+          "bodyId": 114216,
+          "type": "PAM01",
+          "contacts": 515
+        },
+        {
+          "index": 118435,
+          "bodyId": 196985,
+          "type": "PAM05",
+          "contacts": 512
+        },
+        {
+          "index": 101105,
+          "bodyId": 138822,
+          "type": "PAM11",
+          "contacts": 510
+        },
+        {
+          "index": 83261,
+          "bodyId": 110653,
+          "type": "PAM05",
+          "contacts": 509
+        },
+        {
+          "index": 91090,
+          "bodyId": 122062,
+          "type": "PAM08",
+          "contacts": 509
+        },
+        {
+          "index": 106317,
+          "bodyId": 149869,
+          "type": "PAM09",
+          "contacts": 507
+        },
+        {
+          "index": 118717,
+          "bodyId": 198758,
+          "type": "PAM01",
+          "contacts": 507
+        },
+        {
+          "index": 108695,
+          "bodyId": 156046,
+          "type": "PAM01",
+          "contacts": 506
+        },
+        {
+          "index": 86139,
+          "bodyId": 114700,
+          "type": "PAM01",
+          "contacts": 505
+        },
+        {
+          "index": 94911,
+          "bodyId": 128076,
+          "type": "PAM04",
+          "contacts": 505
+        },
+        {
+          "index": 62963,
+          "bodyId": 83277,
+          "type": "PAM01",
+          "contacts": 504
+        },
+        {
+          "index": 114888,
+          "bodyId": 178487,
+          "type": "PAM08",
+          "contacts": 503
+        },
+        {
+          "index": 95832,
+          "bodyId": 129563,
+          "type": "PAM01",
+          "contacts": 498
+        },
+        {
+          "index": 135607,
+          "bodyId": 532715,
+          "type": "PAM05",
+          "contacts": 498
+        },
+        {
+          "index": 107192,
+          "bodyId": 152044,
+          "type": "PAM08",
+          "contacts": 497
+        },
+        {
+          "index": 99150,
+          "bodyId": 135171,
+          "type": "PAM12",
+          "contacts": 493
+        },
+        {
+          "index": 101377,
+          "bodyId": 139378,
+          "type": "PAM12",
+          "contacts": 493
+        },
+        {
+          "index": 69138,
+          "bodyId": 91391,
+          "type": "PAM12",
+          "contacts": 492
+        },
+        {
+          "index": 97631,
+          "bodyId": 132513,
+          "type": "PAM06",
+          "contacts": 491
+        },
+        {
+          "index": 108688,
+          "bodyId": 156028,
+          "type": "PAM01",
+          "contacts": 487
+        },
+        {
+          "index": 111676,
+          "bodyId": 165365,
+          "type": "PAM01",
+          "contacts": 486
+        },
+        {
+          "index": 78787,
+          "bodyId": 104460,
+          "type": "PAM12",
+          "contacts": 484
+        },
+        {
+          "index": 70886,
+          "bodyId": 93704,
+          "type": "PAM01",
+          "contacts": 482
+        },
+        {
+          "index": 118551,
+          "bodyId": 197691,
+          "type": "PAM01",
+          "contacts": 476
+        },
+        {
+          "index": 118374,
+          "bodyId": 196622,
+          "type": "PAM12",
+          "contacts": 475
+        },
+        {
+          "index": 132049,
+          "bodyId": 523942,
+          "type": "PAM08",
+          "contacts": 473
+        },
+        {
+          "index": 108654,
+          "bodyId": 155916,
+          "type": "PAM01",
+          "contacts": 471
+        },
+        {
+          "index": 103993,
+          "bodyId": 144625,
+          "type": "PAM12",
+          "contacts": 461
+        },
+        {
+          "index": 114449,
+          "bodyId": 176460,
+          "type": "PAM15",
+          "contacts": 460
+        },
+        {
+          "index": 73032,
+          "bodyId": 96571,
+          "type": "PAM12",
+          "contacts": 459
+        },
+        {
+          "index": 79466,
+          "bodyId": 105365,
+          "type": "PAM08",
+          "contacts": 459
+        },
+        {
+          "index": 109728,
+          "bodyId": 159062,
+          "type": "PAM01",
+          "contacts": 457
+        },
+        {
+          "index": 139758,
+          "bodyId": 544770,
+          "type": "PAM04",
+          "contacts": 456
+        },
+        {
+          "index": 106442,
+          "bodyId": 150177,
+          "type": "PAM01",
+          "contacts": 454
+        },
+        {
+          "index": 143388,
+          "bodyId": 567409,
+          "type": "PAM04",
+          "contacts": 453
+        },
+        {
+          "index": 118587,
+          "bodyId": 197920,
+          "type": "PAM08",
+          "contacts": 452
+        },
+        {
+          "index": 119798,
+          "bodyId": 205884,
+          "type": "PAM01",
+          "contacts": 452
+        },
+        {
+          "index": 108026,
+          "bodyId": 154230,
+          "type": "PAM05",
+          "contacts": 451
+        },
+        {
+          "index": 114807,
+          "bodyId": 178101,
+          "type": "PAM08",
+          "contacts": 451
+        },
+        {
+          "index": 86748,
+          "bodyId": 115617,
+          "type": "PAM04",
+          "contacts": 448
+        },
+        {
+          "index": 104819,
+          "bodyId": 146418,
+          "type": "PAM12",
+          "contacts": 446
+        },
+        {
+          "index": 116310,
+          "bodyId": 185518,
+          "type": "PAM01",
+          "contacts": 446
+        },
+        {
+          "index": 107179,
+          "bodyId": 151993,
+          "type": "PAM05",
+          "contacts": 444
+        },
+        {
+          "index": 112120,
+          "bodyId": 167009,
+          "type": "PAM01",
+          "contacts": 443
+        },
+        {
+          "index": 142007,
+          "bodyId": 552362,
+          "type": "PAM12",
+          "contacts": 431
+        },
+        {
+          "index": 107557,
+          "bodyId": 152997,
+          "type": "PAM05",
+          "contacts": 430
+        },
+        {
+          "index": 119922,
+          "bodyId": 206851,
+          "type": "PAM12",
+          "contacts": 430
+        },
+        {
+          "index": 119953,
+          "bodyId": 207122,
+          "type": "PAM13",
+          "contacts": 429
+        },
+        {
+          "index": 78046,
+          "bodyId": 103433,
+          "type": "PAM14",
+          "contacts": 428
+        },
+        {
+          "index": 114690,
+          "bodyId": 177603,
+          "type": "PAM04",
+          "contacts": 426
+        },
+        {
+          "index": 83971,
+          "bodyId": 111665,
+          "type": "PAM12",
+          "contacts": 422
+        },
+        {
+          "index": 99212,
+          "bodyId": 135287,
+          "type": "PAM05",
+          "contacts": 421
+        },
+        {
+          "index": 124159,
+          "bodyId": 292203,
+          "type": "PAM04",
+          "contacts": 420
+        },
+        {
+          "index": 79533,
+          "bodyId": 105447,
+          "type": "PAM12",
+          "contacts": 418
+        },
+        {
+          "index": 92966,
+          "bodyId": 124918,
+          "type": "PAM04",
+          "contacts": 416
+        },
+        {
+          "index": 113935,
+          "bodyId": 174255,
+          "type": "PAM14",
+          "contacts": 415
+        },
+        {
+          "index": 109681,
+          "bodyId": 158917,
+          "type": "PAM12",
+          "contacts": 413
+        },
+        {
+          "index": 124564,
+          "bodyId": 325731,
+          "type": "PAM01",
+          "contacts": 413
+        },
+        {
+          "index": 123824,
+          "bodyId": 273182,
+          "type": "PAM11",
+          "contacts": 412
+        },
+        {
+          "index": 131786,
+          "bodyId": 523382,
+          "type": "PAM08",
+          "contacts": 410
+        },
+        {
+          "index": 110010,
+          "bodyId": 159831,
+          "type": "PAM14",
+          "contacts": 404
+        },
+        {
+          "index": 86929,
+          "bodyId": 115868,
+          "type": "PAM14",
+          "contacts": 403
+        },
+        {
+          "index": 103750,
+          "bodyId": 144126,
+          "type": "PAM02",
+          "contacts": 401
+        },
+        {
+          "index": 104983,
+          "bodyId": 146774,
+          "type": "PAM14",
+          "contacts": 401
+        },
+        {
+          "index": 109761,
+          "bodyId": 159158,
+          "type": "PAM01",
+          "contacts": 400
+        },
+        {
+          "index": 108082,
+          "bodyId": 154387,
+          "type": "PAM14",
+          "contacts": 397
+        },
+        {
+          "index": 101542,
+          "bodyId": 139706,
+          "type": "PAM11",
+          "contacts": 386
+        },
+        {
+          "index": 122824,
+          "bodyId": 239873,
+          "type": "PAM04",
+          "contacts": 386
+        },
+        {
+          "index": 105672,
+          "bodyId": 148328,
+          "type": "PAM02",
+          "contacts": 382
+        },
+        {
+          "index": 120616,
+          "bodyId": 212085,
+          "type": "PAM01",
+          "contacts": 382
+        },
+        {
+          "index": 121260,
+          "bodyId": 217737,
+          "type": "PAM14",
+          "contacts": 382
+        },
+        {
+          "index": 107277,
+          "bodyId": 152291,
+          "type": "PAM14",
+          "contacts": 381
+        },
+        {
+          "index": 32812,
+          "bodyId": 46794,
+          "type": "PAM04",
+          "contacts": 377
+        },
+        {
+          "index": 110708,
+          "bodyId": 162116,
+          "type": "PAM13",
+          "contacts": 377
+        },
+        {
+          "index": 84937,
+          "bodyId": 113001,
+          "type": "PAM12",
+          "contacts": 374
+        },
+        {
+          "index": 112141,
+          "bodyId": 167073,
+          "type": "PAM14",
+          "contacts": 372
+        },
+        {
+          "index": 128157,
+          "bodyId": 516044,
+          "type": "PAM04",
+          "contacts": 371
+        },
+        {
+          "index": 119511,
+          "bodyId": 203885,
+          "type": "PAM13",
+          "contacts": 367
+        },
+        {
+          "index": 101336,
+          "bodyId": 139280,
+          "type": "PAM12",
+          "contacts": 365
+        },
+        {
+          "index": 106769,
+          "bodyId": 150983,
+          "type": "PAM14",
+          "contacts": 365
+        },
+        {
+          "index": 121878,
+          "bodyId": 224160,
+          "type": "PAM14",
+          "contacts": 361
+        },
+        {
+          "index": 110569,
+          "bodyId": 161596,
+          "type": "PAM14",
+          "contacts": 351
+        },
+        {
+          "index": 115562,
+          "bodyId": 181924,
+          "type": "PAM01",
+          "contacts": 347
+        },
+        {
+          "index": 109038,
+          "bodyId": 157016,
+          "type": "PAM11",
+          "contacts": 345
+        },
+        {
+          "index": 104316,
+          "bodyId": 145324,
+          "type": "PAM02",
+          "contacts": 340
+        },
+        {
+          "index": 108452,
+          "bodyId": 155329,
+          "type": "PAM02",
+          "contacts": 339
+        },
+        {
+          "index": 119482,
+          "bodyId": 203682,
+          "type": "PAM14",
+          "contacts": 339
+        },
+        {
+          "index": 120289,
+          "bodyId": 209656,
+          "type": "PAM13",
+          "contacts": 338
+        },
+        {
+          "index": 114178,
+          "bodyId": 175232,
+          "type": "PAM13",
+          "contacts": 337
+        },
+        {
+          "index": 103003,
+          "bodyId": 142660,
+          "type": "PAM13",
+          "contacts": 336
+        },
+        {
+          "index": 121339,
+          "bodyId": 218518,
+          "type": "PAM13",
+          "contacts": 335
+        },
+        {
+          "index": 102440,
+          "bodyId": 141510,
+          "type": "PAM15",
+          "contacts": 334
+        },
+        {
+          "index": 122388,
+          "bodyId": 231413,
+          "type": "PAM14",
+          "contacts": 329
+        },
+        {
+          "index": 120682,
+          "bodyId": 212684,
+          "type": "PAM14",
+          "contacts": 328
+        },
+        {
+          "index": 123460,
+          "bodyId": 257650,
+          "type": "PAM02",
+          "contacts": 326
+        },
+        {
+          "index": 99214,
+          "bodyId": 135290,
+          "type": "PAM15",
+          "contacts": 323
+        },
+        {
+          "index": 122768,
+          "bodyId": 238644,
+          "type": "PAM11",
+          "contacts": 323
+        },
+        {
+          "index": 81326,
+          "bodyId": 107986,
+          "type": "PAM02",
+          "contacts": 322
+        },
+        {
+          "index": 111451,
+          "bodyId": 164601,
+          "type": "PAM14",
+          "contacts": 317
+        },
+        {
+          "index": 115897,
+          "bodyId": 183567,
+          "type": "PAM13",
+          "contacts": 317
+        },
+        {
+          "index": 81760,
+          "bodyId": 108576,
+          "type": "PAM13",
+          "contacts": 316
+        },
+        {
+          "index": 164440,
+          "bodyId": 933708,
+          "type": "PAM14",
+          "contacts": 315
+        },
+        {
+          "index": 119291,
+          "bodyId": 202330,
+          "type": "PAM13",
+          "contacts": 314
+        },
+        {
+          "index": 1509,
+          "bodyId": 11618,
+          "type": "PPL102",
+          "contacts": 311
+        },
+        {
+          "index": 109278,
+          "bodyId": 157767,
+          "type": "PAM05",
+          "contacts": 310
+        },
+        {
+          "index": 110407,
+          "bodyId": 161079,
+          "type": "PAM15",
+          "contacts": 309
+        },
+        {
+          "index": 86005,
+          "bodyId": 114522,
+          "type": "PAM07",
+          "contacts": 305
+        },
+        {
+          "index": 113390,
+          "bodyId": 171959,
+          "type": "PAM02",
+          "contacts": 305
+        },
+        {
+          "index": 102312,
+          "bodyId": 141246,
+          "type": "PAM02",
+          "contacts": 302
+        },
+        {
+          "index": 105722,
+          "bodyId": 148469,
+          "type": "PAM02",
+          "contacts": 295
+        },
+        {
+          "index": 110862,
+          "bodyId": 162631,
+          "type": "PAM13",
+          "contacts": 287
+        },
+        {
+          "index": 111352,
+          "bodyId": 164279,
+          "type": "PAM14",
+          "contacts": 286
+        },
+        {
+          "index": 99080,
+          "bodyId": 135046,
+          "type": "PAM02",
+          "contacts": 285
+        },
+        {
+          "index": 104014,
+          "bodyId": 144678,
+          "type": "PAM04",
+          "contacts": 281
+        },
+        {
+          "index": 697,
+          "bodyId": 10753,
+          "type": "PPL201",
+          "contacts": 279
+        },
+        {
+          "index": 3207,
+          "bodyId": 13428,
+          "type": "PPL102",
+          "contacts": 279
+        },
+        {
+          "index": 118676,
+          "bodyId": 198507,
+          "type": "PAM13",
+          "contacts": 278
+        },
+        {
+          "index": 106710,
+          "bodyId": 150828,
+          "type": "PAM02",
+          "contacts": 274
+        },
+        {
+          "index": 123508,
+          "bodyId": 259089,
+          "type": "PAM02",
+          "contacts": 273
+        },
+        {
+          "index": 107569,
+          "bodyId": 153035,
+          "type": "PAM04",
+          "contacts": 271
+        },
+        {
+          "index": 104181,
+          "bodyId": 145022,
+          "type": "PAM02",
+          "contacts": 267
+        },
+        {
+          "index": 109148,
+          "bodyId": 157370,
+          "type": "PAM13",
+          "contacts": 265
+        },
+        {
+          "index": 107295,
+          "bodyId": 152326,
+          "type": "PAM13",
+          "contacts": 263
+        },
+        {
+          "index": 1454,
+          "bodyId": 11560,
+          "type": "PPL201",
+          "contacts": 259
+        },
+        {
+          "index": 121079,
+          "bodyId": 215940,
+          "type": "PAM13",
+          "contacts": 257
+        },
+        {
+          "index": 124156,
+          "bodyId": 291665,
+          "type": "PAM02",
+          "contacts": 246
+        },
+        {
+          "index": 117192,
+          "bodyId": 190296,
+          "type": "PAM02",
+          "contacts": 244
+        },
+        {
+          "index": 114444,
+          "bodyId": 176429,
+          "type": "PAM04",
+          "contacts": 222
+        },
+        {
+          "index": 104982,
+          "bodyId": 146773,
+          "type": "PAM04",
+          "contacts": 212
+        },
+        {
+          "index": 111619,
+          "bodyId": 165187,
+          "type": "PAM05",
+          "contacts": 201
+        },
+        {
+          "index": 109301,
+          "bodyId": 157816,
+          "type": "PAM04",
+          "contacts": 200
+        },
+        {
+          "index": 112662,
+          "bodyId": 169027,
+          "type": "PAM03",
+          "contacts": 196
+        },
+        {
+          "index": 109425,
+          "bodyId": 158196,
+          "type": "PAM04",
+          "contacts": 195
+        },
+        {
+          "index": 163047,
+          "bodyId": 909818,
+          "type": "PAM03",
+          "contacts": 190
+        },
+        {
+          "index": 122988,
+          "bodyId": 243477,
+          "type": "PAM13",
+          "contacts": 186
+        },
+        {
+          "index": 94652,
+          "bodyId": 127659,
+          "type": "PAM02",
+          "contacts": 183
+        },
+        {
+          "index": 111252,
+          "bodyId": 163951,
+          "type": "PAM06",
+          "contacts": 183
+        },
+        {
+          "index": 124230,
+          "bodyId": 297139,
+          "type": "PAM04",
+          "contacts": 183
+        },
+        {
+          "index": 104341,
+          "bodyId": 145371,
+          "type": "PAM05",
+          "contacts": 178
+        },
+        {
+          "index": 114896,
+          "bodyId": 178539,
+          "type": "PAM04",
+          "contacts": 171
+        },
+        {
+          "index": 114743,
+          "bodyId": 177800,
+          "type": "PAM04",
+          "contacts": 165
+        },
+        {
+          "index": 111018,
+          "bodyId": 163194,
+          "type": "PAM06",
+          "contacts": 162
+        },
+        {
+          "index": 113966,
+          "bodyId": 174384,
+          "type": "PAM03",
+          "contacts": 162
+        },
+        {
+          "index": 116492,
+          "bodyId": 186566,
+          "type": "PAM04",
+          "contacts": 161
+        },
+        {
+          "index": 123523,
+          "bodyId": 259486,
+          "type": "PAM04",
+          "contacts": 156
+        },
+        {
+          "index": 109255,
+          "bodyId": 157683,
+          "type": "PAM04",
+          "contacts": 155
+        },
+        {
+          "index": 109603,
+          "bodyId": 158651,
+          "type": "PAM06",
+          "contacts": 150
+        },
+        {
+          "index": 102801,
+          "bodyId": 142238,
+          "type": "PAM02",
+          "contacts": 149
+        },
+        {
+          "index": 113031,
+          "bodyId": 170467,
+          "type": "PAM03",
+          "contacts": 142
+        },
+        {
+          "index": 143973,
+          "bodyId": 580579,
+          "type": "PAM03",
+          "contacts": 136
+        },
+        {
+          "index": 124658,
+          "bodyId": 336850,
+          "type": "PAM03",
+          "contacts": 132
+        },
+        {
+          "index": 112835,
+          "bodyId": 169674,
+          "type": "PAM04",
+          "contacts": 131
+        },
+        {
+          "index": 106780,
+          "bodyId": 151013,
+          "type": "PAM03",
+          "contacts": 120
+        },
+        {
+          "index": 112415,
+          "bodyId": 168080,
+          "type": "PAM03",
+          "contacts": 104
+        },
+        {
+          "index": 111231,
+          "bodyId": 163883,
+          "type": "PAM03",
+          "contacts": 101
+        },
+        {
+          "index": 112397,
+          "bodyId": 168020,
+          "type": "PAM03",
+          "contacts": 94
+        },
+        {
+          "index": 114606,
+          "bodyId": 177202,
+          "type": "PAM03",
+          "contacts": 91
+        },
+        {
+          "index": 117193,
+          "bodyId": 190297,
+          "type": "PAM03",
+          "contacts": 88
+        },
+        {
+          "index": 130597,
+          "bodyId": 520182,
+          "type": "PPL204",
+          "contacts": 14
+        },
+        {
+          "index": 4352,
+          "bodyId": 14705,
+          "type": "PPL107",
+          "contacts": 13
+        },
+        {
+          "index": 20927,
+          "bodyId": 33316,
+          "type": "PPL204",
+          "contacts": 13
+        },
+        {
+          "index": 2421,
+          "bodyId": 12588,
+          "type": "PPM1201",
+          "contacts": 11
+        },
+        {
+          "index": 2472,
+          "bodyId": 12644,
+          "type": "PPM1201",
+          "contacts": 9
+        },
+        {
+          "index": 682,
+          "bodyId": 10735,
+          "type": "LoVC18",
+          "contacts": 5
+        },
+        {
+          "index": 844,
+          "bodyId": 10914,
+          "type": "LoVC18",
+          "contacts": 3
+        },
+        {
+          "index": 31264,
+          "bodyId": 45024,
+          "type": "FB1C",
+          "contacts": 3
+        },
+        {
+          "index": 130578,
+          "bodyId": 520146,
+          "type": "SIP106m",
+          "contacts": 3
+        },
+        {
+          "index": 131622,
+          "bodyId": 522823,
+          "type": "PPM1201",
+          "contacts": 2
+        },
+        {
+          "index": 593,
+          "bodyId": 10639,
+          "type": "LoVC22",
+          "contacts": 1
+        },
+        {
+          "index": 790,
+          "bodyId": 10852,
+          "type": "LoVC18",
+          "contacts": 1
+        },
+        {
+          "index": 2714,
+          "bodyId": 12902,
+          "type": "PPL108",
+          "contacts": 1
+        }
+      ]
+    },
+    {
+      "sourceTransmitterLabel": "dopamine",
+      "targetPool": "Mi1",
+      "sourceCellsWithContacts": 0,
+      "targetCellsReached": 0,
+      "directedEdges": 0,
+      "synapticContacts": 0,
+      "sources": []
+    },
+    {
+      "sourceTransmitterLabel": "dopamine",
+      "targetPool": "Tm3",
+      "sourceCellsWithContacts": 6,
+      "targetCellsReached": 10,
+      "directedEdges": 10,
+      "synapticContacts": 10,
+      "sources": [
+        {
+          "index": 998,
+          "bodyId": 11079,
+          "type": "LoVC22",
+          "contacts": 3
+        },
+        {
+          "index": 593,
+          "bodyId": 10639,
+          "type": "LoVC22",
+          "contacts": 2
+        },
+        {
+          "index": 137687,
+          "bodyId": 537899,
+          "type": "LoVC18",
+          "contacts": 2
+        },
+        {
+          "index": 790,
+          "bodyId": 10852,
+          "type": "LoVC18",
+          "contacts": 1
+        },
+        {
+          "index": 1123,
+          "bodyId": 11214,
+          "type": "LoVC22",
+          "contacts": 1
+        },
+        {
+          "index": 4658,
+          "bodyId": 15042,
+          "type": "LoVC22",
+          "contacts": 1
+        }
+      ]
+    },
+    {
+      "sourceTransmitterLabel": "dopamine",
+      "targetPool": "Mi4",
+      "sourceCellsWithContacts": 0,
+      "targetCellsReached": 0,
+      "directedEdges": 0,
+      "synapticContacts": 0,
+      "sources": []
+    },
+    {
+      "sourceTransmitterLabel": "dopamine",
+      "targetPool": "Mi9",
+      "sourceCellsWithContacts": 0,
+      "targetCellsReached": 0,
+      "directedEdges": 0,
+      "synapticContacts": 0,
+      "sources": []
+    },
+    {
+      "sourceTransmitterLabel": "dopamine",
+      "targetPool": "L5",
+      "sourceCellsWithContacts": 0,
+      "targetCellsReached": 0,
+      "directedEdges": 0,
+      "synapticContacts": 0,
+      "sources": []
+    },
+    {
+      "sourceTransmitterLabel": "serotonin",
+      "targetPool": "T4",
+      "sourceCellsWithContacts": 2,
+      "targetCellsReached": 74,
+      "directedEdges": 74,
+      "synapticContacts": 76,
+      "sources": [
+        {
+          "index": 256,
+          "bodyId": 10278,
+          "type": "5-HTPMPV03",
+          "contacts": 47
+        },
+        {
+          "index": 41,
+          "bodyId": 10050,
+          "type": "5-HTPMPV03",
+          "contacts": 29
+        }
+      ]
+    },
+    {
+      "sourceTransmitterLabel": "serotonin",
+      "targetPool": "T5",
+      "sourceCellsWithContacts": 2,
+      "targetCellsReached": 64,
+      "directedEdges": 65,
+      "synapticContacts": 65,
+      "sources": [
+        {
+          "index": 256,
+          "bodyId": 10278,
+          "type": "5-HTPMPV03",
+          "contacts": 41
+        },
+        {
+          "index": 41,
+          "bodyId": 10050,
+          "type": "5-HTPMPV03",
+          "contacts": 24
+        }
+      ]
+    },
+    {
+      "sourceTransmitterLabel": "serotonin",
+      "targetPool": "Kenyon cells",
+      "sourceCellsWithContacts": 7,
+      "targetCellsReached": 148,
+      "directedEdges": 151,
+      "synapticContacts": 157,
+      "sources": [
+        {
+          "index": 3914,
+          "bodyId": 14212,
+          "type": "CSD",
+          "contacts": 89
+        },
+        {
+          "index": 4342,
+          "bodyId": 14694,
+          "type": "5-HTPMPV01",
+          "contacts": 27
+        },
+        {
+          "index": 1136,
+          "bodyId": 11227,
+          "type": "CSD",
+          "contacts": 17
+        },
+        {
+          "index": 1332,
+          "bodyId": 11428,
+          "type": "5-HTPMPV01",
+          "contacts": 15
+        },
+        {
+          "index": 216,
+          "bodyId": 10237,
+          "type": "DNg30",
+          "contacts": 6
+        },
+        {
+          "index": 256,
+          "bodyId": 10278,
+          "type": "5-HTPMPV03",
+          "contacts": 2
+        },
+        {
+          "index": 107904,
+          "bodyId": 153891,
+          "type": "aDT4",
+          "contacts": 1
+        }
+      ]
+    },
+    {
+      "sourceTransmitterLabel": "serotonin",
+      "targetPool": "Mi1",
+      "sourceCellsWithContacts": 2,
+      "targetCellsReached": 16,
+      "directedEdges": 16,
+      "synapticContacts": 16,
+      "sources": [
+        {
+          "index": 256,
+          "bodyId": 10278,
+          "type": "5-HTPMPV03",
+          "contacts": 10
+        },
+        {
+          "index": 41,
+          "bodyId": 10050,
+          "type": "5-HTPMPV03",
+          "contacts": 6
+        }
+      ]
+    },
+    {
+      "sourceTransmitterLabel": "serotonin",
+      "targetPool": "Tm3",
+      "sourceCellsWithContacts": 2,
+      "targetCellsReached": 47,
+      "directedEdges": 47,
+      "synapticContacts": 47,
+      "sources": [
+        {
+          "index": 256,
+          "bodyId": 10278,
+          "type": "5-HTPMPV03",
+          "contacts": 27
+        },
+        {
+          "index": 41,
+          "bodyId": 10050,
+          "type": "5-HTPMPV03",
+          "contacts": 20
+        }
+      ]
+    },
+    {
+      "sourceTransmitterLabel": "serotonin",
+      "targetPool": "Mi4",
+      "sourceCellsWithContacts": 2,
+      "targetCellsReached": 84,
+      "directedEdges": 85,
+      "synapticContacts": 85,
+      "sources": [
+        {
+          "index": 256,
+          "bodyId": 10278,
+          "type": "5-HTPMPV03",
+          "contacts": 47
+        },
+        {
+          "index": 41,
+          "bodyId": 10050,
+          "type": "5-HTPMPV03",
+          "contacts": 38
+        }
+      ]
+    },
+    {
+      "sourceTransmitterLabel": "serotonin",
+      "targetPool": "Mi9",
+      "sourceCellsWithContacts": 2,
+      "targetCellsReached": 137,
+      "directedEdges": 139,
+      "synapticContacts": 156,
+      "sources": [
+        {
+          "index": 256,
+          "bodyId": 10278,
+          "type": "5-HTPMPV03",
+          "contacts": 83
+        },
+        {
+          "index": 41,
+          "bodyId": 10050,
+          "type": "5-HTPMPV03",
+          "contacts": 73
+        }
+      ]
+    },
+    {
+      "sourceTransmitterLabel": "serotonin",
+      "targetPool": "L5",
+      "sourceCellsWithContacts": 2,
+      "targetCellsReached": 2,
+      "directedEdges": 2,
+      "synapticContacts": 2,
+      "sources": [
+        {
+          "index": 41,
+          "bodyId": 10050,
+          "type": "5-HTPMPV03",
+          "contacts": 1
+        },
+        {
+          "index": 256,
+          "bodyId": 10278,
+          "type": "5-HTPMPV03",
+          "contacts": 1
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Transmitter consensus labels are annotations, not measured release under the proposed stimuli.",
+    "Chemical synaptic contacts do not specify postsynaptic receptor expression or receptor-dependent effects.",
+    "Extrasynaptic signaling, co-transmission, release kinetics and plasticity are not established by these counts.",
+    "No Hx homology is inferred when a matching cell-type label is absent.",
+    "Ranked contact counts identify anatomical candidates for follow-up, not intervention efficacy or physical dose."
+  ]
+}
