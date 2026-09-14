@@ -66,17 +66,19 @@ def verify_candidate_weights(candidate, basis_path, source_path):
 states = {}
 for name in ['vertical', 'vertical-robust', 'attitude', 'ground-general', 'attitude-correlated',
              'engine-transition', 'recovery-grid', 'attitude-adaptive', 'gimbal-steering',
-             'orbital-insertion', 'orbital-progress', 'orbital-calibrated', 'vertical-all-ground', 'orbital-hold', 'ground-joint-focus', 'ground-joint-all']:
+             'orbital-insertion', 'orbital-progress', 'orbital-calibrated', 'vertical-all-ground', 'orbital-hold', 'orbital-joint', 'ground-joint-focus', 'ground-joint-all']:
     path = folder/name/'state.json'
     if path.exists():
         d = json.loads(path.read_text())
         if name in ['ground-joint-focus','ground-joint-all'] and d['generation'] < 6:
             continue  # Do not turn a partial lesson into completed-training evidence.
+        if name == 'orbital-joint' and d['generation'] < 8:
+            continue
         sources.append(path)
         states[name] = {'generation': d['generation'], 'episodes': d['episodes'],
                         'history': [{k:r.get(k) for k in ['generation','episodes','landings','batch','score','fitness']} for r in d['history']]}
         trials_file = folder/name/'trials.jsonl'
-        if name in ['vertical-all-ground','ground-joint-focus','ground-joint-all','orbital-hold']:
+        if name in ['vertical-all-ground','ground-joint-focus','ground-joint-all','orbital-hold','orbital-joint']:
             assert trials_file.exists(), 'Completed lesson is missing its full trial ledger'
         if trials_file.exists():
             sources.append(trials_file)
@@ -152,37 +154,47 @@ for name in ['vertical', 'vertical-robust', 'attitude', 'ground-general', 'attit
                 states[name]['coverageAndRewardVerified'] = True
                 states[name]['allCandidateLandingsByMission'] = {str(i): sum(f['landed'] for f in all_flights if f['scenario'] == i) for i in sorted(plan['profiles'])}
                 states[name]['lastGenerationOutcomes'] = best['flights']
-            if name == 'orbital-hold':
+            if name in ['orbital-hold','orbital-joint']:
                 plan_path = folder/name/'plan.json'
                 plan = json.loads(plan_path.read_text())
                 initial_path = root/plan['initialFile']
                 initial = json.loads(initial_path.read_text())
-                launch_path = folder/name/'launch-parameters.json'
-                launch = json.loads(launch_path.read_text())
-                assert launch['planSHA256'] == hashlib.sha256(plan_path.read_bytes()).hexdigest()
-                assert launch['touchdownMargin'] == 3
+                basis_path = root/plan.get('basisPath',plan.get('basisFile'))
+                if name == 'orbital-hold':
+                    launch_path = folder/name/'launch-parameters.json'
+                    launch = json.loads(launch_path.read_text())
+                    assert launch['planSHA256'] == hashlib.sha256(plan_path.read_bytes()).hexdigest()
+                    assert launch['touchdownMargin'] == 3
+                    sources.append(launch_path)
+                    assert [plan[k] for k in ['generations','population','expectedFlights']] == [6,12,432]
+                    assert plan['activeDirections'] == list(range(12))+list(range(16,28))
+                else:
+                    assert [plan[k] for k in ['generations','population','expectedFlights']] == [8,16,768]
+                    assert plan['activeDirections'] == [0,1,2,7,11,16,17,18,19,20,21,22,25]
+                    assert d['nativeBuild'] == plan['nativeBuild']
                 for path, expected in [(initial_path, plan['initialSHA256']),
-                                       (root/plan['basisFile'], plan['basisSHA256']),
+                                       (basis_path, plan['basisSHA256']),
                                        (folder/name/('source-'+plan['sourceSHA256']+'.mjs'), plan['sourceSHA256']),
                                        (folder/name/('insertion-hold-'+plan['insertionRewardSourceSHA256']+'.mjs'), plan['insertionRewardSourceSHA256'])]:
                     assert hashlib.sha256(path.read_bytes()).hexdigest() == expected
                     sources.append(path)
-                assert d['generation'] == plan['generations'] == 6 and d['episodes'] == plan['expectedFlights'] == 432
+                assert d['generation'] == plan['generations'] and d['episodes'] == plan['expectedFlights']
                 assert plan['profiles'] == d['profiles'] == [24,25,26]
-                assert plan['activeDirections'] == list(range(12))+list(range(16,28))
                 assert d['nativeBuild'] == initial['nativeBuild']
                 assert d['calibrationHash'] == plan['basisSHA256'] and d['sourceSHA256'] == plan['sourceSHA256']
                 assert d['insertionRewardSourceSHA256'] == plan['insertionRewardSourceSHA256']
                 milestone_order = ['Final approach','Atmospheric entry','Deorbit','One full orbit','Stable orbit','Space','Launch']
                 def rank(r):
                     return (r['landings'], *(sum(any(m['name']==name for m in f['milestones']) for f in r['flights']) for name in milestone_order), r['fitness'])
-                assert [g['generation'] for g in generations] == list(range(1,7))
+                assert [g['generation'] for g in generations] == list(range(1,plan['generations']+1))
                 assert len(d['history']) == len(generations) == plan['generations']
                 for generation, history in zip(generations,d['history']):
                     g = generation['generation']
                     cases = [{'scenario':plan['profiles'][(g+i-1)%3], 'seed':714133 if i==0 else 527801+g*15427+i*10391,
                               'variability':.4 if i%2 else 0} for i in range(6)]
-                    assert generation['cases'] == cases and len(generation['results']) == plan['population'] == 12
+                    assert generation['cases'] == cases and len(generation['results']) == plan['population']
+                    if name == 'orbital-joint':
+                        assert cases == plan['generationCases'][g-1]['cases']
                     assert all(sorted(c['variability'] for c in cases if c['scenario']==i)==[0,.4] for i in [24,25,26])
                     assert generation['backend'] == 'native-exact-rate' and generation['nativeBuild'] == d['nativeBuild']
                     assert generation['searchSeed'] == plan['searchSeed'] and generation['correlated']
@@ -190,7 +202,7 @@ for name in ['vertical', 'vertical-robust', 'attitude', 'ground-general', 'attit
                         assert generation[key] == plan[key] == d[key]
                     assert generation['calibrationHash'] == plan['basisSHA256'] and generation['touchdownMargin'] == 3
                     for r in generation['results']:
-                        assert len(r['parameters']) == 28 and r['parameters'][12:16] == initial['parameters'][12:16]
+                        assert len(r['parameters']) == 28 and all(r['parameters'][i] == initial['parameters'][i] for i in range(28) if i not in plan['activeDirections'])
                         assert len(r['flights']) == 6
                         for f,c in zip(r['flights'],cases):
                             assert (f['scenario'],f['seed'],f['variation']['level']) == (c['scenario'],c['seed'],c['variability'])
@@ -207,13 +219,13 @@ for name in ['vertical', 'vertical-robust', 'attitude', 'ground-general', 'attit
                         assert r['landings'] == sum(f['landed'] for f in r['flights'])
                     best = max(generation['results'],key=rank)
                     assert all(history[key] == best[key] for key in ['parameters','score','fitness','landings','flights'])
-                    assert history['generation'] == g and history['episodes'] == 72*g
+                    assert history['generation'] == g and history['episodes'] == plan['population']*6*g
                 candidate_path = folder/name/'candidate.json'
                 candidate = json.loads(candidate_path.read_text())
                 assert d['best'] == best and candidate['parameters'] == best['parameters'] and candidate['history'] == d['history']
-                assert candidate['generation'] == 6 and candidate['episodes'] == 432
-                verify_candidate_weights(candidate,root/plan['basisFile'],folder/name/('source-'+plan['sourceSHA256']+'.mjs'))
-                sources.extend([plan_path,launch_path,candidate_path])
+                assert candidate['generation'] == plan['generations'] and candidate['episodes'] == plan['expectedFlights']
+                verify_candidate_weights(candidate,basis_path,folder/name/('source-'+plan['sourceSHA256']+'.mjs'))
+                sources.extend([plan_path,candidate_path])
                 states[name]['coverageAndRewardVerified'] = True
                 states[name]['allCandidateFlightsByMission'] = {str(i):sum(f['scenario']==i for f in all_flights) for i in [24,25,26]}
                 states[name]['maximumRecordedHoldQuality'] = max(f['insertionHoldQuality'] for f in all_flights)
@@ -456,6 +468,24 @@ for block, report_key, dimensions, active in [
     sources.append(plan_path)
     development[report_key] = {
         'scope':'Verified frozen training plan; plan existence does not establish live job status, and partial outcomes are not qualification evidence.',
+        'plan':plan}
+paired_plan_path = folder/'orbital-joint-paired-diagnostic/plan.json'
+if paired_plan_path.exists():
+    plan = json.loads(paired_plan_path.read_text())
+    assert hashlib.sha256(paired_plan_path.read_bytes()).hexdigest() == 'b0a1cea3c16dd6e704e7a82c0d3435a377212ec53ce2fec6e4e0d7a8a28bc449'
+    assert plan['expectedFullFlights'] == 12 and len(plan['models']) == 2
+    assert plan['cases'] == [{'scenario':[24,25,26][i%3],'seed':714133+i*19667,'variability':.4 if i%2 else 0} for i in range(6)]
+    for name,expected in plan['runtimeSHA256'].items():
+        path = root/plan['runtimeDirectory']/name
+        assert hashlib.sha256(path.read_bytes()).hexdigest() == expected
+        sources.append(path)
+    for model in plan['models'].values():
+        path = root/model['file']
+        assert hashlib.sha256(path.read_bytes()).hexdigest() == model['sha256']
+        sources.append(path)
+    sources.append(paired_plan_path)
+    development['orbitalJointPairedDiagnosticPlan'] = {
+        'scope':'Frozen paired trajectory/command diagnostic plan and complete input snapshot. Plan existence does not establish live status or completed outcomes; no training or reliability qualification.',
         'plan':plan}
 throttle_folder = folder/'orbital-hold-g6-probe/throttle-audit'
 if (throttle_folder/'manifest.json').exists():

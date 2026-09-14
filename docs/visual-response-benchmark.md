@@ -6,6 +6,11 @@ one-filter reference, but its prediction of the entire held-out natural
 stimulus has higher absolute error than a zero-response reference. It is
 not qualified for installation as visual physiology in the connectome.
 
+A subsequent [recurrent development model](visual-recurrent-development.md)
+uses these now-inspected responses for fitting. All 32 new attempts completed,
+with modest error reductions and an incomplete explanation of the chemical
+response pattern. That development result does not reverse this frozen test.
+
 L1 and L2 normally use graded voltage signals. Published ASAP2f recordings
 show increased fluorescence with hyperpolarization and decreased fluorescence
 with depolarization. This makes a voltage-indicator response an appropriate

@@ -13,6 +13,12 @@ conditions show a larger late rebound, while bright responses vary. These
 brain-bath recordings support model development; they do not establish an
 airborne-odor command or a useful intervention in the simulated controller.
 
+The [recurrent visual development model](visual-recurrent-development.md)
+now captures part of this pattern: increasing effective feedback predicts the
+dark-response directions, but fails four bright-response comparisons. All 32
+control-data fits completed; their modest fitting improvement does not yet
+establish independent prediction or a chemical steering mechanism.
+
 The earlier chemical work is useful negative evidence: the
 [148-trial panel](additional-odor-tests.md) did not yield a confirmed steering
 candidate, and the [68-trial calibration follow-up](odor-calibration-followup.md)

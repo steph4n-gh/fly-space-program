@@ -778,10 +778,49 @@ reward. Only the search's eligible parameter set changes.
 The plan fixes **eight generations × 16 candidates × six full trips = 768
 flights**, with one nominal and one varied start per orbital mission per
 generation. It retains the original proposal scales and covariance algorithm
-with a fresh optimizer initialization. The fixed generation-eight candidate
-will be evaluated after the complete lesson. Training cases may repeat;
-improved shaped reward without an actual orbital milestone remains failed
-insertion, and no orbital capability is qualified by this plan.
+with a fresh optimizer initialization. All **768 flights have now completed**:
+256 per orbital mission, with no censored trips. The ledger contains 708
+launches and 517 space crossings, but **zero stable orbits, completed orbits,
+return milestones or landings**. Terminal outcomes were 532 recovery-corridor
+exits, 194 returns before completing an orbit, and 42 original mission
+timeouts.
+
+The fixed generation-eight candidate's six training trips all left the
+recovery corridor. The largest sustained-insertion quality among all 768
+flights was only 0.058821 on its 0–1 scale. The completed-report verifier
+reconstructed every reward, generation selection and final weight array,
+checked the prescribed cases and all 15 fixed parameters, and matched the
+source, basis and native-build records. Recorded hold-quality summaries are
+not independent trajectory reconstructions. Training cases may repeat; no
+orbital capability or release is qualified by this completed lesson.
+
+The source snapshot omits some transitive imports and the graph asset package;
+it is not a standalone runtime archive. Its matching hashes and current graph
+counts do not retrospectively certify every dependency byte loaded by the
+finished process. This provenance limit is retained alongside the failed
+training result.
+
+An additional independent audit passed 10,395 arithmetic checks, replayed
+all 128 joint candidate parameter proposals within `2.67e-15`, and verified
+the final search mean, scales and covariance. Its 55 hash observations found
+no frozen-evidence mismatch. These checks establish consistency of the
+retained training record; they do not supply successful mission evidence.
+
+The follow-up paired diagnostic fixes **12 complete trips**: the inherited
+and final controllers each receive the same six previously used development
+cases, covering all three orbital missions at nominal and 0.4 variability.
+Both probes were launched after 243 prelaunch checks. Their new snapshot
+pins 71 files, including all 15 imported modules, 51 graph files, and the native
+binary/build; it preserves query-qualified module imports. It retains the
+original orbital trainer and both learned coefficient vectors. The launcher
+verifies the snapshot and clears inherited experiment settings before applying
+the exact frozen environment.
+
+The plan requires all trajectories and original endpoints to be retained,
+followed by physical replay and paired pitch/throttle/hold diagnostics.
+No coefficients or action schedules are chosen from these diagnostic cases.
+The [machine-readable report](suite-training-progress.json) includes the
+frozen plan; that plan alone does not establish completion or capability.
 
 Reproduce the command decomposition with
 `node scripts/summarize-orbital-throttle.mjs`. It reads the archived tested

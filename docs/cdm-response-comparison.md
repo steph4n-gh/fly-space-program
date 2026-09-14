@@ -89,3 +89,9 @@ An independent calculation using rational bin geometry and compensated sums
 verified every paired value, source file and individual-mean relationship.
 The largest difference from the published calculation was `6.94e-18`.
 The complete eight-panel figure was also visually checked.
+
+The subsequent [recurrent development model](visual-recurrent-development.md)
+completed all 32 fits. Increasing its fitted feedback strength alone predicts
+both observed dark-response directions in all four named conditions, but
+fails four bright-response window comparisons. The full chemical pattern
+therefore remains unexplained by that local one-parameter change.
