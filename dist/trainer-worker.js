@@ -1,5 +1,5 @@
-import {loadNetwork} from './full-network.js?v=9.5';
-import {FullTrainer,validCheckpoint} from './full-controller.js?v=9.5';
+import {loadNetwork} from './full-network.js?v=9.6';
+import {FullTrainer,validCheckpoint} from './full-controller.js?v=9.6';
 let network,trainer,running=false,busy=false;
 async function train(data){
  if(busy)return;busy=true;running=true;

@@ -1,12 +1,12 @@
 # Learning the full mission suite
 
 The current work extends the first visual landing lesson toward all 27
-missions. The packaged checkpoint landed **56/80 unseen starts across ten
-ground missions**, versus **0/80 with covered eyes** and **0/80 with the
-indicators disabled**. These results do not establish mastery of the full
-suite or transfer to a living fly. The four original missions each landed
-8/8; six engine-failure missions ranged from 1/8 to 7/8. Every failure remains
-in the report.
+missions. The packaged checkpoint landed **60/80 unseen starts across ten
+ground missions**, versus **54/80 for the previous controller on the same
+starts**, **0/80 with covered eyes** and **0/80 with the indicators disabled**.
+These results do not establish mastery of the full suite or transfer to a
+living fly. The four original missions totalled 31/32; six engine-failure
+missions ranged from 1/8 to 8/8. Every failure remains in the report.
 
 ## Presented information
 
@@ -229,7 +229,7 @@ are `engine-position-bias-grid/sweep.json`, `adaptive-steering-initial.json`
 and `adaptive-sensory-probe/probe.json` under `artifacts/suite-training/`.
 These are development measurements, with no new independent reliability claim.
 
-### Released ten-mission checkpoint
+### Previous ten-mission checkpoint
 
 The adaptive-attitude search completed **1,200 full training flights** in
 ten generations. Generation six was the first with nine of ten landings in
@@ -266,10 +266,10 @@ starts, an important limit on generalization. The original four missions
 totalled 32/32 in this cohort; that does not establish perfect reliability
 on future starts. The harder profiles still need substantial improvement.
 
-The [current report](../dist/assets/landing-report.json) contains all 240
+The [historical report](assets/ten-mission-g6-report.json) contains all 240
 outcomes and the frozen pre-test plan. Its weight SHA-256 is
 `eaf58811ecf1862590ac820a0d8dcafbfad66346850c51aea2372b3346626a3c`.
-The new checkpoint uses the three-engine bank from the start. Its throttle
+That checkpoint uses the three-engine bank from the start. Its throttle
 and steering adapt to the existing measured body feedback; reactive
 engine-bank switching is not established. These results cover ten ground
 missions, leaving 17 missions without final validation for this checkpoint.
@@ -282,7 +282,7 @@ Chemical inputs remain off by default in the new release.
 
 ## Additional ground missions and gimbal steering
 
-A development survey used the frozen released controller on the other 14
+A development survey used the frozen previous controller on the other 14
 ground missions: one nominal and one variability-0.4 start per mission,
 with new seeds fixed before execution. It landed **16/28** full flights.
 These two starts per mission identify curriculum gaps; they do not extend
@@ -311,7 +311,7 @@ the frozen checkpoint and test-plan hashes. High return timed out on both
 starts; Rough seas failed on lateral speed on both. These results support
 further steering and recovery training rather than a reliability claim.
 
-The released checkpoint has zero weights in both gimbal output heads. This
+That previous checkpoint has zero weights in both gimbal output heads. This
 explains its motionless gimbal: it learned attitude control with the jets
 while gimbal directions were held fixed. An isolated actuator check applied
 opposite commands to each gimbal axis and confirmed opposite torque and
@@ -319,14 +319,14 @@ lateral acceleration, plus the corresponding foreleg linkage changes.
 That check verifies the physical/control path; it is not browser visual QA
 or evidence of learned steering.
 
-The new `gimbal-steering` lesson starts from a frozen copy of the released
+The `gimbal-steering` lesson starts from a frozen copy of that previous
 controller and adds five search directions: lateral position, lateral
 drift, pitch, roll and angular motion. They feed both existing gimbal heads
 using the same calibrated sensory activity. Jet steering and damping can
 adapt jointly. All five additions start at zero; with them inactive, a
 complete JavaScript flight exactly matched the released weights and
 entire original outcome. No extra observations or prescribed actions are
-introduced. The planned eight generations contain 960 full training
+introduced. The eight generations completed 960 full training
 flights across the same ten missions. A candidate needs separate selection
 and final tests before replacing the release.
 
@@ -336,7 +336,7 @@ varied starts per mission. All **160 selection flights** completed:
 
 | Selection condition | Landings / starts | Original four missions |
 | --- | ---: | ---: |
-| Released controller | 29/40 | 16/16 |
+| Previous controller | 29/40 | 16/16 |
 | Generation-two gimbal candidate | 30/40 | 15/16 |
 | Same candidate with only its five gimbal coefficients zeroed | 29/40 | 16/16 |
 | Gimbal candidate with covered eyes | 0/40 | 0/16 |
@@ -352,7 +352,93 @@ Two separate complete-flight probes confirmed movement in both gimbal
 commands and actual actuator-position feedback. The corrections stayed
 within about one degree, and both probes landed. They establish that the
 learned path operates; they do not override the failed selection criterion.
-The planned training run continues from its existing state.
+The eight-generation lesson subsequently completed all **960 training
+flights**. Its best candidates landed 7, 9, 8, 7, 9, 9, 9 and 9 of their ten
+starts, respectively. Starts changed across generations; these are training
+outcomes, not reliability estimates.
+
+Generation five was frozen before a second comparison on the same 40-start
+development cohort. It landed 30/40 overall and 16/16 on the original four
+missions. Its gimbal-disabled counterpart landed 29/40 and 16/16, and its
+covered-eye control landed 0/40. This candidate passed the landing selection
+rule. A separate plan fixed 80 new starts using the JavaScript
+calculation: 240 candidate flights across three sensory conditions and 80
+matched previous-controller flights. The candidate stayed fixed for that
+final comparison; later training generations were not substituted.
+
+Two additional development probes of generation five recorded both gimbal
+commands and actuator-position feedback. Replaying every action reproduced
+both physical flights exactly, including the recorded feedback. Corrections
+stayed below half a degree on both axes. Landing School landed; the varied
+windy flight failed at 3.19 m/s lateral speed. These probes demonstrate
+movement, with a retained failure; they do not replace the final comparison.
+
+### Released learned-gimbal checkpoint
+
+All **320 final JavaScript flights** completed under that frozen plan.
+Generation five landed **60/80**, compared with **54/80** for the previous
+controller on exactly the same starts. Both landed 31/32 on the original
+four missions, satisfying the predeclared promotion criterion. The new
+controller rescued seven previous failures and lost one previous success;
+the net gain was six landings. This is a small matched cohort, not a claim
+of dependable performance on all missions.
+
+| Mission | Learned gimbal and jets | Previous controller |
+| --- | ---: | ---: |
+| Landing school | 8/8 | 8/8 |
+| Atlantic return | 8/8 | 8/8 |
+| Engine trouble | 5/8 | 1/8 |
+| Absolutely nominal | 1/8 | 1/8 |
+| Fast ferry | 7/8 | 7/8 |
+| Spinning entry | 8/8 | 8/8 |
+| Early engine fade | 8/8 | 8/8 |
+| Late engine fade | 5/8 | 5/8 |
+| Blackout rendezvous | 7/8 | 7/8 |
+| Last-call recovery | 3/8 | 1/8 |
+| Total | 60/80 | 54/80 |
+
+The candidate landed 29/40 nominal and 31/40 varied starts. Its covered-eye
+and indicators-disabled controls each landed 0/80. All 20 failures remain:
+15 lateral impacts and five missed ships. The lost matched success occurred
+on a varied Late engine fade start. Jet weights changed with gimbal weights,
+so the net gain cannot be attributed to gimbal alone; the earlier 40-start
+gimbal ablation is a separate development comparison.
+
+The [current report](../dist/assets/landing-report.json) retains the 240
+candidate/control outcomes, all 80 baseline outcomes, paired results and
+the frozen plans. Its weight SHA-256 is
+`9953d20ee4e6b8ab7838b035ff0159c2da785ab7137566f19e91815247c0e855`.
+The checkpoint was frozen after generation five and 600 trials of the
+960-trial gimbal lesson. Both gimbal output heads now have learned weights;
+fins and gaze remain neutral. The previous
+[checkpoint](assets/ten-mission-g6-checkpoint.json) and its separate 56/80
+historical cohort are preserved. This release still has no final validation
+on the remaining 17 missions.
+
+## Throttle timing across all ground missions
+
+A full High return probe of the previous controller reproduced the timeout
+seen in the earlier survey. It started with 482.03 metres of clearance and
+32.92 m/s downward speed, then slowed to about 6.90 m/s while still almost
+395.5 metres above the deck. After eight seconds, descent stayed between
+4.20 and 6.95 m/s. It reached the unchanged mission deadline with 68.86
+metres of clearance remaining. Replaying every recorded action reproduced
+the entire flight result exactly.
+
+Over that later interval, clearance and vertical-speed decoding errors
+were 0.0125 and 0.0207 RMSE in encoded units. This one probe supports
+testing throttle timing; it does not establish the cause of every failed
+ground approach. Its trajectory samples and source hash are in the
+[progress record](suite-training-progress.json).
+
+The `vertical-all-ground` lesson starts from the frozen released controller
+and adjusts only the five existing throttle directions. Every generation
+includes all 24 ground missions, with rotating nominal/varied conditions
+and changing training seeds. Its plan specifies four generations of eight
+candidates, or 768 complete flights. Physical deadlines and touchdown
+limits stay fixed. This is a separate learning branch: combining its
+parameters with learned gimbal steering would require complete-flight
+testing of that combined controller.
 
 ## Orbital ascent experiments
 
@@ -439,12 +525,29 @@ decoding RMSE fell from 0.0835 to 0.0117 and roll from 0.3308 to 0.0822.
 The changed trajectories mean these latter errors describe each flight's
 own experienced inputs; they are not the matched-sample table above.
 
-The `orbital-calibrated` search now uses this basis, with both attitude axes,
-yaw damping and gimbal steering available to reward learning. Its frozen
-plan specifies 144 full training trips across the three orbital missions.
-It retains the original launch, insertion, revolution, deorbit, entry and
-safe-touchdown criteria. Neither improved decoding nor reaching a greater
-altitude counts as completing those missing milestones.
+The `orbital-calibrated` search used this basis, with both attitude axes,
+yaw damping and gimbal steering available to reward learning. It completed
+all **144 full training trips** in its frozen plan: 138 reached launch and
+94 reached space. None reached stable orbit, a full revolution, deorbit,
+entry or a completed return. It retained the original physical criteria.
+Neither improved decoding nor reaching a greater altitude counts as
+completing those missing milestones.
+
+An exact physical replay of the three initial probes found zero insertion
+hold time. Their peak smooth insertion qualities ranged from 0.693 to
+0.740, but all later climbed out of the recovery corridor. The score uses
+the best instant during a flight; it does not measure sustained insertion.
+The replay now records time above several quality levels and the original
+insertion hold at every physics step.
+
+The finished generation-six candidate also failed all three complete
+development probes, each reproduced exactly by replay. Peak quality rose
+to 0.782–0.805, but time above 0.7 was only 2.7–3.6 seconds and insertion
+hold remained zero. At its peak, each trajectory was only 209–213 metres
+high and still using roughly 78–80% throttle. All three later exhausted
+their fuel and left the recovery corridor. This supports revising the
+outcome-only learning reward to value sustained proximity to the original
+insertion conditions; it provides no evidence of orbital capability.
 
 ## Optional native calculation
 
@@ -480,8 +583,13 @@ SUITE_POPULATION=9 SUITE_BATCH=3 SUITE_GENERATIONS=10 node scripts/train-suite.m
 node scripts/build-rate-native.mjs
 node scripts/check-native-rate.mjs
 artifacts/lif-runtime/bin/python scripts/report-suite-training.py
+# Inspect a completed probe by replaying its recorded actions:
+node scripts/summarize-flight-probe.mjs artifacts/suite-training/gimbal-g5-probe/probe.json
 # After all 240 frozen generation-six tests have completed:
 node scripts/summarize-suite.mjs --adaptive
+# For generation five of the gimbal lesson, after its 240 final tests
+# and all 80 matched released-controller flights have completed:
+node scripts/summarize-suite.mjs --gimbal
 ```
 
 Training resumes the state in its named experiment directory. Use a new
@@ -490,6 +598,13 @@ matched conditions and writes a completion flag only after every flight
 finishes. Artifacts retain failed trials as well as successes. The separate
 [chemical panel](additional-odor-tests.md) did not identify a compound that
 qualified for a steering follow-up.
+
+The gimbal packager verifies the frozen selection and final plans, both
+complete sensory controls, all matched baseline outcomes and the tested
+runtime sources. It refuses to package a candidate that regresses on total
+landings or on the original four missions in either comparison. Packaging
+alone leaves the shipped checkpoint unchanged; `--install` copies a
+candidate only after these same checks pass.
 
 When the direction layout or selection order changes, initialize a new
 experiment directory with `SUITE_INITIAL` pointing to the prior checkpoint

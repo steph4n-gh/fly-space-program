@@ -6,10 +6,12 @@ import {freshEmbodied,validCheckpoint} from '../dist/full-controller.js';
 import {SCENARIOS} from '../dist/engine3d.js';
 import {FLIGHT_PANEL,INSTRUMENT_FIELDS} from '../dist/flight-instruments.js';
 
-const adaptive=process.argv.includes('--adaptive');
-const folder='artifacts/suite-training',candidate=adaptive?'attitude-adaptive-g6':'attitude-g2';
-const trainingFolder=adaptive?'attitude-adaptive':'attitude-correlated';
-const generation=adaptive?6:2,expectedProfiles=adaptive?[0,1,6,7,9,17,20,21,22,23]:[0,1,9,17];
+const adaptive=process.argv.includes('--adaptive'),gimbal=process.argv.includes('--gimbal');
+assert(!(adaptive&&gimbal),'Choose one frozen release candidate');
+const planned=adaptive||gimbal;
+const folder='artifacts/suite-training',candidate=gimbal?'gimbal-g5':adaptive?'attitude-adaptive-g6':'attitude-g2';
+const trainingFolder=gimbal?'gimbal-steering':adaptive?'attitude-adaptive':'attitude-correlated';
+const generation=gimbal?5:adaptive?6:2,expectedProfiles=planned?[0,1,6,7,9,17,20,21,22,23]:[0,1,9,17];
 const output=folder+'/'+candidate+'-validation';
 const read=file=>JSON.parse(fs.readFileSync(file));
 const sha=value=>crypto.createHash('sha256').update(value).digest('hex');
@@ -33,7 +35,7 @@ const profiles=[...new Set(tests.cases.map(c=>c.scenario))];
 assert.deepEqual(profiles,expectedProfiles);
 const planFile=output+'/plan.json';
 let plan,selection;
-if(adaptive){
+if(planned){
  plan=read(planFile);selection=read(plan.selectionFile);
  assert.equal(sha(fs.readFileSync(frozenFile)),plan.frozenParametersSHA256);
  assert.equal(sha(fs.readFileSync(plan.selectionFile)),plan.selectionSHA256);
@@ -46,10 +48,10 @@ if(adaptive){
  assert(tests.cases.every(c=>!developmentSeeds.has(c.seed)),'Final cases overlap model development');
 }
 for(const profile of profiles)for(const level of [0,.4])assert.equal(tests.cases.filter(c=>c.scenario===profile&&c.variability===level).length,4);
-const summarize=mode=>{
- const flights=tests.flights.filter(f=>f.mode===mode);
- assert.equal(flights.length,tests.cases.length);
- for(const test of tests.cases){
+const summarize=(mode,testSet=tests)=>{
+ const flights=testSet.flights.filter(f=>f.mode===mode);
+ assert.equal(flights.length,testSet.cases.length);
+ for(const test of testSet.cases){
   const rows=flights.filter(f=>f.seed===test.seed&&f.scenario===test.scenario);
   assert.equal(rows.length,1,'Every matched case must appear exactly once');
   assert.equal(rows[0].variation.level,test.variability);
@@ -66,12 +68,51 @@ const summarize=mode=>{
 };
 const evaluation=summarize('normal'),controls={covered:summarize('covered'),indicatorsOff:summarize('no-instruments')};
 assert(evaluation.landings>0,'A flight checkpoint requires demonstrated landings');
+let pairedBaseline,gimbalSelection;
+if(gimbal){
+ for(const [file,hash] of Object.entries(plan.testedSourceHashes)){
+  assert.equal(sha(fs.readFileSync(output+'/tested-runtime/'+file)),hash);
+  if(!fs.existsSync(output+'/cache-version-change.json'))assert.equal(sha(fs.readFileSync(file)),hash,'Source changed after freezing final tests');
+ }
+ const baseline=read(plan.baselineFile),baselineFrozen=read(plan.baselineFrozenFile),baselineWeights=read(plan.baselineWeightsFile);
+ assert(baseline.complete,'Wait for the complete matched released-controller test');
+ assert.equal(baseline.backend,'javascript-rate');assert.deepEqual(baseline.cases,tests.cases);
+ assert.equal(baseline.sourceSHA256,tests.sourceSHA256);
+ assert.deepEqual(baseline.modes,['normal']);assert.equal(baseline.flights.length,tests.cases.length);
+ assert.equal(baseline.calibrationHash,tests.calibrationHash);
+ assert.deepEqual(baseline.parameters,[...baselineFrozen.parameters,...Array(5).fill(0)]);
+ assert.equal(sha(fs.readFileSync(plan.baselineFrozenFile)),plan.baselineFrozenSHA256);
+ assert.equal(sha(Buffer.from(Float64Array.from(baselineWeights).buffer)),baseline.weightSHA256);
+ assert.equal(sha(Buffer.from(Float64Array.from(baselineFrozen.weights).buffer)),baseline.weightSHA256);
+ assert.equal(tests.flights.length+baseline.flights.length,plan.totalExpectedFlights);
+ const releasedSelection=read(plan.releasedSelectionFile),ablation=read(plan.gimbalAblationFile);
+ for(const [file,report,hash] of [[plan.releasedSelectionFile,releasedSelection,plan.releasedSelectionSHA256],[plan.gimbalAblationFile,ablation,plan.gimbalAblationSHA256]]){
+  assert(report.complete);assert.equal(sha(fs.readFileSync(file)),hash);
+  assert.equal(report.backend,'native-exact-rate');assert.deepEqual(report.cases,selection.cases);
+  assert.deepEqual(report.modes,['normal']);assert.equal(report.flights.length,selection.cases.length);
+  assert.equal(report.calibrationHash,tests.calibrationHash);
+ }
+ assert.deepEqual(ablation.parameters,[...frozen.parameters.slice(0,23),...Array(5).fill(0)]);
+ assert.deepEqual(releasedSelection.parameters,baseline.parameters);
+ const selectedNormal=summarize('normal',selection),releasedNormal=summarize('normal',releasedSelection),ablatedNormal=summarize('normal',ablation);
+ const originalFour=summary=>summary.flights.filter(f=>[0,1,9,17].includes(f.scenario)&&f.landed).length;
+ assert(selectedNormal.landings>=releasedNormal.landings&&originalFour(selectedNormal)>=originalFour(releasedNormal),'Candidate failed its frozen selection criterion');
+ const baselineNormal=summarize('normal',baseline);
+ assert(evaluation.landings>=baselineNormal.landings&&originalFour(evaluation)>=originalFour(baselineNormal),'Candidate regressed against the matched release in final tests');
+ const paired=other=>{
+  const byCase=new Map(other.flights.map(f=>[f.scenario+':'+f.seed,f]));
+  return evaluation.flights.map(f=>({scenario:f.scenario,seed:f.seed,candidateLanded:f.landed,baselineLanded:byCase.get(f.scenario+':'+f.seed).landed}));
+ };
+ pairedBaseline={file:plan.baselineFile,SHA256:sha(fs.readFileSync(plan.baselineFile)),weightSHA256:baseline.weightSHA256,evaluation:baselineNormal,pairedOutcomes:paired(baselineNormal)};
+ gimbalSelection={candidate:selectedNormal,released:releasedNormal,gimbalsZero:ablatedNormal};
+ for(const head of [1,3])assert(weights.slice(head*2130,(head+1)*2130).some(w=>w!==0),'Gimbal head is still inactive');
+}
 const checkpoint={...freshEmbodied(),weights,generation,episodes:selected.episodes,history:training.history.filter(r=>r.generation<=generation),scenario:0,
  sensoryPresentation:FLIGHT_PANEL,autoOdor:false,instrumentLights:true,eyesCovered:false,
  initialization:'Measured visual and body calibration followed by reward-only steering and landing lessons',
  trainingScope:profiles,trainingMethod:'Full-network reward-only search on calibrated sensory directions, with correlated parameter proposals',
  sensoryBasis:basis.names,parameters:frozen.parameters,calibrationHash:tests.calibrationHash,
- trainingEpisodeScope:selected.episodes+' trials in the final '+(adaptive?'adaptive-attitude':'attitude')+' lesson; earlier calibration and flight lessons are documented separately',
+ trainingEpisodeScope:selected.episodes+' trials in the final '+(gimbal?'joint jet-and-gimbal':adaptive?'adaptive-attitude':'attitude')+' lesson; earlier calibration and flight lessons are documented separately',
  sourceSHA256:frozen.sourceSHA256};
 assert(validCheckpoint(checkpoint));
 const sourceFiles=['dist/full-network.js','dist/full-controller.js','dist/engine3d.js','dist/orbital.js','dist/missions.js','dist/perception.js','dist/flight-instruments.js','dist/sensory-inputs.js',basisFile];
@@ -84,10 +125,10 @@ const report={schema:'complete-graph-landing-report-v2',createdAt:new Date().toI
  graph:{neurons:166700,directedConnections:25582938,synapticContacts:124177617,passesPerDecision:2,outputNeurons:2129,readoutWeights:21300},
  sensoryPresentation:{id:FLIGHT_PANEL,eyePixels:1536,bodyAndOdorChannels:22,raysPerPixel:16,fields:INSTRUMENT_FIELDS.map(([id,name,unit])=>({id,name,unit})),automaticOdor:false},
  criteria:{positionErrorBelow:11,verticalSpeedBelow:3.6,lateralSpeedBelow:3,tiltBelow:.2,yawRateBelow:.3,missionDuration:65,unchanged:true},
- training:{method:checkpoint.trainingMethod,generation,episodes:selected.episodes,episodeScope:checkpoint.trainingEpisodeScope,basis:basis.names,calibrationSHA256:tests.calibrationHash,calibrationSamples:basis.trainingSamples+basis.validationSamples,calibrationRMSE:basis.RMSE,history:checkpoint.history,...(adaptive?{nativeBuild:frozen.nativeBuild}:{})},
+ training:{method:checkpoint.trainingMethod,generation,episodes:selected.episodes,episodeScope:checkpoint.trainingEpisodeScope,basis:basis.names,calibrationSHA256:tests.calibrationHash,calibrationSamples:basis.trainingSamples+basis.validationSamples,calibrationRMSE:basis.RMSE,history:checkpoint.history,...(planned?{nativeBuild:frozen.nativeBuild}:{})},
  sourceHashes:Object.fromEntries(sourceFiles.map(file=>[file,sha(fs.readFileSync(file))])),
  limitations:['External decoder learning with a fixed anatomical graph and modeled sensory tuning.','Visible instrument-mediated control, not camera-only navigation.','Eight final starts per mission give limited evidence; failures remain in the report.','No demonstrated mastery of all 27 missions.','No validated prediction of a living fly, measured muscle control, chemical dose or biological learning.']};
-if(adaptive){
+if(planned){
  report.finalPlan={...plan,SHA256:sha(fs.readFileSync(planFile))};
  report.modelSelection={file:plan.selectionFile,SHA256:plan.selectionSHA256,backend:selection.backend,cases:selection.cases.length,
   normalLandings:selection.flights.filter(f=>f.mode==='normal'&&f.landed).length,coveredLandings:selection.flights.filter(f=>f.mode==='covered'&&f.landed).length};
@@ -95,9 +136,15 @@ if(adaptive){
  report.sourceHashes[planFile]=sha(fs.readFileSync(planFile));
  report.sourceHashes[output+'/validation.json']=sha(fs.readFileSync(output+'/validation.json'));
 }
+if(gimbal){
+ report.pairedBaseline=pairedBaseline;report.gimbalSelection=gimbalSelection;
+ for(const file of [plan.baselineFile,plan.baselineWeightsFile,plan.baselineFrozenFile,plan.releasedSelectionFile,plan.gimbalAblationFile])report.sourceHashes[file]=sha(fs.readFileSync(file));
+ report.releaseCriterion={unchanged:true,selection:'Preserve total and original-four-mission landings against matched released-controller starts.',final:'Preserve total and original-four-mission landings against a separate matched JavaScript baseline.',passed:true};
+}
 const cacheChangeFile=output+'/cache-version-change.json';
 if(fs.existsSync(cacheChangeFile)){
  const cacheChange=read(cacheChangeFile);
+ if(gimbal)assert.deepEqual(cacheChange.testedSourceHashes,plan.testedSourceHashes);
  for(const [file,hash] of Object.entries(cacheChange.testedSourceHashes)){
   const original=fs.readFileSync(output+'/tested-runtime/'+file);
   assert.equal(sha(original),hash);

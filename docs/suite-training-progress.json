@@ -667,6 +667,78 @@
       "allCandidateFlights": 1200,
       "allCandidateLandings": 842
     },
+    "gimbal-steering": {
+      "generation": 8,
+      "episodes": 960,
+      "history": [
+        {
+          "generation": 1,
+          "episodes": 120,
+          "landings": 7,
+          "batch": 10,
+          "score": -52.94576046297054,
+          "fitness": -67.73337540480256
+        },
+        {
+          "generation": 2,
+          "episodes": 240,
+          "landings": 9,
+          "batch": 10,
+          "score": -20.904254737542537,
+          "fitness": -48.098197262054235
+        },
+        {
+          "generation": 3,
+          "episodes": 360,
+          "landings": 8,
+          "batch": 10,
+          "score": -33.77295365071846,
+          "fitness": -54.5716409998769
+        },
+        {
+          "generation": 4,
+          "episodes": 480,
+          "landings": 7,
+          "batch": 10,
+          "score": -48.37528727078866,
+          "fitness": -64.52750240505557
+        },
+        {
+          "generation": 5,
+          "episodes": 600,
+          "landings": 9,
+          "batch": 10,
+          "score": -17.946932049462198,
+          "fitness": -43.049344247462344
+        },
+        {
+          "generation": 6,
+          "episodes": 720,
+          "landings": 9,
+          "batch": 10,
+          "score": -18.02170844579222,
+          "fitness": -44.74100214550348
+        },
+        {
+          "generation": 7,
+          "episodes": 840,
+          "landings": 9,
+          "batch": 10,
+          "score": -18.339371030436396,
+          "fitness": -42.24987792810291
+        },
+        {
+          "generation": 8,
+          "episodes": 960,
+          "landings": 9,
+          "batch": 10,
+          "score": -22.52947908904687,
+          "fitness": -48.826401982281666
+        }
+      ],
+      "allCandidateFlights": 960,
+      "allCandidateLandings": 674
+    },
     "orbital-insertion": {
       "generation": 3,
       "episodes": 72,
@@ -814,6 +886,71 @@
       "milestoneCounts": {
         "Launch": 276,
         "Space": 199,
+        "Stable orbit": 0,
+        "One full orbit": 0,
+        "Deorbit": 0,
+        "Atmospheric entry": 0,
+        "Final approach": 0
+      }
+    },
+    "orbital-calibrated": {
+      "generation": 6,
+      "episodes": 144,
+      "history": [
+        {
+          "generation": 1,
+          "episodes": 24,
+          "landings": 0,
+          "batch": 3,
+          "score": -481.37130508848963,
+          "fitness": 862.2278353596257
+        },
+        {
+          "generation": 2,
+          "episodes": 48,
+          "landings": 0,
+          "batch": 3,
+          "score": -490.62443784018416,
+          "fitness": 988.5825598436764
+        },
+        {
+          "generation": 3,
+          "episodes": 72,
+          "landings": 0,
+          "batch": 3,
+          "score": -478.7981866359847,
+          "fitness": 1012.396341668712
+        },
+        {
+          "generation": 4,
+          "episodes": 96,
+          "landings": 0,
+          "batch": 3,
+          "score": -531.832348630564,
+          "fitness": 1054.5735402689902
+        },
+        {
+          "generation": 5,
+          "episodes": 120,
+          "landings": 0,
+          "batch": 3,
+          "score": -479.6441918632618,
+          "fitness": 1107.318613448355
+        },
+        {
+          "generation": 6,
+          "episodes": 144,
+          "landings": 0,
+          "batch": 3,
+          "score": -477.86919872833033,
+          "fitness": 1113.5902253086863
+        }
+      ],
+      "allCandidateFlights": 144,
+      "allCandidateLandings": 0,
+      "milestoneCounts": {
+        "Launch": 138,
+        "Space": 94,
         "Stable orbit": 0,
         "One full orbit": 0,
         "Deorbit": 0,
@@ -7172,6 +7309,1073 @@
         "insertionReward": 992.0577604726814,
         "censored": false
       }
+    },
+    "gimbalGenerationFiveSelection": {
+      "scope": "Complete generation-five development selection; released baseline and 40-start cohort reused from the earlier candidate comparison. Not final validation.",
+      "normalLandingsOutOf40": {
+        "candidate": 30,
+        "released": 29,
+        "gimbalsZero": 29
+      },
+      "originalFourLandingsOutOf16": {
+        "candidate": 16,
+        "released": 16,
+        "gimbalsZero": 16
+      },
+      "coveredCandidateLandingsOutOf40": 0,
+      "passesLandingGate": true,
+      "sourceSHA256": {
+        "artifacts/suite-training/gimbal-g5-selection/selection.json": "ad6b180f40e56b9c865871a0503e3335b1581177c49e6019b9043cb278c171f5",
+        "artifacts/suite-training/gimbal-g5-selection/selection-weights.json": "175d37cd77e5f68a3ece3818578aca70a2cbc2743017ad72770f8e006ac957d4",
+        "artifacts/suite-training/gimbal-release-selection/selection.json": "c6bae9888fc8e1dea09f9829172e64f27f8fd7b983105cdb3afd3b6f97c043fa",
+        "artifacts/suite-training/gimbal-release-selection/selection-weights.json": "b08e5ced2671b9e3215cd14ae14e1c34a2ba4fecec96c0a66668c4239b0978cd",
+        "artifacts/suite-training/gimbal-g5-ablation/selection.json": "b3525e31dcf4b6575e4b2cf7b4a3038288a75748765b3a184694ae935abfe710",
+        "artifacts/suite-training/gimbal-g5-ablation/selection-weights.json": "0d65eddde7de8e68ea7765392df39b402620646e1c195b28dab5c15d4390c9e4"
+      }
+    },
+    "highReturnProbe": {
+      "scope": "One complete development probe of the released controller; original full-flight outcome exactly reproduced by replaying every recorded action.",
+      "sourceFile": "artifacts/suite-training/high-return-probe/probe.json",
+      "sourceSHA256": "f8e520d08c836370ffacc0274418722cad41869c7f565f5c98ef18a091e8c765",
+      "flight": {
+        "seed": 714133,
+        "scenario": 18,
+        "activationGain": 1,
+        "score": -338.8867540047522,
+        "landed": false,
+        "styleBonus": 0,
+        "styleRecovered": false,
+        "turnDegrees": 0.28579409602267414,
+        "reason": "Approach timed out",
+        "variation": {
+          "level": 0,
+          "mass": 1,
+          "thrust": 1,
+          "servo": 1,
+          "wind": 1,
+          "deck": 1,
+          "noise": 0
+        },
+        "touchdown": null,
+        "time": 65.04999999999845,
+        "censored": false
+      },
+      "finalClearance": 68.86025727541566,
+      "decisions": 434,
+      "afterEightSeconds": {
+        "verticalSpeedMinimum": -6.946820233996846,
+        "verticalSpeedMaximum": -4.200892317104639,
+        "clearanceEncodedRMSE": 0.01247933443440297,
+        "verticalSpeedEncodedRMSE": 0.020719099373493914
+      },
+      "samples": [
+        {
+          "t": 0,
+          "clearance": 482.0265596061945,
+          "verticalSpeed": -32.917786434525624,
+          "throttleCommand": -0.27992072850718147
+        },
+        {
+          "t": 8.09999999999998,
+          "clearance": 395.49391066827053,
+          "verticalSpeed": -6.9043676306612705,
+          "throttleCommand": -0.6782388556400271
+        },
+        {
+          "t": 16.200000000000095,
+          "clearance": 342.01600093685994,
+          "verticalSpeed": -6.596665078767125,
+          "throttleCommand": -0.671149862063396
+        },
+        {
+          "t": 24.30000000000021,
+          "clearance": 291.008990550924,
+          "verticalSpeed": -6.11180453130772,
+          "throttleCommand": -0.7204246344681828
+        },
+        {
+          "t": 32.4000000000003,
+          "clearance": 241.31984782284897,
+          "verticalSpeed": -6.026378195940336,
+          "throttleCommand": -0.700215811470148
+        },
+        {
+          "t": 40.49999999999984,
+          "clearance": 194.10379434898294,
+          "verticalSpeed": -5.583972882409845,
+          "throttleCommand": -0.6925964391289836
+        },
+        {
+          "t": 48.599999999999376,
+          "clearance": 149.0144151673188,
+          "verticalSpeed": -5.408709294109343,
+          "throttleCommand": -0.6941445218756178
+        },
+        {
+          "t": 56.699999999998916,
+          "clearance": 107.17120073531908,
+          "verticalSpeed": -4.930993513990951,
+          "throttleCommand": -0.7041815200284617
+        },
+        {
+          "t": 64.79999999999846,
+          "clearance": 69.91300112918144,
+          "verticalSpeed": -4.200892317104639,
+          "throttleCommand": -0.7154349584137949
+        }
+      ]
+    },
+    "gimbalGenerationFiveProbe": {
+      "purpose": "Complete development-trajectory replay. Quality duration is sampled at decision endpoints; the insertion hold is measured at every original physics step. No mission criterion or controller action is changed.",
+      "parameters": [
+        0.1,
+        -0.2984100889885076,
+        -1.3820600774683072,
+        1,
+        -0.5,
+        -0.39882808385285784,
+        -0.8163410764977419,
+        -5.689489756509137,
+        -1.5584719751302751,
+        -1.8753644582973945,
+        -1.2998096039079512,
+        0.0074868627342414545,
+        0.9730218481563706,
+        -0.7745100105760533,
+        0.39566068782541547,
+        -0.5626005058769209,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        -0.005512733447607877,
+        -0.1091701770328652,
+        -0.061371180359492954,
+        -0.10083900387535011,
+        -0.04881335811995078
+      ],
+      "flights": [
+        {
+          "flight": {
+            "seed": 714133,
+            "scenario": 0,
+            "activationGain": 1,
+            "score": 76.1286632503158,
+            "landed": true,
+            "styleBonus": 0,
+            "styleRecovered": false,
+            "turnDegrees": 0.0356228692600396,
+            "reason": "Touchdown",
+            "variation": {
+              "level": 0,
+              "mass": 1,
+              "thrust": 1,
+              "servo": 1,
+              "wind": 1,
+              "deck": 1,
+              "noise": 0
+            },
+            "touchdown": {
+              "error": 1.9471254568615395,
+              "speed": 2.1577670613652904,
+              "lateral": 0.28710050820471716,
+              "tilt": 0.007027022136249272
+            },
+            "time": 27.400000000000254
+          },
+          "decisions": 183,
+          "exactPhysicalReplay": true,
+          "axes": [
+            {
+              "head": 1,
+              "commandMinimum": -0.011012480866321183,
+              "commandMaximum": 0.014802625545236632,
+              "changedDecisions": 182,
+              "physicalDegreesMinimum": -0.1388131086339308,
+              "physicalDegreesMaximum": 0.18658815328001158,
+              "commandRMS": 0.005056163574931435
+            },
+            {
+              "head": 3,
+              "commandMinimum": -0.021968660925447817,
+              "commandMaximum": 0.010015564757671638,
+              "changedDecisions": 182,
+              "physicalDegreesMinimum": -0.27691654156806755,
+              "physicalDegreesMaximum": 0.12624690981200143,
+              "commandRMS": 0.00422031548282034
+            }
+          ],
+          "terminal": {
+            "time": 27.400000000000254,
+            "altitude": -0.1017982753925919,
+            "verticalSpeed": -2.1577670613652904,
+            "velocityX": -0.2855701063933482,
+            "pitch": -0.0029257910285036925,
+            "roll": -0.006388958206223028,
+            "throttle": 0.15077302211035443,
+            "fuel": 0.8196823009995737,
+            "engineBank": 3
+          }
+        },
+        {
+          "flight": {
+            "seed": 733800,
+            "scenario": 9,
+            "activationGain": 1,
+            "score": -144.7755012868389,
+            "landed": false,
+            "styleBonus": 0,
+            "styleRecovered": false,
+            "turnDegrees": 0.03948820199291364,
+            "reason": "Lateral impact",
+            "variation": {
+              "level": 0.2,
+              "mass": 0.9800956421806843,
+              "thrust": 0.9968654453273597,
+              "servo": 0.9953174691978534,
+              "wind": 1.0708761659076644,
+              "deck": 1.030759383563896,
+              "noise": 0.002
+            },
+            "touchdown": {
+              "error": 6.01117507012814,
+              "speed": 1.9605898006461093,
+              "lateral": 3.1863489900318016,
+              "tilt": 0.007961985137545898
+            },
+            "time": 46.79999999999948
+          },
+          "decisions": 312,
+          "exactPhysicalReplay": true,
+          "axes": [
+            {
+              "head": 1,
+              "commandMinimum": -0.021243128052585374,
+              "commandMaximum": 0.037769864391604006,
+              "changedDecisions": 311,
+              "physicalDegreesMinimum": -0.2677711478352032,
+              "physicalDegreesMaximum": 0.47609184093247975,
+              "commandRMS": 0.012633929313921127
+            },
+            {
+              "head": 3,
+              "commandMinimum": -0.030107412905249813,
+              "commandMaximum": 0.017056546013646957,
+              "changedDecisions": 311,
+              "physicalDegreesMinimum": -0.379506092136275,
+              "physicalDegreesMaximum": 0.21499898192358505,
+              "commandRMS": 0.011504569512096066
+            }
+          ],
+          "terminal": {
+            "time": 46.79999999999948,
+            "altitude": -0.043511147783880766,
+            "verticalSpeed": -1.9605898006461093,
+            "velocityX": 4.990048680033723,
+            "pitch": -0.024149440174855416,
+            "roll": -0.01408567171952734,
+            "throttle": 0.15448446579727038,
+            "fuel": 0.6956646350786277,
+            "engineBank": 3
+          }
+        }
+      ],
+      "replayedSourceFiles": {
+        "scripts/summarize-flight-probe.mjs": "artifacts/suite-training/gimbal-g5-probe/replay-source/6552c4c071ce7c92ed05e11bad2b3bc5fc33eaa7d62331e8a2b40a477e06fbc4-summarize-flight-probe.mjs",
+        "dist/engine3d.js": "artifacts/suite-training/gimbal-g5-probe/replay-source/51f6b0fd84063e89c0d80a90e2a2b4c686392a9fae81eb406388893e01382d02-engine3d.js",
+        "dist/engine.js": "artifacts/suite-training/gimbal-g5-probe/replay-source/2e0c4fa70a8595cbaae4905e7a28c34321958dbd5711e617e637d716fc275782-engine.js",
+        "dist/orbital.js": "artifacts/suite-training/gimbal-g5-probe/replay-source/3bf699bfc2d047095eb14046fdf054b7ee9fab38b48006c08aa2268f656b2c81-orbital.js",
+        "dist/missions.js": "artifacts/suite-training/gimbal-g5-probe/replay-source/c8b715a1075f2104c08c0d49ecdd08a78b6f72bb889e15e6488a1984086d949e-missions.js",
+        "dist/full-controller.js": "artifacts/suite-training/gimbal-g5-probe/replay-source/7e14c3d359c8ea557a794d611b87a563590813a61592c14b82d58415ff73afb5-full-controller.js"
+      },
+      "sourceSHA256": {
+        "artifacts/suite-training/gimbal-g5-probe/probe.json": "de655c642f9721cf254760239d1426fa69e63f7ef57c7893d52da2bc39bc7cfb",
+        "artifacts/suite-training/gimbal-g5-probe/replay-source/6552c4c071ce7c92ed05e11bad2b3bc5fc33eaa7d62331e8a2b40a477e06fbc4-summarize-flight-probe.mjs": "6552c4c071ce7c92ed05e11bad2b3bc5fc33eaa7d62331e8a2b40a477e06fbc4",
+        "artifacts/suite-training/gimbal-g5-probe/replay-source/51f6b0fd84063e89c0d80a90e2a2b4c686392a9fae81eb406388893e01382d02-engine3d.js": "51f6b0fd84063e89c0d80a90e2a2b4c686392a9fae81eb406388893e01382d02",
+        "artifacts/suite-training/gimbal-g5-probe/replay-source/2e0c4fa70a8595cbaae4905e7a28c34321958dbd5711e617e637d716fc275782-engine.js": "2e0c4fa70a8595cbaae4905e7a28c34321958dbd5711e617e637d716fc275782",
+        "artifacts/suite-training/gimbal-g5-probe/replay-source/3bf699bfc2d047095eb14046fdf054b7ee9fab38b48006c08aa2268f656b2c81-orbital.js": "3bf699bfc2d047095eb14046fdf054b7ee9fab38b48006c08aa2268f656b2c81",
+        "artifacts/suite-training/gimbal-g5-probe/replay-source/c8b715a1075f2104c08c0d49ecdd08a78b6f72bb889e15e6488a1984086d949e-missions.js": "c8b715a1075f2104c08c0d49ecdd08a78b6f72bb889e15e6488a1984086d949e",
+        "artifacts/suite-training/gimbal-g5-probe/replay-source/7e14c3d359c8ea557a794d611b87a563590813a61592c14b82d58415ff73afb5-full-controller.js": "7e14c3d359c8ea557a794d611b87a563590813a61592c14b82d58415ff73afb5"
+      }
+    },
+    "orbitalCalibratedInitialReplay": {
+      "purpose": "Complete development-trajectory replay. Quality duration is sampled at decision endpoints; the insertion hold is measured at every original physics step. No mission criterion or controller action is changed.",
+      "parameters": [
+        -0.5931823348597628,
+        -0.11880412004561895,
+        -0.6794283305086742,
+        0.023497539912764282,
+        -0.07568462581176318,
+        -0.4451056640624731,
+        -1.2053571527418592,
+        -5.372033570337802,
+        -0.8508303785942669,
+        -2.492699299296486,
+        -0.5808872461199706,
+        -0.10799710861646732,
+        -1,
+        0,
+        0,
+        0,
+        0.8746443505875465,
+        -0.9643710881048166,
+        2.4514779803914117,
+        0.8530626381976042,
+        0.9695955049655826,
+        -1.1945667769989565,
+        -1.1579998647330918,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "flights": [
+        {
+          "flight": {
+            "seed": 714133,
+            "scenario": 24,
+            "activationGain": 1,
+            "score": -523.4418286524998,
+            "landed": false,
+            "styleBonus": 0,
+            "styleRecovered": false,
+            "turnDegrees": -0.05216480482707168,
+            "reason": "Flight left the recovery corridor",
+            "variation": {
+              "level": 0,
+              "mass": 1,
+              "thrust": 1,
+              "servo": 1,
+              "wind": 1,
+              "deck": 1,
+              "noise": 0
+            },
+            "touchdown": null,
+            "time": 479.6999999999956,
+            "orbitComplete": false,
+            "orbits": 0,
+            "maxAltitude": 11997.257957806012,
+            "milestones": [
+              {
+                "name": "Launch",
+                "time": 1.850000000000001,
+                "altitude": 4.125303308426494
+              },
+              {
+                "name": "Space",
+                "time": 293.1999999999956,
+                "altitude": 802.3057338500946
+              }
+            ]
+          },
+          "decisions": 1495,
+          "exactPhysicalReplay": true,
+          "axes": [
+            {
+              "head": 1,
+              "commandMinimum": 0,
+              "commandMaximum": 0,
+              "changedDecisions": 0,
+              "physicalDegreesMinimum": 0,
+              "physicalDegreesMaximum": 0,
+              "commandRMS": 0
+            },
+            {
+              "head": 3,
+              "commandMinimum": 0,
+              "commandMaximum": 0,
+              "changedDecisions": 0,
+              "physicalDegreesMinimum": 0,
+              "physicalDegreesMaximum": 0,
+              "commandRMS": 0
+            }
+          ],
+          "terminal": {
+            "time": 479.6999999999956,
+            "altitude": 11997.257957806012,
+            "verticalSpeed": 107.7120665307896,
+            "tangentSpeed": 131.5836758085246,
+            "pitch": 0.35701817050012985,
+            "roll": -0.26698464252471427,
+            "throttle": 0.03163089573914463,
+            "fuel": 0.0470801191881179,
+            "engineBank": 1,
+            "periapsis": 3169.5776491599954,
+            "apoapsis": 53207.18213041402,
+            "eccentricity": 0.7317925658156386
+          },
+          "insertionQuality": 0.6934983451889882,
+          "peak": {
+            "time": 302.4499999999956,
+            "altitude": 922.2703651676491,
+            "verticalSpeed": 14.643817486527313,
+            "tangentSpeed": 219.63881201183904,
+            "pitch": 0.5751566496527465,
+            "roll": 0.4744351161363721,
+            "throttle": 0.04083826412231978,
+            "fuel": 0.10810881331533406,
+            "engineBank": 1,
+            "periapsis": 42.27094612442579,
+            "apoapsis": 1140.2012105738431,
+            "eccentricity": 0.08328712940929953
+          },
+          "firstTargetCrossing": {
+            "time": 307.4499999999956,
+            "altitude": 1001.0304462665424,
+            "verticalSpeed": 16.761263230300106,
+            "tangentSpeed": 220.47068516157987,
+            "pitch": 0.5850793300766135,
+            "roll": 0.5339860477053683,
+            "throttle": 0.03557160061677617,
+            "fuel": 0.10580753324090225,
+            "engineBank": 1,
+            "periapsis": 235.9787259772511,
+            "apoapsis": 1347.165381185765,
+            "eccentricity": 0.08180629215459277
+          },
+          "qualityTimeIntegral": 114.72172338924462,
+          "secondsAboveQuality": {
+            "0.5": 53,
+            "0.7": 0,
+            "0.9": 0
+          },
+          "qualifyingDecisionSeconds": 0,
+          "longestPhysicalInsertionHoldSeconds": 0
+        },
+        {
+          "flight": {
+            "seed": 733800,
+            "scenario": 25,
+            "activationGain": 1,
+            "score": -531.1300867895154,
+            "landed": false,
+            "styleBonus": 0,
+            "styleRecovered": false,
+            "turnDegrees": -0.1055981855493251,
+            "reason": "Flight left the recovery corridor",
+            "variation": {
+              "level": 0.2,
+              "mass": 0.9800956421806843,
+              "thrust": 0.9968654453273597,
+              "servo": 0.9953174691978534,
+              "wind": 1.0708761659076644,
+              "deck": 1.030759383563896,
+              "noise": 0.002
+            },
+            "touchdown": null,
+            "time": 473.24999999999596,
+            "orbitComplete": false,
+            "orbits": 0,
+            "maxAltitude": 11995.474487190242,
+            "milestones": [
+              {
+                "name": "Launch",
+                "time": 1.7500000000000009,
+                "altitude": 4.013648958895109
+              },
+              {
+                "name": "Space",
+                "time": 286.24999999999596,
+                "altitude": 800.8595865310914
+              }
+            ]
+          },
+          "decisions": 1454,
+          "exactPhysicalReplay": true,
+          "axes": [
+            {
+              "head": 1,
+              "commandMinimum": 0,
+              "commandMaximum": 0,
+              "changedDecisions": 0,
+              "physicalDegreesMinimum": 0,
+              "physicalDegreesMaximum": 0,
+              "commandRMS": 0
+            },
+            {
+              "head": 3,
+              "commandMinimum": 0,
+              "commandMaximum": 0,
+              "changedDecisions": 0,
+              "physicalDegreesMinimum": 0,
+              "physicalDegreesMaximum": 0,
+              "commandRMS": 0
+            }
+          ],
+          "terminal": {
+            "time": 473.24999999999596,
+            "altitude": 11995.474487190242,
+            "verticalSpeed": 107.03925188168273,
+            "tangentSpeed": 130.8455520894346,
+            "pitch": 0.573428180856348,
+            "roll": -0.3671915905214894,
+            "throttle": 0.029763211709472992,
+            "fuel": 0.08821561199526459,
+            "engineBank": 1,
+            "periapsis": 3100.9779009440826,
+            "apoapsis": 51083.99950050294,
+            "eccentricity": 0.7249835760842881
+          },
+          "insertionQuality": 0.7397276721318331,
+          "peak": {
+            "time": 296.74999999999596,
+            "altitude": 911.2725028849202,
+            "verticalSpeed": 12.49608225005844,
+            "tangentSpeed": 221.5536295605365,
+            "pitch": 0.6463681274449403,
+            "roll": 0.4517862319151628,
+            "throttle": 0.04062458835074845,
+            "fuel": 0.1484384178168176,
+            "engineBank": 1,
+            "periapsis": 222.1755899881391,
+            "apoapsis": 1115.66621833312,
+            "eccentricity": 0.06698914570928158
+          },
+          "firstTargetCrossing": {
+            "time": 302.99999999999596,
+            "altitude": 1000.537363695576,
+            "verticalSpeed": 16.112034739329893,
+            "tangentSpeed": 223.3673728244066,
+            "pitch": 0.6706232007344173,
+            "roll": 0.23129178882151932,
+            "throttle": 0.036999968634342906,
+            "fuel": 0.14554346891724967,
+            "engineBank": 1,
+            "periapsis": 457.47015810677567,
+            "apoapsis": 1462.2139312617373,
+            "eccentricity": 0.07218150690088994
+          },
+          "qualityTimeIntegral": 114.60741324550654,
+          "secondsAboveQuality": {
+            "0.5": 52,
+            "0.7": 12.5,
+            "0.9": 0
+          },
+          "qualifyingDecisionSeconds": 0,
+          "longestPhysicalInsertionHoldSeconds": 0
+        },
+        {
+          "flight": {
+            "seed": 753467,
+            "scenario": 26,
+            "activationGain": 1,
+            "score": -522.2581750453556,
+            "landed": false,
+            "styleBonus": 0,
+            "styleRecovered": false,
+            "turnDegrees": -0.0664092798543803,
+            "reason": "Flight left the recovery corridor",
+            "variation": {
+              "level": 0,
+              "mass": 1,
+              "thrust": 1,
+              "servo": 1,
+              "wind": 1,
+              "deck": 1,
+              "noise": 0
+            },
+            "touchdown": null,
+            "time": 455.89999999999543,
+            "orbitComplete": false,
+            "orbits": 0,
+            "maxAltitude": 11997.687006038801,
+            "milestones": [
+              {
+                "name": "Launch",
+                "time": 1.800000000000001,
+                "altitude": 4.011041568370507
+              },
+              {
+                "name": "Space",
+                "time": 285.39999999999543,
+                "altitude": 800.8317027453091
+              }
+            ]
+          },
+          "decisions": 1463,
+          "exactPhysicalReplay": true,
+          "axes": [
+            {
+              "head": 1,
+              "commandMinimum": 0,
+              "commandMaximum": 0,
+              "changedDecisions": 0,
+              "physicalDegreesMinimum": 0,
+              "physicalDegreesMaximum": 0,
+              "commandRMS": 0
+            },
+            {
+              "head": 3,
+              "commandMinimum": 0,
+              "commandMaximum": 0,
+              "changedDecisions": 0,
+              "physicalDegreesMinimum": 0,
+              "physicalDegreesMaximum": 0,
+              "commandRMS": 0
+            }
+          ],
+          "terminal": {
+            "time": 455.89999999999543,
+            "altitude": 11997.687006038801,
+            "verticalSpeed": 116.7428322177377,
+            "tangentSpeed": 134.57027194766565,
+            "pitch": 0.44349835940645355,
+            "roll": 0.5409101433565102,
+            "throttle": 0.030108183921667753,
+            "fuel": 0.05455187793366321,
+            "engineBank": 1,
+            "periapsis": 3205.4695947779164,
+            "apoapsis": 78882.76479269347,
+            "eccentricity": 0.8043226200447503
+          },
+          "insertionQuality": 0.7346161878490127,
+          "peak": {
+            "time": 295.89999999999543,
+            "altitude": 956.4107864426231,
+            "verticalSpeed": 17.615029981733535,
+            "tangentSpeed": 222.7754002205002,
+            "pitch": 0.6025062775533141,
+            "roll": -0.2855013554229635,
+            "throttle": 0.03973243453112624,
+            "fuel": 0.11322191671759987,
+            "engineBank": 1,
+            "periapsis": 293.82085804923463,
+            "apoapsis": 1395.6253777616485,
+            "eccentricity": 0.08048568954017665
+          },
+          "firstTargetCrossing": {
+            "time": 314.64999999999543,
+            "altitude": 1407.3069863016487,
+            "verticalSpeed": 30.861893077934553,
+            "tangentSpeed": 220.31063668803384,
+            "pitch": 0.8220484116861827,
+            "roll": -0.3138027227183518,
+            "throttle": 0.0333135043145642,
+            "fuel": 0.10525897066258001,
+            "engineBank": 1,
+            "periapsis": 593.1246735706927,
+            "apoapsis": 2806.7663504110424,
+            "eccentricity": 0.14374398321346032
+          },
+          "qualityTimeIntegral": 132.06123723161258,
+          "secondsAboveQuality": {
+            "0.5": 57.5,
+            "0.7": 8,
+            "0.9": 0
+          },
+          "qualifyingDecisionSeconds": 0,
+          "longestPhysicalInsertionHoldSeconds": 0
+        }
+      ],
+      "replayedSourceFiles": {
+        "scripts/summarize-flight-probe.mjs": "artifacts/suite-training/orbital-calibrated-probe/replay-source/6552c4c071ce7c92ed05e11bad2b3bc5fc33eaa7d62331e8a2b40a477e06fbc4-summarize-flight-probe.mjs",
+        "dist/engine3d.js": "artifacts/suite-training/orbital-calibrated-probe/replay-source/51f6b0fd84063e89c0d80a90e2a2b4c686392a9fae81eb406388893e01382d02-engine3d.js",
+        "dist/engine.js": "artifacts/suite-training/orbital-calibrated-probe/replay-source/2e0c4fa70a8595cbaae4905e7a28c34321958dbd5711e617e637d716fc275782-engine.js",
+        "dist/orbital.js": "artifacts/suite-training/orbital-calibrated-probe/replay-source/3bf699bfc2d047095eb14046fdf054b7ee9fab38b48006c08aa2268f656b2c81-orbital.js",
+        "dist/missions.js": "artifacts/suite-training/orbital-calibrated-probe/replay-source/c8b715a1075f2104c08c0d49ecdd08a78b6f72bb889e15e6488a1984086d949e-missions.js",
+        "dist/full-controller.js": "artifacts/suite-training/orbital-calibrated-probe/replay-source/7e14c3d359c8ea557a794d611b87a563590813a61592c14b82d58415ff73afb5-full-controller.js"
+      },
+      "sourceSHA256": {
+        "artifacts/suite-training/orbital-calibrated-probe/probe.json": "51f31cc11ec586706b8e5f90ad5cc2101006c489dd0a883079e98c6b78b9691a",
+        "artifacts/suite-training/orbital-calibrated-probe/replay-source/6552c4c071ce7c92ed05e11bad2b3bc5fc33eaa7d62331e8a2b40a477e06fbc4-summarize-flight-probe.mjs": "6552c4c071ce7c92ed05e11bad2b3bc5fc33eaa7d62331e8a2b40a477e06fbc4",
+        "artifacts/suite-training/orbital-calibrated-probe/replay-source/51f6b0fd84063e89c0d80a90e2a2b4c686392a9fae81eb406388893e01382d02-engine3d.js": "51f6b0fd84063e89c0d80a90e2a2b4c686392a9fae81eb406388893e01382d02",
+        "artifacts/suite-training/orbital-calibrated-probe/replay-source/2e0c4fa70a8595cbaae4905e7a28c34321958dbd5711e617e637d716fc275782-engine.js": "2e0c4fa70a8595cbaae4905e7a28c34321958dbd5711e617e637d716fc275782",
+        "artifacts/suite-training/orbital-calibrated-probe/replay-source/3bf699bfc2d047095eb14046fdf054b7ee9fab38b48006c08aa2268f656b2c81-orbital.js": "3bf699bfc2d047095eb14046fdf054b7ee9fab38b48006c08aa2268f656b2c81",
+        "artifacts/suite-training/orbital-calibrated-probe/replay-source/c8b715a1075f2104c08c0d49ecdd08a78b6f72bb889e15e6488a1984086d949e-missions.js": "c8b715a1075f2104c08c0d49ecdd08a78b6f72bb889e15e6488a1984086d949e",
+        "artifacts/suite-training/orbital-calibrated-probe/replay-source/7e14c3d359c8ea557a794d611b87a563590813a61592c14b82d58415ff73afb5-full-controller.js": "7e14c3d359c8ea557a794d611b87a563590813a61592c14b82d58415ff73afb5"
+      }
+    },
+    "orbitalCalibratedGenerationSixReplay": {
+      "purpose": "Complete development-trajectory replay. Quality duration is sampled at decision endpoints; the insertion hold is measured at every original physics step. No mission criterion or controller action is changed.",
+      "parameters": [
+        -0.5728330966972411,
+        -0.017986418744784915,
+        -0.626185529363891,
+        -0.02296972552693272,
+        0.016663398400128756,
+        -0.3348008286066731,
+        -0.7529904936421139,
+        -5.330651893065596,
+        -1.0339104259204348,
+        -2.645822034992804,
+        -0.7928146670657364,
+        -0.10768510540095695,
+        -1,
+        0,
+        0,
+        0,
+        1.0819153380861601,
+        0.8033425293101045,
+        2.6757764008863254,
+        1.368739355645518,
+        1.4444281413560118,
+        -1.3763218568683258,
+        -0.7976842997884349,
+        -0.13387037841753566,
+        0.16079144556851913,
+        0.4035933961501703,
+        0.07257935819598031,
+        -0.24627062392546373
+      ],
+      "flights": [
+        {
+          "flight": {
+            "seed": 714133,
+            "scenario": 24,
+            "activationGain": 1,
+            "score": -481.07976135080656,
+            "landed": false,
+            "styleBonus": 0,
+            "styleRecovered": false,
+            "turnDegrees": -0.2712095507793786,
+            "reason": "Flight left the recovery corridor",
+            "variation": {
+              "level": 0,
+              "mass": 1,
+              "thrust": 1,
+              "servo": 1,
+              "wind": 1,
+              "deck": 1,
+              "noise": 0
+            },
+            "touchdown": null,
+            "time": 119.94999999999787,
+            "orbitComplete": false,
+            "orbits": 0,
+            "maxAltitude": 12109.011935540482,
+            "milestones": [
+              {
+                "name": "Launch",
+                "time": 1.4500000000000006,
+                "altitude": 4.118951804999863
+              },
+              {
+                "name": "Space",
+                "time": 90.19999999999787,
+                "altitude": 805.1118712444021
+              }
+            ]
+          },
+          "decisions": 591,
+          "exactPhysicalReplay": true,
+          "axes": [
+            {
+              "head": 1,
+              "commandMinimum": -0.08659903508023563,
+              "commandMaximum": 0.45181999523680183,
+              "changedDecisions": 590,
+              "physicalDegreesMinimum": -1.0915870284006297,
+              "physicalDegreesMaximum": 5.695223341871735,
+              "commandRMS": 0.21272150214268645
+            },
+            {
+              "head": 3,
+              "commandMinimum": -0.3124413498935078,
+              "commandMaximum": 0.2531726219606792,
+              "changedDecisions": 590,
+              "physicalDegreesMinimum": -3.938345552739011,
+              "physicalDegreesMaximum": 3.191258999853764,
+              "commandRMS": 0.08106583820547128
+            }
+          ],
+          "terminal": {
+            "time": 119.94999999999787,
+            "altitude": 12109.011935540482,
+            "verticalSpeed": 603.3839610909032,
+            "tangentSpeed": 414.9413990796129,
+            "pitch": 1.8772403119719954,
+            "roll": 0.10561629706231451,
+            "throttle": 0,
+            "fuel": 0,
+            "engineBank": 1,
+            "periapsis": 3969.4626507740177,
+            "apoapsis": null,
+            "eccentricity": 15.036876510791386
+          },
+          "insertionQuality": 0.8051036741024542,
+          "peak": {
+            "time": 56.39999999999893,
+            "altitude": 213.26355674112872,
+            "verticalSpeed": 2.229415791049959,
+            "tangentSpeed": 245.52538421856772,
+            "pitch": 1.5540545439665638,
+            "roll": 0.0057580468060513985,
+            "throttle": 0.8005263989576177,
+            "fuel": 0.5251572066589416,
+            "engineBank": 1,
+            "periapsis": 208.81004729039432,
+            "apoapsis": 1020.2115411184895,
+            "eccentricity": 0.06133495878024994
+          },
+          "firstTargetCrossing": {
+            "time": 91.94999999999787,
+            "altitude": 1028.5610793778471,
+            "verticalSpeed": 140.4128004436958,
+            "tangentSpeed": 406.65675301740487,
+            "pitch": 1.548666177197,
+            "roll": 0.13272647972001222,
+            "throttle": 0.7365100301539783,
+            "fuel": 0.1929699850912468,
+            "engineBank": 1,
+            "periapsis": 502.3562281397244,
+            "apoapsis": null,
+            "eccentricity": 2.557513504343333
+          },
+          "qualityTimeIntegral": 22.17218922125738,
+          "secondsAboveQuality": {
+            "0.5": 9.599999999999454,
+            "0.7": 2.6999999999998465,
+            "0.9": 0
+          },
+          "qualifyingDecisionSeconds": 0,
+          "longestPhysicalInsertionHoldSeconds": 0
+        },
+        {
+          "flight": {
+            "seed": 733800,
+            "scenario": 25,
+            "activationGain": 1,
+            "score": -479.25559731771955,
+            "landed": false,
+            "styleBonus": 0,
+            "styleRecovered": false,
+            "turnDegrees": -0.3018285856108447,
+            "reason": "Flight left the recovery corridor",
+            "variation": {
+              "level": 0.2,
+              "mass": 0.9800956421806843,
+              "thrust": 0.9968654453273597,
+              "servo": 0.9953174691978534,
+              "wind": 1.0708761659076644,
+              "deck": 1.030759383563896,
+              "noise": 0.002
+            },
+            "touchdown": null,
+            "time": 118.39999999999783,
+            "orbitComplete": false,
+            "orbits": 0,
+            "maxAltitude": 12024.283323139141,
+            "milestones": [
+              {
+                "name": "Launch",
+                "time": 1.4000000000000006,
+                "altitude": 4.039145952197021
+              },
+              {
+                "name": "Space",
+                "time": 89.39999999999783,
+                "altitude": 818.5069295817394
+              }
+            ]
+          },
+          "decisions": 591,
+          "exactPhysicalReplay": true,
+          "axes": [
+            {
+              "head": 1,
+              "commandMinimum": -0.06614290481506278,
+              "commandMaximum": 0.47193277571369496,
+              "changedDecisions": 590,
+              "physicalDegreesMinimum": -0.8337360439404983,
+              "physicalDegreesMaximum": 5.948746377703536,
+              "commandRMS": 0.21214436502179818
+            },
+            {
+              "head": 3,
+              "commandMinimum": -0.2571530802638827,
+              "commandMaximum": 0.4202751879085868,
+              "changedDecisions": 590,
+              "physicalDegreesMinimum": -3.2414329613400645,
+              "physicalDegreesMaximum": 5.297598790270518,
+              "commandRMS": 0.08596966299610856
+            }
+          ],
+          "terminal": {
+            "time": 118.39999999999783,
+            "altitude": 12024.283323139141,
+            "verticalSpeed": 613.289295700886,
+            "tangentSpeed": 434.5523469344452,
+            "pitch": 1.864789110060473,
+            "roll": -0.293380898065971,
+            "throttle": 0,
+            "fuel": 0,
+            "engineBank": 1,
+            "periapsis": 4151.093148331225,
+            "apoapsis": null,
+            "eccentricity": 16.11259567962774
+          },
+          "insertionQuality": 0.8035110006373682,
+          "peak": {
+            "time": 56.09999999999895,
+            "altitude": 210.038022821303,
+            "verticalSpeed": 2.2113495615452803,
+            "tangentSpeed": 245.243093835677,
+            "pitch": 1.5579494468205752,
+            "roll": 0.002727078590858809,
+            "throttle": 0.8021379615324387,
+            "fuel": 0.5269247814797038,
+            "engineBank": 1,
+            "periapsis": 205.43647158124077,
+            "apoapsis": 974.7896554603421,
+            "eccentricity": 0.058371774236910604
+          },
+          "firstTargetCrossing": {
+            "time": 90.89999999999783,
+            "altitude": 1013.672531898041,
+            "verticalSpeed": 140.6157555047116,
+            "tangentSpeed": 401.60352870752916,
+            "pitch": 1.3035992738633364,
+            "roll": 0.14547366480865373,
+            "throttle": 0.7266835143999338,
+            "fuel": 0.20065541260224978,
+            "engineBank": 1,
+            "periapsis": 470.22240237905953,
+            "apoapsis": null,
+            "eccentricity": 2.472124527171274
+          },
+          "qualityTimeIntegral": 22.220944594580125,
+          "secondsAboveQuality": {
+            "0.5": 9.749999999999446,
+            "0.7": 2.849999999999838,
+            "0.9": 0
+          },
+          "qualifyingDecisionSeconds": 0,
+          "longestPhysicalInsertionHoldSeconds": 0
+        },
+        {
+          "flight": {
+            "seed": 753467,
+            "scenario": 26,
+            "activationGain": 1,
+            "score": -481.27747173001336,
+            "landed": false,
+            "styleBonus": 0,
+            "styleRecovered": false,
+            "turnDegrees": -0.23146212043737133,
+            "reason": "Flight left the recovery corridor",
+            "variation": {
+              "level": 0,
+              "mass": 1,
+              "thrust": 1,
+              "servo": 1,
+              "wind": 1,
+              "deck": 1,
+              "noise": 0
+            },
+            "touchdown": null,
+            "time": 127.04999999999742,
+            "orbitComplete": false,
+            "orbits": 0,
+            "maxAltitude": 12010.568549713964,
+            "milestones": [
+              {
+                "name": "Launch",
+                "time": 1.4500000000000006,
+                "altitude": 4.239750834411883
+              },
+              {
+                "name": "Space",
+                "time": 97.54999999999742,
+                "altitude": 828.4777293558692
+              }
+            ]
+          },
+          "decisions": 642,
+          "exactPhysicalReplay": true,
+          "axes": [
+            {
+              "head": 1,
+              "commandMinimum": -0.09545786402007904,
+              "commandMaximum": 0.46037770196860234,
+              "changedDecisions": 641,
+              "physicalDegreesMinimum": -1.2032532005305334,
+              "physicalDegreesMaximum": 5.803093847041165,
+              "commandRMS": 0.21248404038746949
+            },
+            {
+              "head": 3,
+              "commandMinimum": -0.24786527264719094,
+              "commandMaximum": 0.29626204679717044,
+              "changedDecisions": 641,
+              "physicalDegreesMinimum": -3.124359482319568,
+              "physicalDegreesMaximum": 3.734404280504734,
+              "commandRMS": 0.07739114848110876
+            }
+          ],
+          "terminal": {
+            "time": 127.04999999999742,
+            "altitude": 12010.568549713964,
+            "verticalSpeed": 538.4660064137796,
+            "tangentSpeed": 285.2391462015899,
+            "pitch": 1.8244724025797083,
+            "roll": 0.15184337744052268,
+            "throttle": 0,
+            "fuel": 0,
+            "engineBank": 1,
+            "periapsis": 1914.4979961366107,
+            "apoapsis": null,
+            "eccentricity": 8.442309232299362
+          },
+          "insertionQuality": 0.7821905914126209,
+          "peak": {
+            "time": 71.84999999999806,
+            "altitude": 208.56182187368492,
+            "verticalSpeed": 4.184419400906229,
+            "tangentSpeed": 248.39652815194057,
+            "pitch": 1.5523715662893607,
+            "roll": -0.010448259999420674,
+            "throttle": 0.7834064960637583,
+            "fuel": 0.3623634235543961,
+            "engineBank": 1,
+            "periapsis": 197.42888832320295,
+            "apoapsis": 1373.3474581573764,
+            "eccentricity": 0.0866507957843645
+          },
+          "firstTargetCrossing": {
+            "time": 101.29999999999742,
+            "altitude": 1408.9518690705756,
+            "verticalSpeed": 189.0878331948025,
+            "tangentSpeed": 433.0378776340868,
+            "pitch": 1.5985202398618212,
+            "roll": -0.10573435356057134,
+            "throttle": 0.7338292170742724,
+            "fuel": 0.09111170315521067,
+            "engineBank": 1,
+            "periapsis": 624.4581328479089,
+            "apoapsis": null,
+            "eccentricity": 3.399906526749277
+          },
+          "qualityTimeIntegral": 32.51005310884721,
+          "secondsAboveQuality": {
+            "0.5": 21.59999999999878,
+            "0.7": 3.5999999999997954,
+            "0.9": 0
+          },
+          "qualifyingDecisionSeconds": 0,
+          "longestPhysicalInsertionHoldSeconds": 0
+        }
+      ],
+      "replayedSourceFiles": {
+        "scripts/summarize-flight-probe.mjs": "artifacts/suite-training/orbital-calibrated-g6-probe/replay-source/6552c4c071ce7c92ed05e11bad2b3bc5fc33eaa7d62331e8a2b40a477e06fbc4-summarize-flight-probe.mjs",
+        "dist/engine3d.js": "artifacts/suite-training/orbital-calibrated-g6-probe/replay-source/51f6b0fd84063e89c0d80a90e2a2b4c686392a9fae81eb406388893e01382d02-engine3d.js",
+        "dist/engine.js": "artifacts/suite-training/orbital-calibrated-g6-probe/replay-source/2e0c4fa70a8595cbaae4905e7a28c34321958dbd5711e617e637d716fc275782-engine.js",
+        "dist/orbital.js": "artifacts/suite-training/orbital-calibrated-g6-probe/replay-source/3bf699bfc2d047095eb14046fdf054b7ee9fab38b48006c08aa2268f656b2c81-orbital.js",
+        "dist/missions.js": "artifacts/suite-training/orbital-calibrated-g6-probe/replay-source/c8b715a1075f2104c08c0d49ecdd08a78b6f72bb889e15e6488a1984086d949e-missions.js",
+        "dist/full-controller.js": "artifacts/suite-training/orbital-calibrated-g6-probe/replay-source/7e14c3d359c8ea557a794d611b87a563590813a61592c14b82d58415ff73afb5-full-controller.js"
+      },
+      "sourceSHA256": {
+        "artifacts/suite-training/orbital-calibrated-g6-probe/probe.json": "5ad7cbb263f38240fd79dc465fb39cea7ed854413f2efd0cc6e4992cc4e00451",
+        "artifacts/suite-training/orbital-calibrated-g6-probe/replay-source/6552c4c071ce7c92ed05e11bad2b3bc5fc33eaa7d62331e8a2b40a477e06fbc4-summarize-flight-probe.mjs": "6552c4c071ce7c92ed05e11bad2b3bc5fc33eaa7d62331e8a2b40a477e06fbc4",
+        "artifacts/suite-training/orbital-calibrated-g6-probe/replay-source/51f6b0fd84063e89c0d80a90e2a2b4c686392a9fae81eb406388893e01382d02-engine3d.js": "51f6b0fd84063e89c0d80a90e2a2b4c686392a9fae81eb406388893e01382d02",
+        "artifacts/suite-training/orbital-calibrated-g6-probe/replay-source/2e0c4fa70a8595cbaae4905e7a28c34321958dbd5711e617e637d716fc275782-engine.js": "2e0c4fa70a8595cbaae4905e7a28c34321958dbd5711e617e637d716fc275782",
+        "artifacts/suite-training/orbital-calibrated-g6-probe/replay-source/3bf699bfc2d047095eb14046fdf054b7ee9fab38b48006c08aa2268f656b2c81-orbital.js": "3bf699bfc2d047095eb14046fdf054b7ee9fab38b48006c08aa2268f656b2c81",
+        "artifacts/suite-training/orbital-calibrated-g6-probe/replay-source/c8b715a1075f2104c08c0d49ecdd08a78b6f72bb889e15e6488a1984086d949e-missions.js": "c8b715a1075f2104c08c0d49ecdd08a78b6f72bb889e15e6488a1984086d949e",
+        "artifacts/suite-training/orbital-calibrated-g6-probe/replay-source/7e14c3d359c8ea557a794d611b87a563590813a61592c14b82d58415ff73afb5-full-controller.js": "7e14c3d359c8ea557a794d611b87a563590813a61592c14b82d58415ff73afb5"
+      }
     }
   },
   "sourceSHA256": {
@@ -7193,10 +8397,14 @@
     "artifacts/suite-training/recovery-grid/trials.jsonl": "6853d77375106590bdfa47e1ebf9d4588fd5219cc828caebc1c9f5cf92c12ce6",
     "artifacts/suite-training/attitude-adaptive/state.json": "ef7071aa793b136389bbbba0bbb1ae4757fc55e6972dd022ef68ca8db00e2129",
     "artifacts/suite-training/attitude-adaptive/trials.jsonl": "a93de03b1a1b484ebb14f8618df59fa529f890aceba4734bcd3bfffd11a20603",
+    "artifacts/suite-training/gimbal-steering/state.json": "652e96aa1fbb20abc5240946213db24c51992430d58aaf39178c606a59a86061",
+    "artifacts/suite-training/gimbal-steering/trials.jsonl": "a5ae2317cc2e933d8ef43ae6975cdd4e911101505af633dbd239ca8114e45660",
     "artifacts/suite-training/orbital-insertion/state.json": "5ea94a9a0346c58effa634f834902cfe26e7e90560cd737aa675cea3ea98d052",
     "artifacts/suite-training/orbital-insertion/trials.jsonl": "0cba53a444116e24e99d7fe27bf0f1839c92c78cdd942df2f79a73798c2573e4",
     "artifacts/suite-training/orbital-progress/state.json": "87f4df9b9dab751f8c92e65fd71c1b24a21c4e40a1fce744528e47f7d4604c01",
     "artifacts/suite-training/orbital-progress/trials.jsonl": "c310328d0dbcdb023aff434b57b639907c564c8628845ce042ef63883f238d19",
+    "artifacts/suite-training/orbital-calibrated/state.json": "232f9998e841b8b1339f1f3b1602ea5957d05c2eee9494c17c8ab5ec34eae9a1",
+    "artifacts/suite-training/orbital-calibrated/trials.jsonl": "0c1fa2e338c11bca692542eaa49e7c7875d7209ac29760b9c9eb555c0a0eca36",
     "artifacts/suite-training/vertical-selection/selection.json": "a5d3762bc77bde08dbb6242930b25fc67d5d006a79bde5a316a1b6327f52beaf",
     "artifacts/suite-training/vertical-robust/selection.json": "f344913eedb0d5eb0061aaea3093775764451347337ae151e203d2dc9e1266c9",
     "artifacts/suite-training/attitude-g2-selection/selection.json": "932384015c78f82e70967bb6f0b3236e7710b818029bb44e2976566780929e15",
@@ -7219,6 +8427,36 @@
     "artifacts/suite-training/orbital-calibration-comparison.json": "37c4b1afa582c0d11af1fd52e318f7fee2647aa1a2d73793666a40eeb857b789",
     "artifacts/suite-training/orbital-progress-trained-probe/probe.json": "041136573cf7d428063c474a2a58ca7c2085ecbc18a072b7741dd7243b694d35",
     "artifacts/suite-training/orbital-calibrated-probe/probe.json": "51f31cc11ec586706b8e5f90ad5cc2101006c489dd0a883079e98c6b78b9691a",
-    "scripts/report-suite-training.py": "f58e56cfeecc9bd68634540292c64efd51a3e734e53f05e971bb4b1ab4d79abe"
+    "scripts/report-suite-training.py": "b83abdaec009a63dc5853e4aaaff9c4a8fe0aa839841ccf4a75e00c32353a8a3",
+    "artifacts/suite-training/gimbal-g5-selection/selection.json": "ad6b180f40e56b9c865871a0503e3335b1581177c49e6019b9043cb278c171f5",
+    "artifacts/suite-training/gimbal-g5-selection/selection-weights.json": "175d37cd77e5f68a3ece3818578aca70a2cbc2743017ad72770f8e006ac957d4",
+    "artifacts/suite-training/gimbal-g5-ablation/selection.json": "b3525e31dcf4b6575e4b2cf7b4a3038288a75748765b3a184694ae935abfe710",
+    "artifacts/suite-training/gimbal-g5-ablation/selection-weights.json": "0d65eddde7de8e68ea7765392df39b402620646e1c195b28dab5c15d4390c9e4",
+    "artifacts/suite-training/gimbal-g5-selection/selection-audit.json": "3aa94e7756e4148fca41f780b70d94b39316e5d54f504594ba6b609b5ecaf47f",
+    "artifacts/suite-training/high-return-probe/summary.json": "d8efade1b37e5780bc76348379430a74ec32f51becc14478d79a17abd2692c34",
+    "artifacts/suite-training/high-return-probe/probe.json": "f8e520d08c836370ffacc0274418722cad41869c7f565f5c98ef18a091e8c765",
+    "artifacts/suite-training/gimbal-g5-probe/probe.json": "de655c642f9721cf254760239d1426fa69e63f7ef57c7893d52da2bc39bc7cfb",
+    "artifacts/suite-training/gimbal-g5-probe/replay-source/6552c4c071ce7c92ed05e11bad2b3bc5fc33eaa7d62331e8a2b40a477e06fbc4-summarize-flight-probe.mjs": "6552c4c071ce7c92ed05e11bad2b3bc5fc33eaa7d62331e8a2b40a477e06fbc4",
+    "artifacts/suite-training/gimbal-g5-probe/replay-source/51f6b0fd84063e89c0d80a90e2a2b4c686392a9fae81eb406388893e01382d02-engine3d.js": "51f6b0fd84063e89c0d80a90e2a2b4c686392a9fae81eb406388893e01382d02",
+    "artifacts/suite-training/gimbal-g5-probe/replay-source/2e0c4fa70a8595cbaae4905e7a28c34321958dbd5711e617e637d716fc275782-engine.js": "2e0c4fa70a8595cbaae4905e7a28c34321958dbd5711e617e637d716fc275782",
+    "artifacts/suite-training/gimbal-g5-probe/replay-source/3bf699bfc2d047095eb14046fdf054b7ee9fab38b48006c08aa2268f656b2c81-orbital.js": "3bf699bfc2d047095eb14046fdf054b7ee9fab38b48006c08aa2268f656b2c81",
+    "artifacts/suite-training/gimbal-g5-probe/replay-source/c8b715a1075f2104c08c0d49ecdd08a78b6f72bb889e15e6488a1984086d949e-missions.js": "c8b715a1075f2104c08c0d49ecdd08a78b6f72bb889e15e6488a1984086d949e",
+    "artifacts/suite-training/gimbal-g5-probe/replay-source/7e14c3d359c8ea557a794d611b87a563590813a61592c14b82d58415ff73afb5-full-controller.js": "7e14c3d359c8ea557a794d611b87a563590813a61592c14b82d58415ff73afb5",
+    "artifacts/suite-training/gimbal-g5-probe/trajectory-summary.json": "87672fac12cd8db4ae2077fda0004f5a4e06873a8797530eb766cc04b06278bc",
+    "artifacts/suite-training/orbital-calibrated-probe/replay-source/6552c4c071ce7c92ed05e11bad2b3bc5fc33eaa7d62331e8a2b40a477e06fbc4-summarize-flight-probe.mjs": "6552c4c071ce7c92ed05e11bad2b3bc5fc33eaa7d62331e8a2b40a477e06fbc4",
+    "artifacts/suite-training/orbital-calibrated-probe/replay-source/51f6b0fd84063e89c0d80a90e2a2b4c686392a9fae81eb406388893e01382d02-engine3d.js": "51f6b0fd84063e89c0d80a90e2a2b4c686392a9fae81eb406388893e01382d02",
+    "artifacts/suite-training/orbital-calibrated-probe/replay-source/2e0c4fa70a8595cbaae4905e7a28c34321958dbd5711e617e637d716fc275782-engine.js": "2e0c4fa70a8595cbaae4905e7a28c34321958dbd5711e617e637d716fc275782",
+    "artifacts/suite-training/orbital-calibrated-probe/replay-source/3bf699bfc2d047095eb14046fdf054b7ee9fab38b48006c08aa2268f656b2c81-orbital.js": "3bf699bfc2d047095eb14046fdf054b7ee9fab38b48006c08aa2268f656b2c81",
+    "artifacts/suite-training/orbital-calibrated-probe/replay-source/c8b715a1075f2104c08c0d49ecdd08a78b6f72bb889e15e6488a1984086d949e-missions.js": "c8b715a1075f2104c08c0d49ecdd08a78b6f72bb889e15e6488a1984086d949e",
+    "artifacts/suite-training/orbital-calibrated-probe/replay-source/7e14c3d359c8ea557a794d611b87a563590813a61592c14b82d58415ff73afb5-full-controller.js": "7e14c3d359c8ea557a794d611b87a563590813a61592c14b82d58415ff73afb5",
+    "artifacts/suite-training/orbital-calibrated-probe/trajectory-summary.json": "5872b6e4c38de60f92432aef07ab937f265cbf133080b086665834b70007ffe9",
+    "artifacts/suite-training/orbital-calibrated-g6-probe/probe.json": "5ad7cbb263f38240fd79dc465fb39cea7ed854413f2efd0cc6e4992cc4e00451",
+    "artifacts/suite-training/orbital-calibrated-g6-probe/replay-source/6552c4c071ce7c92ed05e11bad2b3bc5fc33eaa7d62331e8a2b40a477e06fbc4-summarize-flight-probe.mjs": "6552c4c071ce7c92ed05e11bad2b3bc5fc33eaa7d62331e8a2b40a477e06fbc4",
+    "artifacts/suite-training/orbital-calibrated-g6-probe/replay-source/51f6b0fd84063e89c0d80a90e2a2b4c686392a9fae81eb406388893e01382d02-engine3d.js": "51f6b0fd84063e89c0d80a90e2a2b4c686392a9fae81eb406388893e01382d02",
+    "artifacts/suite-training/orbital-calibrated-g6-probe/replay-source/2e0c4fa70a8595cbaae4905e7a28c34321958dbd5711e617e637d716fc275782-engine.js": "2e0c4fa70a8595cbaae4905e7a28c34321958dbd5711e617e637d716fc275782",
+    "artifacts/suite-training/orbital-calibrated-g6-probe/replay-source/3bf699bfc2d047095eb14046fdf054b7ee9fab38b48006c08aa2268f656b2c81-orbital.js": "3bf699bfc2d047095eb14046fdf054b7ee9fab38b48006c08aa2268f656b2c81",
+    "artifacts/suite-training/orbital-calibrated-g6-probe/replay-source/c8b715a1075f2104c08c0d49ecdd08a78b6f72bb889e15e6488a1984086d949e-missions.js": "c8b715a1075f2104c08c0d49ecdd08a78b6f72bb889e15e6488a1984086d949e",
+    "artifacts/suite-training/orbital-calibrated-g6-probe/replay-source/7e14c3d359c8ea557a794d611b87a563590813a61592c14b82d58415ff73afb5-full-controller.js": "7e14c3d359c8ea557a794d611b87a563590813a61592c14b82d58415ff73afb5",
+    "artifacts/suite-training/orbital-calibrated-g6-probe/trajectory-summary.json": "042082b87180bd1755033e6ef182c97b30198b76e4a071613ede18c16e83be2d"
   }
 }

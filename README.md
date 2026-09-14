@@ -2,13 +2,22 @@
 
 An experimental fruit-fly connectome controls a 3D booster. The default **Perceiving fly** receives light at two modeled eyes, body feedback and receptor-specific odor stimuli. Its cockpit presents a camera and twelve measured flight indicators. These measurements reach the graph through eye pixels; no numerical navigation array or target trajectory enters the controller. See [Learning the mission suite](docs/suite-training.md) for the training procedure, frozen-checkpoint tests and limitations.
 
-The shipped checkpoint achieved **56/80 safe landings on unseen starts
-across ten missions**. It landed 8/8 each on Landing School, Atlantic Return,
-Fast Ferry and Spinning Entry; results on the six engine-failure missions
-ranged from 1/8 to 7/8. It landed 27/40 nominal and 29/40 varied flights.
+The shipped checkpoint achieved **60/80 safe landings on unseen starts
+across ten missions**, versus **54/80** for the previous controller on the
+same starts. It landed 8/8 each on Landing School, Atlantic Return and
+Spinning Entry, and 7/8 on Fast Ferry; results on the six engine-failure
+missions ranged from 1/8 to 8/8. It landed 29/40 nominal and 31/40 varied flights.
 Covering its eyes or disabling the indicators reduced it to **0/80** in each
-matched control. All 24 failures remain in the report. These small tests
+matched control. All 20 failures remain in the report. The paired comparison
+rescued seven prior failures and lost one prior success. These small tests
 do not establish mastery of all 27 missions or transfer to a living fly.
+
+The release learns gimbal corrections alongside attitude-jet steering.
+Two separate movement probes confirmed actual corrections below half a
+degree; one landed and one failed on lateral speed. The gimbal readout now
+shows tenths of a degree so small corrections are visible. The previous
+ten-mission checkpoint's 56/80 result used a different cohort and is retained
+in its [historical report](docs/assets/ten-mission-g6-report.json).
 
 The previous four-mission checkpoint achieved 28/32 on its original test.
 A chemical pilot with those earlier weights landed **10/16** additional
@@ -41,7 +50,7 @@ Each neuron uses `tanh(gain × (0.05 × previous activity + 0.55 × normalized s
 
 ## Learning and evidence
 
-The embodied controller starts independently of the old instrument-trained checkpoints. The curriculum calibrates full-network motor activity against presented indicator brightness and body feedback, then learns throttle, lateral steering and attitude stabilization from complete-flight reward. A learned sensory basis is folded into the ordinary 21,300-weight readout. Correlated parameter search adjusts steering and damping together. The released ten-mission checkpoint uses a three-engine bank from the start, with learned throttle feedback; reactive switching after a failure remains unverified. Gimbal, fins and gaze remain neutral. Anatomical connections stay fixed. The remaining 17 missions have no final validation for this checkpoint.
+The embodied controller starts independently of the old instrument-trained checkpoints. The curriculum calibrates full-network motor activity against presented indicator brightness and body feedback, then learns throttle, lateral steering and attitude stabilization from complete-flight reward. A learned sensory basis is folded into the ordinary 21,300-weight readout. Correlated parameter search adjusts steering and damping together. The released ten-mission checkpoint uses a three-engine bank from the start, with learned throttle feedback and joint gimbal/attitude-jet steering; reactive switching after a failure remains unverified. Fins and gaze remain neutral. Anatomical connections stay fixed. The remaining 17 missions have no final validation for this checkpoint.
 
 The earlier visual-orientation curriculum presented luminous monitor markers at different positions and head angles. The target gaze came from the marker’s apparent position in the retinal image. Six decisions let each stimulus propagate through the complete graph, then a regularized fit updated the gaze readout using all 2,129 output activities. Feature scaling was folded into the learned weights. There was no flight teacher or hidden flight action.
 

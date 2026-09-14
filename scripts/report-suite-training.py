@@ -45,7 +45,8 @@ plt.close(fig)
 
 states = {}
 for name in ['vertical', 'vertical-robust', 'attitude', 'ground-general', 'attitude-correlated',
-             'engine-transition', 'recovery-grid', 'attitude-adaptive', 'orbital-insertion', 'orbital-progress']:
+             'engine-transition', 'recovery-grid', 'attitude-adaptive', 'gimbal-steering',
+             'orbital-insertion', 'orbital-progress', 'orbital-calibrated']:
     path = folder/name/'state.json'
     if path.exists():
         sources.append(path)
@@ -176,6 +177,41 @@ if comparison_path.exists():
         'newProbeFlights': probe_summaries,
         'matchedOldProbeFlight': {k: v for k, v in old['results'][0]['flights'][0].items() if k != 'trajectory'}}
 sources.append(Path(__file__))
+gimbal_audit_path = folder/'gimbal-g5-selection/selection-audit.json'
+if gimbal_audit_path.exists():
+    audit = json.loads(gimbal_audit_path.read_text())
+    for path, expected in audit['sourceSHA256'].items():
+        assert hashlib.sha256((root/path).read_bytes()).hexdigest() == expected, path
+        sources.append(root/path)
+    sources.append(gimbal_audit_path)
+    development['gimbalGenerationFiveSelection'] = audit
+high_return_path = folder/'high-return-probe/summary.json'
+if high_return_path.exists():
+    high_return = json.loads(high_return_path.read_text())
+    probe_path = root/high_return['sourceFile']
+    assert hashlib.sha256(probe_path.read_bytes()).hexdigest() == high_return['sourceSHA256']
+    probe = json.loads(probe_path.read_text())
+    assert high_return['flight'] == {k: v for k, v in probe['results'][0]['flights'][0].items() if k != 'trajectory'}
+    assert high_return['decisions'] == len(probe['results'][0]['flights'][0]['trajectory'])
+    sources.extend([high_return_path, probe_path])
+    development['highReturnProbe'] = high_return
+for name, directory in [('gimbalGenerationFiveProbe', 'gimbal-g5-probe'),
+                        ('orbitalCalibratedInitialReplay', 'orbital-calibrated-probe'),
+                        ('orbitalCalibratedGenerationSixReplay', 'orbital-calibrated-g6-probe')]:
+    summary_path = folder/directory/'trajectory-summary.json'
+    if not summary_path.exists():
+        continue
+    summary = json.loads(summary_path.read_text())
+    for path, expected in summary['sourceSHA256'].items():
+        assert hashlib.sha256((root/path).read_bytes()).hexdigest() == expected, path
+        sources.append(root/path)
+    probe = json.loads((folder/directory/'probe.json').read_text())
+    assert summary['parameters'] == probe['parameters'] and len(summary['flights']) == len(probe['results'])
+    for row, result in zip(summary['flights'], probe['results']):
+        assert row['exactPhysicalReplay'] and row['decisions'] == len(result['flights'][0]['trajectory'])
+        assert all(result['flights'][0][key] == value for key, value in row['flight'].items())
+    sources.append(summary_path)
+    development[name] = summary
 report = {'scope':'Training and model-selection snapshot and one matched calibration probe; not final mission validation',
           'calibrationProbe': [{'seed':f['seed'],'landed':f['landed'],'reason':f['reason'],'touchdown':f['touchdown'],'time':f['time']} for f in flights],
           'training':states, 'selections':selections, 'development':development,

@@ -1,8 +1,8 @@
 // Every retained neuron and directed edge is evaluated on every recurrent pass.
 // Sensory observations enter annotated sensory cells; only graph activity reaches readout.
-import {NETWORK_INPUTS} from './signals.js?v=9.5';
+import {NETWORK_INPUTS} from './signals.js?v=9.6';
 export {NETWORK_INPUTS};
-import {SENSORY_GROUPS,EMBODIED_INPUTS} from './sensory-inputs.js?v=9.5';
+import {SENSORY_GROUPS,EMBODIED_INPUTS} from './sensory-inputs.js?v=9.6';
 export const NETWORK_PASSES=2;
 export const isMotorClass=name=>['descending_neuron','cb_motor','vnc_motor'].includes(name);
 export async function compressedArray(url,Type){

@@ -1,6 +1,6 @@
-import {createFlight,rng} from './engine3d.js?v=9.5';
-import {renderScreens,renderRetinas} from './perception.js?v=9.5';
-import {EMBODIED_INPUTS,EYE_PIXELS,RETINA_WIDTH as W} from './sensory-inputs.js?v=9.5';
+import {createFlight,rng} from './engine3d.js?v=9.6';
+import {renderScreens,renderRetinas} from './perception.js?v=9.6';
+import {EMBODIED_INPUTS,EYE_PIXELS,RETINA_WIDTH as W} from './sensory-inputs.js?v=9.6';
 const bound=x=>Math.max(-.9,Math.min(.9,x));
 // A visual curriculum: a luminous marker is presented on a monitor. The label
 // comes from its apparent position in the retinal image, never a flight teacher.

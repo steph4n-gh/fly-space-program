@@ -1,4 +1,4 @@
-import {clamp,rng} from './engine.js?v=9.5';
+import {clamp,rng} from './engine.js?v=9.6';
 // A deliberately small Newtonian world compresses the orbital period. Surface
 // gravity is 9.81 m/s²; these distances are sandbox meters, not an Earth model.
 export const PLANET_RADIUS=6000,PLANET_MU=9.81*PLANET_RADIUS**2;
