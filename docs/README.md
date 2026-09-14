@@ -8,6 +8,7 @@ Fly Space Program aims to take simulated fly training as far as possible before 
 | --- | --- |
 | Get the overview and try it | [Project README](../README.md) |
 | Read the complete stopping-point report | [Status — September 14, 2026](status-2026-09-14.md) |
+| Inspect publication readiness | [Public-readiness review](public-readiness.md) |
 | See the application | [Screenshot gallery](screenshots.md) |
 | Understand the research questions | [Science and hypotheses](science-and-hypotheses.md) |
 | Ask the obvious and less-obvious questions | [Facts and FAQ](facts-and-faq.md) |

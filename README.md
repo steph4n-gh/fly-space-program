@@ -6,7 +6,7 @@ Fly Space Program is an ongoing computational-neuroscience and control experimen
 
 The ambition is to push fly training as far as we can in simulation, document what works and what fails, and make the next physical experiment concrete. The rockets and radio jokes are playful. The anatomical data, complete-network calculations, recorded experiments and unanswered questions are real parts of the project.
 
-[Fly the simulator](https://fly-space-program.sarrington493484.chatgpt.site/) · [Read the docs](docs/README.md) · [Full status — September 14](docs/status-2026-09-14.md) · [Explore the science](docs/science-and-hypotheses.md) · [See the Fly Cube](docs/harness-concept.md)
+[Hosted simulator — restricted access](https://fly-space-program.sarrington493484.chatgpt.site/) · [Run it locally](#run-it-locally) · [Read the docs](docs/README.md) · [Full status — September 14](docs/status-2026-09-14.md) · [Explore the science](docs/science-and-hypotheses.md) · [See the Fly Cube](docs/harness-concept.md)
 
 ![Actual mission-control screen, with the booster over its landing deck and the animated fly at the controls](docs/assets/screenshots/mission-control.jpg)
 

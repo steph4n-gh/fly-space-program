@@ -67,3 +67,28 @@ reciprocal comparisons, resolving evidence pointers, frozen input hashes, and
 archives were opened, no new response arrays were read, and no model was run.
 Response-file and archive hashes are explicitly labeled as prior recorded
 identities; only the metadata/source snapshots were rehashed for this task.
+
+## Third-party source attribution
+
+The upstream source snapshots and quoted source excerpts in this package come
+from [Code for imaging analysis, visual stimulus, and computational model](https://doi.org/10.5281/zenodo.13367946)
+by Michelle Pang, Feng Chen, Marjorie Xie, Shaul Druckmann, Thomas Clandinin and
+Helen Yang, licensed under [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/).
+
+The two complete source snapshots are **unmodified** copies of these deposited
+archive members:
+
+| Snapshot | Archive member |
+| --- | --- |
+| [shortFlashProcessed_saveMean.m](sources/shortFlashProcessed_saveMean.m) | `imaging-analysis.zip` → `imaging-analysis/HHY_stimulusSpecificAnalysisScripts/shortFlashProcessed_saveMean.m` |
+| [fullfield_LDflash20ms_Gray500ms.txt](sources/fullfield_LDflash20ms_Gray500ms.txt) | `stimulus.zip` → `stimulus/fullfield_LDflash20ms_Gray500ms.txt` |
+
+For the public-readiness check, both member SHA-256 hashes matched the snapshots
+recorded in [manifest.json](manifest.json). The archive MD5 hashes matched the
+[publisher's record](https://zenodo.org/records/13367946):
+`ab8412190bef160000f35b082ed99a68` for `imaging-analysis.zip` and
+`2d060bbfeb2f5dbec0f751673869e60e` for `stimulus.zip`.
+
+The [visual_recurrent.py](sources/visual_recurrent.py) snapshot and the generated
+analysis records are project-authored. The project's [No Theo License](../../LICENSE)
+does not replace the CC BY 4.0 terms of the upstream material.

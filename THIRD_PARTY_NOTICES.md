@@ -25,7 +25,7 @@ The No Theo exclusion does **not** relicense the underlying CC BY 4.0 data.
 | DM Sans | Loaded through Google Fonts; upstream [DM Sans project](https://github.com/googlefonts/dm-fonts). |
 | IBM Plex Mono | Loaded through Google Fonts; upstream [IBM Plex project and OFL](https://github.com/IBM/plex). |
 
-Research exports and external study material retain the attribution and terms documented alongside them, including the [visual-model export record](docs/visual-export-context/README.md). Inclusion in an experiment or document does not transfer ownership of an external paper, dataset, figure or implementation.
+The bundled visual-study source snapshots and quoted source excerpts retain **CC BY 4.0** from Pang, Chen, Xie, Druckmann, Clandinin and Yang's [code deposition](https://doi.org/10.5281/zenodo.13367946). The [source attribution notice](docs/visual-export-context/README.md#third-party-source-attribution) identifies the unmodified files, archive members and verified identities. The project license does not replace those terms. Other research exports and external study material retain their documented source terms; inclusion in an experiment or document does not transfer ownership.
 
 ## Screenshots and concept art
 
