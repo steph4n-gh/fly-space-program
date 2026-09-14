@@ -1,9 +1,10 @@
 # Testing failed-contact quality in ground learning
 
 This paired experiment tests whether changing the ranking of failed contacts
-helps the existing controller learn all 24 ground missions. The implementation
-has passed static and synthetic checks; the prescribed flights have not yet
-started. There is no new performance result or released checkpoint.
+helps the existing controller learn all 24 ground missions. Both original
+training runs started on September 14, 2026 at 12:36 UTC and were still active
+at the 12:41 UTC process-handle check. The reserved comparison has not started.
+There is no completed performance result or released checkpoint.
 
 The [six-flight training diagnostic](ground-training-diagnostic.md) found
 separate contact-speed and tracking failures. The original flight reward
@@ -44,6 +45,14 @@ scores, landing counts and quality. All candidates in the generation finish
 before an invalid result blocks ranking and the optimizer update. Complete
 ledgers retain per-case quality, the original fitness and the ranking keys
 for both arms.
+
+Before launch, the source review and synthetic checks passed, the complete
+73-file runtime and supplied execution environments were frozen, and both
+launch preflights passed. A separate arithmetic check reconstructed identical
+first-generation populations for both arms: 12 candidates with 28 parameters
+each, preserving all 11 fixed coordinates. It ran no neural or physical
+simulation. Matching later populations is not assumed, because different
+rankings can select different candidates.
 
 After both original training runs finish and their full ledgers pass the
 arithmetic audit, only each arm's selected generation-four checkpoint enters

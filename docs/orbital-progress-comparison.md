@@ -1,87 +1,105 @@
-# Testing progress toward the missing periapsis condition
+# Progress ranking produced no training gain in this run
 
-The [paired diagnostic](orbital-joint-paired.md) found zero insertion time in
-all twelve trips. Even when apoapsis and radial speed met their original
-limits, periapsis remained below 248 m; it must exceed 800 m. The final
-controller improved the old shaped score at a low altitude without meeting
-that requirement.
+Both training arms completed all **576 prescribed trips**. Their twelve full
+candidate result objects and entire rank order were identical in every one of
+the four generations. Adding the H/P ranking keys changed neither the selected
+elites nor the final controller. Both selected generation-four controllers kept
+the original generation-eight controller's exact 21,300 weights.
 
-This experiment compares two outcome rankings from the same frozen controller.
-Both use the same 13 learned throttle/pitch directions, sensory basis,
-166,700 neurons, 25,582,938 directed connections and two recurrent updates per
-decision. The physics, flight endpoints, original milestones and success
-criteria remain unchanged. All action commands still come from the learned
-readout of neural activity.
+There were **0 stable orbits, 0 completed orbits and 0 landings out of 576 trips**.
+Every trip recorded zero strict insertion-hold time. This result describes this
+paired training run; it does not establish that learning or the method is
+impossible. The **12 reserved comparison trips remain pending** in this report.
 
-## The single change
+## Every training outcome
 
-Both arms record two additional physical outcome measures after every original
-physics step:
+| Recorded outcome | Control | H/P ranking |
+| --- | ---: | ---: |
+| Complete training trips | 288 | 288 |
+| Nominal / variability-0.4 trips | 144 / 144 | 144 / 144 |
+| Stable orbit / completed orbit / landing | 0 / 0 / 0 | 0 / 0 / 0 |
+| No eligible periapsis sample | 250 | 250 |
+| At least one eligible periapsis sample | 38 | 38 |
+| Flight left the recovery corridor | 180 | 180 |
+| Returned before completing an orbit | 66 | 66 |
+| Orbital mission timed out | 42 | 42 |
 
-- **H:** longest consecutive time satisfying periapsis >800 m,
-  |apoapsis − destination| <200 m and |radial speed| <5 m/s, capped at three
-  seconds and divided by three. Any failing step resets the consecutive time.
-- **P:** greatest finite periapsis among steps satisfying the original
-  apoapsis and radial-speed limits. Clamp that value to [−6000, 800] m, add
-  6000 and divide by 6800. With no eligible step, P is zero. The lower bound
-  is the existing planet radius below the surface, and the upper bound is
-  the existing periapsis requirement.
+Recorded conditional periapsis reached at most 335.099194 m
+among eligible samples, below the original strict 800 m requirement. A nonzero
+P value never changed a success flag. All failures, ineligible cases, original
+rewards, rolling quality values and H/P fields remain in the
+[576-row CSV](orbital-progress-training-flights.csv) and
+[compact JSON](orbital-progress-training-results.json).
 
-The control arm ranks candidates by the current landing count, original
-milestones and fitness. The experimental arm preserves landings and the same
-milestone order first, then compares mean H, mean P and existing fitness in
-that order. Every failed flight contributes to the means. No new reward
-weight, command schedule or sensory input is introduced. Both arms retain the
-old rolling quality, original reward and fitness separately.
+## Identical selection in all four generations
 
-H measures sampled physical hold time. P can improve through a brief eligible
-crossing and cannot establish insertion by itself. Neither measure changes
-the simulator's phase or success flags.
+Candidate indices below are zero-based. Both arms had the same complete
+twelve-candidate ordering, retained in the JSON along with every candidate's
+original fitness, H, P and milestone counts.
 
-## Frozen comparison
+| Generation | Selected candidate | Top three | Selected mean H | Selected mean P | Original fitness |
+| --- | ---: | --- | ---: | ---: | ---: |
+| 1 | 0 | 0, 11, 8 | 0.000000 | 0.763603 | 208.305174 |
+| 2 | 1 | 1, 2, 0 | 0.000000 | 0.917569 | 211.282527 |
+| 3 | 1 | 1, 9, 6 | 0.000000 | 0.917035 | 213.603331 |
+| 4 | 1 | 1, 2, 9 | 0.000000 | 0.916950 | 215.632373 |
 
-Both arms start from the final generation-eight joint controller with fresh
-optimizers at the original proposal scales. Each runs four generations of
-12 candidates on six complete trips: one nominal and one variability-0.4 case
-for each orbital mission. That is **288 training trips per arm, 576 total**.
-They share the same fresh proposal seed and original changing-case rule;
-earlier training cases can recur.
+The selected parameter vector remained the initial controller in every
+generation. Selected H/P and fitness vary with the scheduled starts; those
+changes are not evidence of training gain. Both final controllers have weight
+SHA256 `1c3f9b403128a742ec5db3c9010f75806f5e0dd6abf17ab791082c99c7e449ff`.
 
-After training, the selected generation-four candidate from each arm receives
-the same six new normal-vision cases, with one nominal and one varied start
-per mission. These **12 comparison trips** retain complete trajectories for
-independent replay. The entire prescribed budget is **588 complete flights**.
-No earlier-generation fallback, additional restart or comparison-based
-coefficient replacement is allowed.
+## What changed and what stayed fixed
 
-Both training arms launched on September 14, 2026. Before launch, independent
-checks verified the numerical measures, fixed inputs and launch wiring. An
-instrumented replay of all twelve existing diagnostic flights exactly matched
-all 23,225 retained physical steps and every endpoint. These checks establish
-instrumentation consistency; they supply no additional successful flights.
+The [earlier paired diagnostic](orbital-joint-paired.md) motivated testing the
+missing periapsis condition. Both arms used the same frozen controller, fresh
+optimizer, original proposal scales and seed, 13 active directions, sensory
+basis, full anatomical network, physics and success criteria. Each generation
+tested twelve candidates on six full trips: nominal and varied starts for each
+of the three orbital missions. The original changing-case schedule can repeat
+earlier training cases. Four generations give 288 trips per arm.
 
-The frozen plan and launcher pin the complete 72-file runtime, graph assets,
-native build, initial coefficients, environments, cases and analysis rules.
-The plan is in the [training record](suite-training-progress.json). A plan
-alone is not evidence that either process is running or has completed.
+Both arms recorded **H**, the longest consecutive sampled hold satisfying
+periapsis >800 m, absolute apoapsis error <200 m and absolute radial speed <5 m/s,
+capped at three seconds and divided by three. They also recorded **P**, the
+greatest finite periapsis while the apoapsis and speed conditions held, clamped
+to [−6000, 800] m and mapped to [0, 1]. P is zero when no sample qualifies.
 
-## How results will be interpreted
+The control ordered candidates by landings, the original milestone counts and
+original fitness. The H/P arm kept the same primary ordering, then compared
+mean H, mean P and original fitness. Every complete failed trip contributed to
+the means. No action command, sensory input, success threshold or old fitness
+formula changed. A brief eligible P crossing is not successful insertion.
 
-Every paired result will be reported, starting with original stable-orbit,
-complete-orbit, return and landing milestones, followed by strict hold time,
-conditional periapsis, old fitness, fuel and failed endpoints. An improvement
-in P without qualifying hold still represents failed orbital capability.
-This small development comparison does not qualify a release; independent
-JavaScript testing remains necessary for any future capability claim.
+## Verification and limits
 
-The eligibility gate is discontinuous, a best-P crossing may be brief, and
-averaging can trade progress between missions. One optimizer seed and six
-comparison cases cannot establish general optimizer superiority. This change
-also leaves the unbound-tail plateau and retention of an earlier best value
-intact. It tests the demonstrated periapsis bottleneck while keeping the
-controller's available directions fixed.
+The original training processes both exited zero. The completed JavaScript
+audit passed 162,426 checks of frozen inputs, all 96 candidates, proposal and
+optimizer arithmetic, ranking, rewards and final weights. Publication separately
+matched all 576 exported endpoints to the original ledgers and checked every
+generation's full cross-arm result objects and rank order. The JSON and CSV
+round-trip every stored endpoint field without numeric rounding. Detailed audit
+checks remain in the experiment archive rather than the public data file.
 
-Implementation: `scripts/insertion-progress.mjs`, the shared
-`scripts/train-suite.mjs`, and `scripts/run-orbital-progress-comparison.py`.
-The experiment archive retains the independent design review and immutable
-inputs under `artifacts/suite-training/orbital-progress-comparison`.
+Training trajectories were not recorded, so the audit checks retained endpoint
+and summary arithmetic; it does not reconstruct every physics step or H/P
+eligibility interval. Before the experiment, instrumentation replay matched all
+23,225 retained steps and endpoints from twelve earlier diagnostic trips. Those
+checks establish instrumentation consistency, not additional successful flights.
+
+The historical training plan and launcher pinned the 72-file runtime and
+explicit experiment settings. They **did not record the full environment
+supplied to Node or its historical executable hash**; Node was resolved through
+PATH. A separate clean wrapper records the future comparison's full supplied
+environment prospectively. It cannot recover that missing historical evidence.
+
+The reserved comparison uses only the frozen final generation-four candidates
+on six new cases per arm. This publication includes no comparison outcomes and
+does not infer completion from artifact existence. One paired optimizer seed
+and this development budget establish no general reliability, optimizer
+superiority, ground-retention or release claim. The total planned budget remains
+588 flights, including the twelve pending comparison trips.
+
+Implementation and immutable records are under
+`scripts/insertion-progress.mjs`, `scripts/train-suite.mjs`, and
+`artifacts/suite-training/orbital-progress-comparison`.

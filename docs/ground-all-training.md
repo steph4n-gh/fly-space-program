@@ -107,6 +107,13 @@ The historical tested-runtime subset is not transitively complete: dist/engine.j
 
 Only this audited completed GEN6 entered the [separately frozen selection plan](ground-all-selection-plan.json). The plan binds 96 new starts across all 24 ground missions, candidate normal/covered/disabled-indicator conditions, and the intact release on normal inputs: 384 full flights. Every mission has two nominal and two variability-0.4 starts per condition. All five gates must pass: overall superiority over the release; retention of its original-four and released-ten landing counts; and superiority over each sensory control. This seed and numeric protocol were frozen before selection, after the earlier training plan. Both original processes completed successfully and the independent audit retained all 384 outcomes. Four gates pass, but released-ten retention fails; this candidate does not advance to fresh unseen JavaScript final testing or deployment. The [complete comparison](ground-all-selection.md) retains all mission counts and failures. The complete training audit values and source identities remain in the [machine-readable training report](ground-all-training-results.json).
 
+A separate [failed-contact ranking experiment](ground-contact-comparison.md)
+now starts from this original training-final GEN6 with fresh optimizers. It
+compares the unchanged ranking with a contact-quality tiebreaker using the
+same 17 directions and original training schedule. Its fixed budget is 4,608
+training flights followed by 96 fresh development comparisons. Both training
+arms launched on September 14; this work supplies no new release result.
+
 Plan SHA256: a2bbcdb88c05548a4cb2fcf02c493d896ed4ded98839431f79d9f826db5666d2.
 
 Completed ledger SHA256: 2a4cafd077b063e4c5a3e4d8e14d11beb01a6f59797d52582826d8313d85d184.

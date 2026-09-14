@@ -592,6 +592,43 @@ if ground_trace_report_path.exists():
     assert diagnostic['interpretationAllowed'] and diagnostic['allOriginalEndpointsExact'] and diagnostic['newNeuralRuns'] == 0
     sources.extend([ground_trace_report_path, terminal_path])
     development['groundTrainingDiagnostic'] = diagnostic
+contact_base = folder/'ground-contact-comparison'
+contact_plan_path = contact_base/'plan.json'
+if contact_plan_path.exists():
+    contact_plan_sha256 = '2245f3cef2dbcb94695f409a4c12e6962a7c84f9125b2cf4241787eaebed5315'
+    assert hashlib.sha256(contact_plan_path.read_bytes()).hexdigest() == contact_plan_sha256
+    contact_plan = json.loads(contact_plan_path.read_text())
+    assert contact_plan['schema'] == 'ground-contact-comparison-v1'
+    assert contact_plan['newTrainingFlights'] == 4608 and contact_plan['comparisonFlights'] == 96
+    assert contact_plan['releaseEligible'] is False
+    contact_inputs = {root/contact_plan['runtimeDirectory']/name: expected
+                      for name, expected in contact_plan['runtimeSHA256'].items()}
+    contact_inputs[root/contact_plan['initialModel']['file']] = contact_plan['initialModel']['sha256']
+    contact_inputs[contact_base/'tested-launcher.py'] = contact_plan['launcherSHA256']
+    contact_inputs[contact_base/'prepared-runtime.json'] = contact_plan['preparedRuntimeSHA256']
+    for path, expected in contact_inputs.items():
+        assert hashlib.sha256(path.read_bytes()).hexdigest() == expected, path
+        sources.append(path)
+    sources.append(contact_plan_path)
+    development['groundContactRankingPlan'] = {
+        'scope':'Frozen paired experiment on all 24 ground missions: 4,608 training flights and 96 reserved comparison flights. No completed performance result follows from this plan.',
+        'planSHA256':contact_plan_sha256, 'plan':contact_plan}
+    contact_launch_path = contact_base/'original-launch-observation.json'
+    if contact_launch_path.exists():
+        contact_launch = json.loads(contact_launch_path.read_text())
+        assert contact_launch['schema'] == 'ground-contact-original-launch-observation-v1'
+        assert contact_launch['confirmedBy'] == '/root' and contact_launch['planSHA256'] == contact_plan_sha256
+        assert contact_launch['bothOriginalProcessesObservedLive'] and contact_launch['noRestarts']
+        assert set(contact_launch['arms']) == {'control','ranked'}
+        for arm, original_session in [('control',18423),('ranked',71353)]:
+            receipt = contact_launch['arms'][arm]
+            assert receipt['originalSessionId'] == original_session and receipt['originalAttempt']
+            launch_path = contact_base/f'launch-train-{arm}.json'
+            assert hashlib.sha256(launch_path.read_bytes()).hexdigest() == receipt['launchSHA256']
+            sources.append(launch_path)
+        sources.append(contact_launch_path)
+        development['groundContactRankingPlan']['launchObservation'] = contact_launch
+        development['groundContactRankingPlan']['launchScope'] = 'Both original processes were observed live at the recorded launch check. This dated receipt does not establish their present status or completion.'
 progress_plan_path = folder/'orbital-progress-comparison/plan.json'
 if progress_plan_path.exists():
     progress_plan = json.loads(progress_plan_path.read_text())
@@ -619,6 +656,35 @@ if progress_plan_path.exists():
         development['orbitalProgressRankingPlan']['instrumentationReplay'] = {
             k:replay[k] for k in ['scope','status','decisions','physicalSteps',
                 'exactRecordedStateValues','exactPhysicalStepValues','exactEndpoints','sourceSHA256']}
+    progress_training_path = root/'docs/orbital-progress-training-results.json'
+    if progress_training_path.exists():
+        assert hashlib.sha256(progress_training_path.read_bytes()).hexdigest() == '079a995f82d0a793aedae801a27f9a7010ffc5d1d55616ae1b7884c4bbbc2f8e'
+        training = json.loads(progress_training_path.read_text())
+        assert training['status'] == 'TRAINING_COMPLETE_NO_GAIN' and training['totalTrainingFlights'] == 576
+        assert training['sourceSHA256']['plan'] == hashlib.sha256(progress_plan_path.read_bytes()).hexdigest()
+        audit_dir = progress_plan_path.parent/'completion-audit/training-audit'
+        identities_path = audit_dir/'output-identities.json'
+        assert hashlib.sha256(identities_path.read_bytes()).hexdigest() == training['sourceSHA256']['auditOutputIdentities']
+        assert not (audit_dir/'failure.json').exists()
+        for name, expected in json.loads(identities_path.read_text()).items():
+            path = audit_dir/name
+            assert hashlib.sha256(path.read_bytes()).hexdigest() == expected, path
+            sources.append(path)
+        for path, expected in [(root/'scripts/report-orbital-progress-training.py', training['sourceSHA256']['reporter']),
+                               (root/'docs'/training['csv']['file'], training['csv']['sha256'])]:
+            assert hashlib.sha256(path.read_bytes()).hexdigest() == expected, path
+            sources.append(path)
+        assert training['allFourGenerationsResultObjectsExactlyEqual'] and training['allFourFullRankOrdersExactlyEqual']
+        assert training['selectedControllerUnchangedFromInitialEveryGeneration'] and training['deploymentEligible'] is False
+        assert training['flightTable']['count'] == len(training['flightTable']['rows']) == 576
+        sources.extend([progress_training_path, identities_path])
+        development['orbitalProgressRankingPlan']['scope'] = 'Frozen paired experiment; completed training outcomes are reported separately. The twelve reserved comparison trips have no outcomes in this training publication.'
+        development['orbitalProgressRankingTraining'] = {
+            key:training[key] for key in ['status','scope','sourceSHA256','audit','totalCandidates','totalTrainingFlights',
+                'allFourGenerationsResultObjectsExactlyEqual','allFourFullRankOrdersExactlyEqual',
+                'selectedControllerUnchangedFromInitialEveryGeneration','initialController','finalControllers',
+                'arms','generations','comparison','provenance','limitations','deploymentEligible']}
+        development['orbitalProgressRankingTraining']['allFlightReport'] = 'orbital-progress-training-results.json'
 paired_plan_path = folder/'orbital-joint-paired-diagnostic/plan.json'
 if paired_plan_path.exists():
     plan = json.loads(paired_plan_path.read_text())

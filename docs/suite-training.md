@@ -608,6 +608,14 @@ before the engine faults, and 72.9–76.5% fuel remains at contact. The engine-f
 cases brake too slowly; the wind-shear cases approach the deck and then drift
 far outside its radius. All six failures are preserved for training diagnosis.
 
+The [failed-contact ranking comparison](ground-contact-comparison.md) tests
+whether those outcomes can better guide the same 17 learned directions.
+Both arms start from the original training-final GEN6 with fresh optimizers;
+one keeps the old ranking and one places mean failed-contact quality after
+landings and existing milestones, before the unchanged fitness. The budget
+is 4,608 training flights and 96 fresh development comparisons. Both training
+arms launched on September 14; the released controller is unchanged.
+
 ## Orbital ascent experiments
 
 The earlier four-mission controller completed three nominal orbital baseline trials,
@@ -865,13 +873,18 @@ The [complete paired report](orbital-joint-paired.md) retains all failures,
 pitch timing, command decompositions, fuel use and physical constraints.
 No coefficients or action schedules were chosen from these development cases.
 
-The next [paired ranking experiment](orbital-progress-comparison.md) tests
-whether prioritizing actual strict hold time and the remaining conditional
-periapsis gap helps search escape this failure. Its frozen budget is 576
-training trips across two otherwise identical arms, then 12 matched trips
-using their fixed final candidates. This changes candidate ranking while
-preserving the old fitness, all 13 eligible directions and original flight
-criteria.
+The [paired ranking experiment](orbital-progress-comparison.md) completed all
+576 training trips with **no stable orbit, completed orbit or landing**. Adding
+strict hold and conditional periapsis ranking produced identical full candidate
+orderings in all four generations. Both final controllers retained the starting
+controller's exact weights. The complete report includes every training failure
+and records the missing historical environment and executable evidence.
+
+Both original reserved evaluations started on September 14 at 12:47–12:48 UTC.
+They use the fixed final controllers on six fresh matched starts each, with a
+prospectively recorded clean execution environment. Their outcomes remain
+pending. The total budget stays at 588 trips; the old fitness, all 13 eligible
+directions and original flight criteria are unchanged.
 
 Reproduce the earlier G6 throttle-command decomposition with
 `node scripts/summarize-orbital-throttle.mjs`. It reads the archived tested
