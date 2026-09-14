@@ -2,16 +2,18 @@
 // Every candidate decision traverses the complete anatomical graph twice.
 import fs from 'node:fs';
 import crypto from 'node:crypto';
+import {serialize} from 'node:v8';
 import {Worker,isMainThread,parentPort} from 'node:worker_threads';
 import {loadFullNetwork} from './full-network-node.mjs';
 import {attachNativeRate} from './native-rate.mjs';
-import {createFlight,advance,decisionSteps,rng} from '../dist/engine3d.js';
+import {createFlight,advance,decisionSteps,rng,SCENARIOS} from '../dist/engine3d.js';
 import {orbitalElements} from '../dist/orbital.js';
 import {sampleEmbodied} from '../dist/perception.js';
 import {FLIGHT_PANEL,FLIGHT_BODY_CHANNELS,presentedInstrumentValues} from '../dist/flight-instruments.js';
 import {freshEmbodied,flightResult} from '../dist/full-controller.js';
 import {createInsertionHold,updateInsertionHold} from './insertion-hold.mjs';
 import {createInsertionProgress,updateInsertionProgress,insertionProgressResult,compareInsertionProgress} from './insertion-progress.mjs';
+import {meanFailedContactQuality} from './ground-contact-progress.mjs';
 
 const folder='artifacts/suite-training',basisPath=process.env.SUITE_SENSORY_BASIS??folder+'/sensory-basis.json',basisText=fs.readFileSync(basisPath,'utf8'),basis=JSON.parse(basisText);
 const sha=s=>crypto.createHash('sha256').update(s).digest('hex'),calibrationHash=sha(basisText),stride=2130;
@@ -42,14 +44,19 @@ const scales=[.1,.15,.3,.15,.15,.2,.3,2,.5,.5,.5,.1,1,.8,3,1.5,1,2,2,2,2,3,2,.15
 const touchdownMargin=Number(process.env.SUITE_TOUCHDOWN_MARGIN??0);
 const insertionProgress=process.env.SUITE_INSERTION_PROGRESS??'off';
 if(!['off','record','rank'].includes(insertionProgress))throw Error('Unknown insertion progress mode');
-const selectionOrder=insertionProgress==='rank'?'landings-orbital-milestones-strict-hold-conditional-periapsis-then-fitness':'landings-orbital-milestones-then-fitness';
+const groundContact=process.env.SUITE_GROUND_CONTACT??'off';
+if(!['off','record','rank'].includes(groundContact))throw Error('Unknown ground contact mode');
+const selectionOrder=groundContact==='rank'?'landings-orbital-milestones-failed-contact-quality-then-fitness':insertionProgress==='rank'?'landings-orbital-milestones-strict-hold-conditional-periapsis-then-fitness':'landings-orbital-milestones-then-fitness';
 const useInsertionHold=process.env.SUITE_INSERTION_HOLD==='1';
 if(insertionProgress!=='off'&&!useInsertionHold)throw Error('Insertion progress comparison requires the existing hold reward');
+if(groundContact!=='off'&&(useInsertionHold||insertionProgress!=='off'))throw Error('Ground contact comparison requires orbital reward experiments off');
 const fitnessVersion=useInsertionHold?'touchdown-margin-and-orbit-hold-v1':'touchdown-margin-and-orbit-insertion-v2';
 const rewardSource=useInsertionHold?fs.readFileSync(new URL('./insertion-hold.mjs',import.meta.url)):null;
 const progressSource=insertionProgress==='off'?null:fs.readFileSync(new URL('./insertion-progress.mjs',import.meta.url));
+const contactSource=groundContact==='off'?null:fs.readFileSync(new URL('./ground-contact-progress.mjs',import.meta.url));
 const rewardMetadata={...(rewardSource?{insertionRewardSourceSHA256:sha(rewardSource)}:{}),
- ...(progressSource?{insertionProgress,insertionProgressSourceSHA256:sha(progressSource)}:{})};
+ ...(progressSource?{insertionProgress,insertionProgressSourceSHA256:sha(progressSource)}:{}),
+ ...(contactSource?{groundContact,groundContactSourceSHA256:sha(contactSource)}:{})};
 const orbitalMilestones=['Final approach','Atmospheric entry','Deorbit','One full orbit','Stable orbit','Space','Launch'];
 function compareResults(a,b){
  if(a.landings!==b.landings)return b.landings-a.landings;
@@ -58,6 +65,7 @@ function compareResults(a,b){
   if(difference)return difference;
  }
  if(insertionProgress==='rank'){const difference=compareInsertionProgress(a,b);if(difference)return difference;}
+ if(groundContact==='rank'){const difference=b.groundContactQuality.meanFailed-a.groundContactQuality.meanFailed;if(difference)return difference;}
  return b.fitness-a.fitness;
 }
 function decode(parameters){
@@ -130,6 +138,8 @@ if(!isMainThread){
  fs.mkdirSync(path,{recursive:true});
  const profiles=(process.env.SUITE_PROFILES??'0').split(',').map(Number),active=mode.startsWith('ground-joint')?[0,1,2,3,4,5,6,7,8,9,10,11,23,24,25,26,27]:mode.startsWith('vertical')?[0,1,2,3,4]:mode.startsWith('attitude')?[5,6,7,8,9,10]:mode.startsWith('engine')?[0,1,2,3,4,11,12,13,14,15]:mode.startsWith('gimbal')?[5,6,7,8,9,10,23,24,25,26,27]:mode.startsWith('orbital-joint')?[0,1,2,7,11,16,17,18,19,20,21,22,25]:mode.startsWith('orbital')?[0,1,2,3,4,5,6,7,8,9,10,11,16,17,18,19,20,21,22,23,24,25,26,27]:directions.map((_,i)=>i);
  if(insertionProgress!=='off'&&!profiles.every(p=>[24,25,26].includes(p)))throw Error('Insertion progress comparison supports orbital profiles only');
+ if(groundContact!=='off'&&(!mode.startsWith('ground-joint-all')||profiles.length!==24||!profiles.every((p,i)=>p===i)||Number(process.env.SUITE_BATCH)!==48))throw Error('Ground contact comparison requires the complete paired all24 ground training schedule');
+ if(groundContact!=='off'&&process.argv.slice(2).some(arg=>arg!=='--evaluate'))throw Error('Ground contact comparison supports complete training and frozen evaluation only');
  let state=fs.existsSync(path+'/state.json')?JSON.parse(fs.readFileSync(path+'/state.json')):{generation:0,episodes:0,mean:initial,sigma:scales,best:null,history:[]};
  if(process.env.SUITE_INITIAL&&state.generation===0){const prior=JSON.parse(fs.readFileSync(process.env.SUITE_INITIAL));state.mean=prior.best?.parameters??prior.parameters;}
  if(state.generation===0&&state.mean.length<directions.length)state.mean=[...state.mean,...Array(directions.length-state.mean.length).fill(0)];
@@ -141,10 +151,36 @@ if(!isMainThread){
  if(state.generation>0&&state.insertionRewardSourceSHA256!==rewardMetadata.insertionRewardSourceSHA256)throw Error('Insertion reward changed; initialize a new training folder');
  if(state.generation>0&&(state.insertionProgress??'off')!==insertionProgress)throw Error('Insertion progress mode changed; initialize a new training folder');
  if(state.generation>0&&state.insertionProgressSourceSHA256!==rewardMetadata.insertionProgressSourceSHA256)throw Error('Insertion progress measurement changed; initialize a new training folder');
+ if(state.generation>0&&(state.groundContact??'off')!==groundContact)throw Error('Ground contact mode changed; initialize a new training folder');
+ if(state.generation>0&&state.groundContactSourceSHA256!==rewardMetadata.groundContactSourceSHA256)throw Error('Ground contact metric changed; initialize a new training folder');
  const sourceText=fs.readFileSync(new URL(import.meta.url)),sourceSHA256=sha(sourceText);
  fs.writeFileSync(path+'/source-'+sourceSHA256+'.mjs',sourceText);
  if(rewardSource)fs.writeFileSync(path+'/insertion-hold-'+rewardMetadata.insertionRewardSourceSHA256+'.mjs',rewardSource);
  if(progressSource)fs.writeFileSync(path+'/insertion-progress-'+rewardMetadata.insertionProgressSourceSHA256+'.mjs',progressSource);
+ if(contactSource)fs.writeFileSync(path+'/ground-contact-progress-'+rewardMetadata.groundContactSourceSHA256+'.mjs',contactSource);
+ function retainGroundResult(result,job,label){
+  // Preserve even malformed/nonfinite worker data before any validation. V8
+  // serialization retains values that JSON would silently replace with null.
+  fs.writeFileSync(path+'/raw-'+label+'.bin',serialize({job,result}),{flag:'wx'});
+  try{
+   if(!result||typeof result!=='object'||!Array.isArray(result.parameters)||result.parameters.length!==28||!Array.from({length:28},(_,i)=>Number.isFinite(result.parameters[i])&&result.parameters[i]===job.parameters[i]).every(Boolean))throw Error('Returned parameters differ from the dispatched candidate');
+   if(!Array.isArray(result.flights)||result.flights.length!==job.cases.length)throw Error('Returned flight count differs from the dispatched cases');
+   for(let i=0;i<job.cases.length;i++){
+    const flight=result.flights[i],test=job.cases[i];
+    if(!flight||flight.scenario!==test.scenario||flight.seed!==test.seed||flight.variation?.level!==(test.variability??0)||!Number.isFinite(flight.score))throw Error('Invalid or out-of-order flight '+i);
+   }
+   const meanFailed=meanFailedContactQuality(result.flights,SCENARIOS);
+   if(!Number.isFinite(result.score)||!Number.isFinite(result.fitness)||result.landings!==result.flights.filter(f=>f.landed).length)throw Error('Invalid aggregate score, fitness or landing count');
+   const score=result.flights.reduce((v,s)=>v+s.score,0)/result.flights.length;
+   const fitness=result.flights.reduce((v,s)=>v+(s.milestones?s.score*.1:s.score)+(s.insertionHoldReward??s.insertionReward??0)-touchdownMargin*(s.landed?s.touchdown.speed**2+s.touchdown.lateral**2:0),0)/result.flights.length;
+   if(result.score!==score||result.fitness!==fitness)throw Error('Aggregate score or fitness differs from the unchanged worker arithmetic');
+   const perFlight=result.flights.map(f=>f.landed?null:meanFailedContactQuality([f],SCENARIOS));
+   const rankKey=[result.landings,...orbitalMilestones.map(name=>result.flights.filter(f=>f.milestones?.some(m=>m.name===name)).length),...(groundContact==='rank'?[meanFailed]:[]),result.fitness];
+   return {...result,groundContactQuality:{meanFailed,perFlight},groundContactRankKey:rankKey,groundContactValidation:{valid:true}};
+  }catch(error){
+   return {...result,groundContactValidation:{valid:false,error:String(error.message??error)}};
+  }
+ }
  let stopping=false;process.on('SIGINT',()=>{stopping=true;console.log('Finishing this generation before stopping.');});
  try{
   if(process.argv.includes('--collect-senses')){
@@ -186,12 +222,28 @@ if(!isMainThread){
    if(odorLevel!==null&&(!Number.isFinite(odorLevel)||odorLevel<=0||odorLevel>1||process.env.SUITE_TEST_MODES))throw Error('Use one fixed model odor level in (0,1] without SUITE_TEST_MODES');
    const modes=odorLevel===null?(process.env.SUITE_TEST_MODES??'normal,covered').split(','):['normal','ethyl-acetate','geosmin'];
    if(!modes.every(mode=>(odorLevel===null?['normal','covered','no-instruments']:['normal','ethyl-acetate','geosmin']).includes(mode)))throw Error('Unknown evaluation condition');
+   if(groundContact!=='off'&&(cases.length!==48||modes.length!==1||modes[0]!=='normal'||odorLevel!==null))throw Error('Ground contact evaluation requires all48 normal cases');
    const odorIntervention=odorLevel===null?undefined:{level:odorLevel,unit:'Dimensionless model receptor input, not physical concentration',schedule:'Constant bilateral input from the first decision to the original full-flight endpoint',conditions:{normal:[0,0,0,0],'ethyl-acetate':[odorLevel,odorLevel,0,0],geosmin:[0,0,odorLevel,odorLevel]},selection:'None; retain every matched outcome with the frozen readout'};
    const report={parameters,calibrationHash,sourceSHA256,...rewardMetadata,backend:process.env.FLY_NATIVE_RATE==='1'?'native-exact-rate':'javascript-rate',nativeBuild,weightSHA256:sha(Buffer.from(Float64Array.from(weights).buffer)),cases,modes,odorIntervention,flights:[],complete:false};
    const output=path+'/'+(process.env.SUITE_TEST_OUTPUT??'selection.json');
    fs.writeFileSync(output.replace(/\.json$/,'')+'-weights.json',JSON.stringify(weights));
    const save=()=>{fs.writeFileSync(output+'.tmp',JSON.stringify(report));fs.renameSync(output+'.tmp',output);};
-   await Promise.all(modes.flatMap(mode=>cases.map(test=>evaluate({parameters,trace:process.env.SUITE_TEST_TRACE==='1',cases:[{...test,covered:mode==='covered',instrumentLights:mode!=='no-instruments',...(odorIntervention?{odorLevels:odorIntervention.conditions[mode]}:{})}]}).then(result=>{const flight={...result.flights[0],mode};report.flights.push(flight);save();console.log(JSON.stringify({...flight,trajectory:undefined}));}))));
+   if(groundContact!=='off')report.results=[];
+   await Promise.all(modes.flatMap(mode=>cases.map((test,caseIndex)=>{
+    const job={parameters,trace:process.env.SUITE_TEST_TRACE==='1',cases:[{...test,covered:mode==='covered',instrumentLights:mode!=='no-instruments',...(odorIntervention?{odorLevels:odorIntervention.conditions[mode]}:{})}]};
+    return evaluate(job).then(result=>{
+     if(groundContact!=='off'){
+      const checked=retainGroundResult(result,job,'evaluation-'+mode+'-'+caseIndex);report.results.push({caseIndex,mode,...checked});
+      if(Array.isArray(result?.flights))report.flights.push(...result.flights.map(f=>({...f,mode})));
+      save();console.log(JSON.stringify({caseIndex,mode,landings:checked.landings,groundContactValidation:checked.groundContactValidation}));
+     }else{const flight={...result.flights[0],mode};report.flights.push(flight);save();console.log(JSON.stringify({...flight,trajectory:undefined}));}
+    });
+   })));
+   if(groundContact!=='off'){
+    report.results.sort((a,b)=>a.caseIndex-b.caseIndex);save();
+    if(report.results.some(r=>!r.groundContactValidation.valid))throw Error('Invalid ground evaluation; all returned records retained, completion refused');
+    report.groundContactQuality={meanFailed:meanFailedContactQuality(report.results.flatMap(r=>r.flights),SCENARIOS),perFlight:report.results.map(r=>r.groundContactQuality.perFlight[0])};
+   }
    report.complete=true;save();
   }else if(process.argv.includes('--probe')){
    const parameters=state.best?.parameters??state.mean,cases=profiles.map((scenario,i)=>({scenario,seed:714133+i*19667,variability:i%2?Number(process.env.SUITE_PROBE_VARIABILITY??.2):0}));
@@ -210,15 +262,18 @@ if(!isMainThread){
     if(correlated){const z=state.mean.map(()=>proposalRandom.normal());for(const j of active)p[j]+=scale*L[j].reduce((v,l,k)=>v+l*z[k],0);}
     else for(const j of active)p[j]+=scale*state.sigma[j]*proposalRandom.normal();population.push(p);
    }
-   const results=await Promise.all(population.map((parameters,candidate)=>evaluate({parameters,cases}).then(result=>{
+   const results=await Promise.all(population.map((parameters,candidate)=>evaluate({parameters,cases}).then(raw=>{
+    const result=groundContact==='off'?raw:retainGroundResult(raw,{parameters,cases},'training-'+generation+'-'+candidate);
+    if(groundContact!=='off'&&!result.groundContactValidation.valid){console.log(JSON.stringify({type:'invalid-candidate',generation,candidate,validation:result.groundContactValidation}));return result;}
     console.log(JSON.stringify({type:'completed-candidate',generation,candidate,landings:result.landings,batch:cases.length,score:result.score,fitness:result.fitness,...(result.flights.some(f=>f.maxAltitude!==undefined)?{maxAltitude:Math.max(...result.flights.map(f=>f.maxAltitude??0)),insertionQuality:Math.max(...result.flights.map(f=>f.insertionQuality??0)),milestones:[...new Set(result.flights.flatMap(f=>f.milestones?.map(m=>m.name)??[]))]}:{})}));
     return result;
    })));
    fs.appendFileSync(path+'/trials.jsonl',JSON.stringify({generation,calibrationHash,sourceSHA256,...rewardMetadata,correlated,searchSeed,touchdownMargin,selectionOrder,fitnessVersion,backend:process.env.FLY_NATIVE_RATE==='1'?'native-exact-rate':'javascript-rate',nativeBuild,cases,results})+'\n');
+   if(groundContact!=='off'&&results.some(r=>!r.groundContactValidation.valid))throw Error('Invalid ground generation; all returned records retained, ranking and optimizer update refused');
    results.sort(compareResults);const elites=results.slice(0,3),best=results[0],mean=[...state.mean],sigma=[...state.sigma];
    for(const j of active){mean[j]=elites.reduce((v,r)=>v+r.parameters[j],0)/elites.length;sigma[j]=Math.max(scales[j]*.08,.7*Math.sqrt(elites.reduce((v,r)=>v+(r.parameters[j]-mean[j])**2,0)/elites.length)+.3*sigma[j]);}
    const nextCovariance=correlated?covariance.map((row,i)=>row.map((v,j)=>active.includes(i)&&active.includes(j)?.65*elites.reduce((sum,r)=>sum+(r.parameters[i]-mean[i])*(r.parameters[j]-mean[j]),0)/elites.length+.35*v+(i===j?(scales[i]*.05)**2:0):v)):undefined;
-   const entry={generation,episodes:state.episodes+population.length*cases.length,score:best.score,fitness:best.fitness,touchdownMargin,landings:best.landings,batch:cases.length,parameters:best.parameters,flights:best.flights};
+   const entry={generation,episodes:state.episodes+population.length*cases.length,score:best.score,fitness:best.fitness,touchdownMargin,landings:best.landings,batch:cases.length,parameters:best.parameters,flights:best.flights,...(groundContact!=='off'?{groundContactQuality:best.groundContactQuality,groundContactRankKey:best.groundContactRankKey}:{})};
    state={...state,generation,episodes:entry.episodes,mean,sigma,covariance:nextCovariance,correlated,best,calibrationHash,sourceSHA256,...rewardMetadata,nativeBuild,selectionOrder,fitnessVersion,profiles,history:[...state.history,entry]};
    const cp={...freshEmbodied(),weights:decode(best.parameters),generation,episodes:state.episodes,scenario:profiles[0],sensoryPresentation:FLIGHT_PANEL,autoOdor:false,instrumentLights:true,initialization:'Presented-signal calibration followed by reward-only flight learning',trainingScope:profiles,trainingMethod:'Full-network reward-only search on calibrated sensory directions'+(correlated?' with learned parameter covariance':''),sensoryBasis:basis.names,parameters:best.parameters,calibrationHash,sourceSHA256,...rewardMetadata,nativeBuild,selectionOrder,fitnessVersion,history:state.history};
    fs.writeFileSync(path+'/state.json.tmp',JSON.stringify(state));fs.renameSync(path+'/state.json.tmp',path+'/state.json');
