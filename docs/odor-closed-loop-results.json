@@ -1,0 +1,2119 @@
+{
+  "schema": "odor-closed-loop-summary-v1",
+  "createdAt": "2026-09-14T02:19:35.693Z",
+  "plan": {
+    "purpose": "Determine whether a fixed small odor input helps or harms complete flights. Software sensitivity experiment, not a living-fly intervention or physical dose search.",
+    "checkpoint": "dist/assets/embodied-starter.json",
+    "checkpointSHA256": "c798ce129ce359c20b2b5149e3e2a2b1392feec09f5679a4d93c79c761d615d5",
+    "sourceAssay": "artifacts/odor-interface/visual-context-low-input.json",
+    "sourceAssaySHA256": "0f36991c7e2f5e3778a439b947d5faf4ef091d1af2829d88b6613714434d01ba",
+    "frozenParameterFile": "artifacts/suite-training/attitude-g2-selection/frozen-parameters.json",
+    "frozenParameterSHA256": "f9c893a2b67f71971e333054081973c6e0e6b9f55d811291b337a7b8f1087d07",
+    "level": 0.0001,
+    "rationale": "Both existing odor inputs changed commands at this level while retaining approximately the clean-air visual-step response in all four static contexts. Use the same level for both inputs, without further tuning.",
+    "conditions": [
+      "normal",
+      "ethyl-acetate",
+      "geosmin"
+    ],
+    "profiles": [
+      0,
+      1,
+      9,
+      17
+    ],
+    "cases": [
+      {
+        "scenario": 0,
+        "seed": 173700007,
+        "variability": 0
+      },
+      {
+        "scenario": 1,
+        "seed": 173804736,
+        "variability": 0
+      },
+      {
+        "scenario": 9,
+        "seed": 173909465,
+        "variability": 0
+      },
+      {
+        "scenario": 17,
+        "seed": 174014194,
+        "variability": 0
+      },
+      {
+        "scenario": 0,
+        "seed": 174118923,
+        "variability": 0.4
+      },
+      {
+        "scenario": 1,
+        "seed": 174223652,
+        "variability": 0.4
+      },
+      {
+        "scenario": 9,
+        "seed": 174328381,
+        "variability": 0.4
+      },
+      {
+        "scenario": 17,
+        "seed": 174433110,
+        "variability": 0.4
+      },
+      {
+        "scenario": 0,
+        "seed": 174537839,
+        "variability": 0
+      },
+      {
+        "scenario": 1,
+        "seed": 174642568,
+        "variability": 0
+      },
+      {
+        "scenario": 9,
+        "seed": 174747297,
+        "variability": 0
+      },
+      {
+        "scenario": 17,
+        "seed": 174852026,
+        "variability": 0
+      },
+      {
+        "scenario": 0,
+        "seed": 174956755,
+        "variability": 0.4
+      },
+      {
+        "scenario": 1,
+        "seed": 175061484,
+        "variability": 0.4
+      },
+      {
+        "scenario": 9,
+        "seed": 175166213,
+        "variability": 0.4
+      },
+      {
+        "scenario": 17,
+        "seed": 175270942,
+        "variability": 0.4
+      }
+    ],
+    "expectedFlights": 48,
+    "physics": "Original full-flight timeouts and touchdown criteria, no warmup or truncation",
+    "backend": "javascript-rate",
+    "analysis": "Matched changes in successful landings are primary; retain failure reasons and original rewards. No selection or deployment from this pilot alone."
+  },
+  "planSHA256": "88d223491265100a7309e02c5a72a30d3aca81cfded079b7b55dc956c264f059",
+  "reportFile": "artifacts/suite-training/odor-closed-loop/odor-flights.json",
+  "reportSHA256": "d7b90ce0e87be1334c57382dfdff06b536050262d21119cc3169987093f39a06",
+  "trainerSHA256": "cfdff17c99bc871a29a1b50b631f14bef2970b56c03d881e067f3d838b8d5e2e",
+  "weightSHA256": "5c01d3c5a48a435d6d226ea1f8b5b1a2372c48b1e2248479595281ee1cfc4cf5",
+  "backend": "javascript-rate",
+  "fullFlights": 48,
+  "layoutCheck": {
+    "file": "artifacts/suite-training/odor-layout-check/selection.json",
+    "SHA256": "0eece2fdbd261baa7d7ee93722414de7b7b612c7c505cf0335b71ba2368b9fe4",
+    "exactMatch": true
+  },
+  "conditions": [
+    {
+      "mode": "normal",
+      "landings": 10,
+      "episodes": 16,
+      "meanScore": 28.695467845649677,
+      "failures": {
+        "Hard landing": 2,
+        "Approach timed out": 3,
+        "Missed the ship": 1
+      },
+      "physics": [
+        {
+          "variability": 0,
+          "landings": 8,
+          "episodes": 8,
+          "meanScore": 91.0088518689361,
+          "failures": {}
+        },
+        {
+          "variability": 0.4,
+          "landings": 2,
+          "episodes": 8,
+          "meanScore": -33.61791617763674,
+          "failures": {
+            "Hard landing": 2,
+            "Approach timed out": 3,
+            "Missed the ship": 1
+          }
+        }
+      ],
+      "missions": [
+        {
+          "scenario": 0,
+          "title": "Landing school",
+          "landings": 3,
+          "episodes": 4,
+          "meanScore": 55.22741123722328,
+          "failures": {
+            "Hard landing": 1
+          }
+        },
+        {
+          "scenario": 1,
+          "title": "Atlantic return",
+          "landings": 3,
+          "episodes": 4,
+          "meanScore": 48.8160307972108,
+          "failures": {
+            "Approach timed out": 1
+          }
+        },
+        {
+          "scenario": 9,
+          "title": "Fast ferry",
+          "landings": 2,
+          "episodes": 4,
+          "meanScore": 7.870035250303243,
+          "failures": {
+            "Hard landing": 1,
+            "Approach timed out": 1
+          }
+        },
+        {
+          "scenario": 17,
+          "title": "Spinning entry",
+          "landings": 2,
+          "episodes": 4,
+          "meanScore": 2.86839409786144,
+          "failures": {
+            "Approach timed out": 1,
+            "Missed the ship": 1
+          }
+        }
+      ]
+    },
+    {
+      "mode": "ethyl-acetate",
+      "landings": 9,
+      "episodes": 16,
+      "meanScore": 17.82777507640197,
+      "failures": {
+        "Missed the ship": 1,
+        "Lateral impact": 1,
+        "Approach timed out": 3,
+        "Hard landing": 2
+      },
+      "physics": [
+        {
+          "variability": 0,
+          "landings": 6,
+          "episodes": 8,
+          "meanScore": 52.730794271524,
+          "failures": {
+            "Missed the ship": 1,
+            "Lateral impact": 1
+          }
+        },
+        {
+          "variability": 0.4,
+          "landings": 3,
+          "episodes": 8,
+          "meanScore": -17.075244118720043,
+          "failures": {
+            "Approach timed out": 3,
+            "Hard landing": 2
+          }
+        }
+      ],
+      "missions": [
+        {
+          "scenario": 0,
+          "title": "Landing school",
+          "landings": 3,
+          "episodes": 4,
+          "meanScore": 55.504699738369624,
+          "failures": {
+            "Hard landing": 1
+          }
+        },
+        {
+          "scenario": 1,
+          "title": "Atlantic return",
+          "landings": 2,
+          "episodes": 4,
+          "meanScore": 9.245991345169568,
+          "failures": {
+            "Missed the ship": 1,
+            "Approach timed out": 1
+          }
+        },
+        {
+          "scenario": 9,
+          "title": "Fast ferry",
+          "landings": 2,
+          "episodes": 4,
+          "meanScore": 7.17523205851861,
+          "failures": {
+            "Lateral impact": 1,
+            "Approach timed out": 1
+          }
+        },
+        {
+          "scenario": 17,
+          "title": "Spinning entry",
+          "landings": 2,
+          "episodes": 4,
+          "meanScore": -0.6148228364499069,
+          "failures": {
+            "Approach timed out": 1,
+            "Hard landing": 1
+          }
+        }
+      ]
+    },
+    {
+      "mode": "geosmin",
+      "landings": 9,
+      "episodes": 16,
+      "meanScore": 19.353436513601977,
+      "failures": {
+        "Lateral impact": 1,
+        "Hard landing": 3,
+        "Approach timed out": 2,
+        "Missed the ship": 1
+      },
+      "physics": [
+        {
+          "variability": 0,
+          "landings": 7,
+          "episodes": 8,
+          "meanScore": 73.27842729658312,
+          "failures": {
+            "Lateral impact": 1
+          }
+        },
+        {
+          "variability": 0.4,
+          "landings": 2,
+          "episodes": 8,
+          "meanScore": -34.57155426937917,
+          "failures": {
+            "Hard landing": 3,
+            "Approach timed out": 2,
+            "Missed the ship": 1
+          }
+        }
+      ],
+      "missions": [
+        {
+          "scenario": 0,
+          "title": "Landing school",
+          "landings": 2,
+          "episodes": 4,
+          "meanScore": 17.035858701657265,
+          "failures": {
+            "Hard landing": 2
+          }
+        },
+        {
+          "scenario": 1,
+          "title": "Atlantic return",
+          "landings": 3,
+          "episodes": 4,
+          "meanScore": 50.246770847106376,
+          "failures": {
+            "Approach timed out": 1
+          }
+        },
+        {
+          "scenario": 9,
+          "title": "Fast ferry",
+          "landings": 2,
+          "episodes": 4,
+          "meanScore": 8.127951345437314,
+          "failures": {
+            "Hard landing": 1,
+            "Approach timed out": 1
+          }
+        },
+        {
+          "scenario": 17,
+          "title": "Spinning entry",
+          "landings": 2,
+          "episodes": 4,
+          "meanScore": 2.0031651602069793,
+          "failures": {
+            "Lateral impact": 1,
+            "Missed the ship": 1
+          }
+        }
+      ]
+    }
+  ],
+  "comparisons": [
+    {
+      "mode": "ethyl-acetate",
+      "rescued": 1,
+      "harmed": 2,
+      "bothLanded": 8,
+      "bothFailed": 5,
+      "meanScoreDelta": -10.86769276924771,
+      "outcomes": [
+        {
+          "seed": 173700007,
+          "scenario": 0,
+          "variability": 0,
+          "baselineLanded": true,
+          "odorLanded": true,
+          "scoreDelta": -0.9794389034484396
+        },
+        {
+          "seed": 173804736,
+          "scenario": 1,
+          "variability": 0,
+          "baselineLanded": true,
+          "odorLanded": false,
+          "scoreDelta": -142.5472112968724
+        },
+        {
+          "seed": 173909465,
+          "scenario": 9,
+          "variability": 0,
+          "baselineLanded": true,
+          "odorLanded": false,
+          "scoreDelta": -148.9077142860552
+        },
+        {
+          "seed": 174014194,
+          "scenario": 17,
+          "variability": 0,
+          "baselineLanded": true,
+          "odorLanded": true,
+          "scoreDelta": -3.5158426502472793
+        },
+        {
+          "seed": 174118923,
+          "scenario": 0,
+          "variability": 0.4,
+          "baselineLanded": true,
+          "odorLanded": true,
+          "scoreDelta": -0.27946490802814594
+        },
+        {
+          "seed": 174223652,
+          "scenario": 1,
+          "variability": 0.4,
+          "baselineLanded": true,
+          "odorLanded": true,
+          "scoreDelta": -0.49587695781015384
+        },
+        {
+          "seed": 174328381,
+          "scenario": 9,
+          "variability": 0.4,
+          "baselineLanded": false,
+          "odorLanded": true,
+          "scoreDelta": 157.30846555448795
+        },
+        {
+          "seed": 174433110,
+          "scenario": 17,
+          "variability": 0.4,
+          "baselineLanded": false,
+          "odorLanded": false,
+          "scoreDelta": -15.79866283177229
+        },
+        {
+          "seed": 174537839,
+          "scenario": 0,
+          "variability": 0,
+          "baselineLanded": true,
+          "odorLanded": true,
+          "scoreDelta": -0.7295909012343316
+        },
+        {
+          "seed": 174642568,
+          "scenario": 1,
+          "variability": 0,
+          "baselineLanded": true,
+          "odorLanded": true,
+          "scoreDelta": -2.023031753614987
+        },
+        {
+          "seed": 174747297,
+          "scenario": 9,
+          "variability": 0,
+          "baselineLanded": true,
+          "odorLanded": true,
+          "scoreDelta": -2.9548646370658247
+        },
+        {
+          "seed": 174852026,
+          "scenario": 17,
+          "variability": 0,
+          "baselineLanded": true,
+          "odorLanded": true,
+          "scoreDelta": -4.566766350758485
+        },
+        {
+          "seed": 174956755,
+          "scenario": 0,
+          "variability": 0.4,
+          "baselineLanded": false,
+          "odorLanded": false,
+          "scoreDelta": 3.097648717296323
+        },
+        {
+          "seed": 175061484,
+          "scenario": 1,
+          "variability": 0.4,
+          "baselineLanded": false,
+          "odorLanded": false,
+          "scoreDelta": -13.21403779986737
+        },
+        {
+          "seed": 175166213,
+          "scenario": 9,
+          "variability": 0.4,
+          "baselineLanded": false,
+          "odorLanded": false,
+          "scoreDelta": -8.22509939850545
+        },
+        {
+          "seed": 175270942,
+          "scenario": 17,
+          "variability": 0.4,
+          "baselineLanded": false,
+          "odorLanded": false,
+          "scoreDelta": 9.948404095532666
+        }
+      ]
+    },
+    {
+      "mode": "geosmin",
+      "rescued": 1,
+      "harmed": 2,
+      "bothLanded": 8,
+      "bothFailed": 5,
+      "meanScoreDelta": -9.342031332047707,
+      "outcomes": [
+        {
+          "seed": 173700007,
+          "scenario": 0,
+          "variability": 0,
+          "baselineLanded": true,
+          "odorLanded": true,
+          "scoreDelta": 0.64175923745033
+        },
+        {
+          "seed": 173804736,
+          "scenario": 1,
+          "variability": 0,
+          "baselineLanded": true,
+          "odorLanded": true,
+          "scoreDelta": 0.4411075410403811
+        },
+        {
+          "seed": 173909465,
+          "scenario": 9,
+          "variability": 0,
+          "baselineLanded": true,
+          "odorLanded": true,
+          "scoreDelta": 0.31491547087051686
+        },
+        {
+          "seed": 174014194,
+          "scenario": 17,
+          "variability": 0,
+          "baselineLanded": true,
+          "odorLanded": false,
+          "scoreDelta": -145.11521894528525
+        },
+        {
+          "seed": 174118923,
+          "scenario": 0,
+          "variability": 0.4,
+          "baselineLanded": true,
+          "odorLanded": false,
+          "scoreDelta": -149.6761265655748
+        },
+        {
+          "seed": 174223652,
+          "scenario": 1,
+          "variability": 0.4,
+          "baselineLanded": true,
+          "odorLanded": true,
+          "scoreDelta": 0.303254477125634
+        },
+        {
+          "seed": 174328381,
+          "scenario": 9,
+          "variability": 0.4,
+          "baselineLanded": false,
+          "odorLanded": false,
+          "scoreDelta": -2.192604585478108
+        },
+        {
+          "seed": 174433110,
+          "scenario": 17,
+          "variability": 0.4,
+          "baselineLanded": false,
+          "odorLanded": true,
+          "scoreDelta": 142.7764092643684
+        },
+        {
+          "seed": 174537839,
+          "scenario": 0,
+          "variability": 0,
+          "baselineLanded": true,
+          "odorLanded": true,
+          "scoreDelta": 0.27974674068134675
+        },
+        {
+          "seed": 174642568,
+          "scenario": 1,
+          "variability": 0,
+          "baselineLanded": true,
+          "odorLanded": true,
+          "scoreDelta": -0.2431534001360518
+        },
+        {
+          "seed": 174747297,
+          "scenario": 9,
+          "variability": 0,
+          "baselineLanded": true,
+          "odorLanded": true,
+          "scoreDelta": 1.4299822953672958
+        },
+        {
+          "seed": 174852026,
+          "scenario": 17,
+          "variability": 0,
+          "baselineLanded": true,
+          "odorLanded": true,
+          "scoreDelta": 0.40746448118754586
+        },
+        {
+          "seed": 174956755,
+          "scenario": 0,
+          "variability": 0.4,
+          "baselineLanded": false,
+          "odorLanded": false,
+          "scoreDelta": -4.011589554820915
+        },
+        {
+          "seed": 175061484,
+          "scenario": 1,
+          "variability": 0.4,
+          "baselineLanded": false,
+          "odorLanded": false,
+          "scoreDelta": 5.221751581552326
+        },
+        {
+          "seed": 175166213,
+          "scenario": 9,
+          "variability": 0.4,
+          "baselineLanded": false,
+          "odorLanded": false,
+          "scoreDelta": 1.4793711997765797
+        },
+        {
+          "seed": 175270942,
+          "scenario": 17,
+          "variability": 0.4,
+          "baselineLanded": false,
+          "odorLanded": false,
+          "scoreDelta": -1.5295705508885504
+        }
+      ]
+    }
+  ],
+  "matched": [
+    {
+      "scenario": 0,
+      "seed": 173700007,
+      "variability": 0,
+      "title": "Landing school",
+      "flights": {
+        "normal": {
+          "seed": 173700007,
+          "scenario": 0,
+          "activationGain": 1,
+          "score": 96.47699947297332,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.07355233091807896,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 2.189982425414274,
+            "speed": 1.9077146741149307,
+            "lateral": 0.4235298442349907,
+            "tilt": 0.027147060103437384
+          },
+          "time": 17.30000000000011,
+          "censored": false,
+          "mode": "normal"
+        },
+        "ethyl-acetate": {
+          "seed": 173700007,
+          "scenario": 0,
+          "activationGain": 1,
+          "score": 95.49756056952488,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.09519159717052884,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 5.251312263655551,
+            "speed": 1.6467969325265432,
+            "lateral": 0.8694871124604465,
+            "tilt": 0.03290034506880726
+          },
+          "time": 18.450000000000127,
+          "censored": false,
+          "mode": "ethyl-acetate"
+        },
+        "geosmin": {
+          "seed": 173700007,
+          "scenario": 0,
+          "activationGain": 1,
+          "score": 97.11875871042365,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.021987308438651522,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 4.2755968465450325,
+            "speed": 1.9314158205113663,
+            "lateral": 0.9867183088709974,
+            "tilt": 0.06011483663023652
+          },
+          "time": 16.750000000000103,
+          "censored": false,
+          "mode": "geosmin"
+        }
+      }
+    },
+    {
+      "scenario": 1,
+      "seed": 173804736,
+      "variability": 0,
+      "title": "Atlantic return",
+      "flights": {
+        "normal": {
+          "seed": 173804736,
+          "scenario": 1,
+          "activationGain": 1,
+          "score": 91.46333822457537,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.05808221983594332,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 6.944167454215183,
+            "speed": 1.493447585127399,
+            "lateral": 0.3016941647517791,
+            "tilt": 0.02184818243616254
+          },
+          "time": 24.40000000000021,
+          "censored": false,
+          "mode": "normal"
+        },
+        "ethyl-acetate": {
+          "seed": 173804736,
+          "scenario": 1,
+          "activationGain": 1,
+          "score": -51.083873072297045,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.08626975451625325,
+          "reason": "Missed the ship",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 12.083356975695468,
+            "speed": 0.8769914341512587,
+            "lateral": 0.3228152270273305,
+            "tilt": 0.051297908647692986
+          },
+          "time": 26.200000000000237,
+          "censored": false,
+          "mode": "ethyl-acetate"
+        },
+        "geosmin": {
+          "seed": 173804736,
+          "scenario": 1,
+          "activationGain": 1,
+          "score": 91.90444576561575,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.09127441052365744,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 2.299862160497248,
+            "speed": 1.6992531667715418,
+            "lateral": 0.3167360958155551,
+            "tilt": 0.04749287842744693
+          },
+          "time": 24.050000000000207,
+          "censored": false,
+          "mode": "geosmin"
+        }
+      }
+    },
+    {
+      "scenario": 9,
+      "seed": 173909465,
+      "variability": 0,
+      "title": "Fast ferry",
+      "flights": {
+        "normal": {
+          "seed": 173909465,
+          "scenario": 9,
+          "activationGain": 1,
+          "score": 91.99350323609914,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.12041111764855637,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 3.2821578701284575,
+            "speed": 1.4629844868459847,
+            "lateral": 0.8800981807513516,
+            "tilt": 0.029462358288439218
+          },
+          "time": 22.15000000000018,
+          "censored": false,
+          "mode": "normal"
+        },
+        "ethyl-acetate": {
+          "seed": 173909465,
+          "scenario": 9,
+          "activationGain": 1,
+          "score": -56.914211049956066,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.14130428318310048,
+          "reason": "Lateral impact",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 8.408509964375412,
+            "speed": 1.4698614510999493,
+            "lateral": 3.109600371919349,
+            "tilt": 0.11088283124693919
+          },
+          "time": 24.000000000000206,
+          "censored": false,
+          "mode": "ethyl-acetate"
+        },
+        "geosmin": {
+          "seed": 173909465,
+          "scenario": 9,
+          "activationGain": 1,
+          "score": 92.30841870696966,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.12336664138427064,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 6.412785190578482,
+            "speed": 1.7304912362053735,
+            "lateral": 0.39195823381476125,
+            "tilt": 0.034100124987435726
+          },
+          "time": 21.50000000000017,
+          "censored": false,
+          "mode": "geosmin"
+        }
+      }
+    },
+    {
+      "scenario": 17,
+      "seed": 174014194,
+      "variability": 0,
+      "title": "Spinning entry",
+      "flights": {
+        "normal": {
+          "seed": 174014194,
+          "scenario": 17,
+          "activationGain": 1,
+          "score": 88.07382420856472,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 31.70353291437481,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 2.46712128093699,
+            "speed": 1.6648562226202734,
+            "lateral": 1.707656572881643,
+            "tilt": 0.07474109999297945
+          },
+          "time": 27.250000000000252,
+          "censored": false,
+          "mode": "normal"
+        },
+        "ethyl-acetate": {
+          "seed": 174014194,
+          "scenario": 17,
+          "activationGain": 1,
+          "score": 84.55798155831744,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 31.733030891407466,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 4.592608111899875,
+            "speed": 1.25646111196076,
+            "lateral": 1.0239506113509529,
+            "tilt": 0.07753367060974337
+          },
+          "time": 29.95000000000029,
+          "censored": false,
+          "mode": "ethyl-acetate"
+        },
+        "geosmin": {
+          "seed": 174014194,
+          "scenario": 17,
+          "activationGain": 1,
+          "score": -57.041394736720534,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 31.742734871070386,
+          "reason": "Lateral impact",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 4.797039475450844,
+            "speed": 1.9650586727944492,
+            "lateral": 3.18434523735641,
+            "tilt": 0.04796812866855051
+          },
+          "time": 26.800000000000246,
+          "censored": false,
+          "mode": "geosmin"
+        }
+      }
+    },
+    {
+      "scenario": 0,
+      "seed": 174118923,
+      "variability": 0.4,
+      "title": "Landing school",
+      "flights": {
+        "normal": {
+          "seed": 174118923,
+          "scenario": 0,
+          "activationGain": 1,
+          "score": 100.20097704979051,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.03435676662495697,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0.4,
+            "mass": 0.9813451370924344,
+            "thrust": 0.94960685898371,
+            "servo": 0.9848619388217024,
+            "wind": 0.8988550213819148,
+            "deck": 0.9591165095325853,
+            "noise": 0.004
+          },
+          "touchdown": {
+            "error": 4.93498818868229,
+            "speed": 3.2107212273511467,
+            "lateral": 0.663316624367553,
+            "tilt": 0.011721755910298559
+          },
+          "time": 11.700000000000031,
+          "censored": false,
+          "mode": "normal"
+        },
+        "ethyl-acetate": {
+          "seed": 174118923,
+          "scenario": 0,
+          "activationGain": 1,
+          "score": 99.92151214176236,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.030440773667751983,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0.4,
+            "mass": 0.9813451370924344,
+            "thrust": 0.94960685898371,
+            "servo": 0.9848619388217024,
+            "wind": 0.8988550213819148,
+            "deck": 0.9591165095325853,
+            "noise": 0.004
+          },
+          "touchdown": {
+            "error": 6.909798294475498,
+            "speed": 3.0116205808642227,
+            "lateral": 0.3685715281980037,
+            "tilt": 0.028664388931259985
+          },
+          "time": 12.150000000000038,
+          "censored": false,
+          "mode": "ethyl-acetate"
+        },
+        "geosmin": {
+          "seed": 174118923,
+          "scenario": 0,
+          "activationGain": 1,
+          "score": -49.47514951578428,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.043127662741996635,
+          "reason": "Hard landing",
+          "variation": {
+            "level": 0.4,
+            "mass": 0.9813451370924344,
+            "thrust": 0.94960685898371,
+            "servo": 0.9848619388217024,
+            "wind": 0.8988550213819148,
+            "deck": 0.9591165095325853,
+            "noise": 0.004
+          },
+          "touchdown": {
+            "error": 0.5150870104064832,
+            "speed": 3.6715286967088163,
+            "lateral": 0.5003460121211155,
+            "tilt": 0.030290634143129158
+          },
+          "time": 11.300000000000026,
+          "censored": false,
+          "mode": "geosmin"
+        }
+      }
+    },
+    {
+      "scenario": 1,
+      "seed": 174223652,
+      "variability": 0.4,
+      "title": "Atlantic return",
+      "flights": {
+        "normal": {
+          "seed": 174223652,
+          "scenario": 1,
+          "activationGain": 1,
+          "score": 94.98910650543361,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.11151784130411743,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0.4,
+            "mass": 0.9991663897351375,
+            "thrust": 0.9771382230425183,
+            "servo": 0.8856867216434967,
+            "wind": 0.920054331147197,
+            "deck": 1.0007641261071358,
+            "noise": 0.004
+          },
+          "touchdown": {
+            "error": 5.648299751360969,
+            "speed": 2.318974551401535,
+            "lateral": 1.1290353148459369,
+            "tilt": 0.015157203557013586
+          },
+          "time": 20.500000000000156,
+          "censored": false,
+          "mode": "normal"
+        },
+        "ethyl-acetate": {
+          "seed": 174223652,
+          "scenario": 1,
+          "activationGain": 1,
+          "score": 94.49322954762346,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.14654437731663544,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0.4,
+            "mass": 0.9991663897351375,
+            "thrust": 0.9771382230425183,
+            "servo": 0.8856867216434967,
+            "wind": 0.920054331147197,
+            "deck": 1.0007641261071358,
+            "noise": 0.004
+          },
+          "touchdown": {
+            "error": 3.115955875699563,
+            "speed": 2.240995016153915,
+            "lateral": 1.551608424105293,
+            "tilt": 0.025296825122778324
+          },
+          "time": 21.150000000000166,
+          "censored": false,
+          "mode": "ethyl-acetate"
+        },
+        "geosmin": {
+          "seed": 174223652,
+          "scenario": 1,
+          "activationGain": 1,
+          "score": 95.29236098255925,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.08425875842732357,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0.4,
+            "mass": 0.9991663897351375,
+            "thrust": 0.9771382230425183,
+            "servo": 0.8856867216434967,
+            "wind": 0.920054331147197,
+            "deck": 1.0007641261071358,
+            "noise": 0.004
+          },
+          "touchdown": {
+            "error": 8.252488128571617,
+            "speed": 2.6351822823612885,
+            "lateral": 0.8230977711167494,
+            "tilt": 0.002729216256215797
+          },
+          "time": 20.15000000000015,
+          "censored": false,
+          "mode": "geosmin"
+        }
+      }
+    },
+    {
+      "scenario": 9,
+      "seed": 174328381,
+      "variability": 0.4,
+      "title": "Fast ferry",
+      "flights": {
+        "normal": {
+          "seed": 174328381,
+          "scenario": 9,
+          "activationGain": 1,
+          "score": -61.308342952222986,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.09261865232617976,
+          "reason": "Hard landing",
+          "variation": {
+            "level": 0.4,
+            "mass": 1.0087719105874076,
+            "thrust": 0.9754611776107993,
+            "servo": 0.7259559052579612,
+            "wind": 0.9943493500877614,
+            "deck": 0.9972564665908236,
+            "noise": 0.004
+          },
+          "touchdown": {
+            "error": 5.031359260603833,
+            "speed": 4.094362260523473,
+            "lateral": 1.4396431147855646,
+            "tilt": 0.06212001946002474
+          },
+          "time": 15.250000000000082,
+          "censored": false,
+          "mode": "normal"
+        },
+        "ethyl-acetate": {
+          "seed": 174328381,
+          "scenario": 9,
+          "activationGain": 1,
+          "score": 96.00012260226497,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.12210049692167257,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0.4,
+            "mass": 1.0087719105874076,
+            "thrust": 0.9754611776107993,
+            "servo": 0.7259559052579612,
+            "wind": 0.9943493500877614,
+            "deck": 0.9972564665908236,
+            "noise": 0.004
+          },
+          "touchdown": {
+            "error": 2.1933144426302085,
+            "speed": 3.4000016271212163,
+            "lateral": 1.7510906040653598,
+            "tilt": 0.0615680171122625
+          },
+          "time": 15.950000000000092,
+          "censored": false,
+          "mode": "ethyl-acetate"
+        },
+        "geosmin": {
+          "seed": 174328381,
+          "scenario": 9,
+          "activationGain": 1,
+          "score": -63.500947537701094,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.0716731706609129,
+          "reason": "Hard landing",
+          "variation": {
+            "level": 0.4,
+            "mass": 1.0087719105874076,
+            "thrust": 0.9754611776107993,
+            "servo": 0.7259559052579612,
+            "wind": 0.9943493500877614,
+            "deck": 0.9972564665908236,
+            "noise": 0.004
+          },
+          "touchdown": {
+            "error": 8.899687888951428,
+            "speed": 4.151981019850905,
+            "lateral": 1.4561920758380635,
+            "tilt": 0.04995891669684514
+          },
+          "time": 15.000000000000078,
+          "censored": false,
+          "mode": "geosmin"
+        }
+      }
+    },
+    {
+      "scenario": 17,
+      "seed": 174433110,
+      "variability": 0.4,
+      "title": "Spinning entry",
+      "flights": {
+        "normal": {
+          "seed": 174433110,
+          "scenario": 17,
+          "activationGain": 1,
+          "score": -73.03398236356993,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 31.649866347662055,
+          "reason": "Approach timed out",
+          "variation": {
+            "level": 0.4,
+            "mass": 0.9509670180960882,
+            "thrust": 0.9913268615090575,
+            "servo": 0.9385993988037308,
+            "wind": 1.1456471788290246,
+            "deck": 1.0248019455349127,
+            "noise": 0.004
+          },
+          "touchdown": null,
+          "time": 65.04999999999845,
+          "censored": false,
+          "mode": "normal"
+        },
+        "ethyl-acetate": {
+          "seed": 174433110,
+          "scenario": 17,
+          "activationGain": 1,
+          "score": -88.83264519534222,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 31.656595610821032,
+          "reason": "Approach timed out",
+          "variation": {
+            "level": 0.4,
+            "mass": 0.9509670180960882,
+            "thrust": 0.9913268615090575,
+            "servo": 0.9385993988037308,
+            "wind": 1.1456471788290246,
+            "deck": 1.0248019455349127,
+            "noise": 0.004
+          },
+          "touchdown": null,
+          "time": 65.04999999999845,
+          "censored": false,
+          "mode": "ethyl-acetate"
+        },
+        "geosmin": {
+          "seed": 174433110,
+          "scenario": 17,
+          "activationGain": 1,
+          "score": 69.74242690079848,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 31.801267895442987,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0.4,
+            "mass": 0.9509670180960882,
+            "thrust": 0.9913268615090575,
+            "servo": 0.9385993988037308,
+            "wind": 1.1456471788290246,
+            "deck": 1.0248019455349127,
+            "noise": 0.004
+          },
+          "touchdown": {
+            "error": 7.651548063981188,
+            "speed": 0.12312577331976653,
+            "lateral": 2.06024328812795,
+            "tilt": 0.10284562148719444
+          },
+          "time": 42.24999999999974,
+          "censored": false,
+          "mode": "geosmin"
+        }
+      }
+    },
+    {
+      "scenario": 0,
+      "seed": 174537839,
+      "variability": 0,
+      "title": "Landing school",
+      "flights": {
+        "normal": {
+          "seed": 174537839,
+          "scenario": 0,
+          "activationGain": 1,
+          "score": 96.11802164600887,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.06331182593975376,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 2.8418924715835883,
+            "speed": 1.8027338221439067,
+            "lateral": 0.24844536765329805,
+            "tilt": 0.014408114843307375
+          },
+          "time": 17.450000000000113,
+          "censored": false,
+          "mode": "normal"
+        },
+        "ethyl-acetate": {
+          "seed": 174537839,
+          "scenario": 0,
+          "activationGain": 1,
+          "score": 95.38843074477454,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.061215368301973744,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 6.466069149859555,
+            "speed": 1.8576366712429346,
+            "lateral": 0.36346106030285125,
+            "tilt": 0.032660825428402575
+          },
+          "time": 18.00000000000012,
+          "censored": false,
+          "mode": "ethyl-acetate"
+        },
+        "geosmin": {
+          "seed": 174537839,
+          "scenario": 0,
+          "activationGain": 1,
+          "score": 96.39776838669022,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.09985067521551709,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 6.990053930168879,
+            "speed": 2.147727906873254,
+            "lateral": 0.24630957082235794,
+            "tilt": 0.020117475007102453
+          },
+          "time": 16.700000000000102,
+          "censored": false,
+          "mode": "geosmin"
+        }
+      }
+    },
+    {
+      "scenario": 1,
+      "seed": 174642568,
+      "variability": 0,
+      "title": "Atlantic return",
+      "flights": {
+        "normal": {
+          "seed": 174642568,
+          "scenario": 1,
+          "activationGain": 1,
+          "score": 92.72088927729182,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.15504311083058622,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 2.1321896497789035,
+            "speed": 1.6965556814639737,
+            "lateral": 1.0320243514055643,
+            "tilt": 0.041962766529202944
+          },
+          "time": 24.35000000000021,
+          "censored": false,
+          "mode": "normal"
+        },
+        "ethyl-acetate": {
+          "seed": 174642568,
+          "scenario": 1,
+          "activationGain": 1,
+          "score": 90.69785752367683,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.1335761861220821,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 10.569633794207006,
+            "speed": 1.6448126744243754,
+            "lateral": 0.7695704300518534,
+            "tilt": 0.08121568319730749
+          },
+          "time": 25.80000000000023,
+          "censored": false,
+          "mode": "ethyl-acetate"
+        },
+        "geosmin": {
+          "seed": 174642568,
+          "scenario": 1,
+          "activationGain": 1,
+          "score": 92.47773587715577,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.10668038965206388,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 7.249711436027222,
+            "speed": 1.7228983217402947,
+            "lateral": 1.6594724481521275,
+            "tilt": 0.042593439447790066
+          },
+          "time": 24.40000000000021,
+          "censored": false,
+          "mode": "geosmin"
+        }
+      }
+    },
+    {
+      "scenario": 9,
+      "seed": 174747297,
+      "variability": 0,
+      "title": "Fast ferry",
+      "flights": {
+        "normal": {
+          "seed": 174747297,
+          "scenario": 9,
+          "activationGain": 1,
+          "score": 86.97330871838179,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.12407649991305958,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 4.00727040944655,
+            "speed": 1.5222171846431187,
+            "lateral": 2.2984870820601935,
+            "tilt": 0.09482572873212637
+          },
+          "time": 24.700000000000216,
+          "censored": false,
+          "mode": "normal"
+        },
+        "ethyl-acetate": {
+          "seed": 174747297,
+          "scenario": 9,
+          "activationGain": 1,
+          "score": 84.01844408131596,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.06728950390793151,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 7.246761444940529,
+            "speed": 1.1319983314486832,
+            "lateral": 1.7055429448591954,
+            "tilt": 0.13560296502075522
+          },
+          "time": 27.05000000000025,
+          "censored": false,
+          "mode": "ethyl-acetate"
+        },
+        "geosmin": {
+          "seed": 174747297,
+          "scenario": 9,
+          "activationGain": 1,
+          "score": 88.40329101374908,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.13959253374812142,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 7.67955048258186,
+            "speed": 1.8774520883673258,
+            "lateral": 2.166452911360453,
+            "tilt": 0.020264743669864197
+          },
+          "time": 23.6500000000002,
+          "censored": false,
+          "mode": "geosmin"
+        }
+      }
+    },
+    {
+      "scenario": 17,
+      "seed": 174852026,
+      "variability": 0,
+      "title": "Spinning entry",
+      "flights": {
+        "normal": {
+          "seed": 174852026,
+          "scenario": 17,
+          "activationGain": 1,
+          "score": 84.25093016759392,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 31.755359512555028,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 5.070026279934245,
+            "speed": 1.3371967549085386,
+            "lateral": 1.1357772659297694,
+            "tilt": 0.05611517259681269
+          },
+          "time": 29.500000000000284,
+          "censored": false,
+          "mode": "normal"
+        },
+        "ethyl-acetate": {
+          "seed": 174852026,
+          "scenario": 17,
+          "activationGain": 1,
+          "score": 79.68416381683544,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 31.698213749004985,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 8.993816113553681,
+            "speed": 1.1053016158047781,
+            "lateral": 1.9618575123750401,
+            "tilt": 0.06314783051505075
+          },
+          "time": 32.250000000000306,
+          "censored": false,
+          "mode": "ethyl-acetate"
+        },
+        "geosmin": {
+          "seed": 174852026,
+          "scenario": 17,
+          "activationGain": 1,
+          "score": 84.65839464878147,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 31.74443133803402,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 4.185255282074085,
+            "speed": 1.6056073503761392,
+            "lateral": 1.1712166186110913,
+            "tilt": 0.06975046674055015
+          },
+          "time": 29.10000000000028,
+          "censored": false,
+          "mode": "geosmin"
+        }
+      }
+    },
+    {
+      "scenario": 0,
+      "seed": 174956755,
+      "variability": 0.4,
+      "title": "Landing school",
+      "flights": {
+        "normal": {
+          "seed": 174956755,
+          "scenario": 0,
+          "activationGain": 1,
+          "score": -71.88635321987961,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.07010941409216709,
+          "reason": "Hard landing",
+          "variation": {
+            "level": 0.4,
+            "mass": 1.0539860785278616,
+            "thrust": 0.9559782609322911,
+            "servo": 0.9814527563145342,
+            "wind": 0.9262490219382431,
+            "deck": 1.0305836107645319,
+            "noise": 0.004
+          },
+          "touchdown": {
+            "error": 1.9206627810170334,
+            "speed": 5.673018558773808,
+            "lateral": 0.39550949333698265,
+            "tilt": 0.001740412731333496
+          },
+          "time": 11.750000000000032,
+          "censored": false,
+          "mode": "normal"
+        },
+        "ethyl-acetate": {
+          "seed": 174956755,
+          "scenario": 0,
+          "activationGain": 1,
+          "score": -68.78870450258329,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.07198490789832833,
+          "reason": "Hard landing",
+          "variation": {
+            "level": 0.4,
+            "mass": 1.0539860785278616,
+            "thrust": 0.9559782609322911,
+            "servo": 0.9814527563145342,
+            "wind": 0.9262490219382431,
+            "deck": 1.0305836107645319,
+            "noise": 0.004
+          },
+          "touchdown": {
+            "error": 4.641439835744695,
+            "speed": 5.273464379553813,
+            "lateral": 0.7390735454282172,
+            "tilt": 0.025538923901200754
+          },
+          "time": 12.050000000000036,
+          "censored": false,
+          "mode": "ethyl-acetate"
+        },
+        "geosmin": {
+          "seed": 174956755,
+          "scenario": 0,
+          "activationGain": 1,
+          "score": -75.89794277470052,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.06046652959382563,
+          "reason": "Hard landing",
+          "variation": {
+            "level": 0.4,
+            "mass": 1.0539860785278616,
+            "thrust": 0.9559782609322911,
+            "servo": 0.9814527563145342,
+            "wind": 0.9262490219382431,
+            "deck": 1.0305836107645319,
+            "noise": 0.004
+          },
+          "touchdown": {
+            "error": 3.486999067439617,
+            "speed": 5.876143809226264,
+            "lateral": 0.546633136933029,
+            "tilt": 0.02253069717683663
+          },
+          "time": 11.500000000000028,
+          "censored": false,
+          "mode": "geosmin"
+        }
+      }
+    },
+    {
+      "scenario": 1,
+      "seed": 175061484,
+      "variability": 0.4,
+      "title": "Atlantic return",
+      "flights": {
+        "normal": {
+          "seed": 175061484,
+          "scenario": 1,
+          "activationGain": 1,
+          "score": -83.90921081845761,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.0668121690751234,
+          "reason": "Approach timed out",
+          "variation": {
+            "level": 0.4,
+            "mass": 0.9627789621389798,
+            "thrust": 1.0327247872790397,
+            "servo": 1.1022042393546143,
+            "wind": 0.9750418782255178,
+            "deck": 1.0952492006731662,
+            "noise": 0.004
+          },
+          "touchdown": null,
+          "time": 65.04999999999845,
+          "censored": false,
+          "mode": "normal"
+        },
+        "ethyl-acetate": {
+          "seed": 175061484,
+          "scenario": 1,
+          "activationGain": 1,
+          "score": -97.12324861832498,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": -0.17793875502273665,
+          "reason": "Approach timed out",
+          "variation": {
+            "level": 0.4,
+            "mass": 0.9627789621389798,
+            "thrust": 1.0327247872790397,
+            "servo": 1.1022042393546143,
+            "wind": 0.9750418782255178,
+            "deck": 1.0952492006731662,
+            "noise": 0.004
+          },
+          "touchdown": null,
+          "time": 65.04999999999845,
+          "censored": false,
+          "mode": "ethyl-acetate"
+        },
+        "geosmin": {
+          "seed": 175061484,
+          "scenario": 1,
+          "activationGain": 1,
+          "score": -78.68745923690528,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.20139535327841465,
+          "reason": "Approach timed out",
+          "variation": {
+            "level": 0.4,
+            "mass": 0.9627789621389798,
+            "thrust": 1.0327247872790397,
+            "servo": 1.1022042393546143,
+            "wind": 0.9750418782255178,
+            "deck": 1.0952492006731662,
+            "noise": 0.004
+          },
+          "touchdown": null,
+          "time": 65.04999999999845,
+          "censored": false,
+          "mode": "geosmin"
+        }
+      }
+    },
+    {
+      "scenario": 9,
+      "seed": 175166213,
+      "variability": 0.4,
+      "title": "Fast ferry",
+      "flights": {
+        "normal": {
+          "seed": 175166213,
+          "scenario": 9,
+          "activationGain": 1,
+          "score": -86.17832800104497,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": -0.039332947951196136,
+          "reason": "Approach timed out",
+          "variation": {
+            "level": 0.4,
+            "mass": 0.9592165490597396,
+            "thrust": 1.0100761738165542,
+            "servo": 1.0516034108696788,
+            "wind": 0.7965722053853459,
+            "deck": 0.9988149704756477,
+            "noise": 0.004
+          },
+          "touchdown": null,
+          "time": 65.04999999999845,
+          "censored": false,
+          "mode": "normal"
+        },
+        "ethyl-acetate": {
+          "seed": 175166213,
+          "scenario": 9,
+          "activationGain": 1,
+          "score": -94.40342739955042,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.16376243423544978,
+          "reason": "Approach timed out",
+          "variation": {
+            "level": 0.4,
+            "mass": 0.9592165490597396,
+            "thrust": 1.0100761738165542,
+            "servo": 1.0516034108696788,
+            "wind": 0.7965722053853459,
+            "deck": 0.9988149704756477,
+            "noise": 0.004
+          },
+          "touchdown": null,
+          "time": 65.04999999999845,
+          "censored": false,
+          "mode": "ethyl-acetate"
+        },
+        "geosmin": {
+          "seed": 175166213,
+          "scenario": 9,
+          "activationGain": 1,
+          "score": -84.6989568012684,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": -0.055073150063077086,
+          "reason": "Approach timed out",
+          "variation": {
+            "level": 0.4,
+            "mass": 0.9592165490597396,
+            "thrust": 1.0100761738165542,
+            "servo": 1.0516034108696788,
+            "wind": 0.7965722053853459,
+            "deck": 0.9988149704756477,
+            "noise": 0.004
+          },
+          "touchdown": null,
+          "time": 65.04999999999845,
+          "censored": false,
+          "mode": "geosmin"
+        }
+      }
+    },
+    {
+      "scenario": 17,
+      "seed": 175270942,
+      "variability": 0.4,
+      "title": "Spinning entry",
+      "flights": {
+        "normal": {
+          "seed": 175270942,
+          "scenario": 17,
+          "activationGain": 1,
+          "score": -87.81719562114294,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 31.714693848020133,
+          "reason": "Missed the ship",
+          "variation": {
+            "level": 0.4,
+            "mass": 1.054028953093958,
+            "thrust": 0.9848370556036954,
+            "servo": 1.0317545368498937,
+            "wind": 1.0218651360025999,
+            "deck": 0.9764711209914261,
+            "noise": 0.004
+          },
+          "touchdown": {
+            "error": 11.774541675996698,
+            "speed": 5.766874960893676,
+            "lateral": 2.1743141485325532,
+            "tilt": 0.06760104899106971
+          },
+          "time": 17.85000000000012,
+          "censored": false,
+          "mode": "normal"
+        },
+        "ethyl-acetate": {
+          "seed": 175270942,
+          "scenario": 17,
+          "activationGain": 1,
+          "score": -77.86879152561028,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 31.7212326517249,
+          "reason": "Hard landing",
+          "variation": {
+            "level": 0.4,
+            "mass": 1.054028953093958,
+            "thrust": 0.9848370556036954,
+            "servo": 1.0317545368498937,
+            "wind": 1.0218651360025999,
+            "deck": 0.9764711209914261,
+            "noise": 0.004
+          },
+          "touchdown": {
+            "error": 5.733160315282453,
+            "speed": 5.300377976162082,
+            "lateral": 1.5553220897717437,
+            "tilt": 0.10219264669330366
+          },
+          "time": 18.300000000000125,
+          "censored": false,
+          "mode": "ethyl-acetate"
+        },
+        "geosmin": {
+          "seed": 175270942,
+          "scenario": 17,
+          "activationGain": 1,
+          "score": -89.3467661720315,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 31.713744608043655,
+          "reason": "Missed the ship",
+          "variation": {
+            "level": 0.4,
+            "mass": 1.054028953093958,
+            "thrust": 0.9848370556036954,
+            "servo": 1.0317545368498937,
+            "wind": 1.0218651360025999,
+            "deck": 0.9764711209914261,
+            "noise": 0.004
+          },
+          "touchdown": {
+            "error": 14.848460950016905,
+            "speed": 5.60975018109369,
+            "lateral": 2.7431488456831197,
+            "tilt": 0.09142707434106363
+          },
+          "time": 17.90000000000012,
+          "censored": false,
+          "mode": "geosmin"
+        }
+      }
+    }
+  ],
+  "interpretation": "A fixed-readout software pilot on 16 prespecified matched starts. Record landing benefits and harms together. No chemical dose, biological effect, new controller selection or deployment is established."
+}

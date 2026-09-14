@@ -71,7 +71,11 @@ if(!isMainThread){
    const s=createFlight(test.seed,test.scenario,test.variability??0);s.sensoryPresentation=FLIGHT_PANEL;s.autoOdor=false;s.styleEnabled=false;s.eyesCovered=!!test.covered;s.instrumentLights=test.instrumentLights!==false;net.reset();
    const trajectory=[];let insertionQuality=0;
    while(!s.done){
-    const packet=sampleEmbodied(s),action=net.decide(packet.observations,weights);
+    const packet=sampleEmbodied(s),observations=[...packet.observations];
+    // A fixed external odor intervention changes only the existing four
+    // receptor inputs. It supplies no flight state or desired action.
+    if(test.odorLevels)observations.splice(1554,4,...test.odorLevels);
+    const action=net.decide(observations,weights);
     if(job.collect){
      for(const index of net.motorIndices)features.push(net.activity[index]);
      targets.push(...presentedInstrumentValues(packet.screens[1]),...FLIGHT_BODY_CHANNELS.map(i=>packet.observations[1536+i]-(i===13?1:0)));
@@ -149,13 +153,16 @@ if(!isMainThread){
   }else if(process.argv.includes('--evaluate')){
    const parameters=state.best?.parameters??state.mean,weights=decode(parameters),seedBase=Number(process.env.SUITE_TEST_SEED??61073003);
    const cases=Array.from({length:Number(process.env.SUITE_TESTS??12)},(_,i)=>({scenario:profiles[i%profiles.length],seed:seedBase+i*104729,variability:Math.floor(i/profiles.length)%2?.4:0}));
-   const modes=(process.env.SUITE_TEST_MODES??'normal,covered').split(',');
-   if(!modes.every(mode=>['normal','covered','no-instruments'].includes(mode)))throw Error('Unknown evaluation condition');
-   const report={parameters,calibrationHash,sourceSHA256,backend:process.env.FLY_NATIVE_RATE==='1'?'native-exact-rate':'javascript-rate',nativeBuild,weightSHA256:sha(Buffer.from(Float64Array.from(weights).buffer)),cases,modes,flights:[],complete:false};
+   const odorLevel=process.env.SUITE_TEST_ODOR_LEVEL===undefined?null:Number(process.env.SUITE_TEST_ODOR_LEVEL);
+   if(odorLevel!==null&&(!Number.isFinite(odorLevel)||odorLevel<=0||odorLevel>1||process.env.SUITE_TEST_MODES))throw Error('Use one fixed model odor level in (0,1] without SUITE_TEST_MODES');
+   const modes=odorLevel===null?(process.env.SUITE_TEST_MODES??'normal,covered').split(','):['normal','ethyl-acetate','geosmin'];
+   if(!modes.every(mode=>(odorLevel===null?['normal','covered','no-instruments']:['normal','ethyl-acetate','geosmin']).includes(mode)))throw Error('Unknown evaluation condition');
+   const odorIntervention=odorLevel===null?undefined:{level:odorLevel,unit:'Dimensionless model receptor input, not physical concentration',schedule:'Constant bilateral input from the first decision to the original full-flight endpoint',conditions:{normal:[0,0,0,0],'ethyl-acetate':[odorLevel,odorLevel,0,0],geosmin:[0,0,odorLevel,odorLevel]},selection:'None; retain every matched outcome with the frozen readout'};
+   const report={parameters,calibrationHash,sourceSHA256,backend:process.env.FLY_NATIVE_RATE==='1'?'native-exact-rate':'javascript-rate',nativeBuild,weightSHA256:sha(Buffer.from(Float64Array.from(weights).buffer)),cases,modes,odorIntervention,flights:[],complete:false};
    const output=path+'/'+(process.env.SUITE_TEST_OUTPUT??'selection.json');
    fs.writeFileSync(output.replace(/\.json$/,'')+'-weights.json',JSON.stringify(weights));
    const save=()=>{fs.writeFileSync(output+'.tmp',JSON.stringify(report));fs.renameSync(output+'.tmp',output);};
-   await Promise.all(modes.flatMap(mode=>cases.map(test=>evaluate({parameters,cases:[{...test,covered:mode==='covered',instrumentLights:mode!=='no-instruments'}]}).then(result=>{const flight={...result.flights[0],mode};report.flights.push(flight);save();console.log(JSON.stringify(flight));}))));
+   await Promise.all(modes.flatMap(mode=>cases.map(test=>evaluate({parameters,cases:[{...test,covered:mode==='covered',instrumentLights:mode!=='no-instruments',...(odorIntervention?{odorLevels:odorIntervention.conditions[mode]}:{})}]}).then(result=>{const flight={...result.flights[0],mode};report.flights.push(flight);save();console.log(JSON.stringify(flight));}))));
    report.complete=true;save();
   }else if(process.argv.includes('--probe')){
    const parameters=state.best?.parameters??state.mean,cases=profiles.map((scenario,i)=>({scenario,seed:714133+i*19667,variability:i%2?Number(process.env.SUITE_PROBE_VARIABILITY??.2):0}));

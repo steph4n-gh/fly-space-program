@@ -80,6 +80,7 @@ def main():
     parser.add_argument('--duration', type=float, default=.6)
     parser.add_argument('--seeds', type=int, default=2)
     parser.add_argument('--synaptic-weight', type=float, default=.275)
+    parser.add_argument('--extra-pools', type=Path, help='Frozen named neuron-index pools to observe without changing the dynamics')
     parser.add_argument('--output', default=str(OUT / 'lif-odor-probe.json'))
     args = parser.parse_args()
     atlas_bytes = (OUT / 'odor-atlas.json').read_bytes()
@@ -88,6 +89,15 @@ def main():
     assert hashlib.sha256(annotation_file.read_bytes()).hexdigest() == atlas['annotationSHA256']
     cells = pd.read_feather(annotation_file)
     cells = cells[cells.superclass.notna() & (cells.status != 'Glia')].sort_values('bodyId').reset_index(drop=True)
+    extra_pool_record = None
+    extra_pools = {}
+    if args.extra_pools:
+        raw_pools = args.extra_pools.read_bytes()
+        extra_pool_record = {'sourceFile': str(args.extra_pools), 'SHA256': hashlib.sha256(raw_pools).hexdigest(), 'definition': json.loads(raw_pools)}
+        extra_pools = extra_pool_record['definition']['pools']
+        for name, indices in extra_pools.items():
+            if not name or not indices or len(set(indices)) != len(indices) or not all(isinstance(i, int) and 0 <= i < len(cells) for i in indices):
+                raise ValueError('Invalid observation pool: ' + name)
     projection_pools = {unit: {side: cells.index[(cells.type == typename) & (cells.somaSide == side)].tolist()
                               for side in ['L', 'R']}
                         for unit, typename in [('DM1', 'DM1_lPN'), ('DM6', 'DM6_adPN')]}
@@ -137,6 +147,11 @@ def main():
                            'activeNeurons': int((spikes > 0).sum()), 'motorPoolHz': pools,
                            'projectionNeuronPoolHz': projection_rates,
                            'maximumSourceHz': float(rates.max()), 'wallSeconds': time.perf_counter()-start})
+            if extra_pools:
+                trials[-1]['extraPoolStats'] = {pool: {'neurons': len(indices), 'spikes': int(spikes[indices].sum()),
+                                                     'meanHz': float(spikes[indices].mean()/args.duration),
+                                                     'activeNeurons': int((spikes[indices] > 0).sum())}
+                                                for pool, indices in extra_pools.items()}
             print(json.dumps(trials[-1]), flush=True)
             report = {'schema': 'lif-odor-probe-v1', 'modelSource': 'https://doi.org/10.1038/s41586-024-07763-9',
                       'referenceCommit': '91bdd1e7dcf193f3e7ca5a8933497fcef63b7960',
@@ -151,6 +166,8 @@ def main():
                                       'Normalized DoOR responses are mapped to Poisson rates with an assumed scale, not calibrated odor doses.',
                                       'Unknown receptor responses retain matched spontaneous rate where available.',
                                       'No learned motor decoder or flight teacher is used; reported wing rates are not measured wing motion.']}
+            if extra_pool_record:
+                report['extraPools'] = extra_pool_record
             file = Path(args.output); file.parent.mkdir(parents=True, exist_ok=True)
             file.with_suffix('.tmp').write_text(json.dumps(report, indent=2)); file.with_suffix('.tmp').replace(file)
 

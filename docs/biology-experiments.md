@@ -244,10 +244,10 @@ Both assays used bilateral input. A fixed directional command bias is
 therefore particularly important to distinguish from real lateral odor
 localization. No chemical setting has been selected or installed, and no
 additional landing performance is established by these static responses.
-The next software question is whether a fixed small input helps or harms
-a complete closed-loop flight on separate starts. The next biological
-question remains whether the real odor/visual interaction can be measured
-and replicated in one fly-cell apparatus.
+The completed flight comparison below tests whether one fixed small input
+helps or harms a complete closed-loop flight on separate starts. The next
+biological question remains whether the real odor/visual interaction can
+be measured and replicated in one fly-cell apparatus.
 
 ```sh
 node scripts/assay-odor-visual-context.mjs
@@ -259,3 +259,125 @@ The assay refuses to overwrite a completed result; use a different output
 path for repetition. The summarizer verifies full completion, source and
 checkpoint hashes, every trial identity, startup/covered-eye controls and
 recomputed paired effects before exporting the result and figure.
+
+### Completed chemical flight comparison
+
+The next assay froze the same released controller and a bilateral input
+level of **0.0001**, then ran 16 new starts in clean air, ethyl acetate and
+geosmin: **48 complete JavaScript flights**. Each of the four missions had
+two nominal and two varied starts. Odor stayed constant from the first
+decision to the original physical endpoint. Body inputs, flight physics,
+success criteria and readout weights were unchanged. The planned cases and
+level were saved before running; no controller or chemical setting was
+selected from these outcomes.
+
+| Condition | Safe landings | Nominal | Varied | Rescued clean-air failures | Spoiled clean-air successes |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Clean air | 10/16 | 8/8 | 2/8 | — | — |
+| Ethyl acetate | 9/16 | 6/8 | 3/8 | 1 | 2 |
+| Geosmin | 9/16 | 7/8 | 2/8 | 1 | 2 |
+
+Neither odor improved the aggregate landing count. Mean paired flight-score
+changes were −10.87 for ethyl acetate and −9.34 for geosmin. All failures
+remain in the [verified paired record](odor-closed-loop-results.json),
+including the two harmed cases for each odor. A command shift with largely
+preserved static visual sensitivity was insufficient to improve this flight
+cohort.
+
+The clean-air result also limits the earlier **28/32** checkpoint claim:
+that number remains the outcome of its original test cohort. On these 16
+additional starts the same checkpoint landed 10/16, with only 2/8 in varied
+conditions. Report the separate cohorts rather than treating the earlier
+rate as a guarantee. This pilot neither identifies an effective odor dose
+nor tests a living fly's chemical response.
+
+The optional `SUITE_TEST_ODOR_LEVEL` evaluation input changes only the four
+odor channels. A complete clean-air flight through the added input-handling
+path exactly matched its previously archived outcome. Reproduce the frozen
+pilot with the recorded plan in
+`artifacts/odor-interface/closed-loop-plan.json`, then run:
+
+```sh
+node scripts/summarize-odor-flights.mjs
+```
+
+## Anatomical candidates and a spiking-model check
+
+The [amine-target inventory](neuromodulator-targets.json) checks all 166,700
+retained cells, 25,582,938 edges and 124,177,617 contacts. Packed cell IDs,
+types and transmitter labels were independently matched to the original
+annotation and transmitter-consensus files; every used packed array was
+hash-checked. It finds 101 octopamine-labelled, 392 dopamine-labelled and
+48 serotonin-labelled cells.
+
+Four cells typed **OA-AL2i2** account for the direct octopamine-labelled
+contacts into the explicitly named T4a–d and T5a–d populations:
+
+| Body ID | Contacts into T4 | Contacts into T5 |
+| --- | ---: | ---: |
+| 10269 | 63 | 34 |
+| 10265 | 53 | 23 |
+| 10322 | 53 | 26 |
+| 10204 | 50 | 24 |
+| Total | 219 | 107 |
+
+These contacts reach 208 of 6,861 named T4 cells and 102 of 6,719 named T5
+cells. Four `T4_unclear` cells and one `T5a_unclear` cell are explicitly
+excluded from those named pools. The inventory also finds 257,945 contacts
+from 347 dopamine-labelled cells into 4,063 of the 4,064 annotated Kenyon
+cells, which supplies a separate anatomical starting point for the learning
+question. None of these counts specifies receptor expression, release,
+synaptic efficacy, extrasynaptic signaling or plasticity. No matching Hx
+type label was found, so we do not identify these cells as the Hx pathway
+from the visual-modulation paper.
+
+### Odor recruitment of the four candidate cells
+
+The transferred complete-graph LIF model ran **28 trials**: clean air plus
+left, right and bilateral ethyl acetate or geosmin, each with four matched
+Poisson seeds. Observation pools were chosen from the anatomy before
+observing activity. The original model equations, graph construction and
+input parameters were preserved: 0.275 mV per signed contact, 150 Hz external
+source scale, 0.2 seconds of pre-exposure and 0.6 seconds of observation.
+These are model parameters, not physical exposure settings. All original
+clean-air outputs exactly matched the four previously archived trials.
+
+| Observed population | Clean-air mean firing, Hz | Bilateral ethyl-acetate change, Hz | Bilateral geosmin change, Hz |
+| --- | ---: | ---: | ---: |
+| All 101 octopamine-labelled cells | 58.60 | −0.008 | −0.136 |
+| OA-AL2i2, body 10269 | 113.33 | +0.42 | +2.50 |
+| OA-AL2i2, body 10265 | 104.17 | +1.25 | −0.83 |
+| OA-AL2i2, body 10322 | 101.67 | −0.42 | −0.42 |
+| OA-AL2i2, body 10204 | 87.92 | +3.75 | −0.83 |
+| Named T4 population | 0 | 0 | 0 |
+| Named T5 population | 0 | 0 | 0 |
+
+Changes are paired to clean air at the same seed, then averaged across the
+four trials. Ethyl acetate raised cell 10204 by 1.67–6.67 Hz across those
+seeds; geosmin raised cell 10269 by 1.67–5 Hz. Most other bilateral cell
+effects varied in sign or included zero. The all-octopamine population did
+not show a consistent overall increase. These modest changes sit on already
+high modeled baseline firing; four random seeds in one connectome do not
+establish repeatability across animals.
+
+No visual stimulus was supplied. T4 and T5 remained silent in every trial,
+so this assay cannot test enhanced visual gain. Octopamine-labelled cells
+still use the same LIF equations and assumed signs as other neurons; there
+is no receptor-dependent neuromodulatory mechanism. The result identifies
+limited odor-dependent activity in anatomical candidates, without showing
+octopamine release, a causal visual effect or useful chemical control.
+All seven conditions, per-seed counts and verification details are retained
+in the [recruitment result](neuromodulator-recruitment-results.json).
+
+```sh
+artifacts/lif-runtime/bin/python scripts/map-neuromodulator-targets.py
+artifacts/lif-runtime/bin/python scripts/lif-odor-probe.py --odors 'ethyl acetate' geosmin --seeds 4 --extra-pools artifacts/odor-interface/neuromodulator-pools.json --output artifacts/odor-interface/lif-neuromodulator-recruitment.json
+artifacts/lif-runtime/bin/python scripts/summarize-neuromodulator-recruitment.py
+```
+
+Use a new output path for a repetition; preserve the original raw result
+and pool definition. The next useful model development is a separately
+validated visual response and receptor-dependent modulation, anchored to
+the same behavioral endpoint. Adding a global excitation knob cannot supply
+that missing physiology. The first real experiment remains the controlled
+food-odor × visual-motion comparison above.

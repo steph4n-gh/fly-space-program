@@ -6,14 +6,16 @@ The shipped checkpoint achieved **28/32 safe landings on unseen starts**:
 7/8 each on Landing School, Atlantic Return, Fast Ferry and Spinning Entry.
 It landed 16/16 nominal and 12/16 varied flights. Covering its eyes or
 disabling the indicators reduced it to **0/32** in each matched control.
-The four failures remain in the report. These small tests do not establish
+The four failures remain in the report. A later matched chemical pilot
+landed **10/16** additional starts in clean air and **9/16** with either
+tested odor; it did not establish a chemical benefit. These small tests do not establish
 mastery of the other missions or transfer to a living fly. The earlier
 [first landing lesson](docs/landing-training.md) achieved 6/24 on its separate
 stationary-deck test; that was a different checkpoint and test set.
 
 The physical-interface research target, 27-mission baseline, expanded 689-odor atlas, complete-graph spiking experiments and odor-controller trials are documented in [A physically testable fly interface](docs/physical-fly-interface.md). The additional [eight-compound panel](docs/additional-odor-tests.md) and [calibration follow-up](docs/odor-calibration-followup.md) did not establish chemical steering. [Harness mockups](docs/harness-concept.md) explore a 125-cell cube and individual fly chambers. The current software is not a validated predictor of a living fly's behavior.
 
-[Biology experiments](docs/biology-experiments.md) prioritizes odor-dependent visual tracking, cue/reward learning and targeted circuit tests, with a separate matched software assay of odor and visual-input interactions.
+[Biology experiments](docs/biology-experiments.md) prioritizes odor-dependent visual tracking, cue/reward learning and targeted circuit tests. It records 336 static odor/visual trajectories, 48 matched chemical flights, an inventory of candidate neuromodulator connections and 28 spiking-model recruitment trials.
 
 Run `npm start`, then open `http://localhost:4173`. The complete graph must load before automated flight begins. Mission shows the flight, Cockpit shows the articulated fly and exact sampled eye images, and Flight lab contains training, the anatomical atlas and decision inspection. The default is the short landing-school mission. All 27 landing/orbital profiles remain available. The instrument-trained V8 pilot is a labeled reference option.
 
