@@ -197,7 +197,7 @@ point; they do not establish independent reliability. Every grid case,
 failure, parameter combination and archived source hash remains in
 `artifacts/suite-training/engine-bank-grid/sweep.json`.
 
-The next search includes two normal missions and all six engine-failure
+The next search included two normal missions and all six engine-failure
 profiles, with changing seeds and physical variation. It releases steering
 alongside throttle and engine selection because the grid also exposed
 lateral and attitude failures. Its candidate ranking uses landing count
@@ -207,6 +207,25 @@ candidate from the search elites. Replaying that recorded generation
 confirmed that the revised ordering retains three two-landing elites.
 The physical success criteria and original rewards are unchanged. The
 packaged controller remains the independently tested four-mission version.
+
+That search completed 960 full flights in ten generations. The selected
+candidate in each generation landed four or five of its eight development
+cases; none reached six. Two subsequent 64-flight grids tested measured
+throttle-position and felt-load feedback, then throttle-position feedback
+with a command offset. A selected setting met the original vertical-speed
+limit in all four grid cases, while only two passed every landing criterion.
+The other cases missed the ship or had excessive lateral speed. These
+coefficients are model search parameters, not calibrated muscle properties.
+
+Four diagnostic trajectories exactly reproduced those grid outcomes. They
+retained all decisions, presented measurements, and their neural decoding.
+The later-flight decoding errors were small compared with the remaining
+position and attitude failures. A separate steering search therefore starts
+from that setting and includes the previously tested four missions alongside
+all six engine-failure profiles. The grid, selected initialization and probe
+are `engine-position-bias-grid/sweep.json`, `adaptive-steering-initial.json`
+and `adaptive-sensory-probe/probe.json` under `artifacts/suite-training/`.
+These are development measurements, with no new independent reliability claim.
 
 ## Orbital ascent experiments
 
@@ -240,16 +259,39 @@ candidate still runs to the original physical endpoint. Its success
 criterion remains a full orbit followed by deorbit, entry and barge
 touchdown. This stage has not yet established an orbital flight capability.
 
+The first insertion search completed 72 full flights in three generations:
+62 reached the launch milestone and 24 reached space. None achieved a stable
+orbit, a full revolution or a completed return. The original flight reward
+can favor an early low-altitude failure over a longer ascent. The next search
+therefore ranks actual completed mission milestones before its smooth fitness,
+after checking full-mission landings first. Among candidates with equal
+milestones, orbital fitness uses one tenth of the original flight reward
+plus the insertion reward. Ground-flight fitness is unchanged. Original
+rewards and every failed endpoint remain recorded separately. This change
+does not lower any physical milestone or completion criterion.
+
+The new `orbital-progress` experiment starts from a recorded candidate chosen
+under that ordering, preserves the old trials, and retains the version of its
+selection rule and fitness. It still requires independent evaluation before
+any orbital capability can be claimed.
+
 ## Optional native calculation
 
-The optional Node backend evaluates the same CSR rows and edges in the same
-order, with Float32 state, double accumulation, and the same activation.
+The optional Node backend evaluates every CSR row and edge with Float32
+state, double accumulation, and the same activation. The newer implementation
+overlaps two adjacent independent row sums, preserving addition order within
+each neuron and the synchronous neural update.
 It performs no pruning or approximation. The browser implementation stays
 in JavaScript. A 100-decision comparison across five mission contexts,
 including the supported gain change and a neural pulse, found exactly zero
-activity and command differences. The measured speedup was approximately
-1.46× on the development machine. The build record retains compiler flags,
-Node version, source hash and binary hash.
+activity and command differences. The latest comparison measured a 1.66×
+speedup over JavaScript on the development machine. A separate 200-decision
+comparison and two complete physical trajectories found zero activity and
+command differences against the previous native implementation, with a
+1.145× speedup. The flight comparisons reused development starts and check
+calculation parity rather than new flight reliability. The build record
+retains compiler flags, Node version, source hash and binary hash; new
+training records retain that build metadata and verify the binary hash.
 
 Final flight results must also run through the browser's JavaScript backend;
 the native check alone does not establish flight reliability.

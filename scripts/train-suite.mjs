@@ -13,6 +13,8 @@ import {freshEmbodied,flightResult} from '../dist/full-controller.js';
 
 const folder='artifacts/suite-training',basisPath=process.env.SUITE_SENSORY_BASIS??folder+'/sensory-basis.json',basisText=fs.readFileSync(basisPath,'utf8'),basis=JSON.parse(basisText);
 const sha=s=>crypto.createHash('sha256').update(s).digest('hex'),calibrationHash=sha(basisText),stride=2130;
+const nativeBuild=process.env.FLY_NATIVE_RATE==='1'?JSON.parse(fs.readFileSync('artifacts/native-rate/build.json')):null;
+if(nativeBuild&&nativeBuild.binarySHA256!==sha(fs.readFileSync('artifacts/native-rate/rate-native.node')))throw Error('Native backend does not match its build record');
 // Symmetric lateral directions reduce the search dimension without prescribing
 // their signs or gains. Gimbal, fins, gaze and engine-bank directions remain fixed
 // during the first attitude lesson; later blocks can release additional heads.
@@ -32,8 +34,17 @@ const directions=[
 const initial=[-.3,-.08,-.3,.03,-.02,0,0,0,0,0,0,0,-1,0,0,0,0,0,0,0,0,0,0];
 const scales=[.1,.15,.3,.15,.15,.2,.3,2,.5,.5,.5,.1,1,.8,3,1.5,1,2,2,2,2,3,2];
 const touchdownMargin=Number(process.env.SUITE_TOUCHDOWN_MARGIN??0);
-const selectionOrder='landings-then-fitness';
-const fitnessVersion='touchdown-margin-and-orbit-insertion-v1';
+const selectionOrder='landings-orbital-milestones-then-fitness';
+const fitnessVersion='touchdown-margin-and-orbit-insertion-v2';
+const orbitalMilestones=['Final approach','Atmospheric entry','Deorbit','One full orbit','Stable orbit','Space','Launch'];
+function compareResults(a,b){
+ if(a.landings!==b.landings)return b.landings-a.landings;
+ for(const name of orbitalMilestones){
+  const count=r=>r.flights.filter(f=>f.milestones?.some(m=>m.name===name)).length,difference=count(b)-count(a);
+  if(difference)return difference;
+ }
+ return b.fitness-a.fitness;
+}
 function decode(parameters){
  if(parameters.length>directions.length||!parameters.every(Number.isFinite))throw Error('Invalid readout parameters');
  const weights=Array(stride*10).fill(0);
@@ -65,7 +76,7 @@ if(!isMainThread){
      for(const index of net.motorIndices)features.push(net.activity[index]);
      targets.push(...presentedInstrumentValues(packet.screens[1]),...FLIGHT_BODY_CHANNELS.map(i=>packet.observations[1536+i]-(i===13?1:0)));
     }
-    if(job.trace)trajectory.push({t:s.t,y:s.y,vy:s.vy,x:s.x-s.padX,z:s.z-s.padZ,pitch:s.angle,roll:s.angleZ,action:Array.from(action),decoded:basis.basis.map(w=>net.motorIndices.reduce((v,k,j)=>v+w[j]*net.activity[k],w[stride-1]))});
+    if(job.trace)trajectory.push({t:s.t,y:s.y,vy:s.vy,x:s.x-s.padX,z:s.z-s.padZ,pitch:s.angle,roll:s.angleZ,action:Array.from(action),presented:[...presentedInstrumentValues(packet.screens[1]),...FLIGHT_BODY_CHANNELS.map(i=>packet.observations[1536+i]-(i===13?1:0))],decoded:basis.basis.map(w=>net.motorIndices.reduce((v,k,j)=>v+w[j]*net.activity[k],w[stride-1]))});
     for(let j=0,n=decisionSteps(s);j<n&&!s.done;j++)advance(s,action);
     if(s.orbital){
      // Outcome-only reward shaping. These orbital elements never enter the
@@ -78,7 +89,7 @@ if(!isMainThread){
    flights.push({...flightResult(s),...(s.orbital?{insertionQuality,insertionReward:1200*insertionQuality+200*Math.min(1,s.maxAltitude/s.orbitConfig.orbitHeight)}:{}),...(job.trace?{trajectory}:{}),censored:false});
   }
   const score=flights.reduce((v,s)=>v+s.score,0)/flights.length;
-  const fitness=score+flights.reduce((v,s)=>v+(s.insertionReward??0)-touchdownMargin*(s.landed?s.touchdown.speed**2+s.touchdown.lateral**2:0),0)/flights.length;
+  const fitness=flights.reduce((v,s)=>v+(s.milestones?s.score*.1:s.score)+(s.insertionReward??0)-touchdownMargin*(s.landed?s.touchdown.speed**2+s.touchdown.lateral**2:0),0)/flights.length;
   if(job.collect){
    const f=Float32Array.from(features),t=Float32Array.from(targets);
    parentPort.postMessage({parameters:job.parameters,score,fitness,landings:flights.filter(s=>s.landed).length,flights,features:f.buffer,targets:t.buffer},[f.buffer,t.buffer]);
@@ -119,7 +130,7 @@ if(!isMainThread){
     console.log(JSON.stringify({part,samples,flight:result.flights[0]}));return {samples,flight:result.flights[0]};
    })));
    const files=['scripts/train-suite.mjs','dist/engine3d.js','dist/orbital.js','dist/missions.js','dist/perception.js','dist/flight-instruments.js','dist/full-network.js','scripts/full-network-node.mjs',basisPath];
-   fs.writeFileSync(output+'/calibration-manifest.json',JSON.stringify({sensoryPresentation:FLIGHT_PANEL,contexts:count,samples:records.reduce((s,r)=>s+r.samples,0),dynamic:true,collection:'complete learned flight',parts:count,features:2129,targets:28,names:basis.names,bodyChannels:FLIGHT_BODY_CHANNELS,neurons:166700,edges:25582938,passesPerDecision:2,parameters,calibrationHash,weightSHA256:sha(Buffer.from(Float64Array.from(decode(parameters)).buffer)),cases,backend:process.env.FLY_NATIVE_RATE==='1'?'native-exact-rate':'javascript-rate',sourceSHA256:Object.fromEntries(files.map(file=>[file,sha(fs.readFileSync(file))]))},null,2));
+   fs.writeFileSync(output+'/calibration-manifest.json',JSON.stringify({sensoryPresentation:FLIGHT_PANEL,contexts:count,samples:records.reduce((s,r)=>s+r.samples,0),dynamic:true,collection:'complete learned flight',parts:count,features:2129,targets:28,names:basis.names,bodyChannels:FLIGHT_BODY_CHANNELS,neurons:166700,edges:25582938,passesPerDecision:2,parameters,calibrationHash,weightSHA256:sha(Buffer.from(Float64Array.from(decode(parameters)).buffer)),cases,backend:process.env.FLY_NATIVE_RATE==='1'?'native-exact-rate':'javascript-rate',nativeBuild,sourceSHA256:Object.fromEntries(files.map(file=>[file,sha(fs.readFileSync(file))]))},null,2));
   }else if(process.argv.includes('--sweep')){
    const parameters=state.best?.parameters??state.mean,index=Number(process.env.SUITE_SWEEP_INDEX??7);
    if(!Number.isInteger(index)||index<0||index>=parameters.length)throw Error('Invalid sweep parameter');
@@ -131,8 +142,8 @@ if(!isMainThread){
    if(secondIndex!==null&&!secondValues.every(Number.isFinite))throw Error('Invalid second sweep values');
    const cases=Array.from({length:Number(process.env.SUITE_BATCH??6)},(_,i)=>({scenario:profiles[i%profiles.length],seed:714133+i*19667,variability:i%2?.4:0}));
    const results=await Promise.all(values.flatMap(value=>secondValues.map(secondValue=>{const p=[...parameters];p[index]=value;if(secondIndex!==null)p[secondIndex]=secondValue;return evaluate({parameters:p,cases});})));
-   results.sort((a,b)=>b.landings-a.landings||b.fitness-a.fitness);
-   const report={parameters:results[0].parameters,initialParameters:parameters,index,values,secondIndex,secondValues,calibrationHash,sourceSHA256,touchdownMargin,cases,results};
+   results.sort(compareResults);
+   const report={parameters:results[0].parameters,initialParameters:parameters,index,values,secondIndex,secondValues,calibrationHash,sourceSHA256,nativeBuild,touchdownMargin,cases,results};
    fs.writeFileSync(path+'/sweep.json',JSON.stringify(report));
    for(const r of results)console.log(JSON.stringify({value:r.parameters[index],secondValue:secondIndex===null?null:r.parameters[secondIndex],landings:r.landings,batch:cases.length,score:r.score,fitness:r.fitness,flights:r.flights}));
   }else if(process.argv.includes('--evaluate')){
@@ -140,16 +151,16 @@ if(!isMainThread){
    const cases=Array.from({length:Number(process.env.SUITE_TESTS??12)},(_,i)=>({scenario:profiles[i%profiles.length],seed:seedBase+i*104729,variability:Math.floor(i/profiles.length)%2?.4:0}));
    const modes=(process.env.SUITE_TEST_MODES??'normal,covered').split(',');
    if(!modes.every(mode=>['normal','covered','no-instruments'].includes(mode)))throw Error('Unknown evaluation condition');
-   const report={parameters,calibrationHash,sourceSHA256,backend:process.env.FLY_NATIVE_RATE==='1'?'native-exact-rate':'javascript-rate',weightSHA256:sha(Buffer.from(Float64Array.from(weights).buffer)),cases,modes,flights:[],complete:false};
+   const report={parameters,calibrationHash,sourceSHA256,backend:process.env.FLY_NATIVE_RATE==='1'?'native-exact-rate':'javascript-rate',nativeBuild,weightSHA256:sha(Buffer.from(Float64Array.from(weights).buffer)),cases,modes,flights:[],complete:false};
    const output=path+'/'+(process.env.SUITE_TEST_OUTPUT??'selection.json');
    fs.writeFileSync(output.replace(/\.json$/,'')+'-weights.json',JSON.stringify(weights));
    const save=()=>{fs.writeFileSync(output+'.tmp',JSON.stringify(report));fs.renameSync(output+'.tmp',output);};
    await Promise.all(modes.flatMap(mode=>cases.map(test=>evaluate({parameters,cases:[{...test,covered:mode==='covered',instrumentLights:mode!=='no-instruments'}]}).then(result=>{const flight={...result.flights[0],mode};report.flights.push(flight);save();console.log(JSON.stringify(flight));}))));
    report.complete=true;save();
   }else if(process.argv.includes('--probe')){
-   const parameters=state.best?.parameters??state.mean,cases=profiles.map((scenario,i)=>({scenario,seed:714133+i*19667,variability:i%2?.2:0}));
+   const parameters=state.best?.parameters??state.mean,cases=profiles.map((scenario,i)=>({scenario,seed:714133+i*19667,variability:i%2?Number(process.env.SUITE_PROBE_VARIABILITY??.2):0}));
    const results=await Promise.all(cases.map(c=>evaluate({parameters,cases:[c],trace:true})));
-   fs.writeFileSync(path+'/probe.json',JSON.stringify({parameters,calibrationHash,cases,results}));
+   fs.writeFileSync(path+'/probe.json',JSON.stringify({parameters,calibrationHash,sourceSHA256,nativeBuild,cases,results}));
    for(const result of results)console.log(JSON.stringify({...result,flights:result.flights.map(({trajectory,...f})=>f)}));
   }else for(let g=0;g<Number(process.env.SUITE_GENERATIONS??10)&&!stopping;g++){
    const generation=state.generation+1;
@@ -167,13 +178,13 @@ if(!isMainThread){
     console.log(JSON.stringify({type:'completed-candidate',generation,candidate,landings:result.landings,batch:cases.length,score:result.score,fitness:result.fitness,...(result.flights.some(f=>f.maxAltitude!==undefined)?{maxAltitude:Math.max(...result.flights.map(f=>f.maxAltitude??0)),insertionQuality:Math.max(...result.flights.map(f=>f.insertionQuality??0)),milestones:[...new Set(result.flights.flatMap(f=>f.milestones?.map(m=>m.name)??[]))]}:{})}));
     return result;
    })));
-   fs.appendFileSync(path+'/trials.jsonl',JSON.stringify({generation,calibrationHash,sourceSHA256,correlated,searchSeed,touchdownMargin,selectionOrder,fitnessVersion,backend:process.env.FLY_NATIVE_RATE==='1'?'native-exact-rate':'javascript-rate',cases,results})+'\n');
-   results.sort((a,b)=>b.landings-a.landings||b.fitness-a.fitness);const elites=results.slice(0,3),best=results[0],mean=[...state.mean],sigma=[...state.sigma];
+   fs.appendFileSync(path+'/trials.jsonl',JSON.stringify({generation,calibrationHash,sourceSHA256,correlated,searchSeed,touchdownMargin,selectionOrder,fitnessVersion,backend:process.env.FLY_NATIVE_RATE==='1'?'native-exact-rate':'javascript-rate',nativeBuild,cases,results})+'\n');
+   results.sort(compareResults);const elites=results.slice(0,3),best=results[0],mean=[...state.mean],sigma=[...state.sigma];
    for(const j of active){mean[j]=elites.reduce((v,r)=>v+r.parameters[j],0)/elites.length;sigma[j]=Math.max(scales[j]*.08,.7*Math.sqrt(elites.reduce((v,r)=>v+(r.parameters[j]-mean[j])**2,0)/elites.length)+.3*sigma[j]);}
    const nextCovariance=correlated?covariance.map((row,i)=>row.map((v,j)=>active.includes(i)&&active.includes(j)?.65*elites.reduce((sum,r)=>sum+(r.parameters[i]-mean[i])*(r.parameters[j]-mean[j]),0)/elites.length+.35*v+(i===j?(scales[i]*.05)**2:0):v)):undefined;
    const entry={generation,episodes:state.episodes+population.length*cases.length,score:best.score,fitness:best.fitness,touchdownMargin,landings:best.landings,batch:cases.length,parameters:best.parameters,flights:best.flights};
-   state={...state,generation,episodes:entry.episodes,mean,sigma,covariance:nextCovariance,correlated,best,calibrationHash,sourceSHA256,selectionOrder,fitnessVersion,profiles,history:[...state.history,entry]};
-   const cp={...freshEmbodied(),weights:decode(best.parameters),generation,episodes:state.episodes,scenario:profiles[0],sensoryPresentation:FLIGHT_PANEL,autoOdor:false,instrumentLights:true,initialization:'Presented-signal calibration followed by reward-only flight learning',trainingScope:profiles,trainingMethod:'Full-network reward-only search on calibrated sensory directions'+(correlated?' with learned parameter covariance':''),sensoryBasis:basis.names,parameters:best.parameters,calibrationHash,sourceSHA256,selectionOrder,fitnessVersion,history:state.history};
+   state={...state,generation,episodes:entry.episodes,mean,sigma,covariance:nextCovariance,correlated,best,calibrationHash,sourceSHA256,nativeBuild,selectionOrder,fitnessVersion,profiles,history:[...state.history,entry]};
+   const cp={...freshEmbodied(),weights:decode(best.parameters),generation,episodes:state.episodes,scenario:profiles[0],sensoryPresentation:FLIGHT_PANEL,autoOdor:false,instrumentLights:true,initialization:'Presented-signal calibration followed by reward-only flight learning',trainingScope:profiles,trainingMethod:'Full-network reward-only search on calibrated sensory directions'+(correlated?' with learned parameter covariance':''),sensoryBasis:basis.names,parameters:best.parameters,calibrationHash,sourceSHA256,nativeBuild,selectionOrder,fitnessVersion,history:state.history};
    fs.writeFileSync(path+'/state.json.tmp',JSON.stringify(state));fs.renameSync(path+'/state.json.tmp',path+'/state.json');
    fs.writeFileSync(path+'/candidate.json',JSON.stringify(cp));console.log(JSON.stringify(entry));
   }

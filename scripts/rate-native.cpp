@@ -1,5 +1,5 @@
 // The same complete CSR rate update as dist/full-network.js. No pruning,
-// sparsity shortcuts, altered precision, approximation, or changed edge order.
+// sparsity shortcuts, altered precision, approximation, or changed addition order within a neuron.
 #include <node_api.h>
 #include <cmath>
 #include <cstdint>
@@ -37,18 +37,35 @@ napi_value step(napi_env env, napi_callback_info info) {
   const auto* obs=static_cast<const double*>(a[10].data);
   if(rows[0]!=0 || rows[n]!=a[0].length){napi_throw_range_error(env,nullptr,"Invalid CSR boundaries");return nullptr;}
   for(size_t i=0;i<n;i++)signedActivity[i]=activity[i]*signs[i];
-  for(size_t i=0;i<n;i++){
-    double sum=0;
-    if(rows[i]>rows[i+1] || rows[i+1]>a[0].length){napi_throw_range_error(env,nullptr,"Invalid CSR row");return nullptr;}
-    for(size_t edge=rows[i];edge<rows[i+1];edge++){
-      const size_t source=pre[edge];
-      if(source>=n){napi_throw_range_error(env,nullptr,"Invalid neural source");return nullptr;}
-      sum+=double(weight[edge])*double(signedActivity[source]);
+  for(size_t i=0;i<n;i+=2){
+    const bool paired=i+1<n;
+    size_t e0=rows[i],end0=rows[i+1],e1=end0,end1=paired?rows[i+2]:end0;
+    if(e0>end0 || end0>end1 || end1>a[0].length){napi_throw_range_error(env,nullptr,"Invalid CSR row");return nullptr;}
+    const size_t common=(end0-e0<end1-e1)?end0-e0:end1-e1;
+    double sum0=0,sum1=0;
+    // Overlap two adjacent, independent sums without sorting graph rows.
+    for(size_t k=0;k<common;k++){
+      const size_t source0=pre[e0],source1=pre[e1];
+      if(source0>=n || source1>=n){napi_throw_range_error(env,nullptr,"Invalid neural source");return nullptr;}
+      sum0+=double(weight[e0++])*double(signedActivity[source0]);
+      sum1+=double(weight[e1++])*double(signedActivity[source1]);
     }
-    const int channel=channels[i];
-    const double observation=channel>=0 && size_t(channel)<a[10].length?obs[channel]:0;
-    const double drive=channel>=0?.7*std::tanh(observation*.15)*polarity[i]:0;
-    next[i]=float(std::tanh((double(activity[i])*.05+sum*double(normalizer[i])+drive)*gain));
+    for(;e0<end0;e0++){
+      const size_t source=pre[e0];
+      if(source>=n){napi_throw_range_error(env,nullptr,"Invalid neural source");return nullptr;}
+      sum0+=double(weight[e0])*double(signedActivity[source]);
+    }
+    for(;e1<end1;e1++){
+      const size_t source=pre[e1];
+      if(source>=n){napi_throw_range_error(env,nullptr,"Invalid neural source");return nullptr;}
+      sum1+=double(weight[e1])*double(signedActivity[source]);
+    }
+    for(size_t j=0;j<(paired?2:1);j++){
+      const size_t row=i+j;const double sum=j?sum1:sum0;const int channel=channels[row];
+      const double observation=channel>=0 && size_t(channel)<a[10].length?obs[channel]:0;
+      const double drive=channel>=0?.7*std::tanh(observation*.15)*polarity[row]:0;
+      next[row]=float(std::tanh((double(activity[row])*.05+sum*double(normalizer[row])+drive)*gain));
+    }
   }
   napi_value result;napi_get_undefined(env,&result);return result;
 }
