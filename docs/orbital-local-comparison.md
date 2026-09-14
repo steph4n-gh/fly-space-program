@@ -1,74 +1,139 @@
-# Testing smaller orbital proposals
+# Smaller orbital proposals: completed 156-flight comparison
 
-The [completed 588-flight ranking experiment](orbital-progress-comparison.md)
-retained its initial controller in all four generations. All 41 stochastic
-proposals lost to that controller. Before changing another reward or
-comparator, this experiment asks whether smaller parameter changes preserve
-more useful behavior around the same starting point.
+**Complete: smaller proposals improved the prespecified development counts,
+but neither arm changed its selected controller or achieved a stable orbit,
+completed orbit, or landing.** All 144 training flights and 12 reserved
+comparison flights reached their original endpoints; all failed.
 
-**Status:** both original training processes were observed live when launched
-on 14 September 2026 at 13:39 UTC. This is a dated launch observation, not a
-claim that training or evaluation has completed. No outcome is inferred from
-the plan or partial process output.
+Among eleven stochastic proposals per arm, quarter-size changes increased
+primary-key preservation from **2 to 4**, positive mean periapsis progress
+from **1 to 2**, and the combination from **0 to 1**. Both arms still selected
+candidate 0, the same frozen initial controller. All six reserved comparison
+pairs have identical original endpoints and recorded traces.
 
-## One experimental difference
+## What was compared
 
-Both arms start from the frozen generation-eight controller, use the same
-13 active directions and 15 fixed coordinates, and draw the same random
-perturbation directions. The **standard** arm uses the original initial
-sigma vector. The **quarter** arm multiplies it by 0.25. The original
-candidate-index multipliers, fitness, comparator, flight physics and
-completion conditions stay the same.
+The [earlier 588-flight ranking experiment](orbital-progress-comparison.md)
+retained its initial controller. This experiment changed only initial proposal
+sigma: the quarter arm used 0.25 times the standard vector. Both used the same
+28-parameter starting controller, 13 active directions, 15 fixed coordinates,
+eleven shared random directions, candidate multipliers, original fitness and
+landing/milestone comparator. H/P were recorded, not used to rank candidates.
 
-| Stage | Per arm | Both arms |
+Each arm trained one generation of twelve candidates on six complete cases
+(72 flights), then ran its fixed winner on six fresh matched cases. The
+**156-flight budget is closed**, with none pending. The six training cases were
+reused development cases; this was not an independent reliability test.
+
+## All training candidates and failures
+
+| Recorded training outcome | Standard | Quarter |
 | --- | ---: | ---: |
-| One generation, twelve candidates, six complete training cases each | 72 flights | 144 flights |
-| Fixed selected controller on six matched fresh comparison cases | 6 flights | 12 flights |
-| Entire prescribed experiment | 78 flights | **156 flights** |
+| Full flights / candidates | 72 / 12 | 72 / 12 |
+| Launch / Space milestones | 53 / 23 | 66 / 30 |
+| Stable orbit / full orbit / landing | 0 / 0 / 0 | 0 / 0 / 0 |
+| Flights with an eligible periapsis observation | 6 | 14 |
+| Stochastic flights with an eligible observation | 1 / 66 | 9 / 66 |
+| Mean H / longest strict hold | 0 / 0 s | 0 / 0 s |
+| Mean physical score, all 72 flights | -538.814487 | -560.842585 |
+| Corridor exit / timeout / early return | 31 / 7 / 34 | 30 / 6 / 36 |
+| Selected candidate / original fitness | 0 / 208.305174 | 0 / 208.305174 |
+| Top three candidate indices | 0, 1, 3 | 0, 1, 6 |
 
-Training reuses the earlier experiment's generation-one cases. The six
-comparison seeds are disjoint within the inspected configuration archive.
-This is a paired development experiment, not an independent reliability or
-release test.
+The quarter arm's aggregate physical score was **lower**. Its better locality
+counts do not imply an overall score gain. “Primary preservation” means matching
+or improving the initial controller's original landing/milestone key; it does
+not mean achieving insertion. Every candidate below had H=0 and no stable
+orbit, complete orbit, or landing. L/S are Launch/Space counts out of six.
 
-## What will be checked
+| Candidate | Standard L/S | Quarter L/S | Standard mean P | Quarter mean P | Standard fitness | Quarter fitness |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| 0 (initial) | 6/6 | 6/6 | 0.763603 | 0.763603 | 208.305174 | 208.305174 |
+| 1 | 6/6 | 6/6 | 0.000000 | 0.457488 | 152.226847 | 189.463958 |
+| 2 | 0/0 | 0/0 | 0.000000 | 0.000000 | -57.907824 | -60.907609 |
+| 3 | 6/6 | 6/6 | 0.000000 | 0.000000 | 151.680141 | 167.208420 |
+| 4 | 6/5 | 6/6 | 0.000493 | 0.000000 | 130.539159 | 151.081419 |
+| 5 | 6/0 | 6/0 | 0.000000 | 0.000000 | -45.648424 | -40.088864 |
+| 6 | 5/0 | 6/6 | 0.000000 | 0.000000 | -27.215514 | 168.273153 |
+| 7 | 6/0 | 6/0 | 0.000000 | 0.913662 | -17.170865 | 24.311794 |
+| 8 | 0/0 | 6/0 | 0.000000 | 0.000000 | -59.837111 | -26.601950 |
+| 9 | 6/0 | 6/0 | 0.000000 | 0.000000 | -35.284824 | -28.276937 |
+| 10 | 0/0 | 6/0 | 0.000000 | 0.000000 | -56.501480 | -51.559802 |
+| 11 | 6/0 | 6/0 | 0.000000 | 0.000000 | -61.354783 | -37.355501 |
 
-A standalone prelaunch arithmetic check reconstructed both complete
-populations and all shared draws. It passed 49,637 checks: the standard
-initialization matches the unchanged trainer's default route; both initial
-controllers decode to the same 21,300 weights; and quarter-arm displacements
-before adding the mean are exactly one quarter of the standard arm's.
-Small rounding residuals in subsequent parameter subtraction are retained.
+Quarter candidate 1 was the only stochastic proposal with both positive P and
+a preserved primary key. Quarter candidate 7 had high mean P but a worse
+primary key. Neither displaced candidate 0. All 24 parameter vectors, full
+rankings, optimizer states and eleven matched proposal differences are retained
+in the [complete JSON](orbital-local-comparison-results.json). The
+[144-row training CSV](orbital-local-training-flights.csv) retains every endpoint,
+including all 124 cases with no eligible observation.
 
-After both original training processes exit successfully, a separate
-arithmetic audit must check all 144 stored endpoints, 24 candidate vectors,
-full rankings, optimizer updates and selected weights. Only then may the
-fixed generation-one winners run their six comparison cases. No fallback
-candidate, extra evaluation or post-comparison selection is prescribed.
+## Every reserved comparison pair
 
-The descriptive comparison will show all eleven matched stochastic
-proposals: whether they retain the initial controller's primary milestone
-key, whether they have positive conditional-periapsis progress, and whether
-both conditions hold. Every failure and ineligible case remains in the
-report. Full comparison traces are retained, but this plan does not include
-physical replay or independent reconstruction of every trajectory step.
+Each arm completed all six normal-mode cases: three nominal and three with
+variability 0.4. Every trip reached Launch and Space, then left the recovery
+corridor; none reached stable orbit, a complete orbit, deorbit, entry, final
+approach, or landing. All had H=0, while every case had positive P.
 
-Smaller changes, better reward or positive periapsis progress do not replace
-stable insertion, a complete orbit or a safe landing. No model promotion
-follows from this experiment alone.
+The values below apply to both original records in each pair. Scenario indices
+are zero-based: 24/25 target 1,000 m; 26 targets 1,400 m. Numerical pair
+differences are zero wherever both measurements exist; absent touchdown
+measurements remain null.
 
-## Records
+| Scenario / seed / variability | Best eligible periapsis (m) | P | Eligible time (s) | Physical score | Flight time (s) |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| 24 / 196417031 / 0 | 227.093690 | 0.915749 | 1.900 | -483.703537 | 154.150 |
+| 25 / 196521760 / 0 | 233.408397 | 0.916678 | 1.450 | -480.970669 | 152.900 |
+| 26 / 196626489 / 0 | 250.061903 | 0.919127 | 1.250 | -488.321346 | 164.900 |
+| 24 / 196731218 / 0.4 | 248.859197 | 0.918950 | 0.500 | -482.878995 | 173.200 |
+| 25 / 196835947 / 0.4 | 227.484313 | 0.915807 | 1.500 | -485.382573 | 144.300 |
+| 26 / 196940676 / 0.4 | 212.514042 | 0.913605 | 4.400 | -484.973453 | 168.700 |
 
-The [frozen proposal](orbital-local-comparison-plan.json) preserves all cases,
-parameters and the 72-file runtime map. It is the original prospective
-document, so its historical “not implemented” wording is superseded by the
-launch status above. The [launcher](../scripts/run-orbital-local-comparison.py)
-verifies the prepared states, runtime, clean environment and pinned Node
-before execution. Complete local preparation and process receipts live at
-`artifacts/suite-training/orbital-local-proposal-comparison`; see
-[archive availability](reproducibility.md#files-included-and-excluded).
+Mean P was 0.916652489;
+mean eligible time was 1.833333 s.
+P maps the wide −6000 to 800 m interval to [0,1], so these high values do not
+establish insertion. A strict hold also requires periapsis >800 m while
+absolute apoapsis error stays below 200 m and absolute radial speed below 5 m/s, consecutively
+for three seconds. No trip recorded any strict hold.
 
-Execution-plan SHA-256:
-`c8265282a8c6384e2716e2b090fcd0c8682e35053c2ea4f2e0f3eb5b451a46a0`.
-Reviewed launcher SHA-256:
-`174684d31ff03b6359e128530976b6f68c228bb763198ee9d096601b56d209e4`.
+The [12-row comparison CSV](orbital-local-evaluation-flights.csv) and
+[JSON](orbital-local-comparison-results.json) retain every endpoint, H/P value,
+null-aware deficit, trace count/hash and all six paired differences. The mean
+adjusted reward, 209.031917, is a **descriptive source-formula
+calculation**; the original comparison reports did not retain worker aggregates.
+Full original traces contain **4,494 samples per arm, 8,988 total**. Their
+equality describes these records and is not a separate determinism test.
+
+## Verification and limits
+
+Both original training processes and both original comparison processes exited
+zero. The original training arithmetic audit passed **137,011 checks**; the
+comparison record audit passed **92,559 checks**. Both arithmetic commands
+completed in their initial tool responses, so their session IDs remain null
+with explicit successful terminal receipts. The clean supplied environments,
+absolute Node executable, 72 runtime files, selected parameters and every
+exported weight were verified. Both selected weight digests equal
+`1c3f9b403128a742ec5db3c9010f75806f5e0dd6abf17ab791082c99c7e449ff`.
+
+Training trajectories were not recorded. Comparison traces were checked for
+complete retained records, finite values, exact schemas and recorded time
+order. **No physical replay or independent trajectory reconstruction was
+performed.** Physical scores, hold integrals, eligibility intervals, actions
+and sensory values remain recorded model evidence. Publication adds no flight,
+fit, new controller selection or replay.
+
+One paired population does not establish broad reliability, convergence,
+optimizer superiority, biological transfer or release eligibility. Ground
+retention and independent JavaScript release tests were not performed. No
+model was promoted.
+
+The [frozen proposal](orbital-local-comparison-plan.json) remains the original
+prospective record; this completed report supersedes its historical status.
+The [launcher](../scripts/run-orbital-local-comparison.py) and
+[deterministic reporter](../scripts/report-orbital-local-complete.py) identify
+the execution and publication contracts. Complete audit sources, methods,
+receipts, endpoint exports and original traces remain in the local archive at
+`artifacts/suite-training/orbital-local-proposal-comparison`. Its hashes and exact receipt identities are retained in the JSON;
+see [archive availability](reproducibility.md#files-included-and-excluded).
+Data files retain full precision; only display tables are rounded.

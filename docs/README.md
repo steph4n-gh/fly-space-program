@@ -7,6 +7,7 @@ Fly Space Program aims to take simulated fly training as far as possible before 
 | I want to… | Read |
 | --- | --- |
 | Get the overview and try it | [Project README](../README.md) |
+| Read the complete stopping-point report | [Status — September 14, 2026](status-2026-09-14.md) |
 | See the application | [Screenshot gallery](screenshots.md) |
 | Understand the research questions | [Science and hypotheses](science-and-hypotheses.md) |
 | Ask the obvious and less-obvious questions | [Facts and FAQ](facts-and-faq.md) |
@@ -23,8 +24,8 @@ These are evidence records, including unsuccessful experiments. A development re
 | Area | Guide and evidence |
 | --- | --- |
 | Released embodied controller | [Suite training](suite-training.md), [60/80 landing report](../dist/assets/landing-report.json) |
-| Ground mission development | [All-ground training](ground-all-training.md), [selection comparison](ground-all-selection.md), [failure diagnostic](ground-training-diagnostic.md), [contact-ranking experiment](ground-contact-comparison.md) |
-| Orbital development | [Paired trajectory diagnostic](orbital-joint-paired.md), [completed 588-flight ranking comparison](orbital-progress-comparison.md), [proposal-locality experiment](orbital-local-comparison.md) |
+| Ground mission development | [All-ground training](ground-all-training.md), [selection comparison](ground-all-selection.md), [failure diagnostic](ground-training-diagnostic.md), [completed 4,704-flight contact-ranking experiment](ground-contact-comparison.md) |
+| Orbital development | [Paired trajectory diagnostic](orbital-joint-paired.md), [completed 588-flight ranking comparison](orbital-progress-comparison.md), [completed 156-flight proposal-size comparison](orbital-local-comparison.md) |
 | Biological questions | [Biology experiments](biology-experiments.md), [additional odor panel](additional-odor-tests.md), [odor calibration](odor-calibration-followup.md) |
 | Visual model validation | [Visual response benchmark](visual-response-benchmark.md), [recurrent model](visual-recurrent-development.md), [external model comparison](cdm-response-comparison.md), [context identifiability](visual-context-identifiability.md) |
 | Early controller history | [First landing lesson](landing-training.md), [controller and provenance](controller-and-provenance.md) |

@@ -1,0 +1,1458 @@
+[
+  {
+    "scenario": 0,
+    "title": "Landing school",
+    "landingRadius": 11,
+    "control": {
+      "flights": 2,
+      "landings": 2,
+      "nominalLandings": 1,
+      "variedLandings": 1,
+      "score": 81.94526317096785,
+      "fitness": 73.49782082092905,
+      "meanFailedQuality": 0,
+      "failedCount": 0,
+      "allLandedNeutralQuality": true,
+      "reasons": {
+        "Touchdown": 2
+      },
+      "elapsedFlightSeconds": 52.050000000000466
+    },
+    "ranked": {
+      "flights": 2,
+      "landings": 2,
+      "nominalLandings": 1,
+      "variedLandings": 1,
+      "score": 89.50900456672707,
+      "fitness": 71.60038242118482,
+      "meanFailedQuality": 0,
+      "failedCount": 0,
+      "allLandedNeutralQuality": true,
+      "reasons": {
+        "Touchdown": 2
+      },
+      "elapsedFlightSeconds": 41.65000000000032
+    },
+    "rankedMinusControl": {
+      "landings": 0,
+      "score": 7.563741395759223,
+      "fitness": -1.8974383997442317,
+      "meanFailedQuality": 0,
+      "landingAndQualityMoveOppositely": false,
+      "allLandedNeutralQuality": {
+        "control": true,
+        "ranked": true
+      }
+    },
+    "paired": {
+      "pairs": 2,
+      "gainedLandings": 0,
+      "lostLandings": 0,
+      "bothLanded": 2,
+      "bothFailed": 0,
+      "failedToFailedQualityGains": [],
+      "failedToFailedQualityLosses": [],
+      "equalContactQualityDifferentLanding": []
+    },
+    "caseIndices": [
+      0,
+      24
+    ]
+  },
+  {
+    "scenario": 1,
+    "title": "Atlantic return",
+    "landingRadius": 11,
+    "control": {
+      "flights": 2,
+      "landings": 2,
+      "nominalLandings": 1,
+      "variedLandings": 1,
+      "score": 71.5527227358774,
+      "fitness": 65.81240151127832,
+      "meanFailedQuality": 0,
+      "failedCount": 0,
+      "allLandedNeutralQuality": true,
+      "reasons": {
+        "Touchdown": 2
+      },
+      "elapsedFlightSeconds": 77.29999999999988
+    },
+    "ranked": {
+      "flights": 2,
+      "landings": 2,
+      "nominalLandings": 1,
+      "variedLandings": 1,
+      "score": 82.02186318006554,
+      "fitness": 73.12672519053517,
+      "meanFailedQuality": 0,
+      "failedCount": 0,
+      "allLandedNeutralQuality": true,
+      "reasons": {
+        "Touchdown": 2
+      },
+      "elapsedFlightSeconds": 63.45000000000063
+    },
+    "rankedMinusControl": {
+      "landings": 0,
+      "score": 10.469140444188142,
+      "fitness": 7.3143236792568445,
+      "meanFailedQuality": 0,
+      "landingAndQualityMoveOppositely": false,
+      "allLandedNeutralQuality": {
+        "control": true,
+        "ranked": true
+      }
+    },
+    "paired": {
+      "pairs": 2,
+      "gainedLandings": 0,
+      "lostLandings": 0,
+      "bothLanded": 2,
+      "bothFailed": 0,
+      "failedToFailedQualityGains": [],
+      "failedToFailedQualityLosses": [],
+      "equalContactQualityDifferentLanding": []
+    },
+    "caseIndices": [
+      1,
+      25
+    ]
+  },
+  {
+    "scenario": 2,
+    "title": "Fast approach",
+    "landingRadius": 11,
+    "control": {
+      "flights": 2,
+      "landings": 2,
+      "nominalLandings": 1,
+      "variedLandings": 1,
+      "score": 16.239640270588666,
+      "fitness": 8.915002424418105,
+      "meanFailedQuality": 0,
+      "failedCount": 0,
+      "allLandedNeutralQuality": true,
+      "reasons": {
+        "Touchdown": 2
+      },
+      "elapsedFlightSeconds": 97.74999999999872
+    },
+    "ranked": {
+      "flights": 2,
+      "landings": 2,
+      "nominalLandings": 1,
+      "variedLandings": 1,
+      "score": 43.73812309940878,
+      "fitness": 32.21720524830788,
+      "meanFailedQuality": 0,
+      "failedCount": 0,
+      "allLandedNeutralQuality": true,
+      "reasons": {
+        "Touchdown": 2
+      },
+      "elapsedFlightSeconds": 81.44999999999965
+    },
+    "rankedMinusControl": {
+      "landings": 0,
+      "score": 27.498482828820116,
+      "fitness": 23.302202823889772,
+      "meanFailedQuality": 0,
+      "landingAndQualityMoveOppositely": false,
+      "allLandedNeutralQuality": {
+        "control": true,
+        "ranked": true
+      }
+    },
+    "paired": {
+      "pairs": 2,
+      "gainedLandings": 0,
+      "lostLandings": 0,
+      "bothLanded": 2,
+      "bothFailed": 0,
+      "failedToFailedQualityGains": [],
+      "failedToFailedQualityLosses": [],
+      "equalContactQualityDifferentLanding": []
+    },
+    "caseIndices": [
+      2,
+      26
+    ]
+  },
+  {
+    "scenario": 3,
+    "title": "Rough seas",
+    "landingRadius": 11,
+    "control": {
+      "flights": 2,
+      "landings": 2,
+      "nominalLandings": 1,
+      "variedLandings": 1,
+      "score": 20.292373690879046,
+      "fitness": 10.31893858517854,
+      "meanFailedQuality": 0,
+      "failedCount": 0,
+      "allLandedNeutralQuality": true,
+      "reasons": {
+        "Touchdown": 2
+      },
+      "elapsedFlightSeconds": 94.5999999999989
+    },
+    "ranked": {
+      "flights": 2,
+      "landings": 2,
+      "nominalLandings": 1,
+      "variedLandings": 1,
+      "score": 48.04321896263147,
+      "fitness": 21.498226263773976,
+      "meanFailedQuality": 0,
+      "failedCount": 0,
+      "allLandedNeutralQuality": true,
+      "reasons": {
+        "Touchdown": 2
+      },
+      "elapsedFlightSeconds": 74.85000000000002
+    },
+    "rankedMinusControl": {
+      "landings": 0,
+      "score": 27.750845271752425,
+      "fitness": 11.179287678595436,
+      "meanFailedQuality": 0,
+      "landingAndQualityMoveOppositely": false,
+      "allLandedNeutralQuality": {
+        "control": true,
+        "ranked": true
+      }
+    },
+    "paired": {
+      "pairs": 2,
+      "gainedLandings": 0,
+      "lostLandings": 0,
+      "bothLanded": 2,
+      "bothFailed": 0,
+      "failedToFailedQualityGains": [],
+      "failedToFailedQualityLosses": [],
+      "equalContactQualityDifferentLanding": []
+    },
+    "caseIndices": [
+      3,
+      27
+    ]
+  },
+  {
+    "scenario": 4,
+    "title": "Night shift",
+    "landingRadius": 11,
+    "control": {
+      "flights": 2,
+      "landings": 2,
+      "nominalLandings": 1,
+      "variedLandings": 1,
+      "score": 13.662455887991172,
+      "fitness": -13.155023495697874,
+      "meanFailedQuality": 0,
+      "failedCount": 0,
+      "allLandedNeutralQuality": true,
+      "reasons": {
+        "Touchdown": 2
+      },
+      "elapsedFlightSeconds": 94.94999999999888
+    },
+    "ranked": {
+      "flights": 2,
+      "landings": 0,
+      "nominalLandings": 0,
+      "variedLandings": 0,
+      "score": -107.06832346623712,
+      "fitness": -107.06832346623712,
+      "meanFailedQuality": 0.803944382835261,
+      "failedCount": 2,
+      "allLandedNeutralQuality": false,
+      "reasons": {
+        "Lateral impact": 2
+      },
+      "elapsedFlightSeconds": 79.14999999999978
+    },
+    "rankedMinusControl": {
+      "landings": -2,
+      "score": -120.73077935422829,
+      "fitness": -93.91329997053924,
+      "meanFailedQuality": 0.803944382835261,
+      "landingAndQualityMoveOppositely": true,
+      "allLandedNeutralQuality": {
+        "control": true,
+        "ranked": false
+      }
+    },
+    "paired": {
+      "pairs": 2,
+      "gainedLandings": 0,
+      "lostLandings": 2,
+      "bothLanded": 0,
+      "bothFailed": 0,
+      "failedToFailedQualityGains": [],
+      "failedToFailedQualityLosses": [],
+      "equalContactQualityDifferentLanding": []
+    },
+    "caseIndices": [
+      4,
+      28
+    ]
+  },
+  {
+    "scenario": 5,
+    "title": "Fin trouble",
+    "landingRadius": 11,
+    "control": {
+      "flights": 2,
+      "landings": 1,
+      "nominalLandings": 0,
+      "variedLandings": 1,
+      "score": -70.46150845111646,
+      "fitness": -83.5546894485705,
+      "meanFailedQuality": 0.8891431685158449,
+      "failedCount": 1,
+      "allLandedNeutralQuality": false,
+      "reasons": {
+        "Missed the ship": 1,
+        "Touchdown": 1
+      },
+      "elapsedFlightSeconds": 106.44999999999823
+    },
+    "ranked": {
+      "flights": 2,
+      "landings": 2,
+      "nominalLandings": 1,
+      "variedLandings": 1,
+      "score": 37.42484033117515,
+      "fitness": 7.395422408562858,
+      "meanFailedQuality": 0,
+      "failedCount": 0,
+      "allLandedNeutralQuality": true,
+      "reasons": {
+        "Touchdown": 2
+      },
+      "elapsedFlightSeconds": 87.39999999999931
+    },
+    "rankedMinusControl": {
+      "landings": 1,
+      "score": 107.8863487822916,
+      "fitness": 90.95011185713335,
+      "meanFailedQuality": -0.8891431685158449,
+      "landingAndQualityMoveOppositely": true,
+      "allLandedNeutralQuality": {
+        "control": false,
+        "ranked": true
+      }
+    },
+    "paired": {
+      "pairs": 2,
+      "gainedLandings": 1,
+      "lostLandings": 0,
+      "bothLanded": 1,
+      "bothFailed": 0,
+      "failedToFailedQualityGains": [],
+      "failedToFailedQualityLosses": [],
+      "equalContactQualityDifferentLanding": []
+    },
+    "caseIndices": [
+      5,
+      29
+    ]
+  },
+  {
+    "scenario": 6,
+    "title": "Engine trouble",
+    "landingRadius": 11,
+    "control": {
+      "flights": 2,
+      "landings": 0,
+      "nominalLandings": 0,
+      "variedLandings": 0,
+      "score": -125.30432137212493,
+      "fitness": -125.30432137212493,
+      "meanFailedQuality": 0.8855722374681939,
+      "failedCount": 2,
+      "allLandedNeutralQuality": false,
+      "reasons": {
+        "Lateral impact": 2
+      },
+      "elapsedFlightSeconds": 92.899999999999
+    },
+    "ranked": {
+      "flights": 2,
+      "landings": 2,
+      "nominalLandings": 1,
+      "variedLandings": 1,
+      "score": 50.574158438877326,
+      "fitness": 17.16085384014662,
+      "meanFailedQuality": 0,
+      "failedCount": 0,
+      "allLandedNeutralQuality": true,
+      "reasons": {
+        "Touchdown": 2
+      },
+      "elapsedFlightSeconds": 76.9499999999999
+    },
+    "rankedMinusControl": {
+      "landings": 2,
+      "score": 175.87847981100225,
+      "fitness": 142.46517521227156,
+      "meanFailedQuality": -0.8855722374681939,
+      "landingAndQualityMoveOppositely": true,
+      "allLandedNeutralQuality": {
+        "control": false,
+        "ranked": true
+      }
+    },
+    "paired": {
+      "pairs": 2,
+      "gainedLandings": 2,
+      "lostLandings": 0,
+      "bothLanded": 0,
+      "bothFailed": 0,
+      "failedToFailedQualityGains": [],
+      "failedToFailedQualityLosses": [],
+      "equalContactQualityDifferentLanding": []
+    },
+    "caseIndices": [
+      6,
+      30
+    ]
+  },
+  {
+    "scenario": 7,
+    "title": "Absolutely nominal",
+    "landingRadius": 11,
+    "control": {
+      "flights": 2,
+      "landings": 0,
+      "nominalLandings": 0,
+      "variedLandings": 0,
+      "score": -133.36758687687313,
+      "fitness": -133.36758687687313,
+      "meanFailedQuality": 0.7659018585367444,
+      "failedCount": 2,
+      "allLandedNeutralQuality": false,
+      "reasons": {
+        "Lateral impact": 1,
+        "Missed the ship": 1
+      },
+      "elapsedFlightSeconds": 95.94999999999882
+    },
+    "ranked": {
+      "flights": 2,
+      "landings": 0,
+      "nominalLandings": 0,
+      "variedLandings": 0,
+      "score": -113.29200315415261,
+      "fitness": -113.29200315415261,
+      "meanFailedQuality": 0.7026136177746903,
+      "failedCount": 2,
+      "allLandedNeutralQuality": false,
+      "reasons": {
+        "Missed the ship": 1,
+        "Lateral impact": 1
+      },
+      "elapsedFlightSeconds": 80.69999999999969
+    },
+    "rankedMinusControl": {
+      "landings": 0,
+      "score": 20.075583722720523,
+      "fitness": 20.075583722720523,
+      "meanFailedQuality": -0.06328824076205408,
+      "landingAndQualityMoveOppositely": false,
+      "allLandedNeutralQuality": {
+        "control": false,
+        "ranked": false
+      }
+    },
+    "paired": {
+      "pairs": 2,
+      "gainedLandings": 0,
+      "lostLandings": 0,
+      "bothLanded": 0,
+      "bothFailed": 2,
+      "failedToFailedQualityGains": [
+        7
+      ],
+      "failedToFailedQualityLosses": [
+        31
+      ],
+      "equalContactQualityDifferentLanding": []
+    },
+    "caseIndices": [
+      7,
+      31
+    ]
+  },
+  {
+    "scenario": 8,
+    "title": "Precision barge",
+    "landingRadius": 7,
+    "control": {
+      "flights": 2,
+      "landings": 2,
+      "nominalLandings": 1,
+      "variedLandings": 1,
+      "score": 43.59234299145687,
+      "fitness": 38.14978465268979,
+      "meanFailedQuality": 0,
+      "failedCount": 0,
+      "allLandedNeutralQuality": true,
+      "reasons": {
+        "Touchdown": 2
+      },
+      "elapsedFlightSeconds": 74.90000000000002
+    },
+    "ranked": {
+      "flights": 2,
+      "landings": 2,
+      "nominalLandings": 1,
+      "variedLandings": 1,
+      "score": 61.92710420051459,
+      "fitness": 49.293429511546286,
+      "meanFailedQuality": 0,
+      "failedCount": 0,
+      "allLandedNeutralQuality": true,
+      "reasons": {
+        "Touchdown": 2
+      },
+      "elapsedFlightSeconds": 62.200000000000614
+    },
+    "rankedMinusControl": {
+      "landings": 0,
+      "score": 18.334761209057724,
+      "fitness": 11.143644858856497,
+      "meanFailedQuality": 0,
+      "landingAndQualityMoveOppositely": false,
+      "allLandedNeutralQuality": {
+        "control": true,
+        "ranked": true
+      }
+    },
+    "paired": {
+      "pairs": 2,
+      "gainedLandings": 0,
+      "lostLandings": 0,
+      "bothLanded": 2,
+      "bothFailed": 0,
+      "failedToFailedQualityGains": [],
+      "failedToFailedQualityLosses": [],
+      "equalContactQualityDifferentLanding": []
+    },
+    "caseIndices": [
+      8,
+      32
+    ]
+  },
+  {
+    "scenario": 9,
+    "title": "Fast ferry",
+    "landingRadius": 11,
+    "control": {
+      "flights": 2,
+      "landings": 2,
+      "nominalLandings": 1,
+      "variedLandings": 1,
+      "score": 30.958319799549784,
+      "fitness": 20.102092601039953,
+      "meanFailedQuality": 0,
+      "failedCount": 0,
+      "allLandedNeutralQuality": true,
+      "reasons": {
+        "Touchdown": 2
+      },
+      "elapsedFlightSeconds": 85.7499999999994
+    },
+    "ranked": {
+      "flights": 2,
+      "landings": 2,
+      "nominalLandings": 1,
+      "variedLandings": 1,
+      "score": 55.37014241106712,
+      "fitness": 35.46783873417772,
+      "meanFailedQuality": 0,
+      "failedCount": 0,
+      "allLandedNeutralQuality": true,
+      "reasons": {
+        "Touchdown": 2
+      },
+      "elapsedFlightSeconds": 69.25000000000034
+    },
+    "rankedMinusControl": {
+      "landings": 0,
+      "score": 24.411822611517337,
+      "fitness": 15.365746133137765,
+      "meanFailedQuality": 0,
+      "landingAndQualityMoveOppositely": false,
+      "allLandedNeutralQuality": {
+        "control": true,
+        "ranked": true
+      }
+    },
+    "paired": {
+      "pairs": 2,
+      "gainedLandings": 0,
+      "lostLandings": 0,
+      "bothLanded": 2,
+      "bothFailed": 0,
+      "failedToFailedQualityGains": [],
+      "failedToFailedQualityLosses": [],
+      "equalContactQualityDifferentLanding": []
+    },
+    "caseIndices": [
+      9,
+      33
+    ]
+  },
+  {
+    "scenario": 10,
+    "title": "Figure-eight deck",
+    "landingRadius": 11,
+    "control": {
+      "flights": 2,
+      "landings": 1,
+      "nominalLandings": 1,
+      "variedLandings": 0,
+      "score": -45.940479418180985,
+      "fitness": -50.42296843806533,
+      "meanFailedQuality": 0.9168482345997345,
+      "failedCount": 1,
+      "allLandedNeutralQuality": false,
+      "reasons": {
+        "Touchdown": 1,
+        "Missed the ship": 1
+      },
+      "elapsedFlightSeconds": 87.69999999999929
+    },
+    "ranked": {
+      "flights": 2,
+      "landings": 2,
+      "nominalLandings": 1,
+      "variedLandings": 1,
+      "score": 52.963722824399795,
+      "fitness": 30.81078301662383,
+      "meanFailedQuality": 0,
+      "failedCount": 0,
+      "allLandedNeutralQuality": true,
+      "reasons": {
+        "Touchdown": 2
+      },
+      "elapsedFlightSeconds": 71.20000000000023
+    },
+    "rankedMinusControl": {
+      "landings": 1,
+      "score": 98.90420224258078,
+      "fitness": 81.23375145468916,
+      "meanFailedQuality": -0.9168482345997345,
+      "landingAndQualityMoveOppositely": true,
+      "allLandedNeutralQuality": {
+        "control": false,
+        "ranked": true
+      }
+    },
+    "paired": {
+      "pairs": 2,
+      "gainedLandings": 1,
+      "lostLandings": 0,
+      "bothLanded": 1,
+      "bothFailed": 0,
+      "failedToFailedQualityGains": [],
+      "failedToFailedQualityLosses": [],
+      "equalContactQualityDifferentLanding": []
+    },
+    "caseIndices": [
+      10,
+      34
+    ]
+  },
+  {
+    "scenario": 11,
+    "title": "Turning vessel",
+    "landingRadius": 11,
+    "control": {
+      "flights": 2,
+      "landings": 2,
+      "nominalLandings": 1,
+      "variedLandings": 1,
+      "score": 17.91133383615316,
+      "fitness": 2.313665023965216,
+      "meanFailedQuality": 0,
+      "failedCount": 0,
+      "allLandedNeutralQuality": true,
+      "reasons": {
+        "Touchdown": 2
+      },
+      "elapsedFlightSeconds": 96.54999999999879
+    },
+    "ranked": {
+      "flights": 2,
+      "landings": 2,
+      "nominalLandings": 1,
+      "variedLandings": 1,
+      "score": 46.21805588553939,
+      "fitness": 24.391267918922797,
+      "meanFailedQuality": 0,
+      "failedCount": 0,
+      "allLandedNeutralQuality": true,
+      "reasons": {
+        "Touchdown": 2
+      },
+      "elapsedFlightSeconds": 79.24999999999977
+    },
+    "rankedMinusControl": {
+      "landings": 0,
+      "score": 28.30672204938623,
+      "fitness": 22.07760289495758,
+      "meanFailedQuality": 0,
+      "landingAndQualityMoveOppositely": false,
+      "allLandedNeutralQuality": {
+        "control": true,
+        "ranked": true
+      }
+    },
+    "paired": {
+      "pairs": 2,
+      "gainedLandings": 0,
+      "lostLandings": 0,
+      "bothLanded": 2,
+      "bothFailed": 0,
+      "failedToFailedQualityGains": [],
+      "failedToFailedQualityLosses": [],
+      "equalContactQualityDifferentLanding": []
+    },
+    "caseIndices": [
+      11,
+      35
+    ]
+  },
+  {
+    "scenario": 12,
+    "title": "Wind wall",
+    "landingRadius": 11,
+    "control": {
+      "flights": 2,
+      "landings": 2,
+      "nominalLandings": 1,
+      "variedLandings": 1,
+      "score": 30.980391199441783,
+      "fitness": 21.982802685573276,
+      "meanFailedQuality": 0,
+      "failedCount": 0,
+      "allLandedNeutralQuality": true,
+      "reasons": {
+        "Touchdown": 2
+      },
+      "elapsedFlightSeconds": 84.1499999999995
+    },
+    "ranked": {
+      "flights": 2,
+      "landings": 2,
+      "nominalLandings": 1,
+      "variedLandings": 1,
+      "score": 53.81328792220965,
+      "fitness": 35.53489054167625,
+      "meanFailedQuality": 0,
+      "failedCount": 0,
+      "allLandedNeutralQuality": true,
+      "reasons": {
+        "Touchdown": 2
+      },
+      "elapsedFlightSeconds": 69.30000000000034
+    },
+    "rankedMinusControl": {
+      "landings": 0,
+      "score": 22.83289672276787,
+      "fitness": 13.552087856102972,
+      "meanFailedQuality": 0,
+      "landingAndQualityMoveOppositely": false,
+      "allLandedNeutralQuality": {
+        "control": true,
+        "ranked": true
+      }
+    },
+    "paired": {
+      "pairs": 2,
+      "gainedLandings": 0,
+      "lostLandings": 0,
+      "bothLanded": 2,
+      "bothFailed": 0,
+      "failedToFailedQualityGains": [],
+      "failedToFailedQualityLosses": [],
+      "equalContactQualityDifferentLanding": []
+    },
+    "caseIndices": [
+      12,
+      36
+    ]
+  },
+  {
+    "scenario": 13,
+    "title": "Wind shear",
+    "landingRadius": 11,
+    "control": {
+      "flights": 2,
+      "landings": 0,
+      "nominalLandings": 0,
+      "variedLandings": 0,
+      "score": -188.60225119297564,
+      "fitness": -188.60225119297564,
+      "meanFailedQuality": 0.1719048098639031,
+      "failedCount": 2,
+      "allLandedNeutralQuality": false,
+      "reasons": {
+        "Missed the ship": 2
+      },
+      "elapsedFlightSeconds": 96.2999999999988
+    },
+    "ranked": {
+      "flights": 2,
+      "landings": 0,
+      "nominalLandings": 0,
+      "variedLandings": 0,
+      "score": -151.99320551474716,
+      "fitness": -151.99320551474716,
+      "meanFailedQuality": 0.19203717996164799,
+      "failedCount": 2,
+      "allLandedNeutralQuality": false,
+      "reasons": {
+        "Missed the ship": 2
+      },
+      "elapsedFlightSeconds": 78.54999999999981
+    },
+    "rankedMinusControl": {
+      "landings": 0,
+      "score": 36.60904567822848,
+      "fitness": 36.60904567822848,
+      "meanFailedQuality": 0.02013237009774488,
+      "landingAndQualityMoveOppositely": false,
+      "allLandedNeutralQuality": {
+        "control": false,
+        "ranked": false
+      }
+    },
+    "paired": {
+      "pairs": 2,
+      "gainedLandings": 0,
+      "lostLandings": 0,
+      "bothLanded": 0,
+      "bothFailed": 2,
+      "failedToFailedQualityGains": [
+        13,
+        37
+      ],
+      "failedToFailedQualityLosses": [],
+      "equalContactQualityDifferentLanding": []
+    },
+    "caseIndices": [
+      13,
+      37
+    ]
+  },
+  {
+    "scenario": 14,
+    "title": "Fuel reserve",
+    "landingRadius": 11,
+    "control": {
+      "flights": 2,
+      "landings": 2,
+      "nominalLandings": 1,
+      "variedLandings": 1,
+      "score": 52.15724125507275,
+      "fitness": 48.288158859148986,
+      "meanFailedQuality": 0,
+      "failedCount": 0,
+      "allLandedNeutralQuality": true,
+      "reasons": {
+        "Touchdown": 2
+      },
+      "elapsedFlightSeconds": 103.4499999999984
+    },
+    "ranked": {
+      "flights": 2,
+      "landings": 2,
+      "nominalLandings": 1,
+      "variedLandings": 1,
+      "score": 60.928112188900194,
+      "fitness": 57.71016496539057,
+      "meanFailedQuality": 0,
+      "failedCount": 0,
+      "allLandedNeutralQuality": true,
+      "reasons": {
+        "Touchdown": 2
+      },
+      "elapsedFlightSeconds": 92.54999999999902
+    },
+    "rankedMinusControl": {
+      "landings": 0,
+      "score": 8.770870933827446,
+      "fitness": 9.422006106241582,
+      "meanFailedQuality": 0,
+      "landingAndQualityMoveOppositely": false,
+      "allLandedNeutralQuality": {
+        "control": true,
+        "ranked": true
+      }
+    },
+    "paired": {
+      "pairs": 2,
+      "gainedLandings": 0,
+      "lostLandings": 0,
+      "bothLanded": 2,
+      "bothFailed": 0,
+      "failedToFailedQualityGains": [],
+      "failedToFailedQualityLosses": [],
+      "equalContactQualityDifferentLanding": []
+    },
+    "caseIndices": [
+      14,
+      38
+    ]
+  },
+  {
+    "scenario": 15,
+    "title": "Slow hands",
+    "landingRadius": 11,
+    "control": {
+      "flights": 2,
+      "landings": 2,
+      "nominalLandings": 1,
+      "variedLandings": 1,
+      "score": 32.486835015557325,
+      "fitness": 21.338573035188958,
+      "meanFailedQuality": 0,
+      "failedCount": 0,
+      "allLandedNeutralQuality": true,
+      "reasons": {
+        "Touchdown": 2
+      },
+      "elapsedFlightSeconds": 85.7999999999994
+    },
+    "ranked": {
+      "flights": 2,
+      "landings": 2,
+      "nominalLandings": 1,
+      "variedLandings": 1,
+      "score": 57.5655875823806,
+      "fitness": 42.92503626544308,
+      "meanFailedQuality": 0,
+      "failedCount": 0,
+      "allLandedNeutralQuality": true,
+      "reasons": {
+        "Touchdown": 2
+      },
+      "elapsedFlightSeconds": 69.00000000000036
+    },
+    "rankedMinusControl": {
+      "landings": 0,
+      "score": 25.078752566823276,
+      "fitness": 21.586463230254125,
+      "meanFailedQuality": 0,
+      "landingAndQualityMoveOppositely": false,
+      "allLandedNeutralQuality": {
+        "control": true,
+        "ranked": true
+      }
+    },
+    "paired": {
+      "pairs": 2,
+      "gainedLandings": 0,
+      "lostLandings": 0,
+      "bothLanded": 2,
+      "bothFailed": 0,
+      "failedToFailedQualityGains": [],
+      "failedToFailedQualityLosses": [],
+      "equalContactQualityDifferentLanding": []
+    },
+    "caseIndices": [
+      15,
+      39
+    ]
+  },
+  {
+    "scenario": 16,
+    "title": "Sideways entry",
+    "landingRadius": 11,
+    "control": {
+      "flights": 2,
+      "landings": 2,
+      "nominalLandings": 1,
+      "variedLandings": 1,
+      "score": 19.417947253424757,
+      "fitness": 10.9519516806733,
+      "meanFailedQuality": 0,
+      "failedCount": 0,
+      "allLandedNeutralQuality": true,
+      "reasons": {
+        "Touchdown": 2
+      },
+      "elapsedFlightSeconds": 94.44999999999891
+    },
+    "ranked": {
+      "flights": 2,
+      "landings": 2,
+      "nominalLandings": 1,
+      "variedLandings": 1,
+      "score": 46.95536790695578,
+      "fitness": 34.21844218960943,
+      "meanFailedQuality": 0,
+      "failedCount": 0,
+      "allLandedNeutralQuality": true,
+      "reasons": {
+        "Touchdown": 2
+      },
+      "elapsedFlightSeconds": 78.6999999999998
+    },
+    "rankedMinusControl": {
+      "landings": 0,
+      "score": 27.537420653531022,
+      "fitness": 23.266490508936133,
+      "meanFailedQuality": 0,
+      "landingAndQualityMoveOppositely": false,
+      "allLandedNeutralQuality": {
+        "control": true,
+        "ranked": true
+      }
+    },
+    "paired": {
+      "pairs": 2,
+      "gainedLandings": 0,
+      "lostLandings": 0,
+      "bothLanded": 2,
+      "bothFailed": 0,
+      "failedToFailedQualityGains": [],
+      "failedToFailedQualityLosses": [],
+      "equalContactQualityDifferentLanding": []
+    },
+    "caseIndices": [
+      16,
+      40
+    ]
+  },
+  {
+    "scenario": 17,
+    "title": "Spinning entry",
+    "landingRadius": 11,
+    "control": {
+      "flights": 2,
+      "landings": 2,
+      "nominalLandings": 1,
+      "variedLandings": 1,
+      "score": 17.829499086573016,
+      "fitness": 11.571119884496262,
+      "meanFailedQuality": 0,
+      "failedCount": 0,
+      "allLandedNeutralQuality": true,
+      "reasons": {
+        "Touchdown": 2
+      },
+      "elapsedFlightSeconds": 100.39999999999857
+    },
+    "ranked": {
+      "flights": 2,
+      "landings": 2,
+      "nominalLandings": 1,
+      "variedLandings": 1,
+      "score": 46.99632616177276,
+      "fitness": 32.06045137663101,
+      "meanFailedQuality": 0,
+      "failedCount": 0,
+      "allLandedNeutralQuality": true,
+      "reasons": {
+        "Touchdown": 2
+      },
+      "elapsedFlightSeconds": 81.99999999999962
+    },
+    "rankedMinusControl": {
+      "landings": 0,
+      "score": 29.16682707519974,
+      "fitness": 20.489331492134745,
+      "meanFailedQuality": 0,
+      "landingAndQualityMoveOppositely": false,
+      "allLandedNeutralQuality": {
+        "control": true,
+        "ranked": true
+      }
+    },
+    "paired": {
+      "pairs": 2,
+      "gainedLandings": 0,
+      "lostLandings": 0,
+      "bothLanded": 2,
+      "bothFailed": 0,
+      "failedToFailedQualityGains": [],
+      "failedToFailedQualityLosses": [],
+      "equalContactQualityDifferentLanding": []
+    },
+    "caseIndices": [
+      17,
+      41
+    ]
+  },
+  {
+    "scenario": 18,
+    "title": "High return",
+    "landingRadius": 11,
+    "control": {
+      "flights": 2,
+      "landings": 0,
+      "nominalLandings": 0,
+      "variedLandings": 0,
+      "score": -169.62772043701358,
+      "fitness": -169.62772043701358,
+      "meanFailedQuality": 0,
+      "failedCount": 2,
+      "allLandedNeutralQuality": false,
+      "reasons": {
+        "Approach timed out": 2
+      },
+      "elapsedFlightSeconds": 130.0999999999969
+    },
+    "ranked": {
+      "flights": 2,
+      "landings": 2,
+      "nominalLandings": 1,
+      "variedLandings": 1,
+      "score": 18.904195746288018,
+      "fitness": -0.4747581940339636,
+      "meanFailedQuality": 0,
+      "failedCount": 0,
+      "allLandedNeutralQuality": true,
+      "reasons": {
+        "Touchdown": 2
+      },
+      "elapsedFlightSeconds": 118.29999999999755
+    },
+    "rankedMinusControl": {
+      "landings": 2,
+      "score": 188.5319161833016,
+      "fitness": 169.1529622429796,
+      "meanFailedQuality": 0,
+      "landingAndQualityMoveOppositely": false,
+      "allLandedNeutralQuality": {
+        "control": false,
+        "ranked": true
+      }
+    },
+    "paired": {
+      "pairs": 2,
+      "gainedLandings": 2,
+      "lostLandings": 0,
+      "bothLanded": 0,
+      "bothFailed": 0,
+      "failedToFailedQualityGains": [],
+      "failedToFailedQualityLosses": [],
+      "equalContactQualityDifferentLanding": []
+    },
+    "caseIndices": [
+      18,
+      42
+    ]
+  },
+  {
+    "scenario": 19,
+    "title": "Tight storm",
+    "landingRadius": 8,
+    "control": {
+      "flights": 2,
+      "landings": 0,
+      "nominalLandings": 0,
+      "variedLandings": 0,
+      "score": -146.88645051509255,
+      "fitness": -146.88645051509255,
+      "meanFailedQuality": 0.7845253141013409,
+      "failedCount": 2,
+      "allLandedNeutralQuality": false,
+      "reasons": {
+        "Attitude at impact": 1,
+        "Lateral impact": 1
+      },
+      "elapsedFlightSeconds": 107.34999999999818
+    },
+    "ranked": {
+      "flights": 2,
+      "landings": 0,
+      "nominalLandings": 0,
+      "variedLandings": 0,
+      "score": -112.438489409038,
+      "fitness": -112.438489409038,
+      "meanFailedQuality": 0.8543126557354082,
+      "failedCount": 2,
+      "allLandedNeutralQuality": false,
+      "reasons": {
+        "Missed the ship": 1,
+        "Lateral impact": 1
+      },
+      "elapsedFlightSeconds": 87.89999999999928
+    },
+    "rankedMinusControl": {
+      "landings": 0,
+      "score": 34.44796110605455,
+      "fitness": 34.44796110605455,
+      "meanFailedQuality": 0.0697873416340673,
+      "landingAndQualityMoveOppositely": false,
+      "allLandedNeutralQuality": {
+        "control": false,
+        "ranked": false
+      }
+    },
+    "paired": {
+      "pairs": 2,
+      "gainedLandings": 0,
+      "lostLandings": 0,
+      "bothLanded": 0,
+      "bothFailed": 2,
+      "failedToFailedQualityGains": [
+        19,
+        43
+      ],
+      "failedToFailedQualityLosses": [],
+      "equalContactQualityDifferentLanding": []
+    },
+    "caseIndices": [
+      19,
+      43
+    ]
+  },
+  {
+    "scenario": 20,
+    "title": "Early engine fade",
+    "landingRadius": 11,
+    "control": {
+      "flights": 2,
+      "landings": 2,
+      "nominalLandings": 1,
+      "variedLandings": 1,
+      "score": 31.47252752553704,
+      "fitness": 15.624405050570124,
+      "meanFailedQuality": 0,
+      "failedCount": 0,
+      "allLandedNeutralQuality": true,
+      "reasons": {
+        "Touchdown": 2
+      },
+      "elapsedFlightSeconds": 90.74999999999912
+    },
+    "ranked": {
+      "flights": 2,
+      "landings": 2,
+      "nominalLandings": 1,
+      "variedLandings": 1,
+      "score": 57.03171109994166,
+      "fitness": 29.14589377787025,
+      "meanFailedQuality": 0,
+      "failedCount": 0,
+      "allLandedNeutralQuality": true,
+      "reasons": {
+        "Touchdown": 2
+      },
+      "elapsedFlightSeconds": 76.29999999999994
+    },
+    "rankedMinusControl": {
+      "landings": 0,
+      "score": 25.55918357440462,
+      "fitness": 13.521488727300126,
+      "meanFailedQuality": 0,
+      "landingAndQualityMoveOppositely": false,
+      "allLandedNeutralQuality": {
+        "control": true,
+        "ranked": true
+      }
+    },
+    "paired": {
+      "pairs": 2,
+      "gainedLandings": 0,
+      "lostLandings": 0,
+      "bothLanded": 2,
+      "bothFailed": 0,
+      "failedToFailedQualityGains": [],
+      "failedToFailedQualityLosses": [],
+      "equalContactQualityDifferentLanding": []
+    },
+    "caseIndices": [
+      20,
+      44
+    ]
+  },
+  {
+    "scenario": 21,
+    "title": "Late engine fade",
+    "landingRadius": 11,
+    "control": {
+      "flights": 2,
+      "landings": 2,
+      "nominalLandings": 1,
+      "variedLandings": 1,
+      "score": 30.798609929630707,
+      "fitness": 10.988419381107839,
+      "meanFailedQuality": 0,
+      "failedCount": 0,
+      "allLandedNeutralQuality": true,
+      "reasons": {
+        "Touchdown": 2
+      },
+      "elapsedFlightSeconds": 89.04999999999922
+    },
+    "ranked": {
+      "flights": 2,
+      "landings": 2,
+      "nominalLandings": 1,
+      "variedLandings": 1,
+      "score": 55.45780017511065,
+      "fitness": 22.549615165303855,
+      "meanFailedQuality": 0,
+      "failedCount": 0,
+      "allLandedNeutralQuality": true,
+      "reasons": {
+        "Touchdown": 2
+      },
+      "elapsedFlightSeconds": 74.40000000000005
+    },
+    "rankedMinusControl": {
+      "landings": 0,
+      "score": 24.65919024547994,
+      "fitness": 11.561195784196016,
+      "meanFailedQuality": 0,
+      "landingAndQualityMoveOppositely": false,
+      "allLandedNeutralQuality": {
+        "control": true,
+        "ranked": true
+      }
+    },
+    "paired": {
+      "pairs": 2,
+      "gainedLandings": 0,
+      "lostLandings": 0,
+      "bothLanded": 2,
+      "bothFailed": 0,
+      "failedToFailedQualityGains": [],
+      "failedToFailedQualityLosses": [],
+      "equalContactQualityDifferentLanding": []
+    },
+    "caseIndices": [
+      21,
+      45
+    ]
+  },
+  {
+    "scenario": 22,
+    "title": "Blackout rendezvous",
+    "landingRadius": 11,
+    "control": {
+      "flights": 2,
+      "landings": 2,
+      "nominalLandings": 1,
+      "variedLandings": 1,
+      "score": 40.71931766943064,
+      "fitness": 2.8940457645986086,
+      "meanFailedQuality": 0,
+      "failedCount": 0,
+      "allLandedNeutralQuality": true,
+      "reasons": {
+        "Touchdown": 2
+      },
+      "elapsedFlightSeconds": 88.24999999999926
+    },
+    "ranked": {
+      "flights": 2,
+      "landings": 2,
+      "nominalLandings": 1,
+      "variedLandings": 1,
+      "score": 64.94973298092198,
+      "fitness": 13.386094044208871,
+      "meanFailedQuality": 0,
+      "failedCount": 0,
+      "allLandedNeutralQuality": true,
+      "reasons": {
+        "Touchdown": 2
+      },
+      "elapsedFlightSeconds": 73.25000000000011
+    },
+    "rankedMinusControl": {
+      "landings": 0,
+      "score": 24.230415311491342,
+      "fitness": 10.492048279610263,
+      "meanFailedQuality": 0,
+      "landingAndQualityMoveOppositely": false,
+      "allLandedNeutralQuality": {
+        "control": true,
+        "ranked": true
+      }
+    },
+    "paired": {
+      "pairs": 2,
+      "gainedLandings": 0,
+      "lostLandings": 0,
+      "bothLanded": 2,
+      "bothFailed": 0,
+      "failedToFailedQualityGains": [],
+      "failedToFailedQualityLosses": [],
+      "equalContactQualityDifferentLanding": []
+    },
+    "caseIndices": [
+      22,
+      46
+    ]
+  },
+  {
+    "scenario": 23,
+    "title": "Last-call recovery",
+    "landingRadius": 11,
+    "control": {
+      "flights": 2,
+      "landings": 2,
+      "nominalLandings": 1,
+      "variedLandings": 1,
+      "score": 25.60505278310871,
+      "fitness": -8.766654904941202,
+      "meanFailedQuality": 0,
+      "failedCount": 0,
+      "allLandedNeutralQuality": true,
+      "reasons": {
+        "Touchdown": 2
+      },
+      "elapsedFlightSeconds": 98.79999999999866
+    },
+    "ranked": {
+      "flights": 2,
+      "landings": 2,
+      "nominalLandings": 1,
+      "variedLandings": 1,
+      "score": 47.62717998437646,
+      "fitness": 14.369148983246667,
+      "meanFailedQuality": 0,
+      "failedCount": 0,
+      "allLandedNeutralQuality": true,
+      "reasons": {
+        "Touchdown": 2
+      },
+      "elapsedFlightSeconds": 86.79999999999934
+    },
+    "rankedMinusControl": {
+      "landings": 0,
+      "score": 22.02212720126775,
+      "fitness": 23.13580388818787,
+      "meanFailedQuality": 0,
+      "landingAndQualityMoveOppositely": false,
+      "allLandedNeutralQuality": {
+        "control": true,
+        "ranked": true
+      }
+    },
+    "paired": {
+      "pairs": 2,
+      "gainedLandings": 0,
+      "lostLandings": 0,
+      "bothLanded": 2,
+      "bothFailed": 0,
+      "failedToFailedQualityGains": [],
+      "failedToFailedQualityLosses": [],
+      "equalContactQualityDifferentLanding": []
+    },
+    "caseIndices": [
+      23,
+      47
+    ]
+  }
+]

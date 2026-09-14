@@ -629,6 +629,36 @@ if contact_plan_path.exists():
         sources.append(contact_launch_path)
         development['groundContactRankingPlan']['launchObservation'] = contact_launch
         development['groundContactRankingPlan']['launchScope'] = 'Both original processes were observed live at the recorded launch check. This dated receipt does not establish their present status or completion.'
+    contact_complete_path = root/'docs/ground-contact-comparison/summary.json'
+    if contact_complete_path.exists():
+        assert hashlib.sha256(contact_complete_path.read_bytes()).hexdigest() == 'c786abbf7cdf112d352b20ed6ba8a02cbc885d41ab9c8ccdd495ed434f4447e8'
+        complete = json.loads(contact_complete_path.read_text())
+        assert complete['schema'] == 'ground-contact-complete-publication-v1' and complete['status'] == 'COMPLETE'
+        assert complete['budget'] == {'trainingFlights':4608, 'comparisonFlights':96, 'totalFlights':4704, 'pendingFlights':0}
+        assert complete['releaseEligible'] is False and complete['modelPromoted'] is False
+        assert complete['newNeuralRuns'] == complete['newPhysicalRuns'] == 0
+        reporter = root/'scripts/report-ground-contact-complete.py'
+        assert hashlib.sha256(reporter.read_bytes()).hexdigest() == complete['reporterSHA256']
+        for name, expected in complete['sources'].items():
+            path = Path(name)
+            assert hashlib.sha256(path.read_bytes()).hexdigest() == expected, path
+            if path.is_relative_to(root):
+                sources.append(path)
+        for name, expected in complete['files'].items():
+            path = contact_complete_path.parent/name
+            assert path.resolve().is_relative_to(contact_complete_path.parent)
+            assert hashlib.sha256(path.read_bytes()).hexdigest() == expected, path
+            sources.append(path)
+        sources.extend([contact_complete_path, reporter])
+        development['groundContactRankingPlan']['scope'] = 'Complete paired experiment: 4,608 training flights and 96 reserved development comparisons, with all records audited. No release promotion.'
+        development['groundContactRankingComplete'] = {
+            key:complete[key] for key in ['status','budget','scope','releaseEligible','modelPromoted']}
+        development['groundContactRankingComplete'].update(
+            trainingArms=complete['training']['arms'], evaluationArms=complete['evaluation']['arms'],
+            paired=complete['evaluation']['paired'], rankedMinusControl=complete['evaluation']['rankedMinusControl'],
+            missions=complete['evaluation']['missions'], limitations=complete['evaluation']['limitations'],
+            completeReport='ground-contact-comparison/summary.json',
+            completeReportSHA256=hashlib.sha256(contact_complete_path.read_bytes()).hexdigest())
 progress_plan_path = folder/'orbital-progress-comparison/plan.json'
 if progress_plan_path.exists():
     progress_plan = json.loads(progress_plan_path.read_text())
@@ -734,6 +764,32 @@ if local_plan_path.exists():
         'scope':'Frozen 156-flight paired development experiment with a dated original launch observation. No current live, completion, outcome or release claim follows from these records.',
         'planSHA256':hashlib.sha256(local_plan_path.read_bytes()).hexdigest(),
         'proposal':json.loads(proposal_path.read_text()), 'launchObservation':launch}
+    local_complete_path = root/'docs/orbital-local-comparison-results.json'
+    if local_complete_path.exists():
+        assert hashlib.sha256(local_complete_path.read_bytes()).hexdigest() == '5b0e97d31f5533950a52f87e0994823ce4e9eab19a5812eab1f8fb88a9f6236d'
+        complete = json.loads(local_complete_path.read_text())
+        assert complete['status'] == 'COMPLETE_NO_SELECTED_CONTROLLER_OR_CAPABILITY_GAIN'
+        assert complete['budget']['totalNeuralFlights'] == 156 and complete['budget']['pendingNeuralFlights'] == 0
+        assert complete['budget']['physicalReplays'] == 0 and complete['releaseEligible'] is False
+        assert complete['training']['totalCandidates'] == 24 and len(complete['training']['flightTable']['rows']) == 144
+        assert len(complete['evaluation']['cases']) == 12 and len(complete['evaluation']['pairs']) == 6
+        assert complete['evaluation']['allSixOriginalRecordedPairsExactlyEqual'] is True
+        assert complete['verification']['all156OriginalEndpointsRetained'] is True
+        for relative, expected in complete['sources'].items():
+            path = root/relative
+            assert hashlib.sha256(path.read_bytes()).hexdigest() == expected, path
+            sources.append(path)
+        for path, expected in [(root/'scripts/report-orbital-local-complete.py', complete['provenance']['reporterSHA256']),
+                               *[(root/'docs'/item['file'], item['sha256']) for item in complete['csv'].values()]]:
+            assert hashlib.sha256(path.read_bytes()).hexdigest() == expected, path
+            sources.append(path)
+        sources.append(local_complete_path)
+        development['orbitalLocalProposalPlan']['scope'] = 'Completed 156-flight paired development experiment. Quarter-size proposals improved the predefined locality counts, but both selected the unchanged initial controller; no stable orbit, completed orbit, landing or release eligibility was demonstrated.'
+        development['orbitalLocalProposalComplete'] = {
+            key:complete[key] for key in ['status','budget','provenance','verification','limits','capabilityEstablished','releaseEligible']}
+        development['orbitalLocalProposalComplete'].update(
+            trainingArms=complete['training']['arms'], evaluationArms=complete['evaluation']['arms'],
+            allCaseReport='orbital-local-comparison-results.json', fullFlightCSVs=complete['csv'])
 paired_plan_path = folder/'orbital-joint-paired-diagnostic/plan.json'
 if paired_plan_path.exists():
     plan = json.loads(paired_plan_path.read_text())

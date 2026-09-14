@@ -6,7 +6,7 @@ Fly Space Program is an ongoing computational-neuroscience and control experimen
 
 The ambition is to push fly training as far as we can in simulation, document what works and what fails, and make the next physical experiment concrete. The rockets and radio jokes are playful. The anatomical data, complete-network calculations, recorded experiments and unanswered questions are real parts of the project.
 
-[Fly the simulator](https://fly-space-program.sarrington493484.chatgpt.site/) · [Read the docs](docs/README.md) · [Explore the science](docs/science-and-hypotheses.md) · [See the Fly Cube](docs/harness-concept.md)
+[Fly the simulator](https://fly-space-program.sarrington493484.chatgpt.site/) · [Read the docs](docs/README.md) · [Full status — September 14](docs/status-2026-09-14.md) · [Explore the science](docs/science-and-hypotheses.md) · [See the Fly Cube](docs/harness-concept.md)
 
 ![Actual mission-control screen, with the booster over its landing deck and the animated fly at the controls](docs/assets/screenshots/mission-control.jpg)
 
@@ -37,11 +37,12 @@ Measured wiring is an anatomical constraint, not a complete account of a living 
 | Can the released embodied controller land? | **60/80 safe landings** on unseen starts across ten missions; the prior controller achieved 54/80 on the same starts. All 20 failures are retained. |
 | Does its visual presentation matter? | Covering both eyes or turning off flight indicators gave **0/80** in each matched control. |
 | Has it mastered the entire program? | **No.** All 27 missions are available, but the release has final validation on only ten. |
-| Has the embodied pilot completed orbital missions? | The completed **588-flight orbital ranking experiment produced no stable orbit, completed orbit or landing**. Further development is ongoing. |
+| Did the latest ground experiment help? | Contact-based ranking landed **40/48 versus 36/48** fresh development starts after 4,608 training flights. It lost both Night shift cases; no controller was promoted. |
+| Has the embodied pilot completed orbital missions? | The completed **588-flight ranking experiment and 156-flight proposal-size experiment produced no stable orbit, completed orbit or landing**. Further research is paused at the current stopping point. |
 | Has chemical steering or transfer to living flies been established? | **No.** The biological studies retain negative results and unresolved model limitations. |
 | Have the physical Fly Cubes been built? | **No.** They are design concepts for a future research apparatus. |
 
-See the [released landing report](dist/assets/landing-report.json), [training guide](docs/suite-training.md), [closed orbital experiment](docs/orbital-progress-comparison.md), and [biology research record](docs/biology-experiments.md). Development improvements and screenshots do not qualify a new release.
+See the [released landing report](dist/assets/landing-report.json), [training guide](docs/suite-training.md), [ground-contact comparison](docs/ground-contact-comparison.md), [orbital ranking experiment](docs/orbital-progress-comparison.md), [proposal-size experiment](docs/orbital-local-comparison.md), and [biology research record](docs/biology-experiments.md). Development improvements and screenshots do not qualify a new release.
 
 ## The little boxes
 

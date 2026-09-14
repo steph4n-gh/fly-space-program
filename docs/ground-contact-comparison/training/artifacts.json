@@ -1,0 +1,15 @@
+{
+  "schema": "ground-contact-training-audit-artifacts-v1",
+  "status": "FINALIZED_BEFORE_PASS_PUBLICATION",
+  "files": {
+    "all-training-failures.jsonl": "cc985fd3af0169dd9063eb8181062f1ec9a3474bb8c66663f1d6b846df1ea2e8",
+    "all-training-flights.jsonl": "5ff535656a4b5f12bc21789f2041bb3af81c4d91b8d52e1180bd117afe5f0e1f",
+    "attempt.json": "d059bb7ed19156b1f5c3fb22d7f8df00e094bf1bc235fa740a8e90e69b86e4ce",
+    "final-training-cases.json": "da1697ee6556730679bff498a62a8f00c08836ec52159e91ff29baca5bc95b06",
+    "generation-one-equality.json": "ff1c32d88359cc880f902f4b291da5d36342b35f59ab07d75fff74dab31229a7",
+    "input-identities.json": "ca11ad411100bb5224cd8a972c0f983cd99dacd16fab9d7de24d8293a871b014",
+    "rankings-and-optimizer.json": "a5f3fa677b55ef5625443fd62b7b10df342fd2a95ed20d671d534c85048a2ae5",
+    "report.md": "0ce578fbf239b84202183f455a83d4bd41db3689908e81301abd9ebedece510f",
+    "summary.json": "228ef07ee932de1536e219f56dcf5157ef06e4c7c4084ed799f26c14a2682367"
+  }
+}

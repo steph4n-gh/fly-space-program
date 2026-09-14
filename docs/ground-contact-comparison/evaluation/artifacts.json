@@ -1,0 +1,15 @@
+{
+  "schema": "ground-contact-evaluation-audit-artifacts-v1",
+  "files": {
+    "all-comparison-failures.jsonl": "f5223e857ed25ec0a48278e96bfa275f867fd9218c0d0d0c6c53abf64d2b9104",
+    "all-comparison-outcomes.jsonl": "cce1c924b91e3a0371de86b205c4169b1a53a20ee13fcb467b486953ff92f57a",
+    "attempt.json": "fd20f9586de85e1dbc70fe4ff2b0041404a53dbf07417fb6795fefce33c51689",
+    "input-identities.json": "cba6c7d1fdf6b1f8ce26a4e178a00d7de0ac3d9c2fb3ee0fe1a9f57a37fd0b49",
+    "missions.json": "619580357930425e52b83ea4355fa8df095f503639d6ebd392988a440a42a3e7",
+    "original-results.json": "858535b5a45ee94be542491c4e62a4730cb78893df02f6e1488d1478f2208b35",
+    "paired-cases.json": "3ab8cbb535fe5f653f57b3eedea9b9b6a7fe1bafa9d9a38b4c253ac315932f76",
+    "pairs.csv": "531b225e4e99e3a3bebaf8a11e62476e2252a6c13e4458f0d5d4ecda8b898445",
+    "report.md": "8ad4013de751428abfdc5220c485b297796d650fc5d515f40e1b05ed43042277",
+    "summary.json": "e4549b960c021a974a5f0f474959bfa6c0802b64bdebf9d54bb171290890ecdf"
+  }
+}

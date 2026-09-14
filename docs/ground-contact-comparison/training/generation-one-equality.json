@@ -1,0 +1,6 @@
+{
+  "all12RawJobsAndResultsSemanticallyExactlyMatch": true,
+  "all576EndpointsPerArmExactlyMatch": true,
+  "serializedBytesNotAssumedCanonical": true,
+  "parameterSHA256": "2f6b877b70b193617a01a29ca3b983c94141f4bdd014b6d8cce189f0d20cd6d9"
+}
