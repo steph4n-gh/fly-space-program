@@ -118,7 +118,7 @@ if(!isMainThread){
  for(const w of workers){w.on('message',r=>{w.busy=false;w.resolve(r);dispatch();});w.on('error',e=>{console.error(e);process.exit(1);});}
  const mode=process.env.SUITE_BLOCK??'vertical',path=folder+'/'+mode,searchSeed=Number(process.env.SUITE_SEARCH_SEED??1179421),random=rng(searchSeed),correlated=process.env.SUITE_COVARIANCE==='1';
  fs.mkdirSync(path,{recursive:true});
- const profiles=(process.env.SUITE_PROFILES??'0').split(',').map(Number),active=mode.startsWith('vertical')?[0,1,2,3,4]:mode.startsWith('attitude')?[5,6,7,8,9,10]:mode.startsWith('engine')?[0,1,2,3,4,11,12,13,14,15]:mode.startsWith('gimbal')?[5,6,7,8,9,10,23,24,25,26,27]:mode.startsWith('orbital')?[0,1,2,3,4,5,6,7,8,9,10,11,16,17,18,19,20,21,22,23,24,25,26,27]:directions.map((_,i)=>i);
+ const profiles=(process.env.SUITE_PROFILES??'0').split(',').map(Number),active=mode.startsWith('ground-joint')?[0,1,2,3,4,5,6,7,8,9,10,11,23,24,25,26,27]:mode.startsWith('vertical')?[0,1,2,3,4]:mode.startsWith('attitude')?[5,6,7,8,9,10]:mode.startsWith('engine')?[0,1,2,3,4,11,12,13,14,15]:mode.startsWith('gimbal')?[5,6,7,8,9,10,23,24,25,26,27]:mode.startsWith('orbital')?[0,1,2,3,4,5,6,7,8,9,10,11,16,17,18,19,20,21,22,23,24,25,26,27]:directions.map((_,i)=>i);
  let state=fs.existsSync(path+'/state.json')?JSON.parse(fs.readFileSync(path+'/state.json')):{generation:0,episodes:0,mean:initial,sigma:scales,best:null,history:[]};
  if(process.env.SUITE_INITIAL&&state.generation===0){const prior=JSON.parse(fs.readFileSync(process.env.SUITE_INITIAL));state.mean=prior.best?.parameters??prior.parameters;}
  if(state.generation===0&&state.mean.length<directions.length)state.mean=[...state.mean,...Array(directions.length-state.mean.length).fill(0)];

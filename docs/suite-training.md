@@ -458,24 +458,58 @@ The selection plan fixes 96 fresh starts covering all 24 ground missions,
 with two nominal and two variability-0.4 cases per mission. The same starts
 are used for every comparison:
 
-| Controller and condition | Full flights planned |
+| Controller and condition | Successful landings / complete flights |
 | --- | --- |
-| Combined throttle/gimbal candidate, normal vision | 96 |
-| Combined candidate, covered eyes | 96 |
-| Isolated throttle-training branch, diagnostic reference | 96 |
-| Released G5 controller, normal vision | 96 |
+| Combined throttle/gimbal candidate, normal vision | 62/96 |
+| Combined candidate, covered eyes | 0/96 |
+| Isolated throttle-training branch, diagnostic reference | 63/96 |
+| Released G5 controller, normal vision | 62/96 |
 
-All **384 comparisons are running**. Only the combined candidate is eligible
-for later final testing. It must beat the release's overall landing count,
-retain at least the release's count on both the original four and the
-released ten mission subsets, and outperform its covered-eye control.
-The isolated training branch is a diagnostic reference. Parameters will
-not be adjusted against these selection cases. Passing selection still
-requires a separate unseen final comparison with the release and sensory
-controls before deployment.
+All **384 comparisons completed**. The combination failed the frozen
+selection rule: it tied the release overall and regressed from 16/16 to
+14/16 on the original four missions. Both landed 30/40 on the released ten
+mission subset. It rescued eight release failures but lost eight release
+successes. The combination is rejected, and the diagnostic throttle branch
+is not an alternative release candidate under this plan.
+
+Every planned case, condition, parameter vector, source hash and physical
+variation matched the frozen records. Wind shear and High return were
+0/4 for all three controllers. The released controller remains unchanged;
+these development starts will not be reused as a final test.
 
 The frozen plan, initial parameters, decoded-weight checks and the completed
 training audit are included in the [progress record](suite-training-progress.json).
+
+### Joint training on difficult missions
+
+A new frozen lesson starts from the intact released G5 checkpoint and learns
+17 existing throttle, attitude and gimbal directions together. The five
+focus missions are High return, Wind shear, Turning vessel, Fin trouble and
+Tight storm. Across the three selection controllers, they landed 0/12,
+0/12, 1/12, 1/12 and 1/12 respectively. Landing School, Atlantic Return,
+Fast Ferry and Spinning Entry remain in every generation as the original
+four anchors.
+
+The plan fixes six generations, 12 candidates and 18 cases per candidate:
+**1,296 complete training flights**. The nine-mission cycle produces one
+nominal and one variability-0.4 start per mission each generation using the
+existing case generator. Earlier training seeds may recur; the rejected
+selection seeds are excluded. The proposal seed is new. This lesson
+preserves the existing reward ranking, full network, observations, physical
+limits and endpoints. It does not alter the deployed controller.
+
+The completed selection diagnosis found no vertical-speed limit breach in
+274 deck contacts across the three controllers. The combination reached the
+deck sooner in all 90 pairs with contact in both conditions, yet had 22
+lateral-speed breaches. Wind shear also failed attitude limits. This supports
+learning steering and descent together, rather than assuming more braking
+will solve these failures. High return's current timeout mechanism still
+requires trajectory diagnosis; the earlier detailed probe used another
+checkpoint.
+
+After training, the frozen generation-six candidate requires fresh
+all-24 selection and separate unseen JavaScript final tests with the release
+and sensory controls. Training outcomes alone cannot qualify a release.
 
 ## Orbital ascent experiments
 
@@ -617,13 +651,45 @@ flight with 183 decisions and one orbital flight with 591. Every recorded
 command, presented signal, decoded signal and physical result matched its
 earlier counterpart exactly. Only the added reward measurements differed.
 
-The frozen plan specifies **432 full training trips**: six generations of
-12 candidates, with one nominal and one variability-0.4 start for each of
-the three orbital missions in every generation. It starts from the completed
-generation-six candidate and preserves the original observations, output
-directions, physical endpoints and complete-return criterion. No reward
-measurement enters the network's inputs or replaces its actions. This is
-training in progress, not evidence of stable orbit or a completed return.
+All **432 full training trips completed**: six generations of 12 candidates,
+with one nominal and one variability-0.4 start for each orbital mission in
+every generation. The lesson started from the completed generation-six
+candidate and preserved the original observations, output directions,
+physical endpoints and complete-return criterion. No reward measurement
+entered the network's inputs or replaced its actions.
+
+Across all candidates, 396 trips launched and 272 reached space. **None
+achieved stable orbit, a revolution or a complete return.** The original
+endpoints record 281 departures from the recovery corridor, 127 premature
+returns and 24 timeouts. Every generation's selected candidate reached space
+on all six starts but ultimately left the corridor. The largest recorded
+three-second quality across all trials was only 0.0582, far below a
+maintained value of one; it is a shaped training measure, not a milestone.
+
+The completed audit verifies all 432 cases, source and reward hashes, the
+fixed parameter directions, score and fitness calculations, and the
+milestone-first candidate ordering against the frozen plan. Endpoint
+summaries do not reconstruct the full hold trajectory of every training
+flight. The final parameters differ from the initial controller, but this
+lesson does not qualify a new orbital capability or a release.
+
+### Complete trajectory check of the final insertion candidate
+
+Six additional full probes test the frozen final candidate, one nominal
+and one variability-0.4 start per orbital mission. Replaying every recorded
+command through the original physics reproduces all six trajectories,
+physical endpoints and sustained-quality values exactly. All six leave the
+recovery corridor; none accumulates any physical insertion hold time.
+
+At the original instantaneous-score peaks, altitude is only 218–247 m and
+periapsis is 218–229 m, even though apoapsis is near the destination. On first
+reaching destination altitude, the vehicle is already on an unbound
+trajectory, with outward speed 96–156 m/s and throttle around 0.50–0.55.
+The later escape therefore cannot be described as stable insertion followed
+by a failed return. These are current-checkpoint observations, kept separate
+from the earlier generation-six branch's trajectories. The complete
+[progress record](suite-training-progress.json) preserves all six replays,
+including commands and presented/decoded signals in their source records.
 
 ## Optional native calculation
 

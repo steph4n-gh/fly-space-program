@@ -594,7 +594,8 @@ retain 25–31 photoreceptor spikes after source drive ends.
 ![Paired visual-flash voltage responses with clean-air ORN background; measured visual populations still do not spike](assets/visual-transmission-background.png)
 
 This rules out globally silent external inputs as the sole explanation for
-the measured visual populations' failure to spike in this assay. It does
+the absence of event-mediated propagation through these measured visual
+populations under the inherited transmission rule. It does
 not establish signal transmission through a functional motion detector,
 direction selectivity or odor-enhanced visual behavior. These are four
 stochastic realizations of one model, not independent animals. Calibrating
@@ -611,3 +612,50 @@ established LIF runtime without changing the protocol.
 ```sh
 artifacts/lif-runtime/bin/python scripts/summarize-visual-transmission.py --folder artifacts/odor-interface/visual-transmission-background
 ```
+
+### Where the background-dependent count changes occur
+
+A descriptive reanalysis retains every neuron and all 24 existing count
+arrays. It examines all 27 superclass groups, 22 class groups, 50 subclass
+groups and 11,752 type groups, preserving every seed and group in the full
+exports. This is a post-hoc anatomical description of four model realizations.
+
+During stimulation, the mean signed change outside photoreceptors is
+−349 spikes, while the mean sum of absolute per-neuron changes is 13,833.5.
+The latter measures redistribution; it is not a net increase. Motor,
+antennal-lobe projection, dopamine-labelled, octopamine-labelled and
+serotonin-labelled pools all have mixed aggregate signs across the four
+pairs. Transmitter labels do not establish receptor-mediated modulation.
+
+Among the 533 named types containing at least 20 neurons, 14 have a strictly
+nonzero aggregate difference with the same sign in every pair. Ten are
+photoreceptor types directly driven by the experiment. The remaining four
+are exploratory observations after screening many groups. Aggregate
+consistency also does not imply consistent responses in individual cells.
+These counts do not nominate a confirmed chemical target or establish which
+path carried the perturbation.
+
+The [verified anatomical summary](visual-anatomy-results.json) records group
+definitions, all paired totals, cell counts and hashes of the full CSV
+exports. Every annotation partition preserves all 166,700 neurons and all
+24 original spike totals. Reproduce the complete exports with:
+
+```sh
+artifacts/lif-runtime/bin/python scripts/summarize-visual-anatomy.py
+```
+
+### First empirical voltage-response benchmark
+
+The [published-response benchmark](visual-response-benchmark.md) now fits
+L1/L2 flash fluorescence and tests an entire separate natural stimulus.
+L1 and L2 normally signal through graded voltage changes; their lack of
+spikes is not itself a physiological defect. The unresolved issue in the
+inherited model is transmission and appropriate stimulus response.
+
+All 24 fits converged and were frozen before evaluation. The two-filter
+candidate reached natural-response correlation 0.829, but its absolute
+prediction error exceeded the zero-response reference. It also failed the
+L1 dim-condition dark-flash check. The frozen transfer rule therefore failed.
+No benchmark parameters were installed in the network, and no chemical
+visual-gain claim follows. The complete results, assumptions, licensed data
+attribution and independent numerical verification are in that report.
