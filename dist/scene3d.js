@@ -1,10 +1,10 @@
-import {paintImage} from './perception.js?v=9.4';
-import * as T from './vendor/three.module.js?v=9.4';
-import {OrbitalWorld} from './orbital-world.js?v=9.4';
-import {PLANET_RADIUS,orbitalGuidance} from './orbital.js?v=9.4';
-import {CONTROL_LIMBS,limbTargets} from './kinematics.js?v=9.4';
-import {oceanEnvironment,deckTexture,boosterTexture} from './ocean.js?v=9.4';
-import {M,material,mesh,ellipsoid,createRocket,createBarge,createFly,createCockpit,moveRod} from './models3d.js?v=9.4';
+import {paintImage} from './perception.js?v=9.5';
+import * as T from './vendor/three.module.js?v=9.5';
+import {OrbitalWorld} from './orbital-world.js?v=9.5';
+import {PLANET_RADIUS,orbitalGuidance} from './orbital.js?v=9.5';
+import {CONTROL_LIMBS,limbTargets} from './kinematics.js?v=9.5';
+import {oceanEnvironment,deckTexture,boosterTexture} from './ocean.js?v=9.5';
+import {M,material,mesh,ellipsoid,createRocket,createBarge,createFly,createCockpit,moveRod} from './models3d.js?v=9.5';
 
 function environment(renderer,cockpit){
  const scene=new T.Scene();scene.background=new T.Color(cockpit?'#647f93':'#89b4cc');

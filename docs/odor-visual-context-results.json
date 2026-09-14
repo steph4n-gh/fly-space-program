@@ -18,6 +18,19 @@
         "dist/assets/connectome/manifest.json": "253b367de59eb676c9b28b3fb137aadf7b67b42280cd7f6cf6dd5de5d6d133e0",
         "dist/assets/connectome/sensory-map.json": "53452a99cc1cb868584e6b514fcb81b100d78601f045e2aec5fe5b3aabbee06d"
       },
+      "resolvedSources": {
+        "dist/assets/embodied-starter.json": "artifacts/odor-interface/four-mission-runtime/dist/assets/embodied-starter.json",
+        "scripts/assay-odor-visual-context.mjs": "artifacts/odor-interface/visual-context-source-b4df1d5e9effa57363dafd75c970dd845fadd1d4b8762252b382bd8db0aa924d.mjs",
+        "scripts/full-network-node.mjs": "scripts/full-network-node.mjs",
+        "dist/full-network.js": "artifacts/odor-interface/four-mission-runtime/dist/full-network.js",
+        "dist/perception.js": "artifacts/odor-interface/four-mission-runtime/dist/perception.js",
+        "dist/flight-instruments.js": "artifacts/odor-interface/four-mission-runtime/dist/flight-instruments.js",
+        "dist/engine3d.js": "artifacts/odor-interface/four-mission-runtime/dist/engine3d.js",
+        "dist/missions.js": "dist/missions.js",
+        "dist/full-controller.js": "artifacts/odor-interface/four-mission-runtime/dist/full-controller.js",
+        "dist/assets/connectome/manifest.json": "dist/assets/connectome/manifest.json",
+        "dist/assets/connectome/sensory-map.json": "dist/assets/connectome/sensory-map.json"
+      },
       "protocol": {
         "steps": 32,
         "pulseStart": 8,
@@ -2229,6 +2242,19 @@
         "dist/full-controller.js": "52aab3ac12a3b84261126ceb56cd78a8f2f57a5056e216d334c21fc0e15169b0",
         "dist/assets/connectome/manifest.json": "253b367de59eb676c9b28b3fb137aadf7b67b42280cd7f6cf6dd5de5d6d133e0",
         "dist/assets/connectome/sensory-map.json": "53452a99cc1cb868584e6b514fcb81b100d78601f045e2aec5fe5b3aabbee06d"
+      },
+      "resolvedSources": {
+        "dist/assets/embodied-starter.json": "artifacts/odor-interface/four-mission-runtime/dist/assets/embodied-starter.json",
+        "scripts/assay-odor-visual-context.mjs": "artifacts/odor-interface/visual-context-source-b91724c652a4388b208aede02268c4de7609b4ff32fe33486656c0cdb01a59bf.mjs",
+        "scripts/full-network-node.mjs": "scripts/full-network-node.mjs",
+        "dist/full-network.js": "artifacts/odor-interface/four-mission-runtime/dist/full-network.js",
+        "dist/perception.js": "artifacts/odor-interface/four-mission-runtime/dist/perception.js",
+        "dist/flight-instruments.js": "artifacts/odor-interface/four-mission-runtime/dist/flight-instruments.js",
+        "dist/engine3d.js": "artifacts/odor-interface/four-mission-runtime/dist/engine3d.js",
+        "dist/missions.js": "dist/missions.js",
+        "dist/full-controller.js": "artifacts/odor-interface/four-mission-runtime/dist/full-controller.js",
+        "dist/assets/connectome/manifest.json": "dist/assets/connectome/manifest.json",
+        "dist/assets/connectome/sensory-map.json": "dist/assets/connectome/sensory-map.json"
       },
       "protocol": {
         "steps": 32,

@@ -1,6 +1,6 @@
-import {PERCEPTION_SIGNALS,EMBODIED_SCHEMA} from './sensory-inputs.js?v=9.4';
-import {SIGNALS,SENSOR_SCHEMA} from './signals.js?v=9.4';
-import {sensorSnapshot} from './engine3d.js?v=9.4';
+import {PERCEPTION_SIGNALS,EMBODIED_SCHEMA} from './sensory-inputs.js?v=9.5';
+import {SIGNALS,SENSOR_SCHEMA} from './signals.js?v=9.5';
+import {sensorSnapshot} from './engine3d.js?v=9.5';
 export {SIGNALS};
 export const ORBIT_SIGNALS=SIGNALS;
 export const CONTROLS=[

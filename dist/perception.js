@@ -1,6 +1,6 @@
-import {RETINA_WIDTH as W,RETINA_HEIGHT as H,EYE_PIXELS,EMBODIED_INPUTS} from './sensory-inputs.js?v=9.4';
-import {PLANET_RADIUS as R,PLANET_MU as MU} from './orbital.js?v=9.4';
-import {FLIGHT_PANEL,instrumentMeasurements,paintFlightInstruments} from './flight-instruments.js?v=9.4';
+import {RETINA_WIDTH as W,RETINA_HEIGHT as H,EYE_PIXELS,EMBODIED_INPUTS} from './sensory-inputs.js?v=9.5';
+import {PLANET_RADIUS as R,PLANET_MU as MU} from './orbital.js?v=9.5';
+import {FLIGHT_PANEL,instrumentMeasurements,paintFlightInstruments} from './flight-instruments.js?v=9.5';
 const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
 const dot=(a,b)=>a[0]*b[0]+a[1]*b[1]+a[2]*b[2],add=(a,b)=>a.map((v,i)=>v+b[i]),mul=(a,k)=>a.map(v=>v*k),norm=a=>mul(a,1/Math.hypot(...a));
 // Same YXZ vehicle rotation as the visible rocket, with a fixed downward camera.

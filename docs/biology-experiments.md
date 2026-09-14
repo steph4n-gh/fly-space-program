@@ -154,7 +154,7 @@ larger neural signals, and improved training reward are insufficient alone.
 
 ## Current software experiment
 
-`scripts/assay-odor-visual-context.mjs` freezes the released four-mission
+`scripts/assay-odor-visual-context.mjs` freezes the earlier four-mission
 checkpoint and runs the complete graph through the JavaScript backend. It
 crosses four starting contexts with five odor conditions, three visual
 pitch-view steps and covered/uncovered eyes: **120 trajectories, 3,840 neural
@@ -262,7 +262,7 @@ recomputed paired effects before exporting the result and figure.
 
 ### Completed chemical flight comparison
 
-The next assay froze the same released controller and a bilateral input
+The next assay froze the same four-mission controller and a bilateral input
 level of **0.0001**, then ran 16 new starts in clean air, ethyl acetate and
 geosmin: **48 complete JavaScript flights**. Each of the four missions had
 two nominal and two varied starts. Odor stayed constant from the first
@@ -290,6 +290,11 @@ additional starts the same checkpoint landed 10/16, with only 2/8 in varied
 conditions. Report the separate cohorts rather than treating the earlier
 rate as a guarantee. This pilot neither identifies an effective odor dose
 nor tests a living fly's chemical response.
+
+These chemical results belong to the
+[archived four-mission checkpoint](assets/four-mission-checkpoint.json).
+The subsequently released ten-mission checkpoint was tested with chemical
+inputs off; its landing results do not establish an odor benefit.
 
 The optional `SUITE_TEST_ODOR_LEVEL` evaluation input changes only the four
 odor channels. A complete clean-air flight through the added input-handling

@@ -1,20 +1,20 @@
-import {sampleEmbodied,paintImage} from './perception.js?v=9.4';
-import {FLIGHT_PANEL,INSTRUMENT_FIELDS} from './flight-instruments.js?v=9.4';
-import {EMBODIED_CONTROLLER,EMBODIED_SCHEMA,EMBODIED_INPUTS} from './sensory-inputs.js?v=9.4';
-import {DT,physicsStep,decisionSteps,SCENARIOS,clamp,createFlight,fullSensors,advance,actionTargets} from './engine3d.js?v=9.4';
-import {ORBIT_PHASES,orbitalElements} from './orbital.js?v=9.4';
-import {missionFamily,missionOptions,familyProfiles} from './missions.js?v=9.4';
-import {drawChart} from './scene.js?v=9.4';
-import {FlightScene3D as FlightScene,Cockpit3D as CockpitView} from './scene3d.js?v=9.4';
-import {ConnectomeView} from './connectome-view.js?v=9.4';
-import {captureDecision,DecisionView} from './decision.js?v=9.4';
-import {WiringView} from './wiring-view.js?v=9.4';
-import {CONTROL_LIMBS} from './kinematics.js?v=9.4';
-import {FlightPresentation} from './presentation.js?v=9.4';
-import {CONTROLS} from './decision.js?v=9.4';
-import {validCheckpoint,freshCheckpoint,freshEmbodied,isEmbodied,CONTROLLER_ID} from './full-controller.js?v=9.4';
+import {sampleEmbodied,paintImage} from './perception.js?v=9.5';
+import {FLIGHT_PANEL,INSTRUMENT_FIELDS} from './flight-instruments.js?v=9.5';
+import {EMBODIED_CONTROLLER,EMBODIED_SCHEMA,EMBODIED_INPUTS} from './sensory-inputs.js?v=9.5';
+import {DT,physicsStep,decisionSteps,SCENARIOS,clamp,createFlight,fullSensors,advance,actionTargets} from './engine3d.js?v=9.5';
+import {ORBIT_PHASES,orbitalElements} from './orbital.js?v=9.5';
+import {missionFamily,missionOptions,familyProfiles} from './missions.js?v=9.5';
+import {drawChart} from './scene.js?v=9.5';
+import {FlightScene3D as FlightScene,Cockpit3D as CockpitView} from './scene3d.js?v=9.5';
+import {ConnectomeView} from './connectome-view.js?v=9.5';
+import {captureDecision,DecisionView} from './decision.js?v=9.5';
+import {WiringView} from './wiring-view.js?v=9.5';
+import {CONTROL_LIMBS} from './kinematics.js?v=9.5';
+import {FlightPresentation} from './presentation.js?v=9.5';
+import {CONTROLS} from './decision.js?v=9.5';
+import {validCheckpoint,freshCheckpoint,freshEmbodied,isEmbodied,CONTROLLER_ID} from './full-controller.js?v=9.5';
 
-import {SENSOR_SCHEMA} from './signals.js?v=9.4';
+import {SENSOR_SCHEMA} from './signals.js?v=9.5';
 
 const $=id=>document.getElementById(id),STORE='fly-space-program-brains-v6';
 const presentation=new FlightPresentation();let wiringView,traceControl=0,profileGroup='All',renderFPS=0,frameCount=0,fpsStart=0,decisionMs=70;
@@ -160,12 +160,12 @@ window.addEventListener('resize',()=>{if(ready)updateLedger(training?trainee:act
 async function boot(){
   try {
     scene=new FlightScene($('flight-canvas'));cockpit=new CockpitView($('cockpit-canvas'));decisionView=new DecisionView($('decision-panel'));wiringView=new WiringView($('wiring-panel'),id=>{if(!atlas?.centroids)return;if(atlas.centroids[id*3+2]>atlas.meta.brainClipZ){atlas.fullCNS=true;atlasChoice('brain-only','full-cns','full-cns');}setWorkspaceView('lab');atlas.select(id);$('atlas-panel').scrollIntoView({behavior:'smooth',block:'center'});});setTraceControl(0);
-    const load=async path=>{const r=await fetch(path+(path.includes('?')?'':'?v=9.4'),{cache:'no-cache'});if(!r.ok)throw new Error(`Could not load ${path}`);return r.json();};
+    const load=async path=>{const r=await fetch(path+(path.includes('?')?'':'?v=9.5'),{cache:'no-cache'});if(!r.ok)throw new Error(`Could not load ${path}`);return r.json();};
     embodiedStarter=await load('assets/embodied-starter.json').catch(()=>freshEmbodied());if(!validCheckpoint(embodiedStarter)||!isEmbodied(embodiedStarter))throw Error('Invalid embodied starter');
-    [graduate,specialist,expert,orbitalPilot]=await Promise.all(['full-pilot','full-specialist','full-expert','full-orbital'].map(name=>load(`assets/${name}.json?v=9.4`)));
+    [graduate,specialist,expert,orbitalPilot]=await Promise.all(['full-pilot','full-specialist','full-expert','full-orbital'].map(name=>load(`assets/${name}.json?v=9.5`)));
     if(![graduate,specialist,expert,orbitalPilot].every(validCheckpoint))throw new Error('The shipped checkpoint is incompatible.');
     try{const saved=JSON.parse(localStorage.getItem(STORE));for(const family of ['embodied','center','degraded','out','orbital'])if(validCheckpoint(saved?.[family]))trainees[family]=saved[family];const legacy=JSON.parse(localStorage.getItem('fly-space-program-brain-v4'));if(validCheckpoint(legacy)){const family=missionFamily(legacy.scenario??1);if(!trainees[family])trainees[family]=legacy;}}catch{/* A missing or old local checkpoint does not block the shipped pilot. */}
-    worker=new Worker('trainer-worker.js?v=9.4',{type:'module'});
+    worker=new Worker('trainer-worker.js?v=9.5',{type:'module'});
     worker.onmessage=({data})=>{
       if(data.type==='generation'){
         if(!validCheckpoint(data.checkpoint))return;trainee=data.checkpoint;
@@ -232,7 +232,7 @@ function pulse(){if(!networkReady||selectedNeuron<0)return;if(paused||flight.don
 function bootConnectome(){
   try{atlas=new ConnectomeView($('brain-canvas'),showNeuron);atlas.load((done,total)=>{$('atlas-progress').value=done/total*100;$('atlas-loading-text').textContent=`Loading measured anatomy · ${Math.round(done/total*100)}%`;}).then(()=>{$('atlas-loading').hidden=true;}).catch(error=>{$('atlas-loading-text').textContent=`Anatomy unavailable: ${error.message}`;$('atlas-progress').hidden=true;});}
   catch(error){$('atlas-loading-text').textContent=error.message;$('atlas-progress').hidden=true;}
-  networkWorker=new Worker('connectome-worker.js?v=9.4',{type:'module'});
+  networkWorker=new Worker('connectome-worker.js?v=9.5',{type:'module'});
   const fail=message=>{networkReady=false;ready=false;$('loading').hidden=false;$('loading-message').textContent=`Full controller unavailable: ${message}`;$('network-status').textContent='Controller unavailable · flight stopped';$('network-rate').textContent='offline';$('pulse-neuron').disabled=true;console.error(message);};
   networkWorker.onmessage=({data})=>{
     if(data.type==='progress'){$('network-status').textContent=`Connecting all edges · ${Math.round(data.loaded/data.total*100)}%`;$('loading-message').textContent=$('network-status').textContent;}

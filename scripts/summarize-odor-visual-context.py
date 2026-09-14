@@ -16,12 +16,22 @@ records = []
 names = ['throttle', 'gimbal X', 'RCS X', 'gimbal Z', 'RCS Z', 'yaw', 'fin X', 'fin Z', 'engine selector', 'gaze']
 for file in files:
     r = json.loads(file.read_text())
+    resolved_sources = {}
+    def verify_source(source, digest):
+        current = ROOT / source
+        resolved = current if current.exists() and sha(current) == digest else ROOT / 'artifacts/odor-interface/four-mission-runtime' / source
+        assert sha(resolved) == digest, source
+        resolved_sources[source] = str(resolved.relative_to(ROOT))
     assert r['complete'] and r['backend'] == 'javascript-rate'
     assert (r['neurons'], r['edges'], r['passesPerDecision']) == (166700, 25582938, 2)
-    assert sha(ROOT / r['checkpoint']) == r['checkpointSHA256']
+    verify_source(r['checkpoint'], r['checkpointSHA256'])
     for source, digest in r['sourceSHA256'].items():
-        p = (file.parent / ('visual-context-source-' + digest + '.mjs')) if source == 'scripts/assay-odor-visual-context.mjs' else ROOT / source
-        assert sha(p) == digest, source
+        if source == 'scripts/assay-odor-visual-context.mjs':
+            p = file.parent / ('visual-context-source-' + digest + '.mjs')
+            assert sha(p) == digest, source
+            resolved_sources[source] = str(p.relative_to(ROOT))
+        else:
+            verify_source(source, digest)
     p = r['protocol']; start, end = p['pulseStart'], p['pulseEnd']
     lookup = {}
     for t in r['trials']:
@@ -64,7 +74,7 @@ for file in files:
                 for key, values in recalculated.items():
                     assert all(math.isclose(v, old, abs_tol=1e-12, rel_tol=1e-10) for v, old in zip(values, e[key])), key
     assert len(effect_keys) == len(r['effects'])
-    records.append({'file': str(file.relative_to(ROOT)), 'SHA256': sha(file), 'checkpointSHA256': r['checkpointSHA256'], 'weightSHA256': r['weightSHA256'], 'sourceSHA256': r['sourceSHA256'], 'protocol': r['protocol'], 'conditions': r['conditions'], 'contexts': r['contexts'], 'trials': expected, 'decisions': expected * p['steps'], 'effects': r['effects']})
+    records.append({'file': str(file.relative_to(ROOT)), 'SHA256': sha(file), 'checkpointSHA256': r['checkpointSHA256'], 'weightSHA256': r['weightSHA256'], 'sourceSHA256': r['sourceSHA256'], 'resolvedSources': resolved_sources, 'protocol': r['protocol'], 'conditions': r['conditions'], 'contexts': r['contexts'], 'trials': expected, 'decisions': expected * p['steps'], 'effects': r['effects']})
 
 assert len({r['weightSHA256'] for r in records}) == 1
 result = {'schema': 'odor-visual-context-summary-v1', 'records': records, 'controlOrder': names, 'totalTrajectories': sum(r['trials'] for r in records), 'totalDecisions': sum(r['decisions'] for r in records), 'interpretation': 'Deterministic model contexts, not animal replicates. No inference about physical dose, biological time, innate valence, neuromodulator physiology, learning or flight success.'}

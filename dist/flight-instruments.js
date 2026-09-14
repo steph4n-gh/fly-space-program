@@ -1,6 +1,6 @@
 // Physically displayable measurements and a mission destination cue. These
 // lights encode no recommended control action, descent target or autopilot.
-import {PLANET_RADIUS} from './orbital.js?v=9.4';
+import {PLANET_RADIUS} from './orbital.js?v=9.5';
 export const FLIGHT_PANEL='measured-flight-panel-v2';
 export const FLIGHT_BODY_CHANNELS=[0,1,2,3,4,5,6,7,8,10,11,12,13,14,15,17];
 export const INSTRUMENT_FIELDS=[

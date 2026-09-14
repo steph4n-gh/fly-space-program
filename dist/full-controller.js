@@ -1,8 +1,8 @@
-import {collectLesson,lessonLoss,fitLesson} from './visual-lesson.js?v=9.4';
-import {sampleEmbodied} from './perception.js?v=9.4';
-import {FLIGHT_PANEL} from './flight-instruments.js?v=9.4';
-import {EMBODIED_CONTROLLER,EMBODIED_SCHEMA,EMBODIED_INPUTS} from './sensory-inputs.js?v=9.4';
-import {createFlight,fullSensors,advance,rng,decisionSteps} from './engine3d.js?v=9.4';
+import {collectLesson,lessonLoss,fitLesson} from './visual-lesson.js?v=9.5';
+import {sampleEmbodied} from './perception.js?v=9.5';
+import {FLIGHT_PANEL} from './flight-instruments.js?v=9.5';
+import {EMBODIED_CONTROLLER,EMBODIED_SCHEMA,EMBODIED_INPUTS} from './sensory-inputs.js?v=9.5';
+import {createFlight,fullSensors,advance,rng,decisionSteps} from './engine3d.js?v=9.5';
 export const CONTROLLER_ID='malecns-full-rate-v2',READOUT_SIZE=21300;
 export function validCheckpoint(c){return c?.version===5&&((c.circuit===CONTROLLER_ID&&c.sensorSchema==='flight-senses-46-v1')||(c.circuit===EMBODIED_CONTROLLER&&c.sensorSchema===EMBODIED_SCHEMA))&&(c.sensoryPresentation===undefined||(c.circuit===EMBODIED_CONTROLLER&&['landing-light-indicators-v1',FLIGHT_PANEL].includes(c.sensoryPresentation)))&&c.weights?.length===READOUT_SIZE&&c.weights.every(Number.isFinite)&&(c.activationGain===undefined||(Number.isFinite(c.activationGain)&&c.activationGain>=1&&c.activationGain<=1.05))&&Number.isFinite(c.generation)&&Number.isFinite(c.episodes);}
 export const isEmbodied=c=>c?.circuit===EMBODIED_CONTROLLER;

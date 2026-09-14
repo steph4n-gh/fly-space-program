@@ -1,9 +1,9 @@
 // Stylized six-degree-of-freedom booster recovery. Not a flight-qualified Falcon model.
-import {clamp,rng} from './engine.js?v=9.4';
-import {createOrbitalFlight,advanceOrbital,orbitalSensors,orbitalDeck,orbitalStep,orbitalGuidance} from './orbital.js?v=9.4';
+import {clamp,rng} from './engine.js?v=9.5';
+import {createOrbitalFlight,advanceOrbital,orbitalSensors,orbitalDeck,orbitalStep,orbitalGuidance} from './orbital.js?v=9.5';
 export {clamp,rng};
 export const DT=.05,INPUTS=18,OUTPUTS=10,PARAMS=202;
-import {SCENARIOS} from './missions.js?v=9.4';
+import {SCENARIOS} from './missions.js?v=9.5';
 export {SCENARIOS};
 export function deck(s,t=s.t){if(s.orbital)return orbitalDeck(s,t);
  const c=SCENARIOS[s.scenario],a=c.amplitude,rx=c.deckRateX??.11,rz=c.deckRateZ??.09;

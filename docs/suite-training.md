@@ -1,10 +1,12 @@
 # Learning the full mission suite
 
 The current work extends the first visual landing lesson toward all 27
-missions. The packaged checkpoint landed **28/32 unseen starts across four
-ground missions**, versus **0/32 with covered eyes** and **0/32 with the
+missions. The packaged checkpoint landed **56/80 unseen starts across ten
+ground missions**, versus **0/80 with covered eyes** and **0/80 with the
 indicators disabled**. These results do not establish mastery of the full
-suite or transfer to a living fly.
+suite or transfer to a living fly. The four original missions each landed
+8/8; six engine-failure missions ranged from 1/8 to 7/8. Every failure remains
+in the report.
 
 ## Presented information
 
@@ -114,7 +116,7 @@ and searches correlated parameter changes so that steering and damping can
 adjust together. It includes Spinning Entry and changing seeds with nominal
 and variability-0.4 conditions. Generations two and three each landed 8/8
 training cases. The branch completed 768 training flights in eight generations;
-the released candidate remains frozen at generation two. That candidate had
+that earlier released candidate was frozen at generation two. That candidate had
 a separate 16-start model-selection comparison with matched covered-eye controls.
 It landed 12/16 with visible inputs and 0/16 with covered eyes: 4/4 on
 Landing School, 2/4 on Atlantic Return, 3/4 on Fast Ferry and 3/4 on Spinning
@@ -140,7 +142,7 @@ flights. Its four failures were three timeouts and a missed ship. Eight
 starts per mission provide limited evidence; the result is an experimental
 flight capability, not a reliability certification. The frozen weight hash
 is `5c01d3c5a48a435d6d226ea1f8b5b1a2372c48b1e2248479595281ee1cfc4cf5`.
-The [packaged report](../dist/assets/landing-report.json) retains every
+The [archived four-mission report](assets/four-mission-report.json) retains every
 failure, paired condition, physical variation and source hash.
 
 Checkpoint loading and the shared browser trainer now preserve the selected
@@ -153,8 +155,8 @@ a stale 3D cockpit texture: changing from the reference dashboard to the
 sensory image now releases the old GPU allocation before resizing. The
 pod's monitors then display the same images used by the sensory model.
 
-The other missions, including the full orbital trips, remain unverified
-with this experimental controller. A one-start survey of the remaining
+At that stage, the other missions, including the full orbital trips,
+remained unverified with the four-mission controller. A one-start survey of the remaining
 ground profiles is a development probe, not an additional reliability test.
 Across all 24 ground profiles, that survey landed 11/24 nominal starts.
 All six engine-failure profiles failed. Stronger winds, a turning vessel,
@@ -206,7 +208,7 @@ a zero-landing candidate with several timeouts displaced a two-landing
 candidate from the search elites. Replaying that recorded generation
 confirmed that the revised ordering retains three two-landing elites.
 The physical success criteria and original rewards are unchanged. The
-packaged controller remains the independently tested four-mission version.
+four-mission controller remained packaged while the new candidate was developed.
 
 That search completed 960 full flights in ten generations. The selected
 candidate in each generation landed four or five of its eight development
@@ -227,9 +229,60 @@ are `engine-position-bias-grid/sweep.json`, `adaptive-steering-initial.json`
 and `adaptive-sensory-probe/probe.json` under `artifacts/suite-training/`.
 These are development measurements, with no new independent reliability claim.
 
+### Released ten-mission checkpoint
+
+The adaptive-attitude search completed **1,200 full training flights** in
+ten generations. Generation six was the first with nine of ten landings in
+its development batch. Its exact parameters were frozen before a separate
+40-start selection comparison: 32/40 normal landings versus 0/40 with
+covered eyes. All ten missions had two nominal and two varied selection
+starts. Later training generations were retained as development records;
+they were not substituted after seeing the final test.
+
+The frozen generation-six checkpoint then ran **240 complete JavaScript
+flights**: 80 new cases under normal, covered-eye and indicators-disabled
+conditions. Within every mission, four starts used nominal physics and four
+used variability 0.4. Test seeds did not overlap this lesson or its selection
+set. Network startup, physical endpoints and landing limits stayed unchanged.
+
+| Mission | Normal inputs | Covered eyes | Indicators disabled |
+| --- | ---: | ---: | ---: |
+| Landing school | 8/8 | 0/8 | 0/8 |
+| Atlantic return | 8/8 | 0/8 | 0/8 |
+| Engine trouble | 4/8 | 0/8 | 0/8 |
+| Absolutely nominal | 1/8 | 0/8 | 0/8 |
+| Fast ferry | 8/8 | 0/8 | 0/8 |
+| Spinning entry | 8/8 | 0/8 | 0/8 |
+| Early engine fade | 7/8 | 0/8 | 0/8 |
+| Late engine fade | 6/8 | 0/8 | 0/8 |
+| Blackout rendezvous | 3/8 | 0/8 | 0/8 |
+| Last-call recovery | 3/8 | 0/8 | 0/8 |
+| Total | 56/80 | 0/80 | 0/80 |
+
+Normal-input landings were 27/40 under nominal physics and 29/40 under varied
+physics. The 24 failures were 21 lateral impacts and three missed ships.
+“Engine trouble” failed all four nominal starts but landed all four varied
+starts, an important limit on generalization. The original four missions
+totalled 32/32 in this cohort; that does not establish perfect reliability
+on future starts. The harder profiles still need substantial improvement.
+
+The [current report](../dist/assets/landing-report.json) contains all 240
+outcomes and the frozen pre-test plan. Its weight SHA-256 is
+`eaf58811ecf1862590ac820a0d8dcafbfad66346850c51aea2372b3346626a3c`.
+The new checkpoint uses the three-engine bank from the start. Its throttle
+and steering adapt to the existing measured body feedback; reactive
+engine-bank switching is not established. These results cover ten ground
+missions, leaving 17 missions without final validation for this checkpoint.
+
+The [chemical flight pilot](biology-experiments.md#completed-chemical-flight-comparison)
+used the earlier four-mission weights, preserved in the
+[historical checkpoint](assets/four-mission-checkpoint.json). Its 10/16
+clean-air and 9/16 odor results must not be attributed to the new checkpoint.
+Chemical inputs remain off by default in the new release.
+
 ## Orbital ascent experiments
 
-The packaged controller completed three nominal orbital baseline trials,
+The earlier four-mission controller completed three nominal orbital baseline trials,
 one per orbital mission, with the same frozen weight hash. All three returned
 before reaching space. Their maximum altitudes were 19.71, 20.46 and
 19.96 meters, and all flights ended after approximately 230 simulated
@@ -275,6 +328,19 @@ under that ordering, preserves the old trials, and retains the version of its
 selection rule and fitness. It still requires independent evaluation before
 any orbital capability can be claimed.
 
+That search completed **288 full trips** in twelve generations: 276 reached
+the launch milestone and 199 reached space, but none reached stable orbit,
+a full revolution or a completed return. Increasing the smooth insertion
+score did not satisfy any of those missing physical milestones. The current
+ten-mission ground checkpoint has not received an orbital capability claim.
+
+A full trajectory probe of the final orbital-training candidate reproduced
+its nominal failure exactly. It showed substantial differences between the
+presented pitch/roll indicators and their neural decoding during sustained
+attitude changes. This suggests extending sensory calibration with these
+observed flight contexts before another orbital search. It is a development
+diagnosis, not a reason to replace eye inputs with direct flight state.
+
 ## Optional native calculation
 
 The optional Node backend evaluates every CSR row and edge with Float32
@@ -309,6 +375,8 @@ SUITE_POPULATION=9 SUITE_BATCH=3 SUITE_GENERATIONS=10 node scripts/train-suite.m
 node scripts/build-rate-native.mjs
 node scripts/check-native-rate.mjs
 artifacts/lif-runtime/bin/python scripts/report-suite-training.py
+# After all 240 frozen generation-six tests have completed:
+node scripts/summarize-suite.mjs --adaptive
 ```
 
 Training resumes the state in its named experiment directory. Use a new

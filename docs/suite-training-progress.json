@@ -111,7 +111,9 @@
           "score": 98.9655229480818,
           "fitness": null
         }
-      ]
+      ],
+      "allCandidateFlights": 270,
+      "allCandidateLandings": 178
     },
     "vertical-robust": {
       "generation": 10,
@@ -197,7 +199,9 @@
           "score": 94.26888766101071,
           "fitness": 88.4544410137164
         }
-      ]
+      ],
+      "allCandidateFlights": 450,
+      "allCandidateLandings": 270
     },
     "attitude": {
       "generation": 10,
@@ -283,7 +287,9 @@
           "score": 90.61410575385416,
           "fitness": 77.50867875941437
         }
-      ]
+      ],
+      "allCandidateFlights": 720,
+      "allCandidateLandings": 187
     },
     "ground-general": {
       "generation": 8,
@@ -353,7 +359,9 @@
           "score": -35.27475637657775,
           "fitness": -42.080157768722216
         }
-      ]
+      ],
+      "allCandidateFlights": 576,
+      "allCandidateLandings": 135
     },
     "attitude-correlated": {
       "generation": 8,
@@ -423,7 +431,395 @@
           "score": 26.10083313384223,
           "fitness": 20.520880307928653
         }
-      ]
+      ],
+      "allCandidateFlights": 768,
+      "allCandidateLandings": 558
+    },
+    "engine-transition": {
+      "generation": 6,
+      "episodes": 576,
+      "history": [
+        {
+          "generation": 1,
+          "episodes": 96,
+          "landings": 2,
+          "batch": 8,
+          "score": -381.2746479142029,
+          "fitness": -383.01873012867344
+        },
+        {
+          "generation": 2,
+          "episodes": 192,
+          "landings": 2,
+          "batch": 8,
+          "score": -380.21063141349657,
+          "fitness": -382.44534499014117
+        },
+        {
+          "generation": 3,
+          "episodes": 288,
+          "landings": 2,
+          "batch": 8,
+          "score": -380.4487601142954,
+          "fitness": -381.2393851460449
+        },
+        {
+          "generation": 4,
+          "episodes": 384,
+          "landings": 2,
+          "batch": 8,
+          "score": -373.08129591775014,
+          "fitness": -376.6481270980927
+        },
+        {
+          "generation": 5,
+          "episodes": 480,
+          "landings": 2,
+          "batch": 8,
+          "score": -355.19374106340143,
+          "fitness": -359.7487464939381
+        },
+        {
+          "generation": 6,
+          "episodes": 576,
+          "landings": 2,
+          "batch": 8,
+          "score": -339.8900528390767,
+          "fitness": -344.73547759602656
+        }
+      ],
+      "allCandidateFlights": 576,
+      "allCandidateLandings": 95
+    },
+    "recovery-grid": {
+      "generation": 10,
+      "episodes": 960,
+      "history": [
+        {
+          "generation": 1,
+          "episodes": 96,
+          "landings": 5,
+          "batch": 8,
+          "score": -57.07227569022002,
+          "fitness": -77.87469290379889
+        },
+        {
+          "generation": 2,
+          "episodes": 192,
+          "landings": 5,
+          "batch": 8,
+          "score": -54.06592284093578,
+          "fitness": -73.73032839130687
+        },
+        {
+          "generation": 3,
+          "episodes": 288,
+          "landings": 5,
+          "batch": 8,
+          "score": -41.81805514141493,
+          "fitness": -58.69031721068779
+        },
+        {
+          "generation": 4,
+          "episodes": 384,
+          "landings": 4,
+          "batch": 8,
+          "score": -51.59134927275733,
+          "fitness": -65.28780169283421
+        },
+        {
+          "generation": 5,
+          "episodes": 480,
+          "landings": 5,
+          "batch": 8,
+          "score": -33.75747277057387,
+          "fitness": -51.02850512602738
+        },
+        {
+          "generation": 6,
+          "episodes": 576,
+          "landings": 4,
+          "batch": 8,
+          "score": -49.570980490533984,
+          "fitness": -60.423998332270116
+        },
+        {
+          "generation": 7,
+          "episodes": 672,
+          "landings": 5,
+          "batch": 8,
+          "score": -35.089253405624696,
+          "fitness": -49.763466521996506
+        },
+        {
+          "generation": 8,
+          "episodes": 768,
+          "landings": 5,
+          "batch": 8,
+          "score": -50.54206779496668,
+          "fitness": -61.785463009723685
+        },
+        {
+          "generation": 9,
+          "episodes": 864,
+          "landings": 5,
+          "batch": 8,
+          "score": -40.50331348433833,
+          "fitness": -55.107934110172906
+        },
+        {
+          "generation": 10,
+          "episodes": 960,
+          "landings": 5,
+          "batch": 8,
+          "score": -47.561392971027075,
+          "fitness": -58.438127325526715
+        }
+      ],
+      "allCandidateFlights": 960,
+      "allCandidateLandings": 313
+    },
+    "attitude-adaptive": {
+      "generation": 10,
+      "episodes": 1200,
+      "history": [
+        {
+          "generation": 1,
+          "episodes": 120,
+          "landings": 7,
+          "batch": 10,
+          "score": -54.84566219660288,
+          "fitness": -70.81619537171596
+        },
+        {
+          "generation": 2,
+          "episodes": 240,
+          "landings": 8,
+          "batch": 10,
+          "score": -36.700297402698794,
+          "fitness": -59.65938282550921
+        },
+        {
+          "generation": 3,
+          "episodes": 360,
+          "landings": 6,
+          "batch": 10,
+          "score": -63.70339971816442,
+          "fitness": -74.71584517212345
+        },
+        {
+          "generation": 4,
+          "episodes": 480,
+          "landings": 7,
+          "batch": 10,
+          "score": -48.66248705293491,
+          "fitness": -64.5888151531993
+        },
+        {
+          "generation": 5,
+          "episodes": 600,
+          "landings": 8,
+          "batch": 10,
+          "score": -34.17053964227473,
+          "fitness": -54.838399127538196
+        },
+        {
+          "generation": 6,
+          "episodes": 720,
+          "landings": 9,
+          "batch": 10,
+          "score": -18.63914256229554,
+          "fitness": -46.25464699454274
+        },
+        {
+          "generation": 7,
+          "episodes": 840,
+          "landings": 9,
+          "batch": 10,
+          "score": -19.89076466933466,
+          "fitness": -44.69127197750459
+        },
+        {
+          "generation": 8,
+          "episodes": 960,
+          "landings": 9,
+          "batch": 10,
+          "score": -22.99903627365887,
+          "fitness": -48.358181794852825
+        },
+        {
+          "generation": 9,
+          "episodes": 1080,
+          "landings": 9,
+          "batch": 10,
+          "score": -18.742604359664,
+          "fitness": -44.60086225458969
+        },
+        {
+          "generation": 10,
+          "episodes": 1200,
+          "landings": 9,
+          "batch": 10,
+          "score": -18.521743020004372,
+          "fitness": -42.76932589536529
+        }
+      ],
+      "allCandidateFlights": 1200,
+      "allCandidateLandings": 842
+    },
+    "orbital-insertion": {
+      "generation": 3,
+      "episodes": 72,
+      "history": [
+        {
+          "generation": 1,
+          "episodes": 24,
+          "landings": 0,
+          "batch": 2,
+          "score": -245.40113160685985,
+          "fitness": -76.10248026164695
+        },
+        {
+          "generation": 2,
+          "episodes": 48,
+          "landings": 0,
+          "batch": 2,
+          "score": -488.76339224977517,
+          "fitness": -11.065268069459194
+        },
+        {
+          "generation": 3,
+          "episodes": 72,
+          "landings": 0,
+          "batch": 2,
+          "score": -489.2306620469856,
+          "fitness": -5.382044100883093
+        }
+      ],
+      "allCandidateFlights": 72,
+      "allCandidateLandings": 0,
+      "milestoneCounts": {
+        "Launch": 62,
+        "Space": 24,
+        "Stable orbit": 0,
+        "One full orbit": 0,
+        "Deorbit": 0,
+        "Atmospheric entry": 0,
+        "Final approach": 0
+      }
+    },
+    "orbital-progress": {
+      "generation": 12,
+      "episodes": 288,
+      "history": [
+        {
+          "generation": 1,
+          "episodes": 24,
+          "landings": 0,
+          "batch": 2,
+          "score": -565.7477868259622,
+          "fitness": 463.0259476219041
+        },
+        {
+          "generation": 2,
+          "episodes": 48,
+          "landings": 0,
+          "batch": 2,
+          "score": -517.9868887984312,
+          "fitness": 625.7936853720825
+        },
+        {
+          "generation": 3,
+          "episodes": 72,
+          "landings": 0,
+          "batch": 2,
+          "score": -499.0098845980122,
+          "fitness": 720.489009254133
+        },
+        {
+          "generation": 4,
+          "episodes": 96,
+          "landings": 0,
+          "batch": 2,
+          "score": -501.70651207083654,
+          "fitness": 754.0955573783024
+        },
+        {
+          "generation": 5,
+          "episodes": 120,
+          "landings": 0,
+          "batch": 2,
+          "score": -504.5664187433,
+          "fitness": 876.5121286719957
+        },
+        {
+          "generation": 6,
+          "episodes": 144,
+          "landings": 0,
+          "batch": 2,
+          "score": -508.7204125869942,
+          "fitness": 900.1508759520136
+        },
+        {
+          "generation": 7,
+          "episodes": 168,
+          "landings": 0,
+          "batch": 2,
+          "score": -512.7557442772618,
+          "fitness": 923.5283484838609
+        },
+        {
+          "generation": 8,
+          "episodes": 192,
+          "landings": 0,
+          "batch": 2,
+          "score": -508.0404995555784,
+          "fitness": 912.4407022624689
+        },
+        {
+          "generation": 9,
+          "episodes": 216,
+          "landings": 0,
+          "batch": 2,
+          "score": -514.4223251280766,
+          "fitness": 926.0876886908397
+        },
+        {
+          "generation": 10,
+          "episodes": 240,
+          "landings": 0,
+          "batch": 2,
+          "score": -513.7472490602003,
+          "fitness": 951.6380779864946
+        },
+        {
+          "generation": 11,
+          "episodes": 264,
+          "landings": 0,
+          "batch": 2,
+          "score": -513.6643764505915,
+          "fitness": 945.0636531711192
+        },
+        {
+          "generation": 12,
+          "episodes": 288,
+          "landings": 0,
+          "batch": 2,
+          "score": -515.112010154528,
+          "fitness": 946.6052173871713
+        }
+      ],
+      "allCandidateFlights": 288,
+      "allCandidateLandings": 0,
+      "milestoneCounts": {
+        "Launch": 276,
+        "Space": 199,
+        "Stable orbit": 0,
+        "One full orbit": 0,
+        "Deorbit": 0,
+        "Atmospheric entry": 0,
+        "Final approach": 0
+      }
     }
   },
   "selections": {
@@ -719,18 +1115,275 @@
           "episodes": 16
         }
       }
+    },
+    "attitude-adaptive-g6-selection": {
+      "purpose": "Model selection; not final unseen checkpoint validation",
+      "parameters": [
+        0.1,
+        -0.2984100889885076,
+        -1.3820600774683072,
+        1,
+        -0.5,
+        -0.36899440304568953,
+        -0.9326892247551946,
+        -5.388017193845143,
+        -1.4787720385404197,
+        -1.8669781484990737,
+        -1.1733613670774474,
+        0.0074868627342414545,
+        0.9730218481563706,
+        -0.7745100105760533,
+        0.39566068782541547,
+        -0.5626005058769209,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "weightSHA256": "eaf58811ecf1862590ac820a0d8dcafbfad66346850c51aea2372b3346626a3c",
+      "cases": [
+        {
+          "scenario": 0,
+          "seed": 183700021,
+          "variability": 0
+        },
+        {
+          "scenario": 1,
+          "seed": 183804750,
+          "variability": 0
+        },
+        {
+          "scenario": 6,
+          "seed": 183909479,
+          "variability": 0
+        },
+        {
+          "scenario": 7,
+          "seed": 184014208,
+          "variability": 0
+        },
+        {
+          "scenario": 9,
+          "seed": 184118937,
+          "variability": 0
+        },
+        {
+          "scenario": 17,
+          "seed": 184223666,
+          "variability": 0
+        },
+        {
+          "scenario": 20,
+          "seed": 184328395,
+          "variability": 0
+        },
+        {
+          "scenario": 21,
+          "seed": 184433124,
+          "variability": 0
+        },
+        {
+          "scenario": 22,
+          "seed": 184537853,
+          "variability": 0
+        },
+        {
+          "scenario": 23,
+          "seed": 184642582,
+          "variability": 0
+        },
+        {
+          "scenario": 0,
+          "seed": 184747311,
+          "variability": 0.4
+        },
+        {
+          "scenario": 1,
+          "seed": 184852040,
+          "variability": 0.4
+        },
+        {
+          "scenario": 6,
+          "seed": 184956769,
+          "variability": 0.4
+        },
+        {
+          "scenario": 7,
+          "seed": 185061498,
+          "variability": 0.4
+        },
+        {
+          "scenario": 9,
+          "seed": 185166227,
+          "variability": 0.4
+        },
+        {
+          "scenario": 17,
+          "seed": 185270956,
+          "variability": 0.4
+        },
+        {
+          "scenario": 20,
+          "seed": 185375685,
+          "variability": 0.4
+        },
+        {
+          "scenario": 21,
+          "seed": 185480414,
+          "variability": 0.4
+        },
+        {
+          "scenario": 22,
+          "seed": 185585143,
+          "variability": 0.4
+        },
+        {
+          "scenario": 23,
+          "seed": 185689872,
+          "variability": 0.4
+        },
+        {
+          "scenario": 0,
+          "seed": 185794601,
+          "variability": 0
+        },
+        {
+          "scenario": 1,
+          "seed": 185899330,
+          "variability": 0
+        },
+        {
+          "scenario": 6,
+          "seed": 186004059,
+          "variability": 0
+        },
+        {
+          "scenario": 7,
+          "seed": 186108788,
+          "variability": 0
+        },
+        {
+          "scenario": 9,
+          "seed": 186213517,
+          "variability": 0
+        },
+        {
+          "scenario": 17,
+          "seed": 186318246,
+          "variability": 0
+        },
+        {
+          "scenario": 20,
+          "seed": 186422975,
+          "variability": 0
+        },
+        {
+          "scenario": 21,
+          "seed": 186527704,
+          "variability": 0
+        },
+        {
+          "scenario": 22,
+          "seed": 186632433,
+          "variability": 0
+        },
+        {
+          "scenario": 23,
+          "seed": 186737162,
+          "variability": 0
+        },
+        {
+          "scenario": 0,
+          "seed": 186841891,
+          "variability": 0.4
+        },
+        {
+          "scenario": 1,
+          "seed": 186946620,
+          "variability": 0.4
+        },
+        {
+          "scenario": 6,
+          "seed": 187051349,
+          "variability": 0.4
+        },
+        {
+          "scenario": 7,
+          "seed": 187156078,
+          "variability": 0.4
+        },
+        {
+          "scenario": 9,
+          "seed": 187260807,
+          "variability": 0.4
+        },
+        {
+          "scenario": 17,
+          "seed": 187365536,
+          "variability": 0.4
+        },
+        {
+          "scenario": 20,
+          "seed": 187470265,
+          "variability": 0.4
+        },
+        {
+          "scenario": 21,
+          "seed": 187574994,
+          "variability": 0.4
+        },
+        {
+          "scenario": 22,
+          "seed": 187679723,
+          "variability": 0.4
+        },
+        {
+          "scenario": 23,
+          "seed": 187784452,
+          "variability": 0.4
+        }
+      ],
+      "conditions": {
+        "normal": {
+          "landings": 32,
+          "episodes": 40
+        },
+        "covered": {
+          "landings": 0,
+          "episodes": 40
+        }
+      }
     }
   },
   "sourceSHA256": {
     "artifacts/suite-training/vertical/static-probe.json": "340051b0b6166113ba683be112b3ef7438f85249d827253fe17b41c43a6c68f9",
     "artifacts/suite-training/dynamic-initial-probe.json": "c8224c2e9bac3e7eee38455bb078acfb8b2ddc4a6ecc255b91d64b3eadf5679f",
     "artifacts/suite-training/vertical/state.json": "62f8713989480a310bd8a9eb40e52697384717caae2581401836309bb62c924d",
+    "artifacts/suite-training/vertical/trials.jsonl": "97121171a6fe38359de55e2887e0c8398d542c90af22bfecdcfb022cb550231c",
     "artifacts/suite-training/vertical-robust/state.json": "d779d3ae63259ebc08f9856c4fb06fd4a7924d85516045a4e6159a9ed3abb4ec",
+    "artifacts/suite-training/vertical-robust/trials.jsonl": "19502bbc8c32bfc10ff93cd49f73f5e4a7e57d9e313670d59737614889008e72",
     "artifacts/suite-training/attitude/state.json": "377a84c27a4af15d72527d94ed8fcbba2d3c507146a693ef8fbcedb9ebcd8596",
+    "artifacts/suite-training/attitude/trials.jsonl": "df275fad8642769f008ad5c6abeeb3c90cd75abf0fa5d76e1a5fad986bb47a9d",
     "artifacts/suite-training/ground-general/state.json": "30604ea2d6aa81892e2ab9d99a98a194a997b088af135e8263db3bbb6bfb55fe",
+    "artifacts/suite-training/ground-general/trials.jsonl": "8465735393996ee3c01a18c43070726a39534d9c2e9c297e906d764579f33df3",
     "artifacts/suite-training/attitude-correlated/state.json": "d013b329c7f45bcabe57711e84903659e93f4dd7d74c52ee04f681898b292723",
+    "artifacts/suite-training/attitude-correlated/trials.jsonl": "d34149e68ac9c92c3ed6efecdaffd36c3abd8d425c02be30f60a2d15bba93ba7",
+    "artifacts/suite-training/engine-transition/state.json": "b2f8c6d2a2457ea8efa8b9f48c39891d98012f02b07a009686ccc1dccf6f9ac3",
+    "artifacts/suite-training/engine-transition/trials.jsonl": "3059bc67c0d3b9941b573f04eb3bddbfe06d4010cf39620a8f69ad82644dc079",
+    "artifacts/suite-training/recovery-grid/state.json": "d78c8a02ec7cc56dfb52373955553fd57a11ac4124db64b9ea83398ba74d712c",
+    "artifacts/suite-training/recovery-grid/trials.jsonl": "6853d77375106590bdfa47e1ebf9d4588fd5219cc828caebc1c9f5cf92c12ce6",
+    "artifacts/suite-training/attitude-adaptive/state.json": "ef7071aa793b136389bbbba0bbb1ae4757fc55e6972dd022ef68ca8db00e2129",
+    "artifacts/suite-training/attitude-adaptive/trials.jsonl": "a93de03b1a1b484ebb14f8618df59fa529f890aceba4734bcd3bfffd11a20603",
+    "artifacts/suite-training/orbital-insertion/state.json": "5ea94a9a0346c58effa634f834902cfe26e7e90560cd737aa675cea3ea98d052",
+    "artifacts/suite-training/orbital-insertion/trials.jsonl": "0cba53a444116e24e99d7fe27bf0f1839c92c78cdd942df2f79a73798c2573e4",
+    "artifacts/suite-training/orbital-progress/state.json": "87f4df9b9dab751f8c92e65fd71c1b24a21c4e40a1fce744528e47f7d4604c01",
+    "artifacts/suite-training/orbital-progress/trials.jsonl": "c310328d0dbcdb023aff434b57b639907c564c8628845ce042ef63883f238d19",
     "artifacts/suite-training/vertical-selection/selection.json": "a5d3762bc77bde08dbb6242930b25fc67d5d006a79bde5a316a1b6327f52beaf",
     "artifacts/suite-training/vertical-robust/selection.json": "f344913eedb0d5eb0061aaea3093775764451347337ae151e203d2dc9e1266c9",
-    "artifacts/suite-training/attitude-g2-selection/selection.json": "932384015c78f82e70967bb6f0b3236e7710b818029bb44e2976566780929e15"
+    "artifacts/suite-training/attitude-g2-selection/selection.json": "932384015c78f82e70967bb6f0b3236e7710b818029bb44e2976566780929e15",
+    "artifacts/suite-training/attitude-adaptive-g6-selection/selection.json": "7457a316f8458b4f7999ce3ea449f38029b99d4ce6598227a7ef34d9edbb25bf"
   }
 }

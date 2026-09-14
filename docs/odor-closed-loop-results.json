@@ -1,6 +1,6 @@
 {
   "schema": "odor-closed-loop-summary-v1",
-  "createdAt": "2026-09-14T02:19:35.693Z",
+  "createdAt": "2026-09-14T02:27:05.941Z",
   "plan": {
     "purpose": "Determine whether a fixed small odor input helps or harms complete flights. Software sensitivity experiment, not a living-fly intervention or physical dose search.",
     "checkpoint": "dist/assets/embodied-starter.json",
@@ -112,6 +112,19 @@
   "planSHA256": "88d223491265100a7309e02c5a72a30d3aca81cfded079b7b55dc956c264f059",
   "reportFile": "artifacts/suite-training/odor-closed-loop/odor-flights.json",
   "reportSHA256": "d7b90ce0e87be1334c57382dfdff06b536050262d21119cc3169987093f39a06",
+  "releaseFile": "docs/assets/four-mission-report.json",
+  "releaseSHA256": "027cb2b8c07d4099b294decad5d4b52d08d6d66cf066900effc28103df16b693",
+  "resolvedSources": {
+    "dist/assets/embodied-starter.json": "artifacts/odor-interface/four-mission-runtime/dist/assets/embodied-starter.json",
+    "dist/full-network.js": "artifacts/odor-interface/four-mission-runtime/dist/full-network.js",
+    "dist/full-controller.js": "artifacts/odor-interface/four-mission-runtime/dist/full-controller.js",
+    "dist/engine3d.js": "artifacts/odor-interface/four-mission-runtime/dist/engine3d.js",
+    "dist/orbital.js": "artifacts/odor-interface/four-mission-runtime/dist/orbital.js",
+    "dist/missions.js": "dist/missions.js",
+    "dist/perception.js": "artifacts/odor-interface/four-mission-runtime/dist/perception.js",
+    "dist/flight-instruments.js": "artifacts/odor-interface/four-mission-runtime/dist/flight-instruments.js",
+    "dist/sensory-inputs.js": "dist/sensory-inputs.js"
+  },
   "trainerSHA256": "cfdff17c99bc871a29a1b50b631f14bef2970b56c03d881e067f3d838b8d5e2e",
   "weightSHA256": "5c01d3c5a48a435d6d226ea1f8b5b1a2372c48b1e2248479595281ee1cfc4cf5",
   "backend": "javascript-rate",

@@ -9,17 +9,22 @@ const sha=file=>crypto.createHash('sha256').update(fs.readFileSync(file)).digest
 const folder='artifacts/suite-training/odor-closed-loop';
 const planFile='artifacts/odor-interface/closed-loop-plan.json',plan=read(planFile);
 const reportFile=folder+'/odor-flights.json',r=read(reportFile);
-const release=read('dist/assets/landing-report.json');
+const releaseFile='docs/assets/four-mission-report.json',release=read(releaseFile);
+const resolvedSources={};
+const verifySource=(file,digest)=>{
+ const resolved=fs.existsSync(file)&&sha(file)===digest?file:'artifacts/odor-interface/four-mission-runtime/'+file;
+ assert.equal(sha(resolved),digest,file);resolvedSources[file]=resolved;
+};
 assert(r.complete,'Wait for all matched flights');
 assert.equal(r.backend,'javascript-rate');assert.equal(r.nativeBuild,null);
-assert.equal(sha(plan.checkpoint),plan.checkpointSHA256);
+verifySource(plan.checkpoint,plan.checkpointSHA256);
 assert.equal(sha(plan.sourceAssay),plan.sourceAssaySHA256);
 assert.equal(sha(plan.frozenParameterFile),plan.frozenParameterSHA256);
 assert.deepEqual(r.parameters.slice(0,13),read(plan.frozenParameterFile).parameters);
 assert(r.parameters.slice(13).every(v=>v===0));
 assert.equal(r.calibrationHash,sha('artifacts/suite-training/sensory-basis-flights.json'));
 assert.equal(sha(folder+'/source-'+r.sourceSHA256+'.mjs'),r.sourceSHA256);
-for(const [file,digest] of Object.entries(release.sourceHashes))if(file.startsWith('dist/'))assert.equal(sha(file),digest,file);
+for(const [file,digest] of Object.entries(release.sourceHashes))if(file.startsWith('dist/'))verifySource(file,digest);
 const weights=read(folder+'/odor-flights-weights.json');
 const weightSHA256=crypto.createHash('sha256').update(Buffer.from(Float64Array.from(weights).buffer)).digest('hex');
 assert.equal(weightSHA256,r.weightSHA256);assert.equal(weightSHA256,release.weightSHA256);
@@ -56,6 +61,6 @@ const comparisons=r.modes.filter(m=>m!=='normal').map(mode=>{
  const outcomes=matched.map(c=>({seed:c.seed,scenario:c.scenario,variability:c.variability,baselineLanded:c.flights.normal.landed,odorLanded:c.flights[mode].landed,scoreDelta:c.flights[mode].score-c.flights.normal.score}));
  return {mode,rescued:outcomes.filter(c=>!c.baselineLanded&&c.odorLanded).length,harmed:outcomes.filter(c=>c.baselineLanded&&!c.odorLanded).length,bothLanded:outcomes.filter(c=>c.baselineLanded&&c.odorLanded).length,bothFailed:outcomes.filter(c=>!c.baselineLanded&&!c.odorLanded).length,meanScoreDelta:outcomes.reduce((v,c)=>v+c.scoreDelta,0)/outcomes.length,outcomes};
 });
-const summary={schema:'odor-closed-loop-summary-v1',createdAt:new Date().toISOString(),plan,planSHA256:sha(planFile),reportFile,reportSHA256:sha(reportFile),trainerSHA256:r.sourceSHA256,weightSHA256,backend:r.backend,fullFlights:r.flights.length,layoutCheck:{file:layoutFile,SHA256:sha(layoutFile),exactMatch:true},conditions,comparisons,matched,interpretation:'A fixed-readout software pilot on 16 prespecified matched starts. Record landing benefits and harms together. No chemical dose, biological effect, new controller selection or deployment is established.'};
+const summary={schema:'odor-closed-loop-summary-v1',createdAt:new Date().toISOString(),plan,planSHA256:sha(planFile),reportFile,reportSHA256:sha(reportFile),releaseFile,releaseSHA256:sha(releaseFile),resolvedSources,trainerSHA256:r.sourceSHA256,weightSHA256,backend:r.backend,fullFlights:r.flights.length,layoutCheck:{file:layoutFile,SHA256:sha(layoutFile),exactMatch:true},conditions,comparisons,matched,interpretation:'A fixed-readout software pilot on 16 prespecified matched starts. Record landing benefits and harms together. No chemical dose, biological effect, new controller selection or deployment is established.'};
 const output='docs/odor-closed-loop-results.json';fs.writeFileSync(output,JSON.stringify(summary,null,2)+'\n');
 console.log(JSON.stringify({output,verifiedFlights:r.flights.length,conditions:conditions.map(({mode,landings,episodes})=>({mode,landings,episodes})),comparisons:comparisons.map(({outcomes,...c})=>c)}));

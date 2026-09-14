@@ -44,15 +44,28 @@ fig.savefig(out/'suite-calibration-probe.png', dpi=180)
 plt.close(fig)
 
 states = {}
-for name in ['vertical', 'vertical-robust', 'attitude', 'ground-general', 'attitude-correlated']:
+for name in ['vertical', 'vertical-robust', 'attitude', 'ground-general', 'attitude-correlated',
+             'engine-transition', 'recovery-grid', 'attitude-adaptive', 'orbital-insertion', 'orbital-progress']:
     path = folder/name/'state.json'
     if path.exists():
         sources.append(path)
         d = json.loads(path.read_text())
         states[name] = {'generation': d['generation'], 'episodes': d['episodes'],
                         'history': [{k:r.get(k) for k in ['generation','episodes','landings','batch','score','fitness']} for r in d['history']]}
+        trials_file = folder/name/'trials.jsonl'
+        if trials_file.exists():
+            sources.append(trials_file)
+            generations = [json.loads(line) for line in trials_file.read_text().splitlines() if line.strip()]
+            all_flights = [f for g in generations for r in g['results'] for f in r['flights']]
+            assert len(generations) == d['generation'] and len(all_flights) == d['episodes'], name
+            assert all(not f.get('censored', False) for f in all_flights)
+            states[name]['allCandidateFlights'] = len(all_flights)
+            states[name]['allCandidateLandings'] = sum(f['landed'] for f in all_flights)
+            if any('milestones' in f for f in all_flights):
+                states[name]['milestoneCounts'] = {milestone: sum(any(m['name'] == milestone for m in f.get('milestones', [])) for f in all_flights)
+                    for milestone in ['Launch','Space','Stable orbit','One full orbit','Deorbit','Atmospheric entry','Final approach']}
 selections = {}
-for name in ['vertical-selection', 'vertical-robust', 'ground-general', 'attitude-g2-selection']:
+for name in ['vertical-selection', 'vertical-robust', 'ground-general', 'attitude-g2-selection', 'attitude-adaptive-g6-selection']:
     path = folder/name/'selection.json'
     if path.exists():
         d = json.loads(path.read_text())
