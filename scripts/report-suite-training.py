@@ -78,9 +78,59 @@ for name in ['vertical-selection', 'vertical-robust', 'ground-general', 'attitud
                             'conditions':{mode:{'landings':sum(f['landed'] for f in d['flights'] if f['mode']==mode),
                                                 'episodes':sum(f['mode']==mode for f in d['flights'])}
                                           for mode in d['modes']}}
+
+development = {}
+scout_path = folder/'adaptive-ground-scout/scout.json'
+if scout_path.exists():
+    plan_path = scout_path.parent/'plan.json'
+    checkpoint_path = scout_path.parent/'frozen-checkpoint.json'
+    scout, plan, checkpoint = [json.loads(p.read_text()) for p in [scout_path, plan_path, checkpoint_path]]
+    assert scout['complete'] and scout['cases'] == plan['cases'] and scout['modes'] == plan['modes'] == ['normal']
+    assert scout['parameters'] == checkpoint['parameters'] and scout['weightSHA256'] == plan['weightSHA256']
+    assert hashlib.sha256(checkpoint_path.read_bytes()).hexdigest() == plan['checkpointSHA256']
+    assert len(scout['flights']) == plan['expectedFlights'] == 28
+    expected = {(c['scenario'], c['seed'], c['variability']) for c in plan['cases']}
+    actual = {(f['scenario'], f['seed'], f['variation']['level']) for f in scout['flights']}
+    assert actual == expected and len(actual) == 28
+    assert all(f['mode'] == 'normal' and not f['censored'] for f in scout['flights'])
+    sources.extend([scout_path, plan_path, checkpoint_path])
+    development['additionalGroundScout'] = {
+        'scope': plan['purpose'], 'weightSHA256': scout['weightSHA256'],
+        'flights': scout['flights'], 'landings': sum(f['landed'] for f in scout['flights']),
+        'byScenario': {str(s): {'landings': sum(f['landed'] for f in scout['flights'] if f['scenario'] == s),
+                              'flights': sum(f['scenario'] == s for f in scout['flights'])} for s in plan['profiles']}}
+
+comparison_path = folder/'orbital-calibration-comparison.json'
+if comparison_path.exists():
+    comparison = json.loads(comparison_path.read_text())
+    for path, expected in comparison['sourceSHA256'].items():
+        assert hashlib.sha256((root/path).read_bytes()).hexdigest() == expected, path
+    old_path = folder/'orbital-progress-trained-probe/probe.json'
+    new_path = folder/'orbital-calibrated-probe/probe.json'
+    old, new = [json.loads(p.read_text()) for p in [old_path, new_path]]
+    assert new['parameters'] == old['parameters'] + [0]*5
+    assert old['cases'][0] == new['cases'][0]
+    assert len(new['cases']) == len(new['results']) == 3
+    probe_summaries = []
+    for case, result in zip(new['cases'], new['results']):
+        assert result['parameters'] == new['parameters'] and len(result['flights']) == 1
+        flight = result['flights'][0]
+        assert (flight['scenario'], flight['seed'], flight['variation']['level']) == (case['scenario'], case['seed'], case['variability'])
+        assert not flight['censored'] and len(flight['trajectory']) > 8
+        trajectory = flight['trajectory'][8:]
+        error = np.array([r['decoded'] for r in trajectory]) - np.array([r['presented'] for r in trajectory])
+        probe_summaries.append({**{k: v for k, v in flight.items() if k != 'trajectory'},
+                                'decisions': len(flight['trajectory']),
+                                'decodingRMSEAfterEightDecisions': dict(zip(comparison['names'], np.sqrt((error*error).mean(axis=0)).tolist()))})
+    sources.extend([comparison_path, old_path, new_path])
+    development['orbitalCalibration'] = {
+        'scope': 'Held-out calibration contexts selected regularization; trajectory probes are development checks, not final mission validation.',
+        'names': comparison['names'], 'collections': comparison['collections'],
+        'newProbeFlights': probe_summaries,
+        'matchedOldProbeFlight': {k: v for k, v in old['results'][0]['flights'][0].items() if k != 'trajectory'}}
 report = {'scope':'Training and model-selection snapshot and one matched calibration probe; not final mission validation',
           'calibrationProbe': [{'seed':f['seed'],'landed':f['landed'],'reason':f['reason'],'touchdown':f['touchdown'],'time':f['time']} for f in flights],
-          'training':states, 'selections':selections,
+          'training':states, 'selections':selections, 'development':development,
           'sourceSHA256':{str(p.relative_to(root)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sources}}
 (root/'docs/suite-training-progress.json').write_text(json.dumps(report,indent=2))
 print(json.dumps({name:{'generation':r['generation'],'episodes':r['episodes']} for name,r in states.items()}))

@@ -1358,6 +1358,1297 @@
       }
     }
   },
+  "development": {
+    "additionalGroundScout": {
+      "scope": "Development survey of the 14 additional ground missions using the frozen released generation-six controller; one nominal and one varied start per mission, not a reliability test.",
+      "weightSHA256": "eaf58811ecf1862590ac820a0d8dcafbfad66346850c51aea2372b3346626a3c",
+      "flights": [
+        {
+          "seed": 223804786,
+          "scenario": 3,
+          "activationGain": 1,
+          "score": -162.08398009747378,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.013772226617231542,
+          "reason": "Lateral impact",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 8.022275640570012,
+            "speed": 1.6714858471946614,
+            "lateral": 3.0172055733155654,
+            "tilt": 0.09663339413919422
+          },
+          "time": 51.29999999999922,
+          "censored": false,
+          "mode": "normal"
+        },
+        {
+          "seed": 223700057,
+          "scenario": 2,
+          "activationGain": 1,
+          "score": -28.50786633210292,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.1183403070722526,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 0.7640233256279442,
+            "speed": 1.9182696775672095,
+            "lateral": 0.6863266462075862,
+            "tilt": 0.1059475850915379
+          },
+          "time": 56.9999999999989,
+          "censored": false,
+          "mode": "normal"
+        },
+        {
+          "seed": 223909515,
+          "scenario": 4,
+          "activationGain": 1,
+          "score": -178.960849282749,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.04471912571891013,
+          "reason": "Lateral impact",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 6.413034438649517,
+            "speed": 1.9456331982643205,
+            "lateral": 3.999622480652773,
+            "tilt": 0.11819212911098728
+          },
+          "time": 56.699999999998916,
+          "censored": false,
+          "mode": "normal"
+        },
+        {
+          "seed": 224014244,
+          "scenario": 5,
+          "activationGain": 1,
+          "score": -194.8473566694264,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.03931129251134071,
+          "reason": "Lateral impact",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 6.571907632689934,
+            "speed": 2.0445078003059507,
+            "lateral": 3.1346566090257717,
+            "tilt": 0.12642704872571528
+          },
+          "time": 62.2999999999986,
+          "censored": false,
+          "mode": "normal"
+        },
+        {
+          "seed": 224118973,
+          "scenario": 8,
+          "activationGain": 1,
+          "score": 15.309754811601564,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.08719811241102884,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 4.681901742591213,
+            "speed": 1.9101292982430407,
+            "lateral": 0.7808148167167324,
+            "tilt": 0.019061576670423866
+          },
+          "time": 42.24999999999974,
+          "censored": false,
+          "mode": "normal"
+        },
+        {
+          "seed": 224223702,
+          "scenario": 10,
+          "activationGain": 1,
+          "score": -20.169244929975463,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.062068465254855244,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 9.31697232755983,
+            "speed": 1.9184145672114288,
+            "lateral": 2.477615714901983,
+            "tilt": 0.0426227990046443
+          },
+          "time": 53.79999999999908,
+          "censored": false,
+          "mode": "normal"
+        },
+        {
+          "seed": 224328431,
+          "scenario": 11,
+          "activationGain": 1,
+          "score": -172.39458226599695,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.09327572921286972,
+          "reason": "Missed the ship",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 11.403186511669158,
+            "speed": 1.5481680243927554,
+            "lateral": 2.946465167514782,
+            "tilt": 0.029759941410741904
+          },
+          "time": 55.54999999999898,
+          "censored": false,
+          "mode": "normal"
+        },
+        {
+          "seed": 224433160,
+          "scenario": 12,
+          "activationGain": 1,
+          "score": -16.81429422706111,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.12401359806430044,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 3.255790610381688,
+            "speed": 2.124801966788026,
+            "lateral": 0.7020561909033615,
+            "tilt": 0.029778423760709022
+          },
+          "time": 49.8999999999993,
+          "censored": false,
+          "mode": "normal"
+        },
+        {
+          "seed": 224537889,
+          "scenario": 13,
+          "activationGain": 1,
+          "score": -269.12248989572794,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.04226898007896707,
+          "reason": "Missed the ship",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 70.60344450183867,
+            "speed": 1.7867769349314413,
+            "lateral": 4.2513441200176985,
+            "tilt": 0.27946986026103654
+          },
+          "time": 57.749999999998856,
+          "censored": false,
+          "mode": "normal"
+        },
+        {
+          "seed": 224642618,
+          "scenario": 14,
+          "activationGain": 1,
+          "score": 56.93796361719029,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": -0.09913506135152324,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 6.490671365568728,
+            "speed": 2.0422010067561125,
+            "lateral": 1.0984542612235708,
+            "tilt": 0.016662344507059383
+          },
+          "time": 42.14999999999974,
+          "censored": false,
+          "mode": "normal"
+        },
+        {
+          "seed": 224747347,
+          "scenario": 15,
+          "activationGain": 1,
+          "score": -8.96697103028815,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.07661506803384024,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 7.430455208874016,
+            "speed": 2.062214485162787,
+            "lateral": 1.3824491591431174,
+            "tilt": 0.01427445780784106
+          },
+          "time": 50.49999999999927,
+          "censored": false,
+          "mode": "normal"
+        },
+        {
+          "seed": 224852076,
+          "scenario": 16,
+          "activationGain": 1,
+          "score": -27.75282689154932,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.14019309281676978,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 5.658351787654448,
+            "speed": 1.746767792596656,
+            "lateral": 2.2585813388030527,
+            "tilt": 0.047735278741191045
+          },
+          "time": 55.39999999999899,
+          "censored": false,
+          "mode": "normal"
+        },
+        {
+          "seed": 224956805,
+          "scenario": 18,
+          "activationGain": 1,
+          "score": -332.9133759444978,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.2483129478121257,
+          "reason": "Approach timed out",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": null,
+          "time": 65.04999999999845,
+          "censored": false,
+          "mode": "normal"
+        },
+        {
+          "seed": 225061534,
+          "scenario": 19,
+          "activationGain": 1,
+          "score": -203.91969397666082,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.07959068113324941,
+          "reason": "Lateral impact",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 5.369690485514799,
+            "speed": 1.9554273676631784,
+            "lateral": 4.305497606828775,
+            "tilt": 0.1497527126793268
+          },
+          "time": 63.749999999998515,
+          "censored": false,
+          "mode": "normal"
+        },
+        {
+          "seed": 225166263,
+          "scenario": 2,
+          "activationGain": 1,
+          "score": -32.21056708734659,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.09205759422048797,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0.4,
+            "mass": 1.0143498149940655,
+            "thrust": 1.0302534548969455,
+            "servo": 0.948765896794797,
+            "wind": 0.8237534006398529,
+            "deck": 0.9691383753290344,
+            "noise": 0.004
+          },
+          "touchdown": {
+            "error": 3.7109245185745903,
+            "speed": 1.9131909743625923,
+            "lateral": 0.24346337651520145,
+            "tilt": 0.029128964157276883
+          },
+          "time": 57.54999999999887,
+          "censored": false,
+          "mode": "normal"
+        },
+        {
+          "seed": 225270992,
+          "scenario": 3,
+          "activationGain": 1,
+          "score": -165.59202821464294,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.10966499545437194,
+          "reason": "Lateral impact",
+          "variation": {
+            "level": 0.4,
+            "mass": 0.9866915977209771,
+            "thrust": 0.9713572271328792,
+            "servo": 1.100391776685586,
+            "wind": 1.2414256485044053,
+            "deck": 0.906837830088658,
+            "noise": 0.004
+          },
+          "touchdown": {
+            "error": 5.343026996003283,
+            "speed": 2.1013408384663457,
+            "lateral": 3.5036369578698983,
+            "tilt": 0.04120797173818947
+          },
+          "time": 52.149999999999174,
+          "censored": false,
+          "mode": "normal"
+        },
+        {
+          "seed": 225375721,
+          "scenario": 4,
+          "activationGain": 1,
+          "score": -38.22548993385858,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.0334041139636378,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0.4,
+            "mass": 0.9925775472496504,
+            "thrust": 1.003009571185709,
+            "servo": 0.9935070260973822,
+            "wind": 1.053384568653046,
+            "deck": 1.046361566922783,
+            "noise": 0.004
+          },
+          "touchdown": {
+            "error": 4.921529095329266,
+            "speed": 1.824748621383914,
+            "lateral": 2.9824395046734766,
+            "tilt": 0.009004424476587598
+          },
+          "time": 59.549999999998754,
+          "censored": false,
+          "mode": "normal"
+        },
+        {
+          "seed": 225480450,
+          "scenario": 5,
+          "activationGain": 1,
+          "score": -38.40386852469223,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.020083324537808464,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0.4,
+            "mass": 1.0289056870896363,
+            "thrust": 0.9872162466661328,
+            "servo": 0.9486377607315213,
+            "wind": 0.9215470249975242,
+            "deck": 1.0215284824854518,
+            "noise": 0.004
+          },
+          "touchdown": {
+            "error": 8.762934000117871,
+            "speed": 2.0541892516878124,
+            "lateral": 2.6094445039548435,
+            "tilt": 0.10586356532430102
+          },
+          "time": 60.69999999999869,
+          "censored": false,
+          "mode": "normal"
+        },
+        {
+          "seed": 225585179,
+          "scenario": 8,
+          "activationGain": 1,
+          "score": 10.746404492657788,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.10751162350298957,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0.4,
+            "mass": 1.0056108511648514,
+            "thrust": 0.9565813381746229,
+            "servo": 1.0299022621066531,
+            "wind": 0.8241390364325208,
+            "deck": 0.9329107190776583,
+            "noise": 0.004
+          },
+          "touchdown": {
+            "error": 5.144729703166178,
+            "speed": 2.1197292436620496,
+            "lateral": 1.5208439205339337,
+            "tilt": 0.005060981237951677
+          },
+          "time": 43.99999999999964,
+          "censored": false,
+          "mode": "normal"
+        },
+        {
+          "seed": 225689908,
+          "scenario": 10,
+          "activationGain": 1,
+          "score": -23.245513780666414,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.13060164189002368,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0.4,
+            "mass": 0.9582643678861448,
+            "thrust": 1.0211384786979443,
+            "servo": 1.038971405001722,
+            "wind": 0.7610149102797245,
+            "deck": 1.0511761157191273,
+            "noise": 0.004
+          },
+          "touchdown": {
+            "error": 9.746290257806296,
+            "speed": 1.8967570917935968,
+            "lateral": 2.8498371628390546,
+            "tilt": 0.03887568412828562
+          },
+          "time": 54.599999999999035,
+          "censored": false,
+          "mode": "normal"
+        },
+        {
+          "seed": 225794637,
+          "scenario": 11,
+          "activationGain": 1,
+          "score": -173.81592066282215,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.13099253306088413,
+          "reason": "Attitude at impact",
+          "variation": {
+            "level": 0.4,
+            "mass": 1.003124057979773,
+            "thrust": 0.9876280331016061,
+            "servo": 0.8556689538557204,
+            "wind": 1.0526526607709863,
+            "deck": 1.0470946288492984,
+            "noise": 0.004
+          },
+          "touchdown": {
+            "error": 9.18442717676724,
+            "speed": 2.3700889677170562,
+            "lateral": 2.7787466062236543,
+            "tilt": 0.24129590033110965
+          },
+          "time": 52.299999999999166,
+          "censored": false,
+          "mode": "normal"
+        },
+        {
+          "seed": 225899366,
+          "scenario": 12,
+          "activationGain": 1,
+          "score": -22.968181897663342,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.04640128003236095,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0.4,
+            "mass": 0.9564841986216308,
+            "thrust": 1.049113508675192,
+            "servo": 0.8587439988661683,
+            "wind": 1.1371862817112444,
+            "deck": 1.0292237425652466,
+            "noise": 0.004
+          },
+          "touchdown": {
+            "error": 6.042303505607877,
+            "speed": 1.608453269257478,
+            "lateral": 2.473167278380959,
+            "tilt": 0.10028595706571194
+          },
+          "time": 53.09999999999912,
+          "censored": false,
+          "mode": "normal"
+        },
+        {
+          "seed": 226004095,
+          "scenario": 13,
+          "activationGain": 1,
+          "score": -257.9863494866152,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.07105853715047941,
+          "reason": "Missed the ship",
+          "variation": {
+            "level": 0.4,
+            "mass": 0.9876899463317089,
+            "thrust": 0.989597170202765,
+            "servo": 0.9257981548671752,
+            "wind": 1.0590980954299014,
+            "deck": 0.9581147783851518,
+            "noise": 0.004
+          },
+          "touchdown": {
+            "error": 76.96970562691226,
+            "speed": 1.7766522543590304,
+            "lateral": 1.7491325973752712,
+            "tilt": 0.23171875141706136
+          },
+          "time": 54.09999999999906,
+          "censored": false,
+          "mode": "normal"
+        },
+        {
+          "seed": 226108824,
+          "scenario": 14,
+          "activationGain": 1,
+          "score": 57.74008704117479,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": -0.0023847649630774916,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0.4,
+            "mass": 0.9994518609845956,
+            "thrust": 0.9656117189183112,
+            "servo": 1.1173841243318068,
+            "wind": 0.8209083927410477,
+            "deck": 1.0101802383460239,
+            "noise": 0.004
+          },
+          "touchdown": {
+            "error": 5.223079188697305,
+            "speed": 1.727872744057197,
+            "lateral": 1.3235515875581307,
+            "tilt": 0.04048183438658338
+          },
+          "time": 41.99999999999975,
+          "censored": false,
+          "mode": "normal"
+        },
+        {
+          "seed": 226213553,
+          "scenario": 15,
+          "activationGain": 1,
+          "score": -8.025797880740086,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.12425866871361556,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0.4,
+            "mass": 1.0163374189090526,
+            "thrust": 1.0325296818160956,
+            "servo": 0.8150836553020699,
+            "wind": 1.2064651858471998,
+            "deck": 1.0147173560817173,
+            "noise": 0.004
+          },
+          "touchdown": {
+            "error": 3.508173130343648,
+            "speed": 1.593376090472825,
+            "lateral": 0.9053569505999313,
+            "tilt": 0.019531892616449144
+          },
+          "time": 49.74999999999931,
+          "censored": false,
+          "mode": "normal"
+        },
+        {
+          "seed": 226318282,
+          "scenario": 16,
+          "activationGain": 1,
+          "score": -19.576760074042596,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.10846234127988427,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0.4,
+            "mass": 1.0069257806636827,
+            "thrust": 0.9851209352533743,
+            "servo": 0.9659725831169691,
+            "wind": 0.8861339877381187,
+            "deck": 1.0695342082277446,
+            "noise": 0.004
+          },
+          "touchdown": {
+            "error": 10.994315435731197,
+            "speed": 2.2721325583572245,
+            "lateral": 1.565481951090538,
+            "tilt": 0.11562632429817836
+          },
+          "time": 53.4499999999991,
+          "censored": false,
+          "mode": "normal"
+        },
+        {
+          "seed": 226423011,
+          "scenario": 18,
+          "activationGain": 1,
+          "score": -356.83422216855956,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.2743587125920363,
+          "reason": "Approach timed out",
+          "variation": {
+            "level": 0.4,
+            "mass": 1.023877863608132,
+            "thrust": 0.981824721563139,
+            "servo": 1.0594127551489,
+            "wind": 0.982146059244113,
+            "deck": 0.9849101389069504,
+            "noise": 0.004
+          },
+          "touchdown": null,
+          "time": 65.04999999999845,
+          "censored": false,
+          "mode": "normal"
+        },
+        {
+          "seed": 226527740,
+          "scenario": 19,
+          "activationGain": 1,
+          "score": -194.0008882127458,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.04483103853019365,
+          "reason": "Approach timed out",
+          "variation": {
+            "level": 0.4,
+            "mass": 0.9665583648692985,
+            "thrust": 0.9929380533916554,
+            "servo": 0.9628020708637762,
+            "wind": 1.0803733703838763,
+            "deck": 1.0107810701398645,
+            "noise": 0.004
+          },
+          "touchdown": null,
+          "time": 65.04999999999845,
+          "censored": false,
+          "mode": "normal"
+        }
+      ],
+      "landings": 16,
+      "byScenario": {
+        "2": {
+          "landings": 2,
+          "flights": 2
+        },
+        "3": {
+          "landings": 0,
+          "flights": 2
+        },
+        "4": {
+          "landings": 1,
+          "flights": 2
+        },
+        "5": {
+          "landings": 1,
+          "flights": 2
+        },
+        "8": {
+          "landings": 2,
+          "flights": 2
+        },
+        "10": {
+          "landings": 2,
+          "flights": 2
+        },
+        "11": {
+          "landings": 0,
+          "flights": 2
+        },
+        "12": {
+          "landings": 2,
+          "flights": 2
+        },
+        "13": {
+          "landings": 0,
+          "flights": 2
+        },
+        "14": {
+          "landings": 2,
+          "flights": 2
+        },
+        "15": {
+          "landings": 2,
+          "flights": 2
+        },
+        "16": {
+          "landings": 2,
+          "flights": 2
+        },
+        "18": {
+          "landings": 0,
+          "flights": 2
+        },
+        "19": {
+          "landings": 0,
+          "flights": 2
+        }
+      }
+    },
+    "orbitalCalibration": {
+      "scope": "Held-out calibration contexts selected regularization; trajectory probes are development checks, not final mission validation.",
+      "names": [
+        "clearance",
+        "verticalSpeed",
+        "offsetX",
+        "offsetZ",
+        "driftX",
+        "driftZ",
+        "pitch",
+        "roll",
+        "tangentSpeed",
+        "travel",
+        "destination",
+        "fuel",
+        "body_0",
+        "body_1",
+        "body_2",
+        "body_3",
+        "body_4",
+        "body_5",
+        "body_6",
+        "body_7",
+        "body_8",
+        "body_10",
+        "body_11",
+        "body_12",
+        "body_13",
+        "body_14",
+        "body_15",
+        "body_17"
+      ],
+      "collections": {
+        "flight-calibration": {
+          "samples": 910,
+          "contexts": [
+            2000004,
+            2000009,
+            2000014,
+            2000019
+          ],
+          "oldRMSE": [
+            0.024107262180497087,
+            0.05406904687820481,
+            0.11328562296452717,
+            0.11329884614022928,
+            0.056671347729642316,
+            0.05746628379797937,
+            0.016095124029386284,
+            0.021590734922467554,
+            0.019277710201231927,
+            0.045988427149186044,
+            0.05040165945099147,
+            0.0487830030692636,
+            0.00034055137954024903,
+            6.52102439875592e-05,
+            6.278802126605628e-05,
+            0.00015165712236094318,
+            0.0001744881380877123,
+            7.541639987238114e-05,
+            4.143901438983235e-05,
+            4.745422581836578e-05,
+            2.461533404170414e-07,
+            0.0001398403222729614,
+            0.00015959381648655293,
+            0.0009428483147442156,
+            0.0015988507456797052,
+            0.0007444185355633093,
+            0.0006498122206797212,
+            2.4153162872080346e-05
+          ],
+          "newRMSE": [
+            0.03113151570882426,
+            0.05378630600125304,
+            0.11273750931382642,
+            0.11148192022743644,
+            0.05608239105277913,
+            0.05291647044789024,
+            0.014430976052985694,
+            0.02119151627531069,
+            0.017171419286347116,
+            0.038705204100116464,
+            0.06080500218252499,
+            0.041234306464069004,
+            0.00029745898010356695,
+            5.416479116897008e-05,
+            3.851971908815274e-05,
+            0.0001315740086161457,
+            0.00016815465578561906,
+            6.89967468058249e-05,
+            3.3712174871225185e-05,
+            3.818440388898222e-05,
+            1.7070278753876273e-07,
+            0.00013538265473918718,
+            0.00014954283506365122,
+            0.0009310094017553851,
+            0.0013921865650171248,
+            0.0006465185660165328,
+            0.0006025667931943631,
+            2.038822458447487e-05
+          ]
+        },
+        "orbital-flight-calibration": {
+          "samples": 3701,
+          "contexts": [
+            3000004,
+            3000009,
+            3000014
+          ],
+          "oldRMSE": [
+            0.07330454535141953,
+            0.12477714422120316,
+            0.04737749919970311,
+            0.047454477735955264,
+            0.036719827449504736,
+            0.03784769898607707,
+            0.07884709312328411,
+            0.3045385793240025,
+            0.01855957391466063,
+            0.056608155761401394,
+            0.03436259725266277,
+            0.034403581121445426,
+            0.00032170931816543865,
+            9.74840992188533e-05,
+            0.001386205097171338,
+            0.004650176250969668,
+            0.0070856423244532105,
+            0.0008458136874292267,
+            0.0005508926399565114,
+            0.0009402870731388517,
+            4.913774549413246e-07,
+            0.004020429915747043,
+            0.004340439103852446,
+            0.00020428567118493436,
+            0.004646171976815467,
+            0.00844868706064658,
+            0.0013393082296576258,
+            0.00019588725600056127
+          ],
+          "newRMSE": [
+            0.026875138003782585,
+            0.018570765696239205,
+            0.013210315658641272,
+            0.021502637887892327,
+            0.03052272532793635,
+            0.023574401534671906,
+            0.011540876837839303,
+            0.025067313320060534,
+            0.011544466250058871,
+            0.01752926741638533,
+            0.025433296433168783,
+            0.01849186838602708,
+            0.00018414184049397734,
+            2.1069856353397415e-05,
+            1.900107255081518e-05,
+            0.0002590603561238154,
+            0.0002371863210310481,
+            1.9349742698603017e-05,
+            3.175565357702173e-05,
+            2.2626436031528636e-05,
+            7.143569950956385e-08,
+            0.0006641966151685754,
+            0.0007189617076610328,
+            3.6845034581695747e-05,
+            0.0009284820449882169,
+            0.0004461466510219065,
+            0.0004495039170199439,
+            1.2723782301947416e-05
+          ]
+        }
+      },
+      "newProbeFlights": [
+        {
+          "seed": 714133,
+          "scenario": 24,
+          "activationGain": 1,
+          "score": -523.4418286524998,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": -0.05216480482707168,
+          "reason": "Flight left the recovery corridor",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": null,
+          "time": 479.6999999999956,
+          "orbitComplete": false,
+          "orbits": 0,
+          "maxAltitude": 11997.257957806012,
+          "milestones": [
+            {
+              "name": "Launch",
+              "time": 1.850000000000001,
+              "altitude": 4.125303308426494
+            },
+            {
+              "name": "Space",
+              "time": 293.1999999999956,
+              "altitude": 802.3057338500946
+            }
+          ],
+          "insertionQuality": 0.6934983451889882,
+          "insertionReward": 1032.1980142267857,
+          "censored": false,
+          "decisions": 1495,
+          "decodingRMSEAfterEightDecisions": {
+            "clearance": 0.012561391301404101,
+            "verticalSpeed": 0.02024127017985778,
+            "offsetX": 0.014091926740898724,
+            "offsetZ": 0.039664125900299614,
+            "driftX": 0.036619251470396526,
+            "driftZ": 0.02508827109608407,
+            "pitch": 0.011743495945151193,
+            "roll": 0.0822399658573969,
+            "tangentSpeed": 0.010439258755227686,
+            "travel": 0.004296137646298023,
+            "destination": 0.003219431081466016,
+            "fuel": 0.00532702556104881,
+            "body_0": 9.336738637202774e-05,
+            "body_1": 2.0530678162826085e-05,
+            "body_2": 2.198716346066691e-05,
+            "body_3": 0.00026093937757287674,
+            "body_4": 0.0005864313225836638,
+            "body_5": 1.944896059931291e-05,
+            "body_6": 3.0569886181968225e-05,
+            "body_7": 3.256662001602504e-05,
+            "body_8": 1.124862473304943e-07,
+            "body_10": 0.0004030975273620835,
+            "body_11": 0.0006880826979504391,
+            "body_12": 4.723627946975193e-05,
+            "body_13": 0.0009604849327284418,
+            "body_14": 0.00042383554422629533,
+            "body_15": 0.00042351782106585034,
+            "body_17": 1.5162121045217467e-05
+          }
+        },
+        {
+          "seed": 733800,
+          "scenario": 25,
+          "activationGain": 1,
+          "score": -531.1300867895154,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": -0.1055981855493251,
+          "reason": "Flight left the recovery corridor",
+          "variation": {
+            "level": 0.2,
+            "mass": 0.9800956421806843,
+            "thrust": 0.9968654453273597,
+            "servo": 0.9953174691978534,
+            "wind": 1.0708761659076644,
+            "deck": 1.030759383563896,
+            "noise": 0.002
+          },
+          "touchdown": null,
+          "time": 473.24999999999596,
+          "orbitComplete": false,
+          "orbits": 0,
+          "maxAltitude": 11995.474487190242,
+          "milestones": [
+            {
+              "name": "Launch",
+              "time": 1.7500000000000009,
+              "altitude": 4.013648958895109
+            },
+            {
+              "name": "Space",
+              "time": 286.24999999999596,
+              "altitude": 800.8595865310914
+            }
+          ],
+          "insertionQuality": 0.7397276721318331,
+          "insertionReward": 1087.6732065581996,
+          "censored": false,
+          "decisions": 1454,
+          "decodingRMSEAfterEightDecisions": {
+            "clearance": 0.012897059690955316,
+            "verticalSpeed": 0.024584661256130076,
+            "offsetX": 0.016135176790164452,
+            "offsetZ": 0.04475212730088375,
+            "driftX": 0.04200901322325766,
+            "driftZ": 0.03036626309721888,
+            "pitch": 0.011649983056720046,
+            "roll": 0.11847567166992878,
+            "tangentSpeed": 0.011044536154947689,
+            "travel": 0.004413963854812311,
+            "destination": 0.0031770510733956786,
+            "fuel": 0.005099558566102376,
+            "body_0": 0.00010071566178881651,
+            "body_1": 2.208762421463587e-05,
+            "body_2": 2.1843457379242073e-05,
+            "body_3": 0.00027271573530446264,
+            "body_4": 0.0006252245583956382,
+            "body_5": 1.811571002235691e-05,
+            "body_6": 3.201115740034945e-05,
+            "body_7": 3.258286226216724e-05,
+            "body_8": 1.2162229596565418e-07,
+            "body_10": 0.00043234654566616927,
+            "body_11": 0.0009294229881780868,
+            "body_12": 6.181678066649601e-05,
+            "body_13": 0.0011039086468672126,
+            "body_14": 0.0005116572035669897,
+            "body_15": 0.00044495322168552464,
+            "body_17": 1.5979995450557756e-05
+          }
+        },
+        {
+          "seed": 753467,
+          "scenario": 26,
+          "activationGain": 1,
+          "score": -522.2581750453556,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": -0.0664092798543803,
+          "reason": "Flight left the recovery corridor",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": null,
+          "time": 455.89999999999543,
+          "orbitComplete": false,
+          "orbits": 0,
+          "maxAltitude": 11997.687006038801,
+          "milestones": [
+            {
+              "name": "Launch",
+              "time": 1.800000000000001,
+              "altitude": 4.011041568370507
+            },
+            {
+              "name": "Space",
+              "time": 285.39999999999543,
+              "altitude": 800.8317027453091
+            }
+          ],
+          "insertionQuality": 0.7346161878490127,
+          "insertionReward": 1081.5394254188154,
+          "censored": false,
+          "decisions": 1463,
+          "decodingRMSEAfterEightDecisions": {
+            "clearance": 0.01171125560253749,
+            "verticalSpeed": 0.02204877513839976,
+            "offsetX": 0.014910419764502816,
+            "offsetZ": 0.03961296783181522,
+            "driftX": 0.038685482465287996,
+            "driftZ": 0.025913367614274697,
+            "pitch": 0.01110356632812732,
+            "roll": 0.08481896778980832,
+            "tangentSpeed": 0.011204258087548111,
+            "travel": 0.004148940632547264,
+            "destination": 0.003912089894107398,
+            "fuel": 0.004914230426567724,
+            "body_0": 9.220417439176485e-05,
+            "body_1": 2.4933199318303355e-05,
+            "body_2": 1.994689003873933e-05,
+            "body_3": 0.00025110605915993906,
+            "body_4": 0.0005796465398139856,
+            "body_5": 1.7742534021211634e-05,
+            "body_6": 3.219040407357307e-05,
+            "body_7": 3.0080154503890896e-05,
+            "body_8": 1.0032914541772405e-07,
+            "body_10": 0.00038462926553886037,
+            "body_11": 0.0007296195114465539,
+            "body_12": 4.480429105900301e-05,
+            "body_13": 0.0009052659219910916,
+            "body_14": 0.00047331516091992417,
+            "body_15": 0.00035656486857905793,
+            "body_17": 1.3148663833457912e-05
+          }
+        }
+      ],
+      "matchedOldProbeFlight": {
+        "seed": 714133,
+        "scenario": 24,
+        "activationGain": 1,
+        "score": -515.929096616004,
+        "landed": false,
+        "styleBonus": 0,
+        "styleRecovered": false,
+        "turnDegrees": -1.2264462117007862,
+        "reason": "Flight left the recovery corridor",
+        "variation": {
+          "level": 0,
+          "mass": 1,
+          "thrust": 1,
+          "servo": 1,
+          "wind": 1,
+          "deck": 1,
+          "noise": 0
+        },
+        "touchdown": null,
+        "time": 338.2499999999958,
+        "orbitComplete": false,
+        "orbits": 0,
+        "maxAltitude": 4886.853675125952,
+        "milestones": [
+          {
+            "name": "Launch",
+            "time": 1.850000000000001,
+            "altitude": 4.109807525530774
+          },
+          {
+            "name": "Space",
+            "time": 254.74999999999577,
+            "altitude": 802.8607915802787
+          }
+        ],
+        "insertionQuality": 0.6600481337272345,
+        "insertionReward": 992.0577604726814,
+        "censored": false
+      }
+    }
+  },
   "sourceSHA256": {
     "artifacts/suite-training/vertical/static-probe.json": "340051b0b6166113ba683be112b3ef7438f85249d827253fe17b41c43a6c68f9",
     "artifacts/suite-training/dynamic-initial-probe.json": "c8224c2e9bac3e7eee38455bb078acfb8b2ddc4a6ecc255b91d64b3eadf5679f",
@@ -1384,6 +2675,12 @@
     "artifacts/suite-training/vertical-selection/selection.json": "a5d3762bc77bde08dbb6242930b25fc67d5d006a79bde5a316a1b6327f52beaf",
     "artifacts/suite-training/vertical-robust/selection.json": "f344913eedb0d5eb0061aaea3093775764451347337ae151e203d2dc9e1266c9",
     "artifacts/suite-training/attitude-g2-selection/selection.json": "932384015c78f82e70967bb6f0b3236e7710b818029bb44e2976566780929e15",
-    "artifacts/suite-training/attitude-adaptive-g6-selection/selection.json": "7457a316f8458b4f7999ce3ea449f38029b99d4ce6598227a7ef34d9edbb25bf"
+    "artifacts/suite-training/attitude-adaptive-g6-selection/selection.json": "7457a316f8458b4f7999ce3ea449f38029b99d4ce6598227a7ef34d9edbb25bf",
+    "artifacts/suite-training/adaptive-ground-scout/scout.json": "fcbbe3767e36a0eebadf6fda3b913a32536a1dda05cc17e8ad0138e954931c48",
+    "artifacts/suite-training/adaptive-ground-scout/plan.json": "f483125cc357e507d5e7cc31b527bc1fcf2932f0d6fedf7568f974dfba96d486",
+    "artifacts/suite-training/adaptive-ground-scout/frozen-checkpoint.json": "ced40509270755e2f1ee08a37c7ddef10b13aa2e62af08060c1fa3cd42007897",
+    "artifacts/suite-training/orbital-calibration-comparison.json": "37c4b1afa582c0d11af1fd52e318f7fee2647aa1a2d73793666a40eeb857b789",
+    "artifacts/suite-training/orbital-progress-trained-probe/probe.json": "041136573cf7d428063c474a2a58ca7c2085ecbc18a072b7741dd7243b694d35",
+    "artifacts/suite-training/orbital-calibrated-probe/probe.json": "51f31cc11ec586706b8e5f90ad5cc2101006c489dd0a883079e98c6b78b9691a"
   }
 }

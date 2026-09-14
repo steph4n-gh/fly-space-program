@@ -280,6 +280,56 @@ used the earlier four-mission weights, preserved in the
 clean-air and 9/16 odor results must not be attributed to the new checkpoint.
 Chemical inputs remain off by default in the new release.
 
+## Additional ground missions and gimbal steering
+
+A development survey used the frozen released controller on the other 14
+ground missions: one nominal and one variability-0.4 start per mission,
+with new seeds fixed before execution. It landed **16/28** full flights.
+These two starts per mission identify curriculum gaps; they do not extend
+the release's final validation to those missions.
+
+| Additional mission | Landings / starts |
+| --- | ---: |
+| Fast approach | 2/2 |
+| Rough seas | 0/2 |
+| Night shift | 1/2 |
+| Fin trouble | 1/2 |
+| Precision barge | 2/2 |
+| Figure eight | 2/2 |
+| Turning vessel | 0/2 |
+| Wind wall | 2/2 |
+| Wind shear | 0/2 |
+| Fuel reserve | 2/2 |
+| Slow hands | 2/2 |
+| Sideways entry | 2/2 |
+| High return | 0/2 |
+| Tight storm | 0/2 |
+
+All 28 outcomes, including the failures, are retained in the development
+section of the [progress record](suite-training-progress.json), alongside
+the frozen checkpoint and test-plan hashes. High return timed out on both
+starts; Rough seas failed on lateral speed on both. These results support
+further steering and recovery training rather than a reliability claim.
+
+The released checkpoint has zero weights in both gimbal output heads. This
+explains its motionless gimbal: it learned attitude control with the jets
+while gimbal directions were held fixed. An isolated actuator check applied
+opposite commands to each gimbal axis and confirmed opposite torque and
+lateral acceleration, plus the corresponding foreleg linkage changes.
+That check verifies the physical/control path; it is not browser visual QA
+or evidence of learned steering.
+
+The new `gimbal-steering` lesson starts from a frozen copy of the released
+controller and adds five search directions: lateral position, lateral
+drift, pitch, roll and angular motion. They feed both existing gimbal heads
+using the same calibrated sensory activity. Jet steering and damping can
+adapt jointly. All five additions start at zero; with them inactive, a
+complete JavaScript flight exactly matched the released weights and
+entire original outcome. No extra observations or prescribed actions are
+introduced. The planned eight generations contain 960 full training
+flights across the same ten missions. A candidate needs separate selection
+and final tests before replacing the release.
+
 ## Orbital ascent experiments
 
 The earlier four-mission controller completed three nominal orbital baseline trials,
@@ -340,6 +390,37 @@ presented pitch/roll indicators and their neural decoding during sustained
 attitude changes. This suggests extending sensory calibration with these
 observed flight contexts before another orbital search. It is a development
 diagnosis, not a reason to replace eye inputs with direct flight state.
+
+The follow-up collected **18 complete trajectories** across the three
+orbital missions, six per mission with equal nominal/varied counts. This
+added 21,348 examples of motor activity paired only with the actual
+presented indicator and body signals. Unique context identifiers keep
+whole flights together; 15 contexts enter fitting and three enter
+regularization selection, one per mission. The resulting separate basis
+uses 36,134 examples in total and preserves the original ground basis.
+
+Both bases were compared on the exact same held-out contexts:
+
+| Held-out collection | Contexts / samples | Pitch RMSE, old → extended | Roll RMSE, old → extended |
+| --- | ---: | ---: | ---: |
+| Earlier ground flights | 4 / 910 | 0.0161 → 0.0144 | 0.0216 → 0.0212 |
+| Added orbital flights | 3 / 3,701 | 0.0788 → 0.0115 | 0.3045 → 0.0251 |
+
+Errors are in encoded display units. These contexts selected fit
+regularization, so this is a calibration-development comparison.
+Independent full-flight probes of all three orbital missions still left
+the recovery corridor without establishing stable orbit or a completed
+return. On the one start with a matched earlier probe, post-startup pitch
+decoding RMSE fell from 0.0835 to 0.0117 and roll from 0.3308 to 0.0822.
+The changed trajectories mean these latter errors describe each flight's
+own experienced inputs; they are not the matched-sample table above.
+
+The `orbital-calibrated` search now uses this basis, with both attitude axes,
+yaw damping and gimbal steering available to reward learning. Its frozen
+plan specifies 144 full training trips across the three orbital missions.
+It retains the original launch, insertion, revolution, deorbit, entry and
+safe-touchdown criteria. Neither improved decoding nor reaching a greater
+altitude counts as completing those missing milestones.
 
 ## Optional native calculation
 

@@ -30,9 +30,13 @@ const directions=[
  [[2,'destination',.5],[2,'bias',.5]],[[2,'clearance',1]],
  [[2,'tangentSpeed',1]],[[2,'travel',.5],[2,'bias',.5]],
  [[0,'travel',.5],[0,'bias',.5]],
+ // The gimbal heads can learn from the same visible and body measurements.
+ // Their signs and magnitudes are selected from complete-flight outcomes.
+ [[1,'offsetX',1],[3,'offsetZ',1]],[[1,'driftX',1],[3,'driftZ',1]],
+ [[1,'pitch',1]],[[3,'roll',1]],[[1,'body_10',1],[3,'body_11',1]],
 ];
-const initial=[-.3,-.08,-.3,.03,-.02,0,0,0,0,0,0,0,-1,0,0,0,0,0,0,0,0,0,0];
-const scales=[.1,.15,.3,.15,.15,.2,.3,2,.5,.5,.5,.1,1,.8,3,1.5,1,2,2,2,2,3,2];
+const initial=[-.3,-.08,-.3,.03,-.02,0,0,0,0,0,0,0,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+const scales=[.1,.15,.3,.15,.15,.2,.3,2,.5,.5,.5,.1,1,.8,3,1.5,1,2,2,2,2,3,2,.15,.15,.5,.5,.2];
 const touchdownMargin=Number(process.env.SUITE_TOUCHDOWN_MARGIN??0);
 const selectionOrder='landings-orbital-milestones-then-fitness';
 const fitnessVersion='touchdown-margin-and-orbit-insertion-v2';
@@ -106,7 +110,7 @@ if(!isMainThread){
  for(const w of workers){w.on('message',r=>{w.busy=false;w.resolve(r);dispatch();});w.on('error',e=>{console.error(e);process.exit(1);});}
  const mode=process.env.SUITE_BLOCK??'vertical',path=folder+'/'+mode,searchSeed=Number(process.env.SUITE_SEARCH_SEED??1179421),random=rng(searchSeed),correlated=process.env.SUITE_COVARIANCE==='1';
  fs.mkdirSync(path,{recursive:true});
- const profiles=(process.env.SUITE_PROFILES??'0').split(',').map(Number),active=mode.startsWith('vertical')?[0,1,2,3,4]:mode.startsWith('attitude')?[5,6,7,8,9,10]:mode.startsWith('engine')?[0,1,2,3,4,11,12,13,14,15]:mode.startsWith('orbital')?[0,1,2,3,4,5,6,7,9,11,16,17,18,19,20,21,22]:directions.map((_,i)=>i);
+ const profiles=(process.env.SUITE_PROFILES??'0').split(',').map(Number),active=mode.startsWith('vertical')?[0,1,2,3,4]:mode.startsWith('attitude')?[5,6,7,8,9,10]:mode.startsWith('engine')?[0,1,2,3,4,11,12,13,14,15]:mode.startsWith('gimbal')?[5,6,7,8,9,10,23,24,25,26,27]:mode.startsWith('orbital')?[0,1,2,3,4,5,6,7,8,9,10,11,16,17,18,19,20,21,22,23,24,25,26,27]:directions.map((_,i)=>i);
  let state=fs.existsSync(path+'/state.json')?JSON.parse(fs.readFileSync(path+'/state.json')):{generation:0,episodes:0,mean:initial,sigma:scales,best:null,history:[]};
  if(process.env.SUITE_INITIAL&&state.generation===0){const prior=JSON.parse(fs.readFileSync(process.env.SUITE_INITIAL));state.mean=prior.best?.parameters??prior.parameters;}
  if(state.generation===0&&state.mean.length<directions.length)state.mean=[...state.mean,...Array(directions.length-state.mean.length).fill(0)];
@@ -120,13 +124,14 @@ if(!isMainThread){
  let stopping=false;process.on('SIGINT',()=>{stopping=true;console.log('Finishing this generation before stopping.');});
  try{
   if(process.argv.includes('--collect-senses')){
-   const output=folder+'/flight-calibration',count=Number(process.env.SUITE_CALIBRATION_FLIGHTS??24),parameters=state.best?.parameters??state.mean;
+   const output=process.env.SUITE_CALIBRATION_OUTPUT??folder+'/flight-calibration',count=Number(process.env.SUITE_CALIBRATION_FLIGHTS??24),parameters=state.best?.parameters??state.mean;
+   const calibrationSeed=Number(process.env.SUITE_CALIBRATION_SEED??83729017),contextBase=Number(process.env.SUITE_CALIBRATION_CONTEXT_BASE??2000000);
    if(fs.existsSync(output+'/calibration-manifest.json'))throw Error('Flight calibration already exists; preserve it before collecting again');
-   if(!Number.isInteger(count)||count<1)throw Error('Invalid number of calibration flights');
+   if(!Number.isInteger(count)||count<1||!Number.isSafeInteger(calibrationSeed)||!Number.isSafeInteger(contextBase)||contextBase<0)throw Error('Invalid calibration count, seed or context base');
    fs.mkdirSync(output,{recursive:true});
-   const cases=Array.from({length:count},(_,i)=>({scenario:profiles[i%profiles.length],seed:83729017+i*104729,variability:i%2?.4:0}));
+   const cases=Array.from({length:count},(_,i)=>({scenario:profiles[i%profiles.length],seed:calibrationSeed+i*104729,variability:i%2?.4:0}));
    const records=await Promise.all(cases.map((test,part)=>evaluate({parameters,cases:[test],collect:true}).then(result=>{
-    const samples=result.features.byteLength/(2129*4),context=2000000+part;
+    const samples=result.features.byteLength/(2129*4),context=contextBase+part;
     if(!Number.isInteger(samples)||samples<1||result.targets.byteLength!==samples*28*4)throw Error('Incomplete flight calibration buffers');
     fs.writeFileSync(`${output}/calibration-${part}-features.bin`,Buffer.from(result.features));
     fs.writeFileSync(`${output}/calibration-${part}-targets.bin`,Buffer.from(result.targets));
@@ -134,7 +139,7 @@ if(!isMainThread){
     console.log(JSON.stringify({part,samples,flight:result.flights[0]}));return {samples,flight:result.flights[0]};
    })));
    const files=['scripts/train-suite.mjs','dist/engine3d.js','dist/orbital.js','dist/missions.js','dist/perception.js','dist/flight-instruments.js','dist/full-network.js','scripts/full-network-node.mjs',basisPath];
-   fs.writeFileSync(output+'/calibration-manifest.json',JSON.stringify({sensoryPresentation:FLIGHT_PANEL,contexts:count,samples:records.reduce((s,r)=>s+r.samples,0),dynamic:true,collection:'complete learned flight',parts:count,features:2129,targets:28,names:basis.names,bodyChannels:FLIGHT_BODY_CHANNELS,neurons:166700,edges:25582938,passesPerDecision:2,parameters,calibrationHash,weightSHA256:sha(Buffer.from(Float64Array.from(decode(parameters)).buffer)),cases,backend:process.env.FLY_NATIVE_RATE==='1'?'native-exact-rate':'javascript-rate',nativeBuild,sourceSHA256:Object.fromEntries(files.map(file=>[file,sha(fs.readFileSync(file))]))},null,2));
+   fs.writeFileSync(output+'/calibration-manifest.json',JSON.stringify({sensoryPresentation:FLIGHT_PANEL,contexts:count,contextBase,calibrationSeed,samples:records.reduce((s,r)=>s+r.samples,0),dynamic:true,collection:'complete learned flight',parts:count,features:2129,targets:28,names:basis.names,bodyChannels:FLIGHT_BODY_CHANNELS,neurons:166700,edges:25582938,passesPerDecision:2,parameters,calibrationHash,weightSHA256:sha(Buffer.from(Float64Array.from(decode(parameters)).buffer)),cases,backend:process.env.FLY_NATIVE_RATE==='1'?'native-exact-rate':'javascript-rate',nativeBuild,sourceSHA256:Object.fromEntries(files.map(file=>[file,sha(fs.readFileSync(file))]))},null,2));
   }else if(process.argv.includes('--sweep')){
    const parameters=state.best?.parameters??state.mean,index=Number(process.env.SUITE_SWEEP_INDEX??7);
    if(!Number.isInteger(index)||index<0||index>=parameters.length)throw Error('Invalid sweep parameter');
