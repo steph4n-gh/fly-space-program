@@ -33,6 +33,7 @@ function setWorkspaceView(view){
  $('lab-workspace').hidden=view!=='lab';$('cockpit-detail').hidden=view!=='cockpit';
  for(const button of document.querySelectorAll('[data-view]')){if(button===document.body)continue;const on=button.dataset.view===view;button.classList.toggle('selected',on);button.setAttribute('aria-pressed',String(on));}
  if(cockpit)cockpit.expanded=view==='cockpit';if(atlas)atlas.dirty=true;
+ if(view==='lab'&&ready)updateLedger(training?trainee:activeCheckpoint());
 }
 for(const button of document.querySelectorAll('button[data-view]'))button.addEventListener('click',()=>{setWorkspaceView(button.dataset.view);window.scrollTo({top:0,behavior:'smooth'});});
 document.querySelector('.decision-jump').addEventListener('click',()=>setWorkspaceView('lab'));
