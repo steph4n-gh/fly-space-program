@@ -118,7 +118,7 @@ if(!isMainThread){
  for(const w of workers){w.on('message',r=>{w.busy=false;w.resolve(r);dispatch();});w.on('error',e=>{console.error(e);process.exit(1);});}
  const mode=process.env.SUITE_BLOCK??'vertical',path=folder+'/'+mode,searchSeed=Number(process.env.SUITE_SEARCH_SEED??1179421),random=rng(searchSeed),correlated=process.env.SUITE_COVARIANCE==='1';
  fs.mkdirSync(path,{recursive:true});
- const profiles=(process.env.SUITE_PROFILES??'0').split(',').map(Number),active=mode.startsWith('ground-joint')?[0,1,2,3,4,5,6,7,8,9,10,11,23,24,25,26,27]:mode.startsWith('vertical')?[0,1,2,3,4]:mode.startsWith('attitude')?[5,6,7,8,9,10]:mode.startsWith('engine')?[0,1,2,3,4,11,12,13,14,15]:mode.startsWith('gimbal')?[5,6,7,8,9,10,23,24,25,26,27]:mode.startsWith('orbital')?[0,1,2,3,4,5,6,7,8,9,10,11,16,17,18,19,20,21,22,23,24,25,26,27]:directions.map((_,i)=>i);
+ const profiles=(process.env.SUITE_PROFILES??'0').split(',').map(Number),active=mode.startsWith('ground-joint')?[0,1,2,3,4,5,6,7,8,9,10,11,23,24,25,26,27]:mode.startsWith('vertical')?[0,1,2,3,4]:mode.startsWith('attitude')?[5,6,7,8,9,10]:mode.startsWith('engine')?[0,1,2,3,4,11,12,13,14,15]:mode.startsWith('gimbal')?[5,6,7,8,9,10,23,24,25,26,27]:mode.startsWith('orbital-joint')?[0,1,2,7,11,16,17,18,19,20,21,22,25]:mode.startsWith('orbital')?[0,1,2,3,4,5,6,7,8,9,10,11,16,17,18,19,20,21,22,23,24,25,26,27]:directions.map((_,i)=>i);
  let state=fs.existsSync(path+'/state.json')?JSON.parse(fs.readFileSync(path+'/state.json')):{generation:0,episodes:0,mean:initial,sigma:scales,best:null,history:[]};
  if(process.env.SUITE_INITIAL&&state.generation===0){const prior=JSON.parse(fs.readFileSync(process.env.SUITE_INITIAL));state.mean=prior.best?.parameters??prior.parameters;}
  if(state.generation===0&&state.mean.length<directions.length)state.mean=[...state.mean,...Array(directions.length-state.mean.length).fill(0)];
@@ -188,7 +188,7 @@ if(!isMainThread){
    const generation=state.generation+1;
    const proposalRandom=correlated?rng(searchSeed+generation*7919):random;
    const changing=process.env.SUITE_VARY_SEEDS==='1';
-   const cases=Array.from({length:Number(process.env.SUITE_BATCH??3)},(_,i)=>({scenario:profiles[(generation+i-1)%profiles.length],seed:i===0?714133:i===1&&!changing?910747:527801+generation*15427+i*10391,variability:i%2?(changing?.4:.2):0}));
+   const cases=Array.from({length:Number(process.env.SUITE_BATCH??3)},(_,i)=>({scenario:profiles[(generation+i-1)%profiles.length],seed:i===0?714133:i===1&&!changing?910747:527801+generation*15427+i*10391,variability:(mode.startsWith('ground-joint-all')?Math.floor(i/profiles.length)%2:i%2)?(changing?.4:.2):0}));
    const population=[state.mean];if(state.best)population.push(state.best.parameters);
    const covariance=state.covariance??state.sigma.map((s,i)=>state.sigma.map((_,j)=>i===j?s*s:0)),L=correlated?cholesky(covariance):null;
    while(population.length<Number(process.env.SUITE_POPULATION??12)){

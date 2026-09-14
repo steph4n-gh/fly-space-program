@@ -659,3 +659,13 @@ L1 dim-condition dark-flash check. The frozen transfer rule therefore failed.
 No benchmark parameters were installed in the network, and no chemical
 visual-gain claim follows. The complete results, assumptions, licensed data
 attribution and independent numerical verification are in that report.
+
+A subsequent calculation on the preserved predictions finds that the failed
+natural response is not mainly a constant baseline error: predicted variation
+is 1.70 times measured variation, with 45.7% of MSE attributed to amplitude
+mismatch and 54.1% to imperfect correlation/shape. Those descriptive terms
+cannot identify a delay or a biological mechanism. Both amplitude and
+response dynamics need evidence before introducing odor-dependent visual
+modulation. The independent-data review has not yet obtained another complete,
+verified luminance/response pair; the inspected benchmark remains development
+data for any revised model.

@@ -98,6 +98,42 @@ L2 dark and L2 bright responses, but fails L1 dark: RMSE 0.006034 versus
 
 ![All four held-out dim-condition flash responses](assets/visual-response-low-luminance.png)
 
+## What accounts for the failed predictions
+
+A post-test calculation separates the error in all 24 preserved evaluation
+traces without changing predictions or fitting a correction. Using population
+standard deviations over the originally scored samples, the exact identity is
+
+`MSE = (mean prediction − mean measurement)² + (SD prediction − SD measurement)² + 2 × SD prediction × SD measurement × (1 − correlation)`.
+
+The three terms describe mean bias, amplitude mismatch and correlation/shape
+mismatch. They are an arithmetic accounting, not identified biological causes.
+
+| Two-filter prediction | Predicted / measured SD | Mean-bias share of MSE | Amplitude share | Shape share |
+| --- | ---: | ---: | ---: | ---: |
+| Natural stimulus, primary | 1.7003 | 0.225% | 45.672% | 54.103% |
+| Natural stimulus, saved zero-state comparison | 1.6847 | 1.810% | 43.656% | 54.533% |
+| Low luminance, L1 dark | 1.5811 | 20.795% | 19.030% | 60.175% |
+
+The natural primary prediction therefore fails through a combination of
+excess variation and imperfect shape, with little remaining mean bias. The
+already applied, prediction-only fluorescence conversion reduced the raw
+periodic diagnostic's MSE by 56.27%; it did not resolve those remaining errors.
+The saved zero-state comparison has MSE only 0.0177% higher than the primary
+prediction, so both retained startup choices share this failure.
+
+The shape term combines temporal dynamics, possible alignment error, noise
+and unmodeled effects. It cannot identify a delay or select a biological
+mechanism. No gain, offset or timing correction was estimated or installed.
+Zero predictions have undefined correlation; their missing response variation
+is kept in the amplitude term without claiming shape agreement.
+
+The [complete error decomposition](visual-response-error-audit.json) preserves
+all 24 records and both equivalent MSE identities. Every previously reported
+metric matches, with identity residuals below `8.14e-20`. Reproduce it with
+`python3 scripts/summarize-visual-response-errors.py`; the calculator reads
+only frozen prediction vectors and uses the Python standard library.
+
 ## Consequence for chemical experiments
 
 This supplies an empirical target and exposes a failed generalization before
@@ -108,6 +144,34 @@ adaptation and graded transmission, followed by another stimulus-level test.
 These already inspected natural responses can inform development but cannot
 serve as an unseen final test for a revised model. Behavioral or chemical
 claims still require the corresponding controlled experiment.
+
+## Independent data availability
+
+A bounded source review found two promising archives, but neither currently
+supplies a complete, verified new visual input/response pair. No new response
+curves were inspected or fitted during this review.
+
+[Ketkar and Sporar et al. (2020)](https://www.sciencedirect.com/science/article/pii/S0960982219316719)
+measured L2/L3 ASAP2f responses to longer luminance changes. Its
+[CC BY 4.0 dataset](https://data.mendeley.com/datasets/p7xskvwktk/1) lists the
+numeric imaging archive, but ordinary retrieval returned HTTP 403. The
+accessible author code also leaves a timing discrepancy: the paper specifies
+30 Hz interpolation, while the Figure 7 analysis calls an absent 40 Hz loader.
+The recorded timestamps, stimulus mapping and ROI selection need verification
+before defining a new test. Neither rate can be chosen by fit quality.
+
+The [Li et al. author archive](https://github.com/JuusolaLab/SK_Slo_Paper/tree/a207530b6ad7377d63a779f2842ffce7f6f1c5c4)
+contains a small wild-type photoreceptor voltage export, `WTVol.mat`, with
+1,000 samples in six columns. Schema and source-code inspection found no
+corresponding luminance waveform, exact natural-stimulus library identifier,
+or recorded current-command/voltage pair. The available current matrix is
+simulated, and the dynamic-clamp scripts infer currents from target voltages;
+those cannot replace an independently measured input. The checked arrays'
+response values remained uninspected. The missing stimulus and synchronization
+information therefore remain concrete prerequisites, not a completed test.
+
+The source review, file hashes, schemas and follow-up are retained under
+`artifacts/odor-interface/visual-response-benchmark/external-source-review`.
 
 ## Verification and reproduction
 

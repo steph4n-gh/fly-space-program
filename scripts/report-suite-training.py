@@ -2,6 +2,7 @@
 import hashlib
 import json
 import math
+import re
 from pathlib import Path
 import matplotlib
 matplotlib.use('Agg')
@@ -44,17 +45,39 @@ axes[0].legend(frameon=False, fontsize=9)
 fig.savefig(out/'suite-calibration-probe.png', dpi=180)
 plt.close(fig)
 
+def verify_candidate_weights(candidate, basis_path, source_path):
+    # Decode the archived direction definition in its original addition order.
+    literal = re.search(r'const directions=(\[[\s\S]*?\n\]);', source_path.read_text()).group(1)
+    literal = re.sub(r'//[^\n]*', '', literal).replace("'", '"')
+    literal = re.sub(r'([\[,])\s*\.(\d)', lambda m:m[1]+'0.'+m[2], literal)
+    literal = re.sub(r',\s*([\]}])', r'\1', literal)
+    directions = json.loads(literal)
+    basis = json.loads(basis_path.read_text())
+    weights = np.zeros((10,2130), dtype=np.float64)
+    for k, terms in enumerate(directions):
+        value = candidate['parameters'][k]
+        for head,name,gain in terms:
+            if name == 'bias':weights[head,-1] += value*gain
+            else:weights[head] += (value*gain)*np.asarray(basis['basis'][basis['names'].index(name)])
+    actual = np.asarray(candidate['weights'],dtype=np.float64)
+    assert actual.shape == (21300,) and np.isfinite(actual).all()
+    assert np.array_equal(weights.ravel(),actual)
+
 states = {}
 for name in ['vertical', 'vertical-robust', 'attitude', 'ground-general', 'attitude-correlated',
              'engine-transition', 'recovery-grid', 'attitude-adaptive', 'gimbal-steering',
-             'orbital-insertion', 'orbital-progress', 'orbital-calibrated', 'vertical-all-ground', 'orbital-hold']:
+             'orbital-insertion', 'orbital-progress', 'orbital-calibrated', 'vertical-all-ground', 'orbital-hold', 'ground-joint-focus', 'ground-joint-all']:
     path = folder/name/'state.json'
     if path.exists():
-        sources.append(path)
         d = json.loads(path.read_text())
+        if name in ['ground-joint-focus','ground-joint-all'] and d['generation'] < 6:
+            continue  # Do not turn a partial lesson into completed-training evidence.
+        sources.append(path)
         states[name] = {'generation': d['generation'], 'episodes': d['episodes'],
                         'history': [{k:r.get(k) for k in ['generation','episodes','landings','batch','score','fitness']} for r in d['history']]}
         trials_file = folder/name/'trials.jsonl'
+        if name in ['vertical-all-ground','ground-joint-focus','ground-joint-all','orbital-hold']:
+            assert trials_file.exists(), 'Completed lesson is missing its full trial ledger'
         if trials_file.exists():
             sources.append(trials_file)
             generations = [json.loads(line) for line in trials_file.read_text().splitlines() if line.strip()]
@@ -63,50 +86,71 @@ for name in ['vertical', 'vertical-robust', 'attitude', 'ground-general', 'attit
             assert all(not f.get('censored', False) for f in all_flights)
             states[name]['allCandidateFlights'] = len(all_flights)
             states[name]['allCandidateLandings'] = sum(f['landed'] for f in all_flights)
-            if name == 'vertical-all-ground':
+            if name in ['vertical-all-ground', 'ground-joint-focus', 'ground-joint-all']:
                 plan_path = folder/name/'plan.json'
                 plan = json.loads(plan_path.read_text())
-                initial_path = folder/name/'frozen-initial.json'
+                initial_path = root/plan['initialFile'] if 'initialFile' in plan else folder/name/'frozen-initial.json'
                 initial = json.loads(initial_path.read_text())
                 source_path = folder/name/('source-' + plan['sourceSHA256'] + '.mjs')
                 for source, expected in [(initial_path, plan['initialSHA256']),
                                          (root/plan['basisPath'], plan['basisSHA256']),
-                                         (source_path, plan['sourceSHA256']),
-                                         (root/plan['probeFile'], plan['probeSHA256'])]:
+                                         (source_path, plan['sourceSHA256'])]:
                     assert hashlib.sha256(source.read_bytes()).hexdigest() == expected
                     sources.append(source)
+                if name == 'vertical-all-ground':
+                    probe_path = root/plan['probeFile']
+                    assert hashlib.sha256(probe_path.read_bytes()).hexdigest() == plan['probeSHA256']
+                    sources.append(probe_path)
+                    assert [plan[k] for k in ['generations','population','batch']] == [4,8,24]
+                    assert sorted(plan['profiles']) == list(range(24)) and plan['activeDirections'] == list(range(5))
+                else:
+                    assert [plan[k] for k in ['generations','population','batch']] == [6,12,48 if name=='ground-joint-all' else 18]
+                    assert plan['profiles'] == (list(range(24)) if name=='ground-joint-all' else [18,13,11,5,19,0,1,9,17])
+                    assert plan['activeDirections'] == list(range(12))+list(range(23,28))
+                    assert d['nativeBuild'] == plan['nativeBuild']
+                    assert plan['correlated'] and not plan['insertionHold'] and plan['touchdownMargin'] == 3
                 sources.extend([plan_path, folder/name/'candidate.json'])
-                assert d['generation'] == plan['generations'] == 4
-                assert len(all_flights) == plan['expectedFlights'] == 768
-                assert sorted(plan['profiles']) == list(range(24)) and plan['activeDirections'] == list(range(5))
+                assert d['generation'] == plan['generations']
+                assert len(all_flights) == plan['expectedFlights'] == plan['generations']*plan['population']*plan['batch']
                 assert d['calibrationHash'] == plan['basisSHA256'] and d['sourceSHA256'] == plan['sourceSHA256']
-                frozen_tail = initial['parameters'][5:] + [0]*(28-len(initial['parameters']))
+                frozen_parameters = initial['parameters'] + [0]*(28-len(initial['parameters']))
+                inactive = [i for i in range(28) if i not in plan['activeDirections']]
+                batch = plan['batch']
+                assert len(d['history']) == len(generations) == plan['generations']
                 for generation, history in zip(generations, d['history']):
                     g = generation['generation']
-                    cases = [{'scenario': plan['profiles'][(g+i-1)%24],
+                    cases = [{'scenario': plan['profiles'][(g+i-1)%len(plan['profiles'])],
                               'seed': 714133 if i == 0 else 527801+g*15427+i*10391,
-                              'variability': .4 if i%2 else 0} for i in range(24)]
-                    assert generation['cases'] == cases and len(generation['results']) == plan['population'] == 8
+                              'variability': .4 if ((i//len(plan['profiles']))%2 if plan.get('pairedVariability') else i%2) else 0} for i in range(batch)]
+                    assert generation['cases'] == cases and len(generation['results']) == plan['population']
+                    if name in ['ground-joint-focus','ground-joint-all']:
+                        assert cases == plan['generationCases'][g-1]['cases']
+                        assert all(sorted(c['variability'] for c in cases if c['scenario']==i)==[0,.4] for i in plan['profiles'])
+                    assert generation['correlated'] and d['correlated']
                     assert generation['sourceSHA256'] == plan['sourceSHA256'] and generation['calibrationHash'] == plan['basisSHA256']
                     assert generation['touchdownMargin'] == 3 and generation['searchSeed'] == plan['searchSeed']
                     assert generation['backend'] == 'native-exact-rate' and generation['nativeBuild'] == d['nativeBuild']
                     for result in generation['results']:
-                        assert len(result['parameters']) == 28 and result['parameters'][5:] == frozen_tail
-                        assert len(result['flights']) == 24
+                        assert len(result['parameters']) == 28 and all(result['parameters'][i] == frozen_parameters[i] for i in inactive)
+                        assert len(result['flights']) == batch
                         for f, c in zip(result['flights'], cases):
                             assert (f['scenario'], f['seed'], f['variation']['level']) == (c['scenario'], c['seed'], c['variability'])
                             assert not f['censored'] and f['styleBonus'] == 0 and f['activationGain'] == 1 and 'milestones' not in f
-                        score = sum(f['score'] for f in result['flights'])/24
-                        fitness = sum(f['score']-3*(f['touchdown']['speed']**2+f['touchdown']['lateral']**2 if f['landed'] else 0) for f in result['flights'])/24
+                        score = sum(f['score'] for f in result['flights'])/batch
+                        fitness = sum(f['score']-3*(f['touchdown']['speed']**2+f['touchdown']['lateral']**2 if f['landed'] else 0) for f in result['flights'])/batch
                         assert math.isclose(score, result['score'], abs_tol=1e-12, rel_tol=1e-12)
                         assert math.isclose(fitness, result['fitness'], abs_tol=1e-12, rel_tol=1e-12)
                         assert result['landings'] == sum(f['landed'] for f in result['flights'])
                     best = max(generation['results'], key=lambda r: (r['landings'], r['fitness']))
                     assert all(history[key] == best[key] for key in ['parameters', 'score', 'fitness', 'landings', 'flights'])
-                    assert history['generation'] == g and history['episodes'] == 192*g
-                assert [g['generation'] for g in generations] == [1, 2, 3, 4] and d['best'] == best
+                    assert history['generation'] == g and history['episodes'] == plan['population']*batch*g
+                assert [g['generation'] for g in generations] == list(range(1,plan['generations']+1)) and d['best'] == best
+                candidate = json.loads((folder/name/'candidate.json').read_text())
+                assert candidate['parameters'] == best['parameters'] and candidate['history'] == d['history']
+                assert candidate['generation'] == d['generation'] and candidate['episodes'] == d['episodes']
+                verify_candidate_weights(candidate,root/plan['basisPath'],source_path)
                 states[name]['coverageAndRewardVerified'] = True
-                states[name]['allCandidateLandingsByMission'] = {str(i): sum(f['landed'] for f in all_flights if f['scenario'] == i) for i in range(24)}
+                states[name]['allCandidateLandingsByMission'] = {str(i): sum(f['landed'] for f in all_flights if f['scenario'] == i) for i in sorted(plan['profiles'])}
                 states[name]['lastGenerationOutcomes'] = best['flights']
             if name == 'orbital-hold':
                 plan_path = folder/name/'plan.json'
@@ -133,6 +177,7 @@ for name in ['vertical', 'vertical-robust', 'attitude', 'ground-general', 'attit
                 def rank(r):
                     return (r['landings'], *(sum(any(m['name']==name for m in f['milestones']) for f in r['flights']) for name in milestone_order), r['fitness'])
                 assert [g['generation'] for g in generations] == list(range(1,7))
+                assert len(d['history']) == len(generations) == plan['generations']
                 for generation, history in zip(generations,d['history']):
                     g = generation['generation']
                     cases = [{'scenario':plan['profiles'][(g+i-1)%3], 'seed':714133 if i==0 else 527801+g*15427+i*10391,
@@ -167,6 +212,7 @@ for name in ['vertical', 'vertical-robust', 'attitude', 'ground-general', 'attit
                 candidate = json.loads(candidate_path.read_text())
                 assert d['best'] == best and candidate['parameters'] == best['parameters'] and candidate['history'] == d['history']
                 assert candidate['generation'] == 6 and candidate['episodes'] == 432
+                verify_candidate_weights(candidate,root/plan['basisFile'],folder/name/('source-'+plan['sourceSHA256']+'.mjs'))
                 sources.extend([plan_path,launch_path,candidate_path])
                 states[name]['coverageAndRewardVerified'] = True
                 states[name]['allCandidateFlightsByMission'] = {str(i):sum(f['scenario']==i for f in all_flights) for i in [24,25,26]}
@@ -277,36 +323,165 @@ if joint_plan_path.exists():
                 'lostReleaseSuccesses': sum(not p['jointLanded'] and p['releasedLanded'] for p in pairs),
                 'gates': gates, 'eligibleForSeparateFinalTesting': all(gates.values()),
                 'flights': {name: d['flights'] for name, d in comparisons.items()}}
-focus_plan_path = folder/'ground-joint-focus/plan.json'
+focus_plan_path = folder/'ground-focus-g6-selection/plan.json'
 if focus_plan_path.exists():
-    focus = json.loads(focus_plan_path.read_text())
-    for path, expected in [(root/focus['initialFile'], focus['initialSHA256']),
-                           (root/focus['basisPath'], focus['basisSHA256']),
-                           (focus_plan_path.parent/'prior-selection-audit.json', focus['priorSelectionAuditSHA256']),
-                           (focus_plan_path.parent/'diagnosis.json', focus['diagnosisSHA256'])]:
-        assert hashlib.sha256(path.read_bytes()).hexdigest() == expected
+    assert hashlib.sha256(focus_plan_path.read_bytes()).hexdigest() == 'ed250760a92b893a20f01876aad6bcdbd5a0a7b79e29b0650ec75d0a014269ae'
+    plan = json.loads(focus_plan_path.read_text())
+    assert plan['primaryCandidate'] == 'candidate' and plan['expectedFlights'] == 384
+    assert plan['touchdownMargin'] == 3 and not plan['insertionHold']
+    assert plan['originalFour'] == [0,1,9,17] and plan['releasedTen'] == [0,1,6,7,9,17,20,21,22,23]
+    assert plan['cases'] == [{'scenario':i%24,'seed':313700129+i*104729,'variability':.4 if (i//24)%2 else 0} for i in range(96)]
+    for file_key, hash_key in [('basisFile','basisSHA256'), ('trainingStateFile','trainingStateSHA256'),
+                              ('trainingTrialsFile','trainingTrialsSHA256'), ('trainingPlanFile','trainingPlanSHA256'),
+                              ('trainingAuditFile','trainingAuditSHA256')]:
+        path = root/plan[file_key]
+        assert hashlib.sha256(path.read_bytes()).hexdigest() == plan[hash_key]
         sources.append(path)
-    for name, expected in focus['testedSourceHashes'].items():
+    for name, expected in plan['testedSourceHashes'].items():
         path = focus_plan_path.parent/'tested-runtime'/name
         assert hashlib.sha256(path.read_bytes()).hexdigest() == expected
         sources.append(path)
-    assert focus['activeDirections'] == list(range(12))+list(range(23,28))
-    assert [focus[k] for k in ['generations','population','batch']] == [6,12,18]
-    assert [g['generation'] for g in focus['generationCases']] == list(range(1,7))
-    assert focus['generations']*focus['population']*focus['batch'] == focus['expectedFlights'] == 1296
-    assert focus['sourceSHA256'] == focus['testedSourceHashes']['scripts/train-suite.mjs']
-    for entry in focus['generationCases']:
-        g = entry['generation']
-        expected = [{'scenario':focus['profiles'][(g+i-1)%9],
-                     'seed':714133 if i==0 else 527801+g*15427+i*10391,
-                     'variability':.4 if i%2 else 0} for i in range(18)]
-        assert entry['cases'] == expected
-        for scenario in focus['profiles']:
-            assert sorted(c['variability'] for c in expected if c['scenario']==scenario) == [0,.4]
+    source_path = focus_plan_path.parent/'tested-runtime/scripts/train-suite.mjs'
+    frozen, weights, weight_checks = {}, {}, {}
+    for name,item in plan['models'].items():
+        path = root/item['frozenFile']
+        assert hashlib.sha256(path.read_bytes()).hexdigest() == item['frozenSHA256']
+        frozen[name] = json.loads(path.read_text()); sources.append(path)
+        verify_candidate_weights(frozen[name],root/plan['basisFile'],source_path)
+        path = root/item['folder']/'selection-weights.json'
+        weights[name] = np.asarray(json.loads(path.read_text()),dtype='<f8')
+        assert weights[name].shape == (21300,) and np.isfinite(weights[name]).all()
+        assert np.array_equal(weights[name],frozen[name]['weights'])
+        assert hashlib.sha256(weights[name].tobytes()).hexdigest() == item['weightSHA256']
+        sources.append(path)
+        weight_checks[name] = {'file':str(path.relative_to(root)), 'fileSHA256':hashlib.sha256(path.read_bytes()).hexdigest(),
+                               'weightSHA256':item['weightSHA256'], 'exactFrozenWeights':True}
+    assert frozen['candidate']['generation'] == 6 and frozen['candidate']['episodes'] == 1296
+    assert frozen['candidate']['parameters'] == json.loads((root/plan['trainingStateFile']).read_text())['best']['parameters']
     sources.append(focus_plan_path)
-    development['groundJointFocusedTrainingPlan'] = {
+    development['groundJointFocusSelectionPlan'] = {'scope':'Frozen final-generation selection plan and exact decoded weights; pending complete comparison.',
+                                                   'plan':plan,'weightVerification':weight_checks}
+    paths = {name:root/item['folder']/'selection.json' for name,item in plan['models'].items()}
+    if all(path.exists() for path in paths.values()):
+        comparisons = {name:json.loads(path.read_text()) for name,path in paths.items()}
+        if all(d['complete'] for d in comparisons.values()):
+            for name,d in comparisons.items():
+                item = plan['models'][name]
+                assert d['cases'] == plan['cases'] and d['parameters'] == frozen[name]['parameters']
+                assert d['modes'] == item['modes'] and d['backend'] == 'native-exact-rate'
+                assert d['nativeBuild'] == plan['nativeBuild'] and d['sourceSHA256'] == plan['sourceSHA256']
+                assert d['weightSHA256'] == item['weightSHA256'] and d['calibrationHash'] == plan['basisSHA256']
+                expected = {(m,c['scenario'],c['seed'],c['variability']) for m in item['modes'] for c in plan['cases']}
+                actual = {(f['mode'],f['scenario'],f['seed'],f['variation']['level']) for f in d['flights']}
+                assert actual == expected and len(d['flights']) == len(expected) == item['expectedFlights']
+                assert all(not f['censored'] and f['activationGain']==1 and f['styleBonus']==0 for f in d['flights'])
+                archive = paths[name].with_name('source-'+plan['sourceSHA256']+'.mjs')
+                assert hashlib.sha256(archive.read_bytes()).hexdigest() == plan['sourceSHA256']
+                sources.extend([paths[name],archive])
+            variants = {(f['scenario'],f['seed']):f['variation'] for f in comparisons['release']['flights']}
+            assert all(f['variation']==variants[(f['scenario'],f['seed'])] for d in comparisons.values() for f in d['flights'])
+            def focus_count(name,mode='normal',profiles=range(24)):
+                return sum(f['landed'] for f in comparisons[name]['flights'] if f['mode']==mode and f['scenario'] in profiles)
+            counts = {'candidateNormal':focus_count('candidate'), 'releaseNormal':focus_count('release'),
+                      'candidateCovered':focus_count('candidate','covered'), 'candidateNoInstruments':focus_count('candidate','no-instruments')}
+            original = {name:focus_count(name,profiles=plan['originalFour']) for name in comparisons}
+            retained = {name:focus_count(name,profiles=plan['releasedTen']) for name in comparisons}
+            gates = {'improvesAllGroundLandings':counts['candidateNormal']>counts['releaseNormal'],
+                     'preservesOriginalFourCount':original['candidate']>=original['release'],
+                     'preservesReleasedTenCount':retained['candidate']>=retained['release'],
+                     'beatsCoveredControl':counts['candidateNormal']>counts['candidateCovered'],
+                     'beatsNoInstrumentsControl':counts['candidateNormal']>counts['candidateNoInstruments']}
+            by_case = {name:{(f['scenario'],f['seed']):f for f in d['flights'] if f['mode']=='normal'} for name,d in comparisons.items()}
+            pairs = [{**c,'candidateLanded':by_case['candidate'][(c['scenario'],c['seed'])]['landed'],
+                      'releasedLanded':by_case['release'][(c['scenario'],c['seed'])]['landed']} for c in plan['cases']]
+            rows = [{'scenario':i,'normalCases':4,'candidate':focus_count('candidate',profiles=[i]),
+                     'release':focus_count('release',profiles=[i]),'covered':focus_count('candidate','covered',[i]),
+                     'noInstruments':focus_count('candidate','no-instruments',[i])} for i in range(24)]
+            development['groundJointFocusSelectionPlan']['scope'] = 'Frozen final-generation selection plan and exact decoded weights; complete comparison reported separately.'
+            development['groundJointFocusSelection'] = {
+                'scope':'Complete matched development selection of the fixed final GEN6 only; separate unseen JavaScript testing is required before release.',
+                'verifiedFlights':sum(len(d['flights']) for d in comparisons.values()),'conditions':counts,
+                'originalFourNormalLandings':original,'releasedTenNormalLandings':retained,'byMission':rows,'pairedCases':pairs,
+                'rescuedReleaseFailures':sum(p['candidateLanded'] and not p['releasedLanded'] for p in pairs),
+                'lostReleaseSuccesses':sum(not p['candidateLanded'] and p['releasedLanded'] for p in pairs),
+                'gates':gates,'eligibleForSeparateFinalTesting':all(gates.values()),
+                'flights':{name:d['flights'] for name,d in comparisons.items()}}
+for block, report_key, dimensions, active in [
+    ('ground-joint-focus','groundJointFocusedTrainingPlan',[6,12,18],list(range(12))+list(range(23,28))),
+    ('ground-joint-all','groundJointAllTrainingPlan',[6,12,48],list(range(12))+list(range(23,28))),
+    ('orbital-joint','orbitalJointTrainingPlan',[8,16,6],[0,1,2,7,11,16,17,18,19,20,21,22,25])]:
+    plan_path = folder/block/'plan.json'
+    if not plan_path.exists():continue
+    plan = json.loads(plan_path.read_text())
+    inputs = [(root/plan['initialFile'],plan['initialSHA256']), (root/plan['basisPath'],plan['basisSHA256'])]
+    if block == 'ground-joint-focus':
+        inputs += [(plan_path.parent/'prior-selection-audit.json',plan['priorSelectionAuditSHA256']),
+                   (plan_path.parent/'diagnosis.json',plan['diagnosisSHA256'])]
+    elif block == 'ground-joint-all':
+        assert hashlib.sha256(plan_path.read_bytes()).hexdigest() == 'a2bbcdb88c05548a4cb2fcf02c493d896ed4ded98839431f79d9f826db5666d2'
+        assert plan['profiles'] == list(range(24)) and plan['pairedVariability'] and not plan['insertionHold']
+        assert plan['touchdownMargin'] == 3 and plan['neurons'] == 166700 and plan['edges'] == 25582938 and plan['passesPerDecision'] == 2
+        inputs += [(root/plan['priorSelectionPlanFile'],plan['priorSelectionPlanSHA256']),
+                   (root/plan['priorSelectionAuditFile'],plan['priorSelectionAuditSHA256']),
+                   (root/plan['nativeBuildFile'],plan['nativeBuildSHA256']),
+                   (root/'scripts/rate-native.cpp',plan['nativeBuild']['sourceSHA256']),
+                   (root/'artifacts/native-rate/rate-native.node',plan['nativeBuild']['binarySHA256'])]
+        inputs += [(root/name,expected) for name,expected in {**plan['priorSelectionFiles'],**plan['neuralDataSHA256']}.items()]
+    else:
+        inputs += [(folder/'orbital-hold/plan.json',plan['priorPlanSHA256']),
+                   (folder/'orbital-hold/state.json',plan['priorStateSHA256']),
+                   (plan_path.parent/'throttle-diagnosis-manifest.json',plan['diagnosisManifestSHA256']),
+                   (plan_path.parent/'throttle-diagnosis-summary.json',plan['diagnosisSummarySHA256'])]
+        assert plan['profiles'] == [24,25,26] and plan['insertionHold'] and plan['touchdownMargin'] == 3
+        assert plan['insertionRewardSourceSHA256'] == plan['testedSourceHashes']['scripts/insertion-hold.mjs']
+    for path, expected in inputs:
+        assert hashlib.sha256(path.read_bytes()).hexdigest() == expected
+        sources.append(path)
+    for name, expected in plan['testedSourceHashes'].items():
+        path = plan_path.parent/'tested-runtime'/name
+        assert hashlib.sha256(path.read_bytes()).hexdigest() == expected
+        sources.append(path)
+    assert plan['activeDirections'] == active and [plan[k] for k in ['generations','population','batch']] == dimensions
+    assert [g['generation'] for g in plan['generationCases']] == list(range(1,plan['generations']+1))
+    assert plan['generations']*plan['population']*plan['batch'] == plan['expectedFlights']
+    assert plan['sourceSHA256'] == plan['testedSourceHashes']['scripts/train-suite.mjs']
+    for entry in plan['generationCases']:
+        g = entry['generation']
+        expected = [{'scenario':plan['profiles'][(g+i-1)%len(plan['profiles'])],
+                     'seed':714133 if i==0 else 527801+g*15427+i*10391,
+                     'variability':.4 if ((i//len(plan['profiles']))%2 if plan.get('pairedVariability') else i%2) else 0} for i in range(plan['batch'])]
+        assert entry['cases'] == expected
+        for scenario in plan['profiles']:
+            assert sorted(c['variability'] for c in expected if c['scenario']==scenario) == [0,.4]
+    sources.append(plan_path)
+    development[report_key] = {
         'scope':'Verified frozen training plan; plan existence does not establish live job status, and partial outcomes are not qualification evidence.',
-        'plan':focus}
+        'plan':plan}
+throttle_folder = folder/'orbital-hold-g6-probe/throttle-audit'
+if (throttle_folder/'manifest.json').exists():
+    manifest_path,summary_path = throttle_folder/'manifest.json',throttle_folder/'summary.json'
+    manifest,summary = [json.loads(p.read_text()) for p in [manifest_path,summary_path]]
+    for source,row in manifest['sourceChecks'].items():
+        path = root/row.get('checkedFile',source)
+        assert hashlib.sha256(path.read_bytes()).hexdigest() == row['expected'] == row['actual']
+        sources.append(path)
+    for source,expected in manifest['inputSHA256'].items():
+        assert hashlib.sha256((root/source).read_bytes()).hexdigest() == expected
+        sources.append(root/source)
+    for output,expected in manifest['outputSHA256'].items():
+        assert hashlib.sha256((throttle_folder/output).read_bytes()).hexdigest() == expected
+        sources.append(throttle_folder/output)
+    analysis_path = root/'scripts/summarize-orbital-throttle.mjs'
+    assert hashlib.sha256(analysis_path.read_bytes()).hexdigest() == manifest['analysisSourceSHA256']
+    rows = [json.loads(line) for line in (throttle_folder/'all-decisions.jsonl').read_text().splitlines()]
+    assert len(rows) == summary['aggregate']['decisions'] == 3760 and len(summary['cases']) == 6
+    assert sum(c['decisions'] for c in summary['cases']) == len(rows)
+    assert max(r['absoluteCommandError'] for r in rows) <= 1e-10
+    assert all(math.isclose(math.tanh(r['logit']),r['recordedCommand'],abs_tol=1e-10) for r in rows)
+    sources.extend([manifest_path,summary_path,analysis_path])
+    development['orbitalHoldThrottleDecomposition'] = {
+        'scope':'Offline output arithmetic on all six completed diagnostic flights; no new neural inference, parameter fitting, physical intervention or reliability claim.',
+        'manifest':manifest,'summary':summary}
 gimbal_paths = {name: folder/directory/'selection.json' for name, directory in [
     ('candidate', 'gimbal-g2-selection'), ('released', 'gimbal-release-selection'), ('gimbalsZero', 'gimbal-g2-ablation')]}
 if all(p.exists() for p in gimbal_paths.values()):

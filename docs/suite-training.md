@@ -482,7 +482,7 @@ training audit are included in the [progress record](suite-training-progress.jso
 
 ### Joint training on difficult missions
 
-A new frozen lesson starts from the intact released G5 checkpoint and learns
+A completed frozen lesson started from the intact released G5 checkpoint and learned
 17 existing throttle, attitude and gimbal directions together. The five
 focus missions are High return, Wind shear, Turning vessel, Fin trouble and
 Tight storm. Across the three selection controllers, they landed 0/12,
@@ -507,9 +507,73 @@ will solve these failures. High return's current timeout mechanism still
 requires trajectory diagnosis; the earlier detailed probe used another
 checkpoint.
 
-After training, the frozen generation-six candidate requires fresh
-all-24 selection and separate unseen JavaScript final tests with the release
-and sensory controls. Training outcomes alone cannot qualify a release.
+All **1,296 flights completed**, with 515 landings across the 72 adaptive
+candidates. High return landed 17/144 attempts, Turning vessel 16/144,
+Fin trouble 34/144 and Tight storm 5/144; Wind shear remained 0/144.
+These pooled training counts measure search coverage, not a fixed controller's
+reliability. The predeclared final generation-six controller landed 11/18
+training cases, including all eight anchor cases. Earlier generations with
+12 landings used different cases and are not substitute candidates.
+
+An independent calculation reconstructs all 72 proposed parameter vectors,
+the final optimizer mean, scales and covariance, and all 21,300 final weights
+exactly. The audit also checks every planned flight, source hash, score,
+reward and selected history entry. The stored endpoint summaries do not
+permit full trajectory replay of every training flight.
+
+The final controller's varied High return case landed at 64.60 seconds with
+lateral speed 2.981 m/s, close to the original 65-second and 3 m/s limits.
+Its nominal case timed out. Both Wind shear cases missed by more than 61 m
+despite vertical touchdown speeds below 3.6 m/s. Further improvement needs
+tracking and timing, not only a lower descent speed.
+
+A frozen **384-flight comparison** used 96 fresh cases across all 24 ground
+missions: candidate normal, covered eyes, disabled indicators, and released
+G5 normal. Every mission has two nominal and two variability-0.4 cases.
+The fixed generation-six candidate must beat the release overall, preserve
+landing counts on the original four and released ten missions, and beat
+both sensory controls. No alternate generation or adjusted parameter vector
+is eligible. A pass still requires a separate unseen JavaScript final cohort
+before release. The complete plan and weight checks are in the progress record.
+
+All 384 comparisons completed. The fixed candidate landed **58/96** normal
+cases versus **61/96** for the release, with **0/96** for each sensory control.
+It also fell from 16/16 to 15/16 on the original four missions and from 31/40
+to 22/40 on the released ten. It rescued ten release failures but lost 13
+release successes. All three performance gates failed, so the candidate is
+rejected and will not proceed to final testing.
+
+High return improved from 0/4 to 2/4, while missions 22 and 23 each fell from
+3/4 to 0/4. All 24 mission rows and every matched outcome remain visible in
+the progress record. The focused lesson included only nine missions; its
+training success did not establish retention on the other fifteen.
+The nine trained missions improved from 17/36 to 19/36 in this comparison,
+while the fifteen excluded missions fell from 44/60 to 39/60. Six released
+missions absent from the lesson accounted for ten losses and two rescues.
+This supports testing broader training coverage; it does not prove coverage
+is the only cause of the regression.
+
+### All-ground joint lesson
+
+The launched `ground-joint-all` lesson starts again from intact released G5 and includes
+**all 24 ground missions in every generation**. Six generations of 12
+candidates each evaluate 48 cases: one nominal and one variability-0.4 start
+per mission, for **3,456 full flights**. The same 17 existing directions,
+reward, proposal scales and covariance algorithm remain in use. The rejected
+candidate is not used as the starting checkpoint.
+
+Only this lesson's variability schedule changes: it switches conditions after
+each complete 24-mission cycle. The old alternating-index rule would assign
+the same condition to both occurrences of a mission in an even-length cycle.
+All other lesson schedules remain unchanged. Training seed and mission
+rotation rules are retained, so prior training cases can recur; neither
+rejected selection cohort is reused. Every loaded neural-data file and the
+tested runtime are hash-locked in the plan.
+
+The plan fixes the final generation-six candidate for subsequent fresh
+all-ground selection with the release and both sensory controls. Only a
+passing selection can proceed to a further unseen JavaScript final cohort.
+The larger training budget does not itself qualify a release.
 
 ## Orbital ascent experiments
 
@@ -690,6 +754,39 @@ by a failed return. These are current-checkpoint observations, kept separate
 from the earlier generation-six branch's trajectories. The complete
 [progress record](suite-training-progress.json) preserves all six replays,
 including commands and presented/decoded signals in their source records.
+
+### Throttle arithmetic and the next joint lesson
+
+An offline decomposition reconstructs all **3,760 recorded throttle commands**
+from those six probes within `3.44e-12`. The controller never requested less
+than 40.69% throttle, and requested 49.64–61.89% after crossing destination
+altitude. Large destination and tangential-speed contributions largely
+canceled the negative bias and vertical-speed contributions, leaving a
+logit near zero and therefore roughly half throttle. Output `tanh` was not
+saturated at those crossings. This explains the recorded command arithmetic;
+it does not establish successful replacement coefficients.
+
+The same probes first reached 45° pitch at only 125–137 m altitude and 80°
+at 178–200 m. This motivates learning pitch and throttle together. The new
+frozen `orbital-joint` lesson permits 13 existing directions to change:
+seven throttle directions, five pitch-RCS directions and the pitch-gimbal
+direction. The other 15 parameters retain their initial values. It starts
+from the completed insertion lesson's final checkpoint, with the same
+sensory basis, full graph, actions, physical criteria and sustained-insertion
+reward. Only the search's eligible parameter set changes.
+
+The plan fixes **eight generations × 16 candidates × six full trips = 768
+flights**, with one nominal and one varied start per orbital mission per
+generation. It retains the original proposal scales and covariance algorithm
+with a fresh optimizer initialization. The fixed generation-eight candidate
+will be evaluated after the complete lesson. Training cases may repeat;
+improved shaped reward without an actual orbital milestone remains failed
+insertion, and no orbital capability is qualified by this plan.
+
+Reproduce the command decomposition with
+`node scripts/summarize-orbital-throttle.mjs`. It reads the archived tested
+runtime and preserves every decision, input/source hash and reconstructed
+contribution under `artifacts/suite-training/orbital-hold-g6-probe/throttle-audit`.
 
 ## Optional native calculation
 

@@ -1,0 +1,1258 @@
+{
+  "status": "Post-test development diagnosis of already reported predictions; no new test or calibration",
+  "scope": {
+    "records": 24,
+    "lowLuminance": 12,
+    "natural": 12,
+    "models": [
+      "zero",
+      "one_filter",
+      "two_filter"
+    ],
+    "optimizerAttemptsEvaluated": 0,
+    "newPredictionsComputed": 0,
+    "newEmpiricalDatasetsOpened": 0
+  },
+  "method": {
+    "units": "Means and SD in fractional deltaF/F; MSE and variance in squared fractional deltaF/F",
+    "weights": "Equal original sample weights, full preserved trace, population SD (ddof=0)",
+    "varianceIdentity": "MSE=(meanP-meanY)^2+sdP^2+sdY^2-2*r*sdP*sdY",
+    "nonnegativeIdentity": "MSE=(meanP-meanY)^2+(sdP-sdY)^2+2*sdP*sdY*(1-r)",
+    "constantTraceConvention": "Correlation is undefined; covariance=0 and correlationMismatch=0 when either SD is zero",
+    "interpretationLimits": [
+      "Mean bias is a window-average error, not proof of a sensor-baseline cause",
+      "SD ratio is descriptive; no rescaling was estimated or applied",
+      "Correlation term mixes shape, timing, noise and unmodeled effects; it cannot identify a delay",
+      "Terms are an algebraic accounting, not uniquely identified biological mechanisms"
+    ]
+  },
+  "inputSHA256": {
+    "published-results.json": "cb30b14da9dce3d107e5bb8f13a126c94327582c83ed48df6c8e3f8dabd17732",
+    "plan.json": "3f8a163724cbe7562b15a246a96a4af746610ddb5e704809412fe5d8f9c17564",
+    "fit.json": "b3872d3e0b670fe1e6257c25fad7a020e431ddf43ab733a5301897a46049d7c8",
+    "evaluation.json": "46468c97805c278bc3f959be2b62b1bbebf2d91891509eeb9affb8806f7afb91",
+    "tested-source.py": "60b2b89a4d8d94f149b4d10dd2cdc4bd2fad6341d1b6248771105772114f4afe"
+  },
+  "calculatorSHA256": "b89deb9c12b7eea8b5356d4debc300201aa6aca27d97a2c5c468379f66e67119",
+  "verification": {
+    "allPreservedMetricsMatched": true,
+    "maxAbsoluteVarianceIdentityResidual": 5.421010862427522e-20,
+    "maxAbsoluteThreeTermIdentityResidual": 8.131516293641283e-20
+  },
+  "records": [
+    {
+      "id": "lowLuminance/L1/zero/dark",
+      "domain": "lowLuminance",
+      "cell": "L1",
+      "model": "zero",
+      "polarity": "dark",
+      "initialization": "isolatedFlashZeroState",
+      "normalization": "grayReference",
+      "selectedTrainingRestart": null,
+      "samples": 63,
+      "firstTimeSeconds": 0.0,
+      "lastTimeSeconds": 0.5166666666666666,
+      "targetMean": 0.0016767987606592747,
+      "predictionMean": 0.0,
+      "targetSD": 0.004529761866876254,
+      "predictionSD": 0.0,
+      "predictionToTargetSDRatio": 0.0,
+      "targetVariance": 2.0518742570606244e-05,
+      "predictionVariance": 0.0,
+      "covariance": 0.0,
+      "correlation": null,
+      "meanError": -0.0016767987606592747,
+      "mse": 2.3330396654354722e-05,
+      "rmse": 0.004830154930678179,
+      "zeroResponseMSE": 2.3330396654354722e-05,
+      "zeroReferenceSkill": 0.0,
+      "varianceIdentityTerms": {
+        "meanBiasSquared": 2.8116540837484795e-06,
+        "predictionVariance": 0.0,
+        "targetVariance": 2.0518742570606244e-05,
+        "negativeTwiceCovariance": -0.0
+      },
+      "nonnegativeDecomposition": {
+        "meanBiasSquared": 2.8116540837484795e-06,
+        "sdMismatchSquared": 2.0518742570606248e-05,
+        "correlationMismatch": 0.0
+      },
+      "fractionOfMSE": {
+        "meanBiasSquared": 0.12051462842247355,
+        "sdMismatchSquared": 0.8794853715775266,
+        "correlationMismatch": 0.0
+      },
+      "largestArithmeticTerm": "sdMismatchSquared",
+      "centeredMSE": 2.0518742570606248e-05,
+      "identityResiduals": {
+        "varianceFormMinusDirect": 0.0,
+        "threeTermFormMinusDirect": 3.3881317890172014e-21
+      }
+    },
+    {
+      "id": "lowLuminance/L1/zero/bright",
+      "domain": "lowLuminance",
+      "cell": "L1",
+      "model": "zero",
+      "polarity": "bright",
+      "initialization": "isolatedFlashZeroState",
+      "normalization": "grayReference",
+      "selectedTrainingRestart": null,
+      "samples": 63,
+      "firstTimeSeconds": 0.0,
+      "lastTimeSeconds": 0.5166666666666666,
+      "targetMean": 0.0009775020021821517,
+      "predictionMean": 0.0,
+      "targetSD": 0.006675057948914083,
+      "predictionSD": 0.0,
+      "predictionToTargetSDRatio": 0.0,
+      "targetVariance": 4.455639862136108e-05,
+      "predictionVariance": 0.0,
+      "covariance": 0.0,
+      "correlation": null,
+      "meanError": -0.0009775020021821517,
+      "mse": 4.551190878563119e-05,
+      "rmse": 0.006746251461784625,
+      "zeroResponseMSE": 4.551190878563119e-05,
+      "zeroReferenceSkill": 0.0,
+      "varianceIdentityTerms": {
+        "meanBiasSquared": 9.555101642701152e-07,
+        "predictionVariance": 0.0,
+        "targetVariance": 4.455639862136108e-05,
+        "negativeTwiceCovariance": -0.0
+      },
+      "nonnegativeDecomposition": {
+        "meanBiasSquared": 9.555101642701152e-07,
+        "sdMismatchSquared": 4.4556398621361077e-05,
+        "correlationMismatch": 0.0
+      },
+      "fractionOfMSE": {
+        "meanBiasSquared": 0.020994728407695007,
+        "sdMismatchSquared": 0.979005271592305,
+        "correlationMismatch": 0.0
+      },
+      "largestArithmeticTerm": "sdMismatchSquared",
+      "centeredMSE": 4.4556398621361077e-05,
+      "identityResiduals": {
+        "varianceFormMinusDirect": 6.776263578034403e-21,
+        "threeTermFormMinusDirect": 0.0
+      }
+    },
+    {
+      "id": "lowLuminance/L1/one_filter/dark",
+      "domain": "lowLuminance",
+      "cell": "L1",
+      "model": "one_filter",
+      "polarity": "dark",
+      "initialization": "isolatedFlashZeroState",
+      "normalization": "grayReference",
+      "selectedTrainingRestart": 2,
+      "samples": 63,
+      "firstTimeSeconds": 0.0,
+      "lastTimeSeconds": 0.5166666666666666,
+      "targetMean": 0.0016767987606592747,
+      "predictionMean": -0.0008525699025787608,
+      "targetSD": 0.004529761866876254,
+      "predictionSD": 0.0027071097262269766,
+      "predictionToTargetSDRatio": 0.597627382141793,
+      "targetVariance": 2.0518742570606244e-05,
+      "predictionVariance": 7.328443069832696e-06,
+      "covariance": 9.560725132923833e-06,
+      "correlation": 0.7796678063976497,
+      "meanError": -0.0025293686632380354,
+      "mse": 1.5123441209161837e-05,
+      "rmse": 0.003888886885621879,
+      "zeroResponseMSE": 2.3330396654354722e-05,
+      "zeroReferenceSkill": 0.35177093500727175,
+      "varianceIdentityTerms": {
+        "meanBiasSquared": 6.397705834570566e-06,
+        "predictionVariance": 7.328443069832696e-06,
+        "targetVariance": 2.0518742570606244e-05,
+        "negativeTwiceCovariance": -1.9121450265847667e-05
+      },
+      "nonnegativeDecomposition": {
+        "meanBiasSquared": 6.397705834570566e-06,
+        "sdMismatchSquared": 3.3220608258133935e-06,
+        "correlationMismatch": 5.403674548777884e-06
+      },
+      "fractionOfMSE": {
+        "meanBiasSquared": 0.42303241346254,
+        "sdMismatchSquared": 0.21966302377007135,
+        "correlationMismatch": 0.35730456276738903
+      },
+      "largestArithmeticTerm": "meanBiasSquared",
+      "centeredMSE": 8.725735374591277e-06,
+      "identityResiduals": {
+        "varianceFormMinusDirect": 3.3881317890172014e-21,
+        "threeTermFormMinusDirect": 6.776263578034403e-21
+      }
+    },
+    {
+      "id": "lowLuminance/L1/one_filter/bright",
+      "domain": "lowLuminance",
+      "cell": "L1",
+      "model": "one_filter",
+      "polarity": "bright",
+      "initialization": "isolatedFlashZeroState",
+      "normalization": "grayReference",
+      "selectedTrainingRestart": 2,
+      "samples": 63,
+      "firstTimeSeconds": 0.0,
+      "lastTimeSeconds": 0.5166666666666666,
+      "targetMean": 0.0009775020021821517,
+      "predictionMean": 0.0028259985597787903,
+      "targetSD": 0.006675057948914083,
+      "predictionSD": 0.008973209310275709,
+      "predictionToTargetSDRatio": 1.3442893498378536,
+      "targetVariance": 4.455639862136108e-05,
+      "predictionVariance": 8.051848532601866e-05,
+      "covariance": 4.942860408827893e-05,
+      "correlation": 0.8252309489452573,
+      "meanError": 0.0018484965575966386,
+      "mse": 2.963461529426849e-05,
+      "rmse": 0.005443768482794662,
+      "zeroResponseMSE": 4.551190878563119e-05,
+      "zeroReferenceSkill": 0.34886019758361375,
+      "varianceIdentityTerms": {
+        "meanBiasSquared": 3.416939523446623e-06,
+        "predictionVariance": 8.051848532601866e-05,
+        "targetVariance": 4.455639862136108e-05,
+        "negativeTwiceCovariance": -9.885720817655787e-05
+      },
+      "nonnegativeDecomposition": {
+        "meanBiasSquared": 3.416939523446623e-06,
+        "sdMismatchSquared": 5.281499679728297e-06,
+        "correlationMismatch": 2.0936176091093588e-05
+      },
+      "fractionOfMSE": {
+        "meanBiasSquared": 0.11530230743732581,
+        "sdMismatchSquared": 0.17822062568667024,
+        "correlationMismatch": 0.7064770668760046
+      },
+      "largestArithmeticTerm": "correlationMismatch",
+      "centeredMSE": 2.6217675770821886e-05,
+      "identityResiduals": {
+        "varianceFormMinusDirect": 3.3881317890172014e-21,
+        "threeTermFormMinusDirect": 2.0328790734103208e-20
+      }
+    },
+    {
+      "id": "lowLuminance/L1/two_filter/dark",
+      "domain": "lowLuminance",
+      "cell": "L1",
+      "model": "two_filter",
+      "polarity": "dark",
+      "initialization": "isolatedFlashZeroState",
+      "normalization": "grayReference",
+      "selectedTrainingRestart": 7,
+      "samples": 63,
+      "firstTimeSeconds": 0.0,
+      "lastTimeSeconds": 0.5166666666666666,
+      "targetMean": 0.0016767987606592747,
+      "predictionMean": 0.004428599599814655,
+      "targetSD": 0.004529761866876254,
+      "predictionSD": 0.007162216361210304,
+      "predictionToTargetSDRatio": 1.5811463321248282,
+      "targetVariance": 2.0518742570606244e-05,
+      "predictionVariance": 5.1297343204788564e-05,
+      "covariance": 2.148665342690182e-05,
+      "correlation": 0.6622866045899193,
+      "meanError": 0.00275180083915538,
+      "mse": 3.641518677996742e-05,
+      "rmse": 0.006034499712483829,
+      "zeroResponseMSE": 2.3330396654354722e-05,
+      "zeroReferenceSkill": -0.5608473066046376,
+      "varianceIdentityTerms": {
+        "meanBiasSquared": 7.572407858376255e-06,
+        "predictionVariance": 5.1297343204788564e-05,
+        "targetVariance": 2.0518742570606244e-05,
+        "negativeTwiceCovariance": -4.297330685380364e-05
+      },
+      "nonnegativeDecomposition": {
+        "meanBiasSquared": 7.572407858376255e-06,
+        "sdMismatchSquared": 6.9298166647395364e-06,
+        "correlationMismatch": 2.191296225685163e-05
+      },
+      "fractionOfMSE": {
+        "meanBiasSquared": 0.20794642367568353,
+        "sdMismatchSquared": 0.19030018180633748,
+        "correlationMismatch": 0.601753394517979
+      },
+      "largestArithmeticTerm": "correlationMismatch",
+      "centeredMSE": 2.8842778921591167e-05,
+      "identityResiduals": {
+        "varianceFormMinusDirect": 1.3552527156068805e-20,
+        "threeTermFormMinusDirect": 0.0
+      }
+    },
+    {
+      "id": "lowLuminance/L1/two_filter/bright",
+      "domain": "lowLuminance",
+      "cell": "L1",
+      "model": "two_filter",
+      "polarity": "bright",
+      "initialization": "isolatedFlashZeroState",
+      "normalization": "grayReference",
+      "selectedTrainingRestart": 7,
+      "samples": 63,
+      "firstTimeSeconds": 0.0,
+      "lastTimeSeconds": 0.5166666666666666,
+      "targetMean": 0.0009775020021821517,
+      "predictionMean": 0.002583176923021297,
+      "targetSD": 0.006675057948914083,
+      "predictionSD": 0.009135196036414085,
+      "predictionToTargetSDRatio": 1.3685568134880723,
+      "targetVariance": 4.455639862136108e-05,
+      "predictionVariance": 8.345180662371561e-05,
+      "covariance": 5.115685984441512e-05,
+      "correlation": 0.838940125195956,
+      "meanError": 0.0016056749208391452,
+      "mse": 2.8272677507658238e-05,
+      "rmse": 0.005317205798881424,
+      "zeroResponseMSE": 4.551190878563119e-05,
+      "zeroReferenceSkill": 0.3787850639087158,
+      "varianceIdentityTerms": {
+        "meanBiasSquared": 2.5781919514117955e-06,
+        "predictionVariance": 8.345180662371561e-05,
+        "targetVariance": 4.455639862136108e-05,
+        "negativeTwiceCovariance": -0.00010231371968883024
+      },
+      "nonnegativeDecomposition": {
+        "meanBiasSquared": 2.5781919514117955e-06,
+        "sdMismatchSquared": 6.052279409568171e-06,
+        "correlationMismatch": 1.9642206146678286e-05
+      },
+      "fractionOfMSE": {
+        "meanBiasSquared": 0.09119022953214952,
+        "sdMismatchSquared": 0.2140681372653434,
+        "correlationMismatch": 0.6947416332025076
+      },
+      "largestArithmeticTerm": "correlationMismatch",
+      "centeredMSE": 2.5694485556246457e-05,
+      "identityResiduals": {
+        "varianceFormMinusDirect": 3.049318610115481e-20,
+        "threeTermFormMinusDirect": 1.3552527156068805e-20
+      }
+    },
+    {
+      "id": "lowLuminance/L2/zero/dark",
+      "domain": "lowLuminance",
+      "cell": "L2",
+      "model": "zero",
+      "polarity": "dark",
+      "initialization": "isolatedFlashZeroState",
+      "normalization": "grayReference",
+      "selectedTrainingRestart": null,
+      "samples": 63,
+      "firstTimeSeconds": 0.0,
+      "lastTimeSeconds": 0.5166666666666666,
+      "targetMean": 0.0010121519655624084,
+      "predictionMean": 0.0,
+      "targetSD": 0.005443128561509815,
+      "predictionSD": 0.0,
+      "predictionToTargetSDRatio": 0.0,
+      "targetVariance": 2.962764853712391e-05,
+      "predictionVariance": 0.0,
+      "covariance": 0.0,
+      "correlation": null,
+      "meanError": -0.0010121519655624084,
+      "mse": 3.0652100138515756e-05,
+      "rmse": 0.005536433882790957,
+      "zeroResponseMSE": 3.0652100138515756e-05,
+      "zeroReferenceSkill": 0.0,
+      "varianceIdentityTerms": {
+        "meanBiasSquared": 1.0244516013918467e-06,
+        "predictionVariance": 0.0,
+        "targetVariance": 2.962764853712391e-05,
+        "negativeTwiceCovariance": -0.0
+      },
+      "nonnegativeDecomposition": {
+        "meanBiasSquared": 1.0244516013918467e-06,
+        "sdMismatchSquared": 2.9627648537123913e-05,
+        "correlationMismatch": 0.0
+      },
+      "fractionOfMSE": {
+        "meanBiasSquared": 0.0334219057344321,
+        "sdMismatchSquared": 0.966578094265568,
+        "correlationMismatch": 0.0
+      },
+      "largestArithmeticTerm": "sdMismatchSquared",
+      "centeredMSE": 2.9627648537123913e-05,
+      "identityResiduals": {
+        "varianceFormMinusDirect": 0.0,
+        "threeTermFormMinusDirect": 0.0
+      }
+    },
+    {
+      "id": "lowLuminance/L2/zero/bright",
+      "domain": "lowLuminance",
+      "cell": "L2",
+      "model": "zero",
+      "polarity": "bright",
+      "initialization": "isolatedFlashZeroState",
+      "normalization": "grayReference",
+      "selectedTrainingRestart": null,
+      "samples": 63,
+      "firstTimeSeconds": 0.0,
+      "lastTimeSeconds": 0.5166666666666666,
+      "targetMean": 0.0005806286429409463,
+      "predictionMean": 0.0,
+      "targetSD": 0.006923902256518365,
+      "predictionSD": 0.0,
+      "predictionToTargetSDRatio": 0.0,
+      "targetVariance": 4.79404224578201e-05,
+      "predictionVariance": 0.0,
+      "covariance": 0.0,
+      "correlation": null,
+      "meanError": -0.0005806286429409463,
+      "mse": 4.827755207882354e-05,
+      "rmse": 0.006948204953714559,
+      "zeroResponseMSE": 4.827755207882354e-05,
+      "zeroReferenceSkill": 0.0,
+      "varianceIdentityTerms": {
+        "meanBiasSquared": 3.371296210034449e-07,
+        "predictionVariance": 0.0,
+        "targetVariance": 4.79404224578201e-05,
+        "negativeTwiceCovariance": -0.0
+      },
+      "nonnegativeDecomposition": {
+        "meanBiasSquared": 3.371296210034449e-07,
+        "sdMismatchSquared": 4.79404224578201e-05,
+        "correlationMismatch": 0.0
+      },
+      "fractionOfMSE": {
+        "meanBiasSquared": 0.006983154830489498,
+        "sdMismatchSquared": 0.9930168451695106,
+        "correlationMismatch": 0.0
+      },
+      "largestArithmeticTerm": "sdMismatchSquared",
+      "centeredMSE": 4.79404224578201e-05,
+      "identityResiduals": {
+        "varianceFormMinusDirect": 6.776263578034403e-21,
+        "threeTermFormMinusDirect": 6.776263578034403e-21
+      }
+    },
+    {
+      "id": "lowLuminance/L2/one_filter/dark",
+      "domain": "lowLuminance",
+      "cell": "L2",
+      "model": "one_filter",
+      "polarity": "dark",
+      "initialization": "isolatedFlashZeroState",
+      "normalization": "grayReference",
+      "selectedTrainingRestart": 1,
+      "samples": 63,
+      "firstTimeSeconds": 0.0,
+      "lastTimeSeconds": 0.5166666666666666,
+      "targetMean": 0.0010121519655624084,
+      "predictionMean": -0.0011878735129128074,
+      "targetSD": 0.005443128561509815,
+      "predictionSD": 0.003844812382957494,
+      "predictionToTargetSDRatio": 0.706360751819358,
+      "targetVariance": 2.962764853712391e-05,
+      "predictionVariance": 1.4782582260143283e-05,
+      "covariance": 1.4981379627308423e-05,
+      "correlation": 0.7158599485942736,
+      "meanError": -0.0022000254784752156,
+      "mse": 1.928758364859045e-05,
+      "rmse": 0.004391763159437272,
+      "zeroResponseMSE": 3.0652100138515756e-05,
+      "zeroReferenceSkill": 0.3707581679091957,
+      "varianceIdentityTerms": {
+        "meanBiasSquared": 4.840112105940101e-06,
+        "predictionVariance": 1.4782582260143283e-05,
+        "targetVariance": 2.962764853712391e-05,
+        "negativeTwiceCovariance": -2.9962759254616845e-05
+      },
+      "nonnegativeDecomposition": {
+        "meanBiasSquared": 4.840112105940101e-06,
+        "sdMismatchSquared": 2.554614606622097e-06,
+        "correlationMismatch": 1.1892856936028252e-05
+      },
+      "fractionOfMSE": {
+        "meanBiasSquared": 0.2509444518361853,
+        "sdMismatchSquared": 0.13244865988222376,
+        "correlationMismatch": 0.6166068882815909
+      },
+      "largestArithmeticTerm": "correlationMismatch",
+      "centeredMSE": 1.4447471542650349e-05,
+      "identityResiduals": {
+        "varianceFormMinusDirect": 3.3881317890172014e-21,
+        "threeTermFormMinusDirect": 0.0
+      }
+    },
+    {
+      "id": "lowLuminance/L2/one_filter/bright",
+      "domain": "lowLuminance",
+      "cell": "L2",
+      "model": "one_filter",
+      "polarity": "bright",
+      "initialization": "isolatedFlashZeroState",
+      "normalization": "grayReference",
+      "selectedTrainingRestart": 1,
+      "samples": 63,
+      "firstTimeSeconds": 0.0,
+      "lastTimeSeconds": 0.5166666666666666,
+      "targetMean": 0.0005806286429409463,
+      "predictionMean": 0.002165928450242532,
+      "targetSD": 0.006923902256518365,
+      "predictionSD": 0.007010501063932457,
+      "predictionToTargetSDRatio": 1.0125072255797034,
+      "targetVariance": 4.79404224578201e-05,
+      "predictionVariance": 4.9147125167398116e-05,
+      "covariance": 3.6907869782899924e-05,
+      "correlation": 0.7603595268015824,
+      "meanError": 0.001585299807301586,
+      "mse": 2.5784983538448817e-05,
+      "rmse": 0.005077891643039345,
+      "zeroResponseMSE": 4.827755207882354e-05,
+      "zeroReferenceSkill": 0.46590118122912993,
+      "varianceIdentityTerms": {
+        "meanBiasSquared": 2.5131754790304453e-06,
+        "predictionVariance": 4.9147125167398116e-05,
+        "targetVariance": 4.79404224578201e-05,
+        "negativeTwiceCovariance": -7.381573956579985e-05
+      },
+      "nonnegativeDecomposition": {
+        "meanBiasSquared": 2.5131754790304453e-06,
+        "sdMismatchSquared": 7.499353445543067e-09,
+        "correlationMismatch": 2.3264308705972826e-05
+      },
+      "fractionOfMSE": {
+        "meanBiasSquared": 0.09746663112206252,
+        "sdMismatchSquared": 0.00029084189386278025,
+        "correlationMismatch": 0.9022425269840746
+      },
+      "largestArithmeticTerm": "correlationMismatch",
+      "centeredMSE": 2.327180805941837e-05,
+      "identityResiduals": {
+        "varianceFormMinusDirect": -3.3881317890172014e-21,
+        "threeTermFormMinusDirect": -3.3881317890172014e-21
+      }
+    },
+    {
+      "id": "lowLuminance/L2/two_filter/dark",
+      "domain": "lowLuminance",
+      "cell": "L2",
+      "model": "two_filter",
+      "polarity": "dark",
+      "initialization": "isolatedFlashZeroState",
+      "normalization": "grayReference",
+      "selectedTrainingRestart": 8,
+      "samples": 63,
+      "firstTimeSeconds": 0.0,
+      "lastTimeSeconds": 0.5166666666666666,
+      "targetMean": 0.0010121519655624084,
+      "predictionMean": 0.0017520813866960451,
+      "targetSD": 0.005443128561509815,
+      "predictionSD": 0.005616186792001603,
+      "predictionToTargetSDRatio": 1.0317938899543069,
+      "targetVariance": 2.962764853712391e-05,
+      "predictionVariance": 3.1541554082653255e-05,
+      "covariance": 2.2121146844669956e-05,
+      "correlation": 0.7236315653091141,
+      "meanError": 0.0007399294211336367,
+      "mse": 1.7474404478696412e-05,
+      "rmse": 0.004180239763302628,
+      "zeroResponseMSE": 3.0652100138515756e-05,
+      "zeroReferenceSkill": 0.429911673270993,
+      "varianceIdentityTerms": {
+        "meanBiasSquared": 5.474955482591587e-07,
+        "predictionVariance": 3.1541554082653255e-05,
+        "targetVariance": 2.962764853712391e-05,
+        "negativeTwiceCovariance": -4.424229368933991e-05
+      },
+      "nonnegativeDecomposition": {
+        "meanBiasSquared": 5.474955482591587e-07,
+        "sdMismatchSquared": 2.9949151140948596e-08,
+        "correlationMismatch": 1.6896959779296304e-05
+      },
+      "fractionOfMSE": {
+        "meanBiasSquared": 0.0313312850762169,
+        "sdMismatchSquared": 0.0017138867981143812,
+        "correlationMismatch": 0.9669548281256687
+      },
+      "largestArithmeticTerm": "correlationMismatch",
+      "centeredMSE": 1.6926908930437253e-05,
+      "identityResiduals": {
+        "varianceFormMinusDirect": 3.3881317890172014e-21,
+        "threeTermFormMinusDirect": 0.0
+      }
+    },
+    {
+      "id": "lowLuminance/L2/two_filter/bright",
+      "domain": "lowLuminance",
+      "cell": "L2",
+      "model": "two_filter",
+      "polarity": "bright",
+      "initialization": "isolatedFlashZeroState",
+      "normalization": "grayReference",
+      "selectedTrainingRestart": 8,
+      "samples": 63,
+      "firstTimeSeconds": 0.0,
+      "lastTimeSeconds": 0.5166666666666666,
+      "targetMean": 0.0005806286429409463,
+      "predictionMean": 0.0008330026413806237,
+      "targetSD": 0.006923902256518365,
+      "predictionSD": 0.0075887698587805115,
+      "predictionToTargetSDRatio": 1.0960249838357006,
+      "targetVariance": 4.79404224578201e-05,
+      "predictionVariance": 5.7589427969535584e-05,
+      "covariance": 4.232482178329262e-05,
+      "correlation": 0.8055135073649577,
+      "meanError": 0.00025237399843967747,
+      "mse": 2.0943899495858856e-05,
+      "rmse": 0.004576450534623843,
+      "zeroResponseMSE": 4.827755207882354e-05,
+      "zeroReferenceSkill": 0.5661772688544064,
+      "varianceIdentityTerms": {
+        "meanBiasSquared": 6.369263508843033e-08,
+        "predictionVariance": 5.7589427969535584e-05,
+        "targetVariance": 4.79404224578201e-05,
+        "negativeTwiceCovariance": -8.464964356658525e-05
+      },
+      "nonnegativeDecomposition": {
+        "meanBiasSquared": 6.369263508843033e-08,
+        "sdMismatchSquared": 4.4204892853781626e-07,
+        "correlationMismatch": 2.0438157932232623e-05
+      },
+      "fractionOfMSE": {
+        "meanBiasSquared": 0.003041106795848786,
+        "sdMismatchSquared": 0.021106333547161103,
+        "correlationMismatch": 0.9758525596569908
+      },
+      "largestArithmeticTerm": "correlationMismatch",
+      "centeredMSE": 2.088020686077044e-05,
+      "identityResiduals": {
+        "varianceFormMinusDirect": 2.371692252312041e-20,
+        "threeTermFormMinusDirect": 1.3552527156068805e-20
+      }
+    },
+    {
+      "id": "natural/L2/zero/primary",
+      "domain": "natural",
+      "cell": "L2",
+      "model": "zero",
+      "variant": "primary",
+      "initialization": "periodic",
+      "normalization": "convertedWithPeriodicPredictedCycleMean",
+      "selectedTrainingRestart": null,
+      "periodicCycleMeanGrayReference": 0.0,
+      "validPredictedFluorescence": true,
+      "samples": 708,
+      "firstTimeSeconds": 0.0,
+      "lastTimeSeconds": 1.994858474,
+      "targetMean": -0.0006275526133778207,
+      "predictionMean": 0.0,
+      "targetSD": 0.012559879845958655,
+      "predictionSD": 0.0,
+      "predictionToTargetSDRatio": 0.0,
+      "targetVariance": 0.0001577505817449184,
+      "predictionVariance": 0.0,
+      "covariance": 0.0,
+      "correlation": null,
+      "meanError": 0.0006275526133778207,
+      "mse": 0.0001581444040274757,
+      "rmse": 0.012575547861921393,
+      "zeroResponseMSE": 0.0001581444040274757,
+      "zeroReferenceSkill": 0.0,
+      "varianceIdentityTerms": {
+        "meanBiasSquared": 3.938222825573325e-07,
+        "predictionVariance": 0.0,
+        "targetVariance": 0.0001577505817449184,
+        "negativeTwiceCovariance": -0.0
+      },
+      "nonnegativeDecomposition": {
+        "meanBiasSquared": 3.938222825573325e-07,
+        "sdMismatchSquared": 0.00015775058174491842,
+        "correlationMismatch": 0.0
+      },
+      "fractionOfMSE": {
+        "meanBiasSquared": 0.0024902701109102195,
+        "sdMismatchSquared": 0.99750972988909,
+        "correlationMismatch": 0.0
+      },
+      "largestArithmeticTerm": "sdMismatchSquared",
+      "centeredMSE": 0.00015775058174491842,
+      "identityResiduals": {
+        "varianceFormMinusDirect": 0.0,
+        "threeTermFormMinusDirect": 2.710505431213761e-20
+      }
+    },
+    {
+      "id": "natural/L2/zero/zeroStateSecondary",
+      "domain": "natural",
+      "cell": "L2",
+      "model": "zero",
+      "variant": "zeroStateSecondary",
+      "initialization": "zeroState",
+      "normalization": "convertedWithPeriodicPredictedCycleMean",
+      "selectedTrainingRestart": null,
+      "periodicCycleMeanGrayReference": 0.0,
+      "validPredictedFluorescence": true,
+      "samples": 708,
+      "firstTimeSeconds": 0.0,
+      "lastTimeSeconds": 1.994858474,
+      "targetMean": -0.0006275526133778207,
+      "predictionMean": 0.0,
+      "targetSD": 0.012559879845958655,
+      "predictionSD": 0.0,
+      "predictionToTargetSDRatio": 0.0,
+      "targetVariance": 0.0001577505817449184,
+      "predictionVariance": 0.0,
+      "covariance": 0.0,
+      "correlation": null,
+      "meanError": 0.0006275526133778207,
+      "mse": 0.0001581444040274757,
+      "rmse": 0.012575547861921393,
+      "zeroResponseMSE": 0.0001581444040274757,
+      "zeroReferenceSkill": 0.0,
+      "varianceIdentityTerms": {
+        "meanBiasSquared": 3.938222825573325e-07,
+        "predictionVariance": 0.0,
+        "targetVariance": 0.0001577505817449184,
+        "negativeTwiceCovariance": -0.0
+      },
+      "nonnegativeDecomposition": {
+        "meanBiasSquared": 3.938222825573325e-07,
+        "sdMismatchSquared": 0.00015775058174491842,
+        "correlationMismatch": 0.0
+      },
+      "fractionOfMSE": {
+        "meanBiasSquared": 0.0024902701109102195,
+        "sdMismatchSquared": 0.99750972988909,
+        "correlationMismatch": 0.0
+      },
+      "largestArithmeticTerm": "sdMismatchSquared",
+      "centeredMSE": 0.00015775058174491842,
+      "identityResiduals": {
+        "varianceFormMinusDirect": 0.0,
+        "threeTermFormMinusDirect": 2.710505431213761e-20
+      }
+    },
+    {
+      "id": "natural/L2/zero/unconvertedPeriodicDiagnostic",
+      "domain": "natural",
+      "cell": "L2",
+      "model": "zero",
+      "variant": "unconvertedPeriodicDiagnostic",
+      "initialization": "periodic",
+      "normalization": "unconvertedGrayReference",
+      "selectedTrainingRestart": null,
+      "periodicCycleMeanGrayReference": 0.0,
+      "validPredictedFluorescence": true,
+      "samples": 708,
+      "firstTimeSeconds": 0.0,
+      "lastTimeSeconds": 1.994858474,
+      "targetMean": -0.0006275526133778207,
+      "predictionMean": 0.0,
+      "targetSD": 0.012559879845958655,
+      "predictionSD": 0.0,
+      "predictionToTargetSDRatio": 0.0,
+      "targetVariance": 0.0001577505817449184,
+      "predictionVariance": 0.0,
+      "covariance": 0.0,
+      "correlation": null,
+      "meanError": 0.0006275526133778207,
+      "mse": 0.0001581444040274757,
+      "rmse": 0.012575547861921393,
+      "zeroResponseMSE": 0.0001581444040274757,
+      "zeroReferenceSkill": 0.0,
+      "varianceIdentityTerms": {
+        "meanBiasSquared": 3.938222825573325e-07,
+        "predictionVariance": 0.0,
+        "targetVariance": 0.0001577505817449184,
+        "negativeTwiceCovariance": -0.0
+      },
+      "nonnegativeDecomposition": {
+        "meanBiasSquared": 3.938222825573325e-07,
+        "sdMismatchSquared": 0.00015775058174491842,
+        "correlationMismatch": 0.0
+      },
+      "fractionOfMSE": {
+        "meanBiasSquared": 0.0024902701109102195,
+        "sdMismatchSquared": 0.99750972988909,
+        "correlationMismatch": 0.0
+      },
+      "largestArithmeticTerm": "sdMismatchSquared",
+      "centeredMSE": 0.00015775058174491842,
+      "identityResiduals": {
+        "varianceFormMinusDirect": 0.0,
+        "threeTermFormMinusDirect": 2.710505431213761e-20
+      }
+    },
+    {
+      "id": "natural/L2/zero/unconvertedZeroStateDiagnostic",
+      "domain": "natural",
+      "cell": "L2",
+      "model": "zero",
+      "variant": "unconvertedZeroStateDiagnostic",
+      "initialization": "zeroState",
+      "normalization": "unconvertedGrayReference",
+      "selectedTrainingRestart": null,
+      "periodicCycleMeanGrayReference": 0.0,
+      "validPredictedFluorescence": true,
+      "samples": 708,
+      "firstTimeSeconds": 0.0,
+      "lastTimeSeconds": 1.994858474,
+      "targetMean": -0.0006275526133778207,
+      "predictionMean": 0.0,
+      "targetSD": 0.012559879845958655,
+      "predictionSD": 0.0,
+      "predictionToTargetSDRatio": 0.0,
+      "targetVariance": 0.0001577505817449184,
+      "predictionVariance": 0.0,
+      "covariance": 0.0,
+      "correlation": null,
+      "meanError": 0.0006275526133778207,
+      "mse": 0.0001581444040274757,
+      "rmse": 0.012575547861921393,
+      "zeroResponseMSE": 0.0001581444040274757,
+      "zeroReferenceSkill": 0.0,
+      "varianceIdentityTerms": {
+        "meanBiasSquared": 3.938222825573325e-07,
+        "predictionVariance": 0.0,
+        "targetVariance": 0.0001577505817449184,
+        "negativeTwiceCovariance": -0.0
+      },
+      "nonnegativeDecomposition": {
+        "meanBiasSquared": 3.938222825573325e-07,
+        "sdMismatchSquared": 0.00015775058174491842,
+        "correlationMismatch": 0.0
+      },
+      "fractionOfMSE": {
+        "meanBiasSquared": 0.0024902701109102195,
+        "sdMismatchSquared": 0.99750972988909,
+        "correlationMismatch": 0.0
+      },
+      "largestArithmeticTerm": "sdMismatchSquared",
+      "centeredMSE": 0.00015775058174491842,
+      "identityResiduals": {
+        "varianceFormMinusDirect": 0.0,
+        "threeTermFormMinusDirect": 2.710505431213761e-20
+      }
+    },
+    {
+      "id": "natural/L2/one_filter/primary",
+      "domain": "natural",
+      "cell": "L2",
+      "model": "one_filter",
+      "variant": "primary",
+      "initialization": "periodic",
+      "normalization": "convertedWithPeriodicPredictedCycleMean",
+      "selectedTrainingRestart": 1,
+      "periodicCycleMeanGrayReference": 0.012690526413579841,
+      "validPredictedFluorescence": true,
+      "samples": 708,
+      "firstTimeSeconds": 0.0,
+      "lastTimeSeconds": 1.994858474,
+      "targetMean": -0.0006275526133778207,
+      "predictionMean": -2.4034038842482108e-05,
+      "targetSD": 0.012559879845958655,
+      "predictionSD": 0.020689382441783432,
+      "predictionToTargetSDRatio": 1.6472595833343562,
+      "targetVariance": 0.0001577505817449184,
+      "predictionVariance": 0.0004280505458223766,
+      "covariance": 0.0001864827718919457,
+      "correlation": 0.7176384567752231,
+      "meanError": 0.0006035185745353386,
+      "mse": 0.00021319981845321277,
+      "rmse": 0.014601363581981403,
+      "zeroResponseMSE": 0.0001581444040274757,
+      "zeroReferenceSkill": -0.34813381329744586,
+      "varianceIdentityTerms": {
+        "meanBiasSquared": 3.642346698091671e-07,
+        "predictionVariance": 0.0004280505458223766,
+        "targetVariance": 0.0001577505817449184,
+        "negativeTwiceCovariance": -0.0003729655437838914
+      },
+      "nonnegativeDecomposition": {
+        "meanBiasSquared": 3.642346698091671e-07,
+        "sdMismatchSquared": 6.608881245552179e-05,
+        "correlationMismatch": 0.00014674677132788184
+      },
+      "fractionOfMSE": {
+        "meanBiasSquared": 0.0017084192306153362,
+        "sdMismatchSquared": 0.30998531300356214,
+        "correlationMismatch": 0.6883062677658226
+      },
+      "largestArithmeticTerm": "correlationMismatch",
+      "centeredMSE": 0.00021283558378340362,
+      "identityResiduals": {
+        "varianceFormMinusDirect": 0.0,
+        "threeTermFormMinusDirect": 2.710505431213761e-20
+      }
+    },
+    {
+      "id": "natural/L2/one_filter/zeroStateSecondary",
+      "domain": "natural",
+      "cell": "L2",
+      "model": "one_filter",
+      "variant": "zeroStateSecondary",
+      "initialization": "zeroState",
+      "normalization": "convertedWithPeriodicPredictedCycleMean",
+      "selectedTrainingRestart": 1,
+      "periodicCycleMeanGrayReference": 0.012690526413579841,
+      "validPredictedFluorescence": true,
+      "samples": 708,
+      "firstTimeSeconds": 0.0,
+      "lastTimeSeconds": 1.994858474,
+      "targetMean": -0.0006275526133778207,
+      "predictionMean": -0.00029378754323613343,
+      "targetSD": 0.012559879845958655,
+      "predictionSD": 0.020491310212968867,
+      "predictionToTargetSDRatio": 1.6314893505579418,
+      "targetVariance": 0.0001577505817449184,
+      "predictionVariance": 0.0004198937942441222,
+      "covariance": 0.00018440210810207562,
+      "correlation": 0.7164908834400621,
+      "meanError": 0.0003337650701416873,
+      "mse": 0.00020895155890693608,
+      "rmse": 0.014455156827476348,
+      "zeroResponseMSE": 0.0001581444040274757,
+      "zeroReferenceSkill": -0.3212706462293362,
+      "varianceIdentityTerms": {
+        "meanBiasSquared": 1.1139912204668545e-07,
+        "predictionVariance": 0.0004198937942441222,
+        "targetVariance": 0.0001577505817449184,
+        "negativeTwiceCovariance": -0.00036880421620415124
+      },
+      "nonnegativeDecomposition": {
+        "meanBiasSquared": 1.1139912204668545e-07,
+        "sdMismatchSquared": 6.290758766673175e-05,
+        "correlationMismatch": 0.00014593257211815758
+      },
+      "fractionOfMSE": {
+        "meanBiasSquared": 0.0005331337207027058,
+        "sdMismatchSquared": 0.3010630214764268,
+        "correlationMismatch": 0.6984038448028702
+      },
+      "largestArithmeticTerm": "correlationMismatch",
+      "centeredMSE": 0.00020884015978488933,
+      "identityResiduals": {
+        "varianceFormMinusDirect": -2.710505431213761e-20,
+        "threeTermFormMinusDirect": -8.131516293641283e-20
+      }
+    },
+    {
+      "id": "natural/L2/one_filter/unconvertedPeriodicDiagnostic",
+      "domain": "natural",
+      "cell": "L2",
+      "model": "one_filter",
+      "variant": "unconvertedPeriodicDiagnostic",
+      "initialization": "periodic",
+      "normalization": "unconvertedGrayReference",
+      "selectedTrainingRestart": 1,
+      "periodicCycleMeanGrayReference": 0.012690526413579841,
+      "validPredictedFluorescence": true,
+      "samples": 708,
+      "firstTimeSeconds": 0.0,
+      "lastTimeSeconds": 1.994858474,
+      "targetMean": -0.0006275526133778207,
+      "predictionMean": 0.012666187370132694,
+      "targetSD": 0.012559879845958655,
+      "predictionSD": 0.020951941596141548,
+      "predictionToTargetSDRatio": 1.668164174586684,
+      "targetVariance": 0.0001577505817449184,
+      "predictionVariance": 0.0004389838566481264,
+      "covariance": 0.0001888493364343181,
+      "correlation": 0.7176384567752231,
+      "meanError": 0.013293739983510515,
+      "mse": 0.00039575928827359475,
+      "rmse": 0.019893699713064806,
+      "zeroResponseMSE": 0.0001581444040274757,
+      "zeroReferenceSkill": -1.5025184463993826,
+      "varianceIdentityTerms": {
+        "meanBiasSquared": 0.00017672352274918614,
+        "predictionVariance": 0.0004389838566481264,
+        "targetVariance": 0.0001577505817449184,
+        "negativeTwiceCovariance": -0.0003776986728686362
+      },
+      "nonnegativeDecomposition": {
+        "meanBiasSquared": 0.00017672352274918614,
+        "sdMismatchSquared": 7.042670041888276e-05,
+        "correlationMismatch": 0.0001486090651055259
+      },
+      "fractionOfMSE": {
+        "meanBiasSquared": 0.4465429567556083,
+        "sdMismatchSquared": 0.17795337344096812,
+        "correlationMismatch": 0.37550366980342376
+      },
+      "largestArithmeticTerm": "meanBiasSquared",
+      "centeredMSE": 0.00021903576552440867,
+      "identityResiduals": {
+        "varianceFormMinusDirect": 5.421010862427522e-20,
+        "threeTermFormMinusDirect": 5.421010862427522e-20
+      }
+    },
+    {
+      "id": "natural/L2/one_filter/unconvertedZeroStateDiagnostic",
+      "domain": "natural",
+      "cell": "L2",
+      "model": "one_filter",
+      "variant": "unconvertedZeroStateDiagnostic",
+      "initialization": "zeroState",
+      "normalization": "unconvertedGrayReference",
+      "selectedTrainingRestart": 1,
+      "periodicCycleMeanGrayReference": 0.012690526413579841,
+      "validPredictedFluorescence": true,
+      "samples": 708,
+      "firstTimeSeconds": 0.0,
+      "lastTimeSeconds": 1.994858474,
+      "targetMean": -0.0006275526133778207,
+      "predictionMean": 0.012393010551766375,
+      "targetSD": 0.012559879845958655,
+      "predictionSD": 0.02075135572647541,
+      "predictionToTargetSDRatio": 1.6521938092546717,
+      "targetVariance": 0.0001577505817449184,
+      "predictionVariance": 0.0004306187644867238,
+      "covariance": 0.00018674226792566483,
+      "correlation": 0.716490883440062,
+      "meanError": 0.013020563165144196,
+      "mse": 0.00038441987551782235,
+      "rmse": 0.01960662835670178,
+      "zeroResponseMSE": 0.0001581444040274757,
+      "zeroReferenceSkill": -1.4308155440709363,
+      "varianceIdentityTerms": {
+        "meanBiasSquared": 0.00016953506513750984,
+        "predictionVariance": 0.0004306187644867238,
+        "targetVariance": 0.0001577505817449184,
+        "negativeTwiceCovariance": -0.00037348453585132966
+      },
+      "nonnegativeDecomposition": {
+        "meanBiasSquared": 0.00016953506513750984,
+        "sdMismatchSquared": 6.710027710108775e-05,
+        "correlationMismatch": 0.0001477845332792248
+      },
+      "fractionOfMSE": {
+        "meanBiasSquared": 0.44101534789048624,
+        "sdMismatchSquared": 0.17454944807601883,
+        "correlationMismatch": 0.384435204033495
+      },
+      "largestArithmeticTerm": "meanBiasSquared",
+      "centeredMSE": 0.00021488481038031254,
+      "identityResiduals": {
+        "varianceFormMinusDirect": 5.421010862427522e-20,
+        "threeTermFormMinusDirect": 5.421010862427522e-20
+      }
+    },
+    {
+      "id": "natural/L2/two_filter/primary",
+      "domain": "natural",
+      "cell": "L2",
+      "model": "two_filter",
+      "variant": "primary",
+      "initialization": "periodic",
+      "normalization": "convertedWithPeriodicPredictedCycleMean",
+      "selectedTrainingRestart": 8,
+      "periodicCycleMeanGrayReference": 0.013932354411089556,
+      "validPredictedFluorescence": true,
+      "samples": 708,
+      "firstTimeSeconds": 0.0,
+      "lastTimeSeconds": 1.994858474,
+      "targetMean": -0.0006275526133778207,
+      "predictionMean": -9.607379700514584e-06,
+      "targetSD": 0.012559879845958655,
+      "predictionSD": 0.021355345683468696,
+      "predictionToTargetSDRatio": 1.7002826416639745,
+      "targetVariance": 0.0001577505817449184,
+      "predictionVariance": 0.00045605078926044503,
+      "covariance": 0.00022239991541051122,
+      "correlation": 0.8291679887085467,
+      "meanError": 0.0006179452336773062,
+      "mse": 0.0001693833964961655,
+      "rmse": 0.013014737665284134,
+      "zeroResponseMSE": 0.0001581444040274757,
+      "zeroReferenceSkill": -0.07106791124102707,
+      "varianceIdentityTerms": {
+        "meanBiasSquared": 3.8185631182450057e-07,
+        "predictionVariance": 0.00045605078926044503,
+        "targetVariance": 0.0001577505817449184,
+        "negativeTwiceCovariance": -0.00044479983082102245
+      },
+      "nonnegativeDecomposition": {
+        "meanBiasSquared": 3.8185631182450057e-07,
+        "sdMismatchSquared": 7.736021929880621e-05,
+        "correlationMismatch": 9.164132088553483e-05
+      },
+      "fractionOfMSE": {
+        "meanBiasSquared": 0.002254390452213804,
+        "sdMismatchSquared": 0.4567166611312904,
+        "correlationMismatch": 0.5410289484164962
+      },
+      "largestArithmeticTerm": "correlationMismatch",
+      "centeredMSE": 0.00016900154018434106,
+      "identityResiduals": {
+        "varianceFormMinusDirect": -5.421010862427522e-20,
+        "threeTermFormMinusDirect": 5.421010862427522e-20
+      }
+    },
+    {
+      "id": "natural/L2/two_filter/zeroStateSecondary",
+      "domain": "natural",
+      "cell": "L2",
+      "model": "two_filter",
+      "variant": "zeroStateSecondary",
+      "initialization": "zeroState",
+      "normalization": "convertedWithPeriodicPredictedCycleMean",
+      "selectedTrainingRestart": 8,
+      "periodicCycleMeanGrayReference": 0.013932354411089556,
+      "validPredictedFluorescence": true,
+      "samples": 708,
+      "firstTimeSeconds": 0.0,
+      "lastTimeSeconds": 1.994858474,
+      "targetMean": -0.0006275526133778207,
+      "predictionMean": 0.0011237616919059317,
+      "targetSD": 0.012559879845958655,
+      "predictionSD": 0.0211598534830597,
+      "predictionToTargetSDRatio": 1.6847178271270027,
+      "targetVariance": 0.0001577505817449184,
+      "predictionVariance": 0.00044773939942455366,
+      "covariance": 0.00021957185036610045,
+      "correlation": 0.8261873114638975,
+      "meanError": 0.0017513143052837524,
+      "mse": 0.00016941338223316267,
+      "rmse": 0.013015889605907185,
+      "zeroResponseMSE": 0.0001581444040274757,
+      "zeroReferenceSkill": -0.07125752109274197,
+      "varianceIdentityTerms": {
+        "meanBiasSquared": 3.0671017958915124e-06,
+        "predictionVariance": 0.00044773939942455366,
+        "targetVariance": 0.0001577505817449184,
+        "negativeTwiceCovariance": -0.0004391437007322009
+      },
+      "nonnegativeDecomposition": {
+        "meanBiasSquared": 3.0671017958915124e-06,
+        "sdMismatchSquared": 7.395954655883296e-05,
+        "correlationMismatch": 9.238673387843824e-05
+      },
+      "fractionOfMSE": {
+        "meanBiasSquared": 0.0181042474653524,
+        "sdMismatchSquared": 0.4365625996241717,
+        "correlationMismatch": 0.5453331529104761
+      },
+      "largestArithmeticTerm": "correlationMismatch",
+      "centeredMSE": 0.0001663462804372712,
+      "identityResiduals": {
+        "varianceFormMinusDirect": -2.710505431213761e-20,
+        "threeTermFormMinusDirect": 2.710505431213761e-20
+      }
+    },
+    {
+      "id": "natural/L2/two_filter/unconvertedPeriodicDiagnostic",
+      "domain": "natural",
+      "cell": "L2",
+      "model": "two_filter",
+      "variant": "unconvertedPeriodicDiagnostic",
+      "initialization": "periodic",
+      "normalization": "unconvertedGrayReference",
+      "selectedTrainingRestart": 8,
+      "periodicCycleMeanGrayReference": 0.013932354411089556,
+      "validPredictedFluorescence": true,
+      "samples": 708,
+      "firstTimeSeconds": 0.0,
+      "lastTimeSeconds": 1.994858474,
+      "targetMean": -0.0006275526133778207,
+      "predictionMean": 0.013922613177970177,
+      "targetSD": 0.012559879845958655,
+      "predictionSD": 0.02165287592810211,
+      "predictionToTargetSDRatio": 1.7239715820266606,
+      "targetVariance": 0.0001577505817449184,
+      "predictionVariance": 0.00046884703595778383,
+      "covariance": 0.00022549846985300676,
+      "correlation": 0.8291679887085466,
+      "meanError": 0.014550165791347998,
+      "mse": 0.00038730800255240224,
+      "rmse": 0.019680142340755623,
+      "zeroResponseMSE": 0.0001581444040274757,
+      "zeroReferenceSkill": -1.4490781380105746,
+      "varianceIdentityTerms": {
+        "meanBiasSquared": 0.00021170732455571352,
+        "predictionVariance": 0.00046884703595778383,
+        "targetVariance": 0.0001577505817449184,
+        "negativeTwiceCovariance": -0.0004509969397060135
+      },
+      "nonnegativeDecomposition": {
+        "meanBiasSquared": 0.00021170732455571352,
+        "sdMismatchSquared": 8.268257774987624e-05,
+        "correlationMismatch": 9.291810024681253e-05
+      },
+      "fractionOfMSE": {
+        "meanBiasSquared": 0.5466123167105741,
+        "sdMismatchSquared": 0.2134801687674641,
+        "correlationMismatch": 0.23990751452196196
+      },
+      "largestArithmeticTerm": "meanBiasSquared",
+      "centeredMSE": 0.00017560067799668878,
+      "identityResiduals": {
+        "varianceFormMinusDirect": 5.421010862427522e-20,
+        "threeTermFormMinusDirect": 5.421010862427522e-20
+      }
+    },
+    {
+      "id": "natural/L2/two_filter/unconvertedZeroStateDiagnostic",
+      "domain": "natural",
+      "cell": "L2",
+      "model": "two_filter",
+      "variant": "unconvertedZeroStateDiagnostic",
+      "initialization": "zeroState",
+      "normalization": "unconvertedGrayReference",
+      "selectedTrainingRestart": 8,
+      "periodicCycleMeanGrayReference": 0.013932354411089556,
+      "validPredictedFluorescence": true,
+      "samples": 708,
+      "firstTimeSeconds": 0.0,
+      "lastTimeSeconds": 1.994858474,
+      "targetMean": -0.0006275526133778207,
+      "predictionMean": 0.015071772749160814,
+      "targetSD": 0.012559879845958655,
+      "predictionSD": 0.021454660061072422,
+      "predictionToTargetSDRatio": 1.7081899129772173,
+      "targetVariance": 0.0001577505817449184,
+      "predictionVariance": 0.00046030243833617606,
+      "covariance": 0.0002226310032040998,
+      "correlation": 0.8261873114638976,
+      "meanError": 0.015699325362538635,
+      "mse": 0.0004192598305117437,
+      "rmse": 0.02047583528239431,
+      "zeroResponseMSE": 0.0001581444040274757,
+      "zeroReferenceSkill": -1.651120240959663,
+      "varianceIdentityTerms": {
+        "meanBiasSquared": 0.00024646881683884885,
+        "predictionVariance": 0.00046030243833617606,
+        "targetVariance": 0.0001577505817449184,
+        "negativeTwiceCovariance": -0.0004452620064081996
+      },
+      "nonnegativeDecomposition": {
+        "meanBiasSquared": 0.00024646881683884885,
+        "sdMismatchSquared": 7.91171150751793e-05,
+        "correlationMismatch": 9.367389859771562e-05
+      },
+      "fractionOfMSE": {
+        "meanBiasSquared": 0.5878665183306778,
+        "sdMismatchSquared": 0.18870664279621036,
+        "correlationMismatch": 0.22342683887311202
+      },
+      "largestArithmeticTerm": "meanBiasSquared",
+      "centeredMSE": 0.00017279101367289492,
+      "identityResiduals": {
+        "varianceFormMinusDirect": 5.421010862427522e-20,
+        "threeTermFormMinusDirect": 5.421010862427522e-20
+      }
+    }
+  ],
+  "comparisonsOfAlreadyPreservedNaturalVariants": {
+    "one_filter": {
+      "startupMinusPeriodicMSE": -4.248259546276687e-06,
+      "startupRelativeMSEChange": -0.019926187447523502,
+      "preservedConversionMSEDecrease": 0.00018255946982038198,
+      "preservedConversionRelativeMSEDecrease": 0.46128916043071033
+    },
+    "two_filter": {
+      "startupMinusPeriodicMSE": 2.998573699717765e-08,
+      "startupRelativeMSEChange": 0.00017702878568659486,
+      "preservedConversionMSEDecrease": 0.00021792460605623675,
+      "preservedConversionRelativeMSEDecrease": 0.562664867805699
+    }
+  }
+}
