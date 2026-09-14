@@ -161,6 +161,85 @@ All six engine-failure profiles failed. Stronger winds, a turning vessel,
 low fuel and the high-speed return also exposed failures. The exact cases
 and outcomes are retained in `artifacts/suite-training/ground-suite-scout/scout.json`.
 
+## Engine recovery experiments
+
+The first engine-bank comparison ran twelve complete flights: one- and
+three-engine commands on each of the six engine-failure profiles. Both
+conditions failed all six starts. The three-engine condition timed out in
+every case, showing that changing the bank also requires a throttle change.
+
+The search therefore adds three calibrated directions: measured selector
+position into throttle, and body vibration and throttle position into the
+engine-bank command. These are learned output coefficients using the
+existing body inputs. The anatomical network and runtime readout format
+remain the same. Setting the added coefficients to zero reproduced the
+released checkpoint's exact weight hash and one complete JavaScript test
+flight, including its original outcome.
+
+An initial correlated search completed 576 flights in six generations
+without a successful engine-failure recovery. It stopped after completing
+its current generation. A separate two-dimensional grid then tested sixteen
+combinations of selector-dependent throttle and vertical-speed feedback,
+with four full flights per combination. The best combination landed 2/4:
+
+| Development case | Physics | Outcome |
+| --- | --- | --- |
+| Landing School | Nominal | Touchdown at 2.32 m/s |
+| Engine trouble | Variability 0.4 | Excess tilt and lateral speed |
+| Early engine fade | Nominal | Touchdown at 2.77 m/s |
+| Blackout rendezvous | Variability 0.4 | Hard landing at 5.41 m/s |
+
+Another grid setting landed the dead-center-engine case, while its other
+three cases timed out. The selected shared setting commands the
+three-engine bank from the start. Reactive switching after a failure
+remains unverified. These development cases selected the next starting
+point; they do not establish independent reliability. Every grid case,
+failure, parameter combination and archived source hash remains in
+`artifacts/suite-training/engine-bank-grid/sweep.json`.
+
+The next search includes two normal missions and all six engine-failure
+profiles, with changing seeds and physical variation. It releases steering
+alongside throttle and engine selection because the grid also exposed
+lateral and attitude failures. Its candidate ranking uses landing count
+first, then the recorded reward and touchdown-margin fitness. Previously,
+a zero-landing candidate with several timeouts displaced a two-landing
+candidate from the search elites. Replaying that recorded generation
+confirmed that the revised ordering retains three two-landing elites.
+The physical success criteria and original rewards are unchanged. The
+packaged controller remains the independently tested four-mission version.
+
+## Orbital ascent experiments
+
+The packaged controller completed three nominal orbital baseline trials,
+one per orbital mission, with the same frozen weight hash. All three returned
+before reaching space. Their maximum altitudes were 19.71, 20.46 and
+19.96 meters, and all flights ended after approximately 230 simulated
+seconds. The complete results are in
+`artifacts/suite-training/orbital-baseline/baseline.json`.
+
+The orbital search adds seven output directions using the existing visible
+destination, tangential-speed, clearance and angular-travel indicators.
+All seven start at zero. A complete JavaScript flight with those additions
+inactive exactly matched the packaged weights and original flight outcome.
+No new controller observation, phase flag or expert action is introduced.
+
+Training also records a separate insertion reward, evaluated from physical
+outcomes after each action. Let `d` be the sum of the absolute periapsis and
+apoapsis errors divided by the mission altitude, plus absolute radial speed
+divided by 40. The best finite `exp(-d / 4)` reached during the flight is
+its insertion quality. The extra reward is 1,200 times that quality plus
+200 times the fraction of destination altitude reached, capped at one.
+This gives the search a smooth measure of progress toward a circular orbit.
+The original reward, actual milestones and full mission result remain
+separate. Computing this reward does not set any mission-completion flag,
+and its measurements never enter the sensory packet or action calculation.
+
+The first insertion lesson uses the complete-round-trip mission, with
+nominal and variability-0.4 physics and changing training seeds. Every
+candidate still runs to the original physical endpoint. Its success
+criterion remains a full orbit followed by deorbit, entry and barge
+touchdown. This stage has not yet established an orbital flight capability.
+
 ## Optional native calculation
 
 The optional Node backend evaluates the same CSR rows and edges in the same
@@ -196,3 +275,7 @@ matched conditions and writes a completion flag only after every flight
 finishes. Artifacts retain failed trials as well as successes. The separate
 [chemical panel](additional-odor-tests.md) did not identify a compound that
 qualified for a steering follow-up.
+
+When the direction layout or selection order changes, initialize a new
+experiment directory with `SUITE_INITIAL` pointing to the prior checkpoint
+or parameter file. The trainer rejects incompatible saved search states.
