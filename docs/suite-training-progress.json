@@ -8376,6 +8376,370 @@
         "artifacts/suite-training/orbital-calibrated-g6-probe/replay-source/c8b715a1075f2104c08c0d49ecdd08a78b6f72bb889e15e6488a1984086d949e-missions.js": "c8b715a1075f2104c08c0d49ecdd08a78b6f72bb889e15e6488a1984086d949e",
         "artifacts/suite-training/orbital-calibrated-g6-probe/replay-source/7e14c3d359c8ea557a794d611b87a563590813a61592c14b82d58415ff73afb5-full-controller.js": "7e14c3d359c8ea557a794d611b87a563590813a61592c14b82d58415ff73afb5"
       }
+    },
+    "insertionHoldReward": {
+      "scope": "Outcome-only reward qualification and a new training plan; no new orbital capability or final reliability claim.",
+      "comparisons": {
+        "orbital-calibrated-probe": [
+          {
+            "flight": {
+              "seed": 714133,
+              "scenario": 24,
+              "activationGain": 1,
+              "score": -523.4418286524998,
+              "landed": false,
+              "styleBonus": 0,
+              "styleRecovered": false,
+              "turnDegrees": -0.05216480482707168,
+              "reason": "Flight left the recovery corridor",
+              "variation": {
+                "level": 0,
+                "mass": 1,
+                "thrust": 1,
+                "servo": 1,
+                "wind": 1,
+                "deck": 1,
+                "noise": 0
+              },
+              "touchdown": null,
+              "time": 479.6999999999956,
+              "orbitComplete": false,
+              "orbits": 0,
+              "maxAltitude": 11997.257957806012,
+              "milestones": [
+                {
+                  "name": "Launch",
+                  "time": 1.850000000000001,
+                  "altitude": 4.125303308426494
+                },
+                {
+                  "name": "Space",
+                  "time": 293.1999999999956,
+                  "altitude": 802.3057338500946
+                }
+              ]
+            },
+            "decisions": 1495,
+            "exactPhysicalReplay": true,
+            "insertionQuality": 0.6934983451889882,
+            "insertionHoldQuality": 0.003698390863133894,
+            "longestPhysicalInsertionHoldSeconds": 0
+          },
+          {
+            "flight": {
+              "seed": 733800,
+              "scenario": 25,
+              "activationGain": 1,
+              "score": -531.1300867895154,
+              "landed": false,
+              "styleBonus": 0,
+              "styleRecovered": false,
+              "turnDegrees": -0.1055981855493251,
+              "reason": "Flight left the recovery corridor",
+              "variation": {
+                "level": 0.2,
+                "mass": 0.9800956421806843,
+                "thrust": 0.9968654453273597,
+                "servo": 0.9953174691978534,
+                "wind": 1.0708761659076644,
+                "deck": 1.030759383563896,
+                "noise": 0.002
+              },
+              "touchdown": null,
+              "time": 473.24999999999596,
+              "orbitComplete": false,
+              "orbits": 0,
+              "maxAltitude": 11995.474487190242,
+              "milestones": [
+                {
+                  "name": "Launch",
+                  "time": 1.7500000000000009,
+                  "altitude": 4.013648958895109
+                },
+                {
+                  "name": "Space",
+                  "time": 286.24999999999596,
+                  "altitude": 800.8595865310914
+                }
+              ]
+            },
+            "decisions": 1454,
+            "exactPhysicalReplay": true,
+            "insertionQuality": 0.7397276721318331,
+            "insertionHoldQuality": 0.014332197010008735,
+            "longestPhysicalInsertionHoldSeconds": 0
+          },
+          {
+            "flight": {
+              "seed": 753467,
+              "scenario": 26,
+              "activationGain": 1,
+              "score": -522.2581750453556,
+              "landed": false,
+              "styleBonus": 0,
+              "styleRecovered": false,
+              "turnDegrees": -0.0664092798543803,
+              "reason": "Flight left the recovery corridor",
+              "variation": {
+                "level": 0,
+                "mass": 1,
+                "thrust": 1,
+                "servo": 1,
+                "wind": 1,
+                "deck": 1,
+                "noise": 0
+              },
+              "touchdown": null,
+              "time": 455.89999999999543,
+              "orbitComplete": false,
+              "orbits": 0,
+              "maxAltitude": 11997.687006038801,
+              "milestones": [
+                {
+                  "name": "Launch",
+                  "time": 1.800000000000001,
+                  "altitude": 4.011041568370507
+                },
+                {
+                  "name": "Space",
+                  "time": 285.39999999999543,
+                  "altitude": 800.8317027453091
+                }
+              ]
+            },
+            "decisions": 1463,
+            "exactPhysicalReplay": true,
+            "insertionQuality": 0.7346161878490127,
+            "insertionHoldQuality": 0.006314451479587843,
+            "longestPhysicalInsertionHoldSeconds": 0
+          }
+        ],
+        "orbital-calibrated-g6-probe": [
+          {
+            "flight": {
+              "seed": 714133,
+              "scenario": 24,
+              "activationGain": 1,
+              "score": -481.07976135080656,
+              "landed": false,
+              "styleBonus": 0,
+              "styleRecovered": false,
+              "turnDegrees": -0.2712095507793786,
+              "reason": "Flight left the recovery corridor",
+              "variation": {
+                "level": 0,
+                "mass": 1,
+                "thrust": 1,
+                "servo": 1,
+                "wind": 1,
+                "deck": 1,
+                "noise": 0
+              },
+              "touchdown": null,
+              "time": 119.94999999999787,
+              "orbitComplete": false,
+              "orbits": 0,
+              "maxAltitude": 12109.011935540482,
+              "milestones": [
+                {
+                  "name": "Launch",
+                  "time": 1.4500000000000006,
+                  "altitude": 4.118951804999863
+                },
+                {
+                  "name": "Space",
+                  "time": 90.19999999999787,
+                  "altitude": 805.1118712444021
+                }
+              ]
+            },
+            "decisions": 591,
+            "exactPhysicalReplay": true,
+            "insertionQuality": 0.8051036741024542,
+            "insertionHoldQuality": 0.03071925373960006,
+            "longestPhysicalInsertionHoldSeconds": 0
+          },
+          {
+            "flight": {
+              "seed": 733800,
+              "scenario": 25,
+              "activationGain": 1,
+              "score": -479.25559731771955,
+              "landed": false,
+              "styleBonus": 0,
+              "styleRecovered": false,
+              "turnDegrees": -0.3018285856108447,
+              "reason": "Flight left the recovery corridor",
+              "variation": {
+                "level": 0.2,
+                "mass": 0.9800956421806843,
+                "thrust": 0.9968654453273597,
+                "servo": 0.9953174691978534,
+                "wind": 1.0708761659076644,
+                "deck": 1.030759383563896,
+                "noise": 0.002
+              },
+              "touchdown": null,
+              "time": 118.39999999999783,
+              "orbitComplete": false,
+              "orbits": 0,
+              "maxAltitude": 12024.283323139141,
+              "milestones": [
+                {
+                  "name": "Launch",
+                  "time": 1.4000000000000006,
+                  "altitude": 4.039145952197021
+                },
+                {
+                  "name": "Space",
+                  "time": 89.39999999999783,
+                  "altitude": 818.5069295817394
+                }
+              ]
+            },
+            "decisions": 591,
+            "exactPhysicalReplay": true,
+            "insertionQuality": 0.8035110006373682,
+            "insertionHoldQuality": 0.03070834163745838,
+            "longestPhysicalInsertionHoldSeconds": 0
+          },
+          {
+            "flight": {
+              "seed": 753467,
+              "scenario": 26,
+              "activationGain": 1,
+              "score": -481.27747173001336,
+              "landed": false,
+              "styleBonus": 0,
+              "styleRecovered": false,
+              "turnDegrees": -0.23146212043737133,
+              "reason": "Flight left the recovery corridor",
+              "variation": {
+                "level": 0,
+                "mass": 1,
+                "thrust": 1,
+                "servo": 1,
+                "wind": 1,
+                "deck": 1,
+                "noise": 0
+              },
+              "touchdown": null,
+              "time": 127.04999999999742,
+              "orbitComplete": false,
+              "orbits": 0,
+              "maxAltitude": 12010.568549713964,
+              "milestones": [
+                {
+                  "name": "Launch",
+                  "time": 1.4500000000000006,
+                  "altitude": 4.239750834411883
+                },
+                {
+                  "name": "Space",
+                  "time": 97.54999999999742,
+                  "altitude": 828.4777293558692
+                }
+              ]
+            },
+            "decisions": 642,
+            "exactPhysicalReplay": true,
+            "insertionQuality": 0.7821905914126209,
+            "insertionHoldQuality": 0.03267527191231942,
+            "longestPhysicalInsertionHoldSeconds": 0
+          }
+        ]
+      },
+      "completeFlightParity": {
+        "scope": "Two complete deterministic parity checks, not new reliability tests. Compare the same frozen weights, cases and native build before and after outcome-only reward instrumentation.",
+        "flights": [
+          {
+            "name": "hold-ground-parity",
+            "exactCommandsObservationsAndPhysicalOutcome": true,
+            "decisions": 183,
+            "landed": true,
+            "reason": "Touchdown"
+          },
+          {
+            "name": "orbital-hold-parity",
+            "exactCommandsObservationsAndPhysicalOutcome": true,
+            "decisions": 591,
+            "landed": false,
+            "reason": "Flight left the recovery corridor",
+            "insertionHoldQuality": 0.03071925373960006,
+            "insertionHoldReward": 236.86310448752008
+          }
+        ],
+        "sourceSHA256": {
+          "artifacts/suite-training/hold-ground-parity/plan.json": "fa34a58998a08360dc977ab1b11a27ddf3a1980fdcdd67ee70c03aa14a1a46c2",
+          "artifacts/suite-training/hold-ground-parity/probe.json": "64990bd835db199c4e7979f813a524a19f4c66837c6f8b036a0e289c69d17fa1",
+          "artifacts/suite-training/orbital-hold-parity/plan.json": "81cfb138d193e0045855ddb5f9564faaee29000bbb4ff7a913725a6fcd7d8e2e",
+          "artifacts/suite-training/orbital-hold-parity/probe.json": "67c2cceab29f7d0a419ba1fa62d09286849aa4008c33cc0828968b4cb9a5b47c"
+        }
+      },
+      "plan": {
+        "purpose": "Learn sustained proximity to the original three-second orbital insertion conditions after complete trajectory evidence of transient high scores and subsequent escape. No reward measurements enter controller inputs or actions.",
+        "profiles": [
+          24,
+          25,
+          26
+        ],
+        "generations": 6,
+        "population": 12,
+        "batch": 6,
+        "expectedFlights": 432,
+        "workers": 4,
+        "activeDirections": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27
+        ],
+        "searchSeed": 273700099,
+        "varySeeds": true,
+        "nominalAndVariedPerMissionPerGeneration": [
+          1,
+          1
+        ],
+        "initialFile": "artifacts/suite-training/orbital-hold/frozen-initial.json",
+        "initialSHA256": "a0b0ed49803d4e500f0b464a35617b1231efae9378eed4c28107e0722a326ef7",
+        "basisFile": "artifacts/suite-training/sensory-basis-orbital.json",
+        "basisSHA256": "74ee1017b8d124dd68f3c40f215df27b7ec222a9282051cad0864f665c9d7bf2",
+        "sourceSHA256": "e08a6f237fae0137255c9052d334c9e6cec6e0fd75904b2efd7583de9b37b5ec",
+        "insertionRewardSourceSHA256": "066691735303b6ad9e1b9b883999ed6149a57aa27c73a1753db457baab27a66e",
+        "fitnessVersion": "touchdown-margin-and-orbit-hold-v1",
+        "selectionOrder": "landings-orbital-milestones-then-fitness",
+        "reward": "After each original physics step, exp(-(max(0,800-periapsis)/200 + max(0,abs(apoapsis-destination)-200)/200 + max(0,abs(radialSpeed)-5)/5)), with zero for non-finite distance. Keep the maximum time-weighted mean over the trailing three seconds, padding early windows with zero. Orbital fitness uses 0.1*originalScore + 1200*holdQuality + 200*min(1,maxAltitude/destination). Preserve original instantaneous insertion metrics separately.",
+        "physicalCompletion": "Unchanged original launch, stable insertion, full revolution, deorbit, entry and safe barge touchdown. Every trip continues to its original endpoint. No reward value completes a milestone.",
+        "parityFile": "artifacts/suite-training/insertion-hold-parity.json",
+        "paritySHA256": "0d93ea7691e567d9e3f5a207be684cb20b0cc7829e2fcb95ee894853e24b555e",
+        "selection": "Training only. Freeze a candidate before a new independent validation plan. Preserve every failed flight and do not infer full mission success from the shaped score."
+      },
+      "launchParameters": {
+        "recordedAt": "2026-09-14T04:24:23.647309+00:00",
+        "planSHA256": "14395c4d9aff3dd4d3a3c8bdbcfaa19ecc4ca00c4c9a1b0becd197fffb8e488c",
+        "touchdownMargin": 3,
+        "note": "The launch command explicitly retained SUITE_TOUCHDOWN_MARGIN=3. This existing successful-touchdown penalty was omitted from the prose formula in the pre-launch plan; the original plan is preserved. For landed trips, fitness additionally subtracts 3*(vertical touchdown speed squared + lateral touchdown speed squared). Landing count and milestone ordering remain first."
+      }
     }
   },
   "sourceSHA256": {
@@ -8427,7 +8791,7 @@
     "artifacts/suite-training/orbital-calibration-comparison.json": "37c4b1afa582c0d11af1fd52e318f7fee2647aa1a2d73793666a40eeb857b789",
     "artifacts/suite-training/orbital-progress-trained-probe/probe.json": "041136573cf7d428063c474a2a58ca7c2085ecbc18a072b7741dd7243b694d35",
     "artifacts/suite-training/orbital-calibrated-probe/probe.json": "51f31cc11ec586706b8e5f90ad5cc2101006c489dd0a883079e98c6b78b9691a",
-    "scripts/report-suite-training.py": "b83abdaec009a63dc5853e4aaaff9c4a8fe0aa839841ccf4a75e00c32353a8a3",
+    "scripts/report-suite-training.py": "2c7c042170db69941d963bcea59c024f3a2af0a1aa7ae5f410cddd9bb55815ef",
     "artifacts/suite-training/gimbal-g5-selection/selection.json": "ad6b180f40e56b9c865871a0503e3335b1581177c49e6019b9043cb278c171f5",
     "artifacts/suite-training/gimbal-g5-selection/selection-weights.json": "175d37cd77e5f68a3ece3818578aca70a2cbc2743017ad72770f8e006ac957d4",
     "artifacts/suite-training/gimbal-g5-ablation/selection.json": "b3525e31dcf4b6575e4b2cf7b4a3038288a75748765b3a184694ae935abfe710",
@@ -8457,6 +8821,27 @@
     "artifacts/suite-training/orbital-calibrated-g6-probe/replay-source/3bf699bfc2d047095eb14046fdf054b7ee9fab38b48006c08aa2268f656b2c81-orbital.js": "3bf699bfc2d047095eb14046fdf054b7ee9fab38b48006c08aa2268f656b2c81",
     "artifacts/suite-training/orbital-calibrated-g6-probe/replay-source/c8b715a1075f2104c08c0d49ecdd08a78b6f72bb889e15e6488a1984086d949e-missions.js": "c8b715a1075f2104c08c0d49ecdd08a78b6f72bb889e15e6488a1984086d949e",
     "artifacts/suite-training/orbital-calibrated-g6-probe/replay-source/7e14c3d359c8ea557a794d611b87a563590813a61592c14b82d58415ff73afb5-full-controller.js": "7e14c3d359c8ea557a794d611b87a563590813a61592c14b82d58415ff73afb5",
-    "artifacts/suite-training/orbital-calibrated-g6-probe/trajectory-summary.json": "042082b87180bd1755033e6ef182c97b30198b76e4a071613ede18c16e83be2d"
+    "artifacts/suite-training/orbital-calibrated-g6-probe/trajectory-summary.json": "042082b87180bd1755033e6ef182c97b30198b76e4a071613ede18c16e83be2d",
+    "artifacts/suite-training/hold-ground-parity/plan.json": "fa34a58998a08360dc977ab1b11a27ddf3a1980fdcdd67ee70c03aa14a1a46c2",
+    "artifacts/suite-training/hold-ground-parity/probe.json": "64990bd835db199c4e7979f813a524a19f4c66837c6f8b036a0e289c69d17fa1",
+    "artifacts/suite-training/orbital-hold-parity/plan.json": "81cfb138d193e0045855ddb5f9564faaee29000bbb4ff7a913725a6fcd7d8e2e",
+    "artifacts/suite-training/orbital-hold-parity/probe.json": "67c2cceab29f7d0a419ba1fa62d09286849aa4008c33cc0828968b4cb9a5b47c",
+    "artifacts/suite-training/orbital-calibrated-probe/replay-source/11b9115c419651231602daa10ccadd5da65eaa9db58c07c0aaa1544b74e0a295-summarize-flight-probe.mjs": "11b9115c419651231602daa10ccadd5da65eaa9db58c07c0aaa1544b74e0a295",
+    "artifacts/suite-training/orbital-calibrated-probe/replay-source/4c65d704a53ec3879da92ff26a43c83d92bedca2abcce8b7f6d687afb6b66356-engine3d.js": "4c65d704a53ec3879da92ff26a43c83d92bedca2abcce8b7f6d687afb6b66356",
+    "artifacts/suite-training/orbital-calibrated-probe/replay-source/8ae019c2fe8af34df618ef3be8047ba20aaa2de00a811b6215536ffde90c9c60-orbital.js": "8ae019c2fe8af34df618ef3be8047ba20aaa2de00a811b6215536ffde90c9c60",
+    "artifacts/suite-training/orbital-calibrated-probe/replay-source/f98e9305b26ce1441dfa5140a4ddbeb926d62fa8d9ebf80571b5a71f31b1e802-full-controller.js": "f98e9305b26ce1441dfa5140a4ddbeb926d62fa8d9ebf80571b5a71f31b1e802",
+    "artifacts/suite-training/orbital-calibrated-probe/replay-source/066691735303b6ad9e1b9b883999ed6149a57aa27c73a1753db457baab27a66e-insertion-hold.mjs": "066691735303b6ad9e1b9b883999ed6149a57aa27c73a1753db457baab27a66e",
+    "artifacts/suite-training/orbital-calibrated-probe/hold-summary.json": "77455e8643700861a1ca68a0d8fe73f3c45d8a72556709ccb71c641fbd5e102f",
+    "artifacts/suite-training/orbital-calibrated-g6-probe/replay-source/11b9115c419651231602daa10ccadd5da65eaa9db58c07c0aaa1544b74e0a295-summarize-flight-probe.mjs": "11b9115c419651231602daa10ccadd5da65eaa9db58c07c0aaa1544b74e0a295",
+    "artifacts/suite-training/orbital-calibrated-g6-probe/replay-source/4c65d704a53ec3879da92ff26a43c83d92bedca2abcce8b7f6d687afb6b66356-engine3d.js": "4c65d704a53ec3879da92ff26a43c83d92bedca2abcce8b7f6d687afb6b66356",
+    "artifacts/suite-training/orbital-calibrated-g6-probe/replay-source/8ae019c2fe8af34df618ef3be8047ba20aaa2de00a811b6215536ffde90c9c60-orbital.js": "8ae019c2fe8af34df618ef3be8047ba20aaa2de00a811b6215536ffde90c9c60",
+    "artifacts/suite-training/orbital-calibrated-g6-probe/replay-source/f98e9305b26ce1441dfa5140a4ddbeb926d62fa8d9ebf80571b5a71f31b1e802-full-controller.js": "f98e9305b26ce1441dfa5140a4ddbeb926d62fa8d9ebf80571b5a71f31b1e802",
+    "artifacts/suite-training/orbital-calibrated-g6-probe/replay-source/066691735303b6ad9e1b9b883999ed6149a57aa27c73a1753db457baab27a66e-insertion-hold.mjs": "066691735303b6ad9e1b9b883999ed6149a57aa27c73a1753db457baab27a66e",
+    "artifacts/suite-training/orbital-calibrated-g6-probe/hold-summary.json": "b6c6a3dca5764c84b50882fb588df695b07db943f16355a8da2653767a6dcb2b",
+    "artifacts/suite-training/orbital-hold/source-e08a6f237fae0137255c9052d334c9e6cec6e0fd75904b2efd7583de9b37b5ec.mjs": "e08a6f237fae0137255c9052d334c9e6cec6e0fd75904b2efd7583de9b37b5ec",
+    "artifacts/suite-training/orbital-hold/insertion-hold-066691735303b6ad9e1b9b883999ed6149a57aa27c73a1753db457baab27a66e.mjs": "066691735303b6ad9e1b9b883999ed6149a57aa27c73a1753db457baab27a66e",
+    "artifacts/suite-training/orbital-hold/plan.json": "14395c4d9aff3dd4d3a3c8bdbcfaa19ecc4ca00c4c9a1b0becd197fffb8e488c",
+    "artifacts/suite-training/insertion-hold-parity.json": "0d93ea7691e567d9e3f5a207be684cb20b0cc7829e2fcb95ee894853e24b555e",
+    "artifacts/suite-training/orbital-hold/launch-parameters.json": "cf1f34c9e967a837557957b6519fecebcd5e002d8f02001f0e59dae61507995f"
   }
 }

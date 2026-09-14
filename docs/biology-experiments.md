@@ -495,5 +495,64 @@ artifacts/lif-runtime/bin/python scripts/lif-odor-probe.py --odors 'ethyl acetat
 artifacts/lif-runtime/bin/python scripts/summarize-neuromodulator-recruitment.py --visual-inputs
 ```
 
+## Qualifying visual transmission before chemical modulation
+
+A separate diagnostic now tests the visual input path of the existing
+spiking model. It reuses the complete 166,700-cell graph, all 25,582,938
+connections and the same LIF equations. The two conditions share one
+Poisson seed: no external drive, and a uniform 50 Hz source applied to the
+6,091 photoreceptors with annotated left/right eye assignments. Every other
+external source is silent. Each trial has 200 ms before stimulation, 300 ms
+of source drive and 300 ms after it stops. The rate is a model input, not
+calibrated light intensity or a model of phototransduction.
+
+Both trials completed. The dark control produced no spikes. The flash
+produced **91,334 photoreceptor spikes during source drive and 35 afterward**,
+but **zero spikes in every other neuron**. Mean membrane potential in L1
+and L2 fell from −52 mV to minima of −56.64 and −56.32 model mV, respectively,
+then returned toward rest. Mi1 also hyperpolarized slightly. T4 and T5 stayed
+at rest. All six complete per-neuron phase-count arrays were verified against
+the reported totals and frozen observation pools.
+
+![Direct visual targets change voltage, but only photoreceptors emit spikes in this isolated model diagnostic](assets/visual-transmission.png)
+
+The signal therefore reaches direct targets as a voltage change, while
+spiking transmission through the rest of the circuit is absent. There is a
+structural reason in this isolated setup: every driven photoreceptor has an
+inhibitory sign, all other cells start below threshold, and the model adds
+neither tonic drive nor graded transmitter release. Inhibition cannot
+generate the first spike in a resting downstream cell under these equations;
+returning toward the resting potential also remains below threshold.
+The anatomical connections are present, but this transmission rule has not
+established a working visual-motion pathway.
+
+This is a limit of this spiking model, not evidence that the corresponding
+living neurons are visually unresponsive. For example, recordings from fly
+L2 terminals found strong calcium responses to brightness decrements, with
+much weaker responses to increments. A spike-count assay does not reproduce
+that measurement. [Reiff et al., Nature Neuroscience](https://www.nature.com/articles/nn.2595)
+
+The next model requirement is to fit the appropriate baseline activity and
+transmission dynamics to measured photoreceptor/lamina responses, then test
+light increments, decrements and directional motion on separate stimuli.
+The same flash also needs a matched check with the existing clean-air ORN
+background; this isolated test does not measure that interaction.
+Only after that qualification should an odor-dependent change in visual
+gain be interpreted. Arbitrarily increasing global gain or reversing all
+photoreceptor signs would not establish the missing physiology. The game
+pilot uses its separate rate model; these results do not change its measured
+landing record or validate transfer to a living fly.
+
+The [verified diagnostic record](visual-transmission-results.json) retains
+the phase totals, voltage traces, all graph-file checksums and source hashes.
+Its frozen plan is `artifacts/odor-interface/visual-transmission/plan.json`.
+This is a two-condition structural check with one shared random seed, not
+an estimate of animal variability or chemical efficacy.
+
+```sh
+artifacts/lif-runtime/bin/python scripts/lif-visual-probe.py
+artifacts/lif-runtime/bin/python scripts/summarize-visual-transmission.py
+```
+
 Use a new output path for any repetition; the original complete count files
 are preserved and the script refuses to overwrite their directory.

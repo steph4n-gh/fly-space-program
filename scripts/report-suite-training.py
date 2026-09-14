@@ -212,6 +212,37 @@ for name, directory in [('gimbalGenerationFiveProbe', 'gimbal-g5-probe'),
         assert all(result['flights'][0][key] == value for key, value in row['flight'].items())
     sources.append(summary_path)
     development[name] = summary
+hold_plan_path = folder/'orbital-hold/plan.json'
+if hold_plan_path.exists():
+    hold_plan = json.loads(hold_plan_path.read_text())
+    parity_path = root/hold_plan['parityFile']
+    assert hashlib.sha256(parity_path.read_bytes()).hexdigest() == hold_plan['paritySHA256']
+    parity = json.loads(parity_path.read_text())
+    for path, expected in parity['sourceSHA256'].items():
+        assert hashlib.sha256((root/path).read_bytes()).hexdigest() == expected, path
+        sources.append(root/path)
+    comparisons = {}
+    for name in ['orbital-calibrated-probe', 'orbital-calibrated-g6-probe']:
+        path = folder/name/'hold-summary.json'
+        record = json.loads(path.read_text())
+        for source, expected in record['sourceSHA256'].items():
+            assert hashlib.sha256((root/source).read_bytes()).hexdigest() == expected, source
+            sources.append(root/source)
+        sources.append(path)
+        comparisons[name] = [{key: row[key] for key in ['flight', 'decisions', 'exactPhysicalReplay',
+                                                       'insertionQuality', 'insertionHoldQuality',
+                                                       'longestPhysicalInsertionHoldSeconds']} for row in record['flights']]
+    launch_path = folder/'orbital-hold/launch-parameters.json'
+    launch = json.loads(launch_path.read_text())
+    assert launch['planSHA256'] == hashlib.sha256(hold_plan_path.read_bytes()).hexdigest()
+    for prefix, key in [('source-', 'sourceSHA256'), ('insertion-hold-', 'insertionRewardSourceSHA256')]:
+        path = folder/'orbital-hold'/(prefix + hold_plan[key] + '.mjs')
+        assert hashlib.sha256(path.read_bytes()).hexdigest() == hold_plan[key]
+        sources.append(path)
+    sources.extend([hold_plan_path, parity_path, launch_path])
+    development['insertionHoldReward'] = {'scope': 'Outcome-only reward qualification and a new training plan; no new orbital capability or final reliability claim.',
+                                          'comparisons': comparisons, 'completeFlightParity': parity,
+                                          'plan': hold_plan, 'launchParameters': launch}
 report = {'scope':'Training and model-selection snapshot and one matched calibration probe; not final mission validation',
           'calibrationProbe': [{'seed':f['seed'],'landed':f['landed'],'reason':f['reason'],'touchdown':f['touchdown'],'time':f['time']} for f in flights],
           'training':states, 'selections':selections, 'development':development,

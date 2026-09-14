@@ -30,6 +30,13 @@ The physical-interface research target, 27-mission baseline, expanded 689-odor a
 
 [Biology experiments](docs/biology-experiments.md) prioritizes odor-dependent visual tracking, cue/reward learning and targeted circuit tests. It records 336 static odor/visual trajectories, 48 matched chemical flights and two 28-trial spiking-model recruitment assays. The expanded anatomy identifies octopamine contacts into inputs of the visual-motion pathway. The follow-up found modest, variable odor responses in additional candidates; all observed visual populations remained silent without visual input. Neither assay establishes visual enhancement.
 
+Two further isolated visual-input diagnostics found photoreceptor spikes
+and voltage changes in direct targets, but no spikes outside the driven
+cells. The inherited spiking model therefore needs validated visual
+transmission before its odor-dependent visual effects can be interpreted.
+The [diagnostic record](docs/visual-transmission-results.json) preserves all
+phase counts and voltage traces.
+
 Run `npm start`, then open `http://localhost:4173`. The complete graph must load before automated flight begins. Mission shows the flight, Cockpit shows the articulated fly and exact sampled eye images, and Flight lab contains training, the anatomical atlas and decision inspection. The default is the short landing-school mission. All 27 landing/orbital profiles remain available. The instrument-trained V8 pilot is a labeled reference option.
 
 ## Perception and control

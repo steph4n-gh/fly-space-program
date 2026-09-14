@@ -6,10 +6,12 @@ import assert from 'node:assert/strict';
 import {createFlight,advance,decisionSteps} from '../dist/engine3d.js';
 import {orbitalElements} from '../dist/orbital.js';
 import {flightResult} from '../dist/full-controller.js';
+import {createInsertionHold,updateInsertionHold} from './insertion-hold.mjs';
 
 const file=process.argv[2];
 assert(file?.endsWith('/probe.json'),'Pass a completed probe.json');
 const probe=JSON.parse(fs.readFileSync(file)),flights=[];
+const measureHold=process.argv.includes('--insertion-hold');
 assert.equal(probe.results.length,probe.cases.length);
 for(const [index,result] of probe.results.entries()){
  assert.equal(result.flights.length,1);
@@ -18,6 +20,7 @@ for(const [index,result] of probe.results.entries()){
  assert.equal(f.censored,false);assert(f.trajectory.length>0);
  assert.deepEqual([f.seed,f.scenario,f.variation.level],[test.seed,test.scenario,test.variability]);
  const s=createFlight(test.seed,test.scenario,test.variability);s.styleEnabled=false;
+ const hold=measureHold&&s.orbital?createInsertionHold():null;
  const snapshot=()=>({time:s.t,altitude:s.y-8,verticalSpeed:s.vy,...(s.orbital?{tangentSpeed:s.vx}:{velocityX:s.vx}),
   pitch:s.angle,roll:s.angleZ,throttle:s.throttle,fuel:s.fuel,engineBank:s.engineBank,
   ...(s.orbital?orbitalElements(s):{})});
@@ -40,7 +43,7 @@ for(const [index,result] of probe.results.entries()){
   }
   const start=s.t;
   for(let j=0,n=decisionSteps(s);j<n&&!s.done;j++){
-   advance(s,row.action);
+   const before=s.t;advance(s,row.action);if(hold)updateInsertionHold(hold,s,s.t-before);
    for(const axis of axes){const degrees=s[axis.key]*180/Math.PI;axis.physicalDegreesMinimum=Math.min(axis.physicalDegreesMinimum,degrees);axis.physicalDegreesMaximum=Math.max(axis.physicalDegreesMaximum,degrees);}
    if(s.orbital){
     longestHold=Math.max(longestHold,s.orbitHold);
@@ -63,14 +66,20 @@ for(const [index,result] of probe.results.entries()){
  if(s.orbital){
   assert.equal(quality,f.insertionQuality);
   assert.equal(1200*quality+200*Math.min(1,s.maxAltitude/s.orbitConfig.orbitHeight),f.insertionReward);
+  if(hold&&f.insertionHoldQuality!==undefined){
+   assert.equal(hold.best,f.insertionHoldQuality);
+   assert.equal(1200*hold.best+200*Math.min(1,s.maxAltitude/s.orbitConfig.orbitHeight),f.insertionHoldReward);
+  }
  }
  flights.push({flight:replay,decisions:f.trajectory.length,exactPhysicalReplay:true,
   axes:axes.map(({key,feedbackIndex,previousCommand,commandSquares,...axis})=>({...axis,commandRMS:Math.sqrt(commandSquares/f.trajectory.length)})),
   terminal:snapshot(),...(s.orbital?{insertionQuality:quality,peak,firstTargetCrossing,
   qualityTimeIntegral:qualityIntegral,secondsAboveQuality:timeAbove,
-  qualifyingDecisionSeconds:nearTime,longestPhysicalInsertionHoldSeconds:longestHold}:{})});
+  qualifyingDecisionSeconds:nearTime,longestPhysicalInsertionHoldSeconds:longestHold,
+  ...(hold?{insertionHoldQuality:hold.best}:{})}:{})});
 }
 const sources=[file,'scripts/summarize-flight-probe.mjs','dist/engine3d.js','dist/engine.js','dist/orbital.js','dist/missions.js','dist/full-controller.js'];
+if(measureHold)sources.push('scripts/insertion-hold.mjs');
 const sha=content=>crypto.createHash('sha256').update(content).digest('hex');
 const archive=file.slice(0,file.lastIndexOf('/'))+'/replay-source';fs.mkdirSync(archive,{recursive:true});
 const sourceSHA256={[file]:sha(fs.readFileSync(file))},replayedSourceFiles={};
@@ -81,6 +90,6 @@ for(const source of sources.slice(1)){
 }
 const report={purpose:'Complete development-trajectory replay. Quality duration is sampled at decision endpoints; the insertion hold is measured at every original physics step. No mission criterion or controller action is changed.',
  parameters:probe.parameters,flights,replayedSourceFiles,sourceSHA256};
-const output=file.replace(/probe\.json$/,'trajectory-summary.json');
+const output=file.replace(/probe\.json$/,measureHold?'hold-summary.json':'trajectory-summary.json');
 fs.writeFileSync(output,JSON.stringify(report,null,2)+'\n');
 console.log(JSON.stringify({output,flights}));

@@ -549,6 +549,45 @@ their fuel and left the recovery corridor. This supports revising the
 outcome-only learning reward to value sustained proximity to the original
 insertion conditions; it provides no evidence of orbital capability.
 
+### Sustained insertion lesson
+
+The new `orbital-hold` lesson measures closeness to the actual insertion
+limits after each original physics step: periapsis above 800 m, apoapsis
+within 200 m of the destination, and radial speed below 5 m/s. Outside those
+limits, normalized distance produces a smooth value between zero and one.
+The learning score uses its best time-weighted mean over three seconds,
+with missing time at startup counted as zero. A brief pass near the limits
+cannot receive the same score as maintaining them for the full interval.
+
+The exact distance is `max(0,800-periapsis)/200 +
+max(0,abs(apoapsis-destination)-200)/200 + max(0,abs(radialSpeed)-5)/5`.
+Instantaneous quality is `exp(-distance)`, or zero for a non-finite distance.
+The original instantaneous insertion metric remains in every flight record.
+The revised orbital fitness uses one tenth of the original flight score,
+1,200 times the sustained quality and the existing altitude-progress term.
+The existing successful-touchdown margin penalty also remains: three times
+the sum of squared vertical and lateral touchdown speeds. That launch
+parameter was omitted from the plan's prose formula; an explicit supplement
+records it without changing the original plan. Actual landings and achieved
+mission milestones still determine candidate ordering before fitness.
+
+An engine-off circular-orbit control received full quality only after the
+required duration, without completing a revolution or landing. An independent
+sum over six complete recorded trajectories agreed with the rolling measure
+within `7.3e-16`, including the change between 50 ms and 250 ms physics steps.
+Two further full learned flights checked the new instrumentation: one ground
+flight with 183 decisions and one orbital flight with 591. Every recorded
+command, presented signal, decoded signal and physical result matched its
+earlier counterpart exactly. Only the added reward measurements differed.
+
+The frozen plan specifies **432 full training trips**: six generations of
+12 candidates, with one nominal and one variability-0.4 start for each of
+the three orbital missions in every generation. It starts from the completed
+generation-six candidate and preserves the original observations, output
+directions, physical endpoints and complete-return criterion. No reward
+measurement enters the network's inputs or replaces its actions. This is
+training in progress, not evidence of stable orbit or a completed return.
+
 ## Optional native calculation
 
 The optional Node backend evaluates every CSR row and edge with Float32
@@ -585,6 +624,9 @@ node scripts/check-native-rate.mjs
 artifacts/lif-runtime/bin/python scripts/report-suite-training.py
 # Inspect a completed probe by replaying its recorded actions:
 node scripts/summarize-flight-probe.mjs artifacts/suite-training/gimbal-g5-probe/probe.json
+# Inspect the new outcome measure on a complete orbital trace:
+node scripts/summarize-flight-probe.mjs artifacts/suite-training/orbital-calibrated-g6-probe/probe.json --insertion-hold
+node scripts/check-insertion-hold.mjs
 # After all 240 frozen generation-six tests have completed:
 node scripts/summarize-suite.mjs --adaptive
 # For generation five of the gimbal lesson, after its 240 final tests
@@ -601,7 +643,9 @@ qualified for a steering follow-up.
 
 The gimbal packager verifies the frozen selection and final plans, both
 complete sensory controls, all matched baseline outcomes and the tested
-runtime sources. It refuses to package a candidate that regresses on total
+runtime sources. The exact test scripts remain archived as later research
+evolves; served calculations must still match the tested version. It refuses
+to package a candidate that regresses on total
 landings or on the original four missions in either comparison. Packaging
 alone leaves the shipped checkpoint unchanged; `--install` copies a
 candidate only after these same checks pass.

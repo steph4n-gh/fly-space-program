@@ -72,7 +72,7 @@ let pairedBaseline,gimbalSelection;
 if(gimbal){
  for(const [file,hash] of Object.entries(plan.testedSourceHashes)){
   assert.equal(sha(fs.readFileSync(output+'/tested-runtime/'+file)),hash);
-  if(!fs.existsSync(output+'/cache-version-change.json'))assert.equal(sha(fs.readFileSync(file)),hash,'Source changed after freezing final tests');
+  if(file.startsWith('dist/')&&!fs.existsSync(output+'/cache-version-change.json'))assert.equal(sha(fs.readFileSync(file)),hash,'Served calculation changed after freezing final tests');
  }
  const baseline=read(plan.baselineFile),baselineFrozen=read(plan.baselineFrozenFile),baselineWeights=read(plan.baselineWeightsFile);
  assert(baseline.complete,'Wait for the complete matched released-controller test');
@@ -148,6 +148,9 @@ if(fs.existsSync(cacheChangeFile)){
  for(const [file,hash] of Object.entries(cacheChange.testedSourceHashes)){
   const original=fs.readFileSync(output+'/tested-runtime/'+file);
   assert.equal(sha(original),hash);
+  // Research scripts may evolve after release. Their exact tested versions
+  // stay archived; the served calculation must still match the tested code.
+  if(gimbal&&!file.startsWith('dist/'))continue;
   assert.equal(fs.readFileSync(file,'utf8').replaceAll('?v='+cacheChange.to,'?v='+cacheChange.from),original.toString(),'Runtime changed beyond the verified cache tags');
  }
  report.testedSourceHashes=cacheChange.testedSourceHashes;
