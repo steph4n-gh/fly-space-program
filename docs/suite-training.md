@@ -580,18 +580,33 @@ Its 14 failures are four hard landings, five lateral impacts and five missed
 ships. Generation-five’s 36/48 result does not replace the final candidate;
 generation counts use different cases and do not measure matched improvement.
 
-The [fresh all-ground comparison](ground-all-selection-plan.json) freezes
+The [fresh all-ground comparison](ground-all-selection-plan.json) fixed
 96 new starts, with two nominal and two varied starts per mission. Candidate
 normal, covered-eye and disabled-indicator conditions plus the intact release
-require **384 full flights**. All five gates must pass: more normal-input
+required **384 full flights**. All five gates had to pass: more normal-input
 landings overall than the release, no reduction in its original-four or
 released-ten landing counts, and more landings than each sensory control.
 This new seed and numeric protocol were frozen before selection, separately
-from the earlier training plan. Only a passing selection can proceed to a
-further unseen JavaScript final cohort. The comparison launched on
-2026-09-14 after the completed training audit and independent launch checks.
-Full results and every final training failure appear in the
-[completed training report](ground-all-training.md).
+from the earlier training plan. All 384 original flights are now complete
+and pass the independent integrity audit, but **the candidate is rejected**.
+It lands 64/96 versus the release's 62/96 overall, and 15/16 versus 14/16 on
+the original four missions. On the released ten, it falls to **25/40 versus
+28/40**, failing the retention gate. Both sensory controls land 0/96.
+
+There are 12 candidate-only successes, ten candidate-only failures, 52 cases
+where both land and 22 where neither lands. All 258 failures across all four
+conditions are retained. The [complete comparison](ground-all-selection.md)
+includes every mission, all five gates and all paired outcomes. The candidate
+does not advance to fresh JavaScript final testing or replace the release.
+The [training report](ground-all-training.md) separately retains all final
+training failures. Six training cases selected before the completed selection
+was read have now been traced through the unchanged worker. All six match
+their original training endpoints exactly. The [completed physical diagnosis](ground-training-diagnostic.md)
+reconstructs all 1,494 decisions and 4,479 physical steps with exact state,
+presented-cue and endpoint agreement. Bank 3 engages within 0.35–0.45 seconds,
+before the engine faults, and 72.9–76.5% fuel remains at contact. The engine-fault
+cases brake too slowly; the wind-shear cases approach the deck and then drift
+far outside its radius. All six failures are preserved for training diagnosis.
 
 ## Orbital ascent experiments
 

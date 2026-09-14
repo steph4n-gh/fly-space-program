@@ -487,6 +487,111 @@ if all_ground_plan_path.exists():
     development['groundJointAllSelectionPlan'] = {
         'scope':'Frozen final-GEN6 development comparison after completed training audit. Plan existence does not establish running or completed selection; fresh JavaScript final testing remains required.',
         'plan':all_ground_plan}
+    # Project the pinned independent audit only after both original processes complete.
+    all_ground_audit_dir = all_ground_plan_path.parent/'independent-audit'
+    all_ground_audit_ids_path = all_ground_audit_dir/'output-identities.json'
+    all_ground_audit_ids_sha256 = '18578ce085d111083a8e97e31b15d5991edf3af9a874aa7a37038899d96c3b07'
+    if all_ground_audit_ids_path.exists():
+        assert isinstance(all_ground_audit_ids_sha256, str) and len(all_ground_audit_ids_sha256) == 64, 'Completed independent audit is not yet pinned'
+        assert hashlib.sha256(all_ground_audit_ids_path.read_bytes()).hexdigest() == all_ground_audit_ids_sha256
+        all_ground_audit_files = json.loads(all_ground_audit_ids_path.read_text())
+        assert set(all_ground_audit_files) == {'summary.json','all-384-outcomes.jsonl','all-384-outcomes.csv','all-failures.jsonl','all-96-pairs.json'}
+        assert hashlib.sha256((all_ground_audit_dir/'summary.json').read_bytes()).hexdigest() == all_ground_audit_files['summary.json']
+        all_ground_audit = json.loads((all_ground_audit_dir/'summary.json').read_text())
+        assert all_ground_audit['status'] == 'PASS — integrity and complete original-outcome audit'
+        assert all_ground_audit['planSHA256'] == hashlib.sha256(all_ground_plan_path.read_bytes()).hexdigest()
+        terminal = all_ground_audit['terminalConfirmation']
+        assert terminal['schema'] == 'ground-all-selection-terminal-confirmation-v1' and terminal['confirmedBy'] == '/root'
+        assert terminal['planSHA256'] == all_ground_audit['planSHA256'] and terminal['bothOriginalTerminalsObservedComplete'] is True
+        assert set(terminal['models']) == {'candidate','released'}
+        for model, original_session in [('candidate',81358),('released',45541)]:
+            receipt = terminal['models'][model]
+            assert receipt['originalSessionId'] == original_session and receipt['originalAttempt'] is True and receipt['exitCode'] == 0
+        for filename, expected in all_ground_audit_files.items():
+            path = all_ground_audit_dir/filename
+            assert hashlib.sha256(path.read_bytes()).hexdigest() == expected
+            sources.append(path)
+        sources.append(all_ground_audit_ids_path)
+        for model in ['candidate','released']:
+            execution = all_ground_plan['executionModels'][model]
+            for path in [root/execution['resultFile'], (root/execution['resultFile']).with_name('selection-weights.json'),
+                         all_ground_plan_path.parent/('launch-'+model+'.json')]:
+                assert hashlib.sha256(path.read_bytes()).hexdigest() == all_ground_audit['hashes'][str(path.resolve())]
+                sources.append(path)
+        assert all_ground_audit['fullFlights'] == 384 and all_ground_audit['uniquePhysicalCases'] == 96
+        assert all_ground_audit['fourWayPhysicalPairingExact'] and all_ground_audit['allFailuresRetained']
+        assert all_ground_audit['recordedEndpointAndReasonChecksPassed']
+        assert all_ground_audit['deploymentEligible'] is False and all_ground_audit['promotionPerformed'] is False
+        outcomes = [json.loads(line) for line in (all_ground_audit_dir/'all-384-outcomes.jsonl').read_text().splitlines() if line.strip()]
+        paired = json.loads((all_ground_audit_dir/'all-96-pairs.json').read_text())
+        assert len(outcomes) == 384 and len(paired) == 96
+        assert sum(not f['landed'] for f in outcomes) == all_ground_audit['failureCount']
+        mode_counts = all_ground_audit['modeCounts']
+        conditions = {'candidateNormal':mode_counts['candidate/normal']['landings'],
+                      'releaseNormal':mode_counts['released/normal']['landings'],
+                      'candidateCovered':mode_counts['candidate/covered']['landings'],
+                      'candidateNoInstruments':mode_counts['candidate/no-instruments']['landings']}
+        cohorts = {entry['name']:entry for entry in all_ground_audit['cohorts']}
+        assert [cohorts[name]['cases'] for name in ['all24','originalFour','releasedTen']] == [96,16,40]
+        original = {'candidate':cohorts['originalFour']['counts']['candidate']['landings'],
+                    'release':cohorts['originalFour']['counts']['released']['landings']}
+        retained = {'candidate':cohorts['releasedTen']['counts']['candidate']['landings'],
+                    'release':cohorts['releasedTen']['counts']['released']['landings']}
+        gates = all_ground_audit['gates']
+        assert set(gates) == {gate['id'] for gate in all_ground_plan['acceptance']['gates']}
+        assert all(type(value) is bool for value in gates.values()) and len(gates) == 5
+        assert all(gates.values()) == all_ground_audit['allFiveGatesPassed'] == all_ground_audit['eligibleForSeparateFreshJavaScriptFinal']
+        rows = [{'scenario':entry['scenario'],'normalCases':entry['cases'],
+                 'candidate':entry['counts']['candidate']['landings'],'release':entry['counts']['released']['landings'],
+                 'covered':entry['counts']['covered']['landings'],'noInstruments':entry['counts']['no-instruments']['landings']}
+                for entry in all_ground_audit['perMission']]
+        assert [row['scenario'] for row in rows] == list(range(24)) and all(row['normalCases'] == 4 for row in rows)
+        pairs = [{**{key:entry[key] for key in ['caseIndex','scenario','seed','variability']},
+                  'candidateLanded':entry['candidate']['landed'],'releasedLanded':entry['released']['landed'],
+                  'coveredLanded':entry['covered']['landed'],'noInstrumentsLanded':entry['no-instruments']['landed'],
+                  'contrasts':entry['contrasts']} for entry in paired]
+        paired_counts = cohorts['all24']['pairedContrasts']
+        development['groundJointAllSelectionPlan']['scope'] = 'Frozen final-GEN6 plan; the audited complete original comparison is reported separately.'
+        development['groundJointAllSelection'] = {
+            'scope':'Complete matched development selection of the fixed all-ground GEN6. Separate fresh unseen JavaScript final testing remains required before release.',
+            'verifiedFlights':384,'conditions':conditions,'originalFourNormalLandings':original,
+            'releasedTenNormalLandings':retained,'byMission':rows,'pairedCases':pairs,
+            'rescuedReleaseFailures':paired_counts['released']['candidate-only win'],
+            'lostReleaseSuccesses':paired_counts['released']['candidate-only loss'],
+            'pairedContrasts':paired_counts,'outcomeReasons':{name:entry['reasons'] for name,entry in mode_counts.items()},
+            'gates':gates,'eligibleForSeparateFinalTesting':all(gates.values()),'deploymentEligible':False,
+            'flights':{model:[f for f in outcomes if f['model']==model] for model in ['candidate','released']},
+            'auditSummaryFile':str((all_ground_audit_dir/'summary.json').relative_to(root)),
+            'auditSummarySHA256':all_ground_audit_files['summary.json'],
+            'auditOutputManifestSHA256':all_ground_audit_ids_sha256,
+            'limitations':all_ground_audit['limitations'],'freezeTiming':all_ground_audit['freezeTiming'],
+            'historicalTrainingArchiveLimit':all_ground_audit['historicalTrainingArchiveLimit']}
+ground_trace_report_path = root/'docs/ground-training-diagnostic-results.json'
+if ground_trace_report_path.exists():
+    assert hashlib.sha256(ground_trace_report_path.read_bytes()).hexdigest() == 'cda459c7dfdceb036f5c092cef826a80a9bb4a0bb3c609fabe1203c3aa419017'
+    diagnostic = json.loads(ground_trace_report_path.read_text())
+    diagnostic_base = folder/'ground-all-training-diagnostic'
+    terminal_path = diagnostic_base/'physical-terminal-observation.json'
+    terminal = json.loads(terminal_path.read_text())
+    assert terminal == diagnostic['physicalTerminalObservation']
+    assert terminal['confirmedBy'] == '/root' and terminal['originalAttempt'] and terminal['exitCode'] == 0
+    assert not (diagnostic_base/'physical-analysis/failure.json').exists()
+    assert terminal['summarySHA256'] == '463a1dbf33a3e58f2b29e7b65cbc5880c0e208e0fb790e00c87bddd5303d2eed'
+    files = {diagnostic_base/'physical-analysis/summary.json': terminal['summarySHA256'],
+             diagnostic_base/'physical-analysis/output-identities.json': terminal['outputManifestSHA256'],
+             root/'scripts/report-ground-training-diagnostic.py': diagnostic['reporterSHA256'],
+             root/'docs'/diagnostic['decisionCSV']['file']: diagnostic['decisionCSV']['sha256'],
+             root/'docs'/diagnostic['figure']['file']: diagnostic['figure']['sha256']}
+    files.update({Path(name): expected for name, expected in diagnostic['inputSHA256'].items()})
+    files.update({diagnostic_base/'physical-analysis'/name: expected for name, expected in diagnostic['physicalOutputManifest'].items()})
+    for path, expected in files.items():
+        assert hashlib.sha256(path.read_bytes()).hexdigest() == expected, path
+        if path.is_relative_to(root):
+            sources.append(path)
+    assert diagnostic['completedPhysicalReplays'] == 6 and diagnostic['decisions'] == 1494 and diagnostic['physicalSteps'] == 4479
+    assert diagnostic['interpretationAllowed'] and diagnostic['allOriginalEndpointsExact'] and diagnostic['newNeuralRuns'] == 0
+    sources.extend([ground_trace_report_path, terminal_path])
+    development['groundTrainingDiagnostic'] = diagnostic
 progress_plan_path = folder/'orbital-progress-comparison/plan.json'
 if progress_plan_path.exists():
     progress_plan = json.loads(progress_plan_path.read_text())

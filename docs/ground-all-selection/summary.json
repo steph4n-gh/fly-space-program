@@ -1,0 +1,2417 @@
+{
+  "status": "PASS \u2014 integrity and complete original-outcome audit",
+  "planSHA256": "a63a2643f8c6cc74aab64e2797942d5a2bc4a337445ae52c668b3304b669610f",
+  "terminalConfirmation": {
+    "schema": "ground-all-selection-terminal-confirmation-v1",
+    "confirmedBy": "/root",
+    "planSHA256": "a63a2643f8c6cc74aab64e2797942d5a2bc4a337445ae52c668b3304b669610f",
+    "bothOriginalTerminalsObservedComplete": true,
+    "observedAt": "2026-09-14T10:46:11.907680+00:00",
+    "models": {
+      "candidate": {
+        "originalSessionId": 81358,
+        "originalAttempt": true,
+        "exitCode": 0,
+        "evidence": "Original write_stdin returned exit_code0 and no live session_id at10:30UTC, chunk8909d8; individual terminal observation retained."
+      },
+      "released": {
+        "originalSessionId": 45541,
+        "originalAttempt": true,
+        "exitCode": 0,
+        "evidence": "Original write_stdin returned exit_code0 and no live session_id at10:44:53UTC, chunk4f396d."
+      }
+    }
+  },
+  "terminalConfirmationSHA256": "94c3557e1c6b2e500aa25da932dd7c87c3784d991ee88f1ed8013f422c416976",
+  "calculatorSHA256": "d2a393812d8423faa3c59001b730fcc7acdea840b1c9dbf2b43f9b0325540618",
+  "hashes": {
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/plan.json": "a63a2643f8c6cc74aab64e2797942d5a2bc4a337445ae52c668b3304b669610f",
+    "/private/tmp/ground-all-selection-completion-audit/sources/final-plan.json": "a63a2643f8c6cc74aab64e2797942d5a2bc4a337445ae52c668b3304b669610f",
+    "/private/tmp/ground-all-selection-completion-audit/sources/proposed-protocol.json": "164ce183b9ddaef69903e49e1c0b82b4071550a500d57ba525c71455ed0dbde6",
+    "/Users/sarrington/Documents/ChatGPT/connectome/scripts/run-ground-all-selection.py": "7006703f3c72d0a41ff90c37f64cd76691a91f1c6ae4af85a79eb57446b7970b",
+    "/private/tmp/ground-all-selection-completion-audit/sources/prepared-runtime.json": "fe7fd9cb3932907e2d0570bb149cab903ab0e27655a27a96562a6e68b5ecd77a",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/training-audit/summary.json": "a60f4234222287eddd4574f7dc21f4e365c842618670ccc224515fcad6035d23",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/training-audit/preparation.json": "bd72c690784dc1b009a825a27e188b5817e51d30ea6790ec7587d71c98a16c5f",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/training-audit/method.md": "85312dea5d39b4acc4cbe7f79f869e34e90dec30383e614fd92296ae4eb49a3b",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/training-audit/confirmed-exit.json": "0787f0c211e7009f3e004c3c38d32f88bd82bfd60b0483fc26510801321b3d9b",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/training-audit/audit-artifacts.json": "ef9e801f623c660eaeae8e087ebbfab757c191a2d61f01339c37fb758a5f0bdd",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/training-audit/report.md": "b74b470d20c7da01cfa85586c35a49048ce0f3874c2dfeba133d09978ce18c78",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/training-audit/final-cases.json": "360687f7d7bc35e97a89ebdf8474f4c5dc3136d129e7d9a05571e377a353c1af",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/training-audit/final-failure-constraints.json": "e5d2cfdcfb9a8473ff173caf9572fc26e7aa89bd72439cd4679ad39556c7e3e2",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/training-audit/selection-method.md": "02f70f32f4083552aea3584456eaf8e108bbaafb47e500273c2d44d18b12ac18",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/training-audit/readiness.json": "1d2f940ae2cd81a7836f27ff3816e0057f79a2c3e9674622293ff88bd1bbbcb3",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/training-audit/write-report.mjs": "abdc0469f873e3e8c64b6097795825910d532cb8db4c8fc36b837d928cb451de",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/training-audit/all-flights.jsonl": "72587e1540f904a310bf5dc69cfde9c205230b4bbcb576f7c4ca802fa6fe53f2",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/training-audit/selection-method-evidence.json": "247058eafa37055f4fbc144f87bece0a15de958e37de21bc13c76f48f808c480",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/training-audit/audit.mjs": "e7c4b452b59568368425aa369ef2a273f0400bcd574551a8b5b6d23191dc2df6",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/training-audit/prepare.mjs": "d456f27fdd4c8813bbb23f274bad1e2919a89c025b725cf2d9f9a78b0a9ec464",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/runtime-review/summary.json": "638671d1e70b940f6014a409b1dfc7ab50251f9c0384255634cb551906625677",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/runtime-review/report.md": "f9e47e47de4e8d17684be8a182447caba76bbd184b691973fa9725983c780899",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/runtime-review/verify-runtime.py": "670fa55a2ce6b45278fa43527aa6dc5827e05ab4cd8c15c1fc541646c8b9833c",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/runtime-review/import-resource-evidence.json": "a5fa9ffec1af235a71efeff2118f4d1170891ac787a1774cbc9f600eeff0bb76",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/runtime-review/verification.json": "5f7c491536d6b3a8cef8c0b67f5734cfcf24d042d3154effa660e0a2ce48c574",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/runtime-review/import-resource-review.md": "b17a50f2332aa2d5e7a2a9ddb36a4304c5bc1c8026ced44f73cbc8f8c3cbc419",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/proposed-protocol/proposed-protocol.md": "bc852b34bf68774f3e3eae19e52fa9acfa4a3ff3f6ece2da3fc0246df37c4c09",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/proposed-protocol/independent-review.json": "66818c9c307987216f62e09396f92b0716ba5fa11098badf09292794b64d1897",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/proposed-protocol/seed-collision-check.json": "2195e49417e74693a72acc4a0add2cb6455cb05a7c65ebcecfe7b8c1bc02da6e",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/proposed-protocol/proposed-protocol.json": "164ce183b9ddaef69903e49e1c0b82b4071550a500d57ba525c71455ed0dbde6",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/proposed-protocol/independent-review.py": "4e41705f045290d91ac4798a513613893ec76ff1b87f775bddd6fc5adf5d44a6",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/proposed-protocol/proposal-verification.json": "0b31c54f8ab1da6f60d1239e3e7c065e4a6a42cca75623f72a81904dbf6245bf",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/prepared-runtime.json": "fe7fd9cb3932907e2d0570bb149cab903ab0e27655a27a96562a6e68b5ecd77a",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-joint-all/plan.json": "a2bbcdb88c05548a4cb2fcf02c493d896ed4ded98839431f79d9f826db5666d2",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-joint-all/state.json": "0a18fa8a1fc85fe8b414274c96b918ebd8f6fc79bdaafc237d18ab2a1a81d31d",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-joint-all/candidate.json": "a1a2f0a25316fc26b77b7c0f1eaf92e01a921faee1fba546996b5114cc7a0fde",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-joint-all/trials.jsonl": "2a4cafd077b063e4c5a3e4d8e14d11beb01a6f59797d52582826d8313d85d184",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/artifacts/native-rate/build.json": "49f32e2ca802886eb370433714449f45bd24535cec4d09535cd4d598fb3b4746",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/artifacts/native-rate/rate-native.node": "2770502d82a0bef1ada6da48774909953d980db9dea90b58e4702af3093dfbd9",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/artifacts/suite-training/sensory-basis-flights.json": "cdc7c1069b693979294b9949fc6bfec55774e5e10c1c701c26755fc87048ce20",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/channels.bin.gz": "867743932b9585b78d238fcb3ad14dea6d24839259bdab1d9bae5f7c61259369",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/class-indices.bin.gz": "ce8851f1013af2ce3e240e7eeb0ed7fb49520eddac0c2f07a9010c57a579c906",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/groups.bin.gz": "d273ab9f9f0667fc8a32f5bc637745dac1f496867280af1ab1db8f28859ee763",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/ids.bin.gz": "cf85974495d6b4ab9e3cb6ac834498632fa4bf1b240d4537bbbfd810c4a54cf0",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/incoming.bin.gz": "3728454c9e0dcc687960d6497668e4b9b1522835d4480e642885646ee9ff0a37",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/labels.json": "d88130d683e2f22183bbdc9e3276f903c6b4b4db190a80be71ca981b3f5dbbe8",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/manifest.json": "253b367de59eb676c9b28b3fb137aadf7b67b42280cd7f6cf6dd5de5d6d133e0",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/outgoing.bin.gz": "bc43ead3ae568290925bc866e7163f14b5aa5c692fe19a42170a4d79c45063f7",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/pre-00.bin.gz": "10e4014ea84b8d967e9c3daf06e1f326008da4b607c2bcdc3e050126518cbb87",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/pre-01.bin.gz": "9de24693913d7ae8de32535da6d982763e51d1ecc7f7a942f1c5f668f0b55514",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/pre-02.bin.gz": "2f2d16779299616592cefb0d93cc7a22c28360e06bd9d8f866c5d4758e878200",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/pre-03.bin.gz": "69a56dec48db91a27794eedd53c12805008d93c45c6a8b08d27b013f1dbe4fd7",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/pre-04.bin.gz": "4ef6d83f28e3370013024159082991ca049967540794743d2c47ac8e2148d540",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/pre-05.bin.gz": "93843a1236178e7cf9481d4824bd43a9a25584cb94e6631de99fc97f24734c36",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/pre-06.bin.gz": "ea5dcd3013869a1b26d0720163718f6788a91217f5ad004c953ab09975326f81",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/pre-07.bin.gz": "6a3ed6646a3588730680117d496efabea04e45bf0d0e0021455019c927e5365e",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/pre-08.bin.gz": "7685b33b12d96e467aa958f9c1e513eaf43d03c5190609c876f1e5ecae6599bb",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/pre-09.bin.gz": "4ce5fb55b417f3bd5bde493c92a45c46fd9db5eb00cac552532904df31914fbc",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/pre-10.bin.gz": "24a035fdd84411d333fa6d13e42b5598a99a0fcb0c69733e94c26d306e3f4351",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/pre-11.bin.gz": "9a2855e91af2a6fd87d6c1b775c3e1d1bf627edc366266b7ee83af984311d2a6",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/pre-12.bin.gz": "3d44add9f41e4c4e4342f273571502d483671bdc04f094e92f1d58a1fe01f4ed",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/pre-13.bin.gz": "3f54cc3ca3470bff0699eb008cd638d0361400cc681e42126b6c0f6bc67af909",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/pre-14.bin.gz": "91595ce6dde6e2e6a44a76cf43c49d2d0ca0cd02c6a929d1a9c87565233c320a",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/pre-15.bin.gz": "478c4d4ed81cab2f7d2f1b67d22283ea2e7f00b16843aee97b078389a1ed759d",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/pre-16.bin.gz": "c46ae26d31aee8c92e08144512663ede3e8cea2c54ee6056fae594d56b9e9f6e",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/pre-17.bin.gz": "c398ef9d07fa265bfec09543280c0639915ac335f06c3f40535a47a2fe24a303",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/receptor-channels.bin.gz": "bf538fd81f5ad9799548cfdae81c725540831f568fb979e16cc45fa3dc856358",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/receptor-polarity.bin.gz": "8815a66a57c35f6ad27f221ca67171c0e3134cbe2a9dd3f99e8d50b0a265faf0",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/rows.bin.gz": "13a30b13376d51df596d78b02c2f95645973ae624d1383419f001f1f36a08c8e",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/signs.bin.gz": "b5d704014cae342a271d2dcf9090e8442536e2ad59fd4e49703f0293910d6cda",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/soma-valid.bin.gz": "f580d473a590fcc51bcc889645a626d97b0d3adebf9f4b03f301f12b9746bc68",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/somas.bin.gz": "b4203d7d3383fc4681f7f17200f2eebde625a7a38920f8d7263e7ba036e6b939",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/type-indices.bin.gz": "780524fb98bfc4c7234d81833dc79e5431b656af2d75027058f1dcb815b7fb05",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/weight-00.bin.gz": "a643ccd225fcc2d478e042803a5c88316d0b2ca8c4442a01dccf3ffa0069d525",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/weight-01.bin.gz": "c7d5dd44f271243669da27233fa02b0139d46b65d2468735ac429e86dccce253",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/weight-02.bin.gz": "191cba31cdfe87bba772fa63fc9594b7fcf6e14a787970b65dd1e2583e119ecc",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/weight-03.bin.gz": "3f5e17be78893f6a17be1ebcdcb05bc1926042f3123c0f92e271831ba9a7c7b7",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/weight-04.bin.gz": "0fe9a6545cea0ea91fc8fe6ec417c385106fd55279917fdcb5deafd17ecd8f34",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/weight-05.bin.gz": "146393da5241d03c9aef66f9e550348d2cecc61d7de1c43bec753a20400fa1a0",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/weight-06.bin.gz": "d14315ab9ef9479b010b561ed87deb548748d5ed4be6674003f41b97dc26dc23",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/weight-07.bin.gz": "fcc758470c82d5cc511e3def01d746c3ce3f9e01a6b7ceb61c506b1a1d5c0106",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/weight-08.bin.gz": "acb8f2a9a4d42a4314841b9710decd5e7584607e1700adbbb78ba928ca2fe637",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/weight-09.bin.gz": "6074bbf848504b1bfcff63c4219b62b2fd411f758ae15d8947babc9df98fc3be",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/weight-10.bin.gz": "cc4a6e5f9ddc2eae32c3a3c9736da9cd6d86f1adc72e6b2aad5aecc5417099a2",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/weight-11.bin.gz": "edc3875993d297c91be69573f9cb3cb7074821adc99a54132a93976fcf92de51",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/weight-12.bin.gz": "93f73bbf30b8dc5b0ece1f4add049faac26fd8da01973c21542f24a9b685d934",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/weight-13.bin.gz": "57a895d9f8479a36e1ac1b67fb0994433d037d62d72b77f3064e89e837edaf29",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/weight-14.bin.gz": "40708ea6f5c0d30cdd1b7648a7238a32a662d890fadfdce2a50afef7cf3e6a05",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/weight-15.bin.gz": "4706411d439b55fcf5e667e15c470b62d53c9874db9709767ff94e321db0c320",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/weight-16.bin.gz": "e40d9219627a8008a2f26403c7685f9f6b2492c2a4fa7730e2aee103f3a57e05",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/assets/connectome/weight-17.bin.gz": "f6ec78ede7e0caaffdfb2e201952706acdaadf546389646ad65004a7cf4c4ea2",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/engine.js": "2e0c4fa70a8595cbaae4905e7a28c34321958dbd5711e617e637d716fc275782",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/engine3d.js": "4c65d704a53ec3879da92ff26a43c83d92bedca2abcce8b7f6d687afb6b66356",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/flight-instruments.js": "ca959266ead35c8184fc053d1cf779e00eb87eecd5a17609c54b23e4b3f1c40a",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/full-controller.js": "f98e9305b26ce1441dfa5140a4ddbeb926d62fa8d9ebf80571b5a71f31b1e802",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/full-network.js": "51dd632ce3782b57855eed45f74ae25216f307d7e029985d5fb3b7200a740bd1",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/missions.js": "c8b715a1075f2104c08c0d49ecdd08a78b6f72bb889e15e6488a1984086d949e",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/orbital.js": "8ae019c2fe8af34df618ef3be8047ba20aaa2de00a811b6215536ffde90c9c60",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/perception.js": "afbd2db14b787b77520358d2a176411d8808865bc6beb0f6d32c4dde6b425bcd",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/sensory-inputs.js": "a9fd0c1d633e30432fb90663dc62e1e76e43701a4e61f9c081d91468fb639d11",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/signals.js": "78af4772a099228b23f6ac7a1702034484fcd36ed682a1486a2c06c1aa77e2a9",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/dist/visual-lesson.js": "5bbf8ac7900668a4c676dc82dbf330e2cfa21ab4a5490f5738f783dba6d08a09",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/package.json": "acb279f9f6b2ef8999d98b042a34e171d22d041d8ba11fdbf2ea93d5df83f04a",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/scripts/full-network-node.mjs": "b95fa59149861a8839648ff59f3a95dacd7c5a3d928d56eeb1ab338630a638c2",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/scripts/insertion-hold.mjs": "066691735303b6ad9e1b9b883999ed6149a57aa27c73a1753db457baab27a66e",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/scripts/native-rate.mjs": "10f7fc263ddd6c1599101b80470cae86b4abf0bb9575a8e7640ac5801e6a8f2b",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/scripts/rate-native.cpp": "07b2f734e57e53c8776ecaaf2e19e3ff82139b172bf8f0614607fa994ce68e4b",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/scripts/train-suite.mjs": "5746f915355b98fbd54e9d7e4e7bae2fb09c04870d24b9c3f17dfb5f0c7e9a30",
+    "/opt/homebrew/Cellar/node/24.3.0/bin/node": "ecb006586e2f719d97c49d495e4534a2a5a9d12aa9394bd88bbcf3a9f00c5574",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/frozen-candidate.json": "a1a2f0a25316fc26b77b7c0f1eaf92e01a921faee1fba546996b5114cc7a0fde",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/launch-candidate.json": "6ea02b5cb9659b4f71b9e4ce3150bcfd802554befa3637c1830518194a26b504",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/artifacts/suite-training/ground-joint-all-selection-candidate/source-5746f915355b98fbd54e9d7e4e7bae2fb09c04870d24b9c3f17dfb5f0c7e9a30.mjs": "5746f915355b98fbd54e9d7e4e7bae2fb09c04870d24b9c3f17dfb5f0c7e9a30",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/frozen-released.json": "19102a97e8692e81e3c3b59dd7e99ff91ca3ce75e77173e4bfb70b823a1a8d5e",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/launch-released.json": "402aaa401195b3b5a6246d66747df6a192da32dda9063df9c1fff7e1f4a9bc28",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/artifacts/suite-training/ground-joint-all-selection-released/source-5746f915355b98fbd54e9d7e4e7bae2fb09c04870d24b9c3f17dfb5f0c7e9a30.mjs": "5746f915355b98fbd54e9d7e4e7bae2fb09c04870d24b9c3f17dfb5f0c7e9a30",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/artifacts/suite-training/ground-joint-all-selection-candidate/selection-weights.json": "5ab5342bb4b0bc3f4d37e070300167c7e66c450a2640aa6a1b210127b10b5c6e",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/artifacts/suite-training/ground-joint-all-selection-candidate/selection.json": "d083e71b3b16ac73383bbbdbd009c6db87446e5d8c9ea5ec5967bca7a73f6430",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/artifacts/suite-training/ground-joint-all-selection-released/selection-weights.json": "175d37cd77e5f68a3ece3818578aca70a2cbc2743017ad72770f8e006ac957d4",
+    "/Users/sarrington/Documents/ChatGPT/connectome/artifacts/suite-training/ground-all-g6-selection/tested-runtime/artifacts/suite-training/ground-joint-all-selection-released/selection.json": "df7cdb1901c9ac31e5dd46dfaf4cddb7791d33b3926744e3531f91b2a12ddf07"
+  },
+  "fullFlights": 384,
+  "uniquePhysicalCases": 96,
+  "profiles": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23
+  ],
+  "fourWayPhysicalPairingExact": true,
+  "recordedEndpointAndReasonChecksPassed": true,
+  "touchdownRecordsChecked": 199,
+  "allFailuresRetained": true,
+  "failureCount": 258,
+  "models": {
+    "candidate": {
+      "generation": 6,
+      "episodes": 3456,
+      "frozenSHA256": "a1a2f0a25316fc26b77b7c0f1eaf92e01a921faee1fba546996b5114cc7a0fde",
+      "weightSHA256": "6bbd0f7a97072102428749e368184c79359c83efb9cef3b19822e66b52b51644",
+      "all21300DecodedWeightsExactlyEqual": true
+    },
+    "released": {
+      "generation": 5,
+      "episodes": 600,
+      "frozenSHA256": "19102a97e8692e81e3c3b59dd7e99ff91ca3ce75e77173e4bfb70b823a1a8d5e",
+      "weightSHA256": "9953d20ee4e6b8ab7838b035ff0159c2da785ab7137566f19e91815247c0e855",
+      "all21300DecodedWeightsExactlyEqual": true
+    }
+  },
+  "modeCounts": {
+    "candidate/normal": {
+      "flights": 96,
+      "landings": 64,
+      "failures": 32,
+      "reasons": {
+        "Hard landing": 5,
+        "Lateral impact": 11,
+        "Missed the ship": 16,
+        "Touchdown": 64
+      },
+      "nominal": {
+        "flights": 48,
+        "landings": 31,
+        "failures": 17,
+        "reasons": {
+          "Hard landing": 2,
+          "Lateral impact": 6,
+          "Missed the ship": 9,
+          "Touchdown": 31
+        }
+      },
+      "varied0_4": {
+        "flights": 48,
+        "landings": 33,
+        "failures": 15,
+        "reasons": {
+          "Hard landing": 3,
+          "Lateral impact": 5,
+          "Missed the ship": 7,
+          "Touchdown": 33
+        }
+      }
+    },
+    "candidate/covered": {
+      "flights": 96,
+      "landings": 0,
+      "failures": 96,
+      "reasons": {
+        "Attitude at impact": 1,
+        "Flight terminated": 82,
+        "Missed the ship": 13
+      },
+      "nominal": {
+        "flights": 48,
+        "landings": 0,
+        "failures": 48,
+        "reasons": {
+          "Attitude at impact": 1,
+          "Flight terminated": 40,
+          "Missed the ship": 7
+        }
+      },
+      "varied0_4": {
+        "flights": 48,
+        "landings": 0,
+        "failures": 48,
+        "reasons": {
+          "Flight terminated": 42,
+          "Missed the ship": 6
+        }
+      }
+    },
+    "candidate/no-instruments": {
+      "flights": 96,
+      "landings": 0,
+      "failures": 96,
+      "reasons": {
+        "Flight terminated": 96
+      },
+      "nominal": {
+        "flights": 48,
+        "landings": 0,
+        "failures": 48,
+        "reasons": {
+          "Flight terminated": 48
+        }
+      },
+      "varied0_4": {
+        "flights": 48,
+        "landings": 0,
+        "failures": 48,
+        "reasons": {
+          "Flight terminated": 48
+        }
+      }
+    },
+    "released/normal": {
+      "flights": 96,
+      "landings": 62,
+      "failures": 34,
+      "reasons": {
+        "Approach timed out": 7,
+        "Attitude at impact": 1,
+        "Lateral impact": 12,
+        "Missed the ship": 14,
+        "Touchdown": 62
+      },
+      "nominal": {
+        "flights": 48,
+        "landings": 31,
+        "failures": 17,
+        "reasons": {
+          "Approach timed out": 2,
+          "Lateral impact": 7,
+          "Missed the ship": 8,
+          "Touchdown": 31
+        }
+      },
+      "varied0_4": {
+        "flights": 48,
+        "landings": 31,
+        "failures": 17,
+        "reasons": {
+          "Approach timed out": 5,
+          "Attitude at impact": 1,
+          "Lateral impact": 5,
+          "Missed the ship": 6,
+          "Touchdown": 31
+        }
+      }
+    }
+  },
+  "cohorts": [
+    {
+      "name": "all24",
+      "scenarios": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "cases": 96,
+      "counts": {
+        "candidate": {
+          "flights": 96,
+          "landings": 64,
+          "failures": 32,
+          "reasons": {
+            "Hard landing": 5,
+            "Lateral impact": 11,
+            "Missed the ship": 16,
+            "Touchdown": 64
+          }
+        },
+        "released": {
+          "flights": 96,
+          "landings": 62,
+          "failures": 34,
+          "reasons": {
+            "Approach timed out": 7,
+            "Attitude at impact": 1,
+            "Lateral impact": 12,
+            "Missed the ship": 14,
+            "Touchdown": 62
+          }
+        },
+        "covered": {
+          "flights": 96,
+          "landings": 0,
+          "failures": 96,
+          "reasons": {
+            "Attitude at impact": 1,
+            "Flight terminated": 82,
+            "Missed the ship": 13
+          }
+        },
+        "no-instruments": {
+          "flights": 96,
+          "landings": 0,
+          "failures": 96,
+          "reasons": {
+            "Flight terminated": 96
+          }
+        }
+      },
+      "pairedContrasts": {
+        "released": {
+          "candidate-only win": 12,
+          "candidate-only loss": 10,
+          "both land": 52,
+          "neither lands": 22,
+          "netLandingDifference": 2,
+          "cases": 96
+        },
+        "covered": {
+          "candidate-only win": 64,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 32,
+          "netLandingDifference": 64,
+          "cases": 96
+        },
+        "no-instruments": {
+          "candidate-only win": 64,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 32,
+          "netLandingDifference": 64,
+          "cases": 96
+        }
+      }
+    },
+    {
+      "name": "originalFour",
+      "scenarios": [
+        0,
+        1,
+        9,
+        17
+      ],
+      "cases": 16,
+      "counts": {
+        "candidate": {
+          "flights": 16,
+          "landings": 15,
+          "failures": 1,
+          "reasons": {
+            "Missed the ship": 1,
+            "Touchdown": 15
+          }
+        },
+        "released": {
+          "flights": 16,
+          "landings": 14,
+          "failures": 2,
+          "reasons": {
+            "Missed the ship": 2,
+            "Touchdown": 14
+          }
+        },
+        "covered": {
+          "flights": 16,
+          "landings": 0,
+          "failures": 16,
+          "reasons": {
+            "Flight terminated": 11,
+            "Missed the ship": 5
+          }
+        },
+        "no-instruments": {
+          "flights": 16,
+          "landings": 0,
+          "failures": 16,
+          "reasons": {
+            "Flight terminated": 16
+          }
+        }
+      },
+      "pairedContrasts": {
+        "released": {
+          "candidate-only win": 2,
+          "candidate-only loss": 1,
+          "both land": 13,
+          "neither lands": 0,
+          "netLandingDifference": 1,
+          "cases": 16
+        },
+        "covered": {
+          "candidate-only win": 15,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 1,
+          "netLandingDifference": 15,
+          "cases": 16
+        },
+        "no-instruments": {
+          "candidate-only win": 15,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 1,
+          "netLandingDifference": 15,
+          "cases": 16
+        }
+      }
+    },
+    {
+      "name": "releasedTen",
+      "scenarios": [
+        0,
+        1,
+        6,
+        7,
+        9,
+        17,
+        20,
+        21,
+        22,
+        23
+      ],
+      "cases": 40,
+      "counts": {
+        "candidate": {
+          "flights": 40,
+          "landings": 25,
+          "failures": 15,
+          "reasons": {
+            "Hard landing": 5,
+            "Lateral impact": 6,
+            "Missed the ship": 4,
+            "Touchdown": 25
+          }
+        },
+        "released": {
+          "flights": 40,
+          "landings": 28,
+          "failures": 12,
+          "reasons": {
+            "Attitude at impact": 1,
+            "Lateral impact": 9,
+            "Missed the ship": 2,
+            "Touchdown": 28
+          }
+        },
+        "covered": {
+          "flights": 40,
+          "landings": 0,
+          "failures": 40,
+          "reasons": {
+            "Flight terminated": 35,
+            "Missed the ship": 5
+          }
+        },
+        "no-instruments": {
+          "flights": 40,
+          "landings": 0,
+          "failures": 40,
+          "reasons": {
+            "Flight terminated": 40
+          }
+        }
+      },
+      "pairedContrasts": {
+        "released": {
+          "candidate-only win": 4,
+          "candidate-only loss": 7,
+          "both land": 21,
+          "neither lands": 8,
+          "netLandingDifference": -3,
+          "cases": 40
+        },
+        "covered": {
+          "candidate-only win": 25,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 15,
+          "netLandingDifference": 25,
+          "cases": 40
+        },
+        "no-instruments": {
+          "candidate-only win": 25,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 15,
+          "netLandingDifference": 25,
+          "cases": 40
+        }
+      }
+    }
+  ],
+  "perMission": [
+    {
+      "scenario": 0,
+      "title": "Landing school",
+      "landingRadius": 11.0,
+      "name": "profile0",
+      "scenarios": [
+        0
+      ],
+      "cases": 4,
+      "counts": {
+        "candidate": {
+          "flights": 4,
+          "landings": 4,
+          "failures": 0,
+          "reasons": {
+            "Touchdown": 4
+          }
+        },
+        "released": {
+          "flights": 4,
+          "landings": 4,
+          "failures": 0,
+          "reasons": {
+            "Touchdown": 4
+          }
+        },
+        "covered": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Missed the ship": 4
+          }
+        },
+        "no-instruments": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        }
+      },
+      "pairedContrasts": {
+        "released": {
+          "candidate-only win": 0,
+          "candidate-only loss": 0,
+          "both land": 4,
+          "neither lands": 0,
+          "netLandingDifference": 0,
+          "cases": 4
+        },
+        "covered": {
+          "candidate-only win": 4,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 0,
+          "netLandingDifference": 4,
+          "cases": 4
+        },
+        "no-instruments": {
+          "candidate-only win": 4,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 0,
+          "netLandingDifference": 4,
+          "cases": 4
+        }
+      }
+    },
+    {
+      "scenario": 1,
+      "title": "Atlantic return",
+      "landingRadius": 11.0,
+      "name": "profile1",
+      "scenarios": [
+        1
+      ],
+      "cases": 4,
+      "counts": {
+        "candidate": {
+          "flights": 4,
+          "landings": 4,
+          "failures": 0,
+          "reasons": {
+            "Touchdown": 4
+          }
+        },
+        "released": {
+          "flights": 4,
+          "landings": 4,
+          "failures": 0,
+          "reasons": {
+            "Touchdown": 4
+          }
+        },
+        "covered": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 3,
+            "Missed the ship": 1
+          }
+        },
+        "no-instruments": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        }
+      },
+      "pairedContrasts": {
+        "released": {
+          "candidate-only win": 0,
+          "candidate-only loss": 0,
+          "both land": 4,
+          "neither lands": 0,
+          "netLandingDifference": 0,
+          "cases": 4
+        },
+        "covered": {
+          "candidate-only win": 4,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 0,
+          "netLandingDifference": 4,
+          "cases": 4
+        },
+        "no-instruments": {
+          "candidate-only win": 4,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 0,
+          "netLandingDifference": 4,
+          "cases": 4
+        }
+      }
+    },
+    {
+      "scenario": 2,
+      "title": "Fast approach",
+      "landingRadius": 11.0,
+      "name": "profile2",
+      "scenarios": [
+        2
+      ],
+      "cases": 4,
+      "counts": {
+        "candidate": {
+          "flights": 4,
+          "landings": 4,
+          "failures": 0,
+          "reasons": {
+            "Touchdown": 4
+          }
+        },
+        "released": {
+          "flights": 4,
+          "landings": 4,
+          "failures": 0,
+          "reasons": {
+            "Touchdown": 4
+          }
+        },
+        "covered": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        },
+        "no-instruments": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        }
+      },
+      "pairedContrasts": {
+        "released": {
+          "candidate-only win": 0,
+          "candidate-only loss": 0,
+          "both land": 4,
+          "neither lands": 0,
+          "netLandingDifference": 0,
+          "cases": 4
+        },
+        "covered": {
+          "candidate-only win": 4,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 0,
+          "netLandingDifference": 4,
+          "cases": 4
+        },
+        "no-instruments": {
+          "candidate-only win": 4,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 0,
+          "netLandingDifference": 4,
+          "cases": 4
+        }
+      }
+    },
+    {
+      "scenario": 3,
+      "title": "Rough seas",
+      "landingRadius": 11.0,
+      "name": "profile3",
+      "scenarios": [
+        3
+      ],
+      "cases": 4,
+      "counts": {
+        "candidate": {
+          "flights": 4,
+          "landings": 3,
+          "failures": 1,
+          "reasons": {
+            "Lateral impact": 1,
+            "Touchdown": 3
+          }
+        },
+        "released": {
+          "flights": 4,
+          "landings": 3,
+          "failures": 1,
+          "reasons": {
+            "Missed the ship": 1,
+            "Touchdown": 3
+          }
+        },
+        "covered": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        },
+        "no-instruments": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        }
+      },
+      "pairedContrasts": {
+        "released": {
+          "candidate-only win": 0,
+          "candidate-only loss": 0,
+          "both land": 3,
+          "neither lands": 1,
+          "netLandingDifference": 0,
+          "cases": 4
+        },
+        "covered": {
+          "candidate-only win": 3,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 1,
+          "netLandingDifference": 3,
+          "cases": 4
+        },
+        "no-instruments": {
+          "candidate-only win": 3,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 1,
+          "netLandingDifference": 3,
+          "cases": 4
+        }
+      }
+    },
+    {
+      "scenario": 4,
+      "title": "Night shift",
+      "landingRadius": 11.0,
+      "name": "profile4",
+      "scenarios": [
+        4
+      ],
+      "cases": 4,
+      "counts": {
+        "candidate": {
+          "flights": 4,
+          "landings": 1,
+          "failures": 3,
+          "reasons": {
+            "Lateral impact": 2,
+            "Missed the ship": 1,
+            "Touchdown": 1
+          }
+        },
+        "released": {
+          "flights": 4,
+          "landings": 3,
+          "failures": 1,
+          "reasons": {
+            "Lateral impact": 1,
+            "Touchdown": 3
+          }
+        },
+        "covered": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        },
+        "no-instruments": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        }
+      },
+      "pairedContrasts": {
+        "released": {
+          "candidate-only win": 0,
+          "candidate-only loss": 2,
+          "both land": 1,
+          "neither lands": 1,
+          "netLandingDifference": -2,
+          "cases": 4
+        },
+        "covered": {
+          "candidate-only win": 1,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 3,
+          "netLandingDifference": 1,
+          "cases": 4
+        },
+        "no-instruments": {
+          "candidate-only win": 1,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 3,
+          "netLandingDifference": 1,
+          "cases": 4
+        }
+      }
+    },
+    {
+      "scenario": 5,
+      "title": "Fin trouble",
+      "landingRadius": 11.0,
+      "name": "profile5",
+      "scenarios": [
+        5
+      ],
+      "cases": 4,
+      "counts": {
+        "candidate": {
+          "flights": 4,
+          "landings": 3,
+          "failures": 1,
+          "reasons": {
+            "Lateral impact": 1,
+            "Touchdown": 3
+          }
+        },
+        "released": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Approach timed out": 1,
+            "Lateral impact": 1,
+            "Missed the ship": 2
+          }
+        },
+        "covered": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        },
+        "no-instruments": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        }
+      },
+      "pairedContrasts": {
+        "released": {
+          "candidate-only win": 3,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 1,
+          "netLandingDifference": 3,
+          "cases": 4
+        },
+        "covered": {
+          "candidate-only win": 3,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 1,
+          "netLandingDifference": 3,
+          "cases": 4
+        },
+        "no-instruments": {
+          "candidate-only win": 3,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 1,
+          "netLandingDifference": 3,
+          "cases": 4
+        }
+      }
+    },
+    {
+      "scenario": 6,
+      "title": "Engine trouble",
+      "landingRadius": 11.0,
+      "name": "profile6",
+      "scenarios": [
+        6
+      ],
+      "cases": 4,
+      "counts": {
+        "candidate": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Lateral impact": 3,
+            "Missed the ship": 1
+          }
+        },
+        "released": {
+          "flights": 4,
+          "landings": 2,
+          "failures": 2,
+          "reasons": {
+            "Lateral impact": 2,
+            "Touchdown": 2
+          }
+        },
+        "covered": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        },
+        "no-instruments": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        }
+      },
+      "pairedContrasts": {
+        "released": {
+          "candidate-only win": 0,
+          "candidate-only loss": 2,
+          "both land": 0,
+          "neither lands": 2,
+          "netLandingDifference": -2,
+          "cases": 4
+        },
+        "covered": {
+          "candidate-only win": 0,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 4,
+          "netLandingDifference": 0,
+          "cases": 4
+        },
+        "no-instruments": {
+          "candidate-only win": 0,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 4,
+          "netLandingDifference": 0,
+          "cases": 4
+        }
+      }
+    },
+    {
+      "scenario": 7,
+      "title": "Absolutely nominal",
+      "landingRadius": 11.0,
+      "name": "profile7",
+      "scenarios": [
+        7
+      ],
+      "cases": 4,
+      "counts": {
+        "candidate": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Hard landing": 2,
+            "Lateral impact": 1,
+            "Missed the ship": 1
+          }
+        },
+        "released": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Attitude at impact": 1,
+            "Lateral impact": 3
+          }
+        },
+        "covered": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        },
+        "no-instruments": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        }
+      },
+      "pairedContrasts": {
+        "released": {
+          "candidate-only win": 0,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 4,
+          "netLandingDifference": 0,
+          "cases": 4
+        },
+        "covered": {
+          "candidate-only win": 0,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 4,
+          "netLandingDifference": 0,
+          "cases": 4
+        },
+        "no-instruments": {
+          "candidate-only win": 0,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 4,
+          "netLandingDifference": 0,
+          "cases": 4
+        }
+      }
+    },
+    {
+      "scenario": 8,
+      "title": "Precision barge",
+      "landingRadius": 7.0,
+      "name": "profile8",
+      "scenarios": [
+        8
+      ],
+      "cases": 4,
+      "counts": {
+        "candidate": {
+          "flights": 4,
+          "landings": 4,
+          "failures": 0,
+          "reasons": {
+            "Touchdown": 4
+          }
+        },
+        "released": {
+          "flights": 4,
+          "landings": 4,
+          "failures": 0,
+          "reasons": {
+            "Touchdown": 4
+          }
+        },
+        "covered": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Missed the ship": 4
+          }
+        },
+        "no-instruments": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        }
+      },
+      "pairedContrasts": {
+        "released": {
+          "candidate-only win": 0,
+          "candidate-only loss": 0,
+          "both land": 4,
+          "neither lands": 0,
+          "netLandingDifference": 0,
+          "cases": 4
+        },
+        "covered": {
+          "candidate-only win": 4,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 0,
+          "netLandingDifference": 4,
+          "cases": 4
+        },
+        "no-instruments": {
+          "candidate-only win": 4,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 0,
+          "netLandingDifference": 4,
+          "cases": 4
+        }
+      }
+    },
+    {
+      "scenario": 9,
+      "title": "Fast ferry",
+      "landingRadius": 11.0,
+      "name": "profile9",
+      "scenarios": [
+        9
+      ],
+      "cases": 4,
+      "counts": {
+        "candidate": {
+          "flights": 4,
+          "landings": 3,
+          "failures": 1,
+          "reasons": {
+            "Missed the ship": 1,
+            "Touchdown": 3
+          }
+        },
+        "released": {
+          "flights": 4,
+          "landings": 3,
+          "failures": 1,
+          "reasons": {
+            "Missed the ship": 1,
+            "Touchdown": 3
+          }
+        },
+        "covered": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        },
+        "no-instruments": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        }
+      },
+      "pairedContrasts": {
+        "released": {
+          "candidate-only win": 1,
+          "candidate-only loss": 1,
+          "both land": 2,
+          "neither lands": 0,
+          "netLandingDifference": 0,
+          "cases": 4
+        },
+        "covered": {
+          "candidate-only win": 3,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 1,
+          "netLandingDifference": 3,
+          "cases": 4
+        },
+        "no-instruments": {
+          "candidate-only win": 3,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 1,
+          "netLandingDifference": 3,
+          "cases": 4
+        }
+      }
+    },
+    {
+      "scenario": 10,
+      "title": "Figure-eight deck",
+      "landingRadius": 11.0,
+      "name": "profile10",
+      "scenarios": [
+        10
+      ],
+      "cases": 4,
+      "counts": {
+        "candidate": {
+          "flights": 4,
+          "landings": 3,
+          "failures": 1,
+          "reasons": {
+            "Missed the ship": 1,
+            "Touchdown": 3
+          }
+        },
+        "released": {
+          "flights": 4,
+          "landings": 4,
+          "failures": 0,
+          "reasons": {
+            "Touchdown": 4
+          }
+        },
+        "covered": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        },
+        "no-instruments": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        }
+      },
+      "pairedContrasts": {
+        "released": {
+          "candidate-only win": 0,
+          "candidate-only loss": 1,
+          "both land": 3,
+          "neither lands": 0,
+          "netLandingDifference": -1,
+          "cases": 4
+        },
+        "covered": {
+          "candidate-only win": 3,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 1,
+          "netLandingDifference": 3,
+          "cases": 4
+        },
+        "no-instruments": {
+          "candidate-only win": 3,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 1,
+          "netLandingDifference": 3,
+          "cases": 4
+        }
+      }
+    },
+    {
+      "scenario": 11,
+      "title": "Turning vessel",
+      "landingRadius": 11.0,
+      "name": "profile11",
+      "scenarios": [
+        11
+      ],
+      "cases": 4,
+      "counts": {
+        "candidate": {
+          "flights": 4,
+          "landings": 1,
+          "failures": 3,
+          "reasons": {
+            "Missed the ship": 3,
+            "Touchdown": 1
+          }
+        },
+        "released": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Missed the ship": 4
+          }
+        },
+        "covered": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        },
+        "no-instruments": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        }
+      },
+      "pairedContrasts": {
+        "released": {
+          "candidate-only win": 1,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 3,
+          "netLandingDifference": 1,
+          "cases": 4
+        },
+        "covered": {
+          "candidate-only win": 1,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 3,
+          "netLandingDifference": 1,
+          "cases": 4
+        },
+        "no-instruments": {
+          "candidate-only win": 1,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 3,
+          "netLandingDifference": 1,
+          "cases": 4
+        }
+      }
+    },
+    {
+      "scenario": 12,
+      "title": "Wind wall",
+      "landingRadius": 11.0,
+      "name": "profile12",
+      "scenarios": [
+        12
+      ],
+      "cases": 4,
+      "counts": {
+        "candidate": {
+          "flights": 4,
+          "landings": 4,
+          "failures": 0,
+          "reasons": {
+            "Touchdown": 4
+          }
+        },
+        "released": {
+          "flights": 4,
+          "landings": 4,
+          "failures": 0,
+          "reasons": {
+            "Touchdown": 4
+          }
+        },
+        "covered": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        },
+        "no-instruments": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        }
+      },
+      "pairedContrasts": {
+        "released": {
+          "candidate-only win": 0,
+          "candidate-only loss": 0,
+          "both land": 4,
+          "neither lands": 0,
+          "netLandingDifference": 0,
+          "cases": 4
+        },
+        "covered": {
+          "candidate-only win": 4,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 0,
+          "netLandingDifference": 4,
+          "cases": 4
+        },
+        "no-instruments": {
+          "candidate-only win": 4,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 0,
+          "netLandingDifference": 4,
+          "cases": 4
+        }
+      }
+    },
+    {
+      "scenario": 13,
+      "title": "Wind shear",
+      "landingRadius": 11.0,
+      "name": "profile13",
+      "scenarios": [
+        13
+      ],
+      "cases": 4,
+      "counts": {
+        "candidate": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Missed the ship": 4
+          }
+        },
+        "released": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Missed the ship": 4
+          }
+        },
+        "covered": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        },
+        "no-instruments": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        }
+      },
+      "pairedContrasts": {
+        "released": {
+          "candidate-only win": 0,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 4,
+          "netLandingDifference": 0,
+          "cases": 4
+        },
+        "covered": {
+          "candidate-only win": 0,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 4,
+          "netLandingDifference": 0,
+          "cases": 4
+        },
+        "no-instruments": {
+          "candidate-only win": 0,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 4,
+          "netLandingDifference": 0,
+          "cases": 4
+        }
+      }
+    },
+    {
+      "scenario": 14,
+      "title": "Fuel reserve",
+      "landingRadius": 11.0,
+      "name": "profile14",
+      "scenarios": [
+        14
+      ],
+      "cases": 4,
+      "counts": {
+        "candidate": {
+          "flights": 4,
+          "landings": 4,
+          "failures": 0,
+          "reasons": {
+            "Touchdown": 4
+          }
+        },
+        "released": {
+          "flights": 4,
+          "landings": 4,
+          "failures": 0,
+          "reasons": {
+            "Touchdown": 4
+          }
+        },
+        "covered": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Attitude at impact": 1,
+            "Missed the ship": 3
+          }
+        },
+        "no-instruments": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        }
+      },
+      "pairedContrasts": {
+        "released": {
+          "candidate-only win": 0,
+          "candidate-only loss": 0,
+          "both land": 4,
+          "neither lands": 0,
+          "netLandingDifference": 0,
+          "cases": 4
+        },
+        "covered": {
+          "candidate-only win": 4,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 0,
+          "netLandingDifference": 4,
+          "cases": 4
+        },
+        "no-instruments": {
+          "candidate-only win": 4,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 0,
+          "netLandingDifference": 4,
+          "cases": 4
+        }
+      }
+    },
+    {
+      "scenario": 15,
+      "title": "Slow hands",
+      "landingRadius": 11.0,
+      "name": "profile15",
+      "scenarios": [
+        15
+      ],
+      "cases": 4,
+      "counts": {
+        "candidate": {
+          "flights": 4,
+          "landings": 4,
+          "failures": 0,
+          "reasons": {
+            "Touchdown": 4
+          }
+        },
+        "released": {
+          "flights": 4,
+          "landings": 4,
+          "failures": 0,
+          "reasons": {
+            "Touchdown": 4
+          }
+        },
+        "covered": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 3,
+            "Missed the ship": 1
+          }
+        },
+        "no-instruments": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        }
+      },
+      "pairedContrasts": {
+        "released": {
+          "candidate-only win": 0,
+          "candidate-only loss": 0,
+          "both land": 4,
+          "neither lands": 0,
+          "netLandingDifference": 0,
+          "cases": 4
+        },
+        "covered": {
+          "candidate-only win": 4,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 0,
+          "netLandingDifference": 4,
+          "cases": 4
+        },
+        "no-instruments": {
+          "candidate-only win": 4,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 0,
+          "netLandingDifference": 4,
+          "cases": 4
+        }
+      }
+    },
+    {
+      "scenario": 16,
+      "title": "Sideways entry",
+      "landingRadius": 11.0,
+      "name": "profile16",
+      "scenarios": [
+        16
+      ],
+      "cases": 4,
+      "counts": {
+        "candidate": {
+          "flights": 4,
+          "landings": 4,
+          "failures": 0,
+          "reasons": {
+            "Touchdown": 4
+          }
+        },
+        "released": {
+          "flights": 4,
+          "landings": 4,
+          "failures": 0,
+          "reasons": {
+            "Touchdown": 4
+          }
+        },
+        "covered": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        },
+        "no-instruments": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        }
+      },
+      "pairedContrasts": {
+        "released": {
+          "candidate-only win": 0,
+          "candidate-only loss": 0,
+          "both land": 4,
+          "neither lands": 0,
+          "netLandingDifference": 0,
+          "cases": 4
+        },
+        "covered": {
+          "candidate-only win": 4,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 0,
+          "netLandingDifference": 4,
+          "cases": 4
+        },
+        "no-instruments": {
+          "candidate-only win": 4,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 0,
+          "netLandingDifference": 4,
+          "cases": 4
+        }
+      }
+    },
+    {
+      "scenario": 17,
+      "title": "Spinning entry",
+      "landingRadius": 11.0,
+      "name": "profile17",
+      "scenarios": [
+        17
+      ],
+      "cases": 4,
+      "counts": {
+        "candidate": {
+          "flights": 4,
+          "landings": 4,
+          "failures": 0,
+          "reasons": {
+            "Touchdown": 4
+          }
+        },
+        "released": {
+          "flights": 4,
+          "landings": 3,
+          "failures": 1,
+          "reasons": {
+            "Missed the ship": 1,
+            "Touchdown": 3
+          }
+        },
+        "covered": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        },
+        "no-instruments": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        }
+      },
+      "pairedContrasts": {
+        "released": {
+          "candidate-only win": 1,
+          "candidate-only loss": 0,
+          "both land": 3,
+          "neither lands": 0,
+          "netLandingDifference": 1,
+          "cases": 4
+        },
+        "covered": {
+          "candidate-only win": 4,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 0,
+          "netLandingDifference": 4,
+          "cases": 4
+        },
+        "no-instruments": {
+          "candidate-only win": 4,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 0,
+          "netLandingDifference": 4,
+          "cases": 4
+        }
+      }
+    },
+    {
+      "scenario": 18,
+      "title": "High return",
+      "landingRadius": 11.0,
+      "name": "profile18",
+      "scenarios": [
+        18
+      ],
+      "cases": 4,
+      "counts": {
+        "candidate": {
+          "flights": 4,
+          "landings": 4,
+          "failures": 0,
+          "reasons": {
+            "Touchdown": 4
+          }
+        },
+        "released": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Approach timed out": 4
+          }
+        },
+        "covered": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        },
+        "no-instruments": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        }
+      },
+      "pairedContrasts": {
+        "released": {
+          "candidate-only win": 4,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 0,
+          "netLandingDifference": 4,
+          "cases": 4
+        },
+        "covered": {
+          "candidate-only win": 4,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 0,
+          "netLandingDifference": 4,
+          "cases": 4
+        },
+        "no-instruments": {
+          "candidate-only win": 4,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 0,
+          "netLandingDifference": 4,
+          "cases": 4
+        }
+      }
+    },
+    {
+      "scenario": 19,
+      "title": "Tight storm",
+      "landingRadius": 8.0,
+      "name": "profile19",
+      "scenarios": [
+        19
+      ],
+      "cases": 4,
+      "counts": {
+        "candidate": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Lateral impact": 1,
+            "Missed the ship": 3
+          }
+        },
+        "released": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Approach timed out": 2,
+            "Lateral impact": 1,
+            "Missed the ship": 1
+          }
+        },
+        "covered": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        },
+        "no-instruments": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        }
+      },
+      "pairedContrasts": {
+        "released": {
+          "candidate-only win": 0,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 4,
+          "netLandingDifference": 0,
+          "cases": 4
+        },
+        "covered": {
+          "candidate-only win": 0,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 4,
+          "netLandingDifference": 0,
+          "cases": 4
+        },
+        "no-instruments": {
+          "candidate-only win": 0,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 4,
+          "netLandingDifference": 0,
+          "cases": 4
+        }
+      }
+    },
+    {
+      "scenario": 20,
+      "title": "Early engine fade",
+      "landingRadius": 11.0,
+      "name": "profile20",
+      "scenarios": [
+        20
+      ],
+      "cases": 4,
+      "counts": {
+        "candidate": {
+          "flights": 4,
+          "landings": 4,
+          "failures": 0,
+          "reasons": {
+            "Touchdown": 4
+          }
+        },
+        "released": {
+          "flights": 4,
+          "landings": 4,
+          "failures": 0,
+          "reasons": {
+            "Touchdown": 4
+          }
+        },
+        "covered": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        },
+        "no-instruments": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        }
+      },
+      "pairedContrasts": {
+        "released": {
+          "candidate-only win": 0,
+          "candidate-only loss": 0,
+          "both land": 4,
+          "neither lands": 0,
+          "netLandingDifference": 0,
+          "cases": 4
+        },
+        "covered": {
+          "candidate-only win": 4,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 0,
+          "netLandingDifference": 4,
+          "cases": 4
+        },
+        "no-instruments": {
+          "candidate-only win": 4,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 0,
+          "netLandingDifference": 4,
+          "cases": 4
+        }
+      }
+    },
+    {
+      "scenario": 21,
+      "title": "Late engine fade",
+      "landingRadius": 11.0,
+      "name": "profile21",
+      "scenarios": [
+        21
+      ],
+      "cases": 4,
+      "counts": {
+        "candidate": {
+          "flights": 4,
+          "landings": 4,
+          "failures": 0,
+          "reasons": {
+            "Touchdown": 4
+          }
+        },
+        "released": {
+          "flights": 4,
+          "landings": 4,
+          "failures": 0,
+          "reasons": {
+            "Touchdown": 4
+          }
+        },
+        "covered": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        },
+        "no-instruments": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        }
+      },
+      "pairedContrasts": {
+        "released": {
+          "candidate-only win": 0,
+          "candidate-only loss": 0,
+          "both land": 4,
+          "neither lands": 0,
+          "netLandingDifference": 0,
+          "cases": 4
+        },
+        "covered": {
+          "candidate-only win": 4,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 0,
+          "netLandingDifference": 4,
+          "cases": 4
+        },
+        "no-instruments": {
+          "candidate-only win": 4,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 0,
+          "netLandingDifference": 4,
+          "cases": 4
+        }
+      }
+    },
+    {
+      "scenario": 22,
+      "title": "Blackout rendezvous",
+      "landingRadius": 11.0,
+      "name": "profile22",
+      "scenarios": [
+        22
+      ],
+      "cases": 4,
+      "counts": {
+        "candidate": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Hard landing": 3,
+            "Missed the ship": 1
+          }
+        },
+        "released": {
+          "flights": 4,
+          "landings": 3,
+          "failures": 1,
+          "reasons": {
+            "Lateral impact": 1,
+            "Touchdown": 3
+          }
+        },
+        "covered": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        },
+        "no-instruments": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        }
+      },
+      "pairedContrasts": {
+        "released": {
+          "candidate-only win": 0,
+          "candidate-only loss": 3,
+          "both land": 0,
+          "neither lands": 1,
+          "netLandingDifference": -3,
+          "cases": 4
+        },
+        "covered": {
+          "candidate-only win": 0,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 4,
+          "netLandingDifference": 0,
+          "cases": 4
+        },
+        "no-instruments": {
+          "candidate-only win": 0,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 4,
+          "netLandingDifference": 0,
+          "cases": 4
+        }
+      }
+    },
+    {
+      "scenario": 23,
+      "title": "Last-call recovery",
+      "landingRadius": 11.0,
+      "name": "profile23",
+      "scenarios": [
+        23
+      ],
+      "cases": 4,
+      "counts": {
+        "candidate": {
+          "flights": 4,
+          "landings": 2,
+          "failures": 2,
+          "reasons": {
+            "Lateral impact": 2,
+            "Touchdown": 2
+          }
+        },
+        "released": {
+          "flights": 4,
+          "landings": 1,
+          "failures": 3,
+          "reasons": {
+            "Lateral impact": 3,
+            "Touchdown": 1
+          }
+        },
+        "covered": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        },
+        "no-instruments": {
+          "flights": 4,
+          "landings": 0,
+          "failures": 4,
+          "reasons": {
+            "Flight terminated": 4
+          }
+        }
+      },
+      "pairedContrasts": {
+        "released": {
+          "candidate-only win": 2,
+          "candidate-only loss": 1,
+          "both land": 0,
+          "neither lands": 1,
+          "netLandingDifference": 1,
+          "cases": 4
+        },
+        "covered": {
+          "candidate-only win": 2,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 2,
+          "netLandingDifference": 2,
+          "cases": 4
+        },
+        "no-instruments": {
+          "candidate-only win": 2,
+          "candidate-only loss": 0,
+          "both land": 0,
+          "neither lands": 2,
+          "netLandingDifference": 2,
+          "cases": 4
+        }
+      }
+    }
+  ],
+  "gates": {
+    "overall_superiority": true,
+    "original_four_retention": true,
+    "released_ten_retention": false,
+    "covered_control_separation": true,
+    "no_instruments_control_separation": true
+  },
+  "allFiveGatesPassed": false,
+  "eligibleForSeparateFreshJavaScriptFinal": false,
+  "deploymentEligible": false,
+  "promotionPerformed": false,
+  "verdict": "REJECTED by frozen development-selection gates; preserve all outcomes and do not substitute another candidate",
+  "afterPass": "Requires a separately frozen fresh unseen JavaScript final full-flight cohort with matched release and both sensory controls before deployment. This development selection does not qualify reliability or deployment.",
+  "afterFailure": "Preserve every outcome; no parameter adjustment, earlier generation fallback, replacement cohort or model switch based on this selection.",
+  "freezeTiming": "The training plan predeclared final GEN6 and a fresh all24 comparison with release and both controls. This separate 96-case seed and five-gate protocol was specified after training launch and is frozen before any selection flight; it was not part of the earlier training-plan freeze.",
+  "historicalTrainingArchiveLimit": {
+    "knownArchivedModules": 12,
+    "missingArchivedModules": [
+      "dist/engine.js",
+      "dist/signals.js",
+      "dist/visual-lesson.js"
+    ],
+    "edges": [
+      {
+        "from": "scripts/train-suite.mjs",
+        "to": "scripts/full-network-node.mjs"
+      },
+      {
+        "from": "scripts/full-network-node.mjs",
+        "to": "dist/full-network.js"
+      },
+      {
+        "from": "dist/full-network.js",
+        "to": "dist/signals.js"
+      },
+      {
+        "from": "dist/full-network.js",
+        "to": "dist/sensory-inputs.js"
+      },
+      {
+        "from": "scripts/train-suite.mjs",
+        "to": "scripts/native-rate.mjs"
+      },
+      {
+        "from": "scripts/train-suite.mjs",
+        "to": "dist/engine3d.js"
+      },
+      {
+        "from": "dist/engine3d.js",
+        "to": "dist/engine.js"
+      },
+      {
+        "from": "dist/engine3d.js",
+        "to": "dist/orbital.js"
+      },
+      {
+        "from": "dist/orbital.js",
+        "to": "dist/engine.js"
+      },
+      {
+        "from": "dist/engine3d.js",
+        "to": "dist/missions.js"
+      },
+      {
+        "from": "scripts/train-suite.mjs",
+        "to": "dist/orbital.js"
+      },
+      {
+        "from": "scripts/train-suite.mjs",
+        "to": "dist/perception.js"
+      },
+      {
+        "from": "dist/perception.js",
+        "to": "dist/sensory-inputs.js"
+      },
+      {
+        "from": "dist/perception.js",
+        "to": "dist/orbital.js"
+      },
+      {
+        "from": "dist/perception.js",
+        "to": "dist/flight-instruments.js"
+      },
+      {
+        "from": "dist/flight-instruments.js",
+        "to": "dist/orbital.js"
+      },
+      {
+        "from": "scripts/train-suite.mjs",
+        "to": "dist/flight-instruments.js"
+      },
+      {
+        "from": "scripts/train-suite.mjs",
+        "to": "dist/full-controller.js"
+      },
+      {
+        "from": "dist/full-controller.js",
+        "to": "dist/visual-lesson.js"
+      },
+      {
+        "from": "dist/full-controller.js",
+        "to": "dist/perception.js"
+      },
+      {
+        "from": "dist/full-controller.js",
+        "to": "dist/flight-instruments.js"
+      },
+      {
+        "from": "dist/full-controller.js",
+        "to": "dist/sensory-inputs.js"
+      },
+      {
+        "from": "dist/full-controller.js",
+        "to": "dist/engine3d.js"
+      },
+      {
+        "from": "scripts/train-suite.mjs",
+        "to": "scripts/insertion-hold.mjs"
+      },
+      {
+        "from": "scripts/insertion-hold.mjs",
+        "to": "dist/orbital.js"
+      }
+    ],
+    "interpretation": "The historical plan pins a runtime subset. Missing transitive archives cannot be certified retrospectively from their current contents; numerical replay will use only independent arithmetic and frozen literals."
+  },
+  "limitations": "This is an audit of original complete selection records and frozen execution provenance. Records contain no trajectory, terminal physical state, or terminal yaw rate. Recorded touchdown metrics and reason priority can be checked, but physics, accumulated reward, and the unrecorded yaw criterion cannot be independently reintegrated. The historical training runtime archive was incomplete; this selection has its own 71-file runtime snapshot. Current files cannot retrospectively certify missing historical training archives. These cases are development selection evidence, not final reliability estimates; passing requires a separately frozen fresh unseen JavaScript final cohort with release and both controls. No parameter retuning, earlier-candidate fallback, cohort replacement, training-evaluation substitution, or promotion is performed.",
+  "newPhysicalFlights": 0,
+  "newNeuralRuns": 0,
+  "trainingEvaluationsSubstituted": 0
+}
