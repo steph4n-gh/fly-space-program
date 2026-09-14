@@ -11,6 +11,7 @@ import {sampleEmbodied} from '../dist/perception.js';
 import {FLIGHT_PANEL,FLIGHT_BODY_CHANNELS,presentedInstrumentValues} from '../dist/flight-instruments.js';
 import {freshEmbodied,flightResult} from '../dist/full-controller.js';
 import {createInsertionHold,updateInsertionHold} from './insertion-hold.mjs';
+import {createInsertionProgress,updateInsertionProgress,insertionProgressResult,compareInsertionProgress} from './insertion-progress.mjs';
 
 const folder='artifacts/suite-training',basisPath=process.env.SUITE_SENSORY_BASIS??folder+'/sensory-basis.json',basisText=fs.readFileSync(basisPath,'utf8'),basis=JSON.parse(basisText);
 const sha=s=>crypto.createHash('sha256').update(s).digest('hex'),calibrationHash=sha(basisText),stride=2130;
@@ -39,11 +40,16 @@ const directions=[
 const initial=[-.3,-.08,-.3,.03,-.02,0,0,0,0,0,0,0,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 const scales=[.1,.15,.3,.15,.15,.2,.3,2,.5,.5,.5,.1,1,.8,3,1.5,1,2,2,2,2,3,2,.15,.15,.5,.5,.2];
 const touchdownMargin=Number(process.env.SUITE_TOUCHDOWN_MARGIN??0);
-const selectionOrder='landings-orbital-milestones-then-fitness';
+const insertionProgress=process.env.SUITE_INSERTION_PROGRESS??'off';
+if(!['off','record','rank'].includes(insertionProgress))throw Error('Unknown insertion progress mode');
+const selectionOrder=insertionProgress==='rank'?'landings-orbital-milestones-strict-hold-conditional-periapsis-then-fitness':'landings-orbital-milestones-then-fitness';
 const useInsertionHold=process.env.SUITE_INSERTION_HOLD==='1';
+if(insertionProgress!=='off'&&!useInsertionHold)throw Error('Insertion progress comparison requires the existing hold reward');
 const fitnessVersion=useInsertionHold?'touchdown-margin-and-orbit-hold-v1':'touchdown-margin-and-orbit-insertion-v2';
 const rewardSource=useInsertionHold?fs.readFileSync(new URL('./insertion-hold.mjs',import.meta.url)):null;
-const rewardMetadata=rewardSource?{insertionRewardSourceSHA256:sha(rewardSource)}:{};
+const progressSource=insertionProgress==='off'?null:fs.readFileSync(new URL('./insertion-progress.mjs',import.meta.url));
+const rewardMetadata={...(rewardSource?{insertionRewardSourceSHA256:sha(rewardSource)}:{}),
+ ...(progressSource?{insertionProgress,insertionProgressSourceSHA256:sha(progressSource)}:{})};
 const orbitalMilestones=['Final approach','Atmospheric entry','Deorbit','One full orbit','Stable orbit','Space','Launch'];
 function compareResults(a,b){
  if(a.landings!==b.landings)return b.landings-a.landings;
@@ -51,6 +57,7 @@ function compareResults(a,b){
   const count=r=>r.flights.filter(f=>f.milestones?.some(m=>m.name===name)).length,difference=count(b)-count(a);
   if(difference)return difference;
  }
+ if(insertionProgress==='rank'){const difference=compareInsertionProgress(a,b);if(difference)return difference;}
  return b.fitness-a.fitness;
 }
 function decode(parameters){
@@ -77,7 +84,8 @@ if(!isMainThread){
   const weights=decode(job.parameters),flights=[],features=[],targets=[];
   for(const test of job.cases){
    const s=createFlight(test.seed,test.scenario,test.variability??0);s.sensoryPresentation=FLIGHT_PANEL;s.autoOdor=false;s.styleEnabled=false;s.eyesCovered=!!test.covered;s.instrumentLights=test.instrumentLights!==false;net.reset();
-   const trajectory=[],hold=useInsertionHold&&s.orbital?createInsertionHold():null;let insertionQuality=0;
+   const trajectory=[],hold=useInsertionHold&&s.orbital?createInsertionHold():null,
+    progress=insertionProgress!=='off'&&s.orbital?createInsertionProgress():null;let insertionQuality=0;
    while(!s.done){
     const packet=sampleEmbodied(s),observations=[...packet.observations];
     // A fixed external odor intervention changes only the existing four
@@ -92,6 +100,7 @@ if(!isMainThread){
     for(let j=0,n=decisionSteps(s);j<n&&!s.done;j++){
      const before=s.t;advance(s,action);
      if(hold)updateInsertionHold(hold,s,s.t-before);
+     if(progress)updateInsertionProgress(progress,s,s.t-before);
     }
     if(s.orbital){
      // Outcome-only reward shaping. These orbital elements never enter the
@@ -102,7 +111,8 @@ if(!isMainThread){
     }
    }
    flights.push({...flightResult(s),...(s.orbital?{insertionQuality,insertionReward:1200*insertionQuality+200*Math.min(1,s.maxAltitude/s.orbitConfig.orbitHeight)}:{}),
-    ...(hold?{insertionHoldQuality:hold.best,insertionHoldReward:1200*hold.best+200*Math.min(1,s.maxAltitude/s.orbitConfig.orbitHeight)}:{}),...(job.trace?{trajectory}:{}),censored:false});
+    ...(hold?{insertionHoldQuality:hold.best,insertionHoldReward:1200*hold.best+200*Math.min(1,s.maxAltitude/s.orbitConfig.orbitHeight)}:{}),
+    ...(progress?insertionProgressResult(progress):{}),...(job.trace?{trajectory}:{}),censored:false});
   }
   const score=flights.reduce((v,s)=>v+s.score,0)/flights.length;
   const fitness=flights.reduce((v,s)=>v+(s.milestones?s.score*.1:s.score)+(s.insertionHoldReward??s.insertionReward??0)-touchdownMargin*(s.landed?s.touchdown.speed**2+s.touchdown.lateral**2:0),0)/flights.length;
@@ -119,6 +129,7 @@ if(!isMainThread){
  const mode=process.env.SUITE_BLOCK??'vertical',path=folder+'/'+mode,searchSeed=Number(process.env.SUITE_SEARCH_SEED??1179421),random=rng(searchSeed),correlated=process.env.SUITE_COVARIANCE==='1';
  fs.mkdirSync(path,{recursive:true});
  const profiles=(process.env.SUITE_PROFILES??'0').split(',').map(Number),active=mode.startsWith('ground-joint')?[0,1,2,3,4,5,6,7,8,9,10,11,23,24,25,26,27]:mode.startsWith('vertical')?[0,1,2,3,4]:mode.startsWith('attitude')?[5,6,7,8,9,10]:mode.startsWith('engine')?[0,1,2,3,4,11,12,13,14,15]:mode.startsWith('gimbal')?[5,6,7,8,9,10,23,24,25,26,27]:mode.startsWith('orbital-joint')?[0,1,2,7,11,16,17,18,19,20,21,22,25]:mode.startsWith('orbital')?[0,1,2,3,4,5,6,7,8,9,10,11,16,17,18,19,20,21,22,23,24,25,26,27]:directions.map((_,i)=>i);
+ if(insertionProgress!=='off'&&!profiles.every(p=>[24,25,26].includes(p)))throw Error('Insertion progress comparison supports orbital profiles only');
  let state=fs.existsSync(path+'/state.json')?JSON.parse(fs.readFileSync(path+'/state.json')):{generation:0,episodes:0,mean:initial,sigma:scales,best:null,history:[]};
  if(process.env.SUITE_INITIAL&&state.generation===0){const prior=JSON.parse(fs.readFileSync(process.env.SUITE_INITIAL));state.mean=prior.best?.parameters??prior.parameters;}
  if(state.generation===0&&state.mean.length<directions.length)state.mean=[...state.mean,...Array(directions.length-state.mean.length).fill(0)];
@@ -128,9 +139,12 @@ if(!isMainThread){
  if(state.generation>0&&state.selectionOrder!==selectionOrder)throw Error('Selection order changed; initialize a new training folder from the earlier checkpoint');
  if(state.generation>0&&state.fitnessVersion!==fitnessVersion)throw Error('Training fitness changed; initialize a new training folder from the earlier checkpoint');
  if(state.generation>0&&state.insertionRewardSourceSHA256!==rewardMetadata.insertionRewardSourceSHA256)throw Error('Insertion reward changed; initialize a new training folder');
+ if(state.generation>0&&(state.insertionProgress??'off')!==insertionProgress)throw Error('Insertion progress mode changed; initialize a new training folder');
+ if(state.generation>0&&state.insertionProgressSourceSHA256!==rewardMetadata.insertionProgressSourceSHA256)throw Error('Insertion progress measurement changed; initialize a new training folder');
  const sourceText=fs.readFileSync(new URL(import.meta.url)),sourceSHA256=sha(sourceText);
  fs.writeFileSync(path+'/source-'+sourceSHA256+'.mjs',sourceText);
  if(rewardSource)fs.writeFileSync(path+'/insertion-hold-'+rewardMetadata.insertionRewardSourceSHA256+'.mjs',rewardSource);
+ if(progressSource)fs.writeFileSync(path+'/insertion-progress-'+rewardMetadata.insertionProgressSourceSHA256+'.mjs',progressSource);
  let stopping=false;process.on('SIGINT',()=>{stopping=true;console.log('Finishing this generation before stopping.');});
  try{
   if(process.argv.includes('--collect-senses')){
@@ -177,7 +191,7 @@ if(!isMainThread){
    const output=path+'/'+(process.env.SUITE_TEST_OUTPUT??'selection.json');
    fs.writeFileSync(output.replace(/\.json$/,'')+'-weights.json',JSON.stringify(weights));
    const save=()=>{fs.writeFileSync(output+'.tmp',JSON.stringify(report));fs.renameSync(output+'.tmp',output);};
-   await Promise.all(modes.flatMap(mode=>cases.map(test=>evaluate({parameters,cases:[{...test,covered:mode==='covered',instrumentLights:mode!=='no-instruments',...(odorIntervention?{odorLevels:odorIntervention.conditions[mode]}:{})}]}).then(result=>{const flight={...result.flights[0],mode};report.flights.push(flight);save();console.log(JSON.stringify(flight));}))));
+   await Promise.all(modes.flatMap(mode=>cases.map(test=>evaluate({parameters,trace:process.env.SUITE_TEST_TRACE==='1',cases:[{...test,covered:mode==='covered',instrumentLights:mode!=='no-instruments',...(odorIntervention?{odorLevels:odorIntervention.conditions[mode]}:{})}]}).then(result=>{const flight={...result.flights[0],mode};report.flights.push(flight);save();console.log(JSON.stringify({...flight,trajectory:undefined}));}))));
    report.complete=true;save();
   }else if(process.argv.includes('--probe')){
    const parameters=state.best?.parameters??state.mean,cases=profiles.map((scenario,i)=>({scenario,seed:714133+i*19667,variability:i%2?Number(process.env.SUITE_PROBE_VARIABILITY??.2):0}));

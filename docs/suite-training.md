@@ -816,13 +816,31 @@ original orbital trainer and both learned coefficient vectors. The launcher
 verifies the snapshot and clears inherited experiment settings before applying
 the exact frozen environment.
 
-The plan requires all trajectories and original endpoints to be retained,
-followed by physical replay and paired pitch/throttle/hold diagnostics.
-No coefficients or action schedules are chosen from these diagnostic cases.
-The [machine-readable report](suite-training-progress.json) includes the
-frozen plan; that plan alone does not establish completion or capability.
+All **12 trips and their paired diagnosis are complete**. Replaying all 8,240
+recorded decisions retained 23,225 physical steps and exactly matched all
+57,680 stored physical-state values and every original endpoint. Every trip left the
+recovery corridor with zero time satisfying the original insertion limits.
+The best three-second shaped quality increased from 0.040709 to 0.047876 on
+the same six cases, without achieving insertion.
 
-Reproduce the command decomposition with
+The final controller reduced mean requested throttle after destination crossing
+from 0.536 to 0.296. Yet every destination crossing was already unbound, and
+its best rolling-reward peaks still had periapsis only 228–251 m. When apoapsis
+and radial speed simultaneously satisfied their limits, periapsis never
+exceeded 248 m across either controller; the requirement is above 800 m.
+The [complete paired report](orbital-joint-paired.md) retains all failures,
+pitch timing, command decompositions, fuel use and physical constraints.
+No coefficients or action schedules were chosen from these development cases.
+
+The next [paired ranking experiment](orbital-progress-comparison.md) tests
+whether prioritizing actual strict hold time and the remaining conditional
+periapsis gap helps search escape this failure. Its frozen budget is 576
+training trips across two otherwise identical arms, then 12 matched trips
+using their fixed final candidates. This changes candidate ranking while
+preserving the old fitness, all 13 eligible directions and original flight
+criteria.
+
+Reproduce the earlier G6 throttle-command decomposition with
 `node scripts/summarize-orbital-throttle.mjs`. It reads the archived tested
 runtime and preserves every decision, input/source hash and reconstructed
 contribution under `artifacts/suite-training/orbital-hold-g6-probe/throttle-audit`.

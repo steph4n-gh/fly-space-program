@@ -469,6 +469,33 @@ for block, report_key, dimensions, active in [
     development[report_key] = {
         'scope':'Verified frozen training plan; plan existence does not establish live job status, and partial outcomes are not qualification evidence.',
         'plan':plan}
+progress_plan_path = folder/'orbital-progress-comparison/plan.json'
+if progress_plan_path.exists():
+    progress_plan = json.loads(progress_plan_path.read_text())
+    assert hashlib.sha256(progress_plan_path.read_bytes()).hexdigest() == 'ecd27042dae78467a42111660e44e5da4d1fa8717852118626d920a7a6fdb8a7'
+    assert progress_plan['totalBudgetFullFlights'] == 588
+    assert progress_plan['activeDirections'] == [0,1,2,7,11,16,17,18,19,20,21,22,25]
+    for name, expected in progress_plan['runtimeSHA256'].items():
+        path = root/progress_plan['runtimeDirectory']/name
+        assert hashlib.sha256(path.read_bytes()).hexdigest() == expected, name
+        sources.append(path)
+    initial_path = root/progress_plan['initial']['file']
+    assert hashlib.sha256(initial_path.read_bytes()).hexdigest() == progress_plan['initial']['sha256']
+    assert len(progress_plan['comparison']['cases']) == 6
+    sources.extend([progress_plan_path, initial_path])
+    development['orbitalProgressRankingPlan'] = {
+        'scope':'Frozen paired training and subsequent fixed-candidate comparison. No completed outcome or capability follows from plan existence.',
+        'plan':progress_plan}
+    replay_path = progress_plan_path.parent/'instrumentation-replay.json'
+    if replay_path.exists():
+        replay = json.loads(replay_path.read_text())
+        assert replay['status'] == 'passed' and replay['exactEndpoints'] == 12
+        assert replay['decisions'] == 8240 and replay['physicalSteps'] == 23225
+        assert replay['sourceSHA256']['plan'] == hashlib.sha256(progress_plan_path.read_bytes()).hexdigest()
+        sources.append(replay_path)
+        development['orbitalProgressRankingPlan']['instrumentationReplay'] = {
+            k:replay[k] for k in ['scope','status','decisions','physicalSteps',
+                'exactRecordedStateValues','exactPhysicalStepValues','exactEndpoints','sourceSHA256']}
 paired_plan_path = folder/'orbital-joint-paired-diagnostic/plan.json'
 if paired_plan_path.exists():
     plan = json.loads(paired_plan_path.read_text())
@@ -487,6 +514,18 @@ if paired_plan_path.exists():
     development['orbitalJointPairedDiagnosticPlan'] = {
         'scope':'Frozen paired trajectory/command diagnostic plan and complete input snapshot. Plan existence does not establish live status or completed outcomes; no training or reliability qualification.',
         'plan':plan}
+    completed_path = root/'docs/orbital-joint-paired-results.json'
+    if completed_path.exists():
+        completed = json.loads(completed_path.read_text())
+        for relative, expected in {**completed['inputSHA256'], **completed['sourceSHA256']}.items():
+            assert hashlib.sha256((root/relative).read_bytes()).hexdigest() == expected, relative
+        assert len(completed['cases']) == completed['aggregate']['exactEndpoints'] == 12
+        assert all(c['longestPhysicalInsertionHoldSeconds'] == 0 for c in completed['cases'])
+        sources.append(completed_path)
+        development['orbitalJointPairedDiagnostic'] = {
+            'scope':completed['purpose'], 'aggregate':completed['aggregate'],
+            'allCaseReport':'orbital-joint-paired-results.json',
+            'limitations':completed['limitations']}
 throttle_folder = folder/'orbital-hold-g6-probe/throttle-audit'
 if (throttle_folder/'manifest.json').exists():
     manifest_path,summary_path = throttle_folder/'manifest.json',throttle_folder/'summary.json'

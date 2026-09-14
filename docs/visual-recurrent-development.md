@@ -143,6 +143,15 @@ and in the direct sensitivity calculation. They are not artifacts of the
 numerical sign cutoff. The 16 comparisons are descriptive comparisons of
 population means, not 16 independent animals or independent model predictions.
 
+A subsequent [context-identifiability analysis](visual-context-identifiability.md)
+finds a stronger limit under the current shared-input assumptions: any common
+parameter change predicts identical high/low changes. Two exported bright-flash
+window pairs have opposite mean signs, making at least two disagreements
+unavoidable. This is a constraint on reproducing those point estimates, not a
+statistical rejection of the biological mechanism. A bounded author-source
+search did not recover the exact export-to-stimulus calibration mapping;
+that physical context must be resolved before adding condition-specific inputs.
+
 The fitting, reporting and directional calculations are respectively
 `scripts/fit-visual-recurrent-development.py`,
 `scripts/report-visual-recurrent.py`, and

@@ -1,0 +1,874 @@
+{
+  "status": "Complete bounded static review",
+  "inputSHA256": {
+    "docs/visual-feedback-direction-results.json": "bdf6726cb5711318e7c7a5dcb2e02614d8fb0d84d0de728a68c0b59bf526845c",
+    "artifacts/odor-interface/cdm-response-comparison/plan.json": "29bd0120a29b756dcd0f886d8ed28b6b3fc09ca0e16fbc9565c2c0fba9cbc013",
+    "artifacts/odor-interface/cdm-response-comparison/source-manifest.json": "abac9f19a2e105479362d89a80ec7cbf94f63b1f2443964e43e1dc38fe74eca8",
+    "artifacts/odor-interface/visual-recurrent-development/plan.json": "6ea4ab2fe19928610a8046424f679f355e54e7610231f248a6ac1d7c01085d33",
+    "artifacts/odor-interface/visual-recurrent-development/tested-fit-source.py": "e27afd8303eeb5f626b2345e08625cc4e00a13337bb1a601dadc621a3da193fc",
+    "artifacts/odor-interface/visual-recurrent-development/tested-core.py": "0ab9c0a244190efd62360009bd78b9eacfed15855ab49fc13ac8771f713d39b2",
+    "artifacts/odor-interface/visual-response-benchmark/plan.json": "3f8a163724cbe7562b15a246a96a4af746610ddb5e704809412fe5d8f9c17564"
+  },
+  "completedDirectionPlanSHA256": "dc02d3e05b6ffff26e363033708115718370100ae5920ba4c3f662c1ddc9bb44",
+  "fitPlanSHA256": "6ea4ab2fe19928610a8046424f679f355e54e7610231f248a6ac1d7c01085d33",
+  "comparisonPlanSHA256": "29bd0120a29b756dcd0f886d8ed28b6b3fc09ca0e16fbc9565c2c0fba9cbc013",
+  "structuralIdentity": "For each cell/polarity and arbitrary shared treatment parameter vectors theta0,theta1, identical u,x0,H imply F_high(theta_j)=F_low(theta_j) for j=0,1, hence Delta_high=Delta_low in every shared window.",
+  "oppositeObservedMeanSigns": [
+    {
+      "cell": "L1",
+      "polarity": "bright",
+      "window": "late",
+      "highLumRawChangeDFF": 0.001768783078104343,
+      "lowLumRawChangeDFF": -0.00027480062775217285,
+      "highMinusLowChangeDFF": 0.002043583705856516,
+      "sharedPredictedDerivativePerW": -2.29763172128338e-06,
+      "predictionDuplicated": true
+    },
+    {
+      "cell": "L2",
+      "polarity": "bright",
+      "window": "early",
+      "highLumRawChangeDFF": 0.0030356446786664847,
+      "lowLumRawChangeDFF": -0.0026432235412221106,
+      "highMinusLowChangeDFF": 0.005678868219888595,
+      "sharedPredictedDerivativePerW": -0.00016198444677226727,
+      "predictionDuplicated": true
+    }
+  ],
+  "numericalDirectionTolerance": 1e-09,
+  "statisticalInference": "None. Existing control exports have means only; animal pairing and independence are not established. Opposite sample-mean signs do not establish a biological interaction.",
+  "exactCompactFilenamePhysicalContextJoinFound": false,
+  "boundedConclusion": "No exact join found in the specified archived source members and cached MATLAB files; not a claim of global absence.",
+  "verifiedSourceCommit": "7fa5829e37d566e02beaaa87efd6a0f1de4e48c0",
+  "verifiedSources": [
+    {
+      "path": "computational-model/CDM_results.ipynb",
+      "url": "https://github.com/ClandininLab/L1L2-recurrent-feedback/blob/7fa5829e37d566e02beaaa87efd6a0f1de4e48c0/computational-model/CDM_results.ipynb",
+      "sha256": "c088e92100b3fb2a3a8d90d7ba4ff18547cb6af6b194dcc2cd496d6e14d1028a",
+      "gitBlobSHA1": "6cfe6593310651b47cb340795bb39ad19af47024",
+      "matchesCachedCommit": true
+    },
+    {
+      "path": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/shortFlashProcessed_saveMean.m",
+      "url": "https://github.com/ClandininLab/L1L2-recurrent-feedback/blob/7fa5829e37d566e02beaaa87efd6a0f1de4e48c0/imaging-analysis/HHY_stimulusSpecificAnalysisScripts/shortFlashProcessed_saveMean.m",
+      "sha256": "e5c9daf537b4a3f20c7708e3b1c6ccac66b37f3e1cba943a1ffa4c6c6c447cb7",
+      "gitBlobSHA1": "1faaf2b042ae4165128f76561d03ea0fbf116ef1",
+      "matchesCachedCommit": true
+    },
+    {
+      "path": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/plot_shortFlash_compareGenotypes_L2Project.m",
+      "url": "https://github.com/ClandininLab/L1L2-recurrent-feedback/blob/7fa5829e37d566e02beaaa87efd6a0f1de4e48c0/imaging-analysis/HHY_stimulusSpecificAnalysisScripts/plot_shortFlash_compareGenotypes_L2Project.m",
+      "sha256": "8c137c806468ce6bf4b94c39db7227ed16b41f9bf70dce9f02294c0fc8b773ec",
+      "gitBlobSHA1": "be98f82db0ab66e1087b0e4c79e521ef87eddf19",
+      "matchesCachedCommit": true
+    },
+    {
+      "path": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/selectTimeSeries_L2Project_FFFoG.m",
+      "url": "https://github.com/ClandininLab/L1L2-recurrent-feedback/blob/7fa5829e37d566e02beaaa87efd6a0f1de4e48c0/imaging-analysis/HHY_stimulusSpecificAnalysisScripts/selectTimeSeries_L2Project_FFFoG.m",
+      "sha256": "d2bb5c0b3379292562693636177910d408dc90f3c7a488510085178b291b74f5",
+      "gitBlobSHA1": "19c63a9da516be4c704abf930a9262ffb75f3733",
+      "matchesCachedCommit": true
+    },
+    {
+      "path": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/selectTimeSeries_L2lumTest_FFFoG.m",
+      "url": "https://github.com/ClandininLab/L1L2-recurrent-feedback/blob/7fa5829e37d566e02beaaa87efd6a0f1de4e48c0/imaging-analysis/HHY_stimulusSpecificAnalysisScripts/selectTimeSeries_L2lumTest_FFFoG.m",
+      "sha256": "3b6ba706a6e4306b8f78678e9c6ae393f841fb31f5762a1a1a255f1814dbffa4",
+      "gitBlobSHA1": "60dadf4a1c4e53a5e0eee257969e68c173b065b4",
+      "matchesCachedCommit": true
+    },
+    {
+      "path": "stimulus/fullfield_LDflash20ms_Gray500ms.txt",
+      "url": "https://github.com/ClandininLab/L1L2-recurrent-feedback/blob/7fa5829e37d566e02beaaa87efd6a0f1de4e48c0/stimulus/fullfield_LDflash20ms_Gray500ms.txt",
+      "sha256": "174fefaab83106b7a7b37d97d99c768be069ad1d62b17646cf3bcabbfd61e682",
+      "gitBlobSHA1": "d29db5c7d935cfd21e467ca0afabfda20801eb60",
+      "matchesCachedCommit": true
+    }
+  ],
+  "archiveSearch": [
+    {
+      "archive": "/tmp/visual-calibration-sources/computational-model.zip",
+      "sha256": "c35ea6c7b167250befd968a6c9068f78dc692b19ed308bd464c0166bcf6a7108",
+      "sourceMembersSearched": 5,
+      "search": "Literal highLum or lowLum in source text; notebook code/markdown cells only; outputs and data entries excluded",
+      "matches": [
+        {
+          "member": "computational-model/CDM_results.ipynb",
+          "sourceLines": [
+            {
+              "line": 115,
+              "text": "res=loadmat('data/L1_CDM_highLum.mat')"
+            },
+            {
+              "line": 117,
+              "text": "res2=loadmat('data/L1_CDM_lowLum.mat')"
+            },
+            {
+              "line": 120,
+              "text": "res_o=loadmat('data/L1_highLum.mat')"
+            },
+            {
+              "line": 122,
+              "text": "res2_o=loadmat('data/L1_lowLum.mat')"
+            },
+            {
+              "line": 171,
+              "text": "res=loadmat('data/L2_CDM_highLum.mat')"
+            },
+            {
+              "line": 173,
+              "text": "res2=loadmat('data/L2_CDM_lowLum.mat')"
+            },
+            {
+              "line": 175,
+              "text": "res_o=loadmat('data/L2_highLum.mat')"
+            },
+            {
+              "line": 177,
+              "text": "res2_o=loadmat('data/L2_lowLum.mat')"
+            }
+          ]
+        },
+        {
+          "member": "computational-model/L1_2responses_to_flashes.ipynb",
+          "sourceLines": [
+            {
+              "line": 119,
+              "text": "res=loadmat(f'data/{selection}_highLum.mat')"
+            },
+            {
+              "line": 121,
+              "text": "res2=loadmat(f'data/{selection}_lowLum.mat')"
+            }
+          ]
+        }
+      ],
+      "members": [
+        {
+          "member": "computational-model/CDM_results.ipynb",
+          "sha256": "c088e92100b3fb2a3a8d90d7ba4ff18547cb6af6b194dcc2cd496d6e14d1028a"
+        },
+        {
+          "member": "computational-model/L1_2responses_to_flashes.ipynb",
+          "sha256": "8fc96a50db5811bc07d53d23263f23c3cc780b463a0ecd82e7f56a6876c642f6"
+        },
+        {
+          "member": "computational-model/Latency_plots.ipynb",
+          "sha256": "1cadc600174e528df5c81d6212771d2f2249caedd17f2b74c9703f65a5cca0f3"
+        },
+        {
+          "member": "computational-model/L2_responses_to_nat.ipynb",
+          "sha256": "bac72943d931bd57df81cd625d9d4e29e6fffc7b1641381beaa81c7fce1fd116"
+        },
+        {
+          "member": "computational-model/Simulation.ipynb",
+          "sha256": "f93c79e6d5ca778dd4ef9686a0defa056e49972e149dd85c9555ac7a72a7c529"
+        }
+      ]
+    },
+    {
+      "archive": "/tmp/visual-calibration-sources/imaging-analysis.zip",
+      "sha256": "d7daf020fb4fb3e4000ef9d9d4b6792331f361141c27e6f9da42571c5dc1f9ec",
+      "sourceMembersSearched": 147,
+      "search": "Literal highLum or lowLum in source text; notebook code/markdown cells only; outputs and data entries excluded",
+      "matches": [],
+      "members": [
+        {
+          "member": "imaging-analysis/computePolarInd_staticMovingGrating.m",
+          "sha256": "5445e0d8c12096f7533ff87c76676bb6a1b492d2e2955e25421a46b6c2e615ee"
+        },
+        {
+          "member": "imaging-analysis/ROI_PD_analysis_singleTimeSeries_NatStim_Bruker.m",
+          "sha256": "0899f6dd81532fbab9ded30421a767df41e2901d2af2faac1e5ab97e95a66e37"
+        },
+        {
+          "member": "imaging-analysis/compute_meanResp_err_moveAvg_NatStim.m",
+          "sha256": "104ec52bcbf974136be40cfd749ccf1704a197281227125a01d9ae7efeb8f86c"
+        },
+        {
+          "member": "imaging-analysis/drawROIs.m",
+          "sha256": "2c41385ecd405047d1bf3ed3f0816e2aa4ddc9edaa46272ef79cb79982500c3c"
+        },
+        {
+          "member": "imaging-analysis/getImagingIFI.m",
+          "sha256": "ea3652352eb3e6e45654fa7d85cbf32665c988cd42e84f0829eea0a9615490c3"
+        },
+        {
+          "member": "imaging-analysis/filterROIs_stimLockedPlots_FFFoG_noRef.m",
+          "sha256": "df2fb5421d8085eaade08d407b5a846553edb46472176d15b132f05bf84728a6"
+        },
+        {
+          "member": "imaging-analysis/getPDDataBruker.m",
+          "sha256": "b9dfedf6300a68b00a44cc927e7996ffaae60ced485ee7b3cdcc5981a4550e05"
+        },
+        {
+          "member": "imaging-analysis/analyze_WhiteNoise_1D.m",
+          "sha256": "cdbcf5548a40f6ae96c5fb35b27de75fded6dca97d322d2995de52226d4dcee8"
+        },
+        {
+          "member": "imaging-analysis/plot_err_patch_v2.m",
+          "sha256": "e03d0e82f4200767e3480dd981aa7e65490e3362f32a586fa95bd872d98477be"
+        },
+        {
+          "member": "imaging-analysis/getStimEpochStartTimes_NatStim.m",
+          "sha256": "ef9bf8fe74e68eac47d3290b6d795d084bafd5edae072245ca1c72c2fefec72e"
+        },
+        {
+          "member": "imaging-analysis/FFFoGAnalysisBruker_v2.m",
+          "sha256": "053a546b742911211d0eb13d164fe6126f6bc3a1ae41a1820e4b761a81db9595"
+        },
+        {
+          "member": "imaging-analysis/filterROIs_stimLockedPlots_NatStim_noRef.m",
+          "sha256": "08576be280e29943773b2e4721f7c8ae9b92a54763c495043314fd5b8b6f8233"
+        },
+        {
+          "member": "imaging-analysis/plot_movingBar.m",
+          "sha256": "8250e0eed5d0ce5d57916e3b1f189c35c522fb63ed65b5103c8ce866831df751"
+        },
+        {
+          "member": "imaging-analysis/matchROIsAcrossLCCurrentVal.m",
+          "sha256": "0334d112e5fb8adf8dbcd5c3a17d10265be40675c898157a2f37a9190e3fb53a"
+        },
+        {
+          "member": "imaging-analysis/compute_meanResp_err_moveAvg_FFFoG.m",
+          "sha256": "ce3bc001b1ef342452fdd66e80527787a620d5eafec7e5d70d7142ef064f7474"
+        },
+        {
+          "member": "imaging-analysis/dftregistration.m",
+          "sha256": "2a3ae1c842cf84e1869cbb6c50750d3a843a8bdab07164526ee5636a23f43da8"
+        },
+        {
+          "member": "imaging-analysis/matchROIsAcrossStimuli.m",
+          "sha256": "3525f97384e51539b8eb2e9e0a3a3209975226a2eac3a1a67aa2bcc8ac8517fe"
+        },
+        {
+          "member": "imaging-analysis/plot_NatStimFFF.m",
+          "sha256": "654c70cd479704f8c990c0370c1f6b6d2d830121a12cdddbd9990323e58d05c2"
+        },
+        {
+          "member": "imaging-analysis/plot_FullFieldFlash.m",
+          "sha256": "880677238438d3bbc6fcc1cc02f697c03d3ad88b36bfd8a257485beb6425e646"
+        },
+        {
+          "member": "imaging-analysis/NaturalisticStimAnalysisBruker_v2.m",
+          "sha256": "839ca57506fe6d1b5dbfb2d507c77796942abee9df3689b32fc2c71919e4532e"
+        },
+        {
+          "member": "imaging-analysis/getImFrameStimVal_NatStim_Bruker.m",
+          "sha256": "017ac643da4873843ce40b77f71fea42e7310af63acfcc5cdc26036c03770ea8"
+        },
+        {
+          "member": "imaging-analysis/collect_pdata_bruker.m",
+          "sha256": "16315e58d6743eb03b6d31e6c17ee8e84e5cea4ef8cb069363680497409c594a"
+        },
+        {
+          "member": "imaging-analysis/readDatabase_selectSamples_NatStim.m",
+          "sha256": "11d52d17aff45fb8a543c04c88bce8f67655ee778aee8631f03fe77b5cb13c84"
+        },
+        {
+          "member": "imaging-analysis/getStimEpochStartTimes.m",
+          "sha256": "77426de740d75fe2442185a8b8954e2eea5dbdebad88a01d12a3c7055a182c3e"
+        },
+        {
+          "member": "imaging-analysis/saveBrukerImgSeriesData.m",
+          "sha256": "b553915c3578b499cb57cb158f87cad668bf8a06688488685ee84f80ada39be4"
+        },
+        {
+          "member": "imaging-analysis/ROI_PD_analysis_singleTimeSeries.m",
+          "sha256": "8012e32ff73bb0753b1a9aa69d921169c696199caaa0cd8ba1f7cc06ee3e25fc"
+        },
+        {
+          "member": "imaging-analysis/filterROIs_simple_stimLockedPlots_NatStim_pool.m",
+          "sha256": "8edd212a9b2c75915410f81318c43e4d619e8721a31b018cff4de4188a8f742d"
+        },
+        {
+          "member": "imaging-analysis/compute_meanResp_err_moveAvg_staticMovingGrating.m",
+          "sha256": "4c8e0853e9cdf6cffc53bcbbce05359b2949e8fb517fe5d8ebf415397fc33c21"
+        },
+        {
+          "member": "imaging-analysis/test_frameBinning.m",
+          "sha256": "dab016a3d53ff9ed623f5f46cc9ae807e0b31c0e091dd1c25b5e56d44968cfa6"
+        },
+        {
+          "member": "imaging-analysis/compute_meanResp_err_moveAvg_FFFoG_pool.m",
+          "sha256": "76a1b6b9d7d744a4239ef375ea0d9c600655baf75ccab5379f8c69afe6a04800"
+        },
+        {
+          "member": "imaging-analysis/compute_meanResp_err_moveAvg_NatStim_pool.m",
+          "sha256": "5d651fba67fd15f4c36100a201ab247dd58ee9127313d0f067e0b5e654aba7cc"
+        },
+        {
+          "member": "imaging-analysis/compute_meanResp_err_moveAvg_movingBar.m",
+          "sha256": "6c45f90123454887e9576e0cf1bfb48e773c411658c0df2301759187563e32c2"
+        },
+        {
+          "member": "imaging-analysis/FFFoGAnalysisBruker_v1.m",
+          "sha256": "7d480c2233e2b42cc74f698b407732503347660f20a8610dc8eb530ac71f44d0"
+        },
+        {
+          "member": "imaging-analysis/filterROIs_simple_stimLockedPlots_FFFoG_pool.m",
+          "sha256": "cb64d5f7ee6b2a321bb523875079667d5f41ac1945ad9ce8c374ecc43db8a0d6"
+        },
+        {
+          "member": "imaging-analysis/saveProcessedData.m",
+          "sha256": "dd240db0c3a16306e329edec32688a834e799d3e10ef0c3ef0a7f5c9b6729cd2"
+        },
+        {
+          "member": "imaging-analysis/filterROIs_stimLockedPlots_NatStim_pool.m",
+          "sha256": "82d9f6367ceead1dbe38150d078432f91b3214ab3519743ce272336814e9984e"
+        },
+        {
+          "member": "imaging-analysis/saveProcessedData_Bruker.m",
+          "sha256": "5f350e0a594e7d75045930b8c2764adafbcd5ef4cb117db968cd889407048044"
+        },
+        {
+          "member": "imaging-analysis/imread_big.m",
+          "sha256": "78f0f7f947d1ee5a48aa95fc05e3a391d2519763c820af371c03d94e85f9ba3c"
+        },
+        {
+          "member": "imaging-analysis/displayRawSignals.m",
+          "sha256": "fdc83dcd40ef16fd0c7012b2da62572c5176bf5b2db5a7a304aca19e997f70f5"
+        },
+        {
+          "member": "imaging-analysis/filterROIs_stimLockedPlots_FFFoG_pool.m",
+          "sha256": "00b9453657029d7377f281f1f0ce2573e4bd9a50c05fa8795642422b935bb0fc"
+        },
+        {
+          "member": "imaging-analysis/filterROIs_stimLockedPlots_FFFoG_noRef_pool.m",
+          "sha256": "1fcad22955f341de97d4e25c2110d5a64a867bd725fe2394e9c79740d99f5fc9"
+        },
+        {
+          "member": "imaging-analysis/processPD.m",
+          "sha256": "fbced8558c353fe6fe665b7771eb54e49f00f2e3ab08a2b3cab733c340049650"
+        },
+        {
+          "member": "imaging-analysis/sortROIDataMatByStim.m",
+          "sha256": "5f2b948639e83addb54e1f0f05a2332cbd412c0576113ae614a77655de6e0645"
+        },
+        {
+          "member": "imaging-analysis/redoBkgdSub_ROI_PD_analysis_lineBkgd_Bruker.m",
+          "sha256": "0290fc1d6356a6e0933ca8a30de15cf57aaecd930a8f38e900aebd4aa296e976"
+        },
+        {
+          "member": "imaging-analysis/NaturalisticStimAnalysisBruker_v1.m",
+          "sha256": "e4c78c1523f19edecfb4f897fd6063cd9ee64057529b3626c4667d6363ca6f35"
+        },
+        {
+          "member": "imaging-analysis/getRawSignalsLineBkgdSub.m",
+          "sha256": "9f12e7b102c4e5d52cc20a2b9d2d41a77ca1034ba9b370497974ac06325ffe7e"
+        },
+        {
+          "member": "imaging-analysis/buildTestImgSeries.m",
+          "sha256": "a44990e046b069166182b80ebe715b30ca9917876f6410329c3d88ae7a1d40d5"
+        },
+        {
+          "member": "imaging-analysis/readDatabase_selectSamples.m",
+          "sha256": "7a754b8df210e208a749ed9bf90d9f91324209996a425f8e51de5b975f60fbb9"
+        },
+        {
+          "member": "imaging-analysis/correctFFFBinNaN.m",
+          "sha256": "6edcd5d5e713e462ed7c3fe5262ce6ce181905787ecc98b2ebbf12426ce9316c"
+        },
+        {
+          "member": "imaging-analysis/compute_simple_meanResp_err_moveAvg_FFFoG_pool.m",
+          "sha256": "b3f7c71e42e29a16b0d8b61e8060dba47b3578e427e5fd7a41aa92d5a59fe4f9"
+        },
+        {
+          "member": "imaging-analysis/selectBackground.m",
+          "sha256": "9ee141f23428885efeec591005e606c0f25a76ba57074f284016151e235ca17f"
+        },
+        {
+          "member": "imaging-analysis/semilogy_err_patch_v2.m",
+          "sha256": "8f2709f22823d5162978783af181dc2eb1cabfc5970c2c5179fa00c19c57e44f"
+        },
+        {
+          "member": "imaging-analysis/sortROIDataMatByWavelength.m",
+          "sha256": "8a20305893701044d069b60c2f3e5c626293bc510436b512ad77a3d6d737ecf2"
+        },
+        {
+          "member": "imaging-analysis/findStimFileBruker.m",
+          "sha256": "c1a93a2c3daaa1110756fb998768730d4bbd478862d3bf34a2cf8a09b21e224c"
+        },
+        {
+          "member": "imaging-analysis/computeDFF.m",
+          "sha256": "86d09a60bf84c706798721025249bc7ef6815d84411155467e57ad328296257b"
+        },
+        {
+          "member": "imaging-analysis/getImFrameStimVal_NatStim.m",
+          "sha256": "9d3517f21b966c663652e70091389b4ec3987c96f8c6cfe8ccfdb04f2c03dca3"
+        },
+        {
+          "member": "imaging-analysis/README.md",
+          "sha256": "acd5f2f34751b74800bf877cbbdb2e99ce03db83aec4ae649d04138b7339659d"
+        },
+        {
+          "member": "imaging-analysis/FFFBCAnalysisBruker_v1.m",
+          "sha256": "dcde2a6ba07d16f63c854c0ff916c632d53a94d5a156ee8d4a9898cced06f617"
+        },
+        {
+          "member": "imaging-analysis/collect_pdata.m",
+          "sha256": "3672e739657ac53f13d29043eb18cc2f3cf27e1c1b2c894f8ef09d8dffd71ba8"
+        },
+        {
+          "member": "imaging-analysis/matchROIsAcrossStimuli_noUniRef.m",
+          "sha256": "80a4104be60bd606c648a9e11789b5dcabf62d8197435b1e5f068d093eb04bfb"
+        },
+        {
+          "member": "imaging-analysis/saveSeriesImData.m",
+          "sha256": "7ef3b9b17104cb208a12c63d99f835a67e2a7884b614a79e95dddb184bb0cffa"
+        },
+        {
+          "member": "imaging-analysis/matchROIsAcrossWavelength.m",
+          "sha256": "92d4d7f2575bdda1fbeb00e34024832171c314643d82554bf878bbf2404ef9ce"
+        },
+        {
+          "member": "imaging-analysis/compute_meanResp_err_moveAvg_FFFBC.m",
+          "sha256": "1552e54c603143aab1f21cbdbb7c65ce7ee983b45ad0c5ab7a99dd47066a9d9b"
+        },
+        {
+          "member": "imaging-analysis/parseBrukerXML.m",
+          "sha256": "ce34686daa7d450d08e967297b1d099280a5019cc820ebd6c72de935388cc11b"
+        },
+        {
+          "member": "imaging-analysis/preprocess.m",
+          "sha256": "22bd710337666686183048044ed33cc012a2221a857b95deb7f54315dc7b5194"
+        },
+        {
+          "member": "imaging-analysis/analyze_NatStim.m",
+          "sha256": "4a2a280ac50556f214e041f46cdb182134a77e8bb4d6feb4e8943fcc9e14ca48"
+        },
+        {
+          "member": "imaging-analysis/test_aggregate.m",
+          "sha256": "fef684532976b29b3b9ac77e95d2a353b0a65070a266708bd252eeec014e6f95"
+        },
+        {
+          "member": "imaging-analysis/createROIMatrix.m",
+          "sha256": "b9eda31902b3714b679e41130f6984d6420988d41c03d53e577a6f4134a1e0e8"
+        },
+        {
+          "member": "imaging-analysis/filterROIs_stimLockedPlots_NatStim_noRef_pool.m",
+          "sha256": "763fa8df767d6e362850ad32475e65da62851f9bbc2b0f6d8d3dc2059fe39cde"
+        },
+        {
+          "member": "imaging-analysis/analyze_FullFieldFlashOntoGray.m",
+          "sha256": "faf71824c5d539e7e80beb59400f44ea89a7817d5d386165a7cc38c65b5b019e"
+        },
+        {
+          "member": "imaging-analysis/ROI_PD_analysis_singleTimeSeries_lineBkgd_NatStim_Bruker.m",
+          "sha256": "957a3321513c09ec1bbb7abb46d549f7f0907b4db0c7f51eb9ad25c41fa5aa32"
+        },
+        {
+          "member": "imaging-analysis/filterROIs_stimLockedPlots_FFFoG.m",
+          "sha256": "9c84e5ac755908646635e3d67069247ed0bd732e2b2353a86d577a2a19f41d49"
+        },
+        {
+          "member": "imaging-analysis/aggregate_fff_matchedROIs.m",
+          "sha256": "78c7bfce4bd8c78b1bb28fc5c2b2f10dc4aceec9425fe5345f0f58991eee1e23"
+        },
+        {
+          "member": "imaging-analysis/filterROIs_staticMovingGrating_noRef.m",
+          "sha256": "3109b8469a2d4181c5017efbcb7101555774b0ba79508220e41596f08981a4c4"
+        },
+        {
+          "member": "imaging-analysis/polarwitherrorbar.m",
+          "sha256": "e91d6a419e663440172ce1ffa3f470912a8ba1ed77936943c84f0a1dc4c1f339"
+        },
+        {
+          "member": "imaging-analysis/getRawSignals.m",
+          "sha256": "15c8a249d3165af300a624878d72a1c73e6c3e85cc5cb36717f50a477cd5adff"
+        },
+        {
+          "member": "imaging-analysis/selectTimeSeries.m",
+          "sha256": "7ddf52982663afbf781529370c8aac52c6e3d55c878f0ff6f0c387e7b14b18e7"
+        },
+        {
+          "member": "imaging-analysis/filterROIs_stimLockedPlots_NatStim.m",
+          "sha256": "4611a3041a42bbb649aef9e5287138fc28af14b196d2d563a3ae900bd57b203f"
+        },
+        {
+          "member": "imaging-analysis/ROI_PD_analysis_singleTimeSeries_NatStim.m",
+          "sha256": "c147b51a9284e0d7c90ddaee842c2eff8c0102542eacaae5991325efe924f6a4"
+        },
+        {
+          "member": "imaging-analysis/addMyPaths.m",
+          "sha256": "a911eceae8d084e5b9c42b88f12c6373ca69bbcf764586e7e989969f35f6e172"
+        },
+        {
+          "member": "imaging-analysis/filterROIs_stimLockedPlots_FFFBC_pool.m",
+          "sha256": "01faf50dcf5807b275978863a70dcfd59c5045675e1207967be1b2f36ee5a36f"
+        },
+        {
+          "member": "imaging-analysis/loglog_err_patch_v2.m",
+          "sha256": "268fed8c53ec0f9abafd07e04b76a1b329c15de336e7491c0fe5bfab66968d16"
+        },
+        {
+          "member": "imaging-analysis/filterROIs_movingBar_noRef.m",
+          "sha256": "9982f8bb7b0c71e7f635d5f8430c76209a4988b0cb7a0525475ddc07032d9bd3"
+        },
+        {
+          "member": "imaging-analysis/preprocessBruker.m",
+          "sha256": "4970b6fa674e1cf4db7e7971644def990341893bed1bf9c6df8d61c13d84dacc"
+        },
+        {
+          "member": "imaging-analysis/parseXML.m",
+          "sha256": "4a8e717754a5c5b1b3cbd2b75afe196372b472eed371e9f273aa077d7eee24a7"
+        },
+        {
+          "member": "imaging-analysis/compute_simple_meanResp_err_moveAvg_NatStim_pool.m",
+          "sha256": "9c932657b8eeda9dc8862c8fed43da9492f5ff6ac720b6d6281496bedec2c9cd"
+        },
+        {
+          "member": "imaging-analysis/compute_meanResp_err_moveAvg_FFFBC_pool.m",
+          "sha256": "6785a08f25597418ac7fb8f9df1c3f7ba57f803076b3d066f99496446e30a521"
+        },
+        {
+          "member": "imaging-analysis/niceaxes.m",
+          "sha256": "688a37da8533bdce68a5dd898b324f7feeeb884716756d99e24d3a69ab12b712"
+        },
+        {
+          "member": "imaging-analysis/NaturalisticStimAnalysisBruker_v3.m",
+          "sha256": "92359ee66dcb2153447417bfc152233c33174f37ad4b901c41511a77e6808157"
+        },
+        {
+          "member": "imaging-analysis/filterROIs_stimLockedPlots_FFFBC_noRef_pool.m",
+          "sha256": "3171fa33787c73e549c30d1a17edafbc8068c73b48bf456ee858e811ebb11d99"
+        },
+        {
+          "member": "imaging-analysis/alignResp_movingBar.m",
+          "sha256": "ac2bc0f1508df79737cd613ef4620f08e936ec14899a95fe61479e443c1d8a47"
+        },
+        {
+          "member": "imaging-analysis/fccAlignment.m",
+          "sha256": "efd967e206245a97664fea69ed69e7ce236e04c17d0a3cd2cdf9c3d0f32af43b"
+        },
+        {
+          "member": "imaging-analysis/plot_gratings_polar.m",
+          "sha256": "0128f35d5112d57e212377c933ef6bfbeac0f697828f959bd4f95fbbe68da6fb"
+        },
+        {
+          "member": "imaging-analysis/analyze_FullFieldFlash_BinaryContrast.m",
+          "sha256": "4df536187dc4168941e7673c44777232c922541cbea7918f8440467841e9e28e"
+        },
+        {
+          "member": "imaging-analysis/loadROIData.m",
+          "sha256": "55a32e458b46f1e8a6dea9cee1f22dc5e8519d1adcccf4623933e65a113f5dce"
+        },
+        {
+          "member": "imaging-analysis/plot_FFFOntoGray.m",
+          "sha256": "1c97b1077c0eccd3b3f0a02f01144abbd9170e30386e6592b488e46aa8c72684"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/L1L2paper_impulseResponseModeling_v1.m",
+          "sha256": "4987fa929f30d9c8c0b584536de07db3f1b7a9fe64400f5b40b667732baea985"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/toy_impulseResponses_v2.m",
+          "sha256": "c4bf34951fa3829414678662e8b0c3d0adde8c8eee5c3ecde2d2b23f773d1792"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/plot_linFilters.m",
+          "sha256": "eeb8a2f3ff0d17f72c7fa049034724829777c0e3b7cf49e51bd3fd84f6887ac8"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/selectTimeSeries_L2Project_FFFoG.m",
+          "sha256": "d2bb5c0b3379292562693636177910d408dc90f3c7a488510085178b291b74f5"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/computeSignificance_shortFlash_bootstrappedMetrics_L2Project.m",
+          "sha256": "e7cc9ec1c60484694e4b282af7d46101708dcd8bced693bafcd3c0aa6a26991d"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/quant_shaulModeling.m",
+          "sha256": "3f727ac74f5c79a71a0e185b68a4149d4ffcb5a02637932866b165720304c7ee"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/selectTimeSeries_L2_nahar38_FFFoG.m",
+          "sha256": "0434b2fe6962e7030cfbf5f245c5c69ecd0db5b5f04ad592e9f81088b6db54af"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/plot_shortFlash_compareGenotypes.m",
+          "sha256": "c52ab05e35c3214df860ff40260cb9e7dfa85c5c53c769580367427bb84c27b0"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/shortFlashProcessed_saveMean.m",
+          "sha256": "e5c9daf537b4a3f20c7708e3b1c6ccac66b37f3e1cba943a1ffa4c6c6c447cb7"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/generate_sineMonophasicFilter.m",
+          "sha256": "66bda62cfc516c0cf05aa6792b9ba299258371c07039ae29731e15726105524c"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/L1L2paper_impulseResponseModeling_v2.m",
+          "sha256": "3e5340e9f0e8d66cbb2a583c7c7caacdc91e18f1f84586d8b17928a300bfd5cc"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/computeFramePeaks.m",
+          "sha256": "872f5a25799e71f1d180607f8b898142ab1c73895fd2fb166225f30fb376c5ac"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/model_fft_test.m",
+          "sha256": "37b13b71833fce11b6d7f17d07d3582ad0bc43c17490af0d43930b9b79cfc2dc"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/rednoise.m",
+          "sha256": "a5037d4f9f242ee57d095725a865e375dc9a3e855bead29645a514df3780e7d6"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/compute_temporalFrequency.m",
+          "sha256": "965607dc24114c09a30de09425b1f5fa7d198019c13cd8c3aaa6e1ffa01410d2"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/BarEdgeGratingAnalysis_v1.m",
+          "sha256": "4507a10fe264bd96ac22c5a8b7d1f97e47c91ef22951b1de14fcd005ac2605ca"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/plot_shortFlashTemporalFrequency_compareGenotypes_v2.m",
+          "sha256": "9dfbc817c34b0d84dc3a678279907ccf0f88c0ba709deb8caffeacd4ce72e7ed"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/plot_shortFlash_bootstrappedMetrics_compareGenotypes_L2Project.m",
+          "sha256": "a02cdf43c1e594f1ead0e972820d739221148993bada6750c0ff830fb632707b"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/selectTimeSeries_L2Project_cellTypeSpecific_FFFoG.m",
+          "sha256": "ae9f7c8bfe346449857c7f8d2d2c2bc9085b373c8f7c72fe2c1590c55fadb457"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/selectTimeSeries_L2lumTest_FFFoG.m",
+          "sha256": "3b6ba706a6e4306b8f78678e9c6ae393f841fb31f5762a1a1a255f1814dbffa4"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/generate_peakyBiphasicFilter.m",
+          "sha256": "65fb6fc7886170ffc72a86632b86268a9b78cb9af648019ce9c254c6e9222608"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/selectTimeSeries_L2Project_FFFoG_v2.m",
+          "sha256": "d1417d66df0b3e79af96cc5b4a2af6d31fd4734c9b905d31db3fdb4c47d34b33"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/toy_impulseResponses_v4.m",
+          "sha256": "88d56c8819d0cbd5fc7b5c9f6b6887d5ebe9394f0e982f9307265e084b98d2c7"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/FullFieldFlashAnalysis_wavelength.m",
+          "sha256": "e32bfada8a0eb9c06a66f9d476b2e092754c229388ad73dc7ac8944557fd0860"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/selectTimeSeries_L1test_FFFoG.m",
+          "sha256": "1198901c6f3572d1d54e019b3702910ba44ddd8d0cec09bef881b68824027ddd"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/generate_balancedBiphasicFilter.m",
+          "sha256": "7039d7084dd02323e7c08fefd3178deaf44fe99ea5ca46ad5de5b0b03e6920a3"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/BarEdgeGratingAnalysis_T4_VT025965.m",
+          "sha256": "b8ce9f2c53aba3bb52e49ae52d66dcf609b9521c3604fd38e8ab885e9f77e04e"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/computeFrameZero1.m",
+          "sha256": "24acbbf35633e69c35d41ff5fdefa1d1cc63e62e605814005af1ebe40bb0ff28"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/searchProcessed_saveMean.m",
+          "sha256": "6f6bc9094f83021c2d65f9631da6d6ca3a7a382d3f66e453d83c6c3a5ea6fff2"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/plot_linFilters_avgImpulse.m",
+          "sha256": "da963a1aad36eb5530afb1ae59ac6d60d3071d29d6f914b536212601b9048de0"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/fft_test.m",
+          "sha256": "832f6f5e28f07d9b96ca304e253d7909f340bde629750bf6b137d436f6321c97"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/compute_bootstrappedMetrics.m",
+          "sha256": "e4510efca704df6e34ffb514c8651b3d677910845210016162e183741f16d6ba"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/plot_shortFlash_compareGenotypes_L2Project_cellTypeSpecific.m",
+          "sha256": "18db6b07f7eef43d4c3b18a33acfd6518d88fea67befe2b8667124c308a577a4"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/toy_impulseResponses.m",
+          "sha256": "03f37b5fc2efbceca5b42bfd3a158a9c638480187276401c910661830479aeb5"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/plot_shortFlash_compareGenotypes_L2Project.m",
+          "sha256": "8c137c806468ce6bf4b94c39db7227ed16b41f9bf70dce9f02294c0fc8b773ec"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/toy_impulseResponses_v3.m",
+          "sha256": "9ecb1db5dda02b1ec7d975d98de963852271af1253374c736f52c21ee322a3cf"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/plot_shortFlashTemporalFrequency_compareGenotypes.m",
+          "sha256": "79706b21ac6802d4fbafaa4af5ee17649e4dca254e993e0ece1e21ae8eee178d"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/convert3ContrastFileFormat.m",
+          "sha256": "2b2cae93bfdddc15b26094227056010b672aa4bc5204d68d52565ff2815ccbbe"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/compute_bootstrappedMetrics_whiteNoise.m",
+          "sha256": "a291410c3d6d89476d02079ba1596811a15ed2cf094c5b39b861b76c7b1267c1"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/returnMetricSAF.m",
+          "sha256": "66e239b0796164ce0020094e639bd5e1ed1a67f16ed02397fd646eba9a3cf0fe"
+        },
+        {
+          "member": "imaging-analysis/HHY_stimulusSpecificAnalysisScripts/computeFrameZero2.m",
+          "sha256": "18943076fbc60f168a335618fe70544f9463c66d2cb8e1317c4003cc9fbf28cc"
+        },
+        {
+          "member": "imaging-analysis/HHY_example_spreadsheet/2p_imaging_log.txt",
+          "sha256": "9ac98f624b38728829271a30fc34a3c180d864f7bfad050d0e50deefdab8d7bf"
+        },
+        {
+          "member": "imaging-analysis/MX_stimulusSpecificAnalysisScripts/analyze_WhiteNoise_1D.m",
+          "sha256": "26ccc7bdd1f97423f2a12073c6bd5ec52289257b563bb5703d53136f35562220"
+        },
+        {
+          "member": "imaging-analysis/MX_stimulusSpecificAnalysisScripts/plot_shortFlash_compareGenotypes_MX.m",
+          "sha256": "26e5e84dbd3bea85c6dadc07f12c587cf1375caf1673dd37946bfa0ee94e3824"
+        },
+        {
+          "member": "imaging-analysis/MX_stimulusSpecificAnalysisScripts/computeFWA.m",
+          "sha256": "30b960b27345645618116b63167c68013d7f062bf4e50866dba94d6125575cbd"
+        },
+        {
+          "member": "imaging-analysis/MX_stimulusSpecificAnalysisScripts/timeToPeak_FFFG.m",
+          "sha256": "ab56fbfa9227b4bf3b902bba0e60ec22bfb2350ae1c7acddf2fdbc2204e9453e"
+        },
+        {
+          "member": "imaging-analysis/MX_stimulusSpecificAnalysisScripts/analyze_FullFieldFlashOntoGray.m",
+          "sha256": "06358a7196b44c5aaa830f7d235a0039946e85c8e8ea85644122eb4dcb0ced28"
+        },
+        {
+          "member": "imaging-analysis/MX_stimulusSpecificAnalysisScripts/alignFiltersXCorr.m",
+          "sha256": "2cf1715aaf619b17fb9b294c2860216db4fa79db6aff63ab62c6e4d761000f78"
+        },
+        {
+          "member": "imaging-analysis/MX_stimulusSpecificAnalysisScripts/computeFWA_pastFuture.m",
+          "sha256": "5fee622c2953f42ca17c2704ab376206d946cf0f39b95cbae1f0e1fcba6b6f4d"
+        },
+        {
+          "member": "imaging-analysis/MX_stimulusSpecificAnalysisScripts/selectTimeSeries.m",
+          "sha256": "ea2f26067479dc4427d0f8d3f8d3f77425a0f799c9f756380d3785aeb1f9577a"
+        },
+        {
+          "member": "imaging-analysis/MX_stimulusSpecificAnalysisScripts/analyze_FullFieldFlash_BinaryContrast.m",
+          "sha256": "48fd7d59f3f14bbcc7228cb8f0415b72d14e1f49153d71bb99225ac5153efe69"
+        }
+      ]
+    }
+  ],
+  "cachedMatlabSearch": [
+    {
+      "path": "/tmp/visual-calibration-sources/FullFieldFlashOntoGray.m",
+      "sha256": "a69879b3b105061002135ff0d306f04a2e70f053b0e8a8dc4d2b05d45a379a21",
+      "compactLabelMatches": 0
+    },
+    {
+      "path": "/tmp/visual-calibration-sources/NaturalisticStimAnalysisBruker_v3.m",
+      "sha256": "92359ee66dcb2153447417bfc152233c33174f37ad4b901c41511a77e6808157",
+      "compactLabelMatches": 0
+    },
+    {
+      "path": "/tmp/visual-calibration-sources/NaturalisticStimulus_1D_FullField.m",
+      "sha256": "2d1f09efc0b727cf3a0bef7a8619cb8226d423de068e4772376547b6a177302f",
+      "compactLabelMatches": 0
+    },
+    {
+      "path": "/tmp/visual-calibration-sources/compute_meanResp_err_moveAvg_FFFoG.m",
+      "sha256": "ce3bc001b1ef342452fdd66e80527787a620d5eafec7e5d70d7142ef064f7474",
+      "compactLabelMatches": 0
+    },
+    {
+      "path": "/tmp/visual-calibration-sources/compute_meanResp_err_moveAvg_FFFoG_pool.m",
+      "sha256": "76a1b6b9d7d744a4239ef375ea0d9c600655baf75ccab5379f8c69afe6a04800",
+      "compactLabelMatches": 0
+    },
+    {
+      "path": "/tmp/visual-calibration-sources/compute_simple_meanResp_err_moveAvg_NatStim_pool.m",
+      "sha256": "9c932657b8eeda9dc8862c8fed43da9492f5ff6ac720b6d6281496bedec2c9cd",
+      "compactLabelMatches": 0
+    },
+    {
+      "path": "/tmp/visual-calibration-sources/convertInt2RGB.m",
+      "sha256": "d1e9253485c1f6b7327a93305b6ccea906e3c6993a830883d47c563e3f3a9150",
+      "compactLabelMatches": 0
+    },
+    {
+      "path": "/tmp/visual-calibration-sources/filterROIs_stimLockedPlots_FFFoG_pool.m",
+      "sha256": "00b9453657029d7377f281f1f0ce2573e4bd9a50c05fa8795642422b935bb0fc",
+      "compactLabelMatches": 0
+    },
+    {
+      "path": "/tmp/visual-calibration-sources/getImFrameStimVal_NatStim_Bruker.m",
+      "sha256": "017ac643da4873843ce40b77f71fea42e7310af63acfcc5cdc26036c03770ea8",
+      "compactLabelMatches": 0
+    },
+    {
+      "path": "/tmp/visual-calibration-sources/getStimEpochStartTimes.m",
+      "sha256": "77426de740d75fe2442185a8b8954e2eea5dbdebad88a01d12a3c7055a182c3e",
+      "compactLabelMatches": 0
+    },
+    {
+      "path": "/tmp/visual-calibration-sources/plot_shortFlash_compareGenotypes.m",
+      "sha256": "c52ab05e35c3214df860ff40260cb9e7dfa85c5c53c769580367427bb84c27b0",
+      "compactLabelMatches": 0
+    },
+    {
+      "path": "/tmp/visual-calibration-sources/plot_shortFlash_compareGenotypes_L2Project.m",
+      "sha256": "8c137c806468ce6bf4b94c39db7227ed16b41f9bf70dce9f02294c0fc8b773ec",
+      "compactLabelMatches": 0
+    },
+    {
+      "path": "/tmp/visual-calibration-sources/searchProcessed_saveMean.m",
+      "sha256": "6f6bc9094f83021c2d65f9631da6d6ca3a7a382d3f66e453d83c6c3a5ea6fff2",
+      "compactLabelMatches": 0
+    },
+    {
+      "path": "/tmp/visual-calibration-sources/selectTimeSeries_L2Project_FFFoG.m",
+      "sha256": "d2bb5c0b3379292562693636177910d408dc90f3c7a488510085178b291b74f5",
+      "compactLabelMatches": 0
+    },
+    {
+      "path": "/tmp/visual-calibration-sources/selectTimeSeries_L2lumTest_FFFoG.m",
+      "sha256": "3b6ba706a6e4306b8f78678e9c6ae393f841fb31f5762a1a1a255f1814dbffa4",
+      "compactLabelMatches": 0
+    },
+    {
+      "path": "/tmp/visual-calibration-sources/shortFlashProcessed_saveMean.m",
+      "sha256": "e5c9daf537b4a3f20c7708e3b1c6ccac66b37f3e1cba943a1ffa4c6c6c447cb7",
+      "compactLabelMatches": 0
+    }
+  ],
+  "paper": {
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11769683/",
+    "doi": "10.1016/j.cub.2024.11.064",
+    "cachedHTMLSHA256": "adb9e3456956e8e76a0534332ea3804ed247d0478e0617ec92e088970fea5fc6",
+    "cachedTextSHA256": "430deb6a40f4a323f426058cf5e7f9cb8803a6db5772eae05eb7df79d3aff16a",
+    "methodsTextLine": 1428,
+    "claim": "General apparatus radiance is stated; the cached Methods paragraph does not identify each compact highLum/lowLum export or provide its PWM-to-background-radiance calibration."
+  },
+  "nextStep": "Recover and freeze one source-backed context manifest for all eight existing compact exports, joining each file hash to original processed filename, exact selected ROI/time-series IDs, stimulus log and prehistory, PWM/filter settings, and measured background/flash radiance calibration. Populate from original author export/calibration records, never inferred label ratios; keep this a metadata development step before adding a context-dependent model input.",
+  "newResponseDatasetsOpened": 0,
+  "responseMatArraysRead": 0,
+  "fits": 0,
+  "simulations": 0,
+  "repositoryEdits": 0,
+  "webChecks": "One bounded GitHub/Zenodo metadata open was unavailable; primary PMC paper identity confirmed by web search. No archive/data downloads or repeated 403 download attempts.",
+  "compactFilenamePairingCells": [
+    {
+      "zeroBasedCellIndex": 5,
+      "source": "res=loadmat('data/L1_CDM_highLum.mat')\nmean_res,t=np.array(res['meanResp']),np.array(res['t'])\nres2=loadmat('data/L1_CDM_lowLum.mat')\nmean_res2,t2=np.array(res2['meanResp']),np.array(res2['t'])\n\nres_o=loadmat('data/L1_highLum.mat')\nmean_res_o,t=np.array(res_o['meanResp']),np.array(res_o['t'])\nres2_o=loadmat('data/L1_lowLum.mat')\nmean_res2_o,t2=np.array(res2_o['meanResp']),np.array(res2_o['t'])"
+    },
+    {
+      "zeroBasedCellIndex": 12,
+      "source": "res=loadmat('data/L2_CDM_highLum.mat')\nmean_res,t=np.array(res['meanResp']),np.array(res['t'])\nres2=loadmat('data/L2_CDM_lowLum.mat')\nmean_res2,t2=np.array(res2['meanResp']),np.array(res2['t'])\nres_o=loadmat('data/L2_highLum.mat')\nmean_res_o,t=np.array(res_o['meanResp']),np.array(res_o['t'])\nres2_o=loadmat('data/L2_lowLum.mat')\nmean_res2_o,t2=np.array(res2_o['meanResp']),np.array(res2_o['t'])"
+    }
+  ],
+  "reportSHA256": "298fcee2854ab1f792aac907ac87a8a42ba0dc5fada4fc6424a9719199416ba5"
+}
