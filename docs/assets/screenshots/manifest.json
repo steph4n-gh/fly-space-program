@@ -1,0 +1,32 @@
+{
+  "capturedOn": "2026-09-14",
+  "sourceURL": "https://fly-space-program.sarrington493484.chatgpt.site/",
+  "sourceRevision": "ac9761a7d0a9e2429e74fdba89305d8f0ff9907d",
+  "sourceScope": "Application dist files unchanged while documentation work was in progress.",
+  "method": "Unmodified browser screenshots at normal viewport, using the returned JPEG bytes. Existing flight paused for capture, then resumed.",
+  "pilot": "Perceiving fly",
+  "mission": "Landing school",
+  "images": [
+    {
+      "file": "cockpit.jpg",
+      "format": "JPEG",
+      "width": 1083,
+      "height": 1072,
+      "sha256": "523475f0ff1af30dafd9888bb114acd8dd46761b87ea0c62f9ad05ca9ddd6334"
+    },
+    {
+      "file": "flight-lab.jpg",
+      "format": "JPEG",
+      "width": 1083,
+      "height": 1072,
+      "sha256": "334f42f5c26d219ed65d08b6c88bf488f1a4e87824127907155b2c4935be6c0f"
+    },
+    {
+      "file": "mission-control.jpg",
+      "format": "JPEG",
+      "width": 1098,
+      "height": 1087,
+      "sha256": "fc52f72100585aad77594d26170b23ae6f177eb1324bbd5b3651099cac5b1db4"
+    }
+  ]
+}

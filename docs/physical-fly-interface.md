@@ -1,6 +1,6 @@
 # A physically testable fly interface
 
-The goal is to find a sensory interface that could be implemented around a living fly and support safe simulated landings, eventually across all 27 missions. A successful numerical policy is useful evidence about that policy. Transfer to a living fly requires independently measured stimulus and movement responses.
+The goal is to find a sensory interface that could be implemented around a living fly and support safe simulated landings, eventually across all 27 missions. The current priority is to take simulated-fly training as far as possible **before building physical Fly Cube boxes**. No Fly Cube has been built, and living-fly control of these missions remains unproven. A successful numerical policy is useful evidence about that policy. Transfer to a living fly requires independently measured stimulus and movement responses.
 
 The current [mission curriculum](suite-training.md) checkpoint produced
 **60/80 safe simulated touchdowns across ten missions**, compared with 54/80
@@ -23,7 +23,7 @@ flowchart LR
   E --> A
 ```
 
-The stimulus generator has no direct actuator connection. Its inputs and computation must be documented. If it computes an entire flight policy and encodes desired actions as odors, that demonstrates fly-mediated control. Demonstrating that the fly learns flight control requires restricting the encoder to presenting sensory information and testing the fly's contribution separately.
+The stimulus generator has no direct actuator connection. Its inputs and computation must be documented. If it computes an entire flight policy and encodes desired actions as odors, a successful measured loop would demonstrate fly-mediated control under that encoder. Demonstrating that the fly learns flight control requires restricting the encoder to presenting sensory information and testing the fly's contribution separately.
 
 Parts of this apparatus are established. Tethered flies have controlled visual flight simulators, and conditioned visual orientation has been demonstrated, with substantial variation between animals ([Guo et al., 1996](https://doi.org/10.1101/lm.3.1.49)). An attractive odor changed aerodynamic power and optomotor responses in tethered-flight experiments; its effects depended on the visual context ([Chow and Frye, 2008](https://pubmed.ncbi.nlm.nih.gov/18626082/)). These results support an experimental interface, not a prediction of rocket-landing competence.
 
@@ -34,7 +34,7 @@ The complete anatomical graph participates in every model decision. Its activity
 | Layer | Current implementation | Evidence needed for transfer |
 | --- | --- | --- |
 | Odor stimulus | Four normalized left/right inputs for two odors | Delivered concentration and timing at each antenna; full receptor response profiles, adaptation and mixture interactions |
-| Neural dynamics | Two recurrent signed rate updates per decision | Empirical dynamics and timing; appropriate receptor and transmitter physiology |
+| Neural dynamics | Two recurrent signed rate updates per decision; dimensionless activity, not spikes or measured hertz | Empirical dynamics and timing; appropriate receptor and transmitter physiology |
 | Body feedback | Authored mapping of rotation, loads and control positions | Physical presentation and measured sensory responses |
 | Movement output | 21,300 fitted weights decode 2,129 neural activities into ten commands | A practical measurement of fly movement and a defined mapping to controls |
 | Learning | Numerical search or regression changes the external decoder | Distinguish decoder adaptation, stimulus optimization and learning within the animal |
@@ -154,7 +154,7 @@ artifacts/lif-runtime/bin/python scripts/lif-odor-probe.py --units Or42b Or67a -
 artifacts/lif-runtime/bin/python scripts/lif-odor-probe.py --units Or42b Or67a --max-rate 30 --duration 0.5 --seeds 2 --synaptic-weight 0.0275 --output artifacts/odor-interface/lif-pn-weight-00275.json
 ```
 
-Plot generation uses Matplotlib 3.10.8. After the expanded eight-odor panel and steering runs finish, `scripts/summarize-odor-training.py` verifies source hashes, seed separation, selection, exposure conservation and success criteria before generating the compact results and plots.
+Plot generation uses Matplotlib 3.10.8. For the completed steering runs, `scripts/summarize-odor-training.py` verifies source hashes, seed separation, selection, exposure conservation and success criteria before generating the compact results and plots.
 
 ```sh
 artifacts/lif-runtime/bin/python scripts/summarize-odor-training.py
@@ -163,6 +163,8 @@ artifacts/lif-runtime/bin/python scripts/summarize-odor-training.py --steering o
 ```
 
 ## Progression toward the full mission suite
+
+First, develop and test the simulated controller across the curriculum, retaining failures and separating training from final evaluation. The physical progression below describes later work, when hardware development begins; it is not the project's immediate construction plan.
 
 The longer-term chemical search can extend beyond known odorants to combinations and computationally proposed compounds that alter responses to the presented visual, mechanical or other stimuli. This is a research direction to retain, not a claim that such candidates have been generated or validated. The current simulator accepts receptor-response profiles; it has no molecule-to-receptor predictor. Novel candidates and mixture interactions would therefore need a separate activity model and evidence for their delivery and measured effects before being interpreted through the connectome.
 

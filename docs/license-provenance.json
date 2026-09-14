@@ -1,0 +1,14 @@
+{
+  "name": "No Theo License",
+  "version": "1.0",
+  "upstreamRepository": "https://github.com/maria-rcks/no-theo-license",
+  "upstreamCommit": "6c5af24964869a03daa31dff4ab8ae95b03adf33",
+  "upstreamFileSHA256": "c31ed30438aa218fcc3f0ca083a04e1d35b89ef80fcf6922828539295b6e257b",
+  "projectLicenseSHA256": "fb90f8c7e10a70357bbab0d4eaf64507db546de0e4d1eb2f600ac4c88764fac0",
+  "changes": [
+    "[year] -> 2026",
+    "[copyright holder] -> Fly Space Program contributors"
+  ],
+  "identifier": "LicenseRef-No-Theo-1.0",
+  "thirdPartyLicensesChanged": false
+}

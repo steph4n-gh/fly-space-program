@@ -874,17 +874,25 @@ pitch timing, command decompositions, fuel use and physical constraints.
 No coefficients or action schedules were chosen from these development cases.
 
 The [paired ranking experiment](orbital-progress-comparison.md) completed all
-576 training trips with **no stable orbit, completed orbit or landing**. Adding
+588 training and comparison trips with **no stable orbit, completed orbit or landing**. Adding
 strict hold and conditional periapsis ranking produced identical full candidate
 orderings in all four generations. Both final controllers retained the starting
 controller's exact weights. The complete report includes every training failure
 and records the missing historical environment and executable evidence.
 
-Both original reserved evaluations started on September 14 at 12:47–12:48 UTC.
-They use the fixed final controllers on six fresh matched starts each, with a
-prospectively recorded clean execution environment. Their outcomes remain
-pending. The total budget stays at 588 trips; the old fitness, all 13 eligible
-directions and original flight criteria are unchanged.
+Both original reserved evaluations completed all six fresh matched starts
+per arm. All twelve trips left the recovery corridor, and all six pairs had
+identical recorded actions, states and endpoints. The separately frozen
+recorded-action replay verified all 25,324 physical steps without another
+neural-controller evaluation. The 588-flight budget is closed; no model was
+promoted. Source, method, every endpoint and the historical provenance limits
+are preserved in the complete report.
+
+The next [156-flight locality experiment](orbital-local-comparison.md) changes
+only the initial proposal sigma: original versus one quarter. Both original
+training processes launched on September 14 at 13:39 UTC. It uses one paired
+population and a fixed six-case comparison per arm, with unchanged success
+criteria; its launch does not establish an outcome.
 
 Reproduce the earlier G6 throttle-command decomposition with
 `node scripts/summarize-orbital-throttle.mjs`. It reads the archived tested

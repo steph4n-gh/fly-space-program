@@ -1,0 +1,25 @@
+{
+  "scope": "Byte-identical source, method, diagnostic narrative and full replay file identities; the large raw replay archive is local and is not distributed here.",
+  "files": [
+    {
+      "file": "ordering-diagnostic.md",
+      "sha256": "83e019304bd27f6ae69e1d1f8c1a924643d8906e9c4753c463b091a2f343fa1b",
+      "originalLocalArchive": "artifacts/suite-training/orbital-progress-comparison/ordering-diagnostic/report.md"
+    },
+    {
+      "file": "replay-output-identities.json",
+      "sha256": "24a439d1c3ec5aa09adea3935a15f93130d1e04056fd1c75e415783191fa680b",
+      "originalLocalArchive": "artifacts/suite-training/orbital-progress-comparison/evaluation-audit/replay/output-identities.json"
+    },
+    {
+      "file": "audit.mjs",
+      "sha256": "fc8128d0a01eccfa18393812c651740be447447dbf6a70ad5eb13adf8db1c5ae",
+      "originalLocalArchive": "artifacts/suite-training/orbital-progress-comparison/evaluation-audit/audit.mjs"
+    },
+    {
+      "file": "method.md",
+      "sha256": "d6dd5d9fb52b4b9cca5f6077d82ad5667ea4101177721447e2a5796d1f0902bb",
+      "originalLocalArchive": "artifacts/suite-training/orbital-progress-comparison/evaluation-audit/method.md"
+    }
+  ]
+}

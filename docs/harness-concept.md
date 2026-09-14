@@ -5,6 +5,10 @@ trays of 25.** The command cradle supplies services and receives a shared
 behavioral control signal. These are design mock-ups, not photographs of
 existing hardware or evidence that living flies can land a vehicle.
 
+The current priority is to take simulated-fly training as far as possible
+through the mission curriculum **before building physical Fly Cube boxes**.
+This document preserves the hardware idea for that later stage.
+
 ## The cube
 
 ![Five-tray cube with a loading cassette, removable cells and separate air and exhaust services](assets/harness-concept-exterior.png)
@@ -126,7 +130,7 @@ found no candidate that qualified for steering follow-up. The subsequent
 motor spikes at its lower connection weight. Neither establishes a physical
 chemical steering channel.
 
-Start by establishing a repeatable, useful movement readout in **one cell**,
+When physical work begins, start by establishing a repeatable, useful movement readout in **one cell**,
 with a fixed visual task and calibrated timing. A small tray could then test
 whether independent measurements can be collected without optical, airflow,
 acoustic or thermal interference, and whether the aggregate adds value.

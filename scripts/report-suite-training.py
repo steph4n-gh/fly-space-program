@@ -685,6 +685,55 @@ if progress_plan_path.exists():
                 'selectedControllerUnchangedFromInitialEveryGeneration','initialController','finalControllers',
                 'arms','generations','comparison','provenance','limitations','deploymentEligible']}
         development['orbitalProgressRankingTraining']['allFlightReport'] = 'orbital-progress-training-results.json'
+    progress_complete_path = root/'docs/orbital-progress-evaluation-results.json'
+    if progress_complete_path.exists():
+        assert hashlib.sha256(progress_complete_path.read_bytes()).hexdigest() == '37cb4918976b701c1228dd003c36740ac43d0e825f2cd6f16bf27917cdf07f41'
+        complete = json.loads(progress_complete_path.read_text())
+        assert complete['status'] == 'COMPLETE_NO_TRAINING_OR_EVALUATION_GAIN'
+        assert complete['budget']['totalNeuralFlights'] == 588 and complete['budget']['pendingNeuralFlights'] == 0
+        assert len(complete['evaluation']['cases']) == 12 and len(complete['evaluation']['pairs']) == 6
+        assert complete['evaluation']['pairedRecordedActionsStatesAndEndpointsExactlyEqual']
+        assert complete['evaluation']['allMetricDifferencesZero'] and complete['releaseEligible'] is False
+        for relative, expected in complete['sources'].items():
+            path = root/relative
+            assert hashlib.sha256(path.read_bytes()).hexdigest() == expected, path
+            sources.append(path)
+        for path, expected in [(root/'scripts/report-orbital-progress-complete.py', complete['provenance']['reporterSHA256']),
+                               (root/'docs'/complete['csv']['file'], complete['csv']['sha256'])]:
+            assert hashlib.sha256(path.read_bytes()).hexdigest() == expected, path
+            sources.append(path)
+        sources.append(progress_complete_path)
+        development['orbitalProgressRankingPlan']['scope'] = 'Complete 588-flight paired experiment: no stable orbit, completed orbit or landing, unchanged selected controllers, and no release promotion. The separate fixed-comparison publication supersedes the historical pending state in the training-stage artifact.'
+        development['orbitalProgressRankingComplete'] = {
+            key:complete[key] for key in ['status','budget','provenance','limits','capabilityEstablished','releaseEligible']}
+        development['orbitalProgressRankingComplete'].update(
+            evaluationArms=complete['evaluation']['arms'], replay=complete['replay'],
+            allCaseReport='orbital-progress-evaluation-results.json', allCaseCSV=complete['csv']['file'])
+local_plan_path = folder/'orbital-local-proposal-comparison/execution-plan.json'
+if local_plan_path.exists():
+    assert hashlib.sha256(local_plan_path.read_bytes()).hexdigest() == 'c8265282a8c6384e2716e2b090fcd0c8682e35053c2ea4f2e0f3eb5b451a46a0'
+    local_plan = json.loads(local_plan_path.read_text())
+    local_base = local_plan_path.parent
+    for relative, expected in local_plan['preparedFilesSHA256'].items():
+        path = local_base/relative
+        assert hashlib.sha256(path.read_bytes()).hexdigest() == expected, path
+        sources.append(path)
+    proposal_path = root/'docs/orbital-local-comparison-plan.json'
+    assert hashlib.sha256(proposal_path.read_bytes()).hexdigest() == local_plan['proposalSHA256']
+    launch_path = local_base/'original-training-launch-observation.json'
+    launch = json.loads(launch_path.read_text())
+    assert launch['planSHA256'] == hashlib.sha256(local_plan_path.read_bytes()).hexdigest()
+    assert launch['bothOriginalProcessesObservedLive'] and launch['confirmedBy'] == '/root'
+    assert [launch['arms'][a]['originalSessionId'] for a in ['standard','quarter']] == [77464,60295]
+    for arm, item in launch['arms'].items():
+        path = local_base/('launch-train-'+arm+'.json')
+        assert hashlib.sha256(path.read_bytes()).hexdigest() == item['launchSHA256']
+        sources.append(path)
+    sources.extend([local_plan_path, proposal_path, launch_path])
+    development['orbitalLocalProposalPlan'] = {
+        'scope':'Frozen 156-flight paired development experiment with a dated original launch observation. No current live, completion, outcome or release claim follows from these records.',
+        'planSHA256':hashlib.sha256(local_plan_path.read_bytes()).hexdigest(),
+        'proposal':json.loads(proposal_path.read_text()), 'launchObservation':launch}
 paired_plan_path = folder/'orbital-joint-paired-diagnostic/plan.json'
 if paired_plan_path.exists():
     plan = json.loads(paired_plan_path.read_text())

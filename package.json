@@ -1,1 +1,23 @@
-{"name":"fly-space-program","private":true,"type":"module","scripts":{"start":"python3 -m http.server 4173 --directory dist","train":"node scripts/train-full.mjs","check":"node scripts/check-full-network.mjs && node scripts/check-decision.mjs && node scripts/check-v6.mjs && node scripts/check-orbit.mjs && node scripts/check-senses.mjs && node scripts/check-arousal.mjs && node scripts/check-perception.mjs"},"dependencies":{"three":"^0.186.0"}}
+{
+  "name": "fly-space-program",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "python3 -m http.server 4173 --directory dist",
+    "train": "node scripts/train-full.mjs",
+    "check": "node scripts/check-full-network.mjs && node scripts/check-decision.mjs && node scripts/check-v6.mjs && node scripts/check-orbit.mjs && node scripts/check-senses.mjs && node scripts/check-arousal.mjs && node scripts/check-perception.mjs"
+  },
+  "dependencies": {
+    "three": "^0.186.0"
+  },
+  "description": "Full-connectome fly training, reproducible simulations, and a proposed physical Fly Cube research interface.",
+  "license": "SEE LICENSE IN LICENSE",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/steph4n-gh/fly-space-program.git"
+  },
+  "homepage": "https://fly-space-program.sarrington493484.chatgpt.site/",
+  "bugs": {
+    "url": "https://github.com/steph4n-gh/fly-space-program/issues"
+  }
+}
