@@ -37,6 +37,13 @@ transmission before its odor-dependent visual effects can be interpreted.
 The [diagnostic record](docs/visual-transmission-results.json) preserves all
 phase counts and voltage traces.
 
+An [eight-trial follow-up](docs/visual-transmission-background-results.json)
+added the existing clean-air olfactory background. The flash changed spike
+counts elsewhere in the active graph, while every measured visual pool
+remained silent. Paired voltage responses were present. This narrows the
+model limitation without establishing visual-motion processing or a
+chemical benefit.
+
 Run `npm start`, then open `http://localhost:4173`. The complete graph must load before automated flight begins. Mission shows the flight, Cockpit shows the articulated fly and exact sampled eye images, and Flight lab contains training, the anatomical atlas and decision inspection. The default is the short landing-school mission. All 27 landing/orbital profiles remain available. The instrument-trained V8 pilot is a labeled reference option.
 
 ## Perception and control

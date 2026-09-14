@@ -431,14 +431,51 @@ testing throttle timing; it does not establish the cause of every failed
 ground approach. Its trajectory samples and source hash are in the
 [progress record](suite-training-progress.json).
 
-The `vertical-all-ground` lesson starts from the frozen released controller
-and adjusts only the five existing throttle directions. Every generation
+The `vertical-all-ground` lesson starts from the previous ten-mission G6
+controller and adjusts only the five existing throttle directions. Every generation
 includes all 24 ground missions, with rotating nominal/varied conditions
-and changing training seeds. Its plan specifies four generations of eight
-candidates, or 768 complete flights. Physical deadlines and touchdown
-limits stay fixed. This is a separate learning branch: combining its
-parameters with learned gimbal steering would require complete-flight
-testing of that combined controller.
+and changing training seeds. All **768 planned full flights** completed:
+four generations, eight candidates and 24 missions per candidate. Independent
+checks matched every case to the frozen plan, verified that only those five
+parameters changed, recomputed scores and touchdown-margin fitness, and
+confirmed the selected candidate in every generation. All 367 training
+landings and 401 failures remain in the record.
+
+The selected candidates landed 16, 15, 15 and 17 of their respective 24
+training cases. These use changing starts, so they are not a matched
+reliability trend. All 32 High return attempts still timed out at the original
+deadline. No physical limit or deadline was relaxed.
+
+### Combining the learned throttle with gimbal steering
+
+A frozen follow-up tests the final generation's five throttle parameters
+together with the released G5 controller's other parameters. Decoding the
+combination changes only the throttle output's weights; every other output,
+including both active gimbal heads, exactly matches the released controller.
+That verifies construction, not flight performance.
+
+The selection plan fixes 96 fresh starts covering all 24 ground missions,
+with two nominal and two variability-0.4 cases per mission. The same starts
+are used for every comparison:
+
+| Controller and condition | Full flights planned |
+| --- | --- |
+| Combined throttle/gimbal candidate, normal vision | 96 |
+| Combined candidate, covered eyes | 96 |
+| Isolated throttle-training branch, diagnostic reference | 96 |
+| Released G5 controller, normal vision | 96 |
+
+All **384 comparisons are running**. Only the combined candidate is eligible
+for later final testing. It must beat the release's overall landing count,
+retain at least the release's count on both the original four and the
+released ten mission subsets, and outperform its covered-eye control.
+The isolated training branch is a diagnostic reference. Parameters will
+not be adjusted against these selection cases. Passing selection still
+requires a separate unseen final comparison with the release and sensory
+controls before deployment.
+
+The frozen plan, initial parameters, decoded-weight checks and the completed
+training audit are included in the [progress record](suite-training-progress.json).
 
 ## Orbital ascent experiments
 

@@ -1,10 +1,11 @@
-"""Qualify isolated visual transmission in the existing complete-graph LIF model.
+"""Qualify visual transmission in the existing complete-graph LIF model.
 
 Uniform Poisson photoreceptor drive is a diagnostic model input, not calibrated
 light or a biological photoreceptor model. No tonic drive or graded release is
 added. Keep the established odor-probe equations and every measured connection.
 """
 from pathlib import Path
+import argparse
 import hashlib
 import importlib.util
 import json
@@ -14,18 +15,22 @@ import pandas as pd
 import brian2 as b
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT/'artifacts/odor-interface/visual-transmission'
 spec = importlib.util.spec_from_file_location('lif_odor_probe', ROOT/'scripts/lif-odor-probe.py')
 lif = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(lif)
 
 
 def main():
-    plan_path = OUT/'plan.json'
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--plan', type=Path, default=ROOT/'artifacts/odor-interface/visual-transmission/plan.json')
+    args = parser.parse_args()
+    plan_path = args.plan.resolve()
+    out = plan_path.parent
     plan = json.loads(plan_path.read_text())
     for path, expected in plan['sourceSHA256'].items():
         assert hashlib.sha256((ROOT/path).read_bytes()).hexdigest() == expected, path
-    assert not (OUT/'results.json').exists(), 'Preserve the existing experiment'
+    assert not (out/'results.json').exists(), 'Preserve the existing experiment'
+    assert not list(out.glob('*-counts.bin')), 'Preserve existing partial experiment counts'
     annotation = ROOT/'data/body-annotations-male-cns-v1.0-minconf-0.5.feather'
     sensory_map = json.loads((ROOT/'dist/assets/connectome/sensory-map.json').read_text())
     assert hashlib.sha256(annotation.read_bytes()).hexdigest() == sensory_map['sourceSHA256']
@@ -43,10 +48,27 @@ def main():
         pools[name] = cells.index[cells.type.fillna('').str.startswith(name)].to_numpy()
         assert len(pools[name]) > 0, name
     assert {name: indices.tolist() for name, indices in pools.items()} == plan['pools']
-    print(json.dumps({'phase': 'loading full graph', 'photoreceptors': len(photo)}), flush=True)
+    sensory = photo
+    background_rates = np.array([], dtype=float)
+    if plan.get('background'):
+        background = plan['background']
+        assert background['mode'] == 'clean-air-ORN'
+        atlas = json.loads((ROOT/background['atlasFile']).read_text())
+        assert atlas['annotationSHA256'] == sensory_map['sourceSHA256']
+        orn, background_rates = [], []
+        for unit in atlas['units']:
+            rate = (unit['baseline'] if unit['baseline'] is not None else 0)*background['maxRateHz']
+            for side in ['left', 'right']:
+                orn.extend(unit[side]); background_rates.extend([rate]*len(unit[side]))
+        assert len(orn) == len(set(orn)) == 2141 and not set(orn).intersection(photo)
+        assert orn == background['indices'] and background_rates == background['sourceHz']
+        sensory = np.concatenate([photo, orn])
+        background_rates = np.array(background_rates)
+    print(json.dumps({'phase': 'loading full graph', 'photoreceptors': len(photo),
+                      'backgroundSources': len(background_rates)}), flush=True)
     manifest, pre, post, contacts, signs, histamine = lif.load_graph()
     assert np.all(signs[photo] == -1)
-    network, source, counts = lif.build_model(pre, post, contacts, signs, photo)
+    network, source, counts = lif.build_model(pre, post, contacts, signs, sensory)
     neurons = next(obj for obj in network.objects if obj.name == 'fly_cells')
     del pre, post, contacts
     voltage_samples = []
@@ -66,12 +88,12 @@ def main():
         phases = []
         for phase in plan['phases']:
             rates = condition['sourceHz'] if phase['name'] == 'on' else 0
-            source.rates = np.full(len(photo), rates)*b.Hz
+            source.rates = np.concatenate([np.full(len(photo), rates), background_rates])*b.Hz
             before = np.asarray(counts.count).copy()
             network.run(phase['seconds']*b.second, namespace={})
             spikes = np.asarray(counts.count)-before
             raw = spikes.astype('<u4').tobytes()
-            path = OUT/(condition['name']+'-'+phase['name']+'-counts.bin')
+            path = out/(condition['name']+'-'+phase['name']+'-counts.bin')
             path.write_bytes(raw)
             phases.append({'phase': phase['name'], 'durationSeconds': phase['seconds'],
                            'spikes': int(spikes.sum()), 'activeNeurons': int((spikes > 0).sum()),
@@ -87,11 +109,13 @@ def main():
                   'neurons': manifest['neurons'], 'edges': manifest['edges'], 'photoreceptors': len(photo),
                   'histamineInhibitoryCells': len(histamine), 'brianVersion': b.__version__,
                   'complete': len(trials) == len(plan['conditions']), 'trials': trials,
-                  'limitations': ['Isolated source-drive diagnostic; all other external inputs are silent.',
+                  'background': plan.get('background'),
+                  'limitations': [('Existing clean-air ORN background remains on in all phases; no added odor.' if plan.get('background') else
+                                   'Isolated source-drive diagnostic; all other external inputs are silent.'),
                                   'Poisson source rate is an assumed model input, not physical light intensity.',
                                   'The inherited model uses spikes for transmission and starts at rest without tonic drive.',
                                   'Voltage and spike responses are model outputs, not calcium signals, wing motion or living-fly predictions.']}
-        temporary = OUT/'results.json.tmp';temporary.write_text(json.dumps(report, indent=2)+'\n');temporary.replace(OUT/'results.json')
+        temporary = out/'results.json.tmp';temporary.write_text(json.dumps(report, indent=2)+'\n');temporary.replace(out/'results.json')
         print(json.dumps({'condition': condition['name'], 'phases': [{k: p[k] for k in ['phase', 'spikes', 'activeNeurons', 'nonPhotoreceptorSpikes']} for p in phases]}), flush=True)
 
 

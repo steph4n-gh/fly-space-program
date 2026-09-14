@@ -535,8 +535,8 @@ that measurement. [Reiff et al., Nature Neuroscience](https://www.nature.com/art
 The next model requirement is to fit the appropriate baseline activity and
 transmission dynamics to measured photoreceptor/lamina responses, then test
 light increments, decrements and directional motion on separate stimuli.
-The same flash also needs a matched check with the existing clean-air ORN
-background; this isolated test does not measure that interaction.
+The matched clean-air ORN background check below now separates this isolated
+result from visual stimulation of an active network.
 Only after that qualification should an odor-dependent change in visual
 gain be interpreted. Arbitrarily increasing global gain or reversing all
 photoreceptor signs would not establish the missing physiology. The game
@@ -550,9 +550,64 @@ This is a two-condition structural check with one shared random seed, not
 an estimate of animal variability or chemical efficacy.
 
 ```sh
-artifacts/lif-runtime/bin/python scripts/lif-visual-probe.py
 artifacts/lif-runtime/bin/python scripts/summarize-visual-transmission.py
 ```
 
-Use a new output path for any repetition; the original complete count files
-are preserved and the script refuses to overwrite their directory.
+The original runner is archived under that experiment's `sources` directory.
+For a repetition, freeze a new plan with current source hashes and use
+`scripts/lif-visual-probe.py --plan PATH/plan.json`. The runner refuses to
+overwrite completed or partial count files.
+
+### Completed check with olfactory background
+
+Eight further trials repeat the dark/flash comparison with the existing
+clean-air input held on throughout all three phases. They drive 2,141 atlas
+ORNs using the established mapping: normalized spontaneous response ×
+150 Hz, with missing responses set to zero. The resulting source rates range
+from 0 to 29.68 Hz. All 6,091 visual sources are also present in both
+conditions. As in the inherited sensory-input model, every directly driven
+cell has zero refractory interval. The graph and neuronal equations are
+unchanged.
+
+Four seeds each supply a paired dark control and 50 Hz bilateral flash.
+Each pair starts from rest and uses the same source ordering. Every neuron's
+pre-phase count and all recorded pre-phase voltage samples match exactly
+within each pair. Source ordering differs from the earlier isolated test,
+so those earlier counts are not paired controls for this experiment.
+
+| Measurement during the 300 ms on phase | Result across the four seeds |
+| --- | --- |
+| Spikes outside photoreceptors in dark controls | 372,424–374,389 |
+| Photoreceptor spikes during flash | 90,800–91,410 |
+| Non-photoreceptor cells with a different count under flash | 8,942–9,063 |
+| Total non-photoreceptor spike difference, flash minus dark | −1,781, +433, +848, −896 |
+| Spikes in L1–L5, Mi1, Tm3, Mi4, Mi9, T4 and T5 | Zero in every phase of every trial |
+
+The background clearly activates the network, and adding the flash changes
+activity beyond the photoreceptors. The whole-network count changes have
+mixed signs during stimulation; they are not evidence of a consistent gain
+increase. L1, L2 and Mi1 show paired voltage changes without spiking. T4 and
+T5 also have background-dependent membrane potentials, so their silence
+must not be described as an absence of all neural response. Flash trials
+retain 25–31 photoreceptor spikes after source drive ends.
+
+![Paired visual-flash voltage responses with clean-air ORN background; measured visual populations still do not spike](assets/visual-transmission-background.png)
+
+This rules out globally silent external inputs as the sole explanation for
+the measured visual populations' failure to spike in this assay. It does
+not establish signal transmission through a functional motion detector,
+direction selectivity or odor-enhanced visual behavior. These are four
+stochastic realizations of one model, not independent animals. Calibrating
+the visual baseline and transmission dynamics against measured responses
+remains the next biological-model requirement.
+
+The [verified background record](visual-transmission-background-results.json)
+contains all eight trials, 24 complete per-neuron count arrays, paired
+effects and voltage traces. All 74 recorded source and artifact hashes were
+checked. The frozen plan and launch record also retain an initial Python
+import stall before simulation; the experiment then completed in the
+established LIF runtime without changing the protocol.
+
+```sh
+artifacts/lif-runtime/bin/python scripts/summarize-visual-transmission.py --folder artifacts/odor-interface/visual-transmission-background
+```

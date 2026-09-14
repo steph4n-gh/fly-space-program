@@ -8,41 +8,47 @@
     {
       "condition": "dark-control",
       "phase": "pre",
+      "seed": 370019,
       "photoreceptorSpikes": 0,
       "otherNeuronSpikes": 0
     },
     {
       "condition": "dark-control",
       "phase": "on",
+      "seed": 370019,
       "photoreceptorSpikes": 0,
       "otherNeuronSpikes": 0
     },
     {
       "condition": "dark-control",
       "phase": "off",
+      "seed": 370019,
       "photoreceptorSpikes": 0,
       "otherNeuronSpikes": 0
     },
     {
       "condition": "bilateral-flash",
       "phase": "pre",
+      "seed": 370019,
       "photoreceptorSpikes": 0,
       "otherNeuronSpikes": 0
     },
     {
       "condition": "bilateral-flash",
       "phase": "on",
+      "seed": 370019,
       "photoreceptorSpikes": 91334,
       "otherNeuronSpikes": 0
     },
     {
       "condition": "bilateral-flash",
       "phase": "off",
+      "seed": 370019,
       "photoreceptorSpikes": 35,
       "otherNeuronSpikes": 0
     }
   ],
-  "flashMinimumMeanPotentialMv": {
+  "firstFlashMinimumMeanPotentialMv": {
     "photoreceptors": -52.24990444173658,
     "L1": -56.63997691533708,
     "L2": -56.31883606802203,
@@ -56,6 +62,81 @@
     "T4": -52.0,
     "T5": -52.0
   },
+  "pairedEffects": [
+    {
+      "seed": 370019,
+      "prePhaseExactlyMatched": true,
+      "phases": [
+        {
+          "phase": "on",
+          "nonPhotoreceptorCellsWithDifferentCounts": 0,
+          "nonPhotoreceptorSpikeDifference": 0,
+          "poolMeanHzDifference": {
+            "photoreceptors": 49.98303507907842,
+            "L1": 0.0,
+            "L2": 0.0,
+            "L3": 0.0,
+            "L4": 0.0,
+            "L5": 0.0,
+            "Mi1": 0.0,
+            "Tm3": 0.0,
+            "Mi4": 0.0,
+            "Mi9": 0.0,
+            "T4": 0.0,
+            "T5": 0.0
+          },
+          "poolMeanPotentialDifferenceMv": {
+            "photoreceptors": 0.13415961095758414,
+            "L1": -4.085431761733208,
+            "L2": -3.7968051594566314,
+            "L3": -1.339986837047161,
+            "L4": -0.07164090903920091,
+            "L5": -0.03146141183706111,
+            "Mi1": -0.4477888564971625,
+            "Tm3": -0.007975361852543727,
+            "Mi4": -0.6961543412059313,
+            "Mi9": -0.20332333599835337,
+            "T4": 0.0,
+            "T5": 0.0
+          }
+        },
+        {
+          "phase": "off",
+          "nonPhotoreceptorCellsWithDifferentCounts": 0,
+          "nonPhotoreceptorSpikeDifference": 0,
+          "poolMeanHzDifference": {
+            "photoreceptors": 0.019153942975975485,
+            "L1": 0.0,
+            "L2": 0.0,
+            "L3": 0.0,
+            "L4": 0.0,
+            "L5": 0.0,
+            "Mi1": 0.0,
+            "Tm3": 0.0,
+            "Mi4": 0.0,
+            "Mi9": 0.0,
+            "T4": 0.0,
+            "T5": 0.0
+          },
+          "poolMeanPotentialDifferenceMv": {
+            "photoreceptors": -0.026441139137533178,
+            "L1": -0.45016624764060775,
+            "L2": -0.41764055070451284,
+            "L3": -0.14409337899715582,
+            "L4": -0.007785484698055356,
+            "L5": -0.0031987971553559666,
+            "Mi1": -0.048593543232090634,
+            "Tm3": -0.0009002641350631299,
+            "Mi4": -0.0751853823154974,
+            "Mi9": -0.021543703380318153,
+            "T4": 0.0,
+            "T5": 0.0
+          }
+        }
+      ]
+    }
+  ],
+  "background": null,
   "trials": [
     {
       "condition": {
@@ -5975,8 +6056,8 @@
   "sourceSHA256": {
     "artifacts/odor-interface/visual-transmission/plan.json": "15d0494c0b2515c45935d2243482c40aec8d6901d91065322a50132d454f35f3",
     "artifacts/odor-interface/visual-transmission/results.json": "e043336445a2c61c6db9047961efc9e638c0edbec65a16bdb77325750e4f9f42",
-    "scripts/summarize-visual-transmission.py": "c19c5f837cf0bfa329715153c5fa1565cd115e78c88bb61425b8a2983572366c",
-    "scripts/lif-visual-probe.py": "5de192e8c0cf940a24870614dd6a7965ab70f9398575167ced79045fb401a6ee",
+    "scripts/summarize-visual-transmission.py": "aa40cd324094687984e37315194675c3e9607a5255eec2337ad73c12569d794a",
+    "artifacts/odor-interface/visual-transmission/sources/lif-visual-probe.py": "5de192e8c0cf940a24870614dd6a7965ab70f9398575167ced79045fb401a6ee",
     "scripts/lif-odor-probe.py": "eb6b4d9d4be532bbf47351f47724515ce94685842ee5ddcff3ae88c7d82424e3",
     "dist/assets/connectome/manifest.json": "253b367de59eb676c9b28b3fb137aadf7b67b42280cd7f6cf6dd5de5d6d133e0",
     "dist/assets/connectome/labels.json": "d88130d683e2f22183bbdc9e3276f903c6b4b4db190a80be71ca981b3f5dbbe8",

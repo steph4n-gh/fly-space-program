@@ -957,6 +957,742 @@
         "Atmospheric entry": 0,
         "Final approach": 0
       }
+    },
+    "vertical-all-ground": {
+      "generation": 4,
+      "episodes": 768,
+      "history": [
+        {
+          "generation": 1,
+          "episodes": 192,
+          "landings": 16,
+          "batch": 24,
+          "score": -70.53515906468985,
+          "fitness": -82.41970213357172
+        },
+        {
+          "generation": 2,
+          "episodes": 384,
+          "landings": 15,
+          "batch": 24,
+          "score": -81.32114468387992,
+          "fitness": -89.01542703183782
+        },
+        {
+          "generation": 3,
+          "episodes": 576,
+          "landings": 15,
+          "batch": 24,
+          "score": -81.06317400157182,
+          "fitness": -89.74695893631979
+        },
+        {
+          "generation": 4,
+          "episodes": 768,
+          "landings": 17,
+          "batch": 24,
+          "score": -19.33594631755111,
+          "fitness": -30.36564187171007
+        }
+      ],
+      "allCandidateFlights": 768,
+      "allCandidateLandings": 367,
+      "coverageAndRewardVerified": true,
+      "allCandidateLandingsByMission": {
+        "0": 27,
+        "1": 27,
+        "2": 21,
+        "3": 16,
+        "4": 4,
+        "5": 2,
+        "6": 9,
+        "7": 4,
+        "8": 22,
+        "9": 22,
+        "10": 24,
+        "11": 2,
+        "12": 26,
+        "13": 0,
+        "14": 25,
+        "15": 26,
+        "16": 21,
+        "17": 16,
+        "18": 0,
+        "19": 1,
+        "20": 25,
+        "21": 21,
+        "22": 17,
+        "23": 9
+      },
+      "lastGenerationOutcomes": [
+        {
+          "seed": 714133,
+          "scenario": 2,
+          "activationGain": 1,
+          "score": 22.07494838926449,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.0993967261771929,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 6.0827085179574265,
+            "speed": 1.7488478107252994,
+            "lateral": 0.8686371204368332,
+            "tilt": 0.03665632707027916
+          },
+          "time": 46.89999999999947,
+          "censored": false
+        },
+        {
+          "seed": 599900,
+          "scenario": 3,
+          "activationGain": 1,
+          "score": 25.536244966208216,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.03194322072586055,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0.4,
+            "mass": 1.0159092865474317,
+            "thrust": 0.9720936932782933,
+            "servo": 0.9635634618107671,
+            "wind": 1.0428350290641748,
+            "deck": 0.9733258060268977,
+            "noise": 0.004
+          },
+          "touchdown": {
+            "error": 3.8238336356033744,
+            "speed": 1.6845922960647293,
+            "lateral": 1.9130513944939513,
+            "tilt": 0.034691228023847075
+          },
+          "time": 41.64999999999977,
+          "censored": false
+        },
+        {
+          "seed": 610291,
+          "scenario": 4,
+          "activationGain": 1,
+          "score": 9.448408098888748,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.030122133550758216,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 8.78685125829533,
+            "speed": 1.5492073518145846,
+            "lateral": 2.7214308422434494,
+            "tilt": 0.0923775602331671
+          },
+          "time": 49.39999999999933,
+          "censored": false
+        },
+        {
+          "seed": 620682,
+          "scenario": 5,
+          "activationGain": 1,
+          "score": -131.57899970560433,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.0344827089670671,
+          "reason": "Missed the ship",
+          "variation": {
+            "level": 0.4,
+            "mass": 1.0249772481929473,
+            "thrust": 0.9648022504031921,
+            "servo": 0.8721900477096804,
+            "wind": 1.1007241071881264,
+            "deck": 0.9955778308544985,
+            "noise": 0.004
+          },
+          "touchdown": {
+            "error": 12.13924662932863,
+            "speed": 1.8530056715394583,
+            "lateral": 1.8146922521582465,
+            "tilt": 0.13155488971490167
+          },
+          "time": 49.04999999999935,
+          "censored": false
+        },
+        {
+          "seed": 631073,
+          "scenario": 8,
+          "activationGain": 1,
+          "score": 37.771039021022645,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.0904182084707718,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 4.375761834529259,
+            "speed": 1.5911748874916283,
+            "lateral": 0.7592902815626622,
+            "tilt": 0.04709670581948817
+          },
+          "time": 38.89999999999993,
+          "censored": false
+        },
+        {
+          "seed": 641464,
+          "scenario": 9,
+          "activationGain": 1,
+          "score": 31.54933114931181,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.17804007082428608,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0.4,
+            "mass": 1.0000215748575443,
+            "thrust": 0.9953700784806693,
+            "servo": 1.0742618595996196,
+            "wind": 1.0433899879407975,
+            "deck": 1.0173419123779455,
+            "noise": 0.004
+          },
+          "touchdown": {
+            "error": 9.317637536743737,
+            "speed": 1.2690242761332546,
+            "lateral": 1.3552011369612147,
+            "tilt": 0.02803648280095943
+          },
+          "time": 40.94999999999981,
+          "censored": false
+        },
+        {
+          "seed": 651855,
+          "scenario": 10,
+          "activationGain": 1,
+          "score": 30.079966795992434,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": -0.011771967452808169,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 7.672314035552135,
+            "speed": 1.6461794718133258,
+            "lateral": 1.3729063991781556,
+            "tilt": 0.0504884674431306
+          },
+          "time": 41.89999999999976,
+          "censored": false
+        },
+        {
+          "seed": 662246,
+          "scenario": 11,
+          "activationGain": 1,
+          "score": -125.35562786246044,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.11111660815675956,
+          "reason": "Missed the ship",
+          "variation": {
+            "level": 0.4,
+            "mass": 0.9931474917300755,
+            "thrust": 0.9933768141470801,
+            "servo": 1.0159672210282622,
+            "wind": 1.1908392315636245,
+            "deck": 0.9686436563232889,
+            "noise": 0.004
+          },
+          "touchdown": {
+            "error": 11.31656639081061,
+            "speed": 1.193463431908807,
+            "lateral": 4.240780721312141,
+            "tilt": 0.11937839218410794
+          },
+          "time": 44.199999999999626,
+          "censored": false
+        },
+        {
+          "seed": 672637,
+          "scenario": 12,
+          "activationGain": 1,
+          "score": 25.881086074770025,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.16850040256461488,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 4.316299858756298,
+            "speed": 1.8368001279648243,
+            "lateral": 2.1338129348502783,
+            "tilt": 0.03183899579108644
+          },
+          "time": 42.799999999999706,
+          "censored": false
+        },
+        {
+          "seed": 683028,
+          "scenario": 13,
+          "activationGain": 1,
+          "score": -212.98993457781353,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.017170476543666147,
+          "reason": "Missed the ship",
+          "variation": {
+            "level": 0.4,
+            "mass": 1.0382542791379983,
+            "thrust": 1.0245962584481008,
+            "servo": 1.0073832561194693,
+            "wind": 1.0423138284264772,
+            "deck": 0.9659474615201082,
+            "noise": 0.004
+          },
+          "touchdown": {
+            "error": 73.7651067376708,
+            "speed": 1.4177095958525445,
+            "lateral": 4.023704140405363,
+            "tilt": 0.25604310513589756
+          },
+          "time": 45.799999999999535,
+          "censored": false
+        },
+        {
+          "seed": 693419,
+          "scenario": 14,
+          "activationGain": 1,
+          "score": 67.84909982661733,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": -0.12112632551342391,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 9.23109904348055,
+            "speed": 1.6908700316546137,
+            "lateral": 0.8683124091455797,
+            "tilt": 0.04220764836152532
+          },
+          "time": 38.99999999999992,
+          "censored": false
+        },
+        {
+          "seed": 703810,
+          "scenario": 15,
+          "activationGain": 1,
+          "score": 17.319909442709744,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.16940205931138988,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0.4,
+            "mass": 0.9425658972850819,
+            "thrust": 1.0241318289989876,
+            "servo": 1.1113578181179984,
+            "wind": 0.8946638327076146,
+            "deck": 0.9831585966089406,
+            "noise": 0.004
+          },
+          "touchdown": {
+            "error": 0.6817948705940459,
+            "speed": 1.3052225954689836,
+            "lateral": 1.0401653047706316,
+            "tilt": 0.05799393775013401
+          },
+          "time": 46.94999999999947,
+          "censored": false
+        },
+        {
+          "seed": 714201,
+          "scenario": 16,
+          "activationGain": 1,
+          "score": 20.74511837275554,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.12269225323152817,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 2.2693581924519677,
+            "speed": 2.0045604507185675,
+            "lateral": 1.6456997543774594,
+            "tilt": 0.06235221727115329
+          },
+          "time": 45.94999999999953,
+          "censored": false
+        },
+        {
+          "seed": 724592,
+          "scenario": 17,
+          "activationGain": 1,
+          "score": 19.754817017921752,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 19.0774535310405,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0.4,
+            "mass": 1.004953216815681,
+            "thrust": 0.9839426361504889,
+            "servo": 1.017676794365732,
+            "wind": 1.0379708637795317,
+            "deck": 0.9985196884814477,
+            "noise": 0.004
+          },
+          "touchdown": {
+            "error": 3.0132285532325915,
+            "speed": 1.6034208915239476,
+            "lateral": 1.2668337672944154,
+            "tilt": 0.10708988054503013
+          },
+          "time": 48.34999999999939,
+          "censored": false
+        },
+        {
+          "seed": 734983,
+          "scenario": 19,
+          "activationGain": 1,
+          "score": -156.0132846817749,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.06551379550822452,
+          "reason": "Missed the ship",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 12.099445671563972,
+            "speed": 1.6350091359311416,
+            "lateral": 4.13000754362058,
+            "tilt": 0.038850412436146016
+          },
+          "time": 53.79999999999908,
+          "censored": false
+        },
+        {
+          "seed": 745374,
+          "scenario": 6,
+          "activationGain": 1,
+          "score": 22.462312540302392,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.027961103957029543,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0.4,
+            "mass": 1.0403449590794567,
+            "thrust": 0.9871818219101045,
+            "servo": 0.767455911086856,
+            "wind": 1.1156198885481057,
+            "deck": 0.9878839265738963,
+            "noise": 0.004
+          },
+          "touchdown": {
+            "error": 7.8889794181967785,
+            "speed": 2.3775991672469803,
+            "lateral": 0.4610247917355927,
+            "tilt": 0.1756834341508284
+          },
+          "time": 45.74999999999954,
+          "censored": false
+        },
+        {
+          "seed": 755765,
+          "scenario": 7,
+          "activationGain": 1,
+          "score": -135.47588685135304,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": -0.04674049591993357,
+          "reason": "Attitude at impact",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 6.214635449842267,
+            "speed": 3.0313829905787104,
+            "lateral": 2.103581248715922,
+            "tilt": 0.21384567793796913
+          },
+          "time": 48.29999999999939,
+          "censored": false
+        },
+        {
+          "seed": 766156,
+          "scenario": 20,
+          "activationGain": 1,
+          "score": 28.750105718393314,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.13138926416125327,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0.4,
+            "mass": 1.026507549034116,
+            "thrust": 1.0221473925600666,
+            "servo": 0.9997504865303672,
+            "wind": 1.017484326447926,
+            "deck": 1.0720775983084,
+            "noise": 0.004
+          },
+          "touchdown": {
+            "error": 0.8912805353281327,
+            "speed": 1.9143497843472954,
+            "lateral": 1.59566736726418,
+            "tilt": 0.04749015966141685
+          },
+          "time": 47.29999999999945,
+          "censored": false
+        },
+        {
+          "seed": 776547,
+          "scenario": 21,
+          "activationGain": 1,
+          "score": 29.212789367355455,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.11839656439774487,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 9.476941358208242,
+            "speed": 1.7368998005825782,
+            "lateral": 0.3780500133443932,
+            "tilt": 0.0577060097681403
+          },
+          "time": 44.84999999999959,
+          "censored": false
+        },
+        {
+          "seed": 786938,
+          "scenario": 22,
+          "activationGain": 1,
+          "score": 34.342731822188284,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": -0.06713553441905365,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0.4,
+            "mass": 1.010724923523788,
+            "thrust": 1.0079254449508799,
+            "servo": 1.047165819142185,
+            "wind": 0.7877733612837371,
+            "deck": 0.9837238765645449,
+            "noise": 0.004
+          },
+          "touchdown": {
+            "error": 2.8402511427394224,
+            "speed": 2.6502146201557997,
+            "lateral": 1.9789776867880267,
+            "tilt": 0.09104008029301547
+          },
+          "time": 47.049999999999464,
+          "censored": false
+        },
+        {
+          "seed": 797329,
+          "scenario": 23,
+          "activationGain": 1,
+          "score": -129.10654362019,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": -0.1423803747477852,
+          "reason": "Lateral impact",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 3.857288812863514,
+            "speed": 2.6734327994394738,
+            "lateral": 3.996464062801376,
+            "tilt": 0.10582877097719821
+          },
+          "time": 48.949999999999356,
+          "censored": false
+        },
+        {
+          "seed": 807720,
+          "scenario": 18,
+          "activationGain": 1,
+          "score": -153.5870504687107,
+          "landed": false,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.18361902729611618,
+          "reason": "Approach timed out",
+          "variation": {
+            "level": 0.4,
+            "mass": 1.0446439852428813,
+            "thrust": 1.0035326322650078,
+            "servo": 1.1271830261874445,
+            "wind": 0.9035845611981882,
+            "deck": 0.969389495536503,
+            "noise": 0.004
+          },
+          "touchdown": null,
+          "time": 65.04999999999845,
+          "censored": false
+        },
+        {
+          "seed": 818111,
+          "scenario": 0,
+          "activationGain": 1,
+          "score": 82.04367712536741,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.02191259133507641,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0,
+            "mass": 1,
+            "thrust": 1,
+            "servo": 1,
+            "wind": 1,
+            "deck": 1,
+            "noise": 0
+          },
+          "touchdown": {
+            "error": 2.17551845149534,
+            "speed": 1.4196909880051711,
+            "lateral": 1.1058871280112146,
+            "tilt": 0.025038207395308078
+          },
+          "time": 25.200000000000223,
+          "censored": false
+        },
+        {
+          "seed": 828502,
+          "scenario": 1,
+          "activationGain": 1,
+          "score": 75.2230304176107,
+          "landed": true,
+          "styleBonus": 0,
+          "styleRecovered": false,
+          "turnDegrees": 0.03170661629157944,
+          "reason": "Touchdown",
+          "variation": {
+            "level": 0.4,
+            "mass": 1.016943683944236,
+            "thrust": 0.998353698100994,
+            "servo": 1.220252687950841,
+            "wind": 0.8812999988291376,
+            "deck": 0.9430523978071319,
+            "noise": 0.004
+          },
+          "touchdown": {
+            "error": 3.1414707845315837,
+            "speed": 1.5134839039085792,
+            "lateral": 0.1932232325008937,
+            "tilt": 0.037285369284775036
+          },
+          "time": 33.850000000000215,
+          "censored": false
+        }
+      ]
     }
   },
   "selections": {
@@ -1496,6 +2232,625 @@
     }
   },
   "development": {
+    "groundThrottleJointSelectionPlan": {
+      "scope": "Frozen selection plan and decoded-weight verification; full-flight comparisons are still pending.",
+      "plan": {
+        "createdAt": "2026-09-14T05:02:10.503705+00:00",
+        "purpose": "Evaluate the learned all-ground throttle settings with the released gimbal controller on complete flights before considering promotion. The isolated training branch is a diagnostic reference, not a fallback release candidate.",
+        "cases": [
+          {
+            "scenario": 0,
+            "seed": 283700103,
+            "variability": 0
+          },
+          {
+            "scenario": 1,
+            "seed": 283804832,
+            "variability": 0
+          },
+          {
+            "scenario": 2,
+            "seed": 283909561,
+            "variability": 0
+          },
+          {
+            "scenario": 3,
+            "seed": 284014290,
+            "variability": 0
+          },
+          {
+            "scenario": 4,
+            "seed": 284119019,
+            "variability": 0
+          },
+          {
+            "scenario": 5,
+            "seed": 284223748,
+            "variability": 0
+          },
+          {
+            "scenario": 6,
+            "seed": 284328477,
+            "variability": 0
+          },
+          {
+            "scenario": 7,
+            "seed": 284433206,
+            "variability": 0
+          },
+          {
+            "scenario": 8,
+            "seed": 284537935,
+            "variability": 0
+          },
+          {
+            "scenario": 9,
+            "seed": 284642664,
+            "variability": 0
+          },
+          {
+            "scenario": 10,
+            "seed": 284747393,
+            "variability": 0
+          },
+          {
+            "scenario": 11,
+            "seed": 284852122,
+            "variability": 0
+          },
+          {
+            "scenario": 12,
+            "seed": 284956851,
+            "variability": 0
+          },
+          {
+            "scenario": 13,
+            "seed": 285061580,
+            "variability": 0
+          },
+          {
+            "scenario": 14,
+            "seed": 285166309,
+            "variability": 0
+          },
+          {
+            "scenario": 15,
+            "seed": 285271038,
+            "variability": 0
+          },
+          {
+            "scenario": 16,
+            "seed": 285375767,
+            "variability": 0
+          },
+          {
+            "scenario": 17,
+            "seed": 285480496,
+            "variability": 0
+          },
+          {
+            "scenario": 18,
+            "seed": 285585225,
+            "variability": 0
+          },
+          {
+            "scenario": 19,
+            "seed": 285689954,
+            "variability": 0
+          },
+          {
+            "scenario": 20,
+            "seed": 285794683,
+            "variability": 0
+          },
+          {
+            "scenario": 21,
+            "seed": 285899412,
+            "variability": 0
+          },
+          {
+            "scenario": 22,
+            "seed": 286004141,
+            "variability": 0
+          },
+          {
+            "scenario": 23,
+            "seed": 286108870,
+            "variability": 0
+          },
+          {
+            "scenario": 0,
+            "seed": 286213599,
+            "variability": 0.4
+          },
+          {
+            "scenario": 1,
+            "seed": 286318328,
+            "variability": 0.4
+          },
+          {
+            "scenario": 2,
+            "seed": 286423057,
+            "variability": 0.4
+          },
+          {
+            "scenario": 3,
+            "seed": 286527786,
+            "variability": 0.4
+          },
+          {
+            "scenario": 4,
+            "seed": 286632515,
+            "variability": 0.4
+          },
+          {
+            "scenario": 5,
+            "seed": 286737244,
+            "variability": 0.4
+          },
+          {
+            "scenario": 6,
+            "seed": 286841973,
+            "variability": 0.4
+          },
+          {
+            "scenario": 7,
+            "seed": 286946702,
+            "variability": 0.4
+          },
+          {
+            "scenario": 8,
+            "seed": 287051431,
+            "variability": 0.4
+          },
+          {
+            "scenario": 9,
+            "seed": 287156160,
+            "variability": 0.4
+          },
+          {
+            "scenario": 10,
+            "seed": 287260889,
+            "variability": 0.4
+          },
+          {
+            "scenario": 11,
+            "seed": 287365618,
+            "variability": 0.4
+          },
+          {
+            "scenario": 12,
+            "seed": 287470347,
+            "variability": 0.4
+          },
+          {
+            "scenario": 13,
+            "seed": 287575076,
+            "variability": 0.4
+          },
+          {
+            "scenario": 14,
+            "seed": 287679805,
+            "variability": 0.4
+          },
+          {
+            "scenario": 15,
+            "seed": 287784534,
+            "variability": 0.4
+          },
+          {
+            "scenario": 16,
+            "seed": 287889263,
+            "variability": 0.4
+          },
+          {
+            "scenario": 17,
+            "seed": 287993992,
+            "variability": 0.4
+          },
+          {
+            "scenario": 18,
+            "seed": 288098721,
+            "variability": 0.4
+          },
+          {
+            "scenario": 19,
+            "seed": 288203450,
+            "variability": 0.4
+          },
+          {
+            "scenario": 20,
+            "seed": 288308179,
+            "variability": 0.4
+          },
+          {
+            "scenario": 21,
+            "seed": 288412908,
+            "variability": 0.4
+          },
+          {
+            "scenario": 22,
+            "seed": 288517637,
+            "variability": 0.4
+          },
+          {
+            "scenario": 23,
+            "seed": 288622366,
+            "variability": 0.4
+          },
+          {
+            "scenario": 0,
+            "seed": 288727095,
+            "variability": 0
+          },
+          {
+            "scenario": 1,
+            "seed": 288831824,
+            "variability": 0
+          },
+          {
+            "scenario": 2,
+            "seed": 288936553,
+            "variability": 0
+          },
+          {
+            "scenario": 3,
+            "seed": 289041282,
+            "variability": 0
+          },
+          {
+            "scenario": 4,
+            "seed": 289146011,
+            "variability": 0
+          },
+          {
+            "scenario": 5,
+            "seed": 289250740,
+            "variability": 0
+          },
+          {
+            "scenario": 6,
+            "seed": 289355469,
+            "variability": 0
+          },
+          {
+            "scenario": 7,
+            "seed": 289460198,
+            "variability": 0
+          },
+          {
+            "scenario": 8,
+            "seed": 289564927,
+            "variability": 0
+          },
+          {
+            "scenario": 9,
+            "seed": 289669656,
+            "variability": 0
+          },
+          {
+            "scenario": 10,
+            "seed": 289774385,
+            "variability": 0
+          },
+          {
+            "scenario": 11,
+            "seed": 289879114,
+            "variability": 0
+          },
+          {
+            "scenario": 12,
+            "seed": 289983843,
+            "variability": 0
+          },
+          {
+            "scenario": 13,
+            "seed": 290088572,
+            "variability": 0
+          },
+          {
+            "scenario": 14,
+            "seed": 290193301,
+            "variability": 0
+          },
+          {
+            "scenario": 15,
+            "seed": 290298030,
+            "variability": 0
+          },
+          {
+            "scenario": 16,
+            "seed": 290402759,
+            "variability": 0
+          },
+          {
+            "scenario": 17,
+            "seed": 290507488,
+            "variability": 0
+          },
+          {
+            "scenario": 18,
+            "seed": 290612217,
+            "variability": 0
+          },
+          {
+            "scenario": 19,
+            "seed": 290716946,
+            "variability": 0
+          },
+          {
+            "scenario": 20,
+            "seed": 290821675,
+            "variability": 0
+          },
+          {
+            "scenario": 21,
+            "seed": 290926404,
+            "variability": 0
+          },
+          {
+            "scenario": 22,
+            "seed": 291031133,
+            "variability": 0
+          },
+          {
+            "scenario": 23,
+            "seed": 291135862,
+            "variability": 0
+          },
+          {
+            "scenario": 0,
+            "seed": 291240591,
+            "variability": 0.4
+          },
+          {
+            "scenario": 1,
+            "seed": 291345320,
+            "variability": 0.4
+          },
+          {
+            "scenario": 2,
+            "seed": 291450049,
+            "variability": 0.4
+          },
+          {
+            "scenario": 3,
+            "seed": 291554778,
+            "variability": 0.4
+          },
+          {
+            "scenario": 4,
+            "seed": 291659507,
+            "variability": 0.4
+          },
+          {
+            "scenario": 5,
+            "seed": 291764236,
+            "variability": 0.4
+          },
+          {
+            "scenario": 6,
+            "seed": 291868965,
+            "variability": 0.4
+          },
+          {
+            "scenario": 7,
+            "seed": 291973694,
+            "variability": 0.4
+          },
+          {
+            "scenario": 8,
+            "seed": 292078423,
+            "variability": 0.4
+          },
+          {
+            "scenario": 9,
+            "seed": 292183152,
+            "variability": 0.4
+          },
+          {
+            "scenario": 10,
+            "seed": 292287881,
+            "variability": 0.4
+          },
+          {
+            "scenario": 11,
+            "seed": 292392610,
+            "variability": 0.4
+          },
+          {
+            "scenario": 12,
+            "seed": 292497339,
+            "variability": 0.4
+          },
+          {
+            "scenario": 13,
+            "seed": 292602068,
+            "variability": 0.4
+          },
+          {
+            "scenario": 14,
+            "seed": 292706797,
+            "variability": 0.4
+          },
+          {
+            "scenario": 15,
+            "seed": 292811526,
+            "variability": 0.4
+          },
+          {
+            "scenario": 16,
+            "seed": 292916255,
+            "variability": 0.4
+          },
+          {
+            "scenario": 17,
+            "seed": 293020984,
+            "variability": 0.4
+          },
+          {
+            "scenario": 18,
+            "seed": 293125713,
+            "variability": 0.4
+          },
+          {
+            "scenario": 19,
+            "seed": 293230442,
+            "variability": 0.4
+          },
+          {
+            "scenario": 20,
+            "seed": 293335171,
+            "variability": 0.4
+          },
+          {
+            "scenario": 21,
+            "seed": 293439900,
+            "variability": 0.4
+          },
+          {
+            "scenario": 22,
+            "seed": 293544629,
+            "variability": 0.4
+          },
+          {
+            "scenario": 23,
+            "seed": 293649358,
+            "variability": 0.4
+          }
+        ],
+        "expectedFlights": 384,
+        "primaryCandidate": "joint",
+        "models": {
+          "joint": {
+            "folder": "artifacts/suite-training/ground-g4-joint-selection",
+            "frozenFile": "artifacts/suite-training/ground-g4-joint-selection/frozen-parameters.json",
+            "frozenSHA256": "6b9ee288b297eb36e9a10170152c46d64a1c2ba9b63d59a44a65caedd7e89569",
+            "modes": [
+              "normal",
+              "covered"
+            ],
+            "expectedFlights": 192,
+            "workers": 2
+          },
+          "trained": {
+            "folder": "artifacts/suite-training/ground-g4-trained-selection",
+            "frozenFile": "artifacts/suite-training/ground-g4-trained-selection/frozen-parameters.json",
+            "frozenSHA256": "e015d184a1740f7ce853836b2a549a79ad06ce87cae999b4a7b5d11ff5f9d5e0",
+            "modes": [
+              "normal"
+            ],
+            "expectedFlights": 96,
+            "workers": 1
+          },
+          "release": {
+            "folder": "artifacts/suite-training/ground-g4-release-selection",
+            "frozenFile": "artifacts/suite-training/ground-g4-release-selection/frozen-parameters.json",
+            "frozenSHA256": "19102a97e8692e81e3c3b59dd7e99ff91ca3ce75e77173e4bfb70b823a1a8d5e",
+            "modes": [
+              "normal"
+            ],
+            "expectedFlights": 96,
+            "workers": 1
+          }
+        },
+        "basisFile": "artifacts/suite-training/sensory-basis-flights.json",
+        "basisSHA256": "cdc7c1069b693979294b9949fc6bfec55774e5e10c1c701c26755fc87048ce20",
+        "sourceSHA256": "e08a6f237fae0137255c9052d334c9e6cec6e0fd75904b2efd7583de9b37b5ec",
+        "testedSourceHashes": {
+          "dist/full-network.js": "51dd632ce3782b57855eed45f74ae25216f307d7e029985d5fb3b7200a740bd1",
+          "dist/full-controller.js": "f98e9305b26ce1441dfa5140a4ddbeb926d62fa8d9ebf80571b5a71f31b1e802",
+          "dist/engine3d.js": "4c65d704a53ec3879da92ff26a43c83d92bedca2abcce8b7f6d687afb6b66356",
+          "dist/orbital.js": "8ae019c2fe8af34df618ef3be8047ba20aaa2de00a811b6215536ffde90c9c60",
+          "dist/missions.js": "c8b715a1075f2104c08c0d49ecdd08a78b6f72bb889e15e6488a1984086d949e",
+          "dist/perception.js": "afbd2db14b787b77520358d2a176411d8808865bc6beb0f6d32c4dde6b425bcd",
+          "dist/flight-instruments.js": "ca959266ead35c8184fc053d1cf779e00eb87eecd5a17609c54b23e4b3f1c40a",
+          "dist/sensory-inputs.js": "a9fd0c1d633e30432fb90663dc62e1e76e43701a4e61f9c081d91468fb639d11",
+          "scripts/full-network-node.mjs": "b95fa59149861a8839648ff59f3a95dacd7c5a3d928d56eeb1ab338630a638c2",
+          "scripts/train-suite.mjs": "e08a6f237fae0137255c9052d334c9e6cec6e0fd75904b2efd7583de9b37b5ec",
+          "scripts/native-rate.mjs": "10f7fc263ddd6c1599101b80470cae86b4abf0bb9575a8e7640ac5801e6a8f2b",
+          "scripts/insertion-hold.mjs": "066691735303b6ad9e1b9b883999ed6149a57aa27c73a1753db457baab27a66e"
+        },
+        "nativeBuild": {
+          "node": "v24.3.0",
+          "platform": "darwin",
+          "architecture": "arm64",
+          "flags": [
+            "-std=c++17",
+            "-O3",
+            "-ffp-contract=off",
+            "-fno-fast-math",
+            "-I/opt/homebrew/Cellar/node/24.3.0/include/node",
+            "-bundle",
+            "-undefined",
+            "dynamic_lookup",
+            "scripts/rate-native.cpp",
+            "-o",
+            "artifacts/native-rate/rate-native.node"
+          ],
+          "sourceSHA256": "07b2f734e57e53c8776ecaaf2e19e3ff82139b172bf8f0614607fa994ce68e4b",
+          "binarySHA256": "2770502d82a0bef1ada6da48774909953d980db9dea90b58e4702af3093dfbd9"
+        },
+        "trainingPlanFile": "artifacts/suite-training/vertical-all-ground/plan.json",
+        "trainingPlanSHA256": "8756518e6fa51f073f8c4d59e5df0d923d489c8881d78c401b521ee5144fa718",
+        "trainingStateFile": "artifacts/suite-training/vertical-all-ground/state.json",
+        "trainingStateSHA256": "563dac59c7a58a0fd2d4b6474551b772843069e5d24594b1ac7a48cd445f9e29",
+        "trainingTrialsFile": "artifacts/suite-training/vertical-all-ground/trials.jsonl",
+        "trainingTrialsSHA256": "45bc9452948e9631cc6b676e222de67e50f9eb74a68677f1c01768e67c43678d",
+        "trainingAuditFile": "artifacts/suite-training/ground-g4-joint-selection/training-audit.json",
+        "trainingAuditSHA256": "e01360cf2b13ac45d6a34a51981ab8688dc7520d47a30a4c0d3cc9a0774f0304",
+        "touchdownMargin": 3,
+        "insertionHold": false,
+        "originalFour": [
+          0,
+          1,
+          9,
+          17
+        ],
+        "releasedTen": [
+          0,
+          1,
+          6,
+          7,
+          9,
+          17,
+          20,
+          21,
+          22,
+          23
+        ],
+        "selectionRule": "Only the joint candidate is eligible for later final testing. Require strictly more normal landings than the released controller across all 96 matched cases, no lower normal landing count on the original four or the released ten mission subsets, and more normal than covered landings. Keep every failure. No coefficient adjustment or model switch based on this selection set. A passing selection requires a separately frozen, unseen final comparison with the release and sensory controls before deployment.",
+        "fixedProtocol": "Full original flights to actual landing/failure/deadline, exact native full-graph decisions, gain 1, automatic odor off, style reward off, full original physical criteria, two nominal and two varied cases per mission. No state oracle, teacher, warm-up or truncated endpoint."
+      },
+      "weightVerification": {
+        "recordedAt": "2026-09-14T05:03:34.870693+00:00",
+        "planSHA256": "d08e3693c8c5298b6c267a7765cb101c991faf5dac14597431237ef4d3d3acb5",
+        "weights": {
+          "joint": {
+            "file": "artifacts/suite-training/ground-g4-joint-selection/selection-weights.json",
+            "fileSHA256": "691a3f7aea0eb200b794f8ece798d6d1991267bca8a2e3cf1efd67a2a87d56f4",
+            "weightSHA256": "130dcbee67bd7870fbeb51f6ecd69cb5d240d6352931ae2bc72061f5ce7b3452"
+          },
+          "trained": {
+            "file": "artifacts/suite-training/ground-g4-trained-selection/selection-weights.json",
+            "fileSHA256": "973dc011562c1e8a67f3adc8b0288d54bf8434adda9b8be9f16a8b35c5bb6456",
+            "weightSHA256": "62de7fe4a30d485115946adc056a88436cb9f44fea48f0e01c34fc60d16ee1fc"
+          },
+          "release": {
+            "file": "artifacts/suite-training/ground-g4-release-selection/selection-weights.json",
+            "fileSHA256": "175d37cd77e5f68a3ece3818578aca70a2cbc2743017ad72770f8e006ac957d4",
+            "weightSHA256": "9953d20ee4e6b8ab7838b035ff0159c2da785ab7137566f19e91815247c0e855"
+          }
+        },
+        "checks": {
+          "all21300WeightsFinite": true,
+          "releasedWeightsExactlyReproduced": true,
+          "trainedWeightsExactlyReproduced": true,
+          "jointOnlyThrottleHeadChangedFromRelease": true,
+          "jointBothGimbalHeadsNonzero": true
+        }
+      }
+    },
     "gimbalGenerationTwoSelection": {
       "scope": "Compare the frozen generation-two gimbal controller with the released controller on matched fresh starts, plus covered eyes and a gimbal-only ablation. This is model selection, not final validation.",
       "totalCompleteFlights": 160,
@@ -8769,10 +10124,39 @@
     "artifacts/suite-training/orbital-progress/trials.jsonl": "c310328d0dbcdb023aff434b57b639907c564c8628845ce042ef63883f238d19",
     "artifacts/suite-training/orbital-calibrated/state.json": "232f9998e841b8b1339f1f3b1602ea5957d05c2eee9494c17c8ab5ec34eae9a1",
     "artifacts/suite-training/orbital-calibrated/trials.jsonl": "0c1fa2e338c11bca692542eaa49e7c7875d7209ac29760b9c9eb555c0a0eca36",
+    "artifacts/suite-training/vertical-all-ground/state.json": "563dac59c7a58a0fd2d4b6474551b772843069e5d24594b1ac7a48cd445f9e29",
+    "artifacts/suite-training/vertical-all-ground/trials.jsonl": "45bc9452948e9631cc6b676e222de67e50f9eb74a68677f1c01768e67c43678d",
+    "artifacts/suite-training/vertical-all-ground/frozen-initial.json": "ced40509270755e2f1ee08a37c7ddef10b13aa2e62af08060c1fa3cd42007897",
+    "artifacts/suite-training/sensory-basis-flights.json": "cdc7c1069b693979294b9949fc6bfec55774e5e10c1c701c26755fc87048ce20",
+    "artifacts/suite-training/vertical-all-ground/source-a86ad42051fc54d5dc6ea5f317ebb36e0dac7be67dc92525fb6ce2d95df9b6f5.mjs": "a86ad42051fc54d5dc6ea5f317ebb36e0dac7be67dc92525fb6ce2d95df9b6f5",
+    "artifacts/suite-training/high-return-probe/probe.json": "f8e520d08c836370ffacc0274418722cad41869c7f565f5c98ef18a091e8c765",
+    "artifacts/suite-training/vertical-all-ground/plan.json": "8756518e6fa51f073f8c4d59e5df0d923d489c8881d78c401b521ee5144fa718",
+    "artifacts/suite-training/vertical-all-ground/candidate.json": "e015d184a1740f7ce853836b2a549a79ad06ce87cae999b4a7b5d11ff5f9d5e0",
     "artifacts/suite-training/vertical-selection/selection.json": "a5d3762bc77bde08dbb6242930b25fc67d5d006a79bde5a316a1b6327f52beaf",
     "artifacts/suite-training/vertical-robust/selection.json": "f344913eedb0d5eb0061aaea3093775764451347337ae151e203d2dc9e1266c9",
     "artifacts/suite-training/attitude-g2-selection/selection.json": "932384015c78f82e70967bb6f0b3236e7710b818029bb44e2976566780929e15",
     "artifacts/suite-training/attitude-adaptive-g6-selection/selection.json": "7457a316f8458b4f7999ce3ea449f38029b99d4ce6598227a7ef34d9edbb25bf",
+    "artifacts/suite-training/ground-g4-joint-selection/training-audit.json": "e01360cf2b13ac45d6a34a51981ab8688dc7520d47a30a4c0d3cc9a0774f0304",
+    "artifacts/suite-training/ground-g4-joint-selection/tested-runtime/dist/full-network.js": "51dd632ce3782b57855eed45f74ae25216f307d7e029985d5fb3b7200a740bd1",
+    "artifacts/suite-training/ground-g4-joint-selection/tested-runtime/dist/full-controller.js": "f98e9305b26ce1441dfa5140a4ddbeb926d62fa8d9ebf80571b5a71f31b1e802",
+    "artifacts/suite-training/ground-g4-joint-selection/tested-runtime/dist/engine3d.js": "4c65d704a53ec3879da92ff26a43c83d92bedca2abcce8b7f6d687afb6b66356",
+    "artifacts/suite-training/ground-g4-joint-selection/tested-runtime/dist/orbital.js": "8ae019c2fe8af34df618ef3be8047ba20aaa2de00a811b6215536ffde90c9c60",
+    "artifacts/suite-training/ground-g4-joint-selection/tested-runtime/dist/missions.js": "c8b715a1075f2104c08c0d49ecdd08a78b6f72bb889e15e6488a1984086d949e",
+    "artifacts/suite-training/ground-g4-joint-selection/tested-runtime/dist/perception.js": "afbd2db14b787b77520358d2a176411d8808865bc6beb0f6d32c4dde6b425bcd",
+    "artifacts/suite-training/ground-g4-joint-selection/tested-runtime/dist/flight-instruments.js": "ca959266ead35c8184fc053d1cf779e00eb87eecd5a17609c54b23e4b3f1c40a",
+    "artifacts/suite-training/ground-g4-joint-selection/tested-runtime/dist/sensory-inputs.js": "a9fd0c1d633e30432fb90663dc62e1e76e43701a4e61f9c081d91468fb639d11",
+    "artifacts/suite-training/ground-g4-joint-selection/tested-runtime/scripts/full-network-node.mjs": "b95fa59149861a8839648ff59f3a95dacd7c5a3d928d56eeb1ab338630a638c2",
+    "artifacts/suite-training/ground-g4-joint-selection/tested-runtime/scripts/train-suite.mjs": "e08a6f237fae0137255c9052d334c9e6cec6e0fd75904b2efd7583de9b37b5ec",
+    "artifacts/suite-training/ground-g4-joint-selection/tested-runtime/scripts/native-rate.mjs": "10f7fc263ddd6c1599101b80470cae86b4abf0bb9575a8e7640ac5801e6a8f2b",
+    "artifacts/suite-training/ground-g4-joint-selection/tested-runtime/scripts/insertion-hold.mjs": "066691735303b6ad9e1b9b883999ed6149a57aa27c73a1753db457baab27a66e",
+    "artifacts/suite-training/ground-g4-joint-selection/frozen-parameters.json": "6b9ee288b297eb36e9a10170152c46d64a1c2ba9b63d59a44a65caedd7e89569",
+    "artifacts/suite-training/ground-g4-joint-selection/selection-weights.json": "691a3f7aea0eb200b794f8ece798d6d1991267bca8a2e3cf1efd67a2a87d56f4",
+    "artifacts/suite-training/ground-g4-trained-selection/frozen-parameters.json": "e015d184a1740f7ce853836b2a549a79ad06ce87cae999b4a7b5d11ff5f9d5e0",
+    "artifacts/suite-training/ground-g4-trained-selection/selection-weights.json": "973dc011562c1e8a67f3adc8b0288d54bf8434adda9b8be9f16a8b35c5bb6456",
+    "artifacts/suite-training/ground-g4-release-selection/frozen-parameters.json": "19102a97e8692e81e3c3b59dd7e99ff91ca3ce75e77173e4bfb70b823a1a8d5e",
+    "artifacts/suite-training/ground-g4-release-selection/selection-weights.json": "175d37cd77e5f68a3ece3818578aca70a2cbc2743017ad72770f8e006ac957d4",
+    "artifacts/suite-training/ground-g4-joint-selection/plan.json": "d08e3693c8c5298b6c267a7765cb101c991faf5dac14597431237ef4d3d3acb5",
+    "artifacts/suite-training/ground-g4-joint-selection/weight-verification.json": "0351edf2aeca99a6b73dddbe2881fabc2407cd0bad9f32a3f2c6aa8a7a17f0b5",
     "artifacts/suite-training/gimbal-g2-selection/selection.json": "75c31aba087d7393061b515957568025845c00bcd9e32470498ae2eff02d624e",
     "artifacts/suite-training/gimbal-g2-selection/selection-weights.json": "907a5ac05c45cd80414692d21d92b706ec6d538131dd3b355933b94f7bf009b6",
     "artifacts/suite-training/gimbal-g2-selection/source-a86ad42051fc54d5dc6ea5f317ebb36e0dac7be67dc92525fb6ce2d95df9b6f5.mjs": "a86ad42051fc54d5dc6ea5f317ebb36e0dac7be67dc92525fb6ce2d95df9b6f5",
@@ -8791,14 +10175,13 @@
     "artifacts/suite-training/orbital-calibration-comparison.json": "37c4b1afa582c0d11af1fd52e318f7fee2647aa1a2d73793666a40eeb857b789",
     "artifacts/suite-training/orbital-progress-trained-probe/probe.json": "041136573cf7d428063c474a2a58ca7c2085ecbc18a072b7741dd7243b694d35",
     "artifacts/suite-training/orbital-calibrated-probe/probe.json": "51f31cc11ec586706b8e5f90ad5cc2101006c489dd0a883079e98c6b78b9691a",
-    "scripts/report-suite-training.py": "2c7c042170db69941d963bcea59c024f3a2af0a1aa7ae5f410cddd9bb55815ef",
+    "scripts/report-suite-training.py": "5b85866c5aa59da8d70c71ff0460abccc530fb1669098e620be8a9e9e2ce2c61",
     "artifacts/suite-training/gimbal-g5-selection/selection.json": "ad6b180f40e56b9c865871a0503e3335b1581177c49e6019b9043cb278c171f5",
     "artifacts/suite-training/gimbal-g5-selection/selection-weights.json": "175d37cd77e5f68a3ece3818578aca70a2cbc2743017ad72770f8e006ac957d4",
     "artifacts/suite-training/gimbal-g5-ablation/selection.json": "b3525e31dcf4b6575e4b2cf7b4a3038288a75748765b3a184694ae935abfe710",
     "artifacts/suite-training/gimbal-g5-ablation/selection-weights.json": "0d65eddde7de8e68ea7765392df39b402620646e1c195b28dab5c15d4390c9e4",
     "artifacts/suite-training/gimbal-g5-selection/selection-audit.json": "3aa94e7756e4148fca41f780b70d94b39316e5d54f504594ba6b609b5ecaf47f",
     "artifacts/suite-training/high-return-probe/summary.json": "d8efade1b37e5780bc76348379430a74ec32f51becc14478d79a17abd2692c34",
-    "artifacts/suite-training/high-return-probe/probe.json": "f8e520d08c836370ffacc0274418722cad41869c7f565f5c98ef18a091e8c765",
     "artifacts/suite-training/gimbal-g5-probe/probe.json": "de655c642f9721cf254760239d1426fa69e63f7ef57c7893d52da2bc39bc7cfb",
     "artifacts/suite-training/gimbal-g5-probe/replay-source/6552c4c071ce7c92ed05e11bad2b3bc5fc33eaa7d62331e8a2b40a477e06fbc4-summarize-flight-probe.mjs": "6552c4c071ce7c92ed05e11bad2b3bc5fc33eaa7d62331e8a2b40a477e06fbc4",
     "artifacts/suite-training/gimbal-g5-probe/replay-source/51f6b0fd84063e89c0d80a90e2a2b4c686392a9fae81eb406388893e01382d02-engine3d.js": "51f6b0fd84063e89c0d80a90e2a2b4c686392a9fae81eb406388893e01382d02",
