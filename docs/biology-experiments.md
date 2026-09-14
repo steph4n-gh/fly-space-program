@@ -7,6 +7,12 @@ software can currently test interactions between its existing odor inputs
 and a frozen learned controller. It cannot yet predict a living fly's drug
 response, learning or flight performance.
 
+A [new comparison of measured CDM/control recordings](cdm-response-comparison.md)
+now supplies a chemical-response target: all four named L1/L2 dark-flash
+conditions show a larger late rebound, while bright responses vary. These
+brain-bath recordings support model development; they do not establish an
+airborne-odor command or a useful intervention in the simulated controller.
+
 The earlier chemical work is useful negative evidence: the
 [148-trial panel](additional-odor-tests.md) did not yield a confirmed steering
 candidate, and the [68-trial calibration follow-up](odor-calibration-followup.md)

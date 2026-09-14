@@ -134,6 +134,70 @@ metric matches, with identity residuals below `8.14e-20`. Reproduce it with
 `python3 scripts/summarize-visual-response-errors.py`; the calculator reads
 only frozen prediction vectors and uses the Python standard library.
 
+## Fixed frame-start timing diagnostic
+
+A subsequent development diagnostic holds the original parameters, stimulus
+and baseline conversion fixed and evaluates all three models under both
+initializations at nine prescribed offsets. The interval is 0–2.822 ms,
+one frame at the paper's **354.4-Hz natural-stimulus acquisition rate**.
+The 82.4-Hz flash acquisition rate does not apply. The natural extractor
+labels the first strictly post-onset frame as time zero, motivating prediction
+at `t + offset`.
+[Extraction source](https://github.com/ClandininLab/L1L2-recurrent-feedback/blob/7fa5829e37d566e02beaaa87efd6a0f1de4e48c0/imaging-analysis/compute_simple_meanResp_err_moveAvg_NatStim_pool.m).
+
+Every one-filter and two-filter prediction still has greater MSE than zero
+at every prescribed offset under both initializations. The two-filter
+periodic skill spans −0.0711 to −0.0524; startup spans −0.0713 to −0.0457.
+All 54 predictions are retained. No offset is selected or installed.
+
+An additional continuous pointwise envelope evaluates interval endpoints,
+display boundaries and analytical extrema, with `1e-13` numerical padding.
+Squared distance from each measured value to its prediction interval gives
+an optimistic MSE lower bound, even allowing a different phase or convex
+phase mixture at every observation. The corresponding skill upper bounds
+are:
+
+| Frozen model | Periodic state | Startup |
+| --- | ---: | ---: |
+| One filter | −0.2641 | −0.2362 |
+| Two filters | +0.0131 | +0.0166 |
+
+That full-interval bound rules out frame-start relabeling alone rescuing the
+one-filter model. It is inconclusive for the two-filter model: a positive
+optimistic bound does not establish a realizable common phase or mixture.
+The nine failed shifts alone also cannot exclude every intermediate shift.
+
+A separate refinement divides the same interval into 128 fixed, adjacent
+subintervals and applies the continuous bound to each. Every subinterval's
+MSE lower bound exceeds zero-response MSE for both nonzero models and both
+initializations. The smallest bound across all 128 intervals is:
+
+| Frozen model | Periodic MSE lower bound | Startup MSE lower bound |
+| --- | ---: | ---: |
+| One filter | 0.000205404 | 0.000200864 |
+| Two filters | 0.000166350 | 0.000165295 |
+| Zero-response MSE | 0.000158144 | 0.000158144 |
+
+This rules out **one shared frame-start phase anywhere in the allowed
+interval** rescuing either model under the fixed point-observation rule.
+The two-filter bounds exceed zero MSE by at least 5.19% for periodic state
+and 4.52% for startup. The refinement retains all 768 interval records and
+selects no delay. It does not rule out mixtures spanning several intervals,
+ROI scanning within a frame, integration, or the corrected export's
+unverified lineage. These are numerical bounds with fixed padding and
+independent agreement, not formal interval arithmetic.
+
+The [full timing record](visual-frame-timing-results.json) preserves all
+predictions, envelopes, metrics, source hashes and scope restrictions.
+`scripts/check-visual-frame-timing.py` imports the verified archived model
+without refitting. This diagnostic does not revise the original failed gate.
+The [separate shared-phase record](visual-shared-phase-bound.json) contains
+every interval's metric and the hash of all retained bound vectors;
+`scripts/bound-visual-shared-phase.py` reproduces it. An independent branch
+propagation and root-bracketing calculation verified all predictions and
+envelopes. The two implementations' refined bound vectors differ by less
+than `9.37e-16` fractional fluorescence.
+
 ## Consequence for chemical experiments
 
 This supplies an empirical target and exposes a failed generalization before
@@ -145,11 +209,17 @@ These already inspected natural responses can inform development but cannot
 serve as an unseen final test for a revised model. Behavioral or chemical
 claims still require the corresponding controlled experiment.
 
+A new [measured CDM/control comparison](cdm-response-comparison.md) retains
+all eight chemical-treatment pairs from the author archive. It finds larger
+late dark-flash window means in all four named conditions, with varied bright
+responses. These data constrain the next development hypothesis; they do not
+yet validate chemical-dependent dynamics or steering in the connectome.
+
 ## Independent data availability
 
-A bounded source review found two promising archives, but neither currently
-supplies a complete, verified new visual input/response pair. No new response
-curves were inspected or fitted during this review.
+The first bounded source review found two promising archives, but neither
+supplied a complete, verified new visual input/response pair. No new response
+curves were inspected or fitted during that review.
 
 [Ketkar and Sporar et al. (2020)](https://www.sciencedirect.com/science/article/pii/S0960982219316719)
 measured L2/L3 ASAP2f responses to longer luminance changes. Its
@@ -172,6 +242,47 @@ information therefore remain concrete prerequisites, not a completed test.
 
 The source review, file hashes, schemas and follow-up are retained under
 `artifacts/odor-interface/visual-response-benchmark/external-source-review`.
+
+A subsequent review acquired the T4 member of
+[Gruntman et al.'s Figure 2 archive](https://doi.org/10.25378/janelia.16663705.v1),
+licensed CC BY 4.0. It supplies a separate **spatial T4 pathway test candidate**,
+with source-defined relative-luminance dark pulses and measured soma voltage.
+It is downstream of early visual interneurons and is not direct L1/L2
+validation. The downloaded member's checksum and ZIP-member CRC were verified;
+the full ZIP was not downloaded or hashed.
+
+Metadata inspection enumerated all 1,296 dark-flash axis combinations:
+1,130 nonempty responses and 166 source-empty entries. Fifteen of sixteen
+cell ordinals contain recordings; one is empty. Actual dark durations are
+40 and 160 ms, with widths of 1, 2 and 4 LEDs and 2–10 accepted repetitions.
+The export supplies no animal identifiers or stable cell IDs beyond ordinals.
+These are metadata counts, not analyzed response outcomes.
+
+A worked fixture uses the first cell, original position zero, width one LED
+and a 40-ms dark flash, selected solely from stimulus labels. At the bar,
+relative luminance is `1 → 0 → 1`, with the surrounding display unchanged.
+The authors' code specifies a measured nominal 7-ms arena delay, so the
+fixture places light onset at stored time 7 ms and offset at 47 ms. Stored
+times have 0.05-ms spacing. The source baseline convention uses the first
+sample strictly after −250 ms through the first strictly after −50 ms.
+This defines a protocol-based input; per-trial optical timing, exact absolute
+radiometry and the embedded export-producing code revision remain unavailable.
+
+The voltage response values remain **uninspected**. The single fixture is
+not the full test. Population coverage, source exclusions, spatial mapping
+and an mV observation model still need to be fixed before response evaluation.
+The [complete readiness record](visual-external-data-readiness.json) retains
+the full metadata inventory, fixture, source checksums and license distinctions.
+All source files are preserved under
+`artifacts/odor-interface/visual-response-benchmark/new-external-source`.
+
+The second follow-up candidate,
+[Gou et al.'s DANDI archive](https://doi.org/10.48324/dandi.001205/0.250602.0251),
+did not yet supply a paired test. A bounded metadata review of 24 acquisition
+files identified two Mi1 ArcLight files, but both lacked stimulus, ROI and
+processed-response groups. No image pixels were inspected and no large DANDI
+file was downloaded. This conclusion concerns the inspected files, not proof
+that the information is absent from every source associated with that study.
 
 ## Verification and reproduction
 
