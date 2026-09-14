@@ -80,6 +80,53 @@ for name in ['vertical-selection', 'vertical-robust', 'ground-general', 'attitud
                                           for mode in d['modes']}}
 
 development = {}
+gimbal_paths = {name: folder/directory/'selection.json' for name, directory in [
+    ('candidate', 'gimbal-g2-selection'), ('released', 'gimbal-release-selection'), ('gimbalsZero', 'gimbal-g2-ablation')]}
+if all(p.exists() for p in gimbal_paths.values()):
+    gimbal_reports = {name: json.loads(p.read_text()) for name, p in gimbal_paths.items()}
+    if all(d['complete'] for d in gimbal_reports.values()):
+        plan_path = folder/'gimbal-g2-selection/plan.json'
+        frozen_path = folder/'gimbal-g2-selection/frozen-parameters.json'
+        plan, frozen = [json.loads(p.read_text()) for p in [plan_path, frozen_path]]
+        assert hashlib.sha256(frozen_path.read_bytes()).hexdigest() == plan['frozenSHA256']
+        assert gimbal_reports['candidate']['parameters'] == frozen['parameters']
+        assert gimbal_reports['gimbalsZero']['parameters'] == frozen['parameters'][:23] + [0]*5
+        assert len(frozen['parameters']) == 28 and any(frozen['parameters'][23:])
+        total = 0
+        for name, d in gimbal_reports.items():
+            assert d['cases'] == plan['cases'] and d['calibrationHash'] == plan['basisSHA256']
+            assert d['sourceSHA256'] == plan['sourceSHA256'] and d['backend'] == 'native-exact-rate'
+            modes = ['normal', 'covered'] if name == 'candidate' else ['normal']
+            assert d['modes'] == modes
+            expected = {(mode, c['scenario'], c['seed'], c['variability']) for mode in modes for c in plan['cases']}
+            actual = {(f['mode'], f['scenario'], f['seed'], f['variation']['level']) for f in d['flights']}
+            assert actual == expected and len(d['flights']) == len(expected)
+            assert all(not f['censored'] and f['activationGain'] == 1 and f['styleBonus'] == 0 for f in d['flights'])
+            weights_path = gimbal_paths[name].with_name('selection-weights.json')
+            weights = np.array(json.loads(weights_path.read_text()), dtype='<f8')
+            assert weights.shape == (21300,) and np.isfinite(weights).all()
+            assert hashlib.sha256(weights.tobytes()).hexdigest() == d['weightSHA256']
+            source_path = gimbal_paths[name].parent/('source-' + d['sourceSHA256'] + '.mjs')
+            assert hashlib.sha256(source_path.read_bytes()).hexdigest() == d['sourceSHA256']
+            sources.extend([gimbal_paths[name], weights_path, source_path])
+            total += len(d['flights'])
+        assert total == plan['expectedFlights'] == 160
+        released_path = folder/'gimbal-steering/frozen-initial.json'
+        released = json.loads(released_path.read_text())
+        assert gimbal_reports['released']['parameters'] == released['parameters'] + [0]*5
+        assert hashlib.sha256(np.array(released['weights'], dtype='<f8').tobytes()).hexdigest() == gimbal_reports['released']['weightSHA256']
+        sources.extend([plan_path, frozen_path, released_path])
+        original_four = [0, 1, 9, 17]
+        normal = {name: [f for f in d['flights'] if f['mode'] == 'normal'] for name, d in gimbal_reports.items()}
+        totals = {name: sum(f['landed'] for f in flights) for name, flights in normal.items()}
+        original_totals = {name: sum(f['landed'] for f in flights if f['scenario'] in original_four) for name, flights in normal.items()}
+        eligible = totals['candidate'] >= totals['released'] and original_totals['candidate'] >= original_totals['released']
+        development['gimbalGenerationTwoSelection'] = {
+            'scope': plan['purpose'], 'totalCompleteFlights': total,
+            'normalLandingsOutOf40': totals, 'originalFourLandingsOutOf16': original_totals,
+            'coveredCandidateLandingsOutOf40': sum(f['landed'] for f in gimbal_reports['candidate']['flights'] if f['mode'] == 'covered'),
+            'promotionRule': plan['promotionRule'], 'passesLandingPromotionCriterion': eligible,
+            'flights': {name: d['flights'] for name, d in gimbal_reports.items()}}
 scout_path = folder/'adaptive-ground-scout/scout.json'
 if scout_path.exists():
     plan_path = scout_path.parent/'plan.json'
@@ -128,6 +175,7 @@ if comparison_path.exists():
         'names': comparison['names'], 'collections': comparison['collections'],
         'newProbeFlights': probe_summaries,
         'matchedOldProbeFlight': {k: v for k, v in old['results'][0]['flights'][0].items() if k != 'trajectory'}}
+sources.append(Path(__file__))
 report = {'scope':'Training and model-selection snapshot and one matched calibration probe; not final mission validation',
           'calibrationProbe': [{'seed':f['seed'],'landed':f['landed'],'reason':f['reason'],'touchdown':f['touchdown'],'time':f['time']} for f in flights],
           'training':states, 'selections':selections, 'development':development,

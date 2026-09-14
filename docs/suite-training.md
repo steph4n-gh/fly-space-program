@@ -330,6 +330,30 @@ introduced. The planned eight generations contain 960 full training
 flights across the same ten missions. A candidate needs separate selection
 and final tests before replacing the release.
 
+Generation two was frozen after landing 9/10 training starts, then compared
+on a predeclared set of 40 additional starts, with two nominal and two
+varied starts per mission. All **160 selection flights** completed:
+
+| Selection condition | Landings / starts | Original four missions |
+| --- | ---: | ---: |
+| Released controller | 29/40 | 16/16 |
+| Generation-two gimbal candidate | 30/40 | 15/16 |
+| Same candidate with only its five gimbal coefficients zeroed | 29/40 | 16/16 |
+| Gimbal candidate with covered eyes | 0/40 | 0/16 |
+
+Compared with its gimbal-disabled counterpart, the candidate rescued two
+starts and lost one windy start by missing the ship. The frozen promotion
+rule required preserving both total landings and the original four-mission
+landings relative to the release. **This candidate failed that criterion
+and was not installed.** The small total gain does not establish reliable
+improvement. These are development comparisons, not final validation.
+
+Two separate complete-flight probes confirmed movement in both gimbal
+commands and actual actuator-position feedback. The corrections stayed
+within about one degree, and both probes landed. They establish that the
+learned path operates; they do not override the failed selection criterion.
+The planned training run continues from its existing state.
+
 ## Orbital ascent experiments
 
 The earlier four-mission controller completed three nominal orbital baseline trials,
