@@ -182,9 +182,10 @@ This rules out **one shared frame-start phase anywhere in the allowed
 interval** rescuing either model under the fixed point-observation rule.
 The two-filter bounds exceed zero MSE by at least 5.19% for periodic state
 and 4.52% for startup. The refinement retains all 768 interval records and
-selects no delay. It does not rule out mixtures spanning several intervals,
-ROI scanning within a frame, integration, or the corrected export's
-unverified lineage. These are numerical bounds with fixed padding and
+selects no delay. The partition argument alone does not rule out mixtures
+spanning several intervals, ROI scanning within a frame, integration, or
+the corrected export's unverified lineage. These are numerical bounds with
+fixed padding and
 independent agreement, not formal interval arithmetic.
 
 The [full timing record](visual-frame-timing-results.json) preserves all
@@ -197,6 +198,30 @@ every interval's metric and the hash of all retained bound vectors;
 propagation and root-bracketing calculation verified all predictions and
 envelopes. The two implementations' refined bound vectors differ by less
 than `9.37e-16` fractional fluorescence.
+
+One final arithmetic bound also covers **any common distribution of phases**
+across the full allowed interval, separately for each initialization. Averaging
+phase predictions reduces their average MSE by the average per-observation
+phase variance. A value confined to an interval of width `w` has variance
+at most `w²/4`. Subtracting that variance upper bound from the already
+established shared-phase MSE lower bound therefore gives a lower bound on
+every common phase mixture, without choosing mixture weights.
+
+For the two-filter model, the mixture MSE lower bounds are 0.000165788 for
+periodic state and 0.000164681 for startup: at least **4.83% and 4.13% above
+zero-response MSE**. The one-filter model also fails this bound. Thus averaging
+over a distribution of frame-start phases cannot rescue these predictions
+when the same distribution applies to all observations. Independent mixtures
+at each observation, mixtures of initial states, clock drift, and other
+acquisition effects remain outside this conclusion.
+
+The [complete mixture calculation](visual-phase-mixture-bound.json) preserves
+all six records, all per-observation variance bounds, the derivation and input
+hashes. `scripts/summarize-visual-phase-mixtures.py` uses only frozen vectors
+and the Python standard library; it performs no new simulation or fit.
+An independent high-precision calculation verified the variance argument,
+all intervals and all six results; MSE and variance discrepancies were below
+`9.73e-19`.
 
 ## Consequence for chemical experiments
 
