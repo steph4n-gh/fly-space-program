@@ -81,8 +81,14 @@ def main():
     parser.add_argument('--seeds', type=int, default=2)
     parser.add_argument('--synaptic-weight', type=float, default=.275)
     parser.add_argument('--extra-pools', type=Path, help='Frozen named neuron-index pools to observe without changing the dynamics')
+    parser.add_argument('--save-spike-counts', action='store_true', help='Preserve every neuron count for later anatomical questions without rerunning trials')
     parser.add_argument('--output', default=str(OUT / 'lif-odor-probe.json'))
     args = parser.parse_args()
+    counts_folder = Path(args.output).parent / (Path(args.output).stem + '-counts')
+    if args.save_spike_counts:
+        if counts_folder.exists() and any(counts_folder.iterdir()):
+            parser.error('Spike-count output already exists; use a new experiment output path')
+        counts_folder.mkdir(parents=True, exist_ok=True)
     atlas_bytes = (OUT / 'odor-atlas.json').read_bytes()
     atlas = json.loads(atlas_bytes)
     annotation_file = ROOT / 'data/body-annotations-male-cns-v1.0-minconf-0.5.feather'
@@ -152,6 +158,12 @@ def main():
                                                      'meanHz': float(spikes[indices].mean()/args.duration),
                                                      'activeNeurons': int((spikes[indices] > 0).sum())}
                                                 for pool, indices in extra_pools.items()}
+            if args.save_spike_counts:
+                raw_counts = spikes.astype('<u4').tobytes()
+                count_file = counts_folder / f'trial-{len(trials)-1:03d}.bin'
+                count_file.write_bytes(raw_counts)
+                trials[-1]['spikeCounts'] = {'file': str(count_file), 'dtype': 'uint32-le',
+                                             'neurons': len(spikes), 'SHA256': hashlib.sha256(raw_counts).hexdigest()}
             print(json.dumps(trials[-1]), flush=True)
             report = {'schema': 'lif-odor-probe-v1', 'modelSource': 'https://doi.org/10.1038/s41586-024-07763-9',
                       'referenceCommit': '91bdd1e7dcf193f3e7ca5a8933497fcef63b7960',

@@ -430,8 +430,8 @@ octopamine sources contacting L5 in this inventory.
 | 10658 | 35 | 262 | 74 |
 | 10687 | 31 | 363 | 70 |
 
-The previous four-cell recruitment assay observed OA-AL2i2, so it does not
-answer how these additional candidates respond to odor. The expanded
+The previous four-cell recruitment assay observed OA-AL2i2, so a follow-up
+was needed to measure these additional candidates' odor responses. The expanded
 inventory is anatomical evidence only: larger contact counts do not show
 greater modulation, receptor expression, release, or a suitable chemical
 exposure. Nor do these labels identify the exact physiological cells in
@@ -450,3 +450,50 @@ T4/T5 odor-only trials supply no evidence about visual modulation.
 ```sh
 artifacts/lif-runtime/bin/python scripts/map-neuromodulator-targets.py --motion-inputs --output docs/visual-modulation-targets.json
 ```
+
+### Completed recruitment assay of the upstream candidates
+
+The follow-up completed all **28 planned odor-only trials**, observing the
+14 octopamine-labelled candidates and the five additional visual input
+populations. It used the same seven conditions and four matched Poisson
+seeds as the original assay, with unchanged neuron equations, graph,
+source inputs and timing. Every original trial output, including the
+previously observed cell pools, matched exactly.
+
+| Additional candidate | Clean-air mean firing, Hz | Bilateral ethyl-acetate change, Hz | Bilateral geosmin change, Hz |
+| --- | ---: | ---: | ---: |
+| OA-AL2i3, body 10825 | 144.17 | +1.67 | +2.08 |
+| OA-AL2i3, body 10226 | 139.58 | +1.67 | +0.83 |
+| OA-AL2i3, body 10658 | 145.42 | +0.83 | −0.42 |
+| OA-AL2i3, body 10687 | 143.75 | +1.25 | +0.83 |
+| OA-AL2i4, body 10677 | 149.17 | +2.08 | −1.67 |
+| OA-AL2i4, body 10652 | 139.17 | −2.50 | −0.83 |
+| Each of the four OA-ASM1 candidates | 0 | 0 | 0 |
+
+These changes are small relative to the modeled baseline firing and
+mostly vary in sign across seeds. Ethyl acetate's effect on body 10825
+was nonnegative in all four trials, but two changes were zero. The two
+OA-AL2i4 cells changed in opposite directions on average. The assay does
+not support treating all octopamine-labelled neurons as one odor-controlled
+gain signal.
+
+Mi1, Tm3, Mi4, Mi9, L5, T4 and T5 remained silent in every trial. No visual
+stimulus or receptor-dependent modulation was supplied, so this result
+neither establishes visual enhancement nor rules it out in a real fly.
+It leaves visual-response qualification as the next required step.
+
+The [complete result](visual-input-recruitment-results.json) retains every
+condition and candidate, including the four previously measured OA-AL2i2
+cells. It also references 28 verified binary files containing each of the
+166,700 neurons' spike counts. Pool totals, active-cell counts and whole-brain
+totals were independently recomputed from those files. These aggregate
+counts allow later anatomical questions without rerunning the experiment;
+they do not preserve spike timing or establish response kinetics.
+
+```sh
+artifacts/lif-runtime/bin/python scripts/lif-odor-probe.py --odors 'ethyl acetate' geosmin --seeds 4 --extra-pools artifacts/odor-interface/visual-input-neuromodulator-pools.json --save-spike-counts --output artifacts/odor-interface/lif-visual-input-recruitment.json
+artifacts/lif-runtime/bin/python scripts/summarize-neuromodulator-recruitment.py --visual-inputs
+```
+
+Use a new output path for any repetition; the original complete count files
+are preserved and the script refuses to overwrite their directory.
