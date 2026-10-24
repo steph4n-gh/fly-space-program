@@ -4,8 +4,11 @@
   "type": "module",
   "scripts": {
     "start": "python3 -m http.server 4173 --directory dist",
+    "vendor:refresh": "node scripts/refresh-three-vendor.mjs",
+    "check:vendor": "node scripts/refresh-three-vendor.mjs --check",
+    "check:browser": "node scripts/check-three-browser.mjs",
     "train": "node scripts/train-full.mjs",
-    "check": "node scripts/check-full-network.mjs && node scripts/check-decision.mjs && node scripts/check-v6.mjs && node scripts/check-orbit.mjs && node scripts/check-senses.mjs && node scripts/check-arousal.mjs && node scripts/check-perception.mjs"
+    "check": "npm run check:vendor && node scripts/check-full-network.mjs && node scripts/check-decision.mjs && node scripts/check-v6.mjs && node scripts/check-orbit.mjs && node scripts/check-senses.mjs && node scripts/check-arousal.mjs && node scripts/check-perception.mjs"
   },
   "dependencies": {
     "three": "^0.186.0"

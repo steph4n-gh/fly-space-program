@@ -30,19 +30,27 @@ there in the pull request. Dependency changes should update both `package.json`
 and `package-lock.json`. Keep original source data in ignored `data/` and local
 training products in ignored `artifacts/`.
 
+The browser imports committed Three.js files from `dist/vendor/`. After changing
+the locked Three.js version, run `npm ci` and `npm run vendor:refresh`, then
+review the vendor diff and its MIT license notice. A lockfile edit alone leaves
+the running browser on the old Three.js bytes.
+
 ## Verification
 
 Run the existing checks from the repository root:
 
 ```sh
 npm run check
+npm run check:browser
 git diff --check
 ```
 
 The checks exercise the complete graph, decision inspection, physics, sensors,
 activation gain, and perception. They include neural calculations and reference
 flight trajectories, so allow time and memory for the complete graph. CI runs this
-same command on Node 24. A passing check does not reproduce every research
+same command on Node 24. The browser smoke uses local headless Chrome and WebGL 2
+to initialize and render one frame with the committed Three.js modules. A passing
+check does not reproduce every research
 experiment or establish flight reliability.
 
 For a browser change, also open the affected view and describe the interaction
