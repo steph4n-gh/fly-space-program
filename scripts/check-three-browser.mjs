@@ -27,8 +27,9 @@ try {
   throw Error('WebGL 2 renderer did not draw');
  const pixel=new Uint8Array(4);
  gl.readPixels(64,48,1,1,gl.RGBA,gl.UNSIGNED_BYTE,pixel);
- if(gl.getError()!==gl.NO_ERROR||pixel[3]!==255||!pixel.slice(0,3).some(Boolean))
-  throw Error('Rendered pixel was invalid: '+Array.from(pixel));
+ if(gl.getError()!==gl.NO_ERROR||pixel[3]!==255||
+    pixel[0]<150||pixel[0]<pixel[1]+70||pixel[1]<=pixel[2])
+  throw Error('Center pixel did not show the orange cube: '+Array.from(pixel));
  document.querySelector('#result').textContent='SMOKE_OK '+Array.from(pixel).join(',');
 } catch(error) {document.querySelector('#result').textContent='SMOKE_FAIL '+error.stack;}
 </script></body></html>`;
