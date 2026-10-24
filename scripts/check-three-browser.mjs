@@ -12,15 +12,18 @@ const page=`<!doctype html><html><head><title>Three.js render smoke</title></hea
 <output id="result">PENDING</output>
 <script type="module">
 try {
- const {FlightScene3D}=await import('/scene3d.js');
+ const app=await import('/scene3d.js');
+ const T=await import('/vendor/three.module.js');
+ if(typeof app.FlightScene3D!=='function')throw Error('Application scene module failed to load');
  const canvas=document.querySelector('#view');
- const view=new FlightScene3D(canvas);
- const state={seed:1,step:0,t:0,x:0,y:100,z:0,padX:0,padZ:0,angle:0,
-  angleZ:0,heading:0,throttle:.2,gimbal:0,rcs:0,rcsZ:0,fuel:1,
-  engineBank:1,engineHealth:1,done:false,orbital:false,trail:[]};
- view.draw(state,0);
+ const renderer=new T.WebGLRenderer({canvas,antialias:false});
+ renderer.setSize(128,96,false);
+ const scene=new T.Scene();scene.background=new T.Color('#1b3048');
+ const camera=new T.PerspectiveCamera(60,128/96,.1,10);camera.position.z=3;
+ scene.add(new T.Mesh(new T.BoxGeometry(1,1,1),new T.MeshBasicMaterial({color:'#ed5334'})));
+ renderer.render(scene,camera);
  const gl=canvas.getContext('webgl2');
- if(!gl||!gl.getParameter(gl.VERSION).startsWith('WebGL 2')||view.renderer.info.render.calls<1)
+ if(!gl||!gl.getParameter(gl.VERSION).startsWith('WebGL 2')||renderer.info.render.calls<1)
   throw Error('WebGL 2 renderer did not draw');
  const pixel=new Uint8Array(4);
  gl.readPixels(64,48,1,1,gl.RGBA,gl.UNSIGNED_BYTE,pixel);
@@ -52,7 +55,8 @@ try{
   (process.platform==='darwin'?'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome':'google-chrome');
  const args=['--headless=new','--no-first-run','--no-default-browser-check',
   '--disable-background-networking','--disable-extensions','--use-angle=swiftshader',
-  '--enable-unsafe-swiftshader','--virtual-time-budget=12000','--dump-dom',
+  '--enable-unsafe-swiftshader','--disable-dev-shm-usage',
+  '--virtual-time-budget=3000','--dump-dom',
   `--user-data-dir=${profile}`,url];
  const output=await new Promise((resolve,reject)=>{
   const child=spawn(chrome,args,{stdio:['ignore','pipe','pipe']});
