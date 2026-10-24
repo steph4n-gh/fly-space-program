@@ -1,0 +1,79 @@
+name: Review npm execution evidence
+
+on:
+  pull_request_target:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  review:
+    name: tau-gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      BASE_COMMIT: ${{ github.event.pull_request.base.sha }}
+      HEAD_COMMIT: ${{ github.event.pull_request.head.sha }}
+      REPOSITORY: ${{ github.repository }}
+      TAU_GATE_ARCHIVE_URL: ${{ vars.TAU_GATE_ARCHIVE_URL }}
+      TAU_GATE_ARCHIVE_SHA256: ${{ vars.TAU_GATE_ARCHIVE_SHA256 }}
+    steps:
+      - name: Capture trusted base tools and both Git revisions
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$BASE_COMMIT" =~ ^[0-9a-f]{40}$ ]]
+          [[ "$HEAD_COMMIT" =~ ^[0-9a-f]{40}$ ]]
+          repository="$RUNNER_TEMP/npm-review-repository"
+          git init "$repository"
+          git -C "$repository" remote add origin "$GITHUB_SERVER_URL/$REPOSITORY.git"
+          auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
+          git -C "$repository" -c http.extraheader="AUTHORIZATION: basic $auth" fetch --depth 1 origin "$BASE_COMMIT" "$HEAD_COMMIT"
+          git -C "$repository" -c core.hooksPath=/dev/null checkout --detach "$BASE_COMMIT"
+
+      - name: Verify and install the trusted checker archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$TAU_GATE_ARCHIVE_URL" == https://* ]]
+          [[ "$TAU_GATE_ARCHIVE_SHA256" =~ ^[0-9a-f]{64}$ ]]
+          archive="$RUNNER_TEMP/tau-gate.tar.gz"
+          checker="$RUNNER_TEMP/tau-gate"
+          curl --fail --location --proto '=https' --proto-redir '=https' --tlsv1.2 "$TAU_GATE_ARCHIVE_URL" --output "$archive"
+          printf '%s  %s\n' "$TAU_GATE_ARCHIVE_SHA256" "$archive" | sha256sum --check -
+          tar --extract --gzip --file "$archive" --directory "$RUNNER_TEMP" --no-same-owner --no-same-permissions ./tau-gate
+          chmod +x "$checker"
+
+      - name: Review exact snapshots with base approvals
+        shell: bash
+        run: |
+          set -uo pipefail
+          repository="$RUNNER_TEMP/npm-review-repository"
+          output="$RUNNER_TEMP/npm-review-report"
+          PYTHONDONTWRITEBYTECODE=1 python3 "$repository/tools/pr_review.py" \
+            --repo "$repository" \
+            --base "$BASE_COMMIT" \
+            --head "$HEAD_COMMIT" \
+            --tau-gate "$RUNNER_TEMP/tau-gate" \
+            --output "$output" > "$RUNNER_TEMP/npm-review.json"
+          result=$?
+          if [ -f "$output/summary.md" ]; then
+            cat "$output/summary.md" >> "$GITHUB_STEP_SUMMARY"
+          else
+            cat "$RUNNER_TEMP/npm-review.json"
+          fi
+          exit "$result"
+
+      - name: Preserve review reports
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: npm-review
+          path: |
+            ${{ runner.temp }}/npm-review-report/report.json
+            ${{ runner.temp }}/npm-review-report/summary.md
+          retention-days: 7
+          if-no-files-found: warn
