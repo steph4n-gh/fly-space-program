@@ -35,6 +35,17 @@ the locked Three.js version, run `npm ci` and `npm run vendor:refresh`, then
 review the vendor diff and its MIT license notice. A lockfile edit alone leaves
 the running browser on the old Three.js bytes.
 
+Renovate is scoped to the root npm project. It proposes `package.json` and
+`package-lock.json` updates, but cannot refresh the committed vendor files in
+the hosted app. Treat its Three.js pull request as a proposal: on that branch,
+run `npm ci` and `npm run vendor:refresh`, review and commit all three files in
+`dist/vendor/`, then rerun CI and the trusted npm evidence review. The byte
+parity check intentionally fails until the shipped browser files match the
+locked package. Ordinary major updates require Dependency Dashboard approval.
+Security alerts can bypass that approval but still require human merge because
+automerge is disabled. Merge only after the browser smoke and license review
+pass.
+
 ## Verification
 
 Run the existing checks from the repository root:

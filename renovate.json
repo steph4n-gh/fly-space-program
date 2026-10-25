@@ -1,0 +1,19 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "enabledManagers": ["npm"],
+  "includePaths": ["package.json"],
+  "rangeStrategy": "update-lockfile",
+  "lockFileMaintenance": { "enabled": false },
+  "automerge": false,
+  "prConcurrentLimit": 2,
+  "prHourlyLimit": 2,
+  "major": { "dependencyDashboardApproval": true },
+  "vulnerabilityAlerts": { "automerge": false },
+  "packageRules": [
+    {
+      "matchPackageNames": ["three"],
+      "prBodyNotes": ["The browser serves committed `dist/vendor/` files. Before merging, run `npm ci` and `npm run vendor:refresh`, commit the module, core, and license with the manifest and lockfile, then rerun Checks and Tau-Gate. See `CONTRIBUTING.md`."]
+    }
+  ]
+}
