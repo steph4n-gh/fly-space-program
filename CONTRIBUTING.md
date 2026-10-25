@@ -41,9 +41,10 @@ the hosted app. Treat its Three.js pull request as a proposal: on that branch,
 run `npm ci` and `npm run vendor:refresh`, review and commit all three files in
 `dist/vendor/`, then rerun CI and the trusted npm evidence review. The byte
 parity check intentionally fails until the shipped browser files match the
-locked package. Review major versions through the Dependency Dashboard and
-merge only after the browser smoke and license review pass. No dependency PR
-automerges.
+locked package. Ordinary major updates require Dependency Dashboard approval.
+Security alerts can bypass that approval but still require human merge because
+automerge is disabled. Merge only after the browser smoke and license review
+pass.
 
 ## Verification
 
