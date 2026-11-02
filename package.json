@@ -11,7 +11,7 @@
     "check": "npm run check:vendor && node scripts/check-full-network.mjs && node scripts/check-decision.mjs && node scripts/check-v6.mjs && node scripts/check-orbit.mjs && node scripts/check-senses.mjs && node scripts/check-arousal.mjs && node scripts/check-perception.mjs"
   },
   "dependencies": {
-    "three": "^0.186.0"
+    "three": "^0.187.0"
   },
   "description": "A fruit-fly connectome in a rocket simulator. Explore neural control, reproducible experiments and the proposed Fly Cube.",
   "license": "SEE LICENSE IN LICENSE",
