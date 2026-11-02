@@ -30,7 +30,19 @@ try {
  if(gl.getError()!==gl.NO_ERROR||pixel[3]!==255||
     pixel[0]<150||pixel[0]<pixel[1]+70||pixel[1]<=pixel[2])
   throw Error('Center pixel did not show the orange cube: '+Array.from(pixel));
- document.querySelector('#result').textContent='SMOKE_OK '+Array.from(pixel).join(',');
+ const flightCanvas=document.createElement('canvas');
+ flightCanvas.width=128;flightCanvas.height=96;
+ document.body.append(flightCanvas);
+ const flight=new app.FlightScene3D(flightCanvas);
+ flight.renderer.setSize(128,96,false);
+ flight.camera.position.set(0,8,20);
+ flight.camera.lookAt(0,0,0);
+ flight.renderer.render(flight.scene,flight.camera);
+ const flightGl=flightCanvas.getContext('webgl2');
+ if(!flightGl||flight.renderer.info.render.calls<1||flightGl.getError()!==flightGl.NO_ERROR)
+  throw Error('Application flight scene did not render with its environment');
+ flight.renderer.dispose();
+ document.querySelector('#result').textContent='SMOKE_OK '+Array.from(pixel).join(',')+' FLIGHT_SCENE_OK';
 } catch(error) {document.querySelector('#result').textContent='SMOKE_FAIL '+error.stack;}
 </script></body></html>`;
 
@@ -68,7 +80,7 @@ try{
   child.on('error',reject);
   child.on('close',code=>{clearTimeout(timeout);resolve({code,stdout,stderr});});
  });
- const result=output.stdout.match(/<output id="result">SMOKE_OK ([0-9]+,){3}[0-9]+<\/output>/);
+ const result=output.stdout.match(/<output id="result">SMOKE_OK ([0-9]+,){3}[0-9]+ FLIGHT_SCENE_OK<\/output>/);
  if(output.code!==0||!result)
   throw Error(`Browser render smoke failed (exit ${output.code}): ${output.stdout.slice(-1000)}\n${output.stderr}`);
  console.log(result[0].replace(/<\/?output[^>]*>/g,''));
